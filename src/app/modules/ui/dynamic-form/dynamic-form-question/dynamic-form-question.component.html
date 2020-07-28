@@ -1,0 +1,53 @@
+<div class="form-row" [formGroup]="form">
+  <div class="description">
+    <label [attr.for]="question.key">{{ question.label }}</label>
+  </div>
+
+  <div class="original">
+    <div [ngSwitch]="question.controlType">
+      <input
+        class="radius"
+        *ngSwitchCase="'textbox'"
+        [formControlName]="question.key"
+        [id]="question.key"
+        [type]="question.type"
+        [ngModel]="question.value"
+      />
+
+      <div
+        *ngSwitchCase="'checkbox-group'"
+        [formGroup]="form.get(question.key)"
+      >
+        <div *ngFor="let child of question.child">
+          <input
+            class="radius raisins-checkbox label"
+            [id]="child.key"
+            [formControlName]="child.key"
+            [ngModel]="child.value"
+            type="checkbox"
+          />
+          <label [for]="child.key">{{ child.label }}</label>
+        </div>
+      </div>
+
+      <select
+        class="radius"
+        [id]="question.key"
+        *ngSwitchCase="'dropdown'"
+        [formControlName]="question.key"
+      >
+        <option *ngFor="let opt of question.options" [value]="opt.key">{{
+          opt.value
+        }}</option>
+      </select>
+    </div>
+
+    <!-- <div class="validation-msg red" *ngIf="!isValid">{{ question.label }} is required</div> -->
+  </div>
+</div>
+
+<!-- 
+  Copyright Google LLC. All Rights Reserved.
+  Use of this source code is governed by an MIT-style license that
+  can be found in the LICENSE file at http://angular.io/license
+  -->

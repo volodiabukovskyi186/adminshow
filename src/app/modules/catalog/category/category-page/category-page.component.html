@@ -1,0 +1,140 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-category-form
+      [title]="'category.add_edit_category' | translate"
+      [category]="categoryForm.category"
+      [categoryes]="category.category.data"
+      [langs]="this.langService.languages.data"
+      (formSubmit)="onSubmit($event)"
+    >
+    </app-category-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <ng-template #notfound>
+      <div class="d2 padding flex center gray500 text-center">
+        No Records Yet<br />😞
+      </div>
+    </ng-template>
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="category.category?.data.length > 0; else notfound"
+    >
+      <thead>
+        <tr>
+          <th width="64px">{{ "APP.id" | translate }}</th>
+          <th width="64px">{{ "category.parrent_id" | translate }}</th>
+          <th width="64px">{{ "APP.sort_order" | translate }}</th>
+          <th width="64px">{{ "APP.image" | translate }}</th>
+          <th width="">{{ "category.title" | translate }}</th>
+          <th width="128px">{{ "APP.updated_at" | translate }}</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of category.category?.data"
+          [ngClass]="{ off: !item.status }"
+        >
+          <td data-label="ID" class="text-center">
+            <span
+              (mouseenter)="highlightIndex = item.id"
+              (mouseleave)="highlightIndex = 0"
+              [ngClass]="{ active: highlightIndex == item.id }"
+              class="ihighlightable"
+              >{{ item.id }}</span
+            >
+          </td>
+
+          <td class="text-center">
+            <span
+              (mouseenter)="highlightIndex = item.parent_id"
+              (mouseleave)="highlightIndex = 0"
+              [ngClass]="{ active: highlightIndex == item.parent_id }"
+              class="ihighlightable"
+              >{{ item.parent_id }}
+              <pre *ngIf="!item.parent_id">root</pre>
+            </span>
+          </td>
+          <td class="text-center">{{ item.sort_order }}</td>
+          <td data-label="LOGO">
+            <div class="flex center">
+              <div
+                style="max-width: 64px; width: 100%;"
+                class="ratio"
+                *ngIf="item.image?.src_mini"
+              >
+                <div class="imax">
+                  <img
+                    class="contain"
+                    [src]="'//' + category.category.host + item.image?.src_mini"
+                    [alt]="item.id"
+                  />
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="flex wrap" style="width: 100%;">
+              <span class="title" *ngFor="let desc of item.parents">{{
+                desc.name
+              }}</span>
+            </div>
+          </td>
+
+          <td class="text-center">
+            <small>{{ item.updated_at | localDate }}</small>
+            <small *ngIf="!item.updated_at">—</small>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <rap-delete-button
+                [attr.data-tooltip-left]="'APP.on_off' | translate"
+                class="button transparent radius"
+                [ngClass]="{ on: item.status, off: !item.status }"
+                (confirmed)="updateStatus(item)"
+                [@changeValueHighlight]="item.status"
+                [src]="
+                  item.status != 1
+                    ? 'assets/icons/eye-cloce.svg'
+                    : 'assets/icons/eye-open.svg'
+                "
+              ></rap-delete-button>
+
+              <button
+                style="position: relative;"
+                [attr.data-tooltip-left]="'APP.edit' | translate"
+                role="button"
+                (click)="edit(item)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+
+              <!-- <rap-delete-button
+                [attr.data-tooltip-left]="'APP.del' | translate"
+                class="button transparent radius"
+                (confirmed)="updateStatus(item)"
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button> -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <app-pagination
+      class="radius"
+      [page]="category.page"
+      [total]="Math.ceil(category.category.count / category.category.take)"
+      [pagesToShow]="5"
+      (goNext)="pageNextHandler()"
+      (goPrev)="pagePrevHandler()"
+      (goPage)="pageToHandler($event)"
+      (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+  </div>
+</rap-panel-content>

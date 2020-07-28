@@ -1,0 +1,10 @@
+<svg class="circle-progress" viewBox="0 0 36 36">
+  <path
+    attr.stroke-dasharray="{{ value }}, {{ max }}"
+    class="circle-path"
+    d="M18 2a16 16 0 010 32 16 16 0 010-32"
+  ></path>
+  <text class="circle-text" x="50%" y="50%">
+    {{ done ? "Done" : value + "%" }}
+  </text>
+</svg>

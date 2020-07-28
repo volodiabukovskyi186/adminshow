@@ -1,0 +1,74 @@
+<div class="modal" *ngIf="modalOpen">
+  <div class="modal-wrapper">
+    <div class="modal-close" (click)="modalOpen = false"></div>
+    <div class="modal-content">
+      <header>
+        <h4>Select image</h4>
+      </header>
+
+      <div class="content">
+        <app-gallery-view
+          [selectable]="true"
+          [singleSelectable]="true"
+          [editable]="false"
+        ></app-gallery-view>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="text-center" *ngIf="title">{{ title }}</h2>
+
+<rap-step-tabs>
+  <rap-step-tab [active]="true" [title]="'Base'">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>BASE</legend>
+      <product-form-base
+        (press)="onPress()"
+        (reset)="onReset()"
+        [model]="model"
+        [manufacturers]="manufacturers"
+        [host]="host"
+      >
+      </product-form-base>
+    </fieldset>
+
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>DESCRIPTION</legend>
+      <product-form-description [model]="model"></product-form-description>
+    </fieldset>
+  </rap-step-tab>
+
+  <rap-step-tab [title]="'Data'">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>DATA</legend>
+      <product-form-data [model]="model"></product-form-data>
+    </fieldset>
+
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>CODES</legend>
+      <product-form-codes [model]="model"></product-form-codes>
+    </fieldset>
+  </rap-step-tab>
+
+  <rap-step-tab [title]="'Links'" *ngIf="model.id">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>Category</legend>
+      <product-form-category [model]="model"></product-form-category>
+    </fieldset>
+  </rap-step-tab>
+
+  <rap-step-tab [title]="'Images'" *ngIf="model.id">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>Images</legend>
+      <product-form-images [model]="model"></product-form-images>
+    </fieldset>
+  </rap-step-tab>
+
+  <rap-step-tab [title]="'Attribytes'" *ngIf="model.id">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>Attribytes</legend>
+      <product-form-attributes [langs]="langs" [model]="model"></product-form-attributes>
+    </fieldset>
+  </rap-step-tab>
+</rap-step-tabs>

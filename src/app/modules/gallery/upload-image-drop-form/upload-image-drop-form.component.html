@@ -1,0 +1,57 @@
+<div class="col">
+  <input
+    #fileElem
+    type="file"
+    multiple
+    id="fileElem"
+    name="image"
+    style="display: none;"
+    accept=".jpg, .jpeg, .png, .gif"
+    (change)="image.addImagesToUpload($event.target.files)"
+  />
+  <div
+    class="drop_zone radius"
+    id="drop_zone"
+    (drop)="drop_handler($event)"
+    (dragover)="dragover_handler($event)"
+    (dragend)="dragend_handler($event)"
+    (dragleave)="dragleave_handler($event)"
+  >
+    <div class="drop-text">
+      <div class="d1">Drop it! ^_^</div>
+    </div>
+    <div class="row dragover-hide">
+      <div class="col text-center flex column center v_center">
+        <p class="text-center">
+          Drag and drop images here
+          <br />or
+        </p>
+        <button (click)="fileElem.click()" class="button primary radius">
+          Select from device
+        </button>
+      </div>
+      <div class="col flex text-center center v_center column">
+        <img
+          class="block-center"
+          width="256px"
+          height="256px"
+          src="assets/icons/color-drop-images.svg"
+          alt=""
+        />
+        <small class="gray600">(JPG, JPEG, PNG, GIF)</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex center padding">
+  <button
+    [disabled]="image.uploading"
+    class="button radius"
+    *ngIf="image.uploadImages.length > 0"
+    (click)="upload()"
+  >
+    Upload
+  </button>
+</div>
+

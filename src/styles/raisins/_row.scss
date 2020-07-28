@@ -1,0 +1,171 @@
+.row {
+  flex-direction: row;
+  &.wrap {
+    flex-wrap: wrap;
+  }
+}
+.col {
+  flex: 0 0 auto;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+
+  $i: 5;
+  @while $i < 100 {
+    &.col-#{$i} {
+      @include col-width($i + 0%);
+    }
+    $i: $i + 5;
+  }
+}
+
+//
+// col medium
+
+@media (max-width: 1079.98px) {
+  .col {
+    &.col20m {
+      @include col-width(20%);
+    }
+    &.col25m {
+      @include col-width(25%);
+    }
+    &.col33m {
+      @include col-width(33.3333%);
+    }
+    &.col50m {
+      @include col-width(50%);
+    }
+    &.col66m {
+      @include col-width(66.6666%);
+    }
+    &.col80m {
+      @include col-width(80%);
+    }
+    &.col100m {
+      @include col-width(100%);
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .col {
+    &.col100s {
+      @include col-width(100%);
+    }
+    &.col50s {
+      @include col-width(50%);
+    }
+  }
+}
+
+// @include screen-w(960px) {
+//   .col {
+//     $i: 5;
+//     @while $i < 100 {
+//       &.col-#{$i} {
+//         @include col-width(100%);
+//       }
+//       $i: $i + 5;
+//     }
+//   }
+// }
+
+// @include screen-w(480px) {
+//   .row {
+//     flex-direction: column;
+//     .col {
+//       flex-basis: unset;
+//     }
+//   }
+// }
+
+
+//
+// translation-row
+.translation-row,
+.form-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $space/2;
+  .description {
+    @include col-width(20%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 8px;
+    color: $gray600;
+    font-weight: 600;
+    text-align: right;
+  }
+  .arrows {
+    @include col-width(32px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .arrow-right {
+      display: inline;
+    }
+    .arrow-left {
+      display: none;
+    }
+  }
+
+  .original,
+  .translated {
+    flex: 1;
+  }
+  &.reverse {
+    .description {
+      order: 0;
+    }
+    .translated {
+      order: 1;
+    }
+
+    .arrows {
+      order: 2;
+    }
+    .arrow-left {
+      display: inline;
+    }
+    .arrow-right {
+      display: none;
+    }
+    .original {
+      order: 3;
+    }
+  }
+}
+
+@include screen-w(1024px) {
+  .translation-row,
+  .form-row {
+    flex-direction: column;
+    // margin-top: $space;
+    padding-bottom: $space/2;
+    // border-bottom: 1px solid $gray300;
+    .arrows {
+      display: none;
+    }
+    .description {
+      flex: 1;
+      @include col-width(100%);
+      justify-content: flex-start;
+    }
+    .description,
+    .translated,
+    .original {
+      margin-top: $space/2;
+    }
+    &.reverse {
+      .description,
+      .translated,
+      .original {
+        order: unset;
+      }
+    }
+  }
+}
+

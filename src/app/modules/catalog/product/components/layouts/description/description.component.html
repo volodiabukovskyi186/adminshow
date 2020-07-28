@@ -1,0 +1,71 @@
+<rap-step-tabs>
+  <rap-step-tab
+    *ngFor="let item of model.descriptions"
+    [title]="item.lang.flag + ' ' + item.lang.short_title"
+  >
+    <div class="form-row">
+      <div class="description">
+        <label for="">{{ item.lang.flag }} NAME</label>
+      </div>
+
+      <div class="original">
+        <input class="radius" [(ngModel)]="item.name" type="text" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="description">
+        <label for="">{{ item.lang.flag }} DESCRIPTION</label>
+      </div>
+
+      <div class="original">
+        <textarea
+          name=""
+          class="radius"
+          [(ngModel)]="item.discription"
+          rows="2"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="description">
+        <label for="">{{ item.lang.flag }} META DESCRIPTION</label>
+      </div>
+
+      <div class="original">
+        <textarea
+          name=""
+          class="radius"
+          [(ngModel)]="item.meta_discription"
+          rows="2"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="description">
+        <label for="">{{ item.lang.flag }} META keywords</label>
+      </div>
+
+      <div class="original">
+        <textarea
+          name=""
+          class="radius"
+          [(ngModel)]="item.meta_keywords"
+          rows="2"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="description">
+        <label for="">{{ item.lang.flag }} tag</label>
+      </div>
+
+      <div class="original">
+        <input class="radius" [(ngModel)]="item.tag" type="text" />
+      </div>
+    </div>
+  </rap-step-tab>
+</rap-step-tabs>

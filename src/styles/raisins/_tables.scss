@@ -1,0 +1,295 @@
+.raisins-table {
+  border-collapse: collapse;
+  background-color: white;
+  border: 0;
+  width: 100%;
+
+  thead,
+  tfoot {
+    tr {
+      th {
+        padding: $space/2 $space/4;
+        text-align: center;
+        font-weight: 200;
+        text-transform: uppercase;
+      }
+    }
+  }
+  thead {
+    &.color {
+      tr {
+        th {
+          background-color: rgba($blue, 1);
+          color: white;
+        }
+      }
+    }
+  }
+  tfoot {
+    &.color {
+      tr {
+        th {
+          background-color: rgba($gray200, 0.16);
+        }
+      }
+    }
+  }
+  tr {
+    td,
+    th {
+      padding: $space/4;
+      vertical-align: middle;
+    }
+  }
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: rgba($gray900, 0.064);
+      }
+    }
+  }
+}
+
+.raisins-table {
+  &.border {
+    tr {
+      td,
+      th {
+        &:first-child {
+          border-left: $gray600;
+        }
+        &:last-child {
+          border-right: $gray600;
+        }
+      }
+    }
+    thead,
+    tfoot {
+      tr {
+        th {
+          border-top: 2px solid $gray600;
+          border-bottom: 2px solid $gray600;
+        }
+      }
+    }
+    thead {
+      &.color {
+        tr {
+          th {
+            border-color: rgba($blue, 1);
+          }
+        }
+      }
+    }
+    tfoot {
+      tr {
+        th {
+          border-bottom: $gray600;
+          border-top: 2px solid $gray600;
+        }
+      }
+    }
+  }
+  &.border-all {
+    tr {
+      td,
+      th {
+        border: 1px solid $gray300;
+        background-color: unset;
+      }
+    }
+  }
+}
+
+$line: 1px solid $gray400;
+
+.raisins-table {
+  &.border-all {
+    &.radius {
+      border-collapse: separate;
+      border: $line;
+      border-radius: $radius;
+      border-spacing: 0;
+      // overflow: hidden;
+      tr {
+        td,
+        th {
+          border: 0;
+        }
+      }
+
+      thead {
+        tr {
+          th {
+            padding: $space $space/4;
+            border-bottom: $line;
+          }
+        }
+      }
+      tfoot {
+        tr {
+          th {
+            border-top: $line;
+          }
+        }
+      }
+
+      tr:hover {
+        td {
+          background-color: lighten(mix($gray100, $blue), 30%);
+        }
+      }
+
+      th,
+      tr:not(:last-child) td {
+        border-bottom: $line;
+      }
+      th:not(:last-child),
+      td:not(:last-child) {
+        border-right: $line;
+      }
+    }
+  }
+}
+
+.raisins-table {
+  tr {
+    &.green {
+      td,
+      th {
+        background-color: lighten($green, 55%);
+      }
+      &:hover {
+        td,
+        th {
+          background-color: lighten($green, 50%) !important;
+        }
+      }
+    }
+    &.red {
+      td,
+      th {
+        background-color: lighten($red, 55%);
+      }
+      &:hover {
+        td,
+        th {
+          background-color: lighten($red, 50%) !important;
+        }
+      }
+    }
+    &.blue {
+      td,
+      th {
+        background-color: lighten($blue, 60%);
+      }
+      &:hover {
+        td,
+        th {
+          background-color: lighten($blue, 55%) !important;
+        }
+      }
+    }
+    &.yellow {
+      td,
+      th {
+        background-color: lighten($yellow, 42%);
+      }
+      &:hover {
+        td,
+        th {
+          background-color: lighten($yellow, 40%) !important;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 993px) {
+  .raisins-table {
+    border: 0;
+    thead,
+    tfood {
+      display: none;
+    }
+    $w: 33.3333%;
+    tr {
+      margin-bottom: 20px;
+      display: block;
+      td {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        &:before {
+          width: $w;
+          min-width: $w;
+          flex-basis: $w;
+          text-align: left;
+          color: $gray600;
+          margin-right: $space/4;
+          content: attr(data-label);
+          display: block;
+          font-weight: 600;
+        }
+      }
+    }
+
+    &.border-all {
+      &.radius {
+        border: 0;
+        tr {
+          border-radius: $radius;
+          td {
+            &:after {
+              content: "";
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: $w;
+              border-left: $line;
+            }
+          }
+          td,
+          th {
+            border: $line;
+            border-top-width: 0;
+            &:first-child {
+              border-top-width: 1px;
+              border-top-left-radius: $radius;
+              border-top-right-radius: $radius;
+            }
+            &:last-child {
+              border-bottom-left-radius: $radius;
+              border-bottom-right-radius: $radius;
+            }
+          }
+        }
+      }
+
+      tr {
+        border: 0;
+        td {
+          border-top-width: 0;
+          &:first-child {
+            border-top-width: 1px;
+          }
+          // &:before {
+          //   border-right: $line;
+          // }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 480px) {
+  .raisins-table {
+    tr {
+      td {
+        &:before {
+          width: 50%;
+        }
+      }
+    }
+  }
+}

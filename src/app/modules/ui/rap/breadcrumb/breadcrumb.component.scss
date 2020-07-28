@@ -1,0 +1,50 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+$padding: 8px;
+$c: #242424;
+$ch: #ececec;
+:host {
+  display: flex;
+  align-items: center;
+  a,
+  a.active {
+    @include transition();
+    display: block;
+    padding: $padding * 1.7;
+    position: relative;
+    color: inherit;
+    text-decoration: none; // border-bottom: 4px solid transparent;
+    &:hover {
+      background-color: $gray100; // border-color: $blue;
+      color: $blue;
+    }
+    &.icon {
+      padding: $space / 4;
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+  a.active {
+    display: block;
+    color: $blue;
+    font-weight: 600;
+    text-decoration: none;
+    //   color: $blue;
+    user-select: none;
+    -moz-user-select: none;
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      border-bottom: 2px solid lighten($blue, 20%);
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      z-index: 99;
+    }
+  }
+}

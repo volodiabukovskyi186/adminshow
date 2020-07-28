@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div *ngFor="let question of questions">
+    <rap-dynamic-form-question
+      [question]="question"
+      [form]="form"
+    ></rap-dynamic-form-question>
+  </div>
+
+  <footer class="flex center">
+    <button
+      *ngIf="isSubmitButton"
+      class="button primary radius"
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      Save
+    </button>
+  </footer>
+</form>

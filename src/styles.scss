@@ -1,0 +1,158 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*
+ * import Raisins
+ */
+@import "styles/raisins/raisins";
+
+// regular style toast
+@import "~ngx-toastr/toastr";
+
+html {
+  font-family: $fontFamily;
+}
+
+// toast override
+.toast-container .ngx-toastr {
+  display: block;
+  padding: 16px 16px 16px 52px;
+  @include transition();
+  @include material-shadow(4);
+  &:hover {
+    @include material-shadow(5);
+    transform: scale(1.01);
+  }
+  &.toast-error {
+    background-color: $red;
+    &:hover {
+      background-color: lighten($red, 2%);
+    }
+  }
+  &.toast-info {
+    background-color: $blue;
+    &:hover {
+      background-color: lighten($blue, 2%);
+    }
+  }
+}
+
+.ngx-foreground-spinner *,
+.ngx-background-spinner * {
+  display: block;
+}
+
+.validation-msg {
+  font-size: $fontSizeSmall;
+  font-weight: bold;
+  padding: $space/2;
+  margin: $space/8 0;
+  border-radius: $radius;
+  &.red {
+    background-color: rgba($red, 0.1);
+    color: $red;
+  }
+}
+
+[data-tooltip-left],
+[data-tooltip-right],
+[data-tooltip-top] {
+  &::before {
+    display: none;
+    content: attr(data-tooltip-left);
+    position: absolute;
+    background: rgba($gray900, 0.8);
+    // min-width: 128px;
+    max-width: 256px;
+    color: white;
+    padding: 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999999999999999;
+    @include material-shadow(3);
+    backdrop-filter: blur(2px);
+  }
+  &:hover {
+    &::before {
+      display: block;
+    }
+  }
+}
+
+[data-tooltip-right] {
+  &::before {
+    content: attr(data-tooltip-right);
+    right: unset;
+    left: calc(100% + 8px);
+  }
+}
+
+[data-tooltip-top] {
+  &::before {
+    content: attr(data-tooltip-top);
+    right: unset;
+    left: 50%;
+    top: unset;
+    transform: translateY(0) translateX(-50%);
+    bottom: calc(100% + 8px);
+  }
+}
+
+tr.off {
+  color: rgba($gray800, 0.8);
+  text-decoration: line-through;
+
+  img,
+  .title,
+  rap-rating {
+    filter: grayscale(0.9);
+  }
+}
+
+.ngx-select,
+.ngx-select_multiple {
+  display: block;
+  div {
+    display: block;
+  }
+
+  .ngx-select__selected {
+    .ngx-select__selected-plural {
+      background-color: $gray200;
+      border-radius: 2px;
+      padding: 2px;
+    }
+  }
+
+  .ngx-select__choices {
+    list-style: none;
+    z-index: 10000;
+    background-color: $gray100;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    @include material-shadow(1);
+  }
+}
+
+.fr-toolbar.fr-top,
+.fr-toolbar .fr-more-toolbar {
+  display: block;
+}
+
+.fr-toolbar,
+.fr-box.fr-basic .fr-wrapper,
+.second-toolbar {
+  border-color: $gray900 !important;
+}
+
+.fr-box.fr-basic {
+  border-radius: $radius !important;
+}
+.fr-toolbar.fr-top {
+  border-radius: $radius $radius 0 0 !important;
+}
+.second-toolbar {
+  border-radius: 0 0 $radius $radius !important;
+}

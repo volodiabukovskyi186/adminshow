@@ -1,0 +1,35 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: inline-flex;
+  user-select: none;
+  margin: $space/8;
+  $a: 0.8;
+  $ah: 1;
+  $r: 2px;
+  & > div {
+    @include transition();
+    border-radius: $r;
+    background-color: rgba($blue, $a);
+    padding: $space/8 $space/4;
+    color: white;
+    &:hover {
+      cursor: default;
+      background-color: rgba($blue, $ah);
+    }
+  }
+
+  & > div.denied {
+    background-color: rgba($red, $a);
+    &:hover {
+      background-color: rgba($red, $ah);
+    }
+  }
+  & > div.accept {
+    background-color: rgba($green, $a);
+    &:hover {
+      background-color: rgba($green, $ah);
+    }
+  }
+}

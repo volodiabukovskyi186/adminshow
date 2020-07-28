@@ -1,0 +1,102 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+
+  header {
+    // padding: $space/4;
+    padding-right: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    div.icon{
+      padding: 2px;
+      margin-right: $space/8;
+    }
+    div.icon,
+    div.status {
+      @include col-width(40px);
+      height: 40px;
+      padding: 6px;
+      
+      // z-index: 0;
+      img,
+      rap-svg-ico {
+        z-index: 1;
+        margin: auto;
+        width: 100%;
+        height: auto;
+        fill: $white;
+        display: block;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    div.status {
+      // @include col-width(12px);
+      border-radius: 50%;
+      rap-svg-ico {
+        width: 12px;
+        height: 12px;
+      }
+
+      &::before {
+        content: "";
+        width: 500px;
+        background-color: inherit;
+        position: absolute;
+        right: 50%;
+        top: 0;
+        bottom: 0;
+      }
+      &::after {
+        content: "";
+        width: 50%;
+        background-color: inherit;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        z-index: 0;
+      }
+    }
+
+    div.title {
+      flex: 1;
+      z-index: 1;
+    }
+
+    &.active,
+    &:hover {
+      div.status {
+        &::before,
+        &::after {
+          background-color: rgba($blue, 0.3);
+        }
+      }
+    }
+
+    &.active {
+      div.status {
+        rap-svg-ico {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+
+  section {
+    overflow: hidden;
+    margin-right: 16px;
+    border-left: 4px solid rgba($blue, 0.3);
+    &.active {
+      background-color: rgba($blue, 0.04);
+    }
+  }
+}

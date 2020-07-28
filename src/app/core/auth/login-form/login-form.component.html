@@ -1,0 +1,53 @@
+<form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="description">
+      <label for="ShowULogin">{{ labelLogin }} </label>
+    </div>
+    <div class="original">
+      <input
+        formControlName="login"
+        placeholder="{{ placeholderLogin }}"
+        required
+        class="radius"
+        id="ShowULogin"
+        name="login"
+        type="text"
+      />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="ShowUPassword">{{ labelPassword }}</label>
+    </div>
+    <div class="original">
+      <input
+        placeholder="{{ placeholderPassword }}"
+        formControlName="password"
+        class="radius"
+        id="ShowUPassword"
+        required
+        name="login"
+        type="password"
+        autocomplete="on"
+      />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description"></div>
+    <div class="original">
+      <a href="">{{labelForgotPassword}}</a>
+    </div>
+  </div>
+
+  <div class="flex center padding">
+    <button
+      [disabled]="!authForm.valid"
+      class="button delete radius large"
+      type="submit"
+    >
+      {{ labelSubmit }}
+    </button>
+  </div>
+</form>

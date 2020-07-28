@@ -1,0 +1,111 @@
+{
+  "APP": {
+    "TITLE": "RAP for ShowU",
+    "TITLE_FULL": "Raisins Admin Panel for ShowU",
+    "POWERED_BY": "Powered by",
+    "action": "Action",
+    "created_at": "Created at",
+    "updated_at": "Updated at",
+    "id": "ID",
+    "sort_order": "Sort",
+    "image": "Image",
+    "on_off": "On/Off",
+    "edit": "Edit",
+    "del": "Delete",
+    "visibility": "Visibility",
+    "visible": "Visible",
+    "hidden": "Hidden",
+    "select_image": "Select image",
+    "add": "Add",
+    "cancel": "Cancel",
+    "filter": "Filter",
+    "save": "Save",
+    "no_rec_yet": "No Records Yet"
+  },
+  "dashboard": {
+    "dashboard": "Dashboard"
+  },
+  "category": {
+    "category": "Category",
+    "categories": "Categories",
+    "parrent_id": "Parrent ID",
+    "title": "Title",
+    "description": "Description",
+    "add_edit_category": "Add/edit Category",
+    "select_parent": "Select parent category",
+    "msgAdded": "Category successfully added",
+    "msgUpdated": "Category successfully updated",
+    "msgDeleted": "Category successfully deleted"
+  },
+  "collection": {
+    "collections": "Collections",
+    "msgAdded": "Collection successfully added",
+    "msgUpdated": "Collection successfully updated",
+    "msgDeleted": "Collection successfully deleted",
+    "add_edit_collection": "Add/edit Collection",
+    "title": "Title",
+    "subtitle": "Subtitle",
+    "description": "Description",
+  },
+  "roles": {
+    "roles": "Roles",
+    "role": "Role",
+    "add_role": "Add a role",
+    "id": "ID",
+    "name": "Name",
+    "permissions": "Permissions",
+    "created_at": "Created at",
+    "updated_at": "Updated at"
+  },
+  "HOME": {
+    "TITLE": "Hello Angular with ngx-translate!",
+    "SELECT": "Change language"
+  },
+  "AUTH": {
+    "SIGNIN": "Sign in",
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "ENTER_LOGIN": "Enter your login",
+    "ENTER_PASSWORD": "Enter your  password",
+    "FORGOT_PASSWORD": "Forgot a password"
+  },
+  "MENU": {
+    "orders": {
+      "orders": "Orders"
+    },
+    "catalog": {
+      "catalog": "Catalog",
+      "categories": "Categories",
+      "attr_groups": "Attribute groups",
+      "attr": "Attributes",
+      "options": "Options",
+      "products": "Products",
+      "promotions": "Promotions",
+      "colection": "Colections"
+    },
+    "reviews": { "reviews": "Reviews", "product_reviews": "Product reviews" },
+    "manufacturer": { "manufacturers": "Manufacturers" },
+    "customers": { "customers": "Customers" },
+    "media": { "media": "Media", "images": "Images" },
+    "manage_site": {
+      "manage_site": "Manage site",
+      "menu": "Menu",
+      "pages": "Pages",
+      "settings": "Settings",
+      "articles":"Articles",
+      "delivery_methods":"Delivery methods",
+      "payment_methods":"Payment methods"
+    },
+    "users": { "users": "users", "roles": "users" },
+    "localization": {
+      "localization": "Localization",
+      "languages": "Languages",
+      "currencies": "Сurrencies",
+      "measure_units": "Units of measure",
+      "weight_units": "Weight units",
+      "stock_status": "Stock status",
+      "order_status": "Order status",
+      "departments": "Departments ShowU"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-user-form
+      [user]="userForm.model"
+      [roles]="role.all"
+      [title]="'ADD/EDIT USER'"
+      [isEdit]="isEdit"
+    ></app-user-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <!-- <pre>{{ userForm.model | json}}</pre> -->
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="user.data?.data.length > 0"
+    >
+      <thead>
+        <tr>
+          <th width="64px">ID</th>
+          <th>FULL NAME</th>
+          <th width="128px">updated_at</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of user.data?.data">
+          <td data-label="ID" class="text-center">{{ item.id }}</td>
+
+          <td>{{ item.first_name }} {{ item.last_name }}</td>
+
+          <td class="text-center">
+            <!--  -->
+            <small>{{ item.updated_at | localDate }}</small>
+            <small *ngIf="!item.updated_at">—</small>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(item)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+
+              <!-- <rap-delete-button
+                data-tooltip-left="Delete"
+                class="button transparent radius"
+                (confirmed)="(null)"
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button> -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <app-pagination
+      class="radius"
+      [page]="user.page"
+      [total]="Math.ceil(user.data.count / user.data.take)"
+      [pagesToShow]="5"
+      (goNext)="pageNextHandler()"
+      (goPrev)="pagePrevHandler()"
+      (goPage)="pageToHandler($event)"
+      (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+  </div>
+</rap-panel-content>

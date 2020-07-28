@@ -1,0 +1,65 @@
+<div class="modal" *ngIf="modalOpen">
+  <div class="modal-wrapper">
+    <div class="modal-close" (click)="modalOpen = false"></div>
+    <div class="modal-content">
+      <header>
+        <h4>Select images</h4>
+      </header>
+
+      <div class="content">
+        <app-gallery-view
+          [selectable]="true"
+          [singleSelectable]="false"
+          [editable]="false"
+        ></app-gallery-view>
+      </div>
+      <footer>
+        <button class="button" role="button" (click)="onOk()">OK</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- <pre>{{prodImage.selected | json}}</pre> -->
+
+<div class="flex center">
+  <button
+    style="position: relative;"
+    data-tooltip-top="Select images"
+    role="button"
+    (click)="onPress()"
+    class="button transparent radius"
+  >
+    <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+  </button>
+  <button
+    style="position: relative;"
+    data-tooltip-top="Save images"
+    role="button"
+    (click)="onSave()"
+    class="button transparent radius"
+  >
+    <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+  </button>
+</div>
+
+<div
+  class="grid"
+  *ngIf="prodImage.selected.length > 0"
+>
+  <rap-folder
+    @fadeScale
+    *ngFor="let img of prodImage.selected"
+    class="radius"
+    tabindex="0"
+    [thumbnail]="'//' + img.image.host + img.image.src_mini"
+    [icon]="'assets/icons/fole-icon-image.svg'"
+    [editable]="true"
+    [album]="img"
+    (delete)="onDeleteImage(img)" 
+  ></rap-folder>
+</div>
+
+<!--    (click)="openImage($event, img)"
+    (keydown)="spaceKeyDown($event, img)"
+    (delete)="onDeleteImage(img)" -->

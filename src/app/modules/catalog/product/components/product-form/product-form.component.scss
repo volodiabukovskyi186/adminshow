@@ -1,0 +1,61 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.color-box {
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  margin-right: 4px;
+  border: 1px solid #000;
+}
+
+.modal {
+  position: fixed;
+  @include zero;
+  z-index: 10000;
+
+  background-color: rgba($black, 0.48);
+
+  .modal-wrapper {
+    position: absolute;
+    @include zero;
+    overflow-y: auto;
+    .modal-close {
+      background-color: rgba($black, 0.5);
+      cursor: pointer;
+      position: absolute;
+      @include zero;
+      @include transition();
+      &:hover {
+        background-color: rgba($black, 0);
+      }
+    }
+
+    .modal-content {
+      flex: 1;
+      background-color: rgba($white, 1);
+      min-height: 100vh;
+      width: 100%;
+      max-width: 800px;
+      margin-left: 15%;
+      header {
+        position: sticky;
+        top: 0;
+
+        background-color: rgba($white, .8);
+        padding: $space/2 $space;
+        h4 {
+          margin: 0;
+        }
+      }
+      .content {
+        padding: $space;
+      }
+    }
+  }
+}

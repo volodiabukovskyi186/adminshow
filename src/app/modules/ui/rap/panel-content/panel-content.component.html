@@ -1,0 +1,21 @@
+<div class="content">
+  <main>
+    <ng-content select="[content]"></ng-content>
+  </main>
+
+  <footer *ngIf="showFooter">
+    <ng-content select="[footer]"></ng-content>
+  </footer>
+</div>
+
+<div [ngClass]="{ active: showRightSide }" class="section-animate-wrapper">
+  <section *ngIf="showRightSide">
+    <ng-content select="[filter]"></ng-content>
+  </section>
+</div>
+
+<section class="fade" *ngIf="showForm" [@fade]></section>
+
+<section class="form" *ngIf="showForm" [@slideRight]>
+  <ng-content select="[form]"></ng-content>
+</section>

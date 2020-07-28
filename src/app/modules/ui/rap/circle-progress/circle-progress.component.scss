@@ -1,0 +1,27 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: block;
+  width: 64px;
+  height: auto;
+}
+svg {
+  display: block;
+  width: initial;
+  height: inherit;
+  path {
+    fill: rgba($black, 0.64);
+    stroke-linecap: round;
+    stroke-width: 2.8;
+    stroke: $primary;
+    backdrop-filter: blur(4px);
+  }
+  text {
+    fill: #fff;
+    font-size: 0.48rem;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-weight: 500;
+  }
+}

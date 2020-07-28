@@ -1,0 +1,208 @@
+.button {
+  outline: none;
+  width: auto;
+  min-width: 32px;
+  text-align: center;
+  font: inherit;
+  padding: $space/2 $space;
+  -webkit-appearance: none;
+  border-radius: 0;
+  background-color: $blue;
+  border: unset;
+  color: $white;
+  display: inline-block;
+  cursor: pointer;
+
+  @include transition();
+  &.upper {
+    text-transform: uppercase;
+  }
+  &.small {
+    padding: $space/4 $space/2;
+    color: $white;
+  }
+  &.large {
+    padding: $space $space * 2;
+    color: $white;
+  }
+  &.large-sq {
+    padding: $space;
+    color: $white;
+  }
+  &.x-large-sq {
+    padding: $space * 2;
+    color: $white;
+  }
+  &.x-large {
+    padding: $space * 2 $space * 4;
+    color: $white;
+  }
+  &:hover,
+  &.active,
+  &:focus {
+    background-color: lighten($blue, 10%);
+    text-decoration: none;
+    color: $white;
+  }
+  &:active {
+    background-color: darken($blue, 10%);
+    transform: scale(0.96);
+    filter: blur(0.5px);
+  }
+  
+  &.yellow {
+    background-color: $yellow;
+    color: $white;
+    color: $gray900;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: lighten($yellow, 10%);
+      color: $gray900;
+    }
+    &:active {
+      background-color: darken($yellow, 10%);
+      color: $gray800;
+    }
+  }
+  &.orange {
+    background-color: $orange;
+    color: $white;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: lighten($orange, 10%);//$orange + $gray900;
+    }
+    &:active {
+      background-color: darken($orange, 10%);
+    }
+  }
+  &.indigo {
+    background-color: $indigo;
+    color: $white;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: lighten($indigo, 10%);
+    }
+    &:active {
+      background-color: darken($indigo, 10%);
+    }
+  }
+  &.teal {
+    background-color: $teal;
+    color: $white;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: lighten($teal, 10%);
+    }
+    &:active {
+      background-color: darken($teal, 10%);
+    }
+  }
+  &.delete {
+    background-color: $red;
+    color: $white;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: lighten($red, 10%);
+    }
+    &:active {
+      background-color: darken($red, 10%);
+    }
+  }
+  &.green {
+    background-color: $green;
+    color: $white;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: lighten($green, 10%);
+    }
+    &:active {
+      background-color: darken($green, 10%);
+    }
+  }
+
+  &.violet {
+    background-color: $violet;
+    color: $white;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: lighten($violet, 10%);
+    }
+    &:active {
+      background-color: darken($violet, 10%);
+    }
+  }
+  &.transparent {
+    background-color: rgba(black, 0);
+    color: $black;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: rgba(black, 0.064);
+    }
+    &:active {
+      background-color: rgba(black, 0.8);
+      color: $white;
+    }
+  }
+
+  &.border {
+    background-color: white;
+    border: 1px solid $gray900;
+    color: $gray900;
+    &:hover,
+    &.active,
+    &:focus {
+      background-color: white;
+      border-color: $blue;
+      color: $blue;
+    }
+    &:active {
+      background-color: $blue;
+      color: white;
+    }
+    &.green {
+      &:hover,
+      &.active,
+      &:focus {
+        border-color: $green;
+        color: $green;
+      }
+      &:active {
+        background-color: $green;
+        color: white;
+      }
+    }
+    &.delete {
+      &:hover,
+      &.active,
+      &:focus {
+        border-color: $red;
+        color: $red;
+      }
+      &:active {
+        background-color: $red;
+        color: white;
+      }
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  // width: 100%;
+  .button {
+    display: block;
+    margin: 0;
+  }
+}

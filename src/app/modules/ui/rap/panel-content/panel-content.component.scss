@@ -1,0 +1,59 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+$rightWidth: 256px;
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 100%;
+  overflow-x: hidden;
+
+  div.content {
+    flex: 1;
+  }
+  .section-animate-wrapper {
+    width: 0;
+    position: sticky;
+    top: 48px;
+    max-height: calc(100vh - 48px);
+    overflow: hidden;
+    background-color: rgba($gray100, 1);
+    transition: width 0.3s ease-in-out;
+    &.active {
+      width: $rightWidth;
+    }
+    section {
+      padding-left: $space;
+      width: $rightWidth;
+    }
+  }
+}
+
+.form {
+  position: fixed;
+  overflow-y: auto;
+  width: 600px;
+  top: 48px;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  background-color: rgba($white, 1);
+
+  @include material-shadow(2);
+  padding: $space;
+}
+
+.fade {
+  position: fixed;
+  top: 48px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 900;
+  background-color: rgba($black, 0.2);
+  // backdrop-filter: blur(1px);
+}

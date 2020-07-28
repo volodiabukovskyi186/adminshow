@@ -1,0 +1,57 @@
+<div class="form-row">
+  <div class="description">
+    <label for="">MAIN IMAGE</label>
+  </div>
+
+  <div class="original">
+    <app-choice-button
+      style="max-width: 192px;"
+      class="radius"
+      [src]="host ? '//' + host + model.image?.src_mini : model.image?.src_mini"
+      (press)="onPress()"
+      (reset)="onReset()"
+    ></app-choice-button>
+    <input type="hidden" [(ngModel)]="model.image_id" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">MODEL</label>
+  </div>
+
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.model" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">manufacturer</label>
+  </div>
+
+  <div class="original">
+    <select
+      class="radius"
+      name="manufactured_id"
+      [(ngModel)]="model.manufactured_id"
+    >
+      <option *ngFor="let c of manufacturers" value="{{ c.id }}">{{
+        c.description[0]?.name
+      }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">SHOW</label>
+  </div>
+
+  <div class="original">
+    <select class="radius" name="parent_id" [(ngModel)]="model.status">
+      <option value="0">Hide</option>
+      <option value="1">Show</option>
+    </select>
+  </div>
+</div>

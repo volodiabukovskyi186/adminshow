@@ -1,0 +1,109 @@
+{
+  "APP": {
+    "TITLE": "RAP для ShowU",
+    "TITLE_FULL": "Raisins Admin Panel для ShowU",
+    "POWERED_BY": "За підтримки",
+    "action": "Дії",
+    "created_at": "Створено",
+    "updated_at": "Оновлено",
+    "id": "№",
+    "sort_order": "Сортування",
+    "image": "Зображення",
+    "on_off": "Вкл/Викл",
+    "edit": "Редагувати",
+    "del": "Видалити",
+    "visibility": "Видимість",
+    "visible": "Видно",
+    "hidden": "Приховано",
+    "select_image": "Видеріть зображення",
+    "add": "Додати",
+    "cancel": "Скасувати",
+    "filter": "Фільтр",
+    "save": "Зберегти",
+    "no_rec_yet": "Записів ще немає"
+  },
+  "dashboard": {
+    "dashboard": "Панель приладів"
+  },
+  "category": {
+    "category": "Категорія",
+    "categories": "Категорії",
+    "parrent_id": "Батьківська категорія",
+    "title": "Назва",
+    "description": "Опис",
+    "add_edit_category": "Додати/Редагувати категорію",
+    "select_parent": "Видеріть батьківську категорію",
+    "msgAdded": "Категорію успішно додано",
+    "msgUpdated": "Категорію успішно оновлено",
+    "msgDeleted": "Категорію успішно видалено"
+  },
+  "collection": {
+    "collections": "Коллекції",
+    "msgAdded": "Коллекцію успішно додано",
+    "msgUpdated": "Коллекцію успішно оновлено",
+    "msgDeleted": "Коллекцію успішно видалено",
+    "add_edit_collection": "Додати/Редагувати колекцію",
+    "title": "Заголовок",
+    "subtitle": "Підзаголовок",
+    "description": "Опис"
+  },
+  "roles": {
+    "roles": "Ролі",
+    "role": "Роль",
+    "add_role": "Додати роль",
+    "id": "№",
+    "name": "Назва",
+    "permissions": "Дозволи",
+    "created_at": "Створено",
+    "updated_at": "Оновлено"
+  },
+  "HOME": {
+    "TITLE": "Hello Angular with ngx-translate!",
+    "SELECT": "Змінити мову"
+  },
+  "AUTH": {
+    "SIGNIN": "Увійти",
+    "LOGIN": "Лолін",
+    "PASSWORD": "Пароль",
+    "ENTER_LOGIN": "Введіть ваш логін",
+    "ENTER_PASSWORD": "Введіть ваш пароль",
+    "FORGOT_PASSWORD": "Я забув пароль :/"
+  },
+  "MENU": {
+    "orders": {
+      "orders": "Замовлення"
+    },
+    "catalog": {
+      "catalog": "Каталог",
+      "categories": "Категорії",
+      "attr_groups": "Групи атрибутів",
+      "attr": "Атрибути",
+      "options": "Опції",
+      "products": "Продукти",
+      "promotions": "Акції",
+      "colection": "Колекції"
+    },
+    "reviews": { "reviews": "Відгуки", "product_reviews": "Відгуки продуктів" },
+    "manufacturer": { "manufacturers": "Виробники" },
+    "customers": { "customers": "Покупці" },
+    "media": { "media": "Медіафайли", "images": "Зображення" },
+    "manage_site": { "manage_site": "Керування сайтом",
+      "menu": "Меню",
+      "pages": "Сторінки",
+      "settings": "Налаштування",
+      "articles":"Статті",
+      "delivery_methods":"Способи доставки",
+      "payment_methods":"Способи оплати" },
+    "users": { "users": "Ролі", "roles": "Користувачі" },
+    "localization": {
+      "localization": "Локалізація",
+      "languages": "Мови",
+      "currencies": "Валюти",
+      "measure_units": "Одиниці вимірювання",
+      "weight_units": "Одиниці ваги",
+      "stock_status": "Сток статус",
+      "order_status": "Статус замовлення",
+      "departments": "Відділення ShowU"
+    }
+  }
+}

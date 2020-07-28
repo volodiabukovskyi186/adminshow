@@ -1,0 +1,54 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  color: $white;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  background: $primary;
+  background: linear-gradient(
+    60deg,
+    rgba(darken($blue, 12%), 1) -10%,
+    rgba(darken($primary, 16%), 1) 110%
+  );
+
+  & > section {
+    display: flex;
+    @include col-width(#{$gr_longer + "%"});
+  }
+}
+
+aside {
+  @include col-width(#{$gr_shorter + "%"});
+  background-color: rgba($white, 0.016);
+  background: linear-gradient(
+    60deg,
+    rgba($white, 0.016) 0%,
+    rgba($white, 0) 100%
+  );
+  padding: $space * 2;
+}
+
+@include screen-w(960px) {
+  :host {
+    aside {
+      @include col-width(#{$gr_longer + "%"});
+    }
+    section {
+      @include col-width(#{$gr_shorter + "%"});
+    }
+  }
+}
+
+@include screen-w(768px) {
+  :host {
+    flex-direction: column-reverse;
+    aside {
+      @include col-width(100%);
+    }
+    section {
+      @include col-width(100%);
+    }
+  }
+}

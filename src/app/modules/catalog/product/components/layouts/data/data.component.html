@@ -1,0 +1,157 @@
+<div class="form-row">
+  <div class="description">
+    <label for="">Location</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.location" />
+  </div>
+</div>
+<div class="form-row">
+  <div class="description">
+    <label for="">PRICE</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.price" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Quantity</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.quantity" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Minimum Quantity</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.minimum" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Sort order</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.sort_order" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Weight class</label>
+  </div>
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.weight_class_id">
+      <option value="1">Default (kg)</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">weight</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.weight" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Requires Shipping</label>
+  </div>
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.shipping">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Subtract Stock</label>
+  </div>
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.subtract">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Lenght class</label>
+  </div>
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.lenght_class_id">
+      <option value="1">Default (cm)</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Dimensions (L x W x H)</label>
+  </div>
+  <div class="original">
+    <div class="flex wrap">
+      <input
+        class="radius"
+        type="text"
+        [(ngModel)]="model.lenght"
+        placeholder="lenght"
+      />
+      <input
+        class="radius"
+        type="text"
+        [(ngModel)]="model.width"
+        placeholder="width"
+      />
+      <input
+        class="radius"
+        type="text"
+        [(ngModel)]="model.height"
+        placeholder="height"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Date avaliable</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="date" [(ngModel)]="model.date_avaliable" />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Stock status</label>
+  </div>
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.stock_status_id">
+      <option value="1">Default ()</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">Tax class</label>
+  </div>
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.tax_class_id">
+      <option value="1">Default ()</option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<ul class="nav" [class.nav-pills]="vertical" [class.nav-tabs]="!vertical">
+  <li *ngFor="let tab of tabs" [class.active]="tab.active">
+    <a (click)="tabClicked(tab)" class="btn" [class.disabled]="tab.disabled">
+      <span>{{ tab.title }}</span>
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <ng-content></ng-content>
+</div>

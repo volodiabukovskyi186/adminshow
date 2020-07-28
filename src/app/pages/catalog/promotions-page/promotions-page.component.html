@@ -1,0 +1,112 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-promotion-form
+      [title]="'ADD/EDIT Promotion'"
+      [model]="promForm.model"
+    ></app-promotion-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <ng-template #notfound>
+      <div class="d2 padding flex center gray500 text-center">No Records Yet<br>😞</div>
+    </ng-template>
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="prom.data?.data.length > 0; else notfound"
+    >
+      <thead>
+        <tr>
+          <th width="64px">ID</th>
+          <th width="64px">PHOTO</th>
+          <th width="">TITLE</th>
+          <th width="128px">updated_at</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of prom.data?.data"
+          [ngClass]="{ off: !item.status }"
+        >
+          <td data-label="ID" class="text-center">{{ item.id }}</td>
+          <td data-label="LOGO">
+            <div class="ratio">
+              <div class="imax">
+                <img
+                  class="contain"
+                  [src]="
+                    '//' + prom.data.host + item.descriptions[0].image.src_mini
+                  "
+                  [alt]="item.id"
+                />
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="flex wrap" style="width: 100%;">
+              <span class="title" *ngFor="let desc of item.descriptions"
+                ><span class="flag">{{
+                  langService.getFromList(desc.lang_id)?.flag
+                }}</span
+                ><span class="name">{{ desc.title }}</span>
+              </span>
+            </div>
+          </td>
+
+          <td class="text-center">
+            <!--  -->
+            <small>{{ item.updated_at | localDate }}</small>
+            <small *ngIf="!item.updated_at">—</small>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <rap-delete-button
+                data-tooltip-left="on/off"
+                class="button transparent radius"
+                [ngClass]="{ on: item.status, off: !item.status }"
+                (confirmed)="updateStatus(item)"
+                [@changeValueHighlight]="item.status"
+                [src]="
+                  item.status != 1
+                    ? 'assets/icons/eye-cloce.svg'
+                    : 'assets/icons/eye-open.svg'
+                "
+              ></rap-delete-button>
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(item)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+
+              <!-- <rap-delete-button
+                data-tooltip-left="Delete"
+                class="button transparent radius"
+                (confirmed)="(null)"
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button> -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <app-pagination
+      class="radius"
+      [page]="prom.page"
+      [total]="Math.ceil(prom.data.count / prom.data.take)"
+      [pagesToShow]="5"
+      (goNext)="pageNextHandler()"
+      (goPrev)="pagePrevHandler()"
+      (goPage)="pageToHandler($event)"
+      (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+  </div>
+</rap-panel-content>

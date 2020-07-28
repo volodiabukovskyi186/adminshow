@@ -1,0 +1,29 @@
+<app-golden-panel>
+  <section>
+    <app-show-u-rap-hero
+      [title]="'APP.TITLE_FULL' | translate"
+      [labelPowered]="'APP.POWERED_BY' | translate"
+    ></app-show-u-rap-hero>
+  </section>
+
+  <aside>
+    <h3 class="text-center">{{ "AUTH.SIGNIN" | translate }}</h3>
+    <app-login-form
+      (authed)="onAuthed()"
+      [labelLogin]="'AUTH.LOGIN' | translate"
+      [labelSubmit]="'AUTH.SIGNIN' | translate"
+      [labelPassword]="'AUTH.PASSWORD' | translate"
+      [placeholderLogin]="'AUTH.ENTER_LOGIN' | translate"
+      [placeholderPassword]="'AUTH.ENTER_PASSWORD' | translate"
+      [labelForgotPassword]="'AUTH.FORGOT_PASSWORD' | translate"
+    ></app-login-form>
+
+    <div class="flex center">
+      <a class="button transparent radius"
+        *ngFor="let item of lang.langs"
+        [routerLink]="['/' + item.name + '/login']"
+        >{{ item.flag }}</a
+      >
+    </div>
+  </aside>
+</app-golden-panel>

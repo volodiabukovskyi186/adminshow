@@ -1,0 +1,70 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div class="padding" content>
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="role.roles.data.length > 0"
+    >
+      <thead>
+        <tr>
+          <th width="64px">{{ "roles.id" | translate }}</th>
+          <th width="178px">{{ "roles.name" | translate }}</th>
+          <th>{{ "roles.permissions" | translate }}</th>
+          <th width="128px">{{ "roles.created_at" | translate }}</th>
+          <th width="128px">{{ "roles.updated_at" | translate }}</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of role.roles.data">
+          <td data-label="ID" class="text-center">{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>
+            <app-permission-item
+              *ngFor="let p of item.permissions"
+              [perm]="p"
+            ></app-permission-item>
+          </td>
+          <td class="text-center">
+            <small>{{ item.created_at | localDate }}</small>
+          </td>
+          <td class="text-center">
+            <small>{{ item.updated_at | localDate }}</small>
+            <small *ngIf="!item.updated_at">—</small>
+          </td>
+          <td>
+            <div class="flex wrap">
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(item)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+
+              <rap-delete-button
+                data-tooltip-left="Delete"
+                class="button transparent radius"
+                (confirmed)="delete(item)"
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-role-form
+    *permission="['manage_roles']"
+    form
+    class="padding"
+    [title]="'roles.add_role' | translate"
+    [questions$]="roleForm.questions$"
+    (formSubmit)="onSubmit($event)"
+  ></app-role-form>
+</rap-panel-content>

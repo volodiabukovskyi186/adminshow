@@ -1,0 +1,64 @@
+<fieldset class="radius" style="margin-bottom: 16px;">
+  <legend>{{ title }}</legend>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">link</label>
+    </div>
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="model.link" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">SHOW</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="model.status">
+        <option value="1">Show</option>
+        <option value="0">Hide</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">Type</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="model.type">
+        <option value="main">Main</option>
+        <option value="shop">Shop</option>
+        <option value="help">Help</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">sort order</label>
+    </div>
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="model.sort_order" />
+    </div>
+  </div>
+
+  <rap-step-tabs>
+    <rap-step-tab
+      *ngFor="let item of model.descriptions"
+      [title]="item.lang.flag + ' ' + item.lang.short_title"
+    >
+      <div class="form-row">
+        <div class="description">
+          <label for="">NAME</label>
+        </div>
+        <div class="original">
+          <input class="radius" [(ngModel)]="item.title" type="text" />
+        </div>
+      </div>
+    </rap-step-tab>
+  </rap-step-tabs>
+</fieldset>

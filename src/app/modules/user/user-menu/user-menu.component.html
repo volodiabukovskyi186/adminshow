@@ -1,0 +1,13 @@
+<rap-nav-group
+  [icon]="'assets/icons/menu-user.svg'"
+  [title]="user.getUser().user.first_name + ' ' + user.getUser().user.last_name"
+  [(open)]="open"
+>
+  <rap-nav-item
+    [isButton]="true"
+    data-tooltip-right="Logout"
+    [langLink]=""
+    [nav]="{ title: 'Logout' }"
+    (click)="logout($event)"
+  ></rap-nav-item>
+</rap-nav-group>

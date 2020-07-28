@@ -1,0 +1,34 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: block;
+  flex: 1;
+}
+
+.button {
+  padding: $space/2;
+  min-width: unset;
+  rap-svg-ico {
+    width: 16px;
+    height: auto;
+    display: block;
+    color: $gray500;
+  }
+  &:hover {
+    rap-svg-ico {
+      color: $blue;
+    }
+  }
+}
+
+rap-delete-button.button.transparent {
+  color: $gray500;
+  &:hover {
+    color: $red;
+  }
+}
+
+span.flag {
+  font-size: $fontSizeH4;
+}

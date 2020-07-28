@@ -1,0 +1,87 @@
+{
+  "APP": {
+    "TITLE": "RAP dla ShowU",
+    "TITLE_FULL": "Raisins Admin Panel dla ShowU",
+    "POWERED_BY": "Obsługiwane przez",
+    "action": "Działania",
+    "created_at": "Utworzono",
+    "updated_at": "Zaktualizowano",
+    "id": "ID",
+    "sort_order": "Sort",
+    "image": "Image",
+    "on_off":"On/Off",
+    "edit": "Edit",
+    "del": "Delete"
+  },
+  "dashboard" :{
+    "dashboard": "Dashboard"
+  },
+  "category": {
+    "category": "Category",
+    "categories": "Categories",
+    "parrent_id": "Parrent ID",
+    "title": "Title",
+    "add_edit_category": "Add/edit Category"
+  },
+  "roles": {
+    "roles": "Role",
+    "role": "Rola",
+    "add_role": "Dodaj rolę",
+    "id": "ID",
+    "name": "Nazwa",
+    "permissions": "Pozwolenie",
+    "created_at": "Utworzono",
+    "updated_at": "Zaktualizowano"
+  },
+  "HOME": {
+    "TITLE": "Witaj Angular z ngx-translate!",
+    "SELECT": "Zmień język"
+  },
+  "AUTH": {
+    "SIGNIN": "Zaloguj sie",
+    "LOGIN": "Login",
+    "PASSWORD": "Hasło",
+    "ENTER_LOGIN": "Wpisz swój login",
+    "ENTER_PASSWORD": "Wpisz swóe hasło",
+    "FORGOT_PASSWORD": "Zapomniałem hasła"
+  },
+  "MENU": {
+    "orders": {
+      "orders": "Orders"
+    },
+    "catalog": {
+      "catalog": "Catalog",
+      "categories": "Categories",
+      "attr_groups": "Attribute groups",
+      "attr": "Attributes",
+      "options": "Options",
+      "products": "Products",
+      "promotions": "Promotions",
+      "colection": "Colections"
+    },
+    "reviews": { "reviews": "Reviews", "product_reviews": "Product reviews" },
+    "manufacturer": { "manufacturers": "Manufacturers" },
+    "customers": { "customers": "Customers" },
+    "media": { "media": "Media", "images": "Images" },
+    "manage_site": {
+      "manage_site": "Manage site",
+      "menu": "Menu",
+      "pages": "Pages",
+      "settings": "Settings",
+      "articles":"Articles",
+      "delivery_methods":"Delivery methods",
+      "payment_methods":"Payment methods"
+    },
+    "users": { "users": "users", "roles": "users" },
+    "localization": {
+      "localization": "Localization",
+      "languages": "Languages",
+      "currencies": "Сurrencies",
+      "measure_units": "Units of measure",
+      "weight_units": "Weight units",
+      "stock_status": "Stock status",
+      "order_status": "Order status",
+      "departments": "Departments ShowU"
+    }
+  }
+}

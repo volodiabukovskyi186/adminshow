@@ -1,0 +1,99 @@
+$space: 16px;
+
+$time: 0.3s;
+$motion: cubic-bezier(0.83, 0, 0.17, 1); //ease-in-out;
+$elastic: $motion; // cubic-bezier(.75,-0.5,0,1.75);
+
+/* #region Colors*/
+
+$white: white !default;
+
+$gray100: #fafafa !default;
+$gray200: #ececec !default;
+$gray300: #c4c4c4 !default;
+$gray400: #b2b2b2 !default;
+$gray500: #808080 !default;
+$gray600: #646464 !default;
+$gray700: #484848 !default;
+$gray800: #323232 !default;
+$gray850: #242424 !default;
+$gray900: #161616 !default;
+
+$black: black !default;
+
+$blue: #166496 !default;
+$red: #d43248 !default;
+$green: #16b064 !default;
+$yellow: #fbc531 !default;
+$orange: #ff8016 !default;
+$indigo: #6416e0 !default;
+$pink: #e032b2 !default;
+$teal: #16c496 !default;
+$violet: #394f6c !default;
+
+$blear: $gray200;
+$smoke: $gray200;
+
+/* #endregion */
+
+$radius: 3px;
+
+/* #region Colors Override*/
+
+$red: #9f1941;
+
+// set primary color
+$primary: $red;
+
+/* #endregion */
+
+/* #region Fonts */
+// @font-face {
+//   font-family: "color-emoji";
+//   src: local("Apple Color Emoji"), local("Segoe UI Emoji"),
+//     local("Segoe UI Symbol"), local("Noto Color Emoji");
+// }
+
+// @font-face {
+//   font-family: "Noto Color Emoji";
+//   src: url(https://gitcdn.xyz/repo/googlefonts/noto-emoji/master/fonts/NotoColorEmoji.ttf);
+// }
+
+@font-face {
+    font-family: "Noto Color Emoji";
+    src: url('~src/styles/raisins/fonts/NotoColorEmoji.ttf')  format('truetype');
+}
+
+$fontFamilySansSerif: "Open sans", "Segoe UI", "Noto Color Emoji", Arial, sans-serif !default;
+$fontFamilyMonospace: Consolas, "Courier New", monospace !default;
+$fontFamily: $fontFamilySansSerif !default;
+
+$fontSize: 1rem !default;
+$fontSizeLarge: (1.28rem) !default;
+$fontSizeSmall: (0.8rem) !default;
+
+$fontWeightLight: 300 !default;
+$fontWeightNormal: 400 !default;
+$fontWeightBold: 700 !default;
+
+$fontWeight: $fontWeightNormal !default;
+$lineHeight: 1.15 !default;
+
+$fontSizeH1: 2.28rem !default;
+$fontSizeH2: 1.96rem !default;
+$fontSizeH3: 1.64rem !default;
+$fontSizeH4: 1.32rem !default;
+$fontSizeH5: 1.16rem !default;
+$fontSizeH6: $fontSize !default;
+
+$fontSizeD1: 3.56rem !default;
+$fontSizeD2: 2.28rem !default;
+$fontSizeD3: 1.64rem !default;
+$fontSizeD4: 1.32rem !default;
+
+/* #endregion */
+
+// golden ratio
+
+$gr_shorter: 38.1966;
+$gr_longer: 61.8034;

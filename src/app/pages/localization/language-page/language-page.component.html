@@ -1,0 +1,89 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-language-form
+      [title]="'ADD LANGUAGE'"
+      [questions$]="langForm.questions$"
+      (formSubmit)="onSubmit($event)"
+    ></app-language-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="langServise.languages.data.length > 0"
+    >
+      <thead>
+        <tr>
+          <th width="64px">ID</th>
+          <th width="64px">code</th>
+          <th width="64px">locale</th>
+          <th width="">TITLE</th>
+          <th width="128px">updated_at</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of langServise.languages.data"
+          [ngClass]="{ off: !item.available }"
+        >
+          <td data-label="ID" class="text-center">{{ item.id }}</td>
+          <td class="text-center">{{ item.code }}</td>
+          <td class="text-center">{{ item.locate }}</td>
+          <td>
+            <span class="flag">{{ item.flag }}</span> {{ item.short_title }} |
+            {{ item.title }}
+            <app-permission-item
+              *ngIf="item.default"
+              [perm]="{ name: 'Default', state: 1 }"
+            ></app-permission-item>
+          </td>
+
+          <td class="text-center">
+            <small>{{ item.updated_at | localDate }}</small>
+            <small *ngIf="!item.updated_at">—</small>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <rap-delete-button
+                *ngIf="!item.default"
+                data-tooltip-left="on/off"
+                class="button transparent radius"
+                [ngClass]="{ on: item.available, off: !item.available }"
+                (confirmed)="updateStatus(item)"
+                [@changeValueHighlight]="item.available"
+                [src]="
+                  item.available != 1
+                    ? 'assets/icons/eye-cloce.svg'
+                    : 'assets/icons/eye-open.svg'
+                "
+              ></rap-delete-button>
+
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(item)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+
+              <rap-delete-button
+                *ngIf="!item.default"
+                data-tooltip-left="Delete"
+                class="button transparent radius"
+                (confirmed)="delete(item)"
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</rap-panel-content>

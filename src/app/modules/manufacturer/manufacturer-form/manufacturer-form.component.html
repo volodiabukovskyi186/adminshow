@@ -1,0 +1,143 @@
+<div class="modal" *ngIf="modalOpen">
+    <div class="modal-wrapper">
+      <div class="modal-close" (click)="modalOpen = false"></div>
+      <div class="modal-content">
+        <header>
+          <h4>Select image</h4>
+        </header>
+  
+        <div class="content">
+          <app-gallery-view
+            [selectable]="true"
+            [singleSelectable]="true"
+            [editable]="false"
+          ></app-gallery-view>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <h2 class="text-center" *ngIf="title">{{ title }}</h2>
+  
+  <fieldset class="radius" style="margin-bottom: 16px;">
+    <legend>BASE</legend>
+  
+    <div class="form-row">
+      <div class="description">
+        <label for="">IMAGE</label>
+      </div>
+  
+      <div class="original">
+        <app-choice-button
+          style="max-width: 192px;"
+          class="radius"
+          [src]="
+            manufacturer.host
+              ? '//' + manufacturer.host + manufacturer.image?.src_mini
+              : manufacturer.image?.src_mini
+          "
+          (press)="onPress()"
+          (reset)="onReset()"
+        ></app-choice-button>
+        <input type="hidden" [(ngModel)]="manufacturer.image_id" />
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="description">
+        <label for="">Code</label>
+      </div>
+  
+      <div class="original">
+        <input class="radius" type="text" [(ngModel)]="manufacturer.code" />
+      </div>
+    </div>
+
+    <div class="form-row">
+        <div class="description">
+          <label for="">Rating</label>
+        </div>
+    
+        <div class="original">
+          <input class="radius" type="text" [(ngModel)]="manufacturer.rating" />
+        </div>
+      </div>
+  
+   
+    <div class="form-row">
+      <div class="description">
+        <label for="">SHOW</label>
+      </div>
+  
+      <div class="original">
+        <select class="radius" name="parent_id" [(ngModel)]="manufacturer.status">
+          <option value="1">Show</option>
+          <option value="0">Hide</option>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+  
+  <fieldset
+    *ngFor="let item of manufacturer.description"
+    class="radius"
+    style="margin-bottom: 16px;"
+  >
+    <legend>{{ item.lang.flag }} {{ item.lang.short_title }}</legend>
+  
+    <!-- <input type="hidden" name="lang_id" value="{{ item.lang_id }}" />
+    <input type="hidden" name="id" value="{{ item.id }}" /> -->
+  
+    <div class="form-row">
+      <div class="description">
+        <label for="">NAME</label>
+      </div>
+  
+      <div class="original">
+        <input class="radius" [(ngModel)]="item.name" type="text" />
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="description">
+        <label for="">DESCRIPTION</label>
+      </div>
+  
+      <div class="original">
+        <textarea
+          name=""
+          class="radius"
+          [(ngModel)]="item.description"
+          rows="2"
+        ></textarea>
+      </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="description">
+          <label for="">meta keywords</label>
+        </div>
+    
+        <div class="original">
+          <input class="radius" [(ngModel)]="item.meta_keywords" type="text" />
+        </div>
+      </div>
+    
+      <div class="form-row">
+        <div class="description">
+          <label for="">meta description</label>
+        </div>
+    
+        <div class="original">
+          <textarea
+            name=""
+            class="radius"
+            [(ngModel)]="item.meta_description"
+            rows="2"
+          ></textarea>
+        </div>
+      </div>
+
+  </fieldset>
+  

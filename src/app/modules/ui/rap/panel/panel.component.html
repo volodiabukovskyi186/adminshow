@@ -1,0 +1,48 @@
+<aside *ngIf="showLeftSide">
+  <ng-content select="[nav]"></ng-content>
+</aside>
+
+<div class="panel-wrapper">
+  <header *ngIf="showTop">
+    <ng-content select="[header]"></ng-content>
+    <div class="panel-header-buttons">
+      <button style="position: relative;" [attr.data-tooltip-left]="labels.filter" @scale
+        *ngIf="showRightToggleBtn"
+        class="button transparent small"
+        [ngClass]="{ active: showRightSide }"
+        (click)="toggleRight()"
+      >
+        <rap-svg-ico [src]="'assets/icons/filter.svg'"></rap-svg-ico>
+      </button>
+
+      <button style="position: relative;"  [attr.data-tooltip-left]="labels.save" @scale
+        *ngIf="isSaveBtn"
+        class="button transparent small"
+        (click)="onSaveClick()"
+      >
+        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+      </button>
+
+      <button style="position: relative;"  [attr.data-tooltip-left]="labels.cancel"
+       @scale
+        *ngIf="isCancelBtn"
+        class="button transparent small"
+        (click)="onCancelClick()"
+      >
+        <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>
+      </button>
+
+      <button style="position: relative;"  [attr.data-tooltip-left]="labels.add" @scale
+        *ngIf="isPlusBtn"
+        class="button transparent small"
+        (click)="onPlusClick()"
+      >
+        <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+      </button>
+
+    </div>
+    <ng-content select="[controls]"></ng-content>
+  </header>
+
+  <ng-content select="[content]"></ng-content>
+</div>

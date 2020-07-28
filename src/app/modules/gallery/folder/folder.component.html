@@ -1,0 +1,48 @@
+<div class="ratio icon" (dblclick)="onOpen($event)">
+  <div class="square">
+    <img
+      class="contain"
+      [src]="mode == ViewMode.card ? thumbnail : icon"
+      [alt]="album.title"
+    />
+  </div>
+</div>
+
+<header (dblclick)="turnEditMode()">
+  <form (submit)="onEdit($event)">
+    <input
+      #input
+      [disabled]="!editMode"
+      [readonly]="!editMode"
+      class="folder-input"
+      [ngClass]="{ editable: editable }"
+      type="text"
+      name="title"
+      [(ngModel)]="album.title"
+    />
+  </form>
+</header>
+
+<div *ngIf="mode == ViewMode.item">{{ album.created_at }}</div>
+
+<div *ngIf="mode == ViewMode.item">{{ album.updated_at }}</div>
+
+<div *ngIf="!editable"></div>
+<button
+  *ngIf="mode == ViewMode.item && editable"
+  style="position: relative;"
+  data-tooltip-left="Rename"
+  role="button"
+  (click)="turnEditMode()"
+  class="button transparent radius edit-btn"
+>
+  <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+</button>
+
+<rap-delete-button
+  *ngIf="editable"
+  data-tooltip-left="Delete"
+  class="button transparent radius"
+  (confirmed)="onDelete()"
+  [src]="'assets/icons/delete.svg'"
+></rap-delete-button>

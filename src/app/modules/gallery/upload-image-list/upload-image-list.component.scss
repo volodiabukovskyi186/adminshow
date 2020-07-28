@@ -1,0 +1,57 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.upload-image {
+  position: relative;
+  width: 128px;
+  margin: 4px;
+  .ratio {
+    width: 100%;
+    position: relative;
+  }
+  small {
+    word-wrap: break-word;
+  }
+  .error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 4px;
+    text-align: center;
+    color: white;
+    background-color: rgba($red, 0.64);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    word-wrap: normal;
+    font-size: $fontSizeSmall;
+  }
+  rap-circle-progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  rap-delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    min-width: unset;
+    padding: 4px;
+    // color: rgba($red, .8);
+    // &:hover {
+    //   color: $red;
+    // }
+  }
+}

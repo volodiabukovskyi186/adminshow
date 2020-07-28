@@ -1,0 +1,122 @@
+<div class="modal" *ngIf="modalOpen">
+  <div class="modal-wrapper">
+    <div class="modal-close" (click)="modalOpen = false"></div>
+    <div class="modal-content">
+      <header>
+        <h4>{{ "APP.select_image" | translate }}</h4>
+      </header>
+
+      <div class="content">
+        <app-gallery-view
+          [selectable]="true"
+          [singleSelectable]="true"
+          [editable]="false"
+        ></app-gallery-view>
+      </div>
+    </div>
+  </div>
+</div>
+
+<fieldset class="radius" style="margin-bottom: 16px;">
+  <legend>{{ title }}</legend>
+
+  <div class="form-row">
+    <div class="description">
+      <label
+        for="parent_id"
+        [attr.data-tooltip-left]="'category.select_parent' | translate"
+        >{{ "category.parrent_id" | translate }}</label
+      >
+    </div>
+
+    <div class="original">
+      <select
+        id="parent_id"
+        class="radius"
+        name="parent_id"
+        [(ngModel)]="category.parent_id"
+      >
+        <option value="null">root</option>
+        <option *ngFor="let c of categoryes" value="{{ c.id }}">{{
+          c.description[0].name
+        }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">{{ "APP.sort_order" | translate }}</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="category.sort_order" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">{{ "APP.visibility" | translate }}</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="category.status">
+        <option value="1">{{ "APP.visible" | translate }}</option>
+        <option value="0">{{ "APP.hidden" | translate }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">{{ "APP.image" | translate }}</label>
+    </div>
+
+    <div class="original">
+      <app-choice-button
+        style="max-width: 192px;"
+        class="radius"
+        [src]="
+          category.host
+            ? '//' + category.host + category.image?.src_mini
+            : category.image?.src_mini
+        "
+        (press)="onPress()"
+        (reset)="onReset()"
+      ></app-choice-button>
+      <input type="hidden" [(ngModel)]="category.image_id" />
+    </div>
+  </div>
+
+  <rap-step-tabs>
+    <rap-step-tab
+      *ngFor="let item of category.description"
+      [title]="item.lang.flag + ' ' + item.lang.short_title"
+    >
+      <div class="form-row">
+        <div class="description">
+          <label for="">{{ "category.title" | translate }}</label>
+        </div>
+
+        <div class="original">
+          <input class="radius" [(ngModel)]="item.name" type="text" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">{{ "category.description" | translate }}</label>
+        </div>
+
+        <div class="original">
+          <textarea
+            name=""
+            class="radius"
+            [(ngModel)]="item.description"
+            rows="2"
+          ></textarea>
+        </div>
+      </div>
+    </rap-step-tab>
+  </rap-step-tabs>
+</fieldset>

@@ -1,0 +1,30 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+rap-folder {
+  width: auto;
+  margin: 0;
+}
+
+.grid {
+  margin-bottom: $space * 2;
+  display: grid;
+  grid-gap: $space/2;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  &.list {
+    display: block;
+  }
+}
+
+header {
+  h6 {
+    padding-top: 0;
+    margin: 0 0 $space;
+    font-weight: 600;
+    color: $gray800;
+  }
+}
+
+rap-album-breadcrumbs {
+  margin: $space/2 0 $space;
+}

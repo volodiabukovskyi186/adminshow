@@ -1,0 +1,71 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+$scale: 1.05;
+
+:host {
+  margin-top: $space * 3;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  button {
+    margin: $space / 4;
+    min-width: 32px;
+    text-align: center;
+
+    background-color: $white;
+    border: 1px solid $blue;
+    color: $gray850;
+    svg {
+      display: block;
+      width: 14px;
+      height: 14px;
+      fill: $gray850;
+    }
+    transform-origin: bottom center;
+
+    &:hover {
+      transform: scale($scale);
+
+      background-color: mix($blue, $white, 80%);
+      border-color: mix($blue, $white, 80%);
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+    &:active {
+      background-color: mix($blue, $black, 80%);
+      border-color: mix($blue, $black, 80%);
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+
+    &:disabled {
+      filter: unset;
+      background-color: $blue;
+      color: $white;
+
+      transform: scale($scale);
+      svg {
+        fill: rgba($white, .64);
+      }
+    }
+  }
+}
+
+:host {
+  &.radius {
+    .pagination {
+      button {
+        border-radius: 2px;
+      }
+    }
+  }
+}

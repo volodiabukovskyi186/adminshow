@@ -1,0 +1,24 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: inline-block;
+  position: relative;
+  color: inherit ;
+}
+
+rap-svg-ico {
+  width: 16px;
+  height: auto;
+  display: block;
+  color: inherit;
+}
+
+button {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  right: 0;
+  user-select: none;
+  color: inherit;
+  cursor: pointer;
+}

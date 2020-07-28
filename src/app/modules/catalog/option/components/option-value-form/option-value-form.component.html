@@ -1,0 +1,72 @@
+<div class="modal" *ngIf="modalOpen">
+  <div class="modal-wrapper">
+    <div class="modal-close" (click)="modalOpen = false"></div>
+    <div class="modal-content">
+      <header>
+        <h4>Select image</h4>
+      </header>
+
+      <div class="content">
+        <app-gallery-view
+          [selectable]="true"
+          [singleSelectable]="true"
+          [editable]="false"
+        ></app-gallery-view>
+      </div>
+    </div>
+  </div>
+</div>
+
+<fieldset class="radius" style="margin-bottom: 16px;">
+  <legend>{{ title ? title : "" }}</legend>
+
+  <div class="form-row" *ngFor="let item of model.description">
+    <div class="description">
+      <label for="">{{ item.lang.flag }} NAME</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" [(ngModel)]="item.name" type="text" /> 
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">IMAGE</label>
+    </div>
+
+    <div class="original">
+      <app-choice-button
+        style="max-width: 64px;"
+        class="radius"
+        [src]="host ? '//' + host + model.image.src_mini : model.image.src_mini"
+        (press)="onPress()"
+        (reset)="onReset()"
+      ></app-choice-button>
+      <input type="hidden" [(ngModel)]="model.image_id" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">SORT</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="model.sort_order" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">SHOW</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="model.status">
+        <option value="1">Show</option>
+        <option value="0">Hide</option>
+      </select>
+    </div>
+  </div>
+</fieldset>

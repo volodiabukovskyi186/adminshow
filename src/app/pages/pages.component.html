@@ -1,0 +1,35 @@
+<ngx-ui-loader></ngx-ui-loader>
+<rap-panel
+  [showRightToggleBtn]="pages.panelButtonSettings?.rightToggle"
+  [showFooter]="pages.panelSettings?.footer"
+  [showLeftSide]="pages.panelSettings?.left"
+  [showTop]="pages.panelSettings?.top"
+  [(showRightSide)]="pages.panelSettings.right"
+  [(showForm)]="pages.panelSettings.form"
+  [(isPlusBtn)]="pages.panelButtonSettings.plus"
+  [(isSaveBtn)]="pages.panelButtonSettings.save"
+  [(isCancelBtn)]="pages.panelButtonSettings.cancel"
+  (plusClick)="onPlusClick()"
+  (saveClick)="onSaveClick()"
+  (cancelClick)="onCancelClick()"
+  [labels]="{
+    add: 'APP.add'| translate,
+    filter: 'APP.filter'| translate,
+    save: 'APP.save'| translate,
+    cancel: 'APP.cancel'| translate
+  }"
+>
+  <app-rap-menu nav></app-rap-menu>
+
+  <div header style="overflow: hidden;">
+    <rap-breadcrumbs
+      [langLink]="lang.routeLang"
+      [breadcrumbs]="breadcrumbs.breadcrumbs"
+    ></rap-breadcrumbs>
+  </div>
+
+  <div style="flex: 1;  overflow-x: hidden;" content [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+  <router-outlet name="[form]"></router-outlet>
+</rap-panel>

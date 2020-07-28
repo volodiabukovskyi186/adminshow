@@ -1,0 +1,47 @@
+/*!
+ * v0.0.2dev
+ * License: MIT
+ * Author: Andrii Rodzyk / @rodzyk 
+*/
+
+@import "./_functions";
+@import "./variables";
+@import "./mixins";
+@import "./reboot";
+
+@import "./ratio";
+@import "./flex";
+@import "./text";
+@import "./row";
+@import "./buttons";
+@import "./tables";
+@import "./inputs";
+@import "./text_editor";
+@import "./alert";
+@import "./modal";
+@import "./color_picker";
+@import "./rating";
+
+.radius {
+  border-radius: $radius;
+}
+
+.padding {
+  padding: $space;
+}
+
+.cover,
+.contain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  @include zero;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.contain {
+  object-fit: contain;
+}

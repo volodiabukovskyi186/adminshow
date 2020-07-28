@@ -1,0 +1,12 @@
+<button
+  @fade
+  *ngIf="isShowConfirm"
+  (click)="onConfirmed()"
+  (mouseenter)="resetAutoHide()"
+  (mouseleave)="startAutoHide()"
+  [innerText]="labelConfirm"
+  role="button"
+  class="button delete small radius"
+></button>
+
+<rap-svg-ico [src]="src"></rap-svg-ico>

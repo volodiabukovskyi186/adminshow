@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  color: inherit;
+  img,
+  svg {
+    width: inherit;
+    height: inherit;
+    display: block;
+  }
+
+  svg,
+  ::ng-deep svg {
+    display: block;
+    transition: inherit;
+    fill: currentColor;
+  }
+}

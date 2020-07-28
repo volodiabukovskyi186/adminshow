@@ -1,0 +1,162 @@
+<h2 class="text-center" *ngIf="title">{{ title }}</h2>
+
+<rap-step-tabs>
+  <rap-step-tab [active]="true" [title]="'Data'">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>BASE</legend>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">TYPE</label>
+        </div>
+
+        <div class="original">
+          <select class="radius" name="parent_id" [(ngModel)]="model.type">
+            <option value="select">select</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">SHOW</label>
+        </div>
+    
+        <div class="original">
+          <select class="radius" name="parent_id" [(ngModel)]="model.status">
+            <option value="1">Show</option>
+            <option value="0">Hide</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">sort order</label>
+        </div>
+        <div class="original">
+          <input class="radius" type="text" [(ngModel)]="model.sort_order" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset
+      *ngFor="let item of model.description"
+      class="radius"
+      style="margin-bottom: 16px;"
+    >
+      <legend>{{ item.lang.flag }} {{ item.lang.short_title }}</legend>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">NAME</label>
+        </div>
+        <div class="original">
+          <input class="radius" [(ngModel)]="item.name" type="text" />
+        </div>
+      </div>
+    </fieldset>
+  </rap-step-tab>
+
+  <rap-step-tab *ngIf="model.id" [title]="'Values'">
+    <div *ngIf="loading == 0"><span>Loading...</span></div>
+    <table class="raisins-table border-all radius">
+      <thead>
+        <tr>
+          <th width="40px">IMG</th>
+          <th width="32px">#</th>
+          <th width="">TITLE</th>
+          <th width="80px">ACTION</th>
+        </tr>
+      </thead>
+
+      <tbody *ngIf="optionVal.data?.data.length > 0">
+        <tr *ngFor="let item of optionVal.data.data">
+          <td>
+            <div class="ratio">
+              <div class="square">
+                <img
+                  class="contain"
+                  [src]="'//' + optionVal.data.host + item.image.src_mini"
+                  [alt]="item.id"
+                />
+              </div>
+            </div>
+          </td>
+          <td>{{ item.sort_order }}</td>
+          <td>
+            <div class="flex wrap" style="width: 100%;">
+              <span class="title" *ngFor="let desc of item.description"
+                ><span class="flag">{{
+                  langService.getFromList(desc.lang_id)?.flag
+                }}</span
+                ><span class="name">{{ desc.name }}</span>
+              </span>
+            </div>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit option value"
+                role="button"
+                (click)="edit(item)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            <div class="flex wrap center">
+              <button
+                style="position: relative;"
+                data-tooltip-left="Add option value"
+                role="button"
+                (click)="add()"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+              </button>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <hr @fadeScale class="dashed" *ngIf="formOpen" />
+
+    <app-option-value-form
+      @fadeScale
+      *ngIf="formOpen"
+      [model]="optionValForm.model"
+      [langs]="langs"
+      [title]="formTitle"
+    ></app-option-value-form>
+
+    <div class="flex wrap center" @fadeScale *ngIf="formOpen">
+      <button
+        style="position: relative;"
+        data-tooltip-left="Cancel"
+        role="button"
+        (click)="formOpen = false"
+        class="button transparent radius"
+      >
+        <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>
+      </button>
+      <button
+        style="position: relative;"
+        data-tooltip-left="Save"
+        role="button"
+        (click)="save()"
+        class="button transparent radius"
+      >
+        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+      </button>
+    </div>
+  </rap-step-tab>
+</rap-step-tabs>

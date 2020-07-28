@@ -1,0 +1,27 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: block;
+  flex: 1;
+}
+
+app-role-form {
+  max-width: 600px;
+}
+
+.button {
+  padding: $space/2;
+  min-width: unset;
+  rap-svg-ico {
+    width: 16px;
+    height: auto;
+    display: block;
+    fill: $gray500;
+  }
+  &:hover {
+    rap-svg-ico {
+      fill: $blue;
+    }
+  }
+}

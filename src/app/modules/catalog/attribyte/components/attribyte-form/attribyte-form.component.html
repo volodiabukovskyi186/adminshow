@@ -1,0 +1,59 @@
+<h2 class="text-center" *ngIf="title">{{ title }}</h2>
+
+<fieldset class="radius" style="margin-bottom: 16px;">
+  <legend>BASE</legend>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">GROUP</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="model.group_id">
+        <!-- <option value="null">root</option> -->
+        <option *ngFor="let c of groups" value="{{ c.id }}">{{
+          c.description[0].name
+        }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">SHOW</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="model.status">
+        <option value="1">Show</option>
+        <option value="0">Hide</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">sort order</label>
+    </div>
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="model.sort_order" />
+    </div>
+  </div>
+</fieldset>
+
+<fieldset
+  *ngFor="let item of model.description"
+  class="radius"
+  style="margin-bottom: 16px;"
+>
+  <legend>{{ item.lang.flag }} {{ item.lang.short_title }}</legend>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">NAME</label>
+    </div>
+    <div class="original">
+      <input class="radius" [(ngModel)]="item.name" type="text" />
+    </div>
+  </div>
+</fieldset>

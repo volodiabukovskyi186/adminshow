@@ -1,0 +1,39 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  border-radius: inherit;
+  cursor: pointer;
+
+  .label {
+    padding: $space/4;
+    border-radius: inherit;
+  }
+  .arrow {
+    width: 12px;
+  }
+
+  &:hover {
+    .label {
+      background-color: rgba($gray300, 0.4);
+    }
+  }
+  &.active {
+    pointer-events: none;
+    .label {
+      color: $primary;
+    }
+    &:hover {
+      .label {
+        background-color: initial;
+      }
+    }
+    .arrow {
+      display: none;
+    }
+  }
+}

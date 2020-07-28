@@ -1,0 +1,152 @@
+$list: center right left justify;
+@each $item in $list {
+  .text-#{$item} {
+    text-align: $item;
+  }
+}
+
+$aligns: center, right, left, justify;
+p {
+  margin: 0;
+  margin-bottom: $space * 1.5;
+  word-wrap: break-word;
+  text-align: justify;
+  display: block;
+  @each $align in $aligns {
+    &[align="#{$align}"],
+    &.#{$align} {
+      text-align: #{$align};
+    }
+  }
+}
+
+// h1-h6
+$headers: ();
+
+@for $i from 1 through 6 {
+  $headers: append($headers, "h#{$i}, .h#{$i}");
+}
+
+#{zip($headers)} {
+  margin-top: $space * 3;
+  font-family: $fontFamily;
+  font-weight: $fontWeightLight;
+  // line-height: $lineHeight;
+  @each $align in $aligns {
+    &[align="#{$align}"],
+    &.#{$align} {
+      text-align: #{$align};
+    }
+  }
+}
+
+h1,
+.h1 {
+  font-size: $fontSizeH1;
+}
+
+h2,
+.h2 {
+  font-size: $fontSizeH2;
+}
+
+h3,
+.h3 {
+  font-size: $fontSizeH3;
+}
+
+h4,
+.h4 {
+  font-size: $fontSizeH4;
+}
+
+h5,
+.h5 {
+  font-size: $fontSizeH5;
+}
+
+h6,
+.h6 {
+  font-size: $fontSizeH6;
+}
+
+//
+
+hr {
+  margin: $space 0;
+  padding: 0;
+  border: 0 solid;
+  border-width: 1px 0 0;
+  height: 0;
+  &.dashed {
+    border-style: dashed;
+  }
+  &.dotted {
+    border-style: dotted;
+  }
+}
+
+small,
+.small {
+  font-size: 0.8em;
+}
+
+b,
+strong {
+  font-weight: $fontWeightBold;
+}
+
+i {
+  font-style: italic;
+}
+
+//
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    // color: $blue;
+    text-decoration: underline;
+  }
+}
+
+//
+//
+//
+
+.d1,
+.d2,
+.d3,
+.d4 {
+  display: inline-block;
+  margin: $space * 3 0 $space * 2;
+  font-weight: 200;
+  small {
+    font-size: 0.64em;
+  }
+}
+
+.d1 {
+  font-size: $fontSizeD1;
+}
+
+.d2 {
+  font-size: $fontSizeD2;
+}
+
+.d3 {
+  font-size: $fontSizeD3;
+}
+
+.d4 {
+  font-size: $fontSizeD4;
+}
+
+ul,
+ol {
+  list-style-position: inside;
+}
+
+ul {
+  list-style-type: square;
+}

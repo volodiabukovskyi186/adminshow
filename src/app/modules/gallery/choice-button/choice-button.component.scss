@@ -1,0 +1,55 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  position: relative;
+  display: block;
+  background-color: $gray200;
+  &:hover {
+    background-color: $gray300;
+  }
+}
+
+.ratio {
+  border-radius: inherit;
+  overflow: hidden;
+  img {
+    border-radius: inherit;
+  }
+}
+
+rap-delete-button {
+  padding: 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20;
+  &:hover {
+    color: $primary;
+  }
+}
+
+.change-wrapper {
+  position: absolute;
+  border-radius: inherit;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(white, 0.48);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  cursor: pointer;
+  @include transition();
+  z-index: 10;
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.base {
+  &:hover {
+    .change-wrapper {
+      opacity: 1;
+    }
+  }
+}

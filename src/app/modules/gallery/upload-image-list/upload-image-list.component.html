@@ -1,0 +1,24 @@
+<div
+  *ngFor="let img of image.uploadImages"
+  class="radius"
+  class="upload-image"
+>
+  <div class="ratio radius">
+    <div class="square radius"><img [src]="img.url" class="contain" /></div>
+    <rap-circle-progress
+      @fade
+      *ngIf="img.isStart && img.percentDone > 0"
+      [value]="img.percentDone"
+    ></rap-circle-progress>
+    <rap-delete-button
+      data-tooltip-left="Dont upload"
+      class="button delete radius"
+      (confirmed)="deleteFromUpload(img)"
+      [src]="'assets/icons/delete.svg'"
+    ></rap-delete-button>
+    <span @fade *ngIf="img.isError" class="error">ERROR<br />¯\_(ツ)_/¯</span>
+  </div>
+
+  <small>{{ img.file.name }}</small>
+  <small>{{ img.file.size | filesize }}</small>
+</div>

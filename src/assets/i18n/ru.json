@@ -1,0 +1,85 @@
+{
+  "APP": {
+    "TITLE": "RAP для ShowU",
+    "TITLE_FULL": "Raisins Admin Panel для ShowU",
+    "POWERED_BY": "При поддержке",
+    "action": "Действья",
+    "created_at": "Создано",
+    "updated_at": "Обновлено",
+    "id": "№",
+    "sort_order": "Сортировка",
+    "image": "Изобрадение",
+    "on_off": "Вкл/Выкл",
+    "edit": "Изменить",
+    "del": "Удалить"
+  },
+  "dashboard": {
+    "dashboard": "Dashboard"
+  },
+  "category": {
+    "category": "Категория",
+    "categories": "Категории",
+    "parrent_id": "Родительская категория",
+    "title": "Название",
+    "add_edit_category": "Добаить/редактировать категорию"
+  },
+  "roles": {
+    "roles": "Роли",
+    "role": "Роль",
+    "add_role": "Добавить роль",
+    "id": "№",
+    "name": "Название",
+    "permissions": "Права",
+    "created_at": "Создано",
+    "updated_at": "Обновлено"
+  },
+  "HOME": {
+    "TITLE": "Hello Angular with ngx-translate!",
+    "SELECT": "Змінити мову"
+  },
+  "AUTH": {
+    "SIGNIN": "Войти",
+    "LOGIN": "Логин",
+    "PASSWORD": "Пароль",
+    "ENTER_LOGIN": "Введите ваш логін",
+    "ENTER_PASSWORD": "Введите ваш пароль",
+    "FORGOT_PASSWORD": "Я забыл пароль :/"
+  },
+  "MENU": {
+    "orders": {
+      "orders": "Замовлення"
+    },
+    "catalog": {
+      "catalog": "Каталог",
+      "categories": "Категорії",
+      "attr_groups": "Групи атрибутів",
+      "attr": "Атрибути",
+      "options": "Опції",
+      "products": "Продукти",
+      "promotions": "Акціх",
+      "colection": "Колекції"
+    },
+    "reviews": { "reviews": "Відгуки", "product_reviews": "Відгуки продуктів" },
+    "manufacturer": { "manufacturers": "Виробники" },
+    "customers": { "customers": "Покупці" },
+    "media": { "media": "Медіафайли", "images": "Зображення" },
+    "manage_site": { "manage_site": "Керування сайтом",
+      "menu": "Меню",
+      "pages": "Сторінки",
+      "settings": "Налаштування",
+      "articles":"Статті",
+      "delivery_methods":"Способи доставки",
+      "payment_methods":"Способи оплати" },
+    "users": { "users": "Ролі", "roles": "Користувачі" },
+    "localization": {
+      "localization": "Локалізація",
+      "languages": "Мови",
+      "currencies": "Валюти",
+      "measure_units": "Одиниці вимірювання",
+      "weight_units": "Одиниці ваги",
+      "stock_status": "Сток статус",
+      "order_status": "Статус замовлення",
+      "departments": "Відділення ShowU"
+    }
+  }
+}

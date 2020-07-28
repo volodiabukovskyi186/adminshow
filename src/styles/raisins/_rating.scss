@@ -1,0 +1,118 @@
+$unchecked-star: "\2605";
+$unchecked-color: $gray400;
+$checked-star: "\2605";
+$checked-color: $yellow;
+
+.raisins-star-group {
+  font-size: 1rem;
+  &.large {
+    font-size: 3rem;
+  }
+  &.medium {
+    font-size: 1.5rem;
+  }
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  & > input {
+    display: none;
+    & + label {
+      display: block;
+      cursor: pointer;
+      &:before {
+        display: block;
+        content: $unchecked-star;
+        color: $unchecked-color;
+      }
+    }
+    &:checked ~ label:before,
+    & + label:hover ~ label:before,
+    & + label:hover:before {
+      content: $checked-star;
+      color: $checked-color;
+    }
+  }
+}
+
+.raisins-show-rating {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  .rating {
+    &:before {
+      display: block;
+      content: $unchecked-star;
+      color: $unchecked-color;
+    }
+  }
+  font-size: 1rem;
+  &.large {
+    font-size: 3rem;
+  }
+  &.medium {
+    font-size: 1.5rem;
+  }
+
+  .review-value {
+    width: 100%;
+    flex-basis: 100%;
+    font-size: 1rem;
+    text-align: center;
+    color: $unchecked-color;
+    font-weight: bold;
+  }
+
+  &.rating-1 {
+    .rating:nth-child(1) {
+      &:before {
+        color: $checked-color;
+      }
+    }
+  }
+
+  &.rating-2 {
+    .rating:nth-child(1),
+    .rating:nth-child(2)
+     {
+      &:before {
+        color: $checked-color;
+      }
+    }
+  }
+
+  &.rating-3 {
+    .rating:nth-child(1),
+    .rating:nth-child(2),
+    .rating:nth-child(3)
+     {
+      &:before {
+        color: $checked-color;
+      }
+    }
+  }
+
+  &.rating-4 {
+    .rating:nth-child(1),
+    .rating:nth-child(2),
+    .rating:nth-child(3),
+    .rating:nth-child(4)
+     {
+      &:before {
+        color: $checked-color;
+      }
+    }
+  }
+  &.rating-5 {
+    .rating:nth-child(1),
+    .rating:nth-child(2),
+    .rating:nth-child(3),
+    .rating:nth-child(4),
+    .rating:nth-child(5)
+     {
+      &:before {
+        color: $checked-color;
+      }
+    }
+  }
+}

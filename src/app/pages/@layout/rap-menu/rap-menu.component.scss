@@ -1,0 +1,41 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: block;
+  position: relative;
+  overflow-y: auto;
+}
+
+rap-svg-ico {
+  display: block;
+  padding: 0 $space/2;
+  color: $primary;
+  transition: all 0.2s ease-out;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.button {
+  rap-svg-ico {
+    width: 48px;
+    display: block;
+  }
+}
+header,
+footer {
+  position: sticky;
+//   background-color: rgba($white, .3);
+  backdrop-filter: blur(1rem);
+  z-index: 100;
+}
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}

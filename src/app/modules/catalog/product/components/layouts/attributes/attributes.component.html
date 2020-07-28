@@ -1,0 +1,95 @@
+<table class="raisins-table border-all radius">
+  <thead>
+    <tr>
+      <th width="40px">ATTR</th>
+      <th width="32px">LANG</th>
+      <th width="">VALUE</th>
+      <th width="80px">ACTION</th>
+    </tr>
+  </thead>
+
+  <tbody *ngIf="prodAttr.list.length > 0">
+    <tr *ngFor="let item of prodAttr.list">
+      <td class="text-center">
+        {{ (getAttr(item.attribyte_id, item.lang_id)?.description)[0].name }}
+      </td>
+      <td class="text-center">
+        <span
+          style="position: relative;"
+          [attr.data-tooltip-top]="getLang(item.lang_id).title"
+          >{{ getLang(item.lang_id).flag }}</span
+        >
+      </td>
+      <td>
+        {{ item.text }}
+      </td>
+      <td>
+        <div class="flex wrap center">
+          <button
+            style="position: relative;"
+            data-tooltip-left="Edit option value"
+            role="button"
+            (click)="edit(item)"
+            class="button transparent radius"
+          >
+            <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+          </button>
+          <rap-delete-button
+            data-tooltip-left="Delete"
+            class="button transparent radius"
+            (confirmed)="delete(item)"
+            [src]="'assets/icons/delete.svg'"
+          ></rap-delete-button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="4">
+        <div class="flex wrap center">
+          <button
+            style="position: relative;"
+            data-tooltip-left="Add option value"
+            role="button"
+            (click)="add()"
+            class="button transparent radius"
+          >
+            <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+          </button>
+        </div>
+      </th>
+    </tr>
+  </tfoot>
+</table>
+
+<hr @fadeScale class="dashed" *ngIf="formOpen" />
+
+<product-form-attibute-value
+  @fadeScale
+  *ngIf="formOpen"
+  [model]="prodAttr.model"
+  [langs]="langs"
+  [attributes]="attr.all"
+></product-form-attibute-value>
+
+<div class="flex wrap center" @fadeScale *ngIf="formOpen">
+  <button
+    style="position: relative;"
+    data-tooltip-left="Cancel"
+    role="button"
+    (click)="formOpen = false"
+    class="button transparent radius"
+  >
+    <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>
+  </button>
+  <button
+    style="position: relative;"
+    data-tooltip-left="Save"
+    role="button"
+    (click)="save()"
+    class="button transparent radius"
+  >
+    <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+  </button>
+</div>

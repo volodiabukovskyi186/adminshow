@@ -1,0 +1,42 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: flex;
+  user-select: none;
+
+  & > a,
+  & > .btn {
+    display: flex;
+    flex: 1;
+    padding: $space/4;
+
+    align-items: center;
+
+    // transition: all .4s linear;
+
+    &:hover,
+    &.active {
+      text-decoration: none;
+      background-color: rgba($blue, 0.1);
+      color: $yellow;
+    }
+
+    div.icon {
+      @include col-width(16px);
+      padding: 2px !important;
+      margin-right: 12px;
+      margin-left: 6px;
+      img,
+      rap-svg-ico {
+        transition: inherit;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    div.title {
+      flex: 1;
+    }
+  }
+}

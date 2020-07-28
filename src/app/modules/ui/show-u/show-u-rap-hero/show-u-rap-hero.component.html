@@ -1,0 +1,25 @@
+<div class="flex wrap column v_center center">
+  <rap-svg-ico
+    class="rap_logo"
+    *ngIf="isRapLogo"
+    src="assets/raisins.svg"
+    alt="Raisins Admin Panel"
+  >
+  </rap-svg-ico>
+
+  <rap-svg-ico
+    class="showu_logo"
+    *ngIf="isShowULogo"
+    [src]="'assets/showu.svg'"
+    [alt]="'Show U'"
+  ></rap-svg-ico>
+</div>
+
+<div class="title d2 text-center">{{ title }}</div>
+
+<footer>
+  <small>
+    <span>{{ labelPowered }} </span>
+    <a target="_blank" [href]="poweredLink" [innerText]="poweredTitle"></a>
+  </small>
+</footer>

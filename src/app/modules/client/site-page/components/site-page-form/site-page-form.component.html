@@ -1,0 +1,87 @@
+<fieldset class="radius" style="margin-bottom: 16px;">
+  <legend>{{ title }}</legend>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">Alias</label>
+    </div>
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="model.alias" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">SHOW</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="model.status">
+        <option value="1">Show</option>
+        <option value="0">Hide</option>
+      </select>
+    </div>
+  </div>
+
+  <rap-step-tabs>
+    <rap-step-tab
+      *ngFor="let item of model.descriptions"
+      [title]="item.lang.flag + ' ' + item.lang.short_title"
+    >
+      <div class="form-row">
+        <div class="description">
+          <label for="">NAME</label>
+        </div>
+        <div class="original">
+          <input class="radius" [(ngModel)]="item.title" type="text" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">description</label>
+        </div>
+        <div class="original">
+          <textarea
+            class="radius"
+            [(ngModel)]="item.description"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="description">
+          <label for="">meta description</label>
+        </div>
+        <div class="original">
+          <textarea
+            class="radius"
+            [(ngModel)]="item.meta_description"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="description">
+          <label for="">meta keywords</label>
+        </div>
+        <div class="original">
+          <textarea
+            class="radius"
+            [(ngModel)]="item.meta_keywords"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">Content</label>
+        </div>
+        <div class="original">
+          <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea>
+        </div>
+      </div>
+    </rap-step-tab>
+  </rap-step-tabs>
+</fieldset>

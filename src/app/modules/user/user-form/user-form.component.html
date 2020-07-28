@@ -1,0 +1,66 @@
+<fieldset class="radius" style="margin-bottom: 16px;">
+  <legend>{{ title }}</legend>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">ROLE</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="user.role_id">
+        <option *ngFor="let c of roles" value="{{ c.id }}">{{ c.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">FIRST NAME</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="user.first_name" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">LAST NAME</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="user.last_name" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">EMAIL</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="user.email" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">PHONE</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="user.tel" />
+    </div>
+  </div>
+
+  <div class="form-row" *ngIf="!isEdit">
+    <div class="description">
+      <label for="">PASSWORD</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="user.password" />
+    </div>
+  </div>
+
+</fieldset>

@@ -1,0 +1,18 @@
+<header (click)="toggle()" [ngClass]="{ active: open }">
+    <div class="ratio icon">
+      <div class="square">
+     
+          <rap-svg-ico class="contain" src="{{ icon }}" alt="{{ title | titlecase | slice: 0:1 }}"></rap-svg-ico>
+       
+      </div>
+    </div>
+    <div class="title">{{ title | translate }}</div>
+    <div class="status">
+      <rap-svg-ico src="assets/icons/plus.svg"></rap-svg-ico>
+    </div>
+  
+</header>
+
+<section @fade2 *ngIf="open" [ngClass]="{ active: open }">
+  <ng-content ></ng-content>
+</section>

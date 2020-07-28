@@ -1,0 +1,101 @@
+<rap-album-breadcrumbs class="radius"
+  [breadcrumbs]="album.albumBreadcrumbs"
+  [activeId]="album.activeAlbum?.id"
+  (press)="onOpenAlbum($event)"
+></rap-album-breadcrumbs>
+
+<header *ngIf="album.albums?.data.length > 0">
+  <h6>Albums [{{ album.albums?.data.length }}/{{ album.albums?.count }}]</h6>
+</header>
+
+<div [ngClass]="{ list: mode == ViewMode.item }" class="grid">
+  <!--  -->
+
+  <rap-folder
+    @fadeScale
+    *ngIf="album.activeAlbum?.id != null"
+    class="radius"
+    tabindex="0"
+    [mode]="mode"
+    [icon]="'assets/icons/color-folder-image-return.svg'"
+    [thumbnail]="'assets/icons/color-folder-image-return.svg'"
+    [editable]="false"
+    [album]="{ title: 'Up' }"
+    (open)="
+      onOpenAlbum({
+        id: album.activeAlbum.parent_id,
+        title: null,
+        created_at: null,
+        updated_at: null,
+        parent_id: null
+      })
+    "
+  ></rap-folder>
+
+  <rap-folder
+    @fadeScale
+    *ngFor="let a of album.albums?.data"
+    class="radius"
+    tabindex="0"
+    [mode]="mode"
+    [editable]="editable"
+    [album]="a"
+    (delete)="onDelete(a)"
+    (edit)="onEdit(a)"
+    (open)="onOpenAlbum(a)"
+  ></rap-folder>
+
+  <ng-container *ngIf="editable">
+    <rap-folder
+      @fadeScale
+      *ngFor="let a of album.newAlbums"
+      class="radius"
+      tabindex="0"
+      [mode]="mode"
+      [editable]="true"
+      [editMode]="true"
+      [album]="a"
+      (delete)="onCancel(a)"
+      (edit)="onEdit(a)"
+    ></rap-folder>
+
+    <rap-folder
+      @fadeScale
+      style="cursor: pointer;"
+      class="radius"
+      tabindex="0"
+      [mode]="mode"
+      [icon]="'assets/icons/color-folder-image-new.svg'"
+      [thumbnail]="'assets/icons/color-folder-image-new.svg'"
+      [editable]="false"
+      [album]="{ title: 'Add album' }"
+      (click)="album.newAlbum()"
+    ></rap-folder>
+  </ng-container>
+</div>
+
+<header *ngIf="image.images?.data.length > 0">
+  <h6>Images [{{ image.images?.data.length }}/{{ image.images?.count }}]</h6>
+</header>
+
+<div
+  [ngClass]="{ list: mode == ViewMode.item }"
+  class="grid"
+  *ngIf="image.images?.data.length > 0"
+>
+  <rap-folder
+    @fadeScale
+    *ngFor="let img of image.images?.data"
+    class="radius"
+    [ngClass]="{ selected: img.selected }"
+    tabindex="0"
+    [thumbnail]="'//' + img.host + img.src_mini"
+    [icon]="'assets/icons/fole-icon-image.svg'"
+    [mode]="mode"
+    [editable]="editable"
+    [album]="img"
+    (click)="openImage($event, img)"
+    (keydown)="spaceKeyDown($event, img)"
+    (delete)="onDeleteImage(img)"
+  ></rap-folder>
+</div>

@@ -1,0 +1,7 @@
+<h2 class="text-center" *ngIf="title">{{title}}</h2>
+
+<rap-dynamic-form #form
+  [questions]="questions$ | async"
+  [isSubmitButton]="false"
+  (formSubmit)="onSubmit($event)"
+></rap-dynamic-form>

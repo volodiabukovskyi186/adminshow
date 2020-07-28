@@ -1,0 +1,36 @@
+<!-- <pre>{{ model | json }}</pre> -->
+
+<div class="form-row">
+  <div class="description">
+    <label for="">ATTR</label>
+  </div>
+
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.attribyte_id">
+      <option *ngFor="let c of attributes" value="{{ c.id }}">{{
+        c.description[0].name
+      }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">LANG</label>
+  </div>
+
+  <div class="original">
+    <select class="radius" [(ngModel)]="model.lang_id">
+      <option *ngFor="let c of langs" value="{{ c.id }}">{{ c.title }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="description">
+    <label for="">VALUE</label>
+  </div>
+  <div class="original">
+    <input class="radius" type="text" [(ngModel)]="model.text" />
+  </div>
+</div>

@@ -1,0 +1,29 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+$unchecked-star: "\2605";
+$unchecked-color: $gray400;
+$checked-star: "\2605";
+$checked-color: $yellow;
+
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  font-size: inherit;
+
+  .rating {
+    &:before {
+      display: block;
+      content: $unchecked-star;
+      color: $unchecked-color;
+    }
+    &.active {
+      &:before {
+        color: $checked-color;
+      }
+    }
+  }
+}

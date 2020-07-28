@@ -1,0 +1,92 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <div class="flex wrap">
+      <button
+        *ngIf="editable"
+        (click)="closeForm(); album.newAlbum()"
+        class="button radius transparent emoji large"
+      >
+        Create album
+      </button>
+    </div>
+    <app-upload-image-drop-form></app-upload-image-drop-form>
+    <app-upload-image-list></app-upload-image-list>
+  </div>
+
+  <div filter>
+    <div class="padding">
+      <div class="form-row">
+        <div class="description">
+          <label for="takeImages">Change view</label>
+        </div>
+        <div class="original">
+          <div class="flex">
+            <button class="button" (click)="editable = !editable">
+              Toggle editable
+            </button>
+            <button
+              [ngClass]="{ active: mode == ViewMode.item }"
+              (click)="mode = ViewMode.item"
+              class="button small radius transparent"
+            >
+              <img width="32px" src="assets/icons/color-list.svg" alt="List" />
+            </button>
+            <button
+              [ngClass]="{ active: mode == ViewMode.card }"
+              (click)="mode = ViewMode.card"
+              class="button small radius transparent"
+            >
+              <img width="32px" src="assets/icons/color-cards.svg" alt="Card" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="takeAlbums">Count albums per page</label>
+        </div>
+        <div class="original">
+          <input
+            type="number"
+            id="takeAlbums"
+            name="takeAlbums"
+            min="1"
+            class="radius"
+            step="10"
+            [(ngModel)]="album.takeAlbums"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="description">
+          <label for="takeImages">Count images per page</label>
+        </div>
+        <div class="original">
+          <input
+            type="number"
+            id="takeImages"
+            name="takeImages"
+            class="radius"
+            min="1"
+            step="10"
+            [(ngModel)]="image.takeImages"
+          />
+        </div>
+      </div>
+
+      <button class="button transparent radius" (click)="gView.startLoad()">Filter</button>
+    </div>
+  </div>
+
+  <div
+    content
+    class="padding"
+    (dragenter)="$event.preventDefault(); openForm()"
+  >
+    <app-gallery-view #gView [editable]="editable" [mode]="mode"></app-gallery-view>
+  </div>
+</rap-panel-content>

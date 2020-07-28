@@ -1,0 +1,12 @@
+<a
+  [routerLink]="
+    !langLink
+      ? ['/', breadcrumb.link]
+      : breadcrumb.link
+      ? ['/', langLink, breadcrumb.link]
+      : ['/', langLink]
+  "
+  [routerLinkActiveOptions]="{ exact: true }"
+  routerLinkActive="active"
+  >{{ breadcrumb.title }}</a
+>

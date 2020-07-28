@@ -1,0 +1,193 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+$t: 0.1s;
+$size: 148px;
+
+// rap-delete-button {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   opacity: 0;
+//   transition: opacity $t ease-in-out;
+//   min-width: unset;
+//   padding: 8px;
+//   ::ng-deep rap-svg-ico {
+//     fill: rgba($primary, 0.8);
+//     &:hover {
+//       fill: $primary;
+//     }
+//   }
+// }
+
+rap-delete-button,
+.edit-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity $t ease-in-out;
+  min-width: unset;
+  padding: 8px;
+}
+rap-delete-button.button.transparent {
+  color: rgba($primary, 0.8);
+  &:hover {
+    color: $primary;
+  }
+}
+
+.edit-btn {
+  color: rgba($blue, 0.8);
+  rap-svg-ico {
+    width: 16px;
+    height: auto;
+  }
+  &:hover {
+    color: $blue;
+  }
+}
+
+:host {
+  @include transition();
+  display: block;
+  width: $size;
+  margin: $space;
+  padding-top: $space/2;
+  position: relative;
+
+  user-select: none;
+
+  //   border: dashed 2px transparent;
+  transition: border-color $t ease-in-out, color $t ease-in-out;
+  .icon {
+    padding: $space/2 $space/2 0;
+    width: 100%;
+    img,
+    svg {
+      transition: transform $t ease-in-out, opacity $t ease-in-out;
+      transform-origin: center bottom;
+      display: block;
+      opacity: 0.9;
+    }
+  }
+
+  header {
+    text-align: center;
+  }
+
+  &.selected {
+    border: 2px dashed $red;
+    background-color: rgba($blue, 0.01);
+
+    .icon {
+      img,
+      svg {
+        opacity: 1;
+        transform: scale(.99);
+      }
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    outline: none;
+    background-color: rgba($black, 0.1);
+
+    rap-delete-button {
+      opacity: 1;
+    }
+
+    .icon {
+      img,
+      svg {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.folder-input {
+  margin: 0;
+  transition: unset;
+  border: 0;
+  background-color: inherit;
+  padding: 4px 8px;
+  font-size: $fontSizeSmall;
+  &::selection {
+    background-color: $primary;
+    color: $white;
+  }
+  &:focus {
+    background-color: rgba($blue, 0.1);
+  }
+  &:disabled {
+    user-select: none;
+    color: inherit;
+    // pointer-events: none;
+    &.editable:hover {
+      background-color: rgba($black, 0.1);
+    }
+  }
+}
+
+:host {
+  &.radius {
+    .folder-input {
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+  }
+}
+
+:host {
+  &.folder-item {
+    rap-delete-button {
+      opacity: 1;
+      position: relative;
+    }
+    .edit-btn {
+      opacity: 1;
+      position: relative;
+    }
+    padding-top: unset;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    .icon {
+      width: 40px;
+      padding: $space/4 $space/2;
+    }
+
+    header {
+      //   flex: 1;
+      .folder-input {
+        // max-width: 200px;
+        border-radius: unset;
+      }
+    }
+  }
+}
+
+@include nonehover {
+  rap-delete-button {
+    opacity: 1;
+  }
+}
+
+:host {
+  &.folder-item {
+    display: grid;
+    grid-template-columns: 40px 2fr 1fr 1fr 32px 32px;
+    grid-gap: 2px;
+    .folder-input {
+      font-size: inherit;
+      &:hover {
+        background-color: initial;
+      }
+    }
+  }
+}

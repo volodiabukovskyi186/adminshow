@@ -1,0 +1,41 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+.drop_zone {
+    margin: $space 0;
+    border: 2px dashed $gray700;
+    padding: $space;
+    .drop-text {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      z-index: 100;
+      .d1 {
+        margin: 0;
+        padding: 0;
+        color: $primary;
+      }
+    }
+    * {
+      pointer-events: none;
+    }
+    button {
+      pointer-events: all;
+    }
+    &.dragover {
+      border-color: $primary;
+      .dragover-hide {
+        opacity: 0;
+      }
+      .drop-text {
+        opacity: 1 !important;
+      }
+    }
+  }
+  

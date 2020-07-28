@@ -1,0 +1,6 @@
+<rap-album-breadcrumb
+  *ngFor="let item of breadcrumbs"
+  [breadcrumb]="item"
+  [ngClass]="{ active: activeId == item.id }"
+  (click)="onClick(item)"
+></rap-album-breadcrumb>

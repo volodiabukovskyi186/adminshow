@@ -1,0 +1,35 @@
+<header>
+  <rap-svg-ico
+    [routerLink]="['/',lang.routeLang]"
+    routerLinkActive="active"
+    
+    src="assets/showu.svg"
+    alt="ShowU"
+  ></rap-svg-ico>
+</header>
+
+<div>
+  <rap-nav-group
+    [title]="item.title"
+    [icon]="item.icon"
+    [(open)]="item.open"
+    *ngFor="let item of menu.nav"
+  >
+    <rap-nav-item
+      *ngFor="let link of item.items"
+      [langLink]="lang.routeLang"
+      [nav]="link"
+    ></rap-nav-item>
+  </rap-nav-group>
+</div>
+
+<footer>
+  <app-user-menu></app-user-menu>
+  <div class="flex center wrap">
+    <a style="padding: 4px;" class="button transparent radius"
+      *ngFor="let item of lang.langs"
+      [routerLink]="getRoute(item.locale)"
+      >{{ item.flag }}</a
+    >
+  </div>
+</footer>

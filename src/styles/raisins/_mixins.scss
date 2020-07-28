@@ -1,0 +1,40 @@
+@import "material-shadow.mixin";
+
+@mixin zero {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin col-width($width) {
+  flex-basis: $width;
+  max-width: $width;
+}
+
+@mixin screen-w($mw) {
+  @media (max-width: $mw) {
+    @content;
+  }
+}
+
+/// Style for display with hover none
+///
+@mixin nonehover {
+  @media (hover: none) {
+    @content;
+  }
+}
+
+@mixin transition($element: all, $t: $time, $delay: 0s) {
+  @if $element==default {
+    $element: all;
+  }
+  @if $t==default {
+    $t: $time;
+  }
+  @if $delay==default {
+    $delay: 0s;
+  }
+  transition: $element $t $motion $delay;
+}

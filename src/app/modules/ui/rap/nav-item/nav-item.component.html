@@ -1,0 +1,33 @@
+<a
+  *ngIf="!isButton"
+  [routerLink]="
+    !langLink
+      ? ['/', nav.link]
+      : nav.link
+      ? ['/', langLink, nav.link]
+      : ['/', langLink]
+  "
+  [routerLinkActive]="'active'"
+  [routerLinkActiveOptions]="{exact:
+    true, __change_detection_hack__: nav.link}"
+>
+  <div class="ratio icon" *ngIf="nav.isIcon">
+    <div class="square">
+      <rap-svg-ico class="contain"
+      src="{{ nav.icon }}"
+      alt="{{ nav?.title | titlecase | slice: 0:1 }}"
+    ></rap-svg-ico>
+    </div>
+  </div>
+  <div class="title">{{ nav?.title | translate }}</div>
+</a>
+
+<div style="display: block;" class="btn" *ngIf="isButton" role="button">
+  <div class="icon" *ngIf="nav.isIcon">
+    <rap-svg-ico
+      src="{{ nav.icon }}"
+      alt="{{ nav?.title | titlecase | slice: 0:1 }}"
+    ></rap-svg-ico>
+  </div>
+  <div class="title">{{ nav?.title | translate }}</div>
+</div>
