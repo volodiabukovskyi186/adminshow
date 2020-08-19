@@ -17,75 +17,161 @@
   </div>
 </div>
 
-<fieldset class="radius" style="margin-bottom: 16px;">
-  <legend>{{ title }}</legend>
+<div class="tabs-header">{{ "collection.add_edit_collection" | translate }}</div>
 
   <rap-step-tabs>
     <rap-step-tab
-      *ngFor="let item of model.descriptions"
-      [title]="item.lang.flag + ' ' + item.lang.short_title"
+      class="main-tabs"
+      [title]="'collection.mainData' | translate"
     >
-      <div class="form-row">
-        <div class="description">
-          <label for="">{{ "collection.title" | translate }}</label>
+      <fieldset class="radius" style="margin-bottom: 16px;">
+        <legend>{{ title }}</legend>
+        <rap-step-tabs>
+          <rap-step-tab
+            *ngFor="let item of model.descriptions"
+            [title]="item.lang.flag + ' ' + item.lang.short_title"
+          >
+          <div class="form-row">
+            <div class="description">
+              <label for="">{{ "collection.title" | translate }}</label>
+            </div>
+            <div class="original">
+              <input class="radius" [(ngModel)]="item.title" type="text" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="description">
+              <label for="">{{ "collection.subtitle" | translate }}</label>
+            </div>
+            <div class="original">
+              <input class="radius" [(ngModel)]="item.subtitle" type="text" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="description">
+              <label for="">{{ "collection.description" | translate }}</label>
+            </div>
+            <div class="original">
+              <textarea
+                rows="3"
+                class="radius"
+                [(ngModel)]="item.description"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="description">
+              <label for="">{{ "APP.visibility" | translate }}</label>
+            </div>
+        
+            <div class="original">
+              <select class="radius" name="parent_id" [(ngModel)]="model.status">
+                <option value="1">{{ "APP.visible" | translate }}</option>
+                <option value="0">{{ "APP.hidden" | translate }}</option>
+              </select>
+            </div>
+          </div>
+        
+          <div class="form-row">
+            <div class="description">
+              <label for="">{{ "APP.image" | translate }}</label>
+            </div>
+        
+            <div class="original">
+              <app-choice-button
+                style="max-width: 192px;"
+                class="radius"
+                [src]="
+                  host ? '//' + host + model.image?.src_mini : model.image?.src_mini
+                "
+                (press)="onPress()"
+                (reset)="onReset()"
+              ></app-choice-button>
+              <input type="hidden" [(ngModel)]="model.image_id" />
+            </div>
+          </div>
+          </rap-step-tab>
+        </rap-step-tabs>
+      </fieldset>
+    </rap-step-tab>
+    <rap-step-tab [active]="false" [title]="'collection.products' | translate">
+      <form [formGroup]="productsListForm" class="products-form-container">
+        <div class="products-container">
+          <label class="products-label">{{ "collection.manufacturer" | translate }}</label>
+          <div class="manufacrures-list-content manufacrures-list-content-one">
+            <input 
+              (click)="getManufactures()"
+              (clickOutside)="isActive = false;"
+              formControlName="manufactures" 
+              class="radius manufactures-input" 
+              type="text"
+              required
+            />
+            <div *ngIf="displayAllManufactures && isActive" class="manufacrures-list">
+                <!-- {{(filteredManufactures$ | async).length}} -->
+                <div *ngFor="let manufacturer of filteredManufactures$ | async">
+                  <div class="manufacrures-list-item" (click)="getSelectedManufacturer(manufacturer)">
+                    {{ manufacturer.name }}
+                  </div>
+                </div>
+            </div>
+          </div>
         </div>
-        <div class="original">
-          <input class="radius" [(ngModel)]="item.title" type="text" />
+        <div class="products-container">
+          <label class="products-label">{{ "collection.category" | translate }}</label>
+            <div class="manufacrures-list-content manufacrures-list-content-two">
+              <input
+                (click)="getCategories()"
+                (clickOutside)="isCategoriesActive = false;"            
+                formControlName="categories" 
+                class="radius manufactures-input" 
+                type="text"
+                required
+              />
+              <div *ngIf="displayAllCaterories && isCategoriesActive" class="manufacrures-list">
+                <div *ngFor="let category of filteredCategories$ | async">
+                  <div class="manufacrures-list-item" (click)="getSelectedCategory(category)">
+                    {{ category.name }}
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="description">
-          <label for="">{{ "collection.subtitle" | translate }}</label>
+        <div class="products-container">
+          <label class="products-label">{{ "collection.product" | translate }}</label>
+          <div class="manufacrures-list-content manufacrures-list-content-three">
+            <input
+              (click)="getProducts()"
+              (clickOutside)="isSelectedProduct = false;"
+              formControlName="products" 
+              class="radius" type="text" 
+              class="manufactures-input"
+            />
+            <div *ngIf="isSelectedProduct" class="manufacrures-list">
+              <div class="manufacrures-list-item" *ngIf="(filteredProducts$ | async).length === 0">
+                <span>{{ "collection.productsNotFound" | translate }}</span>
+              </div>
+              <div class="search-product-content" *ngFor="let product of filteredProducts$ | async">
+                <div class="manufacrures-list-item" (click)="getSelectedProduct(product)"> 
+                  {{ product.description.name }} 
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="original">
-          <input class="radius" [(ngModel)]="item.subtitle" type="text" />
+        <div class="products-big-container">
+          <label class="products-label">{{ "collection.listOfProducts" | translate }}</label>
+          <!-- <textarea formControlName="products" class="radius" type="text" class="products-big-input">
+          </textarea> -->
+          <div class="products-name-container">
+            <div *ngFor="let product of products; let currentIndex = index;">
+              <div class="product-name" (click)="removeProduct(currentIndex)">
+                {{ product?.description?.name }}
+                <span class="material-icons">cancel</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="description">
-          <label for="">{{ "collection.description" | translate }}</label>
-        </div>
-        <div class="original">
-          <textarea
-            rows="3"
-            class="radius"
-            [(ngModel)]="item.description"
-          ></textarea>
-        </div>
-      </div>
+      </form>
     </rap-step-tab>
   </rap-step-tabs>
-
-  <div class="form-row">
-    <div class="description">
-      <label for="">{{ "APP.visibility" | translate }}</label>
-    </div>
-
-    <div class="original">
-      <select class="radius" name="parent_id" [(ngModel)]="model.status">
-        <option value="1">{{ "APP.visible" | translate }}</option>
-        <option value="0">{{ "APP.hidden" | translate }}</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="description">
-      <label for="">{{ "APP.image" | translate }}</label>
-    </div>
-
-    <div class="original">
-      <app-choice-button
-        style="max-width: 192px;"
-        class="radius"
-        [src]="
-          host ? '//' + host + model.image?.src_mini : model.image?.src_mini
-        "
-        (press)="onPress()"
-        (reset)="onReset()"
-      ></app-choice-button>
-      <input type="hidden" [(ngModel)]="model.image_id" />
-    </div>
-  </div>
-
-</fieldset>

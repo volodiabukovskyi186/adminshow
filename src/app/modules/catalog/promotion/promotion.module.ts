@@ -4,12 +4,31 @@ import { PromotionFormComponent } from "./components/promotion-form/promotion-fo
 import { UiModule } from "../../ui/ui.module";
 import { FormsModule } from "@angular/forms";
 import { GalleryModule } from "../../gallery/gallery.module";
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { TranslateModule } from "@ngx-translate/core";
 
 const c = [PromotionFormComponent];
 
 @NgModule({
   declarations: [...c],
   exports: [...c],
-  imports: [CommonModule, UiModule, FormsModule, GalleryModule],
+  imports: [
+    CommonModule, 
+    UiModule, 
+    FormsModule, 
+    GalleryModule, 
+    MatInputModule, 
+    ReactiveFormsModule,
+    MatTreeModule,
+    MatIconModule, 
+    MatButtonModule,
+    ClickOutsideModule,
+    TranslateModule,
+  ],
 })
 export class PromotionModule {}

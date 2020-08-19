@@ -25,6 +25,9 @@
   "dashboard": {
     "dashboard": "Dashboard"
   },
+  "promotion": {
+    "add_edit_promotion": "Add/edit Promotion"
+  },
   "category": {
     "category": "Category",
     "categories": "Categories",
@@ -43,9 +46,16 @@
     "msgUpdated": "Collection successfully updated",
     "msgDeleted": "Collection successfully deleted",
     "add_edit_collection": "Add/edit Collection",
+    "mainData": "Main data",
+    "products": "Products",
     "title": "Title",
     "subtitle": "Subtitle",
     "description": "Description",
+    "manufacturer": "Manufacturer",
+    "category": "Category",
+    "product": "Product",
+    "productsNotFound": "Products not found",
+    "listOfProducts": "List of products"
   },
   "roles": {
     "roles": "Roles",

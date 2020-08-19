@@ -59,6 +59,10 @@ export class CollectionService {
     );
   }
 
+  getByCollectionId(collectionId): Observable<any>  {
+    return this.http.get(`https://api.showu.com.ua/product_promotion/getByPromotion/${collectionId}`);
+  }
+
   post(data: any): Observable<any> {
     return this.http.post(environment.catalog.collection.collection, data);
   }
@@ -83,5 +87,12 @@ export class CollectionService {
 
   put(data: any, id: number): Observable<any> {
     return this.http.put(`${environment.catalog.collection.collection}/${id}`, data);
+  }
+
+  updateCollectionProducts(newProducts, collectionId): Observable<any> {
+    // const params = {
+    //   products: JSON.stringify(newProducts)
+    // }
+    return this.http.put(`https://api.showu.com.ua/product_promotion/updateArray/${collectionId}`, newProducts);
   }
 }

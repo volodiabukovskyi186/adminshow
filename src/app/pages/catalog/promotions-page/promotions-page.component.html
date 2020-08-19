@@ -6,6 +6,8 @@
     <app-promotion-form
       [title]="'ADD/EDIT Promotion'"
       [model]="promForm.model"
+      [products]="productsList"
+      (selectedProducts)="selectedProducts($event)"
     ></app-promotion-form>
   </div>
   <div filter></div>
@@ -38,9 +40,9 @@
                 <img
                   class="contain"
                   [src]="
-                    '//' + prom.data.host + item.descriptions[0].image.src_mini
+                    '//' + prom?.data?.host + item?.descriptions[0]?.image.src_mini
                   "
-                  [alt]="item.id"
+                  [alt]="item?.id"
                 />
               </div>
             </div>

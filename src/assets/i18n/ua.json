@@ -25,6 +25,9 @@
   "dashboard": {
     "dashboard": "Панель приладів"
   },
+  "promotion": {
+    "add_edit_promotion": "Додати/Редагувати Акцію"
+  },
   "category": {
     "category": "Категорія",
     "categories": "Категорії",
@@ -43,9 +46,16 @@
     "msgUpdated": "Коллекцію успішно оновлено",
     "msgDeleted": "Коллекцію успішно видалено",
     "add_edit_collection": "Додати/Редагувати колекцію",
+    "mainData": "Основні дані",
+    "products": "Продукти",
     "title": "Заголовок",
     "subtitle": "Підзаголовок",
-    "description": "Опис"
+    "description": "Опис",
+    "manufacturer": "Виробник",
+    "category": "Категорія",
+    "product": "Продукт",
+    "productsNotFound": "Продуктів не знайдено",
+    "listOfProducts": "Список продуктів"
   },
   "roles": {
     "roles": "Ролі",

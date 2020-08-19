@@ -27,6 +27,11 @@ import { Router, NavigationEnd } from "@angular/router";
 export class CollectionPageComponent extends BasePage
   implements OnInit, OnDestroy, PaginationPage {
   private _routerSubscription: any;
+
+  public productsList;
+  public products: any[];
+  public selectedProductsPromotion: any[];
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -136,6 +141,10 @@ export class CollectionPageComponent extends BasePage
         });
       });
       this.collection.put(data, c.id).subscribe(this.putHandler);
+      this.collection.updateCollectionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
+        this.ngxService.stopAll();
+        this.toastr.success("COLLECTION UPDATED ^_^");
+      })
     } else {
       c.descriptions.forEach((d) => {
         data.description.push({
@@ -145,7 +154,13 @@ export class CollectionPageComponent extends BasePage
           description: d.description,
         });
       });
-      this.collection.post(data).subscribe(this.postHandler);
+      this.collection.post(data).subscribe((res) => {
+        this.postHandler(res);
+         this.collection.updateCollectionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
+          this.ngxService.stopAll();
+          this.toastr.success("COLLECTION ADDED");
+        })
+      });
     }
     this.ngxService.start();
   };
@@ -176,9 +191,31 @@ export class CollectionPageComponent extends BasePage
   //#endregion
 
   edit(i) {
+    console.log(i);
+    this.collection.getByCollectionId(i.id).subscribe((res) => {
+      this.products = res.data;
+      console.log(this.products);
+  
+      this.productsList = this.products.map(function(val) {
+        return val.product;
+      })
+      
+      console.log(this.productsList);
+    })
+
     this.collectionForm.initByModel(i, this.langService.languages.data);
     this.collectionForm.host = this.collection.data.host;
     this.openForm();
+  }
+
+  selectedProducts(event) {
+    console.log(event);
+  
+    this.selectedProductsPromotion = event?.map(function(product) {
+      return product.id;
+    })
+  
+    console.log(this.selectedProductsPromotion);
   }
 
   editItem: ICollection = null;

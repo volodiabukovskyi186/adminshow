@@ -7,6 +7,8 @@
       [title]="'collection.add_edit_collection' | translate"
       [model]="collectionForm.model"
       [host]="collectionForm.host"
+      [products]="productsList"
+      (selectedProducts)="selectedProducts($event)"
     >
     </app-collection-form>
   </div>

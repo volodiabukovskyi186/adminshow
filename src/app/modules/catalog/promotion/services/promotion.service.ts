@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IImageSrc } from "src/app/modules/gallery";
+import { LanguageService } from 'src/app/core/language.service';
 
 export interface IPromotionDescription {
   id: number;
@@ -52,7 +53,18 @@ export class PromotionService {
     host: null,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private languageService: LanguageService
+  ) {}
+
+  get(): Observable<any>  {
+    return this.http.get(environment.catalog.promotion.promotions);
+  }
+
+  getByPromotionId(promotionId): Observable<any>  {
+    return this.http.get(`https://api.showu.com.ua/product_promotion/getByPromotion/${promotionId}`);
+  }
 
   getList(): Observable<IPromotionResponse> {
     let skip = this.page * this.data.take - this.data.take;
@@ -86,5 +98,46 @@ export class PromotionService {
 
   put(data: any, id: number): Observable<any> {
     return this.http.put(`${environment.catalog.promotion.promotion}/${id}`, data);
+  }
+
+  searchProduct(eventValue): Observable<any> {
+    let take = 100;
+    return this.http.get(`https://api.showu.com.ua/product/searchProduct?skip=0&take=${take}&q=${eventValue}`);
+  }
+
+  getAllCategories(): Observable<any> {
+    let lang = this.languageService.current;
+    return this.http.get(`https://api.showu.com.ua/client/category?lang=${lang}&skip=0&take=20`);
+  }
+
+  getProductByFilters(categoryIds?, manufacturerIds?): Observable<any> {
+    let lang = this.languageService.current;
+    let query = `https://api.showu.com.ua/client/getProductsByFilterClient?lang=${lang}&skip=0&sort_by=id`;
+
+    console.log(categoryIds);
+    console.log(manufacturerIds);
+
+    if (categoryIds && categoryIds.length > 0){
+      query += `&category_id=${JSON.stringify(categoryIds)}`;
+    }
+
+    if (manufacturerIds && manufacturerIds.length > 0){
+      query += `&manufacturer_id=${JSON.stringify(manufacturerIds)}`;
+    }
+
+    console.log(query);
+    return this.http.get(query);
+  }
+
+  getAllProducts(): Observable<any> {
+    let lang = this.languageService.current;
+    return this.http.get(`https://api.showu.com.ua/client/products?lang=${lang}`);
+  }
+
+  updatePromotionProducts(newProducts, promotionId): Observable<any> {
+    // const params = {
+    //   products: JSON.stringify(newProducts)
+    // }
+    return this.http.put(`https://api.showu.com.ua/product_promotion/updateArray/${promotionId}`, newProducts);
   }
 }

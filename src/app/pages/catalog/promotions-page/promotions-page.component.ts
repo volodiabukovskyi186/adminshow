@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BasePage } from '../../@core';
 import { PaginationPage } from 'src/app/modules/ui/rap/pagination/pagination-page';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -16,6 +16,13 @@ import { PromotionFormService } from 'src/app/modules/catalog/promotion/services
 })
 export class PromotionsPageComponent extends BasePage
 implements OnInit, PaginationPage {
+
+public productsList;
+public products: any[];
+public selectedProductsPromotion: any[];
+
+// @Output() products: EventEmitter<any> = new EventEmitter();
+
 constructor(
   protected ngxService: NgxUiLoaderService,
   protected toastr: ToastrService,
@@ -89,6 +96,10 @@ save = () => {
       });
     });
     this.prom.put(data, c.id).subscribe(this.putHandler);
+    this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
+      this.ngxService.stopAll();
+      this.toastr.success("PROMOTION UPDATED ^_^");
+    })
   } else {
     c.descriptions.forEach((d) => {
       data.description.push({
@@ -101,8 +112,15 @@ save = () => {
         data_end: d.data_end,
       });
     });
-    this.prom.post(data).subscribe(this.postHandler);
+    this.prom.post(data).subscribe((res) => {
+      this.postHandler(res);
+      this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
+        this.ngxService.stopAll();
+        this.toastr.success("PROMOTION ADDED");
+      })
+    })
   }
+
   this.ngxService.start();
 };
 
@@ -131,8 +149,30 @@ plus = () => {
 //#endregion
 
 edit(i) {
+  console.log(i);
+  this.prom.getByPromotionId(i.id).subscribe((res) => {
+    this.products = res.data;
+    console.log(this.products);
+
+    this.productsList = this.products.map(function(val) {
+      return val.product;
+    })
+    
+    console.log(this.productsList);
+  })
+
   this.promForm.initByModel(i, this.langService.languages.data);
   this.openForm();
+}
+
+selectedProducts(event) {
+  console.log(event);
+
+  this.selectedProductsPromotion = event.map(function(product) {
+    return product.id;
+  })
+
+  console.log(this.selectedProductsPromotion);
 }
 
 editItem: IPromotion = null;
