@@ -23,6 +23,13 @@ export interface ILanguageResponse {
   take: number;
 }
 
+export interface IFlags {
+  en: string;
+  pl: string;
+  ru: string;
+  ua: string;
+}
+
 @Injectable({
   providedIn: "root",
 })
@@ -34,6 +41,13 @@ export class LanguageService {
     take: 20,
   };
   constructor(private http: HttpClient) {}
+
+  public flags: IFlags = {
+    en: "assets/icons/en.svg",
+    pl: "assets/icons/pl.svg",
+    ru: "assets/icons/ru.svg",
+    ua: "assets/icons/ua.svg",
+  };
 
   getLangs(): Observable<ILanguageResponse> {
     let params = `?take=${this.languages.take}&skip=${this.languages.skip}`;
@@ -70,13 +84,25 @@ export class LanguageService {
     });
   }
 
+  getCountryFlag(flag): void {
+    if (this.flags.hasOwnProperty(flag)) {
+      return this.flags[flag];
+    }
+  }
+
   getFromList(id: number) {
+    let role;
+
     for (let i = 0; i < this.languages.data.length; i++) {
-      const role = this.languages.data[i];
-      if (role.id == id) return role;
+      role = this.languages.data[i];
+
+      if (role.id == id) {
+        role.flag = this.flags[role.code];
+        return role;
+      }
     }
     return null;
-  }
+  }  
 
   //
   //

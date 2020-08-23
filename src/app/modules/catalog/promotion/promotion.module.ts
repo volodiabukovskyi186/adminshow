@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { TranslateModule } from "@ngx-translate/core";
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const c = [PromotionFormComponent];
 
@@ -29,6 +30,7 @@ const c = [PromotionFormComponent];
     MatButtonModule,
     ClickOutsideModule,
     TranslateModule,
+    AngularEditorModule,
   ],
 })
 export class PromotionModule {}

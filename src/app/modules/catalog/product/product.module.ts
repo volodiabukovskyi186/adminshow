@@ -13,6 +13,7 @@ import { CategoryComponent } from "./components/layouts/category/category.compon
 import { ImagesComponent } from './components/layouts/images/images.component';
 import { AttributesComponent } from './components/layouts/attributes/attributes.component';
 import { AttibuteValueComponent } from './components/layouts/attibute-value/attibute-value.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const c = [ProductFormComponent];
 
@@ -35,6 +36,7 @@ const c = [ProductFormComponent];
     UiModule,
     GalleryModule,
     NgxSelectModule,
+    AngularEditorModule,
   ],
 })
 export class ProductModule {}

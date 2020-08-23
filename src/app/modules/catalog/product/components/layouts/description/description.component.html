@@ -19,12 +19,13 @@
       </div>
 
       <div class="original">
-        <textarea
+        <angular-editor [placeholder]="'...'" [(ngModel)]="item.discription" [config]="editorConfig"></angular-editor>
+        <!-- <textarea
           name=""
           class="radius"
           [(ngModel)]="item.discription"
           rows="2"
-        ></textarea>
+        ></textarea> -->
       </div>
     </div>
 

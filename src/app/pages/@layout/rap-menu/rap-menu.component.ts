@@ -3,6 +3,7 @@ import { MenuService } from "src/app/core/menu.service";
 import { LanguageService } from "src/app/core/language.service";
 import { AuthService } from "src/app/core/auth/auth.service";
 import { Router } from "@angular/router";
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 
 @Component({
   selector: "app-rap-menu",
@@ -14,7 +15,8 @@ export class RapMenuComponent implements OnInit {
     public menu: MenuService,
     public lang: LanguageService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    public languageService: LocalizationLang,
   ) {}
 
   ngOnInit(): void {}
@@ -35,5 +37,9 @@ export class RapMenuComponent implements OnInit {
       }
     });
     return res;
+  }
+
+  show(i) {
+    console.log(i);
   }
 }

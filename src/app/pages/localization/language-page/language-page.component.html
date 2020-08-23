@@ -34,8 +34,9 @@
           <td class="text-center">{{ item.code }}</td>
           <td class="text-center">{{ item.locate }}</td>
           <td>
-            <span class="flag">{{ item.flag }}</span> {{ item.short_title }} |
-            {{ item.title }}
+            <!-- <span class="flag">{{ item.flag }}</span> -->
+            <img class="flag" src="{{ langServise.getFromList(item.id)?.flag }}"/>
+            {{ item.short_title }} | {{ item.title }}
             <app-permission-item
               *ngIf="item.default"
               [perm]="{ name: 'Default', state: 1 }"

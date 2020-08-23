@@ -42,11 +42,12 @@
           <label for="">description</label>
         </div>
         <div class="original">
-          <textarea
+          <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
+          <!-- <textarea
             class="radius"
             [(ngModel)]="item.description"
             rows="3"
-          ></textarea>
+          ></textarea> -->
         </div>
       </div>
       <div class="form-row">
@@ -79,7 +80,8 @@
           <label for="">Content</label>
         </div>
         <div class="original">
-          <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea>
+          <!-- <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea> -->
+          <angular-editor [placeholder]="'...'" [(ngModel)]="item.text" [config]="editorConfig"></angular-editor>
         </div>
       </div>
     </rap-step-tab>

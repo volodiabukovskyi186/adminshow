@@ -12,6 +12,7 @@ import { ILanguage } from "src/app/modules/localization/language/language.servic
 import { ImagesService } from "src/app/modules/gallery/images.service";
 import { IImage } from "src/app/modules/gallery/folder/interfaces";
 import { LanguageService as Lang } from "src/app/core/language.service";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: "app-category-form",
@@ -28,6 +29,52 @@ export class CategoryFormComponent implements OnInit {
   @Input() langs: ILanguage[];
 
   @Input() title: string = "";
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+      customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
+    uploadUrl: 'v1/image',
+    uploadWithCredentials: false,
+    sanitize: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['bold', 'italic'],
+      ['fontSize']
+    ]
+  };
 
   public submitForm() {
     this.dynamicForm.onSubmit();

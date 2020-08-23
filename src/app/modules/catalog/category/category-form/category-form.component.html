@@ -109,12 +109,13 @@
         </div>
 
         <div class="original">
-          <textarea
+          <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
+          <!-- <textarea
             name=""
             class="radius"
             [(ngModel)]="item.description"
             rows="2"
-          ></textarea>
+          ></textarea> -->
         </div>
       </div>
     </rap-step-tab>

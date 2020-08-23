@@ -86,11 +86,12 @@
           <label for="">description</label>
         </div>
         <div class="original">
-          <textarea
+          <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
+          <!-- <textarea
             rows="3"
             class="radius"
             [(ngModel)]="item.description"
-          ></textarea>
+          ></textarea> -->
         </div>
       </div>
 

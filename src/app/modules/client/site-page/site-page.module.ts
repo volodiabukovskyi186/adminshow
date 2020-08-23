@@ -5,6 +5,8 @@ import { UiModule } from "../../ui/ui.module";
 import { FormsModule } from "@angular/forms";
 import { GalleryModule } from "../../gallery/gallery.module";
 import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
+// import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const c = [SitePageFormComponent];
 
@@ -18,6 +20,8 @@ const c = [SitePageFormComponent];
     GalleryModule,
     FroalaEditorModule,
     FroalaViewModule,
+    // RichTextEditorAllModule,
+    AngularEditorModule,
   ],
 })
 export class SitePageModule {}
