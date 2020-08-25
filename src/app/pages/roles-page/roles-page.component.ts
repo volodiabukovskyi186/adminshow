@@ -8,6 +8,7 @@ import { RoleFormComponent } from "src/app/modules/roles/role-form/role-form.com
 import { Role } from "src/app/modules/roles/models/role";
 import { RoleFormService } from "src/app/modules/roles/role-form.service";
 import { RoleResponse } from "src/app/modules/roles/models";
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: "app-roles-page",
@@ -23,7 +24,8 @@ export class RolesPageComponent implements OnInit {
     public breadcrumbs: BreadcrumbsService,
     public pages: PagesService,
     public role: RolesService,
-    public roleForm: RoleFormService
+    public roleForm: RoleFormService,
+    public lang: Lang,
   ) {
     this.init();
   }
@@ -40,6 +42,20 @@ export class RolesPageComponent implements OnInit {
       { link: "", title: "Dashboard" },
       { link: "roles", title: "Roles" }
     ];
+  }
+
+  initTranslate() {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.users.roles",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "roles", title: tr["MENU.users.roles"] },
+        ];
+      });
   }
 
   editId: number = null;
@@ -128,6 +144,8 @@ export class RolesPageComponent implements OnInit {
     this.pages.onSaveClick = this.saveRole;
     this.pages.onPlusClick = this.plusRole;
     this.pages.onCancelClick = this.cancel;
+
+    this.initTranslate();
   }
 
   saveRole = () => {

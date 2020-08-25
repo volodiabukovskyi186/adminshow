@@ -32,7 +32,7 @@ export class OptionFormComponent implements OnInit {
   }
 
   @Input() langs: ILanguage[];
-  @Input() title: string = "";
+  // @Input() title: string = "";
 
   constructor(
     public optionVal: OptionValueService,

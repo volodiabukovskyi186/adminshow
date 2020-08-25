@@ -7,6 +7,7 @@ import { ImagesService } from "src/app/modules/gallery/images.service";
 import { ViewMode } from "src/app/modules/gallery/folder/interfaces";
 import { deleted, fadeScale, fade } from "src/app/modules/ui/animations";
 import { AlbumService } from 'src/app/modules/gallery/album.service';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   animations: [deleted, fadeScale, fade],
@@ -23,7 +24,8 @@ export class ImagePageComponent implements OnInit {
     public breadcrumbs: BreadcrumbsService,
     public pages: PagesService,
     public image: ImagesService,
-    public album: AlbumService
+    public album: AlbumService,
+    public lang: Lang,
   ) {
     this.init();
   }
@@ -49,6 +51,20 @@ export class ImagePageComponent implements OnInit {
 
   }
 
+  initTranslate() {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.media.images",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "images", title: tr["MENU.media.images"] },
+        ];
+      });
+  }
+
   openForm = () => {
     this.pages.panelSettings.form = true;
     this.pages.panelButtonSettings.plus = false;
@@ -65,7 +81,9 @@ export class ImagePageComponent implements OnInit {
 
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initTranslate();
+  }
 
   editable: boolean = true;
 

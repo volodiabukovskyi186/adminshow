@@ -1,6 +1,6 @@
 <div class="form-row">
   <div class="description">
-    <label for="">Location</label>
+    <label for="">{{ "APP.location" | translate }}</label>
   </div>
   <div class="original">
     <input class="radius" type="text" [(ngModel)]="model.location" />
@@ -8,7 +8,7 @@
 </div>
 <div class="form-row">
   <div class="description">
-    <label for="">PRICE</label>
+    <label for="">{{ "APP.price" | translate }}</label>
   </div>
   <div class="original">
     <input class="radius" type="text" [(ngModel)]="model.price" />
@@ -17,7 +17,7 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">Quantity</label>
+    <label for="">{{ "APP.quantity" | translate }}</label>
   </div>
   <div class="original">
     <input class="radius" type="text" [(ngModel)]="model.quantity" />
@@ -26,7 +26,7 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">Minimum Quantity</label>
+    <label for="">{{ "APP.minimumQuantity" | translate }}</label>
   </div>
   <div class="original">
     <input class="radius" type="text" [(ngModel)]="model.minimum" />
@@ -35,7 +35,7 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">Sort order</label>
+    <label for="">{{ "APP.sort_order" | translate }}</label>
   </div>
   <div class="original">
     <input class="radius" type="text" [(ngModel)]="model.sort_order" />
@@ -44,18 +44,18 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">Weight class</label>
+    <label for="">{{ "APP.weightClass" | translate }}</label>
   </div>
   <div class="original">
     <select class="radius" [(ngModel)]="model.weight_class_id">
-      <option value="1">Default (kg)</option>
+      <option value="1">{{ "APP.defaultKg" | translate }}</option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="description">
-    <label for="">weight</label>
+    <label for="">{{ "APP.weight" | translate }}</label>
   </div>
   <div class="original">
     <input class="radius" type="text" [(ngModel)]="model.weight" />
@@ -64,42 +64,42 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">Requires Shipping</label>
+    <label for="">{{ 'APP.requiresShipping' | translate }}</label>
   </div>
   <div class="original">
     <select class="radius" [(ngModel)]="model.shipping">
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+      <option value="1">{{ 'APP.yes' | translate }}</option>
+      <option value="0">{{ 'APP.no' | translate }}</option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="description">
-    <label for="">Subtract Stock</label>
+    <label for="">{{ 'APP.subtractStock' | translate }}</label>
   </div>
   <div class="original">
     <select class="radius" [(ngModel)]="model.subtract">
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+      <option value="1">{{ 'APP.yes' | translate }}</option>
+      <option value="0">{{ 'APP.no' | translate }}</option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="description">
-    <label for="">Lenght class</label>
+    <label for="">{{ 'APP.lengthClass' | translate }}</label>
   </div>
   <div class="original">
     <select class="radius" [(ngModel)]="model.lenght_class_id">
-      <option value="1">Default (cm)</option>
+      <option value="1">{{ 'APP.defaultCm' | translate }}</option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="description">
-    <label for="">Dimensions (L x W x H)</label>
+    <label for="">{{ 'APP.dimensions' | translate }} (L x W x H)</label>
   </div>
   <div class="original">
     <div class="flex wrap">
@@ -127,7 +127,7 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">Date avaliable</label>
+    <label for="">{{ 'APP.dateAvaliable' | translate }}</label>
   </div>
   <div class="original">
     <input class="radius" type="date" [(ngModel)]="model.date_avaliable" />
@@ -136,22 +136,22 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">Stock status</label>
+    <label for="">{{ "APP.stockStatus" | translate}}</label>
   </div>
   <div class="original">
     <select class="radius" [(ngModel)]="model.stock_status_id">
-      <option value="1">Default ()</option>
+      <option value="1">{{ "APP.default" | translate }}</option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="description">
-    <label for="">Tax class</label>
+    <label for="">{{ "APP.taxClass" | translate}}</label>
   </div>
   <div class="original">
     <select class="radius" [(ngModel)]="model.tax_class_id">
-      <option value="1">Default ()</option>
+      <option value="1">{{ "APP.default" | translate }}</option>
     </select>
   </div>
 </div>

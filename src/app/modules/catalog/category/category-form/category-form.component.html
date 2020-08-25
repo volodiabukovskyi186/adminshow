@@ -91,7 +91,8 @@
   <rap-step-tabs>
     <rap-step-tab
       *ngFor="let item of category.description"
-      [title]="item.lang.flag + ' ' + item.lang.short_title"
+      [imgSrc]="languageService.getFromList(item.lang.id)?.flag"
+      [title]="item.lang.short_title"
     >
       <div class="form-row">
         <div class="description">

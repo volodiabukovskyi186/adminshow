@@ -26,7 +26,8 @@
   <rap-step-tabs>
     <rap-step-tab
       *ngFor="let item of model.descriptions"
-      [title]="item.lang.flag + ' ' + item.lang.short_title"
+      [imgSrc]="languageService.getFromList(item.lang.id)?.flag"
+      [title]="item.lang.short_title"
     >
       <div class="form-row">
         <div class="description">
@@ -64,7 +65,7 @@
       </div>
       <div class="form-row">
         <div class="description">
-          <label for="">meta keywords</label>
+          <label for="">{{ "APP.metaKeywords" | translate }}</label>
         </div>
         <div class="original">
           <textarea

@@ -17,6 +17,7 @@ export interface IStepTab {
 export class StepTabComponent implements OnInit {
   
   @Input() title = '';
+  @Input() imgSrc = '';
   @Input() active = false;
   @Input() disabled = false;
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, HostListener, ElementRef } from "@angular/core";
 import { ICollection } from "../../services/collection.service";
-import { ILanguage } from "src/app/modules/localization/language/language.service";
+import { ILanguage, LanguageService } from "src/app/modules/localization/language/language.service";
 import { IImage } from "src/app/modules/gallery/folder/interfaces";
 import { ImagesService } from "src/app/modules/gallery/images.service";
 import { PromotionService } from '../../../promotion/services/promotion.service';
@@ -122,6 +122,7 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
     private promotionService: PromotionService,
     public manufacturerService: ManufacturerService,
     private elementRef: ElementRef,
+    public languageService: LanguageService
   ) {}
 
   @HostListener('document:click', ['$event'])

@@ -11,6 +11,7 @@ import { ManufacturerService } from '../../../../../modules/manufacturer/manufac
 import { takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 
 @Component({
   selector: "app-promotion-form",
@@ -129,6 +130,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     private promotionService: PromotionService,
     private manufacturerService: ManufacturerService,
     private elementRef: ElementRef,
+    public languageService: LocalizationLang
   ) {}
 
   // @HostListener('document:click', ['$event'])

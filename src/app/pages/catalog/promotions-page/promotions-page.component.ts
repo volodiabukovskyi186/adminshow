@@ -8,6 +8,7 @@ import { PagesService } from '../../pages.service';
 import { PromotionService, IPromotion } from 'src/app/modules/catalog/promotion/services/promotion.service';
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
 import { PromotionFormService } from 'src/app/modules/catalog/promotion/services/promotion-form.service';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: 'app-promotions-page',
@@ -30,7 +31,8 @@ constructor(
   public pages: PagesService,
   public prom: PromotionService,
   public promForm: PromotionFormService,
-  public langService: LanguageService
+  public langService: LanguageService,
+  public lang: Lang,
 ) {
   super(pages);
 }
@@ -46,6 +48,21 @@ ngOnInit(): void {
 
   this.getLangList();
   this.getList();
+  this.initTranslate();
+}
+
+initTranslate() {
+  this.lang.translate
+    .get([
+      "dashboard.dashboard",
+      "MENU.catalog.promotions",
+    ])
+    .subscribe((tr: any) => {
+      this.breadcrumbs.breadcrumbs = [
+        { link: "", title: tr["dashboard.dashboard"] },
+        { link: "promotions", title: tr["MENU.catalog.promotions"] },
+      ];
+    });
 }
 
 getList() {

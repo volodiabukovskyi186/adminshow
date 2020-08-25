@@ -3,7 +3,7 @@
     <div class="modal-close" (click)="modalOpen = false"></div>
     <div class="modal-content">
       <header>
-        <h4>Select image</h4>
+        <h4>{{ 'APP.selectImage' | translate }}</h4>
       </header>
 
       <div class="content">
@@ -22,20 +22,20 @@
 <rap-step-tabs class="click-outside">
   <rap-step-tab [active]="true" [title]="'collection.mainData' | translate" class="main-tabs">
 
-    <h2 class="text-center" *ngIf="title">{{ title }}</h2>
+    <!-- <h2 class="text-center" *ngIf="title">{{ title }}</h2> -->
 
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>BASE</legend>
+      <legend>{{ 'APP.base' | translate }}</legend>
 
       <div class="form-row">
         <div class="description">
-          <label for="">SHOW</label>
+          <label for="">{{ 'APP.show' | translate }}</label>
         </div>
 
         <div class="original">
           <select class="radius" name="parent_id" [(ngModel)]="model.status">
-            <option value="1">Show</option>
-            <option value="0">Hide</option>
+            <option value="1">{{ 'APP.show' | translate }}</option>
+            <option value="0">{{ 'APP.hide' | translate }}</option>
           </select>
         </div>
       </div>
@@ -46,11 +46,14 @@
       class="radius"
       style="margin-bottom: 16px;"
     >
-      <legend>{{ item.lang.flag }} {{ item.lang.short_title }}</legend>
+      <legend>
+        <!-- {{ item.lang.flag }}  -->
+        <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+        {{ item.lang.short_title }}</legend>
 
       <div class="form-row">
         <div class="description">
-          <label for="">IMAGE</label>
+          <label for="">{{ 'APP.image' | translate }}</label>
         </div>
 
         <div class="original">
@@ -67,7 +70,7 @@
 
       <div class="form-row">
         <div class="description">
-          <label for="">title</label>
+          <label for="">{{ 'APP.title' | translate }}</label>
         </div>
         <div class="original">
           <input class="radius" [(ngModel)]="item.title" type="text" />
@@ -75,7 +78,7 @@
       </div>
       <div class="form-row">
         <div class="description">
-          <label for="">subtitle</label>
+          <label for="">{{ 'collection.subtitle' | translate }}</label>
         </div>
         <div class="original">
           <input class="radius" [(ngModel)]="item.subtitle" type="text" />
@@ -83,7 +86,7 @@
       </div>
       <div class="form-row">
         <div class="description">
-          <label for="">description</label>
+          <label for="">{{ 'category.description' | translate }}</label>
         </div>
         <div class="original">
           <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
@@ -97,7 +100,7 @@
 
       <div class="form-row">
         <div class="description">
-          <label for="">Date Start</label>
+          <label for="">{{'APP.dateStart' | translate }}</label>
         </div>
         <div class="original">
           <input class="radius" [(ngModel)]="item.data_start" type="date" />
@@ -106,7 +109,7 @@
 
       <div class="form-row">
         <div class="description">
-          <label for="">Date End</label>
+          <label for="">{{'APP.dateEnd' | translate }}</label>
         </div>
         <div class="original">
           <input class="radius" [(ngModel)]="item.data_end" type="date" />

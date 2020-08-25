@@ -20,9 +20,9 @@
     </section>
   
     <aside>
-        <div class='_1'>THE PAGE</div>
-            <div class='_2'>WAS NOT FOUND</div>
+        <div class='_1'>{{ 'pageNotFound.thePage' | translate}}</div>
+            <div class='_2'>{{ 'pageNotFound.wasNotFound' | translate}}</div>
             <hr>
-        <a class='button primary radius large' [routerLink]="'/'">BACK TO HOME</a>
+        <a class='button primary radius large' [routerLink]="'/'">{{ 'pageNotFound.backToHome' | translate}}</a>
     </aside>
   </app-golden-panel>

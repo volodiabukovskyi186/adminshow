@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { IAttribyteGroup } from "../../interfaces";
-import { ILanguage } from "src/app/modules/localization/language/language.service";
+import { ILanguage, LanguageService } from "src/app/modules/localization/language/language.service";
 
 @Component({
   selector: "app-attribyte-group-form",
@@ -12,6 +12,9 @@ export class AttribyteGroupFormComponent implements OnInit {
   @Input() langs: ILanguage[];
   @Input() title: string = "";
 
-  constructor() {}
+  constructor(
+    public languageService: LanguageService
+  ) {}
+
   ngOnInit(): void {}
 }

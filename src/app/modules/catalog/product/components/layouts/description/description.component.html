@@ -1,11 +1,16 @@
 <rap-step-tabs>
   <rap-step-tab
     *ngFor="let item of model.descriptions"
-    [title]="item.lang.flag + ' ' + item.lang.short_title"
+    [imgSrc]="languageService.getFromList(item.lang.id)?.flag"
+    [title]="item.lang.short_title"
   >
     <div class="form-row">
       <div class="description">
-        <label for="">{{ item.lang.flag }} NAME</label>
+        <!-- <label for="">{{ item.lang.flag }} NAME</label> -->
+        <label for="">
+          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+          {{ "APP.title" | translate }}
+        </label>
       </div>
 
       <div class="original">
@@ -15,7 +20,11 @@
 
     <div class="form-row">
       <div class="description">
-        <label for="">{{ item.lang.flag }} DESCRIPTION</label>
+        <label for="">
+          <!-- {{ item.lang.flag }} -->
+          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+          {{ "category.description" | translate }}
+        </label>
       </div>
 
       <div class="original">
@@ -31,7 +40,11 @@
 
     <div class="form-row">
       <div class="description">
-        <label for="">{{ item.lang.flag }} META DESCRIPTION</label>
+        <label for="">
+          <!-- {{ item.lang.flag }}  -->
+          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+          {{ "APP.metaDescription" | translate }}
+        </label>
       </div>
 
       <div class="original">
@@ -46,7 +59,11 @@
 
     <div class="form-row">
       <div class="description">
-        <label for="">{{ item.lang.flag }} META keywords</label>
+        <label for="">
+          <!-- {{ item.lang.flag }} -->
+          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+          {{ "APP.metaKeywords" | translate }}
+        </label>
       </div>
 
       <div class="original">
@@ -61,7 +78,11 @@
 
     <div class="form-row">
       <div class="description">
-        <label for="">{{ item.lang.flag }} tag</label>
+        <label for="">
+          <!-- {{ item.lang.flag }} -->
+          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+          {{ "APP.tag" | translate }}
+        </label>
       </div>
 
       <div class="original">

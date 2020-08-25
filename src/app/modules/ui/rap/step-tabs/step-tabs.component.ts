@@ -8,6 +8,7 @@ import {
   AfterViewInit,
 } from "@angular/core";
 import { StepTabComponent } from "../step-tab/step-tab.component";
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 
 @Component({
   selector: "rap-step-tabs",
@@ -18,6 +19,10 @@ export class StepTabsComponent implements AfterContentInit, AfterViewInit {
   @Input() vertical;
   @Output() onSelect = new EventEmitter();
   @ContentChildren(StepTabComponent) tabs;
+
+  constructor(
+    public languageService: LocalizationLang
+  ) {}
 
   ngAfterContentInit() {
     this.initTabs();

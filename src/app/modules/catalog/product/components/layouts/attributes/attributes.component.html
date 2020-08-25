@@ -1,10 +1,10 @@
 <table class="raisins-table border-all radius">
   <thead>
     <tr>
-      <th width="40px">ATTR</th>
-      <th width="32px">LANG</th>
-      <th width="">VALUE</th>
-      <th width="80px">ACTION</th>
+      <th width="40px">{{ "APP.attribytes" | translate }}</th>
+      <th width="32px">{{ "MENU.localization.languages" | translate }}</th>
+      <th width="">{{ 'APP.value' | translate }}</th>
+      <th width="80px">{{ 'APP.action' | translate }}</th>
     </tr>
   </thead>
 
@@ -17,8 +17,10 @@
         <span
           style="position: relative;"
           [attr.data-tooltip-top]="getLang(item.lang_id).title"
-          >{{ getLang(item.lang_id).flag }}</span
-        >
+          >
+          <img class="flag" src="{{ languageService.getFromList(item.lang_id)?.flag }}"/>
+          <!-- {{ getLang(item.lang_id).flag }} -->
+        </span>
       </td>
       <td>
         {{ item.text }}

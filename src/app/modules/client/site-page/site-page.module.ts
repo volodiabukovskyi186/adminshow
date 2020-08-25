@@ -7,6 +7,7 @@ import { GalleryModule } from "../../gallery/gallery.module";
 import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
 // import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { TranslateModule } from "@ngx-translate/core";
 
 const c = [SitePageFormComponent];
 
@@ -22,6 +23,7 @@ const c = [SitePageFormComponent];
     FroalaViewModule,
     // RichTextEditorAllModule,
     AngularEditorModule,
+    TranslateModule,
   ],
 })
 export class SitePageModule {}

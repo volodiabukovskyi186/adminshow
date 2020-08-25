@@ -4,7 +4,7 @@
 >
   <div form>
     <app-attribyte-form
-      [title]="'ADD Attribyte'"
+      [title]="'APP.addAttribyte' | translate"
       [model]="attrForm.model"
       [groups]="attrGr.all"
       [langs]="this.langService.languages.data"
@@ -13,7 +13,7 @@
   <div filter></div>
   <div content class="padding">
     <ng-template #notfound>
-      <div class="d2 padding flex center gray500 text-center">No Records Yet<br>😞</div>
+      <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
     </ng-template>
     <table
       class="raisins-table border-all radius"
@@ -21,11 +21,11 @@
     >
       <thead>
         <tr>
-          <th width="64px">ID</th>
-          <th width="64px">sort</th>
-          <th width="">TITLE</th>
-          <th width="">GROUP</th>
-          <th width="128px">updated at</th>
+          <th width="64px">{{ "APP.id" | translate }}</th>
+          <th width="64px">{{ "APP.sort_order" | translate }}</th>
+          <th width="">{{ "APP.title" | translate }}</th>
+          <th width="">{{ "APP.group" | translate }}</th>
+          <th width="128px">{{ "APP.updated_at" | translate }}</th>
           <th width="128px">{{ "APP.action" | translate }}</th>
         </tr>
       </thead>

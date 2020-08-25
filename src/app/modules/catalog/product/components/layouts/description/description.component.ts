@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
 import { IProduct } from "../../../interfaces";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
+import { LanguageService } from "src/app/core/language.service";
 
 @Component({
   selector: "product-form-description",
@@ -9,6 +11,11 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class DescriptionComponent {
   @Input() model: IProduct;
+
+  constructor(
+    public languageService: LocalizationLang,
+    public langService: LanguageService
+  ) {}
 
   editorConfig: AngularEditorConfig = {
     editable: true,

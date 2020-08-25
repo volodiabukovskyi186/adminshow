@@ -5,6 +5,7 @@ import { ProductAttributesService } from "../../../services/product-attributes.s
 import { AttribyteService } from "src/app/modules/catalog/attribyte/services/attribyte.service";
 import { IAttribyte } from "src/app/modules/catalog/attribyte/interfaces";
 import { fadeScale } from "src/app/modules/ui/animations";
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 
 @Component({
   animations: [fadeScale],
@@ -32,7 +33,8 @@ export class AttributesComponent implements OnInit {
 
   constructor(
     public prodAttr: ProductAttributesService,
-    public attr: AttribyteService
+    public attr: AttribyteService,
+    public languageService: LocalizationLang
   ) {}
 
   ngOnInit(): void {}

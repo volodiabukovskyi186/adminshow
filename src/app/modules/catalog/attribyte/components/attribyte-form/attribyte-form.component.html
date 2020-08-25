@@ -1,11 +1,11 @@
 <h2 class="text-center" *ngIf="title">{{ title }}</h2>
 
 <fieldset class="radius" style="margin-bottom: 16px;">
-  <legend>BASE</legend>
+  <legend>{{ "APP.base" | translate }}</legend>
 
   <div class="form-row">
     <div class="description">
-      <label for="">GROUP</label>
+      <label for="">{{ "APP.group" | translate }}</label>
     </div>
 
     <div class="original">
@@ -20,20 +20,20 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">SHOW</label>
+      <label for="">{{ "APP.show" | translate }}</label>
     </div>
 
     <div class="original">
       <select class="radius" name="parent_id" [(ngModel)]="model.status">
-        <option value="1">Show</option>
-        <option value="0">Hide</option>
+        <option value="1">{{ "APP.show" | translate }}</option>
+        <option value="0">{{ "APP.hide" | translate }}</option>
       </select>
     </div>
   </div>
 
   <div class="form-row">
     <div class="description">
-      <label for="">sort order</label>
+      <label for="">{{ "APP.sort_order" | translate }}</label>
     </div>
     <div class="original">
       <input class="radius" type="text" [(ngModel)]="model.sort_order" />
@@ -46,11 +46,15 @@
   class="radius"
   style="margin-bottom: 16px;"
 >
-  <legend>{{ item.lang.flag }} {{ item.lang.short_title }}</legend>
+  <legend>
+    <!-- {{ item.lang.flag }}  -->
+    <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+    {{ item.lang.short_title }}
+  </legend>
 
   <div class="form-row">
     <div class="description">
-      <label for="">NAME</label>
+      <label for="">{{"category.title" | translate}}</label>
     </div>
     <div class="original">
       <input class="radius" [(ngModel)]="item.name" type="text" />

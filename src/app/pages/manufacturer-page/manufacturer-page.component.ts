@@ -11,6 +11,7 @@ import {
 import { LanguageService } from "src/app/modules/localization/language/language.service";
 import { changeValueHighlight } from "src/app/modules/ui/animations";
 import { ManufacturerFormService } from "src/app/modules/manufacturer/manufacturer-form.service";
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   animations: [changeValueHighlight],
@@ -27,7 +28,8 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     public pages: PagesService,
     public manufacturer: ManufacturerService,
     public langService: LanguageService,
-    public manufacturerForm: ManufacturerFormService
+    public manufacturerForm: ManufacturerFormService,
+    public lang: Lang,
   ) {
     super(pages);
   }
@@ -43,6 +45,21 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
 
     this.getLangList();
     this.getList();
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.manufacturer.manufacturers",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "manufacturer", title: tr["MENU.manufacturer.manufacturers"] },
+        ];
+      });
   }
 
   getList() {

@@ -8,6 +8,7 @@ import { UserService } from "src/app/modules/user/user.service";
 import { PaginationPage } from "src/app/modules/ui/rap/pagination/pagination-page";
 import { UserFormService } from "src/app/modules/user/user-form.service";
 import { RolesService } from "src/app/modules/roles/roles.service";
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: "app-users-page",
@@ -23,7 +24,8 @@ export class UsersPageComponent extends BasePage
     public pages: PagesService,
     public user: UserService,
     public userForm: UserFormService,
-    public role: RolesService
+    public role: RolesService,
+    public lang: Lang,
   ) {
     super(pages);
   }
@@ -39,6 +41,21 @@ export class UsersPageComponent extends BasePage
 
     this.getAllRoles();
     this.getList();
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.users.users",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "users", title: tr["MENU.users.users"] },
+        ];
+      });
   }
 
   getList() {

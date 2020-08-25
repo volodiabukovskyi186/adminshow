@@ -83,7 +83,11 @@
     class="radius"
     style="margin-bottom: 16px;"
   >
-    <legend>{{ item.lang.flag }} {{ item.lang.short_title }}</legend>
+    <legend>
+      <!-- {{ item.lang.flag }}  -->
+      <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+      {{ item.lang.short_title }}
+    </legend>
   
     <!-- <input type="hidden" name="lang_id" value="{{ item.lang_id }}" />
     <input type="hidden" name="id" value="{{ item.id }}" /> -->
@@ -117,7 +121,7 @@
 
     <div class="form-row">
         <div class="description">
-          <label for="">meta keywords</label>
+          <label for="">{{ "APP.metaKeywords" | translate }}</label>
         </div>
     
         <div class="original">

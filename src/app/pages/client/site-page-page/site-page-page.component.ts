@@ -9,6 +9,7 @@ import { SitePageService, ISitePage } from 'src/app/modules/client/site-page/sit
 import { SitePageFormService } from 'src/app/modules/client/site-page/site-page-form.service';
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
 import { changeValueHighlight } from 'src/app/modules/ui/animations';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   animations: [changeValueHighlight],
@@ -25,7 +26,8 @@ constructor(
   public pages: PagesService,
   public sitePage: SitePageService,
   public sitePageForm: SitePageFormService,
-  public langService: LanguageService
+  public langService: LanguageService,
+  public lang: Lang,
 ) {
   super(pages);
 }
@@ -41,6 +43,21 @@ ngOnInit(): void {
 
   this.getLangList();
   this.getList();
+  this.initTranslate();
+}
+
+initTranslate() {
+  this.lang.translate
+    .get([
+      "dashboard.dashboard",
+      "MENU.manage_site.pages",
+    ])
+    .subscribe((tr: any) => {
+      this.breadcrumbs.breadcrumbs = [
+        { link: "", title: tr["dashboard.dashboard"] },
+        { link: "pages", title: tr["MENU.manage_site.pages"] },
+      ];
+    });
 }
 
 getList() {

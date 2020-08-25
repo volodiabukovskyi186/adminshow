@@ -13,6 +13,7 @@ import { ImagesService } from "src/app/modules/gallery/images.service";
 import { IImage } from "src/app/modules/gallery/folder/interfaces";
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 
 @Component({
   selector: "app-category-form",
@@ -129,7 +130,11 @@ export class CategoryFormComponent implements OnInit {
     }
   };
 
-  constructor(public image: ImagesService, public lang: Lang) {}
+  constructor(
+    public image: ImagesService, 
+    public lang: Lang,
+    public languageService: LocalizationLang
+  ) {}
 
   onSubmit(data: any) {
     this.formSubmit.emit(data);

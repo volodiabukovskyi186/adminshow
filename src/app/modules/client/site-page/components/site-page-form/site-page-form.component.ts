@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ISitePage } from '../../site-page.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 
 @Component({
   selector: 'app-site-page-form',
@@ -57,7 +58,9 @@ export class SitePageFormComponent implements OnInit {
     ]
   };
 
-  constructor() { }
+  constructor(
+    public languageService: LocalizationLang
+  ) { }
 
   ngOnInit(): void {
   }

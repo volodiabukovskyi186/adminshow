@@ -20,7 +20,66 @@
     "cancel": "Cancel",
     "filter": "Filter",
     "save": "Save",
-    "no_rec_yet": "No Records Yet"
+    "no_rec_yet": "No Records Yet",
+    "title": "Title",
+    "photo": "Photo",
+    "model": "Model",
+    "quantity": "Quantity",
+    "rating": "Rating",
+    "group": "Group",
+    "type": "Type",
+    "code": "Code",
+    "logo": "Logo",
+    "show": "Show",
+    "hide": "Hide",
+    "base": "Base",
+    "addAttribytesGroup": "ADD Attribytes group",
+    "attribytesGroup": "Attribytes Group",
+    "addAttribyte": "ADD Attribyte",
+    "data": "Data",
+    "values": "Values",
+    "value": "Value",
+    "editSize": "Edit Size",
+    "select": "Select",
+    "img": "Image",
+    "loading": "Loading...",
+    "links": "Links",
+    "images": "Images",
+    "attribytes": "Attribytes",
+    "selectImage": "Select image",
+    "metaDescription": "Meta description",
+    "metaKeywords": "Meta keywords",
+    "tag": "Tag",
+    "mainImage": "Main Image",
+    "location": "Location",
+    "price": "Price",
+    "minimumQuantity": "Minimum Quantity",
+    "weightClass": "Weight Class",
+    "weight": "Weight",
+    "defaultKg": "Default (kg)",
+    "requiresShipping": "Requires Shipping",
+    "subtractStock": "Subtract Stock",
+    "lengthClass": "Length Class",
+    "dimensions": "Dimensions",
+    "dateAvaliable": "Date Avaliable",
+    "stockStatus": "Stock status",
+    "taxClass": "Tax Class",
+    "default": "Default ()",
+    "yes": "Yes",
+    "no": "No",
+    "defaultCm": "Default (cm)",
+    "addProduct": "Add Product",
+    "option": "Option",
+    "fullName": "Full Name",
+    "dateStart": "Date Start",
+    "dateEnd": "Date End",
+    "locale": "Locale",
+    "addEditUser": "Add/Edit User"
+  },
+  "pageNotFound": {
+    "backToHome": "Back To Home",
+    "thePage": "THE PAGE",
+    "wasNotFound": "WAS NOT FOUND"
   },
   "dashboard": {
     "dashboard": "Dashboard"
@@ -34,7 +93,7 @@
     "parrent_id": "Parrent ID",
     "title": "Title",
     "description": "Description",
-    "add_edit_category": "Add/edit Category",
+    "add_edit_category": "Add/ESdit Category",
     "select_parent": "Select parent category",
     "msgAdded": "Category successfully added",
     "msgUpdated": "Category successfully updated",
@@ -45,7 +104,7 @@
     "msgAdded": "Collection successfully added",
     "msgUpdated": "Collection successfully updated",
     "msgDeleted": "Collection successfully deleted",
-    "add_edit_collection": "Add/edit Collection",
+    "add_edit_collection": "Add/Edit Collection",
     "mainData": "Main data",
     "products": "Products",
     "title": "Title",
@@ -55,7 +114,8 @@
     "category": "Category",
     "product": "Product",
     "productsNotFound": "Products not found",
-    "listOfProducts": "List of products"
+    "listOfProducts": "List of products",
+    "codes": "Codes"
   },
   "roles": {
     "roles": "Roles",
@@ -104,7 +164,8 @@
       "settings": "Settings",
       "articles":"Articles",
       "delivery_methods":"Delivery methods",
-      "payment_methods":"Payment methods"
+      "payment_methods":"Payment methods",
+      "addEditMenu": "Add/Edit Menu"
     },
     "users": { "users": "users", "roles": "users" },
     "localization": {
@@ -115,7 +176,8 @@
       "weight_units": "Weight units",
       "stock_status": "Stock status",
       "order_status": "Order status",
-      "departments": "Departments ShowU"
+      "departments": "Departments ShowU",
+      "addLanguage": "Add Language"
     }
   }
 }

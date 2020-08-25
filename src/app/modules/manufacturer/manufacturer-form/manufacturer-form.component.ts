@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IManufacturer } from '../manufacturer.service';
-import { ILanguage } from '../../localization/language/language.service';
+import { ILanguage, LanguageService } from '../../localization/language/language.service';
 import { IImage } from '../../gallery/folder/interfaces';
 import { ImagesService } from '../../gallery/images.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
@@ -89,7 +89,10 @@ export class ManufacturerFormComponent implements OnInit {
     }
   };
 
-  constructor(public image: ImagesService) {}
+  constructor(
+    public image: ImagesService,
+    public languageService: LanguageService
+  ) {}
 
   modalOpen: boolean = false;
 

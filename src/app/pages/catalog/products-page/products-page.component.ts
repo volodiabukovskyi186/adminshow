@@ -14,6 +14,7 @@ import { ManufacturerService } from "src/app/modules/manufacturer/manufacturer.s
 import { CategoryService } from "src/app/modules/catalog/category/category.service";
 import { ProductCategoryService } from "src/app/modules/catalog/product/services/product-category.service";
 import { LanguageService as LanguageLocalizationService } from "src/app/core/language.service";
+
 @Component({
   animations: [changeValueHighlight],
   selector: "app-products-page",
@@ -50,6 +51,21 @@ export class ProductsPageComponent extends BasePage
     this.getLangList();
     this.getList();
     this.getAllManufacturer();
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    this.languageLocalizationService.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.catalog.products",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "products", title: tr["MENU.catalog.products"] },
+        ];
+      });
   }
 
   getList() {

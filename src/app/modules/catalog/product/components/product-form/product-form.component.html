@@ -3,7 +3,7 @@
     <div class="modal-close" (click)="modalOpen = false"></div>
     <div class="modal-content">
       <header>
-        <h4>Select image</h4>
+        <h4>{{ "APP.selectImage" | translate }}</h4>
       </header>
 
       <div class="content">
@@ -20,9 +20,9 @@
 <h2 class="text-center" *ngIf="title">{{ title }}</h2>
 
 <rap-step-tabs>
-  <rap-step-tab [active]="true" [title]="'Base'">
+  <rap-step-tab [active]="true" [title]="'APP.base' | translate">
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>BASE</legend>
+      <legend>{{ "APP.base" | translate }}</legend>
       <product-form-base
         (press)="onPress()"
         (reset)="onReset()"
@@ -34,40 +34,40 @@
     </fieldset>
 
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>DESCRIPTION</legend>
+      <legend>{{ "category.description" | translate }}</legend>
       <product-form-description [model]="model"></product-form-description>
     </fieldset>
   </rap-step-tab>
 
-  <rap-step-tab [title]="'Data'">
+  <rap-step-tab [title]="'APP.data' | translate">
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>DATA</legend>
+      <legend>{{ "APP.data" | translate }}</legend>
       <product-form-data [model]="model"></product-form-data>
     </fieldset>
 
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>CODES</legend>
+      <legend>{{ "APP.codes" | translate }}</legend>
       <product-form-codes [model]="model"></product-form-codes>
     </fieldset>
   </rap-step-tab>
 
-  <rap-step-tab [title]="'Links'" *ngIf="model.id">
+  <rap-step-tab [title]="'APP.links' | translate" *ngIf="model.id">
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>Category</legend>
+      <legend>{{ "category.category" | translate}}</legend>
       <product-form-category [model]="model"></product-form-category>
     </fieldset>
   </rap-step-tab>
 
-  <rap-step-tab [title]="'Images'" *ngIf="model.id">
+  <rap-step-tab [title]="'APP.images' | translate" *ngIf="model.id">
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>Images</legend>
+      <legend>{{ "APP.images" | translate }}</legend>
       <product-form-images [model]="model"></product-form-images>
     </fieldset>
   </rap-step-tab>
 
-  <rap-step-tab [title]="'Attribytes'" *ngIf="model.id">
+  <rap-step-tab [title]="'APP.attribytes' | translate" *ngIf="model.id">
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>Attribytes</legend>
+      <legend>{{ "APP.attribytes" | translate }}</legend>
       <product-form-attributes [langs]="langs" [model]="model"></product-form-attributes>
     </fieldset>
   </rap-step-tab>

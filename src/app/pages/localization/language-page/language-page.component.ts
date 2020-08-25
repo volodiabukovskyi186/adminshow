@@ -51,6 +51,21 @@ export class LanguagePageComponent extends BasePage implements OnInit {
 
     this.getLangs();
     this.langForm.questions$ = this.langForm.getQuestions();
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    this.language.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.localization.languages",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "language", title: tr["MENU.localization.languages"] },
+        ];
+      });
   }
 
   //#region getLangs
