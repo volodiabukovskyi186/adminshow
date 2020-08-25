@@ -165,7 +165,8 @@
       "articles":"Articles",
       "delivery_methods":"Delivery methods",
       "payment_methods":"Payment methods",
-      "addEditMenu": "Add/Edit Menu"
+      "addEditMenu": "Add/Edit Menu",
+      "addManufacturer": "Add manufacturer"
     },
     "users": { "users": "users", "roles": "users" },
     "localization": {

@@ -130,7 +130,8 @@
       "articles":"Статті",
       "delivery_methods":"Способи доставки",
       "payment_methods":"Способи оплати",
-      "addEditMenu": "Добавить/Изменить меню"
+      "addEditMenu": "Добавить/Изменить меню",
+      "addManufacturer": "Добавить производителя"
     },
     "users": { "users": "Ролі", "roles": "Користувачі" },
     "localization": {
