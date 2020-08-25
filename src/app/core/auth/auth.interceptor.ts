@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
       // Clone the request and replace the original headers with
       // cloned headers, updated with the authorization.
       let authReq = request.clone({
-        headers: request.headers.append("X-Token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTaG93VUF1dGhTZXJ2aWNlIiwiZXhwIjoxNTk4Mjg4NjQzLCJjb250ZXh0Ijp7InVzZXIiOnsicm9sZV9pZCI6MSwiaWQiOjEsImVtYWlsIjoib3duZXJAc2hvd3UucGwiLCJmaXJzdF9uYW1lIjoiZmlyc3QiLCJsYXN0X25hbWUiOiJsYXN0IiwidGVsIjoiIiwiaXNfY29uZmlybV9lbWFpbCI6MCwiaXNfY29uZmlybV90ZWwiOjAsImNyZWF0ZWRfYXQiOiIyMDIwLTA2LTMwIDE3OjMyOjIwIiwidXBkYXRlZF9hdCI6bnVsbH0sInJvbGUiOnsiaWQiOjEsIm5hbWUiOiJPdm5lciJ9fX0.bwwDvo7ECN1c4qubgzvKR68jxRcICys5gkYOEa2Xe-M")
+        headers: request.headers.append("X-Token", authToken)
       });
 
       // console.log(authReq);
