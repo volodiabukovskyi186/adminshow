@@ -20,7 +20,7 @@ export class SitePageFormComponent implements OnInit {
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',
-      translate: 'yes',
+      translate: 'no',
       enableToolbar: true,
       showToolbar: true,
       placeholder: 'Enter text here...',
@@ -50,7 +50,7 @@ export class SitePageFormComponent implements OnInit {
     ],
     uploadUrl: 'v1/image',
     uploadWithCredentials: false,
-    sanitize: true,
+    sanitize: false,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
       ['bold', 'italic'],

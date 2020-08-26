@@ -35,7 +35,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',
-      translate: 'yes',
+      translate: 'no',
       enableToolbar: true,
       showToolbar: true,
       placeholder: 'Enter text here...',
@@ -65,7 +65,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     ],
     uploadUrl: 'v1/image',
     uploadWithCredentials: false,
-    sanitize: true,
+    sanitize: false,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
       ['bold', 'italic'],

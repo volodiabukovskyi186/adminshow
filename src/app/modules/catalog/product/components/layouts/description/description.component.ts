@@ -25,13 +25,14 @@ export class DescriptionComponent {
       maxHeight: 'auto',
       width: 'auto',
       minWidth: '0',
-      translate: 'yes',
+      translate: 'no',
       enableToolbar: true,
       showToolbar: true,
       placeholder: 'Enter text here...',
       defaultParagraphSeparator: '',
       defaultFontName: '',
       defaultFontSize: '',
+      sanitize: false,
       fonts: [
         {class: 'arial', name: 'Arial'},
         {class: 'times-new-roman', name: 'Times New Roman'},
@@ -55,7 +56,6 @@ export class DescriptionComponent {
     ],
     uploadUrl: 'v1/image',
     uploadWithCredentials: false,
-    sanitize: true,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
       ['bold', 'italic'],
