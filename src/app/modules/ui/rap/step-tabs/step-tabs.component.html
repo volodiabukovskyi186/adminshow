@@ -1,6 +1,6 @@
 <ul class="nav" [class.nav-pills]="vertical" [class.nav-tabs]="!vertical">
   <li *ngFor="let tab of tabs" [class.active]="tab.active">
-    <a (click)="tabClicked(tab)" class="btn" [class.disabled]="tab.disabled">
+    <a (click)="tabClicked(tab)" class="btn flag-container justify-content" [class.disabled]="tab.disabled">
       <img class="flag" src="{{ tab.imgSrc }}"/>
       <span>{{ tab.title }}</span>
     </a>

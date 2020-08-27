@@ -14,11 +14,11 @@
         {{ (getAttr(item.attribyte_id, item.lang_id)?.description)[0].name }}
       </td>
       <td class="text-center">
-        <span
+        <span class="flag-attr-wrapper"
           style="position: relative;"
           [attr.data-tooltip-top]="getLang(item.lang_id).title"
           >
-          <img class="flag" src="{{ languageService.getFromList(item.lang_id)?.flag }}"/>
+          <img class="flag flag-attr" src="{{ languageService.getFromList(item.lang_id)?.flag }}"/>
           <!-- {{ getLang(item.lang_id).flag }} -->
         </span>
       </td>

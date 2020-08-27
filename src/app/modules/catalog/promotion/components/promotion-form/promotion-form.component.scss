@@ -7,17 +7,21 @@
 }
 
 ::ng-deep {
-  .nav-tabs {
-    li {
-      width: 50%;
-      text-align: center;
-      color: #5F5F62 !important;
-      border-bottom: solid 1px transparent !important;
-    }
-
-    li.active {
-      color: #5F5F62 !important;
-      border-color: #9f1941 !important;
+  .tabs-header-promotion-form {
+    &>rap-step-tabs {
+      &>.nav-tabs {
+        li {
+          width: 50%;
+          text-align: center;
+          color: #5F5F62 !important;
+          border-bottom: solid 1px transparent !important;
+        }
+    
+        li.active {
+          color: #5F5F62 !important;
+          border-color: #9f1941 !important;
+        }
+      }
     }
   }
 }

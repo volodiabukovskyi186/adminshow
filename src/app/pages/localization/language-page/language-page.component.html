@@ -34,13 +34,16 @@
           <td class="text-center">{{ item.code }}</td>
           <td class="text-center">{{ item.locate }}</td>
           <td>
-            <!-- <span class="flag">{{ item.flag }}</span> -->
-            <img class="flag" src="{{ langServise.getFromList(item.id)?.flag }}"/>
-            {{ item.short_title }} | {{ item.title }}
-            <app-permission-item
-              *ngIf="item.default"
-              [perm]="{ name: 'Default', state: 1 }"
-            ></app-permission-item>
+            <div class="flag-container">
+              <!-- <span class="flag">{{ item.flag }}</span> -->
+              <img class="flag" src="{{ langServise.getFromList(item.id)?.flag }}"/>
+              {{ item.short_title }} | {{ item.title }}
+              
+              <app-permission-item
+                *ngIf="item.default"
+                [perm]="{ name: 'Default', state: 1 }"
+              ></app-permission-item>
+            </div>
           </td>
 
           <td class="text-center">

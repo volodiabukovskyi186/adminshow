@@ -5,11 +5,11 @@
     [title]="item.lang.short_title"
   >
     <div class="form-row">
-      <div class="description">
+      <div class="description desc-content">
         <!-- <label for="">{{ item.lang.flag }} NAME</label> -->
-        <label for="">
-          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
-          {{ "APP.title" | translate }}
+        <label for="" class="flag-container">
+          <span class="flag-text">{{ "APP.title" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
         </label>
       </div>
 
@@ -19,11 +19,11 @@
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">
+      <div class="description desc-content">
+        <label for="" class="flag-container">
           <!-- {{ item.lang.flag }} -->
-          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
-          {{ "category.description" | translate }}
+          <span class="flag-text">{{ "category.description" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
         </label>
       </div>
 
@@ -39,11 +39,11 @@
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">
+      <div class="description desc-content">
+        <label for="" class="flag-container">
           <!-- {{ item.lang.flag }}  -->
-          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
-          {{ "APP.metaDescription" | translate }}
+          <span class="flag-text">{{ "APP.metaDescription" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
         </label>
       </div>
 
@@ -58,11 +58,11 @@
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">
+      <div class="description desc-content">
+        <label for="" class="flag-container">
           <!-- {{ item.lang.flag }} -->
-          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
-          {{ "APP.metaKeywords" | translate }}
+          <span class="flag-text">{{ "APP.metaKeywords" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
         </label>
       </div>
 
@@ -77,11 +77,11 @@
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">
+      <div class="description desc-content">
+        <label for="" class="flag-container">
           <!-- {{ item.lang.flag }} -->
-          <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
-          {{ "APP.tag" | translate }}
+          <span class="flag-text">{{ "APP.tag" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
         </label>
       </div>
 
