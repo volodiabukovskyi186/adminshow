@@ -12,6 +12,7 @@ import {
 import { SiteMenuFormService } from "src/app/modules/client/site-menu/site-menu-form.service";
 import { LanguageService } from "src/app/modules/localization/language/language.service";
 import { changeValueHighlight } from 'src/app/modules/ui/animations';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   animations: [changeValueHighlight],
@@ -28,7 +29,8 @@ export class SiteMenuPageComponent extends BasePage
     public pages: PagesService,
     public siteMenu: SiteMenuService,
     public siteMenuForm: SiteMenuFormService,
-    public langService: LanguageService
+    public langService: LanguageService,
+    public lang: Lang,
   ) {
     super(pages);
   }
@@ -44,6 +46,21 @@ export class SiteMenuPageComponent extends BasePage
 
     this.getLangList();
     this.getList();
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.manage_site.menu",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "menu", title: tr["MENU.manage_site.menu"] },
+        ];
+      });
   }
 
   getList() {

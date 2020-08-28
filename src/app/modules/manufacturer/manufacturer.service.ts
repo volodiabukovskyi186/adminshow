@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { from, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IImageSrc } from "../gallery";
 import { ILanguage } from "../localization/language/language.service";
+import { LanguageService } from 'src/app/core/language.service';
 
 export interface IManufacturerDesc {
   id: number;
@@ -51,7 +52,10 @@ export class ManufacturerService {
 
   all: IManufacturer[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private languageService: LanguageService
+  ) {}
 
   getList(): Observable<IManufacturerResponse> {
     let skip = this.page * this.manufacturer.take - this.manufacturer.take;
@@ -65,6 +69,11 @@ export class ManufacturerService {
     return this.http.get<IManufacturerResponse>(
       environment.manufacturer.manufacturers + `?take=200&skip=0`
     );
+  }
+
+  getAllManufactures(): Observable<any> {
+    let lang = this.languageService.current;
+    return this.http.get(`https://api.showu.com.ua/client/manufacturers?lang=${lang}`);
   }
 
   post(data: any): Observable<any> {

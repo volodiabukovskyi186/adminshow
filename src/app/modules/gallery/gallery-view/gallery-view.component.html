@@ -99,3 +99,15 @@
     (delete)="onDeleteImage(img)"
   ></rap-folder>
 </div>
+
+<app-pagination
+  class="radius"
+  [page]="image.page"
+  [total]="Math.ceil(image.images.count / image.images.take)"
+  [pagesToShow]="5"
+  (goNext)="pageNextHandler()"
+  (goPrev)="pagePrevHandler()"
+  (goPage)="pageToHandler($event)"
+  (pageChanged)="pageChangedHandler()"
+>
+</app-pagination>

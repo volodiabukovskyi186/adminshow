@@ -28,8 +28,9 @@
   <div class="flex center wrap">
     <a style="padding: 4px;" class="button transparent radius"
       *ngFor="let item of lang.langs"
-      [routerLink]="getRoute(item.locale)"
-      >{{ item.flag }}</a
-    >
+      [routerLink]="getRoute(item.locale)">
+        <!-- {{ item.flag }} -->
+        <img class="flag" src="{{ languageService.getCountryFlag(item.flag) }}"/>
+      </a>
   </div>
 </footer>

@@ -1,0 +1,11 @@
+::ng-deep {
+    .angular-editor-toolbar {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .angular-editor-toolbar-set {
+        margin-bottom: 5px;
+    }
+}

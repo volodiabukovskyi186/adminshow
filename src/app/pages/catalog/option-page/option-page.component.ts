@@ -10,6 +10,7 @@ import { LanguageService } from 'src/app/modules/localization/language/language.
 import { OptionFormService } from 'src/app/modules/catalog/option/services/option-form.service';
 import { IOption } from 'src/app/modules/catalog/option/interfaces';
 import { fadeScale } from 'src/app/modules/ui/animations';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 
 @Component({
@@ -27,7 +28,8 @@ constructor(
   public pages: PagesService,
   public option: OptionService,
   public optionForm: OptionFormService,
-  public langService: LanguageService
+  public langService: LanguageService,
+  public lang: Lang,
 ) {
   super(pages);
 }
@@ -43,6 +45,21 @@ ngOnInit(): void {
 
   this.getLangList();
   this.getList();
+  this.initTranslate();
+}
+
+initTranslate() {
+  this.lang.translate
+    .get([
+      "dashboard.dashboard",
+      "MENU.catalog.options",
+    ])
+    .subscribe((tr: any) => {
+      this.breadcrumbs.breadcrumbs = [
+        { link: "", title: tr["dashboard.dashboard"] },
+        { link: "option", title: tr["MENU.catalog.options"] },
+      ];
+    });
 }
 
 getList() {

@@ -18,6 +18,7 @@ export class GalleryViewComponent implements OnInit {
   @Input() singleSelectable: boolean = false;
   @Input() mode: ViewMode = ViewMode.card;
   ViewMode = ViewMode;
+  public albumId: number;
 
   constructor(
     public album: AlbumService,
@@ -55,6 +56,16 @@ export class GalleryViewComponent implements OnInit {
     if (album.id) this.album.putAlbum(album).subscribe(this.putAlbumHandler);
     else this.album.createAlbum(album).subscribe(this.createAlbumHandler);
   }
+
+  getImages() {
+    this.ngxService.start();
+    this.image.getImages(this.album.activeAlbum?.id).subscribe(this.getListHandler);
+  }
+
+  getListHandler = (data) => {
+    this.ngxService.stopAll();
+    this.image.images = data;
+  };
 
   deleteAlbumHandler = (data: any) => {
     this.ngxService.stopAll();
@@ -140,4 +151,24 @@ export class GalleryViewComponent implements OnInit {
     img.selected = img.selected ? !img.selected : true;
     this.image.select.emit();
   }
+
+  pageNextHandler(): void {
+    this.image.page++;
+  }
+
+  pagePrevHandler(): void {
+    this.image.page--;
+  }
+
+  pageToHandler(page: number): void {
+    this.image.page = page;
+  }
+
+  pageChangedHandler(): void {
+    // this.getList();
+    this.getImages();
+    window.scrollTo(0, 0);
+  }
+
+  Math = Math;
 }

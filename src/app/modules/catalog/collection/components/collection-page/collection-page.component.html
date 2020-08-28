@@ -7,6 +7,8 @@
       [title]="'collection.add_edit_collection' | translate"
       [model]="collectionForm.model"
       [host]="collectionForm.host"
+      [products]="productsList"
+      (selectedProducts)="selectedProducts($event)"
     >
     </app-collection-form>
   </div>
@@ -50,11 +52,12 @@
 
           <td [attr.data-label]="'collection.title' | translate">
             <div class="flex wrap" style="width: 100%;">
-              <span class="title" *ngFor="let desc of item.descriptions"
-                ><span class="flag">{{
-                  langService.getFromList(desc.lang_id)?.flag
-                }}</span
-                ><span class="name">{{ desc.title }}</span>
+              <span class="title flag-container" *ngFor="let desc of item.descriptions">
+                <!-- <span class="flag">
+                  {{ langService.getFromList(desc.lang_id)?.flag }}
+                </span> -->
+                <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+                <span class="name">{{ desc.title }}</span>
               </span>
             </div>
           </td>

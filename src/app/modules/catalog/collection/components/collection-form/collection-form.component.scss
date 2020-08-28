@@ -6,6 +6,166 @@
   display: block;
 }
 
+::ng-deep {
+  .tabs-header-collection-form {
+    &>rap-step-tabs{
+      &>.nav-tabs {
+        display: flex;
+        li {
+          flex: 1;
+          text-align: center;
+          color: #5F5F62 !important;
+          border-bottom: solid 1px transparent !important;
+        }
+    
+        li.active {
+          color: #5F5F62 !important;
+          border-color: #9f1941 !important;
+        }
+      }
+    }
+  }
+}
+
+.products-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.products-container,
+.products-big-container {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+.products-container {
+  // align-items: center;
+  position: relative;
+}
+
+.products-big-container {
+  align-items: flex-start;
+}
+
+.products-name-container {
+  // border: 1px solid #000;
+  border: 1px solid #808080;
+  width: 67%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  min-height: 100px;
+  flex-wrap: wrap;
+  padding: 5px;
+  align-content: baseline;
+}
+
+
+.products-label {
+  //margin-right: 10px;
+  margin-top: 4px;
+}
+
+.products-input,
+.products-big-input {
+  border-radius: 5px;
+  width: 67%;
+}
+
+.manufactures-input {
+  border-radius: 5px;
+  width: 100%;
+  height: 30px;
+  padding-left: 10px;
+}
+
+.products-input {
+  height: 30px;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.products-big-input {
+  height: 100px;
+}
+
+.material-icons {
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 3px;
+  margin-bottom: 2px;
+}
+
+.product-name {
+  background-color: lightgray;
+  border-radius: 2px;
+  margin-right: 10px;
+  font-size: 11px;
+  padding-left: 7px;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: row;
+  //align-items: center;
+  padding-top: 3px;
+  padding-bottom: 0;
+  margin-bottom: 7px;
+}
+
+.manufacrures-list-content {
+  width: 67%; 
+  display: flex; 
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  right: 0;
+  // z-index: 100;
+}
+
+.manufacrures-list-content-one {
+  z-index: 102;
+}
+
+.manufacrures-list-content-two {
+  z-index: 101;
+}
+
+.manufacrures-list-content-three {
+  z-index: 100;
+}
+
+.manufacrures-list {
+  //margin-left: 10px;
+  border: 1px solid rgba(235,236,236, 0.8);
+  background-color: rgba(235,236,236, 1);
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 2px;
+  box-shadow: 0 1px 10px 0 rgba(188,188,188, 0.9);
+  max-height: 130px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.manufacrures-list-item {
+  padding: 3px 10px 3px 10px;
+
+  &:hover {
+    background-color: rgba(188,188,188, 0.9);
+    cursor: pointer;
+  }
+}
+
+.tabs-header {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
+
 .modal {
   position: fixed;
   @include zero;
@@ -31,7 +191,7 @@
     .modal-content {
       flex: 1;
       background-color: rgba($white, 1);
-      min-height: 100vh;
+      // min-height: 100vh;
       width: 100%;
       max-width: 800px;
       margin-left: 15%;
@@ -49,5 +209,17 @@
         padding: $space;
       }
     }
+  }
+}
+
+::ng-deep {
+  .angular-editor-toolbar {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+
+  .angular-editor-toolbar-set {
+      margin-bottom: 5px;
   }
 }

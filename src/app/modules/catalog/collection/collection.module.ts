@@ -8,6 +8,9 @@ import { CollectionPageComponent } from "./components/collection-page/collection
 import { CollectionRoutingModule } from "./collection-routing.module";
 import { TranslateModule } from "@ngx-translate/core";
 import { CoreModule } from 'src/app/core/core.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const c = [CollectionFormComponent];
 
@@ -22,6 +25,9 @@ const c = [CollectionFormComponent];
     GalleryModule,
     TranslateModule,
     CollectionRoutingModule,
+    ReactiveFormsModule,
+    ClickOutsideModule,
+    AngularEditorModule,
   ],
 })
 export class CollectionModule {}

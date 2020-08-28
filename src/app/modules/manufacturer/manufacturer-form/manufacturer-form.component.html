@@ -3,7 +3,7 @@
       <div class="modal-close" (click)="modalOpen = false"></div>
       <div class="modal-content">
         <header>
-          <h4>Select image</h4>
+          <h4>{{ 'APP.selectImage' | translate }}</h4>
         </header>
   
         <div class="content">
@@ -20,11 +20,11 @@
   <h2 class="text-center" *ngIf="title">{{ title }}</h2>
   
   <fieldset class="radius" style="margin-bottom: 16px;">
-    <legend>BASE</legend>
+    <legend>{{ 'APP.base' | translate }}</legend>
   
     <div class="form-row">
       <div class="description">
-        <label for="">IMAGE</label>
+        <label for="">{{ 'APP.image' | translate }}</label>
       </div>
   
       <div class="original">
@@ -45,7 +45,7 @@
   
     <div class="form-row">
       <div class="description">
-        <label for="">Code</label>
+        <label for="">{{ 'APP.code' | translate }}</label>
       </div>
   
       <div class="original">
@@ -55,7 +55,7 @@
 
     <div class="form-row">
         <div class="description">
-          <label for="">Rating</label>
+          <label for="">{{ 'APP.rating' | translate }}</label>
         </div>
     
         <div class="original">
@@ -66,13 +66,13 @@
    
     <div class="form-row">
       <div class="description">
-        <label for="">SHOW</label>
+        <label for="">{{ 'APP.show' | translate }}</label>
       </div>
   
       <div class="original">
         <select class="radius" name="parent_id" [(ngModel)]="manufacturer.status">
-          <option value="1">Show</option>
-          <option value="0">Hide</option>
+          <option value="1">{{ 'APP.show' | translate }}</option>
+          <option value="0">{{ 'APP.hide' | translate }}</option>
         </select>
       </div>
     </div>
@@ -83,14 +83,18 @@
     class="radius"
     style="margin-bottom: 16px;"
   >
-    <legend>{{ item.lang.flag }} {{ item.lang.short_title }}</legend>
+    <legend class="flag-container">
+      <!-- {{ item.lang.flag }}  -->
+      <img class="flag" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+      {{ item.lang.short_title }}
+    </legend>
   
     <!-- <input type="hidden" name="lang_id" value="{{ item.lang_id }}" />
     <input type="hidden" name="id" value="{{ item.id }}" /> -->
   
     <div class="form-row">
       <div class="description">
-        <label for="">NAME</label>
+        <label for="">{{ 'roles.name' | translate }}</label>
       </div>
   
       <div class="original">
@@ -100,23 +104,24 @@
   
     <div class="form-row">
       <div class="description">
-        <label for="">DESCRIPTION</label>
+        <label for="">{{ 'category.description' | translate }}</label>
       </div>
   
       <div class="original">
-        <textarea
+        <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
+        <!-- <textarea
           name=""
           class="radius"
           [(ngModel)]="item.description"
           rows="2"
-        ></textarea>
+        ></textarea> -->
       </div>
     </div>
 
 
     <div class="form-row">
         <div class="description">
-          <label for="">meta keywords</label>
+          <label for="">{{ "APP.metaKeywords" | translate }}</label>
         </div>
     
         <div class="original">
@@ -126,7 +131,7 @@
     
       <div class="form-row">
         <div class="description">
-          <label for="">meta description</label>
+          <label for="">{{ 'APP.metaDescription' | translate }}</label>
         </div>
     
         <div class="original">

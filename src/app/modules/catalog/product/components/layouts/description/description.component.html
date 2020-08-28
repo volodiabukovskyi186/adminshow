@@ -1,11 +1,16 @@
 <rap-step-tabs>
   <rap-step-tab
     *ngFor="let item of model.descriptions"
-    [title]="item.lang.flag + ' ' + item.lang.short_title"
+    [imgSrc]="languageService.getFromList(item.lang.id)?.flag"
+    [title]="item.lang.short_title"
   >
     <div class="form-row">
-      <div class="description">
-        <label for="">{{ item.lang.flag }} NAME</label>
+      <div class="description desc-content">
+        <!-- <label for="">{{ item.lang.flag }} NAME</label> -->
+        <label for="" class="flag-container">
+          <span class="flag-text">{{ "APP.title" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+        </label>
       </div>
 
       <div class="original">
@@ -14,23 +19,32 @@
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">{{ item.lang.flag }} DESCRIPTION</label>
+      <div class="description desc-content">
+        <label for="" class="flag-container">
+          <!-- {{ item.lang.flag }} -->
+          <span class="flag-text">{{ "category.description" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+        </label>
       </div>
 
       <div class="original">
-        <textarea
+        <angular-editor [placeholder]="'...'" [(ngModel)]="item.discription" [config]="editorConfig"></angular-editor>
+        <!-- <textarea
           name=""
           class="radius"
           [(ngModel)]="item.discription"
           rows="2"
-        ></textarea>
+        ></textarea> -->
       </div>
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">{{ item.lang.flag }} META DESCRIPTION</label>
+      <div class="description desc-content">
+        <label for="" class="flag-container">
+          <!-- {{ item.lang.flag }}  -->
+          <span class="flag-text">{{ "APP.metaDescription" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+        </label>
       </div>
 
       <div class="original">
@@ -44,8 +58,12 @@
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">{{ item.lang.flag }} META keywords</label>
+      <div class="description desc-content">
+        <label for="" class="flag-container">
+          <!-- {{ item.lang.flag }} -->
+          <span class="flag-text">{{ "APP.metaKeywords" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+        </label>
       </div>
 
       <div class="original">
@@ -59,8 +77,12 @@
     </div>
 
     <div class="form-row">
-      <div class="description">
-        <label for="">{{ item.lang.flag }} tag</label>
+      <div class="description desc-content">
+        <label for="" class="flag-container">
+          <!-- {{ item.lang.flag }} -->
+          <span class="flag-text">{{ "APP.tag" | translate }}</span>
+          <img class="flag flag-item" src="{{ languageService.getFromList(item.lang.id)?.flag }}"/>
+        </label>
       </div>
 
       <div class="original">

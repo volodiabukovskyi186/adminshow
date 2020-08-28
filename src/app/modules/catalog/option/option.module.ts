@@ -5,12 +5,13 @@ import { OptionValueFormComponent } from "./components/option-value-form/option-
 import { FormsModule } from "@angular/forms";
 import { UiModule } from "../../ui/ui.module";
 import { GalleryModule } from '../../gallery/gallery.module';
+import { TranslateModule } from "@ngx-translate/core";
 
 const c = [OptionFormComponent, OptionValueFormComponent];
 
 @NgModule({
   declarations: [...c],
   exports: [...c],
-  imports: [CommonModule, FormsModule, UiModule, GalleryModule],
+  imports: [CommonModule, FormsModule, UiModule, GalleryModule, TranslateModule],
 })
 export class OptionModule {}

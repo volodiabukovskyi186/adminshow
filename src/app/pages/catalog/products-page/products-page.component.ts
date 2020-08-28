@@ -13,6 +13,7 @@ import { ProductFormService } from "src/app/modules/catalog/product/services/pro
 import { ManufacturerService } from "src/app/modules/manufacturer/manufacturer.service";
 import { CategoryService } from "src/app/modules/catalog/category/category.service";
 import { ProductCategoryService } from "src/app/modules/catalog/product/services/product-category.service";
+import { LanguageService as LanguageLocalizationService } from "src/app/core/language.service";
 
 @Component({
   animations: [changeValueHighlight],
@@ -32,7 +33,8 @@ export class ProductsPageComponent extends BasePage
     public manufacturer: ManufacturerService,
     public langService: LanguageService,
     public category: CategoryService,
-    public prodCategory: ProductCategoryService
+    public prodCategory: ProductCategoryService,
+    public languageLocalizationService: LanguageLocalizationService
   ) {
     super(pages);
   }
@@ -49,6 +51,21 @@ export class ProductsPageComponent extends BasePage
     this.getLangList();
     this.getList();
     this.getAllManufacturer();
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    this.languageLocalizationService.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.catalog.products",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "products", title: tr["MENU.catalog.products"] },
+        ];
+      });
   }
 
   getList() {

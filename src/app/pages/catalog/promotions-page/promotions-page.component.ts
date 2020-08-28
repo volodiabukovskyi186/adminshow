@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BasePage } from '../../@core';
 import { PaginationPage } from 'src/app/modules/ui/rap/pagination/pagination-page';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -8,6 +8,7 @@ import { PagesService } from '../../pages.service';
 import { PromotionService, IPromotion } from 'src/app/modules/catalog/promotion/services/promotion.service';
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
 import { PromotionFormService } from 'src/app/modules/catalog/promotion/services/promotion-form.service';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: 'app-promotions-page',
@@ -16,6 +17,13 @@ import { PromotionFormService } from 'src/app/modules/catalog/promotion/services
 })
 export class PromotionsPageComponent extends BasePage
 implements OnInit, PaginationPage {
+
+public productsList;
+public products: any[];
+public selectedProductsPromotion: any[];
+
+// @Output() products: EventEmitter<any> = new EventEmitter();
+
 constructor(
   protected ngxService: NgxUiLoaderService,
   protected toastr: ToastrService,
@@ -23,7 +31,8 @@ constructor(
   public pages: PagesService,
   public prom: PromotionService,
   public promForm: PromotionFormService,
-  public langService: LanguageService
+  public langService: LanguageService,
+  public lang: Lang,
 ) {
   super(pages);
 }
@@ -39,6 +48,21 @@ ngOnInit(): void {
 
   this.getLangList();
   this.getList();
+  this.initTranslate();
+}
+
+initTranslate() {
+  this.lang.translate
+    .get([
+      "dashboard.dashboard",
+      "MENU.catalog.promotions",
+    ])
+    .subscribe((tr: any) => {
+      this.breadcrumbs.breadcrumbs = [
+        { link: "", title: tr["dashboard.dashboard"] },
+        { link: "promotions", title: tr["MENU.catalog.promotions"] },
+      ];
+    });
 }
 
 getList() {
@@ -89,6 +113,10 @@ save = () => {
       });
     });
     this.prom.put(data, c.id).subscribe(this.putHandler);
+    this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
+      this.ngxService.stopAll();
+      this.toastr.success("PROMOTION UPDATED ^_^");
+    })
   } else {
     c.descriptions.forEach((d) => {
       data.description.push({
@@ -101,8 +129,15 @@ save = () => {
         data_end: d.data_end,
       });
     });
-    this.prom.post(data).subscribe(this.postHandler);
+    this.prom.post(data).subscribe((res) => {
+      this.postHandler(res);
+      this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
+        this.ngxService.stopAll();
+        this.toastr.success("PROMOTION ADDED");
+      })
+    })
   }
+
   this.ngxService.start();
 };
 
@@ -131,8 +166,30 @@ plus = () => {
 //#endregion
 
 edit(i) {
+  console.log(i);
+  this.prom.getByPromotionId(i.id).subscribe((res) => {
+    this.products = res.data;
+    console.log(this.products);
+
+    this.productsList = this.products.map(function(val) {
+      return val.product;
+    })
+    
+    console.log(this.productsList);
+  })
+
   this.promForm.initByModel(i, this.langService.languages.data);
   this.openForm();
+}
+
+selectedProducts(event) {
+  console.log(event);
+
+  this.selectedProductsPromotion = event.map(function(product) {
+    return product.id;
+  })
+
+  console.log(this.selectedProductsPromotion);
 }
 
 editItem: IPromotion = null;

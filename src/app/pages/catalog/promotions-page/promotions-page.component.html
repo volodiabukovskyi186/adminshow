@@ -4,14 +4,16 @@
 >
   <div form>
     <app-promotion-form
-      [title]="'ADD/EDIT Promotion'"
+      [title]="'promotion.add_edit_promotion' | translate"
       [model]="promForm.model"
+      [products]="productsList"
+      (selectedProducts)="selectedProducts($event)"
     ></app-promotion-form>
   </div>
   <div filter></div>
   <div content class="padding">
     <ng-template #notfound>
-      <div class="d2 padding flex center gray500 text-center">No Records Yet<br>😞</div>
+      <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
     </ng-template>
     <table
       class="raisins-table border-all radius"
@@ -19,10 +21,10 @@
     >
       <thead>
         <tr>
-          <th width="64px">ID</th>
-          <th width="64px">PHOTO</th>
-          <th width="">TITLE</th>
-          <th width="128px">updated_at</th>
+          <th width="64px">{{ "APP.id" | translate }}</th>
+          <th width="64px">{{ "APP.photo" | translate }}</th>
+          <th width="">{{ "APP.title" | translate }}</th>
+          <th width="128px">{{ "APP.updated_at" | translate }}</th>
           <th width="128px">{{ "APP.action" | translate }}</th>
         </tr>
       </thead>
@@ -38,9 +40,9 @@
                 <img
                   class="contain"
                   [src]="
-                    '//' + prom.data.host + item.descriptions[0].image.src_mini
+                    '//' + prom?.data?.host + item?.descriptions[0]?.image.src_mini
                   "
-                  [alt]="item.id"
+                  [alt]="item?.id"
                 />
               </div>
             </div>
@@ -48,11 +50,12 @@
 
           <td>
             <div class="flex wrap" style="width: 100%;">
-              <span class="title" *ngFor="let desc of item.descriptions"
-                ><span class="flag">{{
-                  langService.getFromList(desc.lang_id)?.flag
-                }}</span
-                ><span class="name">{{ desc.title }}</span>
+              <span class="title flag-container" *ngFor="let desc of item.descriptions">
+                <!-- <span class="flag">
+                  {{ langService.getFromList(desc.lang_id)?.flag }}
+                </span> -->
+                <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+                <span class="name">{{ desc.title }}</span>
               </span>
             </div>
           </td>
@@ -86,12 +89,12 @@
                 <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
               </button>
 
-              <!-- <rap-delete-button
+              <rap-delete-button
                 data-tooltip-left="Delete"
                 class="button transparent radius"
-                (confirmed)="(null)"
+                (confirmed)="updateStatus(item)"
                 [src]="'assets/icons/delete.svg'"
-              ></rap-delete-button> -->
+              ></rap-delete-button>
             </div>
           </td>
         </tr>

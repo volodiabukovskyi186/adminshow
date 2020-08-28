@@ -1,6 +1,6 @@
 <div class="form-row">
   <div class="description">
-    <label for="">MAIN IMAGE</label>
+    <label for="">{{ "APP.mainImage" | translate }}</label>
   </div>
 
   <div class="original">
@@ -17,7 +17,7 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">MODEL</label>
+    <label for="">{{ "APP.model" | translate }}</label>
   </div>
 
   <div class="original">
@@ -27,7 +27,7 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">manufacturer</label>
+    <label for="">{{ "collection.manufacturer" | translate }}</label>
   </div>
 
   <div class="original">
@@ -45,13 +45,13 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">SHOW</label>
+    <label for="">{{ "APP.show" | translate}}</label>
   </div>
 
   <div class="original">
     <select class="radius" name="parent_id" [(ngModel)]="model.status">
-      <option value="0">Hide</option>
-      <option value="1">Show</option>
+      <option value="0">{{ "APP.hide" | translate}}</option>
+      <option value="1">{{ "APP.show" | translate}}</option>
     </select>
   </div>
 </div>

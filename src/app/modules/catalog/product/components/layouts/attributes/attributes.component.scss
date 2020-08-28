@@ -23,3 +23,14 @@ rap-delete-button.button.transparent {
     color: $red;
   }
 }
+
+.flag-attr-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flag-attr {
+  margin-right: 0 !important;;
+}

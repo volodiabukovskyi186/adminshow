@@ -26,7 +26,8 @@
   <rap-step-tabs>
     <rap-step-tab
       *ngFor="let item of model.descriptions"
-      [title]="item.lang.flag + ' ' + item.lang.short_title"
+      [imgSrc]="languageService.getFromList(item.lang.id)?.flag"
+      [title]="item.lang.short_title"
     >
       <div class="form-row">
         <div class="description">
@@ -42,11 +43,12 @@
           <label for="">description</label>
         </div>
         <div class="original">
-          <textarea
+          <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
+          <!-- <textarea
             class="radius"
             [(ngModel)]="item.description"
             rows="3"
-          ></textarea>
+          ></textarea> -->
         </div>
       </div>
       <div class="form-row">
@@ -63,7 +65,7 @@
       </div>
       <div class="form-row">
         <div class="description">
-          <label for="">meta keywords</label>
+          <label for="">{{ "APP.metaKeywords" | translate }}</label>
         </div>
         <div class="original">
           <textarea
@@ -79,7 +81,8 @@
           <label for="">Content</label>
         </div>
         <div class="original">
-          <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea>
+          <!-- <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea> -->
+          <angular-editor [placeholder]="'...'" [(ngModel)]="item.text" [config]="editorConfig"></angular-editor>
         </div>
       </div>
     </rap-step-tab>

@@ -6,7 +6,7 @@
     <app-user-form
       [user]="userForm.model"
       [roles]="role.all"
-      [title]="'ADD/EDIT USER'"
+      [title]="'APP.addEditUser' | translate"
       [isEdit]="isEdit"
     ></app-user-form>
   </div>
@@ -19,9 +19,9 @@
     >
       <thead>
         <tr>
-          <th width="64px">ID</th>
-          <th>FULL NAME</th>
-          <th width="128px">updated_at</th>
+          <th width="64px">{{ "APP.id" | translate }}</th>
+          <th>{{ "APP.fullName" | translate }}</th>
+          <th width="128px">{{ "APP.updated_at" | translate }}</th>
           <th width="128px">{{ "APP.action" | translate }}</th>
         </tr>
       </thead>

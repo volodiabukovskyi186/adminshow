@@ -10,6 +10,7 @@ import { PaginationPage } from 'src/app/modules/ui/rap/pagination/pagination-pag
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
 import { IAttribyte, IResponseData } from 'src/app/modules/catalog/attribyte/interfaces';
 import { AttribyteGroupService } from 'src/app/modules/catalog/attribyte/services/attribyte-group.service';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: 'app-attribytes-page',
@@ -26,7 +27,8 @@ constructor(
   public attr: AttribyteService,
   public attrGr: AttribyteGroupService,
   public attrForm: AttribyteFormService,
-  public langService: LanguageService
+  public langService: LanguageService,
+  public lang: Lang,
 ) {
   super(pages);
 }
@@ -43,7 +45,23 @@ ngOnInit(): void {
   this.getLangList();
   this.getList();
   this.getAllGroup();
+  this.initTranslate();
 }
+
+initTranslate() {
+  this.lang.translate
+    .get([
+      "dashboard.dashboard",
+      "MENU.catalog.attr",
+    ])
+    .subscribe((tr: any) => {
+      this.breadcrumbs.breadcrumbs = [
+        { link: "", title: tr["dashboard.dashboard"] },
+        { link: "attibytes", title: tr["MENU.catalog.attr"] },
+      ];
+    });
+}
+
 
 getList() {
   this.ngxService.start();

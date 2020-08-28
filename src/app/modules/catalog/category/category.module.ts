@@ -8,6 +8,7 @@ import { CategoryRoutingModule } from "./category-routing.module";
 import { TranslateModule } from "@ngx-translate/core";
 import { CategoryPageComponent } from "./category-page/category-page.component";
 import { CoreModule } from 'src/app/core/core.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const c = [CategoryFormComponent];
 
@@ -22,6 +23,7 @@ const c = [CategoryFormComponent];
     GalleryModule,
     TranslateModule,
     CategoryRoutingModule,
+    AngularEditorModule,
   ],
 })
 export class CategoryModule {}

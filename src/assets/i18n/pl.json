@@ -11,14 +11,75 @@
     "image": "Image",
     "on_off":"On/Off",
     "edit": "Edit",
-    "del": "Delete"
+    "del": "Delete",
+    "title": "Title",
+    "photo": "Zdjęcie",
+    "model": "Kod produktu",
+    "quantity": "Ilość",
+    "rating": "Ocena",
+    "group": "Grupa",
+    "type": "Rodzaj",
+    "code": "Kod",
+    "logo": "Logo",
+    "show": "Pokazać",
+    "hide": "Ukryć",
+    "base": "Baza",
+    "addAttribytesGroup": "Dodaj grupę Attribytes",
+    "attribytesGroup": "Grupa atrybutów",
+    "addAttribyte": "Dodaj atrybut",
+    "data": "Dane",
+    "values": "Wartość",
+    "value": "Wartość",
+    "editSize": "Edytuj rozmiar",
+    "select": "Wybierz",
+    "img": "Wizerunek",
+    "loading": "Ładowanie...",
+    "links": "Połączyć",
+    "images": "Zdjęcia",
+    "attribytes": "Attribytes",
+    "selectImage": "Wybierz obraz",
+    "metaDescription": "Opis meta",
+    "metaKeywords": "Słowa kluczowe meta",
+    "tag": "Tag",
+    "mainImage": "Główny obraz",
+    "codes": "Kody",
+    "location": "Lokalizacja",
+    "price": "Cena",
+    "minimumQuantity": "Minimalna ilość",
+    "weightClass": "Kategoria wagowa",
+    "weight": "Waga",
+    "defaultKg": "Domyślnie (kg)",
+    "requiresShipping": "Wymaga wysyłki",
+    "subtractStock": "Odejmij zapas",
+    "lengthClass": "Klasa długości",
+    "dimensions": "Wymiary",
+    "dateAvaliable": "Data dostępności",
+    "stockStatus": "Stan zapasów",
+    "taxClass": "Klasa podatkowa",
+    "default": "Domyślnie ()",
+    "yes": "Tak",
+    "no": "Nie",
+    "defaultCm": "Domyślnie (cm)",
+    "addProduct": "Dodaj produkt",
+    "option": "Opcja",
+    "fullName": "Pełne imię",
+    "dateStart": "Data rozpoczęcia",
+    "dateEnd": "Data zakończenia",
+    "locale": "Widownia",
+    "addEditUser": "Dodaj/Edytuj użytkownika"
+  },
+  "pageNotFound": {
+    "backToHome": "Wrócić do domu",
+    "thePage": "STRONA",
+    "wasNotFound": "NIE ZNALEZIONA"
   },
   "dashboard" :{
-    "dashboard": "Dashboard"
+    "dashboard": "Deska rozdzielcza"
   },
   "category": {
     "category": "Category",
     "categories": "Categories",
+    "description": "Opis",
     "parrent_id": "Parrent ID",
     "title": "Title",
     "add_edit_category": "Add/edit Category"
@@ -70,7 +131,9 @@
       "settings": "Settings",
       "articles":"Articles",
       "delivery_methods":"Delivery methods",
-      "payment_methods":"Payment methods"
+      "payment_methods":"Payment methods",
+      "addEditMenu": "Dodaj/Edytuj Menu",
+      "addManufacturer": "Dodaj producenta"
     },
     "users": { "users": "users", "roles": "users" },
     "localization": {
@@ -81,7 +144,8 @@
       "weight_units": "Weight units",
       "stock_status": "Stock status",
       "order_status": "Order status",
-      "departments": "Departments ShowU"
+      "departments": "Departments ShowU",
+      "addLanguage": "Dodaj język"
     }
   }
 }

@@ -22,6 +22,7 @@ export interface IUploadImage {
   providedIn: "root",
 })
 export class ImagesService {
+  page: number = 1;
   images: IImageResponse = {
     count: 0,
     data: [],
@@ -42,10 +43,13 @@ export class ImagesService {
 
   constructor(private http: HttpClient) {}
 
-  getImages(albumId: number = null): Observable<IImageResponse> {
+  getImages(albumId: number): Observable<IImageResponse> {
+    let skip = this.page * this.images.take - this.images.take;
+    let params = `?take=${this.images.take}&skip=${skip}`;
+
     return this.http.get<IImageResponse>(
       environment.gallery.images.images +
-        `?skip=0&take=${this.takeImages}&album_id=${albumId}`
+        `${params}&album_id=${albumId}`
     );
   }
 

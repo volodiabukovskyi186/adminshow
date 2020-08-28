@@ -4,14 +4,14 @@
 >
   <div form>
     <app-site-menu-form
-      [title]="'ADD/EDIT Menu'"
+      [title]="'MENU.manage_site.addEditMenu' | translate"
       [model]="siteMenuForm.model"
     ></app-site-menu-form>
   </div>
   <div filter></div>
   <div content class="padding">
     <ng-template #notfound>
-      <div class="d2 padding flex center gray500 text-center">No Records Yet<br>😞</div>
+      <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
     </ng-template>
     <table
       class="raisins-table border-all radius"
@@ -19,11 +19,11 @@
     >
       <thead>
         <tr>
-          <th width="64px">ID</th>
-          <th width="64px">SORT</th>
-          <th width="">TITLE</th>
-          <th width="128px">type</th>
-          <th width="128px">updated_at</th>
+          <th width="64px">{{ "APP.id" | translate }}</th>
+          <th width="64px">{{ "APP.id" | translate }}</th>
+          <th width="">{{ "APP.title" | translate }}</th>
+          <th width="128px">{{ "APP.type" | translate }}</th>
+          <th width="128px">{{ "APP.updated_at" | translate }}</th>
           <th width="128px">{{ "APP.action" | translate }}</th>
         </tr>
       </thead>
@@ -37,11 +37,12 @@
 
           <td>
             <div class="flex wrap" style="width: 100%;">
-              <span class="title" *ngFor="let desc of item.descriptions"
-                ><span class="flag">{{
-                  langService.getFromList(desc.lang_id)?.flag
-                }}</span
-                ><span class="name">{{ desc.title }}</span>
+              <span class="title flag-container" *ngFor="let desc of item.descriptions">
+                <!-- <span class="flag">
+                  {{ langService.getFromList(desc.lang_id)?.flag }}
+                </span> -->
+                <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+                <span class="name">{{ desc.title }}</span>
               </span>
             </div>
           </td>

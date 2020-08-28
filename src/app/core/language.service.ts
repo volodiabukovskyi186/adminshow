@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+// import { pl } from '../../../../assets/icons/pl.svg';
 
 export interface ILangItem {
   flag: string;
@@ -11,11 +12,12 @@ export interface ILangItem {
   providedIn: "root",
 })
 export class LanguageService {
+
   constructor(public translate: TranslateService) {
     this.init();
   }
 
-  langs: Array<ILangItem> = [];
+  public langs: Array<ILangItem> = [];
 
   getBrowserLang() {
     return this.translate.getBrowserLang();
@@ -59,10 +61,10 @@ export class LanguageService {
 
   init() {
     // init langs
-    const pl: ILangItem = { flag: "🇵🇱", name: "pl", locale: "pl" };
-    const en: ILangItem = { flag: "🇺🇸", name: "en", locale: "en" };
-    const ru: ILangItem = { flag: "🇷🇺", name: "ru", locale: "ru" };
-    const ua: ILangItem = { flag: "🇺🇦", name: "ua", locale: "ua" };
+    const pl: ILangItem = { flag: "pl", name: "pl", locale: "pl" };
+    const en: ILangItem = { flag: "en", name: "en", locale: "en" };
+    const ru: ILangItem = { flag: "ru", name: "ru", locale: "ru" };
+    const ua: ILangItem = { flag: "ua", name: "ua", locale: "ua" };
 
     let defaultLang = pl;
 

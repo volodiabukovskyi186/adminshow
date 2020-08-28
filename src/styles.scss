@@ -156,3 +156,33 @@ tr.off {
 .second-toolbar {
   border-radius: 0 0 $radius $radius !important;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.flag-container {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+.flag {
+  height: 19px;
+  margin-right: 11px;
+}
+
+.flag-item {
+  margin-left: 10px;
+  margin-right: 7px !important;
+}
+
+.desc-content {
+  padding: 0 !important;
+}
+
+.flag-text {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+}

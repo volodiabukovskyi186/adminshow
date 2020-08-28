@@ -12,6 +12,8 @@ import {
   IAttribyteGroup,
   IResponseData,
 } from "src/app/modules/catalog/attribyte/interfaces";
+import { LanguageService as Lang } from "src/app/core/language.service";
+// import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
   selector: "app-attribyte-group-page",
@@ -20,6 +22,8 @@ import {
 })
 export class AttribyteGroupPageComponent extends BasePage
   implements OnInit, PaginationPage {
+  private _routerSubscription: any;
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -27,7 +31,8 @@ export class AttribyteGroupPageComponent extends BasePage
     public pages: PagesService,
     public attrGr: AttribyteGroupService,
     public attrGrForm: AttribyteGroupFormService,
-    public langService: LanguageService
+    public langService: LanguageService,
+    public lang: Lang,
   ) {
     super(pages);
   }
@@ -41,8 +46,30 @@ export class AttribyteGroupPageComponent extends BasePage
       { link: "attrgroups", title: "Arrtibyte Group" },
     ];
 
+    // this._routerSubscription = this._router.events.subscribe((e) => {
+    //   if (e instanceof NavigationEnd) {
+    //     this.initTranslate();
+    //     this.getList();
+    //   }
+    // });
+
     this.getLangList();
     this.getList();
+    this.initTranslate();
+  }
+
+  initTranslate() {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.catalog.attr_groups",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "attrgroups", title: tr["MENU.catalog.attr_groups"] },
+        ];
+      });
   }
 
   getList() {
