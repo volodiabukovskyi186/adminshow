@@ -2,21 +2,21 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">ATTR</label>
+    <label for="">{{"attributes.attr" | translate}}</label>
   </div>
 
   <div class="original">
     <select class="radius" [(ngModel)]="model.attribyte_id">
-      <option *ngFor="let c of attributes" value="{{ c.id }}">{{
-        c.description[0].name
-      }}</option>
+      <option *ngFor="let c of transformedAttributes" value="{{ c.attribyte_id }}">
+        {{c.name}}
+      </option>
     </select>
   </div>
 </div>
 
 <div class="form-row">
   <div class="description">
-    <label for="">LANG</label>
+    <label for="">{{"attributes.lang" | translate}}</label>
   </div>
 
   <div class="original">
@@ -28,7 +28,7 @@
 
 <div class="form-row">
   <div class="description">
-    <label for="">VALUE</label>
+    <label for="">{{"attributes.value" | translate}}</label>
   </div>
   <div class="original">
     <input class="radius" type="text" [(ngModel)]="model.text" />

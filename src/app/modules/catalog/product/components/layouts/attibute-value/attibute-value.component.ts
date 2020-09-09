@@ -12,10 +12,16 @@ export class AttibuteValueComponent implements OnInit {
   @Input() langs: ILanguage[];
   @Input() model: IProdAttr;
   @Input() attributes: IAttribyte[];
+  transformedAttributes = [];
 
   constructor() { }
 
   ngOnInit(): void {
+   this.attributes.forEach(res => {
+     res.description.forEach(item => {
+        this.transformedAttributes.push(item)
+     })
+   })
   }
 
 }
