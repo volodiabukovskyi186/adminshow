@@ -1,0 +1,32 @@
+.order-container{
+  .order-table{
+    .table-body{
+      position: relative;
+     .panel-header-buttons{
+       margin: 0 auto;
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       flex-direction: row;
+     }
+      .order-sideBar{
+        border-top: 1px silver solid;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14), 0 1px 2px rgba(0, 0, 0, 0.24);
+       background-color: white;
+        position: absolute;
+        z-index: 1000;
+        width: 550px;
+        height: 100vh;
+        right: 0;
+        top: 0;
+
+      }
+    }
+  }
+}
+.order-sideBar__close{
+  width: 20px;
+  transform: rotate(45deg);
+
+}
+

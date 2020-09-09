@@ -19,6 +19,7 @@ import { PromotionsPageComponent } from "./catalog/promotions-page/promotions-pa
 import { UsersPageComponent } from "./users-page/users-page.component";
 import { SiteMenuPageComponent } from './client/site-menu-page/site-menu-page.component';
 import { SitePagePageComponent } from './client/site-page-page/site-page-page.component';
+import { OrdersComponent } from './orders/orders.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -46,7 +47,7 @@ export const pagesRoutes: Routes = [
     path: "category",
     // component: CategoryPageComponent,
     loadChildren: () => import('src/app/modules/catalog/category/category.module').then(m => m.CategoryModule),
-    canActivate: [AuthGuard, PermissionGuard],
+    // canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: ["manage_categorys", "manage_albums"],
     },
@@ -149,6 +150,14 @@ export const pagesRoutes: Routes = [
     data: {
       permissions: ["manage_imagess"],
       animation: "CategoryPage",
+    },
+  },
+  {
+    path: "orders",
+    component: OrdersComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
     },
   },
 ];

@@ -50,6 +50,7 @@ import { SiteMenuModule } from '../modules/client/site-menu/site-menu.module';
 import { SitePageModule } from '../modules/client/site-page/site-page.module';
 import { CoreModule } from '../core/core.module';
 import { ngxUiLoaderConfig } from './ngx-ui-loader.config';
+import { OrdersComponent } from './orders/orders.component';
 
 
 
@@ -74,7 +75,8 @@ import { ngxUiLoaderConfig } from './ngx-ui-loader.config';
     OptionPageComponent,
     UsersPageComponent,
     SitePagePageComponent,
-    SiteMenuPageComponent
+    SiteMenuPageComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,
