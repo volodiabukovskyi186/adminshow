@@ -66,6 +66,10 @@ export class PromotionService {
     return this.http.get(`https://api.showu.com.ua/product_promotion/getByPromotion/${promotionId}`);
   }
 
+  removePromotion(promotionId) {
+    return this.http.delete(`${environment.catalog.promotion.promotion}/${promotionId}`);
+  }
+
   getList(): Observable<IPromotionResponse> {
     let skip = this.page * this.data.take - this.data.take;
     let params = `?take=${this.data.take}&skip=${skip}`;

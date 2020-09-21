@@ -16,13 +16,13 @@ import { RolesPageComponent } from "./roles-page/roles-page.component";
 import { PermissionModule } from "../core/permission/permission.module";
 import { RolesModule } from "../modules/roles/roles.module";
 import { NgxUiLoaderModule, NgxUiLoaderConfig } from "ngx-ui-loader";
-// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { ImagePageComponent } from "./image-page/image-page.component";
 import { GalleryModule } from "../modules/gallery/gallery.module";
 
 import { NgxFilesizeModule } from "ngx-filesize";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ProductsPageComponent } from "./catalog/products-page/products-page.component";
 import { PromotionsPageComponent } from "./catalog/promotions-page/promotions-page.component";
@@ -51,9 +51,9 @@ import { SitePageModule } from '../modules/client/site-page/site-page.module';
 import { CoreModule } from '../core/core.module';
 import { ngxUiLoaderConfig } from './ngx-ui-loader.config';
 import { OrdersComponent } from './orders/orders.component';
-
-
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -83,12 +83,14 @@ import { OrdersComponent } from './orders/orders.component';
     PagesRoutingModule,
     AuthModule,
     UiModule,
+    BrowserAnimationsModule,
     LayoutModule,
     GalleryModule,
     PermissionModule,
     NgxFilesizeModule,
     TranslateModule,
     FormsModule,
+    ReactiveFormsModule,
     RolesModule,
     UserModule,
     LanguageModule,
@@ -102,6 +104,9 @@ import { OrdersComponent } from './orders/orders.component';
     CollectionModule,
     SiteMenuModule,
     SitePageModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSelectModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     //BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({

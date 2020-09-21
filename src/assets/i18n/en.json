@@ -141,7 +141,17 @@
   },
   "MENU": {
     "orders": {
-      "orders": "Orders"
+      "orders": "Orders",
+      "client": "Client",
+      "manufacturer": "Manufacturer",
+      "sum": "Sum, uah",
+      "date": "Date",
+      "status": "Status",
+      "actions": "Actions",
+      "order_status": {
+        "new": "New",
+        "old": "Old"
+      }
     },
     "catalog": {
       "catalog": "Catalog",
@@ -180,5 +190,11 @@
       "departments": "Departments ShowU",
       "addLanguage": "Add Language"
     }
+  },
+  "statusCodes": {
+    "done": "Done",
+    "inProgress": "In Progress",
+    "canceled": "Canceled",
+    "sent": "Sent"
   }
 }

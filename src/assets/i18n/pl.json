@@ -108,7 +108,13 @@
   },
   "MENU": {
     "orders": {
-      "orders": "Orders"
+      "orders": "Zamówienia",
+      "client": "Klient",
+      "manufacturer": "Producent",
+      "sum": "Sum, uah",
+      "date": "Data",
+      "status": "Status",
+      "actions": "Działania"
     },
     "catalog": {
       "catalog": "Catalog",
@@ -147,5 +153,11 @@
       "departments": "Departments ShowU",
       "addLanguage": "Dodaj język"
     }
+  },
+  "statusCodes": {
+    "done": "Gotowe",
+    "inProgress": "W trakcie",
+    "canceled": "Anulowany",
+    "sent": "Wysłano"
   }
 }

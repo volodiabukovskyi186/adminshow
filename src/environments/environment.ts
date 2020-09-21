@@ -11,6 +11,7 @@ export const environment = {
     roles: host + `roles`,
     role: host + `role`,
   },
+  orders: host + `orders`,
   gallery: {
     images: {
       images: host + `images`,

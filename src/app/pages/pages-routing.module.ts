@@ -20,6 +20,7 @@ import { UsersPageComponent } from "./users-page/users-page.component";
 import { SiteMenuPageComponent } from './client/site-menu-page/site-menu-page.component';
 import { SitePagePageComponent } from './client/site-page-page/site-page-page.component';
 import { OrdersComponent } from './orders/orders.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const pagesRoutes: Routes = [
   {
@@ -163,7 +164,7 @@ export const pagesRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(pagesRoutes)],
+  imports: [RouterModule.forRoot(pagesRoutes), BrowserAnimationsModule],
   exports: [RouterModule],
 })
 export class PagesRoutingModule {}

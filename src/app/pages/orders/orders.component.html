@@ -1,28 +1,52 @@
 
 <div class="order-container padding">
+   <!-- <router-outlet #outlet="outlet"></router-outlet> -->
    <table class="raisins-table border-all radius order-table">
       <thead>
       <tr>
          <th width="64px">ID</th>
-         <th width="128px">Клієнт</th>
-         <th width="128px">Виробник</th>
-         <th width="128px">Сумма,грн</th>
-         <th width="128px">Дата</th>
-         <th width="128px">Статус</th>
-         <th width="128px">Дії</th>
+         <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
+         <th width="128px">{{ 'MENU.orders.manufacturer' | translate }}</th>
+         <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
+         <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
+         <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
+         <th width="128px">{{ 'MENU.orders.actions' | translate }}</th>
       </tr>
       </thead>
 
       <tbody class="table-body">
-      <tr>
-         <td width="64px" class="text-center">1</td>
-         <td width="128px" class="text-center">Петренко Стьопа</td>
-         <td width="128px" class="text-center">NIKE</td>
-         <td width="128px" class="text-center">3000,00</td>
-         <td width="128px" class="text-center">28.07.2020 10:00</td>
-         <td width="128px" class="text-center"><input type="text"></td>
+      <tr *ngFor="let order of orderService.order?.data">
+         <td width="64px" class="text-center">{{ order.id }}</td>
+         <td width="128px" class="text-center">{{ order.last_name }} {{ order.first_name }}</td>
+         <td width="128px" class="text-center">{{ order.telephone }}</td>
+         <td width="128px" class="text-center">{{ order.total.slice(0, -2) }}</td>
+         <td width="128px" class="text-center">{{ order.created_at }}</td>
+         <td width="128px" class="text-center">
+            <form [formGroup]="ordersForm">
+               <mat-form-field appearance="none">
+                  <mat-select class="orders-select" formControlName="status">
+                     <mat-option [value]="statusCodes[order.status_id] | translate">
+                        {{ 'statusCodes.done' | translate }}
+                     </mat-option>
+                     <mat-option [value]="statusCodes[order.status_id] | translate">
+                        {{ 'statusCodes.inProgress' | translate }}
+                     </mat-option>
+                     <mat-option [value]="statusCodes[order.status_id] | translate">
+                        {{ 'statusCodes.canceled' | translate }}
+                     </mat-option>
+                     <mat-option [value]="statusCodes[order.status_id] | translate">
+                        {{ 'statusCodes.sent' | translate }}
+                     </mat-option>
+                  </mat-select>
+               </mat-form-field>
+            </form>
+            <!-- <div class="order-status">
+               {{ order.status_id }}
+               <mat-checkbox></mat-checkbox>
+            </div> -->
+         </td>
          <td width="100%" class="panel-header-buttons text-center">
-            <button   class="button transparent small"><rap-svg-ico [src]="'assets/icons/eye-open.svg'"></rap-svg-ico></button>
+            <button class="button transparent small"><rap-svg-ico [src]="'assets/icons/eye-open.svg'"></rap-svg-ico></button>
             <button (click)="orderSideStatus=!orderSideStatus" class="button transparent small"><rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
             </button>
          </td>

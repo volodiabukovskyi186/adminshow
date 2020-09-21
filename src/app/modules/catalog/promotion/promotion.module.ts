@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { TranslateModule } from "@ngx-translate/core";
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const c = [PromotionFormComponent];
 
@@ -31,6 +32,7 @@ const c = [PromotionFormComponent];
     ClickOutsideModule,
     TranslateModule,
     AngularEditorModule,
+    BrowserAnimationsModule,
   ],
 })
 export class PromotionModule {}

@@ -33,7 +33,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -42,6 +41,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       },
     }),
     PagesModule,
+    BrowserAnimationsModule,
   ],
   providers: [authInterceptorProviders, serverErrorInterceptorProviders],
   bootstrap: [AppComponent],

@@ -311,12 +311,12 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
 
     this.productsListForm.get('products').patchValue(this.productName);
 
-    let uniqueProducts = new Set(this.products.map(function(product) {
+    let uniqueProducts = new Set(this.products?.map(function(product) {
       return product.id;
     }));
 
     if (!uniqueProducts.has(currentProduct.id)) {
-      this.products.push(currentProduct);
+      this.products?.push(currentProduct);
     }
 
     this.selectedProducts.emit(this.products);

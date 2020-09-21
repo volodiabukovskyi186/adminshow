@@ -107,7 +107,13 @@
   },
   "MENU": {
     "orders": {
-      "orders": "Замовлення"
+      "orders": "Заказы",
+      "client": "Клиент",
+      "manufacturer": "Производитель",
+      "sum": "Сумма, грн",
+      "date": "Дата",
+      "status": "Статус",
+      "actions": "Действия"
     },
     "catalog": {
       "catalog": "Каталог",
@@ -145,5 +151,11 @@
       "departments": "Відділення ShowU",
       "addLanguage": "Добавить язык"
     }
+  },
+  "statusCodes": {
+    "done": "Выполнено",
+    "inProgress": "Обрабатывается",
+    "canceled": "Отменено",
+    "sent": "Отправлено"
   }
 }
