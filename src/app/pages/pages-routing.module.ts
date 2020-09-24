@@ -20,6 +20,7 @@ import { UsersPageComponent } from "./users-page/users-page.component";
 import { SiteMenuPageComponent } from './client/site-menu-page/site-menu-page.component';
 import { SitePagePageComponent } from './client/site-page-page/site-page-page.component';
 import { OrdersComponent } from './orders/orders.component';
+import { CustomersComponent } from './customers/customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const pagesRoutes: Routes = [
@@ -159,6 +160,14 @@ export const pagesRoutes: Routes = [
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: [],
+    },
+  },
+  {
+    path: "customers",
+    component: CustomersComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ["manage_categorys", "manage_albums"],
     },
   },
 ];

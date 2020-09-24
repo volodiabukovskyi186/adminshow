@@ -26,7 +26,7 @@ export class CategoryFormComponent implements OnInit {
   // @Input() questions$: Observable<QuestionBase<any>[]>;
 
   @Input() category: ICategory;
-  @Input() categoryes: ICategory[] = [];
+  @Input() categoryes: any[] = [];
   @Input() langs: ILanguage[];
 
   @Input() title: string = "";
@@ -98,6 +98,7 @@ export class CategoryFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.image.select.subscribe(this.selectHandler);
+    console.log(this.categoryes);
   }
 
   onReset() {

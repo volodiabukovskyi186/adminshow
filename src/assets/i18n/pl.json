@@ -159,5 +159,17 @@
     "inProgress": "W trakcie",
     "canceled": "Anulowany",
     "sent": "Wysłano"
+  },
+  "customers": {
+    "customerLastName": "Nazwisko",
+    "customerFirstName": "Imię",
+    "customerEmail": "Email",
+    "customerPhoneNumber": "Numer telefonu",
+    "customerRegistrationDate": "Data rejestracji klienta",
+    "customerTypeOfRegistration": "Rodzaj rejestracji",
+    "customerActions": "Działania",
+    "customersSubscription": "Subskrypcja",
+    "customersPersonalCabinet": "Biuro osobiste",
+    "editCustomerInformation": "Edytuj informacje o kliencie"
   }
 }

@@ -54,6 +54,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { CustomersComponent } from './customers/customers.component';
+import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { MatSelectModule } from '@angular/material/select';
     UsersPageComponent,
     SitePagePageComponent,
     SiteMenuPageComponent,
-    OrdersComponent
+    OrdersComponent,
+    CustomersComponent,
+    CustomerFormComponent
   ],
   imports: [
     CommonModule,

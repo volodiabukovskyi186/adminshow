@@ -195,5 +195,17 @@
     "inProgress": "Обробляється",
     "canceled": "Скасовано",
     "sent": "Відправлено"
+  },
+  "customers": {
+    "customerLastName": "Прізвище",
+    "customerFirstName": "Ім'я",
+    "customerEmail": "Email",
+    "customerPhoneNumber": "Номер телефону",
+    "customerRegistrationDate": "Дата реєстрації клієнта",
+    "customerTypeOfRegistration": "Тип реєстрації",
+    "customerActions": "Дії",
+    "customersSubscription": "Оформлення підписки",
+    "customersPersonalCabinet": "Особистий кабінет",
+    "editCustomerInformation": "Редагувати відомості про клієнта"
   }
 }

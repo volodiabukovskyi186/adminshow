@@ -26,6 +26,7 @@ export class LanguageService {
   use(language: string) {
     // get browser lang
     const browserLang = this.getBrowserLang();
+    console.log('browserLang', browserLang);
 
     // if data["lang"] is null set browserLang
     let lang = language ?? browserLang;
@@ -36,6 +37,8 @@ export class LanguageService {
     this.translate.use(
       lang.match(/en|pl|ru|ua/) ? lang : this.translate.defaultLang
     );
+    console.log('(/en|pl|ru|ua/)', lang.match(/en|pl|ru|ua/));
+    console.log('defaultLang', this.translate.defaultLang);
     console.log("CURRENT LANG: ", this.translate.currentLang);
   }
 

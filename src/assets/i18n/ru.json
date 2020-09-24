@@ -157,5 +157,17 @@
     "inProgress": "Обрабатывается",
     "canceled": "Отменено",
     "sent": "Отправлено"
+  },
+  "customers": {
+    "customerLastName": "Фамилия",
+    "customerFirstName": "Имя",
+    "customerEmail": "Email",
+    "customerPhoneNumber": "Номер телефона",
+    "customerRegistrationDate": "Дата регистрации клиента",
+    "customerTypeOfRegistration": "Тип регистрации",
+    "customerActions": "Действия",
+    "customersSubscription": "Оформление подписки",
+    "customersPersonalCabinet": "Личный кабинет",
+    "editCustomerInformation": "Редактировать сведения о клиенте"
   }
 }

@@ -196,5 +196,17 @@
     "inProgress": "In Progress",
     "canceled": "Canceled",
     "sent": "Sent"
+  },
+  "customers": {
+    "customerLastName": "Last Name",
+    "customerFirstName": "First Name",
+    "customerEmail": "Email",
+    "customerPhoneNumber": "Phone number",
+    "customerRegistrationDate": "Customer Registration Date",
+    "customerTypeOfRegistration": "Type of registration",
+    "customerActions": "Actions",
+    "customersSubscription": "Subscription",
+    "customersPersonalCabinet": "Personal Cabinet",
+    "editCustomerInformation": "Edit customer information"
   }
 }
