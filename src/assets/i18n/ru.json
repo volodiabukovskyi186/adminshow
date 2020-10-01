@@ -66,7 +66,12 @@
     "dateStart": "Дата начала",
     "dateEnd": "Дата окончания",
     "locale": "Местный поиск",
-    "addEditUser": "Добавить/Изменить пользователя"
+    "addEditUser": "Добавить/Изменить пользователя",
+    "form-sale": "Скидка",
+    "saleDateStart": "Дата начала ",
+    "saleDateEnd": "Дата конца ",
+    "saleNewPrice": "Новая цена",
+    "saleOldprice": "Cтарая цена"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",

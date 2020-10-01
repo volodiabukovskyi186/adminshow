@@ -71,4 +71,10 @@
       <product-form-attributes [langs]="langs" [model]="model"></product-form-attributes>
     </fieldset>
   </rap-step-tab>
+  <rap-step-tab [title]="'APP.form-sale' | translate" *ngIf="model.id">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>{{ "APP.form-sale" | translate }}</legend>
+      <app-product-form-sale></app-product-form-sale>
+    </fieldset>
+  </rap-step-tab>
 </rap-step-tabs>

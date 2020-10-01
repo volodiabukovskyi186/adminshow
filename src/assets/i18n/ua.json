@@ -75,7 +75,13 @@
     "dateStart": "Дата початку",
     "dateEnd": "Дата закінчення",
     "locale": "Місцевий пошук",
-    "addEditUser": "Додати/Pедагувати користувача"
+    "addEditUser": "Додати/Pедагувати користувача",
+    "form-sale": "Знижки",
+    "saleDateStart": "Дата початку",
+    "saleDateEnd": "Дата кінця ",
+    "saleNewPrice": "Нова ціна",
+    "saleOldprice": "Стара ціна"
+
   },
   "pageNotFound": {
     "backToHome": "Повернутися на головну",
