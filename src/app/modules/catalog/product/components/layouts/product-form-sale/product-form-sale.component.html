@@ -23,19 +23,48 @@
             <input class="radius" type="number"/>
         </div>
     </div>
-    <div class="form-row price-container">
-        <div class="description">
-            <label for="">{{ "APP.saleOldprice" | translate }}:</label>
-        </div>
-        <div class="price">
-      <p>
-          200грн
-      </p>
+    <div class="button-add-save">
+        <button class="plus"><rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico></button>
+        <button>  <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico></button>
+    </div>
+    <div class="sale-list">
+        <p>{{ "APP.listSale" | translate }}</p>
+        <div class="sale-list__block">
+        <table>
+            <tr>
+                <th class="number">№</th>
+                <th class="date-start">{{ "APP.saleListStart" | translate }}</th>
+                <th class="date-end">{{ "APP.saleListEnd" | translate }}</th>
+                <th class="price">{{ "APP.price" | translate }}</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>05.07.2020</th>
+                <th>15.10.2020</th>
+                <th>100грн</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+
+        </table>
+
         </div>
     </div>
-
-
-
-
 </div>
 
