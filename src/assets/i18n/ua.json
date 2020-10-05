@@ -15,7 +15,7 @@
     "visibility": "Видимість",
     "visible": "Видно",
     "hidden": "Приховано",
-    "select_image": "Видеріть зображення",
+    "select_image": "Виберіть зображення",
     "add": "Додати",
     "cancel": "Скасувати",
     "filter": "Фільтр",
@@ -133,7 +133,7 @@
   },
   "AUTH": {
     "SIGNIN": "Увійти",
-    "LOGIN": "Лолін",
+    "LOGIN": "Логін",
     "PASSWORD": "Пароль",
     "ENTER_LOGIN": "Введіть ваш логін",
     "ENTER_PASSWORD": "Введіть ваш пароль",
@@ -188,13 +188,18 @@
       "order_status": "Статус замовлення",
       "departments": "Відділення ShowU",
       "addLanguage": "Додати мову"
+    },
+    "settings": {
+      "siteSettings": "Налаштування"
     }
   },
   "statusCodes": {
     "done": "Виконано",
     "inProgress": "Обробляється",
     "canceled": "Скасовано",
-    "sent": "Відправлено"
+    "sent": "Відправлено",
+    "inactive": "Неактивний",
+    "active": "Активний"
   },
   "customers": {
     "customerLastName": "Прізвище",
@@ -207,5 +212,44 @@
     "customersSubscription": "Оформлення підписки",
     "customersPersonalCabinet": "Особистий кабінет",
     "editCustomerInformation": "Редагувати відомості про клієнта"
+  },
+  "currencies": {
+    "currencyISOcode": "Код ISO",
+    "currencySymbolOnTheLeft": "Символ зліва",
+    "currencySymbolOnTheRight": "Символ справа",
+    "currencyName": "Назва валюти",
+    "currencyValue": "Значення",
+    "currencyUpdateDate": "Дата оновлення",
+    "currencyActions": "Дії",
+    "addEditCurrencyInfo": "Додавання / Редагування валюти",
+    "currencyDefault": "За замовчуванням"
+  },
+  "settings": {
+    "nameOfThePlatform": "Найменування платформи",
+    "defaultLanguage": "Мова за замовчуванням",
+    "defaultCurrency": "Валюта за замовчуванням",
+    "action": "Дії",
+    "editSettings": "Редагування налаштувань",
+    "generalSettings": "Загальні налаштування",
+    "contactData": "Контактні дані",
+    "logo": "Логотип",
+    "siteIcon": "Іконка сайту",
+    "location": "Місцезнаходження",
+    "shopName": "Назва магазину",
+    "address": "Адреса",
+    "workSchedule": "Графік роботи",
+    "metaTagDescription": "Мета-тег-опис",
+    "metaTagKeywords": "Мета-теги-ключові слова",
+    "siteTelephone": "Телефон",
+    "siteEmail": "Email",
+    "siteFacebook": "Facebook",
+    "siteInstagram": "Instagram",
+    "siteTelegram": "Telegram",
+    "siteViber": "Viber",
+    "siteYoutube": "Youtube",
+    "settingsLangShortTitleEng": "Eng",
+    "settingsLangShortTitlePl": "Pl",
+    "settingsLangShortTitleRus": "Рус",
+    "settingsLangShortTitleUa": "Укр"
   }
 }

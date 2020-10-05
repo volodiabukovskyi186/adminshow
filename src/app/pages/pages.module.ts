@@ -29,6 +29,7 @@ import { PromotionsPageComponent } from "./catalog/promotions-page/promotions-pa
 import { ManufacturerPageComponent } from "./manufacturer-page/manufacturer-page.component";
 import { UserModule } from "../modules/user/user.module";
 import { LanguagePageComponent } from "./localization/language-page/language-page.component";
+import { CurrenciesPageComponent } from './localization/currencies-page/currencies-page.component';
 import { LanguageModule } from "../modules/localization/language/language.module";
 import {
   // CategoryPageComponent,
@@ -56,6 +57,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
+import { CurrencyFormComponent } from './localization/currencies-page/currency-form/currency-form.component';
+import { SettingsPageComponent } from './client/settings-page/settings-page.component';
+import { SettingsPageFormComponent } from './client/settings-page/settings-page-form/settings-page-form.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,7 @@ import { CustomerFormComponent } from './customers/customer-form/customer-form.c
     PromotionsPageComponent,
     ManufacturerPageComponent,
     LanguagePageComponent,
+    CurrenciesPageComponent,
     AttribyteGroupPageComponent,
     OptionPageComponent,
     UsersPageComponent,
@@ -80,7 +85,10 @@ import { CustomerFormComponent } from './customers/customer-form/customer-form.c
     SiteMenuPageComponent,
     OrdersComponent,
     CustomersComponent,
-    CustomerFormComponent
+    CustomerFormComponent,
+    CurrencyFormComponent,
+    SettingsPageComponent,
+    SettingsPageFormComponent
   ],
   imports: [
     CommonModule,

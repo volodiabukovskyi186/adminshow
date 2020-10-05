@@ -189,13 +189,18 @@
       "order_status": "Order status",
       "departments": "Departments ShowU",
       "addLanguage": "Add Language"
+    },
+    "settings": {
+      "siteSettings": "Settings"
     }
   },
   "statusCodes": {
     "done": "Done",
     "inProgress": "In Progress",
     "canceled": "Canceled",
-    "sent": "Sent"
+    "sent": "Sent",
+    "inactive": "Inactive",
+    "active": "Active"
   },
   "customers": {
     "customerLastName": "Last Name",
@@ -208,5 +213,44 @@
     "customersSubscription": "Subscription",
     "customersPersonalCabinet": "Personal Cabinet",
     "editCustomerInformation": "Edit customer information"
+  },
+  "currencies": {
+    "currencyISOcode": "ISO Code",
+    "currencySymbolOnTheLeft": "Symbol on the left",
+    "currencySymbolOnTheRight": "Symbol on the right",
+    "currencyName": "Currency Name",
+    "currencyValue": "Value",
+    "currencyUpdateDate": "Update date",
+    "currencyActions": "Actions",
+    "addEditCurrencyInfo": "Add / Edit currency",
+    "currencyDefault": "Default"
+  },
+  "settings": {
+    "nameOfThePlatform": "Name of the platform",
+    "defaultLanguage": "Default language",
+    "defaultCurrency": "Default currency",
+    "action": "Action",
+    "editSettings": "Edit settings",
+    "generalSettings": "General settings",
+    "contactData": "Contact Data",
+    "logo": "Logotype",
+    "siteIcon": "Site icon",
+    "location": "Location",
+    "shopName": "Shop name",
+    "address": "Address",
+    "workSchedule": "Work schedule",
+    "metaTagDescription": "Meta-tag-description",
+    "metaTagKeywords": "Meta-tag-keywords",
+    "siteTelephone": "Telephone",
+    "siteEmail": "Email",
+    "siteFacebook": "Facebook",
+    "siteInstagram": "Instagram",
+    "siteTelegram": "Telegram",
+    "siteViber": "Viber",
+    "siteYoutube": "Youtube",
+    "settingsLangShortTitleEng": "Eng",
+    "settingsLangShortTitlePl": "Pl",
+    "settingsLangShortTitleRus": "Рус",
+    "settingsLangShortTitleUa": "Укр"
   }
 }

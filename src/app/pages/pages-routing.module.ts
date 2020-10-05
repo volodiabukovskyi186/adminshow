@@ -7,6 +7,8 @@ import { RolesPageComponent } from "./roles-page/roles-page.component";
 import { PermissionGuard } from "../core/permission/permission.guard";
 import { ImagePageComponent } from "./image-page/image-page.component";
 import { LanguagePageComponent } from "./localization/language-page/language-page.component";
+import { CurrenciesPageComponent } from './localization/currencies-page/currencies-page.component';
+
 import {
   // CategoryPageComponent,
   AttribytesPageComponent,
@@ -22,6 +24,7 @@ import { SitePagePageComponent } from './client/site-page-page/site-page-page.co
 import { OrdersComponent } from './orders/orders.component';
 import { CustomersComponent } from './customers/customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SettingsPageComponent } from '../pages/client/settings-page/settings-page.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -146,6 +149,14 @@ export const pagesRoutes: Routes = [
     },
   },
   {
+    path: "currencies",
+    component: CurrenciesPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
     path: "images",
     component: ImagePageComponent,
     canActivate: [AuthGuard, PermissionGuard],
@@ -170,6 +181,14 @@ export const pagesRoutes: Routes = [
       permissions: ["manage_categorys", "manage_albums"],
     },
   },
+  {
+    path: "settings",
+    component: SettingsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  }
 ];
 
 @NgModule({

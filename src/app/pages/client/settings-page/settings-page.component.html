@@ -1,0 +1,60 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-settings-page-form
+      [title]="'settings.editSettings' | translate"
+      [selectedPlatform]="settingsPageService.settings?.data"
+    ></app-settings-page-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <ng-template #notfound>
+      <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
+    </ng-template>
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="settingsPageService.settings?.data; else notfound"
+    >
+      <thead>
+        <tr>
+          <th width="128px">{{ "settings.nameOfThePlatform" | translate }}</th>
+          <th width="128px">{{ "settings.defaultLanguage" | translate }}</th>
+          <th width="128px">{{ "settings.defaultCurrency" | translate }}</th>
+          <th width="64px">{{ "settings.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of settingsPageService.settings?.data.descriptions"
+        >
+          <td data-label="ID" class="text-center">{{ item.name }}</td>
+
+          <td class="text-center center padding__top-bottom_10">
+                <div class="title flag-container">
+                    <img class="flag" src="{{ langService.getFromList(defaultLanguage?.id)?.flag }}"/>
+                    <div class="name">{{defaultLanguage?.code}} | {{ defaultLanguage?.title }}</div>
+                </div>
+          </td>
+          <td class="text-center">
+            <div>{{defaultCurrency?.currency_title}}</div>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(settingsPageService.settings?.data)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'" class="settings-edit__img"></rap-svg-ico>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</rap-panel-content>

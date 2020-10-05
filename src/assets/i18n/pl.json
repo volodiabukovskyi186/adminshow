@@ -152,13 +152,18 @@
       "order_status": "Order status",
       "departments": "Departments ShowU",
       "addLanguage": "Dodaj język"
+    },
+    "settings": {
+      "siteSettings": "Ustawienia"
     }
   },
   "statusCodes": {
     "done": "Gotowe",
     "inProgress": "W trakcie",
     "canceled": "Anulowany",
-    "sent": "Wysłano"
+    "sent": "Wysłano",
+    "inactive": "Nieaktywny",
+    "active": "Aktywny"
   },
   "customers": {
     "customerLastName": "Nazwisko",
@@ -171,5 +176,44 @@
     "customersSubscription": "Subskrypcja",
     "customersPersonalCabinet": "Biuro osobiste",
     "editCustomerInformation": "Edytuj informacje o kliencie"
+  },
+  "currencies": {
+    "currencyISOcode": "Kod ISO",
+    "currencySymbolOnTheLeft": "Symbol po lewej stronie",
+    "currencySymbolOnTheRight": "Symbol po prawej stronie",
+    "currencyName": "Nazwa waluty",
+    "currencyValue": "Wartość",
+    "currencyUpdateDate": "Data aktualizacji",
+    "currencyActions": "Działania",
+    "addEditCurrencyInfo": "Dodawanie / Edycja waluty",
+    "currencyDefault": "Domyślna"
+  },
+  "settings": {
+    "nameOfThePlatform": "Nazwa platformy",
+    "defaultLanguage": "Domyślne język",
+    "defaultCurrency": "Domyślna waluta",
+    "action": "Działania",
+    "editSettings": "Edytuj ustawienia",
+    "generalSettings": "Ustawienia główne",
+    "contactData": "Data kontaktu",
+    "logo": "Logotyp",
+    "siteIcon": "Ikona witryny",
+    "location": "Lokalizacja",
+    "shopName": "Nazwa sklepu",
+    "address": "Adres",
+    "workSchedule": "Plan pracy",
+    "metaTagDescription": "Opis-metatagu",
+    "metaTagKeywords": "Słowa-kluczowe-z-metatagami",
+    "siteTelephone": "Telefon",
+    "siteEmail": "Email",
+    "siteFacebook": "Facebook",
+    "siteInstagram": "Instagram",
+    "siteTelegram": "Telegram",
+    "siteViber": "Viber",
+    "siteYoutube": "Youtube",
+    "settingsLangShortTitleEng": "Eng",
+    "settingsLangShortTitlePl": "Pl",
+    "settingsLangShortTitleRus": "Рус",
+    "settingsLangShortTitleUa": "Укр"
   }
 }

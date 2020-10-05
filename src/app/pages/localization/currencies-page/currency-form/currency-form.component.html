@@ -1,0 +1,77 @@
+<div class="customer-form-container">
+    <div class="customer-form-title">{{ title }}</div>
+    <form [formGroup]="editCurrencyInfoForm" (submit)="getEditCurrencyFormData()">
+        <div class="customer-input-wrapper">
+            <div class="customer-input-content">
+                <label>{{ "currencies.currencyName" | translate }}</label>
+                <div>
+                    <input matInput
+                        formControlName="currencyName"
+                        class="customer-input"
+                        id="currencyName"
+                        required>
+                </div>
+            </div>
+            <div class="customer-input-content">
+                <label>{{ "currencies.currencyISOcode" | translate }}</label>
+                <div>
+                    <input matInput
+                        formControlName="currencyISOcode"
+                        class="customer-input"
+                        id="currencyISOcode"
+                        required>
+                </div>
+            </div>
+            <div class="customer-input-content">
+                <label>{{ "currencies.currencySymbolOnTheLeft" | translate }}</label>
+                <div>
+                    <input matInput
+                        formControlName="currencySymbolOnTheLeft"
+                        class="customer-input"
+                        id="currencySymbolOnTheLeft"
+                        required>
+                </div>
+            </div>
+            <div class="customer-input-content">
+                <label>{{ "currencies.currencySymbolOnTheRight" | translate }}</label>
+                <div>
+                    <input matInput
+                        formControlName="currencySymbolOnTheRight"
+                        class="customer-input"
+                        id="currencySymbolOnTheRight"
+                        required>
+                </div>
+            </div>
+            <div class="customer-input-content">
+                <label>{{ "currencies.currencyValue" | translate }}</label>
+                <div>
+                    <input matInput
+                        formControlName="currencyValue"
+                        class="customer-input"
+                        id="currencyValue"
+                        required>
+                </div>
+            </div>
+            <div class="customer-input-content sort-content">
+                <div class="description customer-description">
+                  <label for="customer">Статус</label>
+                </div>
+                <mat-form-field appearance="standart" class="sort-products">
+                    <div class="sort-products-wrapper">
+                        <mat-select
+                            (selectionChange)="onChange($event.value)"
+                            id="currencyStatus"
+                            required
+                            formControlName="currencyStatus">
+                            <div *ngFor="let status of allStatusCodes">
+                                <mat-option [value]="status.value">
+                                    {{ status.name | translate }}
+                                </mat-option>
+                            </div>
+                        </mat-select>
+                    </div>
+                  </mat-form-field>
+              </div>
+        </div>
+    </form>
+</div>

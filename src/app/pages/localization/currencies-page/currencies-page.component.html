@@ -1,0 +1,116 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-currency-form
+      [title]="'currencies.addEditCurrencyInfo' | translate"
+      [currency]="selectedCurrency"
+      [langs]="this.langService.languages.data"
+      class="currency-form-style"
+      (currenciesFormData)="currenciesFormData($event)"
+    ></app-currency-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <ng-template #notfound>
+      <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
+    </ng-template>
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="currenciesService.currency?.data.length > 0; else notfound"
+    >
+      <thead>
+        <tr>
+          <th width="55px">{{ "APP.id" | translate }}</th>
+          <th width="120px">{{ "currencies.currencyISOcode" | translate }}</th>
+          <th width="120px">{{ "currencies.currencySymbolOnTheLeft" | translate }}</th>
+          <th width="140px">{{ "currencies.currencySymbolOnTheRight" | translate }}</th>
+          <th width="224px">{{ "currencies.currencyName" | translate }}</th>
+          <th width="138px">{{ "currencies.currencyValue" | translate }}</th>
+          <th width="150px">{{ "currencies.currencyUpdateDate" | translate }}</th>
+          <th width="158px">{{ "currencies.currencyActions" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let currency of currenciesService.currency?.data"
+        >
+          <td data-label="ID" class="text-center">{{ currency.id }}</td>
+          <td class="text-center">
+            <div class="currencies-content">{{ currency?.code }}</div>
+          </td>
+          <td class="text-center">
+            <div class="currencies-content">{{ currency?.simbol_left }}</div>
+          </td>
+          <td class="text-center">
+            <div class="currencies-content">{{ currency?.simbol_right }}</div>
+          </td>
+          <td class="text-center">
+            <div class="currencies-content currencies-content-default">
+                <div>{{ currency?.currency_title }}</div>
+                <app-permission-item
+                    *ngIf="currency.default"
+                    [perm]="{ name: 'currencies.currencyDefault' | translate, state: 1 }"
+                ></app-permission-item>
+            </div>
+          </td>
+          <td class="text-center">
+            <div class="currencies-content">{{ modifyPrice(currency?.value) }}</div>
+          </td>
+
+          <td class="text-center">
+            <small class="currencies-content">{{ currency.updated_at | localDate }}</small>
+            <small *ngIf="!currency.updated_at">—</small>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <rap-delete-button
+                data-tooltip-left="on/off"
+                class="button transparent radius"
+                [ngClass]="{ on: currency.status, off: !currency.status }"
+                (confirmed)="updateStatus(currency)"
+                [@changeValueHighlight]="currency.status"
+                [src]="
+                currency.status != 1
+                    ? 'assets/icons/eye-cloce.svg'
+                    : 'assets/icons/eye-open.svg'
+                "
+              ></rap-delete-button>
+
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(currency)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'" class="currencies-edit__img"></rap-svg-ico>
+              </button>
+
+              <rap-delete-button
+                data-tooltip-left="Delete"
+                class="button transparent radius"
+                
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <pre>{{ langServise.languages.data | json }}</pre> -->
+
+    <app-pagination
+      class="radius"
+      [page]="currenciesService.page"
+      [total]="Math.ceil(currenciesService.currency.count / currenciesService.currency.take)"
+      [pagesToShow]="5"
+      (goNext)="pageNextHandler()"
+      (goPrev)="pagePrevHandler()"
+      (goPage)="pageToHandler($event)"
+      (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+  </div>
+</rap-panel-content>

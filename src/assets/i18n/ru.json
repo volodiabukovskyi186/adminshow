@@ -122,7 +122,7 @@
       "attr": "Атрибути",
       "options": "Опції",
       "products": "Продукти",
-      "promotions": "Акціх",
+      "promotions": "Акции",
       "colection": "Колекції"
     },
     "reviews": { "reviews": "Відгуки", "product_reviews": "Відгуки продуктів" },
@@ -150,13 +150,18 @@
       "order_status": "Статус замовлення",
       "departments": "Відділення ShowU",
       "addLanguage": "Добавить язык"
+    },
+    "settings": {
+      "siteSettings": "Настройки"
     }
   },
   "statusCodes": {
     "done": "Выполнено",
     "inProgress": "Обрабатывается",
     "canceled": "Отменено",
-    "sent": "Отправлено"
+    "sent": "Отправлено",
+    "inactive": "Неактивный",
+    "active": "Активный"
   },
   "customers": {
     "customerLastName": "Фамилия",
@@ -169,5 +174,44 @@
     "customersSubscription": "Оформление подписки",
     "customersPersonalCabinet": "Личный кабинет",
     "editCustomerInformation": "Редактировать сведения о клиенте"
+  },
+  "currencies": {
+    "currencyISOcode": "Код ISO",
+    "currencySymbolOnTheLeft": "Символ слева",
+    "currencySymbolOnTheRight": "Символ справа",
+    "currencyName": "Название валюты",
+    "currencyValue": "Значение",
+    "currencyUpdateDate": "Дата обновления",
+    "currencyActions": "Действия",
+    "addEditCurrencyInfo": "Добавление / Редактирование валюты",
+    "currencyDefault": "По умолчанию"
+  },
+  "settings": {
+    "nameOfThePlatform": "Наименование платформы",
+    "defaultLanguage": "Язык по умолчанию",
+    "defaultCurrency": "Валюта по умолчанию",
+    "action": "Действия",
+    "editSettings": "Pедактирования настроек",
+    "generalSettings": "Общие настройки",
+    "contactData": "Контактные данные",
+    "logo": "Логотип",
+    "siteIcon": "Иконка сайта",
+    "location": "Местонахождение",
+    "shopName": "Название магазина",
+    "address": "Адрес",
+    "workSchedule": "График работы",
+    "metaTagDescription": "Мета-тег-описание",
+    "metaTagKeywords": "Ключевые-слова-мета-тег",
+    "siteTelephone": "Телефон",
+    "siteEmail": "Email",
+    "siteFacebook": "Facebook",
+    "siteInstagram": "Instagram",
+    "siteTelegram": "Telegram",
+    "siteViber": "Viber",
+    "siteYoutube": "Youtube",
+    "settingsLangShortTitleEng": "Eng",
+    "settingsLangShortTitlePl": "Pl",
+    "settingsLangShortTitleRus": "Рус",
+    "settingsLangShortTitleUa": "Укр"
   }
 }

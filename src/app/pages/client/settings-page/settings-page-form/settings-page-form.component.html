@@ -1,0 +1,253 @@
+<div class="modal" *ngIf="modalOpen">
+    <div class="modal-wrapper">
+      <div class="modal-close" (click)="modalOpen = false"></div>
+      <div class="modal-content">
+        <header>
+          <h4>{{ "APP.select_image" | translate }}</h4>
+        </header>
+  
+        <div class="content">
+          <app-gallery-view
+            [selectable]="true"
+            [singleSelectable]="true"
+            [editable]="false"
+          ></app-gallery-view>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="settings-form-container">
+    <div class="settings-form-title">{{ title }}</div>
+    <div>
+        <div class="settings-input-wrapper tabs-header-settings-form">
+            <rap-step-tabs>
+                <rap-step-tab [active]="true" [title]="'settings.generalSettings' | translate">
+                    <form [formGroup]="generalSettingsForm">
+                        <div class="settings-input-content settings-img-container" (click)="onPressLogo()">
+                            <label>{{ "settings.logo" | translate }}</label>
+                            <div class="upload-file">
+                                <div class="upload-file-img logo-img">
+                                    <div class="site-icon-content-logo">
+                                        200&#215;100
+                                        <img *ngIf="isSelectedImageLogo" src="{{ host + selectedImageLogo?.src }}" class="selected-logo-img"/>
+                                    </div>
+                                </div>
+                                <div class="upload-file-container cursor-pointer">
+                                    <div class="upload-file-container__input-wrapper padding-left-right_15">
+                                        <span class="upload-file-container__input-text">Завантажити фото</span>
+                                        <input matInput
+                                            formControlName="logo"
+                                            class="upload-file-container__input"
+                                            id="logo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-input-content settings-img-container" (click)="onPressSiteIcon()">
+                            <label>{{ "settings.siteIcon" | translate }}</label>
+                            <div class="upload-file upload-file-bottom">
+                                <div class="upload-file-img site-icon-img">
+                                    <div class="site-icon-content">112&#215;112</div>
+                                    <img *ngIf="isSelectedImageSiteIcon" src="{{ host + selectedImageSiteIcon?.src }}" class="selected-site-icon-img"/>
+                                </div>
+                                <div class="upload-file-container cursor-pointer">
+                                    <div class="upload-file-container__input-wrapper padding-left-right_15">
+                                        <span class="upload-file-container__input-text">Завантажити фото</span>
+                                        <input matInput
+                                            formControlName="siteIcon"
+                                            class="upload-file-container__input"
+                                            id="siteIcon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-input-content">
+                            <label>{{ "settings.location" | translate }}</label>
+                            <div>
+                                <input matInput
+                                    formControlName="location"
+                                    class="settings-input"
+                                    id="location"
+                                    [(ngModel)]="selectedPlatform.location">
+                            </div>
+                        </div>
+                    </form>
+                    <rap-step-tabs>
+                        <rap-step-tab
+                            *ngFor="let item of selectedPlatform.descriptions"
+                            [imgSrc]="languageService.getFromList(item.lang_id)?.flag"
+                            [title]="langShortTitle[item.lang_id].title | translate"
+                        >
+                            <form [formGroup]="shopDetailsForm">
+                                <div class="settings-input-content">
+                                    <label>{{ "settings.shopName" | translate }}</label>
+                                    <div>
+                                        <input matInput
+                                            formControlName="shopName"
+                                            class="settings-input"
+                                            id="shopName"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="settings-input-content">
+                                    <label>{{ "settings.address" | translate }}</label>
+                                    <div>
+                                        <input matInput
+                                            formControlName="address"
+                                            class="settings-input"
+                                            id="address"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="settings-input-content">
+                                    <label>{{ "settings.workSchedule" | translate }}</label>
+                                    <div>
+                                        <input matInput
+                                            formControlName="workSchedule"
+                                            class="settings-input"
+                                            id="workSchedule"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="settings-input-content">
+                                    <label>{{ "settings.metaTagDescription" | translate }}</label>
+                                    <div>
+                                        <input matInput
+                                            formControlName="metaTagDescription"
+                                            class="settings-input-meta margin-top__10"
+                                            id="metaTagDescription"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="settings-input-content">
+                                    <label>{{ "settings.metaTagKeywords" | translate }}</label>
+                                    <div>
+                                        <input matInput
+                                            formControlName="metaTagKeywords"
+                                            class="settings-input-meta"
+                                            id="metaTagKeywords"
+                                            required>
+                                    </div>
+                                </div>
+                            </form>
+                        </rap-step-tab>
+                    </rap-step-tabs>
+                </rap-step-tab>
+              
+                <rap-step-tab [title]="'settings.contactData' | translate">
+                    <form [formGroup]="siteSettingsContactTopForm" class="phone-form-container">
+                        <label class="phone-input">{{ "settings.siteTelephone" | translate }}</label>
+                        <div *ngFor="let phoneNumber of selectedPlatform?.phones; index as i">
+                            <div class="settings-input-content">
+                                <div></div>
+                                <div class="settings-input-content-wrapper">
+                                    <input matInput
+                                        formControlName="siteTelephone"
+                                        class="settings-input site-telephone-input"
+                                        id="siteTelephone"
+                                        placeholder="{{ phoneNumber.phone }}"
+                                        [readonly]="true">
+                                    <rap-delete-button
+                                        data-tooltip-left="Delete"
+                                        class="button transparent radius delete-icon cursor-pointer"
+                                        (click)="deletePhoneNumber(phoneNumber)"
+                                        [src]="'assets/icons/delete.svg'"
+                                    ></rap-delete-button>
+                                </div>
+                            </div>
+                          
+                            <!-- <div class="settings-input-content margin-bottom__10">
+                                <div></div>
+                                <div class="settings-input-content-wrapper">
+                                    <input matInput
+                                        formControlName="siteTelephone"
+                                        class="settings-input"
+                                        id="siteTelephone"
+                                        [(ngModel)]="phoneNumber.phone">
+                                    <rap-delete-button
+                                        data-tooltip-left="Delete"
+                                        class="button transparent radius delete-icon cursor-pointer"
+                                        
+                                        [src]="'assets/icons/delete.svg'"
+                                    ></rap-delete-button>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="settings-input-content">
+                            <div></div>
+                            <div class="settings-input-content-wrapper">
+                                <input matInput
+                                    formControlName="siteTelephonePlus"
+                                    [(ngModel)]="additionalPhoneNumber"
+                                    class="settings-input settings-input-plus"
+                                />
+                                <rap-svg-ico 
+                                    [src]="'assets/icons/plus.svg'"
+                                    class="plus-icon cursor-pointer"
+                                    (click)="addItem(additionalPhoneNumber)"
+                                ></rap-svg-ico>
+                            </div>
+                        </div>
+                    </form>
+                    <form [formGroup]="siteSettingsContactBottomForm">
+                        <div class="settings-input-content email-input-content">
+                            <label>{{ "settings.siteEmail" | translate }}</label>
+                            <div>
+                                <input matInput
+                                    formControlName="siteEmail"
+                                    class="settings-input"
+                                    id="siteEmail">
+                            </div>
+                        </div>
+                        <div class="settings-input-content">
+                            <label>{{ "settings.siteFacebook" | translate }}</label>
+                            <div>
+                                <input matInput
+                                    formControlName="siteFacebook"
+                                    class="settings-input"
+                                    id="siteFacebook">
+                            </div>
+                        </div>
+                        <div class="settings-input-content">
+                            <label>{{ "settings.siteInstagram" | translate }}</label>
+                            <div>
+                                <input matInput
+                                    formControlName="siteInstagram"
+                                    class="settings-input"
+                                    id="siteInstagram">
+                            </div>
+                        </div>
+                        <div class="settings-input-content">
+                            <label>{{ "settings.siteTelegram" | translate }}</label>
+                            <div>
+                                <input matInput
+                                    formControlName="siteTelegram"
+                                    class="settings-input"
+                                    id="siteTelegram">
+                            </div>
+                        </div>
+                        <div class="settings-input-content">
+                            <label>{{ "settings.siteViber" | translate }}</label>
+                            <div>
+                                <input matInput
+                                    formControlName="siteViber"
+                                    class="settings-input"
+                                    id="siteViber">
+                            </div>
+                        </div>
+                        <div class="settings-input-content">
+                            <label>{{ "settings.siteYoutube" | translate }}</label>
+                            <div>
+                                <input matInput
+                                    formControlName="siteYoutube"
+                                    class="settings-input"
+                                    id="siteYoutube">
+                            </div>
+                        </div>
+                    </form>
+                </rap-step-tab>
+            </rap-step-tabs>
+        </div>
+    </div>
+</div>
