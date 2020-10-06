@@ -74,7 +74,15 @@
     "dateStart": "Date Start",
     "dateEnd": "Date End",
     "locale": "Locale",
-    "addEditUser": "Add/Edit User"
+    "addEditUser": "Add/Edit User",
+    "form-sale": "Sale",
+    "saleDateStart": " Start date",
+    "saleDateEnd": " End date ",
+    "saleNewPrice": "New price",
+    "saleOldprice": "The old price",
+    "listSale": "Discount lists for the product",
+    "saleListStart": "Discount lists for goods",
+    "saleListEnd":"Completion of the discount"
   },
   "pageNotFound": {
     "backToHome": "Back To Home",
