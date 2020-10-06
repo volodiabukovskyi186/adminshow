@@ -71,7 +71,10 @@
     "saleDateStart": "Data rozpoczęcia ",
     "saleDateEnd": "Data zakończenia ",
     "saleNewPrice": "Nowa cena",
-    "saleOldprice": "Stara cena"
+    "saleOldprice": "Stara cena",
+    "listSale": "Listy rabatowe na towary",
+    "saleListStart": "Początek rabatu",
+    "saleListEnd":"Zakończenie zniżki"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",

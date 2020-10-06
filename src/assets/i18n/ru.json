@@ -71,7 +71,10 @@
     "saleDateStart": "Дата начала ",
     "saleDateEnd": "Дата конца ",
     "saleNewPrice": "Новая цена",
-    "saleOldprice": "Cтарая цена"
+    "saleOldprice": "Cтарая цена",
+    "listSale": "Списки скидок для товарy",
+    "saleListStart": "Начало скидки",
+    "saleListEnd":"Завершение скидки"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",
