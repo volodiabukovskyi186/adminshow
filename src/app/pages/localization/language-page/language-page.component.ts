@@ -48,7 +48,6 @@ export class LanguagePageComponent extends BasePage implements OnInit {
       { link: "", title: "Dashboard" },
       { link: "language", title: "Languages" },
     ];
-
     this.getLangs();
     this.langForm.questions$ = this.langForm.getQuestions();
     this.initTranslate();

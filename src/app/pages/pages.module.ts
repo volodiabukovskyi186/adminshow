@@ -54,6 +54,15 @@ import { OrdersComponent } from './orders/orders.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { OrderStatusPageComponent } from './localization/order-status-page/order-status-page.component';
+import {OrderStatusModule} from "../modules/localization/order-status/order-status.module";
+import { StorageStatusPageComponent } from './localization/storage-status-page/storage-status-page.component';
+import { UnitWeightPageComponent } from './localization/unit-weight-page/unit-weight-page.component';
+import {UnitWeightModule} from "../modules/localization/unit-weight/unit-weight.module";
+import { PaymentMethodsPageComponent } from './localization/payment-methods-page/payment-methods-page.component';
+import {PaymentMethodsModule} from "../modules/localization/payment-methods/payment-methods.module";
+import { CountriesPageComponent } from './localization/countries-page/countries-page.component';
+import {CountriesModule} from "../modules/localization/countries/countries.module";
 
 @NgModule({
   declarations: [
@@ -76,49 +85,59 @@ import { MatSelectModule } from '@angular/material/select';
     UsersPageComponent,
     SitePagePageComponent,
     SiteMenuPageComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderStatusPageComponent,
+    StorageStatusPageComponent,
+    UnitWeightPageComponent,
+    PaymentMethodsPageComponent,
+    CountriesPageComponent
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    AuthModule,
-    UiModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    GalleryModule,
-    PermissionModule,
-    NgxFilesizeModule,
-    TranslateModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RolesModule,
-    UserModule,
-    LanguageModule,
-    ManufacturerModule,
-    AttribyteModule,
-    CategoryModule,
-    ProductModule,
-    OptionModule,
-    CoreModule,
-    PromotionModule,
-    CollectionModule,
-    SiteMenuModule,
-    SitePageModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    //BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot({
-      closeButton: true,
-      positionClass: "toast-top-center",
-      enableHtml: true,
-      tapToDismiss: false,
-      // disableTimeOut: true,
-      progressBar: true,
-      // preventDuplicates: true,
-    }), // ToastrModule added
-  ],
+    imports: [
+        CommonModule,
+        PagesRoutingModule,
+        AuthModule,
+        UiModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        GalleryModule,
+        PermissionModule,
+        NgxFilesizeModule,
+        TranslateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RolesModule,
+        UserModule,
+        LanguageModule,
+        ManufacturerModule,
+        AttribyteModule,
+        CategoryModule,
+        ProductModule,
+        OptionModule,
+        CoreModule,
+        PromotionModule,
+        CollectionModule,
+        SiteMenuModule,
+        SitePageModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+        //BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot({
+            closeButton: true,
+            positionClass: "toast-top-center",
+            enableHtml: true,
+            tapToDismiss: false,
+            // disableTimeOut: true,
+            progressBar: true,
+            // preventDuplicates: true,
+        }),
+        OrderStatusModule,
+        UnitWeightModule,
+        PaymentMethodsModule,
+        CountriesModule,
+        // ToastrModule added
+    ],
   providers: [
     // LocalDatePipe
   ],

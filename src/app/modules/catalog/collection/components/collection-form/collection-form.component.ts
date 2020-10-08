@@ -21,7 +21,6 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   @Input() title: string = "";
   @Input() host: string = null;
   @Input() public products: any[];
-
   @Output() selectedProducts = new EventEmitter<any>();
 
   editorConfig: AngularEditorConfig = {
@@ -138,7 +137,6 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.generateProductsListForm();
-
     this.image.select.subscribe(this.selectHandler);
   }
 
@@ -193,20 +191,16 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
 
   public getSelectedManufacturer(currentManufacturer): void {
     this.isActive = false;
-
     this.manufacturerName = currentManufacturer.name;
     this.manufacturerId = currentManufacturer.id;
-    
     this.productsListForm.get('manufactures').patchValue(this.manufacturerName);
   }
 
   public getCategories() {
     // this.isActive = true;
     this.isCategoriesActive = true;
-
     this.promotionService.getAllCategories().subscribe((res) => {
       this.displayAllCaterories = this.toArray(res.data, [])
-
       this.filteredCategories.next(this.displayAllCaterories);
     })
   }
@@ -230,10 +224,8 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
 
   public getSelectedCategory(currentCategory): void {
     console.log(currentCategory);
-
     // this.isActive = false;
     this.isCategoriesActive = false;
-
     this.categoryName = currentCategory.name;
     this.categoryId = currentCategory.id;
     this.productsListForm.get('categories').patchValue(this.categoryName);

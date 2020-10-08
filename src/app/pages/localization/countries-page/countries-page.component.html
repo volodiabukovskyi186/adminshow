@@ -1,0 +1,67 @@
+<rap-panel-content
+        [showForm]="pages.panelSettings.form"
+        [showRightSide]="pages.panelSettings.right"
+>
+    <div form>
+<app-countries-form [selectedOrder]="selectedOrder"></app-countries-form>
+    </div>
+    <div filter></div>
+    <div content class="padding">
+        <table  class="raisins-table border-all radius"  >
+            <thead>
+            <tr>
+                <th width="64px">{{ "APP.id" | translate }}</th>
+                <th width="90px">{{ "APP.id" | translate }}</th>
+                <th width="">{{ "APP.title" | translate }}</th>
+                <th width="196px">{{ "APP.updated_at" | translate }}</th>
+                <th width="168px">{{ "APP.action" | translate }}</th>
+                <th width="168px">{{ "APP.action" | translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  *ngFor="let order of arrStatus"
+                 [ngClass]=""
+            >
+                <td data-label="ID" class="text-center">{{order?.id}}</td>
+                <td data-label="ID" class="text-center">{{order?.id}}</td>
+                <td data-label="ID" class="text-center">{{order?.id}}</td>
+                <td>
+                    {{order?.name}}
+                </td>
+                <td class="text-center">
+                    {{order?.created_at}}
+                </td>
+                <td>
+                    <div class="flex wrap center">
+                        <rap-delete-button
+                                data-tooltip-left="on/off"
+                                class="button transparent radius"
+                                [src]="
+                'assets/icons/eye-open.svg'
+                "
+                        ></rap-delete-button>
+                        <button
+                                style="position: relative;"
+                                [attr.data-tooltip-left]="'APP.edit' | translate"
+                                role="button"
+                                (click)="edit(order)"
+                                class="button transparent radius"
+                        >
+                            <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+                        </button>
+
+                        <rap-delete-button
+                                (click)="deleteStatus(order)"
+                                data-tooltip-left="Delete"
+                                class="button transparent radius"
+                                [src]="'assets/icons/delete.svg'"
+                        ></rap-delete-button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</rap-panel-content>
+
+

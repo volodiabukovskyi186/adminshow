@@ -21,6 +21,11 @@ import { SiteMenuPageComponent } from './client/site-menu-page/site-menu-page.co
 import { SitePagePageComponent } from './client/site-page-page/site-page-page.component';
 import { OrdersComponent } from './orders/orders.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {OrderStatusPageComponent} from "./localization/order-status-page/order-status-page.component";
+import {StorageStatusPageComponent} from "./localization/storage-status-page/storage-status-page.component";
+import {UnitWeightPageComponent} from "./localization/unit-weight-page/unit-weight-page.component";
+import {PaymentMethodsPageComponent} from "./localization/payment-methods-page/payment-methods-page.component";
+import {CountriesPageComponent} from "./localization/countries-page/countries-page.component";
 
 export const pagesRoutes: Routes = [
   {
@@ -156,6 +161,46 @@ export const pagesRoutes: Routes = [
   {
     path: "orders",
     component: OrdersComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "order_status",
+    component: OrderStatusPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "storage_status",
+    component: StorageStatusPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "unit_weight",
+    component:UnitWeightPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "payment_methods",
+    component:PaymentMethodsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "country",
+    component:CountriesPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: [],

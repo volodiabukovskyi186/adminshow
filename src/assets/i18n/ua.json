@@ -187,6 +187,10 @@
       "addManufacturer": "Додати виробника"
     },
     "users": { "users": "Ролі", "roles": "Користувачі" },
+    "settings": {
+      "settings": "Налаштування",
+      "payment_methods": "Cпособи оплати"
+    },
     "localization": {
       "localization": "Локалізація",
       "languages": "Мови",
@@ -196,7 +200,14 @@
       "stock_status": "Сток статус",
       "order_status": "Статус замовлення",
       "departments": "Відділення ShowU",
-      "addLanguage": "Додати мову"
+      "addLanguage": "Додати мову",
+      "storage_status": "Статус на складі",
+      "unit_weight": "Одиниця ваги",
+      "country": "Країни",
+      "add_edit_localization": "Додавання/Редагування",
+      "status": "Статус",
+      "name": "Найменування",
+      "marking": "Позначення"
     }
   },
   "statusCodes": {

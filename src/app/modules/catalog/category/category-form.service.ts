@@ -2,11 +2,13 @@ import { Injectable } from "@angular/core";
 import { ICategory, ICategoryDesc } from "./interfaces";
 import { ILanguage } from "../../localization/language/language.service";
 
+
 @Injectable({
   providedIn: "root",
 })
 export class CategoryFormService {
   category: ICategory;
+
 
   initEmptyCategory() {
     this.category = {

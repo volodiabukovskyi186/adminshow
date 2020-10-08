@@ -74,4 +74,10 @@ export const environment = {
     manufacturers: host + `manufacturers`,
     manufacturer: host + `manufacturer`,
   },
+  localizations:{
+    orderstatus:host+`order_statuss`,
+    orderstatusdel:host+`order_status`,
+    orderstatusup:host+`order_status`,
+    orderstoragestatus:host+``
+  },
 };

@@ -63,6 +63,7 @@ export class LanguageService {
   }
 
   deleteFromList(id: number) {
+
     let ob = this.getFromList(id);
     if (ob != null) {
       this.deleteFromArray(ob, this.languages.data);
@@ -92,10 +93,8 @@ export class LanguageService {
 
   getFromList(id: number) {
     let role;
-
     for (let i = 0; i < this.languages.data.length; i++) {
       role = this.languages.data[i];
-
       if (role.id == id) {
         role.flag = this.flags[role.code];
         return role;

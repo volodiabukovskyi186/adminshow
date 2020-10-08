@@ -80,7 +80,6 @@ export class OptionFormComponent implements OnInit {
 
   save() {
     console.log("ADD/UPDATE", this.optionValForm.model);
-
     // THIS SHOULD NOT BE HERE ! ! !
     let c = this.optionValForm.model;
 

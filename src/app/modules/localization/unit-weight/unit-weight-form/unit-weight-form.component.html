@@ -1,0 +1,52 @@
+<div>
+    <div class="form-row">
+        <div class="description">
+            <label for="">Статус</label>
+        </div>
+        <div class="original">
+            <form [formGroup]="ordersForm">
+                <mat-form-field appearance="none">
+                    <mat-select class="orders-select" formControlName="status">
+                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
+                            {{ 'statusCodes.done' | translate }}
+                        </mat-option>
+                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
+                            {{ 'statusCodes.inProgress' | translate }}
+                        </mat-option>
+                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
+                            {{ 'statusCodes.canceled' | translate }}
+                        </mat-option>
+                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
+                            {{ 'statusCodes.sent' | translate }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="description">
+            <label for="">Найменування</label>
+        </div>
+        <div class="original">
+            <input class="radius" type="text"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="description">
+            <label for="">Позначення</label>
+        </div>
+        <div class="original">
+            <input class="radius" type="text"/>
+        </div>
+    </div>
+</div>
+<!--<rap-step-tab-->
+<!--        *ngFor="let item of category.description"-->
+<!--        [imgSrc]="languageService.getFromList(item.lang.id)?.flag"-->
+<!--        [title]="item.lang.short_title"-->
+<!--&gt;-->
+<!--</rap-step-tab>-->
+
+<!--<p>{{this.selectedOrder.descriptions}}</p>-->
+

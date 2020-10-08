@@ -68,6 +68,13 @@ export const MENU = [
   //   item("Order", "statistic/order"),
   //   item("Product", "statistic/product"),
   // ]),
+  group(
+      "MENU.settings.settings",
+      [
+        item("MENU.settings.payment_methods", "payment_methods", true, ICON_MENU_ITEM),
+      ],
+      "assets/icons/menu-people.svg"
+  ),
   group("MENU.localization.localization", [
     item("MENU.localization.languages", "language", true, ICON_MENU_ITEM),
     item("MENU.localization.currencies", "currencies"),
@@ -75,9 +82,14 @@ export const MENU = [
     item("MENU.localization.measure_units", "measure_units"),
     item("MENU.localization.weight_units", "weight_units"),
     item("MENU.localization.stock_status", "stock_status"),
-    item("MENU.localization.order_status", "order_status"),
+    item("MENU.localization.order_status", "order_status",true, ICON_MENU_ITEM),
+    item("MENU.localization.storage_status", "storage_status",true, ICON_MENU_ITEM),
+    item("MENU.localization.unit_weight", "unit_weight",true, ICON_MENU_ITEM),
+    item("MENU.localization.country", "country",true, ICON_MENU_ITEM),
     item("MENU.localization.departments", "departments"),
   ]),
+
+
   // group("Other", [item("Log", "log")]),
 ];
 

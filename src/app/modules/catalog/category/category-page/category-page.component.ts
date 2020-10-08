@@ -100,7 +100,6 @@ export class CategoryPageComponent extends BasePage
   getLangListHandler = (data) => {
     this.ngxService.stopAll();
     this.langService.languages = data;
-
     this.categoryForm.initDesc(this.langService.languages.data);
   };
 
@@ -136,7 +135,6 @@ export class CategoryPageComponent extends BasePage
 
   save = () => {
     // console.log("ADD/UPDATE", this.categoryForm.category);
-
     // THIS SHOULD NOT BE HERE ! ! !
     let c = this.categoryForm.category;
 

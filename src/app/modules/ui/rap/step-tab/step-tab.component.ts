@@ -21,7 +21,8 @@ export class StepTabComponent implements OnInit {
   @Input() active = false;
   @Input() disabled = false;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {}
 }
