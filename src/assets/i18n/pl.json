@@ -215,5 +215,10 @@
     "settingsLangShortTitlePl": "Pl",
     "settingsLangShortTitleRus": "Рус",
     "settingsLangShortTitleUa": "Укр"
+  },
+  "productsAttributes": {
+    "productsAttributesAttr": "Atrybut",
+    "productsAttributesLang": "Język",
+    "productsAttributesValue": "Wartość"
   }
 }

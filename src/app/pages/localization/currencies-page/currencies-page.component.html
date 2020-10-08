@@ -6,7 +6,7 @@
     <app-currency-form
       [title]="'currencies.addEditCurrencyInfo' | translate"
       [currency]="selectedCurrency"
-      [langs]="this.langService.languages.data"
+      [langs]="langService.languages.data"
       class="currency-form-style"
       (currenciesFormData)="currenciesFormData($event)"
     ></app-currency-form>

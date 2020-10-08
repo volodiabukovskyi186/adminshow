@@ -6,6 +6,8 @@ import { LanguageService as Lang } from "src/app/core/language.service";
 import { BreadcrumbsService } from 'src/app/core/breadcrumbs.service';
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
+import { ToastrService } from "ngx-toastr";
+import { LanguageService as LangS} from 'src/app/core/language.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -17,14 +19,23 @@ export class SettingsPageComponent extends BasePage implements OnInit {
   public defaultLanguage: any;
   public defaultCurrency: any;
   public selectedMainPlatform: any;
+  public settingsPageFormData: any;
+  public sendSettingsPageEditableData: any;
+  public siteId: number;
+  public generateShopDetailsFormData;
+  public shopDetailsFormDataEvent;
+  public settingsContactBottomData;
+  public siteSettingsDescriptions: any[] = [];
 
   constructor(
     protected ngxService: NgxUiLoaderService,
+    protected toastr: ToastrService,
     public pages: PagesService,
     public settingsPageService: SettingsPageService,
     public lang: Lang,
     public breadcrumbs: BreadcrumbsService,
-    public langService: LanguageService
+    public langService: LanguageService,
+    public langS: LangS
   ) {
     super(pages);
    }
@@ -39,6 +50,8 @@ export class SettingsPageComponent extends BasePage implements OnInit {
 
     this.getDefaultLanguage();
     this.getDefaultCurrency();
+
+    this.getDescByLang();
   }
 
   public initTranslate() {
@@ -77,22 +90,25 @@ export class SettingsPageComponent extends BasePage implements OnInit {
     //this.siteMenuForm.initDescription(this.langService.languages.data);
   };
 
+  getDescByLang() {
+    this.settingsPageService.getSiteByLang().subscribe((res) => {
+      this.siteSettingsDescriptions = res.data;
+      //this.settingsPageService.settings.data.descriptions = res.data;
+    })
+  }
+
   objectKeys(obj) {
     return Object.assign(obj);
   }
 
   getDefaultLanguage() {
     this.settingsPageService.getSiteDefaultLanguage().subscribe((res) => {
-      console.log(res);
-
       this.defaultLanguage = res.data;
     })
   }
 
   getDefaultCurrency() {
     this.settingsPageService.getSiteDefaultCurrency().subscribe((res) => {
-      console.log(res);
-
       this.defaultCurrency = res.data;
     })
   }
@@ -105,6 +121,31 @@ export class SettingsPageComponent extends BasePage implements OnInit {
     //this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
+
+  formDataChange(event) {
+    console.log(event);
+
+    this.sendSettingsPageEditableData = event;
+  }
+
+
+  save = () => {
+    this.siteId = 1;
+
+    // this.settingsPageService.editSettingsPageInfo(this.sendSettingsPageEditableData, this.siteId).subscribe((res) => {
+    //   this.putHandler(res);
+    //   this.settingsPageService.getSiteDataById();
+    // });
+    
+    //this.ngxService.start();
+  };
+
+  putHandler = (data) => {
+    this.ngxService.stopAll();
+    this.closeForm();
+    this.toastr.success("CURRENCY UPDATED ^_^");
+  };
+
 
   // public getPageDescription() {
   //   this.settingsPageService.getSiteDescriptionList().subscribe((res) => {

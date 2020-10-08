@@ -6,6 +6,7 @@
     <app-settings-page-form
       [title]="'settings.editSettings' | translate"
       [selectedPlatform]="settingsPageService.settings?.data"
+      (formDataChange)="formDataChange($event)"
     ></app-settings-page-form>
   </div>
   <div filter></div>
@@ -27,7 +28,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of settingsPageService.settings?.data.descriptions"
+          *ngFor="let item of siteSettingsDescriptions"
         >
           <td data-label="ID" class="text-center">{{ item.name }}</td>
 

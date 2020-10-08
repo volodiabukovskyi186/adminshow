@@ -23,14 +23,14 @@
         <div class="settings-input-wrapper tabs-header-settings-form">
             <rap-step-tabs>
                 <rap-step-tab [active]="true" [title]="'settings.generalSettings' | translate">
-                    <form [formGroup]="generalSettingsForm">
+                    <form [formGroup]="generalSettingsForm" (submit)="getEditSettingsPageFormData()">
                         <div class="settings-input-content settings-img-container" (click)="onPressLogo()">
                             <label>{{ "settings.logo" | translate }}</label>
                             <div class="upload-file">
                                 <div class="upload-file-img logo-img">
                                     <div class="site-icon-content-logo">
                                         200&#215;100
-                                        <img *ngIf="isSelectedImageLogo" src="{{ host + selectedImageLogo?.src }}" class="selected-logo-img"/>
+                                        <img *ngIf="selectedImageLogo" src="{{ host + selectedImageLogo?.src }}" class="selected-logo-img"/>
                                     </div>
                                 </div>
                                 <div class="upload-file-container cursor-pointer">
@@ -49,7 +49,7 @@
                             <div class="upload-file upload-file-bottom">
                                 <div class="upload-file-img site-icon-img">
                                     <div class="site-icon-content">112&#215;112</div>
-                                    <img *ngIf="isSelectedImageSiteIcon" src="{{ host + selectedImageSiteIcon?.src }}" class="selected-site-icon-img"/>
+                                    <img *ngIf="selectedImageSiteIcon" src="{{ host + selectedImageSiteIcon?.src }}" class="selected-site-icon-img"/>
                                 </div>
                                 <div class="upload-file-container cursor-pointer">
                                     <div class="upload-file-container__input-wrapper padding-left-right_15">
@@ -73,70 +73,81 @@
                             </div>
                         </div>
                     </form>
-                    <rap-step-tabs>
+                    <rap-step-tabs (onSelect)="onClickChangeTabDescription($event)">
                         <rap-step-tab
-                            *ngFor="let item of selectedPlatform.descriptions"
-                            [imgSrc]="languageService.getFromList(item.lang_id)?.flag"
-                            [title]="langShortTitle[item.lang_id].title | translate"
+                            *ngFor="let item of selectedPlatform?.descriptions"
+                            [imgSrc]="languageService.getFromList(item?.lang_id)?.flag"
+                            [title]="langShortTitle[item?.lang_id]?.title | translate"
+                            (click)="getDescription(item)"
                         >
-                            <form [formGroup]="shopDetailsForm">
-                                <div class="settings-input-content">
-                                    <label>{{ "settings.shopName" | translate }}</label>
-                                    <div>
-                                        <input matInput
-                                            formControlName="shopName"
-                                            class="settings-input"
-                                            id="shopName"
-                                            required>
+                        <form [formGroup]="shopDetailsForm">
+                            <div formArrayName="items" *ngFor="let itemDesc of shopDetailsForm.get('items')['controls']; let i = index;">
+                                <div [formGroupName]="i">
+                                    <div class="settings-input-content">
+                                        <label>{{ "settings.shopName" | translate }}</label>
+                                        <div>
+                                            <input matInput
+                                                formControlName="name"
+                                                class="settings-input"
+                                                id="name"
+                                                (change)="getDescription(item)"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="settings-input-content">
+                                        <label>{{ "settings.address" | translate }}</label>
+                                        <div>
+                                            <input matInput
+                                                formControlName="adress"
+                                                class="settings-input"
+                                                id="adress"
+                                                [(ngModel)]="[i].adress"
+                                                (change)="getDescription(item)"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="settings-input-content">
+                                        <label>{{ "settings.workSchedule" | translate }}</label>
+                                        <div>
+                                            <input matInput
+                                                formControlName="work_schedule"
+                                                class="settings-input"
+                                                id="work_schedule"
+                                                (change)="getDescription(item)"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="settings-input-content">
+                                        <label>{{ "settings.metaTagDescription" | translate }}</label>
+                                        <div>
+                                            <input matInput
+                                                formControlName="meta_description"
+                                                class="settings-input-meta margin-top__10"
+                                                id="meta_description"
+                                                (change)="getDescription(item)"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="settings-input-content">
+                                        <label>{{ "settings.metaTagKeywords" | translate }}</label>
+                                        <div>
+                                            <input matInput
+                                                formControlName="meta_keywords"
+                                                class="settings-input-meta"
+                                                id="meta_keywords"
+                                                (change)="getDescription(item)"
+                                                required>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="settings-input-content">
-                                    <label>{{ "settings.address" | translate }}</label>
-                                    <div>
-                                        <input matInput
-                                            formControlName="address"
-                                            class="settings-input"
-                                            id="address"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="settings-input-content">
-                                    <label>{{ "settings.workSchedule" | translate }}</label>
-                                    <div>
-                                        <input matInput
-                                            formControlName="workSchedule"
-                                            class="settings-input"
-                                            id="workSchedule"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="settings-input-content">
-                                    <label>{{ "settings.metaTagDescription" | translate }}</label>
-                                    <div>
-                                        <input matInput
-                                            formControlName="metaTagDescription"
-                                            class="settings-input-meta margin-top__10"
-                                            id="metaTagDescription"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="settings-input-content">
-                                    <label>{{ "settings.metaTagKeywords" | translate }}</label>
-                                    <div>
-                                        <input matInput
-                                            formControlName="metaTagKeywords"
-                                            class="settings-input-meta"
-                                            id="metaTagKeywords"
-                                            required>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
+                        </form>
                         </rap-step-tab>
                     </rap-step-tabs>
                 </rap-step-tab>
               
                 <rap-step-tab [title]="'settings.contactData' | translate">
-                    <form [formGroup]="siteSettingsContactTopForm" class="phone-form-container">
+                    <form [formGroup]="siteSettingsContactTopForm" (submit)="getSiteSettingsContactTopForm()" class="phone-form-container">
                         <label class="phone-input">{{ "settings.siteTelephone" | translate }}</label>
                         <div *ngFor="let phoneNumber of selectedPlatform?.phones; index as i">
                             <div class="settings-input-content">
@@ -190,7 +201,7 @@
                             </div>
                         </div>
                     </form>
-                    <form [formGroup]="siteSettingsContactBottomForm">
+                    <form [formGroup]="siteSettingsContactBottomForm" (submit)="getSiteSettingsContactBottomForm()">
                         <div class="settings-input-content email-input-content">
                             <label>{{ "settings.siteEmail" | translate }}</label>
                             <div>
@@ -204,45 +215,45 @@
                             <label>{{ "settings.siteFacebook" | translate }}</label>
                             <div>
                                 <input matInput
-                                    formControlName="siteFacebook"
+                                    formControlName="facebook"
                                     class="settings-input"
-                                    id="siteFacebook">
+                                    id="facebook">
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteInstagram" | translate }}</label>
                             <div>
                                 <input matInput
-                                    formControlName="siteInstagram"
+                                    formControlName="instagram"
                                     class="settings-input"
-                                    id="siteInstagram">
+                                    id="instagram">
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteTelegram" | translate }}</label>
                             <div>
                                 <input matInput
-                                    formControlName="siteTelegram"
+                                    formControlName="telegram"
                                     class="settings-input"
-                                    id="siteTelegram">
+                                    id="telegram">
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteViber" | translate }}</label>
                             <div>
                                 <input matInput
-                                    formControlName="siteViber"
+                                    formControlName="viber"
                                     class="settings-input"
-                                    id="siteViber">
+                                    id="viber">
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteYoutube" | translate }}</label>
                             <div>
                                 <input matInput
-                                    formControlName="siteYoutube"
+                                    formControlName="youtube"
                                     class="settings-input"
-                                    id="siteYoutube">
+                                    id="youtube">
                             </div>
                         </div>
                     </form>
