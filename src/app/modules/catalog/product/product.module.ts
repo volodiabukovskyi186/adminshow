@@ -15,6 +15,7 @@ import { AttributesComponent } from './components/layouts/attributes/attributes.
 import { AttibuteValueComponent } from './components/layouts/attibute-value/attibute-value.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TranslateModule } from "@ngx-translate/core";
+import { ProductFormSaleComponent } from './components/layouts/product-form-sale/product-form-sale.component';
 
 const c = [ProductFormComponent];
 
@@ -29,6 +30,7 @@ const c = [ProductFormComponent];
     ImagesComponent,
     AttributesComponent,
     AttibuteValueComponent,
+    ProductFormSaleComponent,
   ],
   exports: [...c],
   imports: [

@@ -1,0 +1,89 @@
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .original {
+    width: 360px;
+    max-width: 360px;
+    input{
+      width: 100%;
+    }
+  }
+  .description {
+    max-width: 150px;
+    width: 150px;
+   text-align: start;
+    label{
+      max-width: 150px;
+      width: 150px;
+    }
+  }
+}
+.button-add-save{
+  padding-top: 23px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  button{
+    border-radius: 2px;
+    width: 25px;
+    height: 25px;
+    background-color: #D9DEE4;
+    border: none;
+    color: #5E5E5E;
+
+  }
+  .plus{
+    margin-right: 8px;
+  }
+}
+.price-container {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: row;
+  p {
+    margin-bottom: 0;
+  }
+}
+.sale-list{
+  padding: 60px 0;
+  .table{
+    border-radius: 5px;
+    min-height: 280px;
+    padding: 24px 16px;
+  }
+}
+.sale-list__block{
+  padding: 24px 16px;
+  border: solid 1px #707070;
+  border-radius: 5px;
+}
+table, td, th {
+  border: 1px solid #D9DEE4;
+}
+table {
+  padding: 24px 16px;
+  border-collapse: collapse;
+  width: 100%;
+  color: #5E5E5E;
+
+  th{
+    font-weight: 100;
+  }
+
+  .date-start,
+  .date-end,
+  .price,
+  .number{
+    font-weight: 400;
+  }
+}
+
+.number{
+  width: 50px;
+
+}
+th {
+  height: 50px;
+}
