@@ -207,7 +207,9 @@
       "add_edit_localization": "Add / Edit Status",
       "status": "Status",
       "name": "Name",
-      "marking": "Marking"
+      "marking": "Marking",
+      "value": "Value",
+      "color": "Color"
 
 
     }

@@ -1,52 +1,40 @@
-<div>
-    <div class="form-row">
-        <div class="description">
-            <label for="">Статус</label>
-        </div>
-        <div class="original">
-            <form [formGroup]="ordersForm">
-                <mat-form-field appearance="none">
-                    <mat-select class="orders-select" formControlName="status">
-                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
-                            {{ 'statusCodes.done' | translate }}
-                        </mat-option>
-                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
-                            {{ 'statusCodes.inProgress' | translate }}
-                        </mat-option>
-                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
-                            {{ 'statusCodes.canceled' | translate }}
-                        </mat-option>
-                        <mat-option [value]="statusCodes[selectedOrder?.id] | translate">
-                            {{ 'statusCodes.sent' | translate }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </form>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="description">
-            <label for="">Найменування</label>
-        </div>
-        <div class="original">
-            <input class="radius" type="text"/>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="description">
-            <label for="">Позначення</label>
-        </div>
-        <div class="original">
-            <input class="radius" type="text"/>
-        </div>
-    </div>
-</div>
-<!--<rap-step-tab-->
-<!--        *ngFor="let item of category.description"-->
-<!--        [imgSrc]="languageService.getFromList(item.lang.id)?.flag"-->
-<!--        [title]="item.lang.short_title"-->
-<!--&gt;-->
-<!--</rap-step-tab>-->
+<div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
 
-<!--<p>{{this.selectedOrder.descriptions}}</p>-->
+<fieldset class="radius" style="margin-bottom: 16px;">
+    <div class="form-row">
+        <div class="description">
+            <label for="">{{ "MENU.localization.value" | translate }}</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selected.value" type="text"/>
+        </div>
+    </div>
+    <rap-step-tabs class="flag-tabs">
+        <rap-step-tab
+                *ngFor="let item of selected?.description"
+                [imgSrc]="langService.getFromList(item?.lang_id)?.flag"
+                [title]="langShortTitle[item?.lang_id]?.title | translate"
+        >
+            <div class="form-row">
+                <div class="description">
+                    <label for="">{{ "MENU.localization.name" | translate }}</label>
+                </div>
+                <div class="original">
+                    <input class="radius" [(ngModel)]="item.title" type="text"/>
+                </div>
+            </div>
 
+            <div class="form-row">
+                <div class="description">
+                    <label for="">{{ "MENU.localization.marking" | translate }}</label>
+                </div>
+                <div class="original">
+                    <input class="radius" [(ngModel)]="item.unit" type="text"/>
+                </div>
+            </div>
+
+
+
+        </rap-step-tab>
+    </rap-step-tabs>
+</fieldset>

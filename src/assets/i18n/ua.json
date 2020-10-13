@@ -207,7 +207,9 @@
       "add_edit_localization": "Додавання/Редагування",
       "status": "Статус",
       "name": "Найменування",
-      "marking": "Позначення"
+      "marking": "Позначення",
+      "value": "Значення",
+      "color": "Колір"
     }
   },
   "statusCodes": {

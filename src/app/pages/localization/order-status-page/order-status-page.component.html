@@ -5,6 +5,7 @@
 <div form>
     <app-order-status-form
             [selectedOrder]="selectedOrder"
+
     ></app-order-status-form>
 </div>
 <div filter></div>
@@ -59,5 +60,15 @@
         </tbody>
     </table>
 </div>
+<!--    <app-pagination-->
+<!--            class="radius"-->
+<!--            [page]="localizationService.page"-->
+<!--            [total]="Math.ceil(alldata.count / alldata.take)"-->
+<!--            [pagesToShow]="5"-->
+<!--            (goNext)="pageNextHandler()"-->
+<!--            (goPrev)="pagePrevHandler()"-->
+<!--            (goPage)="pageToHandler($event)"-->
+<!--            (pageChanged)="pageChangedHandler()"-->
+<!--    ></app-pagination>-->
 </rap-panel-content>
 

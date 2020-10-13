@@ -14,48 +14,23 @@ import {connectableObservableDescriptor} from "rxjs/internal/observable/Connecta
 })
 export class OrderStatusFormComponent implements OnInit {
     @Input() selectedOrder;
-    @Output() orderStatusUp: EventEmitter<any> = new EventEmitter();
     arrOrders:Array<any>
+    oneOrderStatus:any;
+    @Input() public descr: FormControl = new FormControl();
+
     constructor(public languageService: LocalizationLang,
                 public langService: LanguageService,
                 public localizeServ: LocalizationServicesService) {
     }
     ngOnInit(): void {
         this.sub()
-        this.getOrderStatus()
     }
+
     sub():void{
         this.localizeServ.bSubject.subscribe(data=>{
-           this.selectedOrder=data;
+           this.selectedOrder = data;
         })
-        console.log(this.selectedOrder)
-    }
-    addChanges(): void {
-        this.orderStatusUp.emit({ selectedOrder: this.selectedOrder })
-    }
-    getOrderStatus():void{
-        this.localizeServ.getOrderStatus().subscribe(data=>{
-            this.arrOrders=data.data;
-            console.log(this.arrOrders)
-        })
-    }
-    public statusCodes = {
-        "1": {
-            name: 'statusCodes.done',
-            color: '#42996F'
-        },
-        "2": {
-            name: 'statusCodes.inProgress',
-            color: '#ffff00'
-        },
-        "3": {
-            name: 'statusCodes.canceled',
-            color: '#ff0000'
-        },
-        "4": {
-            name: 'statusCodes.sent',
-            color: '#636363'
-        }
+
     }
     public langShortTitle = {
         "1": {

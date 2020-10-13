@@ -16,6 +16,7 @@ export class ProductCategoryService {
     return this.http.get<any>(
       environment.host + `getProductCategories/${prodId}`
     );
+
   }
 
   put(prodId: number): Observable<any> {

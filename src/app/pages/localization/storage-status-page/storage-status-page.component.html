@@ -3,61 +3,53 @@
         [showRightSide]="pages.panelSettings.right"
 >
     <div form>
-        <!--    [order]="selectedOrder"&ndash;&gt;-->
-<!--        [selectedOrder]="selectedOrder"-->
-        <app-order-status-form [selectedOrder]="selectedOrder"></app-order-status-form>
-        <!--            <app-language-form-->
-
-        <!--                    [title]="'MENU.localization.addLanguage' | translate"-->
-        <!--            ></app-language-form>-->
+        <app-storage-order-form [selected]="selected" ></app-storage-order-form>
     </div>
     <div filter></div>
     <div content class="padding">
-        <table  class="raisins-table border-all radius"  >
+        <table class="raisins-table border-all radius">
             <thead>
             <tr>
                 <th width="64px">{{ "APP.id" | translate }}</th>
                 <th width="">{{ "APP.title" | translate }}</th>
-                <th width="128px">{{ "APP.updated_at" | translate }}</th>
-                <th width="128px">{{ "APP.action" | translate }}</th>
-                <th width="128px">{{ "APP.action" | translate }}</th>
+                <th width="168px">{{ "MENU.localization.color" | translate }}</th>
+                <th width="168px">{{ "APP.updated_at" | translate }}</th>
+                <th width="168px">{{ "APP.action" | translate }}</th>
             </tr>
             </thead>
             <tbody>
-            <tr  *ngFor="let order of arrStatus"
-                 [ngClass]=""
-            >
-                <td data-label="ID" class="text-center">{{order?.id}}</td>
-                <td>
-                    {{order?.name}}
+
+            <tr *ngFor="let storege of arrStorage ; let i=index"
+                [ngClass]="">
+                <td data-label="ID" class="text-center">{{i+1}}</td>
+                <td class="text-center">
+                    <div class="flex wrap" style="width: 100%;">
+                             <span class="title flag-container" *ngFor="let stor of storege.descriptions">
+                                 <img class="flag" src="{{ langService.getFromList(stor.lang_id)?.flag }}"/>
+                               <span class="name">{{ stor.name }}</span>
+                             </span>
+                    </div>
+                </td>
+                <td class="text-center ">
+                          <div class="box" [ngStyle]="{'background':storege.color}" ></div>
                 </td>
                 <td class="text-center">
-                    {{order?.created_at}}
-                </td>
-                <td class="text-center">
-                    {{order?.created_at}}
+                    {{storege.updated_at==null?'-':storege.updated_at}}
                 </td>
                 <td>
                     <div class="flex wrap center">
-                        <rap-delete-button
-                                data-tooltip-left="on/off"
-                                class="button transparent radius"
-                                [src]="
-                'assets/icons/eye-open.svg'
-                "
-                        ></rap-delete-button>
                         <button
                                 style="position: relative;"
                                 [attr.data-tooltip-left]="'APP.edit' | translate"
                                 role="button"
-                                (click)="edit(order)"
+                                (click)="edit(storege)"
                                 class="button transparent radius"
                         >
                             <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
                         </button>
 
                         <rap-delete-button
-                                (click)="deleteStatus(order)"
+                                (click)="deleteStatus(storege)"
                                 data-tooltip-left="Delete"
                                 class="button transparent radius"
                                 [src]="'assets/icons/delete.svg'"
@@ -69,5 +61,6 @@
         </table>
     </div>
 </rap-panel-content>
+
 
 

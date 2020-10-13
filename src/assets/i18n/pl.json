@@ -171,7 +171,9 @@
       "add_edit_localization": "Dodaj / edytuj kolekcję",
       "status": "Status",
       "name": "Nazwa",
-      "marking": "Cechowanie"
+      "marking": "Cechowanie",
+      "value": "Wartość",
+      "color": "Kolor"
 
     }
   },

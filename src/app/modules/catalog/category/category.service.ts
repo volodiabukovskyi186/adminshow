@@ -19,7 +19,9 @@ export class CategoryService {
   };
   all: Array<ICategory> = [];
 
-  constructor(private http: HttpClient, private lang: LanguageService) {}
+  constructor(private http: HttpClient, private lang: LanguageService) {
+    console.log(this.all)
+  }
 
   getList(): Observable<ICategoryResponse> {
     let skip = this.page * this.category.take - this.category.take;

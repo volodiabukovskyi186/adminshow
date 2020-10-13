@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {LanguageService, LanguageService as LocalizationLang} from "../../language/language.service";
+import {PaymentService} from "../../../../pages/client/services/payment.service";
+import {StorageService} from "../../../../pages/localization/services/storage.service";
 
 @Component({
   selector: 'app-storage-order-form',
@@ -7,35 +10,39 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./storage-order-form.component.scss']
 })
 export class StorageOrderFormComponent implements OnInit {
-  @Input()selectedOrder;
 
-  ordersForm: FormGroup  = new FormGroup({
-    status: new FormControl(''),
-  });
+  @Input() selected;
+  arrOrders:Array<any>
+  oneOrderStatus:any;
+  @Input() public descr: FormControl = new FormControl();
 
-
-  public statusCodes = {
-    "1": {
-      name: 'statusCodes.done',
-      color: '#42996F'
-    },
-    "2": {
-      name: 'statusCodes.inProgress',
-      color: '#ffff00'
-    },
-    "3": {
-      name: 'statusCodes.canceled',
-      color: '#ff0000'
-    },
-    "4": {
-      name: 'statusCodes.sent',
-      color: '#636363'
-    }
+  constructor(public languageService: LocalizationLang,
+              public langService: LanguageService,
+              public storageService:StorageService,) {
+  }
+  ngOnInit(): void {
+    this.sub()
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  sub():void{
+    this.storageService.bSubject.subscribe(data=>{
+      this.selected = data;
+    })
+    console.log( this.selected)
+  }
+  public langShortTitle = {
+    "1": {
+      title: 'settings.settingsLangShortTitleEng'
+    },
+    "2": {
+      title: 'settings.settingsLangShortTitleUa'
+    },
+    "3": {
+      title: 'settings.settingsLangShortTitleRus'
+    },
+    "4": {
+      title: 'settings.settingsLangShortTitlePl'
+    }
   }
 
 }

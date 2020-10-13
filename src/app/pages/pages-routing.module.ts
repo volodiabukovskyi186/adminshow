@@ -24,8 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {OrderStatusPageComponent} from "./localization/order-status-page/order-status-page.component";
 import {StorageStatusPageComponent} from "./localization/storage-status-page/storage-status-page.component";
 import {UnitWeightPageComponent} from "./localization/unit-weight-page/unit-weight-page.component";
-import {PaymentMethodsPageComponent} from "./localization/payment-methods-page/payment-methods-page.component";
+import {PaymentMethodsPageComponent} from "./client/payment-methods-page/payment-methods-page.component";
 import {CountriesPageComponent} from "./localization/countries-page/countries-page.component";
+import {DeliveryMethodsPageComponent} from "./client/delivery-methods-page/delivery-methods-page.component";
 
 export const pagesRoutes: Routes = [
   {
@@ -193,6 +194,14 @@ export const pagesRoutes: Routes = [
   {
     path: "payment_methods",
     component:PaymentMethodsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "delivery_methods",
+    component:DeliveryMethodsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: [],

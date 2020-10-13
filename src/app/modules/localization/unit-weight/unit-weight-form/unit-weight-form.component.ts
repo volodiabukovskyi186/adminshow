@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
+import {LanguageService, LanguageService as LocalizationLang} from "../../language/language.service";
+import {LocalizationServicesService} from "../../../../pages/localization/services/localization-services.service";
 
 @Component({
   selector: 'app-unit-weight-form',
@@ -7,35 +9,37 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./unit-weight-form.component.scss']
 })
 export class UnitWeightFormComponent implements OnInit {
+  @Input() selected;
+  arrOrders:Array<any>
+  oneOrderStatus:any;
+  @Input() public descr: FormControl = new FormControl();
 
-  @Input()selectedOrder;
-  ordersForm: FormGroup  = new FormGroup({
-    status: new FormControl(''),
-  });
-
-  // this.selectedOrder.descriptions.length.order_status_id
-
-  constructor() {}
+  constructor(public languageService: LocalizationLang,
+              public langService: LanguageService,
+              public localizeServ: LocalizationServicesService) {
+  }
   ngOnInit(): void {
-
+    this.sub()
   }
 
-  public statusCodes = {
+  sub():void{
+    this.localizeServ.bSubject.subscribe(data=>{
+      this.selected = data;
+    })
+
+  }
+  public langShortTitle = {
     "1": {
-      name: 'statusCodes.done',
-      color: '#42996F'
+      title: 'settings.settingsLangShortTitleEng'
     },
     "2": {
-      name: 'statusCodes.inProgress',
-      color: '#ffff00'
+      title: 'settings.settingsLangShortTitleUa'
     },
     "3": {
-      name: 'statusCodes.canceled',
-      color: '#ff0000'
+      title: 'settings.settingsLangShortTitleRus'
     },
     "4": {
-      name: 'statusCodes.sent',
-      color: '#636363'
+      title: 'settings.settingsLangShortTitlePl'
     }
   }
 

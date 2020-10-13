@@ -1,17 +1,6 @@
 <div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
 <fieldset class="radius" style="margin-bottom: 16px;">
-<!--    <div class="form-row">-->
-<!--        <div class="description">-->
-<!--            <label for="">{{ "MENU.localization.status" | translate }}</label>-->
-<!--        </div>-->
-<!--        <div class="original">-->
-<!--            <select class="radius" name="parent_id" >-->
-<!--                <option value="1" *ngFor="let status of arrOrders" >{{ status?.name }}</option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--    </div>-->
     <rap-step-tabs class="flag-tabs">
-
         <rap-step-tab
                 *ngFor="let item of selectedOrder?.descriptions"
                 [imgSrc]="langService.getFromList(item.lang_id)?.flag"

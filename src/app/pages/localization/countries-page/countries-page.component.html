@@ -3,55 +3,61 @@
         [showRightSide]="pages.panelSettings.right"
 >
     <div form>
-<app-countries-form [selectedOrder]="selectedOrder"></app-countries-form>
+        <app-countries-form  [selected]="selected">
+        </app-countries-form>
     </div>
     <div filter></div>
     <div content class="padding">
-        <table  class="raisins-table border-all radius"  >
+        <table class="raisins-table border-all radius">
             <thead>
             <tr>
                 <th width="64px">{{ "APP.id" | translate }}</th>
-                <th width="90px">{{ "APP.id" | translate }}</th>
+                <th width="128px">{{ "APP.id" | translate }}</th>
                 <th width="">{{ "APP.title" | translate }}</th>
-                <th width="196px">{{ "APP.updated_at" | translate }}</th>
-                <th width="168px">{{ "APP.action" | translate }}</th>
-                <th width="168px">{{ "APP.action" | translate }}</th>
+                <th width="200px">{{ "APP.updated_at" | translate }}</th>
+                <th width="200px">{{ "APP.updated_at" | translate }}</th>
+                <th width="128px">{{ "APP.action" | translate }}</th>
             </tr>
             </thead>
             <tbody>
-            <tr  *ngFor="let order of arrStatus"
-                 [ngClass]=""
-            >
-                <td data-label="ID" class="text-center">{{order?.id}}</td>
-                <td data-label="ID" class="text-center">{{order?.id}}</td>
-                <td data-label="ID" class="text-center">{{order?.id}}</td>
-                <td>
-                    {{order?.name}}
+
+            <tr *ngFor="let country of arrCountries; let i=index"
+                [ngClass]="">
+                <td class="text-center">1</td>
+                <td class="text-center">
+                    <div class="flex wrap" style="width: 100%;">
+<!--                             <span class="title country-img-wrap">-->
+<!--                                 <img class="flag country"  src=" {{langService.getFromList(country.image.src_mini)?.flag }}"/>-->
+<!--                             </span>-->
+                    </div>
                 </td>
                 <td class="text-center">
-                    {{order?.created_at}}
+                    <div class="flex wrap" style="width: 100%;">
+                             <span class="title flag-container" *ngFor="let count of country.descriptions">
+                                 <img class="flag" src="{{ langService.getFromList(count.lang_id)?.flag }}"/>
+                               <span class="name">{{ count.name }}</span>
+                             </span>
+                    </div>
                 </td>
+                <td class="text-center">
+                    {{country.updated_at == null ? '-' : country.updated_at}}
+                </td>
+                <td class="text-center">{{country.iso}}</td>
+
                 <td>
                     <div class="flex wrap center">
-                        <rap-delete-button
-                                data-tooltip-left="on/off"
-                                class="button transparent radius"
-                                [src]="
-                'assets/icons/eye-open.svg'
-                "
-                        ></rap-delete-button>
                         <button
                                 style="position: relative;"
                                 [attr.data-tooltip-left]="'APP.edit' | translate"
                                 role="button"
-                                (click)="edit(order)"
+                                (click)="edit(country)"
                                 class="button transparent radius"
                         >
                             <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
                         </button>
 
                         <rap-delete-button
-                                (click)="deleteStatus(order)"
+                                (click)="deleteStatus(country)"
                                 data-tooltip-left="Delete"
                                 class="button transparent radius"
                                 [src]="'assets/icons/delete.svg'"
@@ -63,5 +69,6 @@
         </table>
     </div>
 </rap-panel-content>
+
 
 

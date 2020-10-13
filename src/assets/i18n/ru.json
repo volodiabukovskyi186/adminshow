@@ -168,7 +168,9 @@
       "add_edit_localization": "Добавить / изменить cтатус",
       "status": "Статус",
       "name": "Имя",
-      "marking": "Маркировка"
+      "marking": "Маркировка",
+      "value": "Значение",
+      "color": "Цвет"
     }
   },
   "statusCodes": {

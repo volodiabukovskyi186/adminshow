@@ -1,0 +1,36 @@
+<!-- <pre>{{ category.all | json }}</pre> -->
+<!-- <pre>{{ prodCategory.list | json }}</pre> -->
+<!-- <pre>{{ prodCategory.values | json }}</pre> -->
+<ngx-select
+        [allowClear]="true"
+        [items]="category.all"
+        optionValueField="id"
+        optionTextField="title"
+        [multiple]="true"
+        [(ngModel)]="prodCategory.values"
+        placeholder="No category selected"
+>
+    <ng-template
+            ngx-select-option
+            ngx-select-option-selected
+            let-option
+            let-text="text"
+    >
+        <span [innerHtml]="text"></span>
+        <!-- | {{option.data.id}} -->
+    </ng-template>
+    <ng-template ngx-select-option-not-found let-input>
+        "{{ input }}" not found
+    </ng-template>
+</ngx-select>
+<div class="flex center">
+    <button
+            style="position: relative;"
+            data-tooltip-left="Save"
+            role="button"
+            (click)="save()"
+            class="button transparent radius"
+    >
+        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+    </button>
+</div>

@@ -59,10 +59,13 @@ import {OrderStatusModule} from "../modules/localization/order-status/order-stat
 import { StorageStatusPageComponent } from './localization/storage-status-page/storage-status-page.component';
 import { UnitWeightPageComponent } from './localization/unit-weight-page/unit-weight-page.component';
 import {UnitWeightModule} from "../modules/localization/unit-weight/unit-weight.module";
-import { PaymentMethodsPageComponent } from './localization/payment-methods-page/payment-methods-page.component';
-import {PaymentMethodsModule} from "../modules/localization/payment-methods/payment-methods.module";
+import { PaymentMethodsPageComponent } from './client/payment-methods-page/payment-methods-page.component';
+import {PaymentMethodsModule} from "../modules/client/payment-methods/payment-methods.module";
 import { CountriesPageComponent } from './localization/countries-page/countries-page.component';
 import {CountriesModule} from "../modules/localization/countries/countries.module";
+import { DeliveryMethodsPageComponent } from './client/delivery-methods-page/delivery-methods-page.component';
+import {DeliveryMethodsModule} from "../modules/client/delivery-methods/delivery-methods.module";
+import {StorageModule} from "../modules/localization/storage/storage.module";
 
 @NgModule({
   declarations: [
@@ -90,7 +93,8 @@ import {CountriesModule} from "../modules/localization/countries/countries.modul
     StorageStatusPageComponent,
     UnitWeightPageComponent,
     PaymentMethodsPageComponent,
-    CountriesPageComponent
+    CountriesPageComponent,
+    DeliveryMethodsPageComponent
   ],
     imports: [
         CommonModule,
@@ -136,6 +140,8 @@ import {CountriesModule} from "../modules/localization/countries/countries.modul
         UnitWeightModule,
         PaymentMethodsModule,
         CountriesModule,
+        DeliveryMethodsModule,
+        StorageModule,
         // ToastrModule added
     ],
   providers: [

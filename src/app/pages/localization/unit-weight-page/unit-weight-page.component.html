@@ -3,63 +3,61 @@
         [showRightSide]="pages.panelSettings.right"
 >
     <div form>
-<app-unit-weight-form  [selectedOrder]="selectedOrder"></app-unit-weight-form>
+        <app-unit-weight-form [selected]="selected">
+
+        </app-unit-weight-form>
     </div>
     <div filter></div>
     <div content class="padding">
-        <table  class="raisins-table border-all radius"  >
+        <table class="raisins-table border-all radius">
             <thead>
             <tr>
                 <th width="64px">{{ "APP.id" | translate }}</th>
                 <th width="">{{ "APP.title" | translate }}</th>
-                <th width="128px">{{ "APP.updated_at" | translate }}</th>
-                <th width="128px">{{ "APP.updated_at" | translate }}</th>
+                <th width="168px">{{ "MENU.localization.marking" | translate }}</th>
+                <th width="168px">{{ "MENU.localization.value" | translate }}</th>
                 <th width="168px">{{ "APP.updated_at" | translate }}</th>
-                <th width="168px">{{ "APP.action" | translate }}</th>
+                <th width="128px">{{ "APP.action" | translate }}</th>
             </tr>
             </thead>
             <tbody>
-            <tr  *ngFor="let order of arrStatus"
-                 [ngClass]=""
+            <tr *ngFor="let weight of arrWeight; let i=index"
+                [ngClass]=""
             >
-                <td data-label="ID" class="text-center">{{order?.id}}</td>
-                <td>
-                    {{order?.name}}
+                <td data-label="ID" class="text-center">{{i + 1}}</td>
+                <td class="text-center">
+                    <div class="flex wrap" style="width: 100%;">
+                           <span class="title flag-container" *ngFor="let desc of weight.description">
+                                 <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+                                <span class="name">{{ desc.title }}</span>
+                           </span>
+                    </div>
                 </td>
                 <td class="text-center">
-                    {{order?.created_at}}
+                    <div *ngFor="let mark of weight.description">
+                        <span class="flag-size">
+                        <img class="flag" src="{{ langService.getFromList(mark.lang_id)?.flag }}"/>
+                            {{mark?.unit}}
+                        </span>
+                    </div>
                 </td>
                 <td class="text-center">
-                    {{order?.created_at}}
+                    {{weight?.value}}
                 </td>
                 <td class="text-center">
-                    {{order?.created_at}}
+                    {{weight?.created_at}}
                 </td>
                 <td>
                     <div class="flex wrap center">
-                        <rap-delete-button
-                                data-tooltip-left="on/off"
-                                class="button transparent radius"
-                                [src]="
-                'assets/icons/eye-open.svg'
-                "
-                        ></rap-delete-button>
                         <button
                                 style="position: relative;"
                                 [attr.data-tooltip-left]="'APP.edit' | translate"
                                 role="button"
-                                (click)="edit(order)"
+                                (click)="edit(weight)"
                                 class="button transparent radius"
                         >
                             <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
                         </button>
-
-                        <rap-delete-button
-                                (click)="deleteStatus(order)"
-                                data-tooltip-left="Delete"
-                                class="button transparent radius"
-                                [src]="'assets/icons/delete.svg'"
-                        ></rap-delete-button>
                     </div>
                 </td>
             </tr>
@@ -67,5 +65,4 @@
         </table>
     </div>
 </rap-panel-content>
-
 
