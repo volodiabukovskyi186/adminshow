@@ -1,0 +1,234 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  @include zero;
+  z-index: 10000;
+
+  background-color: rgba($black, 0.48);
+
+  .modal-wrapper {
+    position: absolute;
+    @include zero;
+    overflow-y: auto;
+    .modal-close {
+      background-color: rgba($black, 0.5);
+      cursor: pointer;
+      position: absolute;
+      @include zero;
+      @include transition();
+      &:hover {
+        background-color: rgba($black, 0);
+      }
+    }
+
+    .modal-content {
+      flex: 1;
+      background-color: rgba($white, 1);
+      // min-height: 100vh;
+      width: 100%;
+      max-width: 800px;
+      margin-left: 15%;
+      header {
+        position: sticky;
+        top: 0;
+
+        background-color: rgba($white, .8);
+        padding: $space/2 $space;
+        h4 {
+          margin: 0;
+        }
+      }
+      .content {
+        padding: $space;
+      }
+    }
+  }
+}
+
+.orders-form-title {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+::ng-deep {
+    .tabs-header-settings-form {
+        &>rap-step-tabs {
+            &>.nav-tabs {
+                li {
+                    width: 50%;
+                    text-align: center;
+                    color: #5F5F62 !important;
+                    border-bottom: solid 1px transparent !important;
+                }
+      
+            li.active {
+                color: #5F5F62 !important;
+                border-color: #9f1941 !important;
+                }
+            }
+        }
+    }
+}
+
+.orders-input-wrapper {
+    margin-top: 20px;
+    width: 93%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.delete-icon {
+    margin-right: -7px;
+    padding: 9px;
+    margin-top: -6px;
+}
+
+.margin-top__10 {
+    margin-top: 10px;
+}
+
+.padding-left-right_15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.margin-bottom__20 {
+    margin-bottom: 20px;
+}
+
+.margin-bottom__10 {
+    margin-bottom: 10px;
+}
+
+.margin-top__-20 {
+    margin-top: -20px;
+}
+
+.orders-tabs-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.orders-content-wrapper-left,
+.orders-content-wrapper-right {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.orders-content-wrapper-left {
+    width: 35%;
+}
+
+.orders-content-wrapper-right {
+    width: 65%;
+}
+
+.orders-content {
+    margin-top: 5px;
+}
+
+.order-title {
+    font-weight: 500 !important;
+}
+
+.order-item {
+    margin-top: 5px;
+}
+
+.sale-list{
+    padding: 60px 0;
+    .table{
+      border-radius: 5px;
+      min-height: 280px;
+      padding: 24px 16px;
+    }
+}
+.sale-list__block{
+    padding: 24px 16px;
+    border: solid 1px #707070;
+    border-radius: 5px;
+}
+table, td, th {
+    border: 1px solid #D9DEE4;
+}
+table {
+    padding: 24px 16px;
+    border-collapse: collapse;
+    width: 100%;
+    color: #5E5E5E;
+  
+    th {
+      font-weight: 100;
+    }
+  
+    .date-start,
+    .date-end,
+    .price,
+    .number{
+      font-weight: 400;
+    }
+}
+
+.unset-border {
+    border: none !important;
+}
+
+.unset-height {
+    height: 30px !important;
+}
+
+.th-order {
+    border: none !important;
+    height: 30px !important;
+}
+
+.order__text-size__14 {
+    font-size: 14px;
+}
+
+.order-text {
+    font-size: 14px;
+    text-align: left;
+    color: #000;
+}
+
+.margin-top__15 {
+    margin-top: 15px !important;
+}
+
+.margin-top__30 {
+    margin-top: 30px !important;
+}
+  
+.number{
+    width: 50px;
+  
+}
+th {
+    height: 50px;
+}
+  
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.margin-left__-34px {
+    margin-left: -34px;
+}
+
+.margin-left__-31px {
+    margin-left: -31px;
+}
+
+.margin-right__5 {
+    margin-right: 5px;
+}

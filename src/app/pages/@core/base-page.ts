@@ -14,6 +14,7 @@ export abstract class BasePage {
     this.pages.panelButtonSettings.save = true;
     this.pages.panelButtonSettings.cancel = true;
     this.pages.panelButtonSettings.rightToggle = false;
+    this.pages.panelButtonSettings.review = false;
   };
 
   closeForm = () => {
@@ -22,6 +23,7 @@ export abstract class BasePage {
     this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.cancel = false;
     this.pages.panelButtonSettings.rightToggle = true;
+    this.pages.panelButtonSettings.review = false;
   };
 
   initPagesSettings() {
@@ -30,12 +32,14 @@ export abstract class BasePage {
     this.pages.panelSettings.top = true;
     this.pages.panelButtonSettings.rightToggle = false;
     this.pages.panelButtonSettings.plus = true;
+    this.pages.panelButtonSettings.review = false;
   }
 
   initPanelButton() {
     this.pages.onCancelClick = this.cancel;
     this.pages.onSaveClick = this.save;
     this.pages.onPlusClick = this.plus;
+    this.pages.onReviewClick = this.review;
   }
 
   cancel = () => {
@@ -45,6 +49,10 @@ export abstract class BasePage {
   save = () => {};
 
   plus = () => {
+    this.openForm();
+  };
+
+  review = () => {
     this.openForm();
   };
 }

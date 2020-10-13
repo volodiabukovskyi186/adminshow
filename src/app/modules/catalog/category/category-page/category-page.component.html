@@ -6,8 +6,8 @@
     <app-category-form
       [title]="'category.add_edit_category' | translate"
       [category]="categoryForm.category"
-      [categoryes]="category.category.data"
-      [langs]="this.langService.languages.data"
+      [categoryes]="displayAllCaterories"
+      [langs]="langService.languages.data"
       (formSubmit)="onSubmit($event)"
     >
     </app-category-form>

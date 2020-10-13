@@ -22,7 +22,7 @@ export class PermissionService {
   private merge(
     userPermission: Permission[],
     rolePermission: Permission[]
-  ): Array<string> {
+  ): string[] {
     let result = [];
 
     rolePermission.forEach((element) => {

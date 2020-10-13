@@ -6,6 +6,7 @@ export interface IPanelLabesl {
   add: string;
   cancel: string;
   save: string;
+  review: string;
 }
 @Component({
   selector: "rap-panel",
@@ -19,6 +20,7 @@ export class PanelComponent implements OnInit {
     add: "Add",
     cancel: "Calcel",
     save: "Save",
+    review: "Review"
   };
 
   private showRightSideValue: boolean = false;
@@ -83,6 +85,7 @@ export class PanelComponent implements OnInit {
   }
 
   @Input() get isSaveBtn(): boolean {
+    //console.log(this._isSaveBtn);
     return this._isSaveBtn;
   }
 
@@ -107,6 +110,40 @@ export class PanelComponent implements OnInit {
   @Output() plusClick = new EventEmitter();
 
   onPlusClick = () => this.plusClick.emit();
+
+  private _isReviewBtn: boolean = false;
+  @Output() isReviewBtnChange = new EventEmitter();
+
+  set isReviewBtn(val: boolean) {
+    this._isReviewBtn = val;
+    this.isReviewBtnChange.emit(this._isReviewBtn);
+  }
+
+  @Input() get isReviewBtn(): boolean {
+    return this._isReviewBtn;
+  }
+
+  @Output() reviewClick = new EventEmitter();
+
+  onReviewClick = () => this.reviewClick.emit();
+
+  
+
+  private _toggleFilter: boolean = false;
+  @Output() toggleFilterChange = new EventEmitter();
+
+  set toggleFilter(val: boolean) {
+    this._toggleFilter = val;
+    this.toggleFilterChange.emit(this._toggleFilter);
+  }
+
+  @Input() get toggleFilter(): boolean {
+    return this._toggleFilter;
+  }
+
+  @Output() filterClick = new EventEmitter();
+
+  onFilterClick = () => this.filterClick.emit();
 
   constructor() {}
 

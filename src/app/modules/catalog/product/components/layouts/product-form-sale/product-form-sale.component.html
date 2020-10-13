@@ -1,32 +1,55 @@
 <div>
-    <div class="form-row">
-        <div class="description">
-            <label for="">{{ "APP.saleDateStart" | translate }}</label>
+    <form [formGroup]="productDiscountForm">
+        <div class="form-row">
+            <div class="description">
+                <label for="">{{ "APP.saleDateStart" | translate }}</label>
+            </div>
+            <div class="original">
+                <input 
+                    class="radius"
+                    type="date"
+                    formControlName="date_start"/>
+            </div>
         </div>
-        <div class="original">
-            <input class="radius" type="date"/>
+        <div class="form-row">
+            <div class="description">
+                <label for="">{{ "APP.saleDateEnd" | translate }}</label>
+            </div>
+            <div class="original">
+                <input 
+                    class="radius" 
+                    type="date"
+                    formControlName="date_end"/>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="description">
-            <label for="">{{ "APP.saleDateEnd" | translate }}</label>
+        <div class="form-row">
+            <div class="description">
+                <label for="">{{ "APP.saleNewPrice" | translate }}</label>
+            </div>
+            <div class="original">
+                <input 
+                    class="radius" 
+                    type="text"
+                    formControlName="new_price"/>
+            </div>
         </div>
-        <div class="original">
-            <input class="radius" type="date"/>
+        <div class="button-add-save">
+            <button class="plus">
+                <rap-svg-ico
+                    class="cursor-pointer"
+                    [src]="'assets/icons/plus.svg'"
+                    (click)="addNewPrice()">
+                </rap-svg-ico>
+            </button>
+            <button>  
+                <rap-svg-ico 
+                    class="cursor-pointer"
+                    [src]="'assets/icons/save.svg'"
+                    (click)="saveNewPrice()">
+                </rap-svg-ico>
+            </button>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="description">
-            <label for="">{{ "APP.saleNewPrice" | translate }}</label>
-        </div>
-        <div class="original">
-            <input class="radius" type="number"/>
-        </div>
-    </div>
-    <div class="button-add-save">
-        <button class="plus"><rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico></button>
-        <button>  <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico></button>
-    </div>
+    </form>
     <div class="sale-list">
         <p>{{ "APP.listSale" | translate }}</p>
         <div class="sale-list__block">
@@ -37,33 +60,13 @@
                 <th class="date-end">{{ "APP.saleListEnd" | translate }}</th>
                 <th class="price">{{ "APP.price" | translate }}</th>
             </tr>
-            <tr>
-                <th>1</th>
-                <th>05.07.2020</th>
-                <th>15.10.2020</th>
-                <th>100грн</th>
+            <tr *ngFor="let discount of productDiscounts">
+                <th>{{ discount.id }}</th>
+                <th>{{ discount.date_start }}</th>
+                <th>{{ discount.date_end }}</th>
+                <th>{{ discount.price }} грн</th>
             </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-
         </table>
-
         </div>
     </div>
 </div>

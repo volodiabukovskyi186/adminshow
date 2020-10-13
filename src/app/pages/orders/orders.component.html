@@ -1,61 +1,86 @@
 
-<div class="order-container padding">
-   <!-- <router-outlet #outlet="outlet"></router-outlet> -->
-   <table class="raisins-table border-all radius order-table">
-      <thead>
-      <tr>
-         <th width="64px">ID</th>
-         <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
-         <th width="128px">{{ 'MENU.orders.manufacturer' | translate }}</th>
-         <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
-         <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
-         <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
-         <th width="128px">{{ 'MENU.orders.actions' | translate }}</th>
-      </tr>
-      </thead>
+<rap-panel-content
+[showForm]="pages.panelSettings.form"
+[showRightSide]="pages.panelSettings.right"
+>
+   <div form>
+      <app-order-form
+         [title]="'currencies.addEditCurrencyInfo' | translate"
+         [order]="selectedClientOrder"
+         [langs]="langService.languages.data"
+         class="currency-form-style"
+         (ordersFormData)="sendOrdersFormData($event)"
+      ></app-order-form>
+   </div>
+   <div filter></div>
+   <div content class="order-container padding">
+      <ng-template #notfound>
+         <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
+       </ng-template>
+      <table class="raisins-table border-all radius order-table">
+         <thead>
+         <tr>
+            <th width="64px">ID</th>
+            <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
+            <th width="128px">{{ 'MENU.orders.manufacturer' | translate }}</th>
+            <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
+            <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
+            <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
+            <th width="128px">{{ 'MENU.orders.actions' | translate }}</th>
+         </tr>
+         </thead>
 
-      <tbody class="table-body">
-      <tr *ngFor="let order of orderService.order?.data">
-         <td width="64px" class="text-center">{{ order.id }}</td>
-         <td width="128px" class="text-center">{{ order.last_name }} {{ order.first_name }}</td>
-         <td width="128px" class="text-center">{{ order.telephone }}</td>
-         <td width="128px" class="text-center">{{ order.total.slice(0, -2) }}</td>
-         <td width="128px" class="text-center">{{ order.created_at }}</td>
-         <td width="128px" class="text-center">
-            <form [formGroup]="ordersForm">
-               <mat-form-field appearance="none">
-                  <mat-select class="orders-select" formControlName="status">
-                     <mat-option [value]="statusCodes[order.status_id] | translate">
-                        {{ 'statusCodes.done' | translate }}
-                     </mat-option>
-                     <mat-option [value]="statusCodes[order.status_id] | translate">
-                        {{ 'statusCodes.inProgress' | translate }}
-                     </mat-option>
-                     <mat-option [value]="statusCodes[order.status_id] | translate">
-                        {{ 'statusCodes.canceled' | translate }}
-                     </mat-option>
-                     <mat-option [value]="statusCodes[order.status_id] | translate">
-                        {{ 'statusCodes.sent' | translate }}
-                     </mat-option>
-                  </mat-select>
-               </mat-form-field>
-            </form>
-            <!-- <div class="order-status">
-               {{ order.status_id }}
-               <mat-checkbox></mat-checkbox>
-            </div> -->
-         </td>
-         <td width="100%" class="panel-header-buttons text-center">
-            <button class="button transparent small"><rap-svg-ico [src]="'assets/icons/eye-open.svg'"></rap-svg-ico></button>
-            <button (click)="orderSideStatus=!orderSideStatus" class="button transparent small"><rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
-            </button>
-         </td>
-      </tr>
-      <div  *ngIf="orderSideStatus" class="order-sideBar "  >
-         <div class="order-sideBar__close" (click)="orderSideStatus=!orderSideStatus">
-            <img src="assets/icons/plus.svg">
+         <tbody class="table-body">
+         <tr *ngFor="let order of orderService.order?.data">
+            <td width="64px" class="text-center">{{ order.id }}</td>
+            <td width="128px" class="text-center">{{ order.last_name }} {{ order.first_name }}</td>
+            <td width="128px" class="text-center">{{ order.manufacturer.description.name }}</td>
+            <td width="128px" class="text-center">{{ order.total.slice(0, -2) }}</td>
+            <td width="128px" class="text-center">{{ order.created_at }}</td>
+            <td width="128px" class="text-center">
+               <!-- <form [formGroup]="ordersForm">
+                  <mat-form-field appearance="none">
+                     <mat-select class="orders-select" formControlName="status">
+                        <mat-option [value]="statusCodes[order.status_id] | translate">
+                           {{ 'statusCodes.done' | translate }}
+                        </mat-option>
+                        <mat-option [value]="statusCodes[order.status_id] | translate">
+                           {{ 'statusCodes.inProgress' | translate }}
+                        </mat-option>
+                        <mat-option [value]="statusCodes[order.status_id] | translate">
+                           {{ 'statusCodes.canceled' | translate }}
+                        </mat-option>
+                        <mat-option [value]="statusCodes[order.status_id] | translate">
+                           {{ 'statusCodes.sent' | translate }}
+                        </mat-option>
+                     </mat-select>
+                  </mat-form-field>
+               </form> -->
+               <div class="order-status-content">
+                  <div class="dot"
+                     [ngClass]="{
+                        'green-bg': statusCodes[order.status_id].name,
+                        'red-bg ': statusCodes[order.status_id].name,
+                        'blue-bg': statusCodes[order.status_id].name
+                     }"></div>
+                  <div class="status-text">{{ statusCodes[order.status_id].name | translate}}</div>
+               </div>
+            </td>
+            <td width="100%" class="panel-header-buttons text-center" style="padding: 19px;">
+               <button (click)="reviewOrder(order)" class="button transparent small">
+                  <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
+               </button>
+               <!-- <button class="button transparent small">
+                  <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+               </button> -->
+            </td>
+         </tr>
+         <div  *ngIf="orderSideStatus" class="order-sideBar "  >
+            <div class="order-sideBar__close" (click)="orderSideStatus=!orderSideStatus">
+               <img src="assets/icons/plus.svg">
+            </div>
          </div>
-      </div>
-      </tbody>
-   </table>
-</div>
+         </tbody>
+      </table>
+   </div>
+</rap-panel-content>

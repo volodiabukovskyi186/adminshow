@@ -52,4 +52,12 @@ export class ProductService {
   put(data: any, id: number): Observable<any> {
     return this.http.put(`${environment.catalog.product.product}/${id}`, data);
   }
+
+  getProductDiscounts(): Observable<any> {
+    return this.http.get(`${environment.host}product_disconts`);
+  }
+
+  updateProductPrice(newPrice): Observable<any> {
+    return this.http.post(`${environment.host}product_discont`, newPrice);
+  }
 }

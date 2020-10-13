@@ -1,0 +1,117 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-customer-form
+      [title]="'customers.editCustomerInformation' | translate"
+      [customer]="customersService.customer"
+      [langs]="this.langService.languages.data"
+      class="customer-form-style"
+      (customersFormData)="customersFormData($event)"
+    ></app-customer-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <ng-template #notfound>
+      <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
+    </ng-template>
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="customersService.customer?.data.length > 0; else notfound"
+    >
+      <thead>
+        <tr>
+          <th width="55px">{{ "APP.id" | translate }}</th>
+          <th width="146px">{{ "customers.customerLastName" | translate }}</th>
+          <th width="140px">{{ "customers.customerFirstName" | translate }}</th>
+          <th width="170px">{{ "customers.customerEmail" | translate }}</th>
+          <th width="128pv">{{ "customers.customerPhoneNumber" | translate }}</th>
+          <th width="138px">{{ "customers.customerRegistrationDate" | translate }}</th>
+          <th width="150px">{{ "customers.customerTypeOfRegistration" | translate }}</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let customer of customersService.customer?.data"
+        >
+          <td data-label="ID" class="text-center">{{ customer.id }}</td>
+          <td class="text-center">
+            <div class="customers-content">{{ customer?.last_name }}</div>
+          </td>
+          <td class="text-center">
+            <div class="customers-content">{{ customer?.first_name }}</div>
+          </td>
+          <td class="text-center">
+            <div class="customers-content">{{ customer?.email }}</div>
+          </td>
+          <td class="text-center">
+            <div class="customers-content">{{ customer?.telephone }}</div>
+          </td>
+
+          <td class="text-center">
+            <small class="customers-content">{{ customer.created_at | localDate }}</small>
+            <small *ngIf="!customer.created_at">—</small>
+          </td>
+          <td class="text-center">
+            <div class="type-of-registration"
+              *ngIf="!customer?.last_name || !customer?.first_name || !customer?.telephone">
+               {{ 'customers.customersSubscription' | translate }}
+            </div>
+            <div class="type-of-registration"
+              *ngIf="!!customer?.last_name || !!customer?.first_name || !!customer?.telephone">
+               {{ 'customers.customersPersonalCabinet' | translate }}
+            </div>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <!-- <rap-delete-button
+                data-tooltip-left="on/off"
+                class="button transparent radius"
+                [ngClass]="{ on: item.status, off: !item.status }"
+                
+                [@changeValueHighlight]="item.status"
+                [src]="
+                  item.status != 1
+                    ? 'assets/icons/eye-cloce.svg'
+                    : 'assets/icons/eye-open.svg'
+                "
+              ></rap-delete-button> -->
+
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(customer)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'" class="customers-edit__img"></rap-svg-ico>
+              </button>
+
+              <rap-delete-button
+                data-tooltip-left="Delete"
+                class="button transparent radius"
+                
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <pre>{{ langServise.languages.data | json }}</pre> -->
+
+    <app-pagination
+      class="radius"
+      [page]="customersService.page"
+      [total]="Math.ceil(customersService.customer.count / customersService.customer.take)"
+      [pagesToShow]="5"
+      (goNext)="pageNextHandler()"
+      (goPrev)="pagePrevHandler()"
+      (goPage)="pageToHandler($event)"
+      (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+  </div>
+</rap-panel-content>

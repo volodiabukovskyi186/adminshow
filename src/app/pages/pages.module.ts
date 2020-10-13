@@ -29,6 +29,7 @@ import { PromotionsPageComponent } from "./catalog/promotions-page/promotions-pa
 import { ManufacturerPageComponent } from "./manufacturer-page/manufacturer-page.component";
 import { UserModule } from "../modules/user/user.module";
 import { LanguagePageComponent } from "./localization/language-page/language-page.component";
+import { CurrenciesPageComponent } from './localization/currencies-page/currencies-page.component';
 import { LanguageModule } from "../modules/localization/language/language.module";
 import {
   // CategoryPageComponent,
@@ -69,6 +70,15 @@ import {StorageModule} from "../modules/localization/storage/storage.module";
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { CdkTableExporterModule } from 'cdk-table-exporter';
 import {MatTableModule} from "@angular/material/table";
+import { CustomersComponent } from './customers/customers.component';
+import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
+import { CurrencyFormComponent } from './localization/currencies-page/currency-form/currency-form.component';
+import { SettingsPageComponent } from './client/settings-page/settings-page.component';
+import { SettingsPageFormComponent } from './client/settings-page/settings-page-form/settings-page-form.component';
+import { OrderFormComponent } from './orders/order-form/order-form.component';
+import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
+import { ReviewsFormComponent } from './reviews-page/reviews-form/reviews-form.component';
+import { ReviewsFiltersFormComponent } from './reviews-page/reviews-filters-form/reviews-filters-form.component';
 
 @NgModule({
   declarations: [
@@ -86,11 +96,22 @@ import {MatTableModule} from "@angular/material/table";
     PromotionsPageComponent,
     ManufacturerPageComponent,
     LanguagePageComponent,
+    CurrenciesPageComponent,
     AttribyteGroupPageComponent,
     OptionPageComponent,
     UsersPageComponent,
     SitePagePageComponent,
     SiteMenuPageComponent,
+    OrdersComponent,
+    CustomersComponent,
+    CustomerFormComponent,
+    CurrencyFormComponent,
+    SettingsPageComponent,
+    SettingsPageFormComponent,
+    OrderFormComponent,
+    ReviewsPageComponent,
+    ReviewsFormComponent,
+    ReviewsFiltersFormComponent,
     OrdersComponent,
     OrderStatusPageComponent,
     StorageStatusPageComponent,

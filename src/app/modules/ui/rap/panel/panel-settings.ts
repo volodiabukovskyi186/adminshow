@@ -11,4 +11,6 @@ export interface PanelButtonSettings {
   plus: boolean;
   cancel: boolean;
   save: boolean;
+  review: boolean;
+  toggleFilter: boolean;
 }

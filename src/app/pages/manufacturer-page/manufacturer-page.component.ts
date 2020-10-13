@@ -9,12 +9,12 @@ import {
   IManufacturer,
 } from "src/app/modules/manufacturer/manufacturer.service";
 import { LanguageService } from "src/app/modules/localization/language/language.service";
-import { changeValueHighlight } from "src/app/modules/ui/animations";
+//import { changeValueHighlight } from "src/app/modules/ui/animations";
 import { ManufacturerFormService } from "src/app/modules/manufacturer/manufacturer-form.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
-  animations: [changeValueHighlight],
+  //animations: [changeValueHighlight],
   selector: "app-manufacturer-page",
   templateUrl: "./manufacturer-page.component.html",
   styleUrls: ["./manufacturer-page.component.scss"],

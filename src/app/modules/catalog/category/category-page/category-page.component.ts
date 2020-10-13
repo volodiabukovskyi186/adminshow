@@ -37,6 +37,8 @@ export class CategoryPageComponent extends BasePage
     super(pages);
   }
   routerSubscription;
+  displayAllCaterories;
+
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
   }
@@ -47,13 +49,17 @@ export class CategoryPageComponent extends BasePage
 
     this.getLangList();
     this.getList();
+    //this.getCategories();
 
     this.initTranslate();
     this.routerSubscription = this._router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.initTranslate();
         this.getList();
+        //this.getCategories();
+        console.log(e);
       }
+      
     });
   }
 
@@ -85,12 +91,39 @@ export class CategoryPageComponent extends BasePage
   getList() {
     this.ngxService.start();
     this.category.getList().subscribe(this.getListHandler);
+    this.getCategories();
   }
 
   getListHandler = (data) => {
     this.ngxService.stopAll();
     this.category.category = data;
   };
+
+  getCategories() {
+    this.category.getAllCategories().subscribe((res) => {
+      //this.getListHandler(res);
+      console.log(res);
+      this.displayAllCaterories = this.toArray(res.data, []);
+      console.log('displayAllCaterories', this.displayAllCaterories);
+    })
+  }
+
+  public toArray(nodes: any[], arr: any[]) {
+    if (!nodes) {
+      return [];
+    }
+
+    if (!arr) {
+      arr = [];
+    }
+
+    for (var i = 0; i < nodes.length; i++) {
+      arr.push(nodes[i]);
+      this.toArray(nodes[i].sub, arr);
+    }
+
+   return arr;
+  }
 
   getLangList() {
     this.ngxService.start();
@@ -170,6 +203,8 @@ export class CategoryPageComponent extends BasePage
 
   postHandler = (data: { data: ICategory }) => {
     this.ngxService.stopAll();
+
+    console.log(data.data);
 
     this.category.category.data.push(data.data);
     this.category.category.count++;

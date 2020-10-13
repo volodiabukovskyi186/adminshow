@@ -92,7 +92,6 @@
   "dashboard": {
     "dashboard": "Dashboard"
   },
-
   "promotion": {
     "add_edit_promotion": "Add/edit Promotion"
   },
@@ -188,10 +187,6 @@
       "addManufacturer": "Add manufacturer"
     },
     "users": { "users": "users", "roles": "users" },
-    "settings": {
-      "settings": "Settings",
-      "payment_methods": "Payment methods"
-    },
     "localization": {
       "localization": "Localization",
       "languages": "Languages",
@@ -201,24 +196,131 @@
       "stock_status": "Stock status",
       "order_status": "Order status",
       "departments": "Departments ShowU",
-      "addLanguage": "Add Language",
-      "storage_status": "Storage status",
-      "unit_weight": "Unit of weight",
-      "country": "Countries",
-      "add_edit_localization": "Add / Edit Status",
-      "status": "Status",
-      "name": "Name",
-      "marking": "Marking",
-      "value": "Value",
-      "color": "Color"
-
-
+      "addLanguage": "Add Language"
+    },
+    "settings": {
+      "siteSettings": "Settings"
     }
   },
   "statusCodes": {
     "done": "Done",
     "inProgress": "In Progress",
     "canceled": "Canceled",
-    "sent": "Sent"
+    "sent": "Sent",
+    "inactive": "Inactive",
+    "active": "Active",
+    "new": "New",
+    "confirmed": "Confirmed",
+    "rejected": "Rejected",
+    "approved": "Approved"
+  },
+  "customers": {
+    "customerLastName": "Last Name",
+    "customerFirstName": "First Name",
+    "customerEmail": "Email",
+    "customerPhoneNumber": "Phone number",
+    "customerRegistrationDate": "Customer Registration Date",
+    "customerTypeOfRegistration": "Type of registration",
+    "customerActions": "Actions",
+    "customersSubscription": "Subscription",
+    "customersPersonalCabinet": "Personal Cabinet",
+    "editCustomerInformation": "Edit customer information",
+    "viewOrder": "View order",
+    "information": "Information",
+    "client": "Client"
+  },
+  "currencies": {
+    "currencyISOcode": "ISO Code",
+    "currencySymbolOnTheLeft": "Symbol on the left",
+    "currencySymbolOnTheRight": "Symbol on the right",
+    "currencyName": "Currency Name",
+    "currencyValue": "Value",
+    "currencyUpdateDate": "Update date",
+    "currencyActions": "Actions",
+    "addEditCurrencyInfo": "Add / Edit currency",
+    "currencyDefault": "Default"
+  },
+  "settings": {
+    "nameOfThePlatform": "Name of the platform",
+    "defaultLanguage": "Default language",
+    "defaultCurrency": "Default currency",
+    "action": "Action",
+    "editSettings": "Edit settings",
+    "generalSettings": "General settings",
+    "contactData": "Contact Data",
+    "logo": "Logotype",
+    "siteIcon": "Site icon",
+    "location": "Location",
+    "shopName": "Shop name",
+    "address": "Address",
+    "workSchedule": "Work schedule",
+    "metaTagDescription": "Meta-tag-description",
+    "metaTagKeywords": "Meta-tag-keywords",
+    "siteTelephone": "Telephone",
+    "siteEmail": "Email",
+    "siteFacebook": "Facebook",
+    "siteInstagram": "Instagram",
+    "siteTelegram": "Telegram",
+    "siteViber": "Viber",
+    "siteYoutube": "Youtube",
+    "settingsLangShortTitleEng": "Eng",
+    "settingsLangShortTitlePl": "Pl",
+    "settingsLangShortTitleRus": "Рус",
+    "settingsLangShortTitleUa": "Укр"
+  },
+  "productsAttributes": {
+    "productsAttributesAttr": "Attribute",
+    "productsAttributesLang": "Language",
+    "productsAttributesValue": "Value"
+  },
+  "reviews": {
+    "goods": "Goods",
+    "producer": "Producer",
+    "authorOfTheReview": "Author of the review",
+    "review": "Review",
+    "rating": "Rating",
+    "date": "Date",
+    "status": "Status",
+    "moderationOfReview": "Moderation Of Review",
+    "reviewResponse": "Response",
+    "reviewStatus": "Status",
+    "reviewsDateFrom": "Date from",
+    "reviewsDateTo": "Date to",
+    "reviewsFilters": "Filters"
+  },
+  "orders": {
+    "ordersOrder": "Order",
+    "ordersDate": "Date",
+    "ordersDelivery": "Delivery",
+    "ordersPayment": "Payment",
+    "ordersProducer": "Producer",
+    "ordersListOfGoods": "List of goods",
+    "orderProductName": "Name",
+    "orderProductModel": "Model",
+    "orderProductQuantity": "Quantity",
+    "orderProductPrice": "Price",
+    "orderProductSum": "Sum",
+    "orderCost": "Cost",
+    "orderDelivery": "Delivery",
+    "orderTotal": "Total",
+    "orderCustomer": "Customer",
+    "orderFullName": "Full Name",
+    "orderPhone": "Phone",
+    "orderEmail": "Email",
+    "orderRecipient": "Recipient"
+  },
+  "months": {
+    "Jan": "January", 
+    "Feb": "February",
+    "Mar": "March",
+    "Apr": "April",
+    "May": "May",
+    "Jun": "June",
+    "Jul": "July",
+    "Aug": "August",
+    "Sep": "September",
+    "Oct": "October",
+    "Nov": "November",
+    "Dec": "December"
   }
 }

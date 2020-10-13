@@ -169,6 +169,16 @@ updateStatusHandler = (data) => {
   );
 };
 
+deletePage(page) {
+  this.sitePage.deleteSitePage(page.id).subscribe((res) =>{
+    console.log(res);
+  })
+
+  this.sitePage.data.data = this.sitePage.data.data.filter((val) => {
+    return val.id !== page.id;
+  })
+}
+
 //#region pagination
 
 pageToHandler(page: number): void {

@@ -15,6 +15,8 @@ export class PagesService {
   onPlusClick: () => void;
   onSaveClick: () => void;
   onCancelClick: () => void;
+  onReviewClick: () => void;
+  onTogleFilterClick: () => void;
 
   constructor() {
     this.defaultSetting();
@@ -40,7 +42,9 @@ export class PagesService {
       rightToggle: false,
       plus: false,
       cancel: false,
-      save: false
+      save: false,
+      review: false,
+      toggleFilter: true
     };
   }
 }

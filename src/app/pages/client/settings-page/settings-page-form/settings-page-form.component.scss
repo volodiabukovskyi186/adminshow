@@ -1,0 +1,306 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  @include zero;
+  z-index: 10000;
+
+  background-color: rgba($black, 0.48);
+
+  .modal-wrapper {
+    position: absolute;
+    @include zero;
+    overflow-y: auto;
+    .modal-close {
+      background-color: rgba($black, 0.5);
+      cursor: pointer;
+      position: absolute;
+      @include zero;
+      @include transition();
+      &:hover {
+        background-color: rgba($black, 0);
+      }
+    }
+
+    .modal-content {
+      flex: 1;
+      background-color: rgba($white, 1);
+      // min-height: 100vh;
+      width: 100%;
+      max-width: 800px;
+      margin-left: 15%;
+      header {
+        position: sticky;
+        top: 0;
+
+        background-color: rgba($white, .8);
+        padding: $space/2 $space;
+        h4 {
+          margin: 0;
+        }
+      }
+      .content {
+        padding: $space;
+      }
+    }
+  }
+}
+
+.settings-form-title {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+::ng-deep {
+    .tabs-header-settings-form {
+        &>rap-step-tabs {
+            &>.nav-tabs {
+                li {
+                    width: 50%;
+                    text-align: center;
+                    color: #5F5F62 !important;
+                    border-bottom: solid 1px transparent !important;
+                }
+      
+            li.active {
+                color: #5F5F62 !important;
+                border-color: #9f1941 !important;
+                }
+            }
+        }
+    }
+}
+
+.settings-input-wrapper {
+    margin-top: 20px;
+    width: 79%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.settings-input-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 3;
+}
+
+.settings-input {
+    height: 28px;
+    border-radius: 3px;
+}
+
+.delete-icon {
+    margin-right: -7px;
+    padding: 9px;
+    margin-top: -6px;
+}
+
+.margin-top__10 {
+    margin-top: 10px;
+}
+
+.settings-input-meta {
+    height: 70px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.settings-input-img {
+    display: flex;
+    border: none !important;
+}
+
+.upload-file-container {
+    margin-bottom: 24px;
+    width: 67.4%;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // overflow: hidden;
+}
+ 
+.upload-file-container__input {
+    margin: 0;
+    opacity: 0;   
+    font-size: 7px;
+    cursor: pointer;
+}
+
+.upload-file-container__input-wrapper {
+    position: relative;
+    border: 1px solid #EAECEE;
+    background-color: #EAECEE;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.upload-file-container__input-text {
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // margin-right: -50%;
+    // transform: translate(-50%, -50%);
+    font-size: 13px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.padding-left-right_15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.upload-file {
+    width: 50%;
+    margin-left: 10px;
+}
+
+.upload-file-bottom {
+    margin-left: 24px;
+}
+
+.upload-file-img {
+    background-color: #fff;
+    border: 1px solid #000;
+    margin-bottom: 24px;
+}
+
+.logo-img {
+    width: 200px;
+    height: 100px;
+}
+
+.site-icon-img {
+    width: 112px;
+    height: 112px;
+}
+
+.logo-img,
+.site-icon-img {
+    padding: 5px;
+}
+
+.site-icon-content,
+.site-icon-content-logo {
+    padding: 5px;
+    background-color: #EAECEE;
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.selected-logo-img {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.selected-site-icon-img {
+    width: 112px;
+    height: 112px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-bottom: 13px;
+    position: absolute;
+}
+
+.upload-file-img,
+.site-icon-content {
+    border-radius: 4px;
+}
+
+.settings-img-container {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.margin-bottom__20 {
+    margin-bottom: 20px;
+}
+
+.margin-bottom__10 {
+    margin-bottom: 10px;
+}
+
+.settings-input-content-wrapper__plus-icon,
+.settings-input-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.plus-icon {
+    width: 17px;
+    margin-top: -6px;
+}
+
+.settings-input-plus {
+    margin-right: 10px;
+    //width: 50%;
+}
+
+.email-input-content {
+    margin-bottom: 50px;
+}
+
+.margin-top__-20 {
+    margin-top: -20px;
+}
+
+.phone-form-container {
+    position: relative !important;
+}
+
+.phone-input {
+    position: absolute !important;
+    margin-top: 5px;
+}
+
+.settings-input {
+    margin-bottom: 7px;
+}
+
+.site-telephone-input {
+    &::placeholder {
+        color: #000;
+    }
+}
+
+// .settings-input-content-wrapper__plus-icon {
+//     margin-right: 5px;
+// }
+
+// .site-icon-content {
+//     width: 112px;
+//     height: 112px;
+// }
+
+// .site-icon-content-logo {
+//     width: 200px;
+//     height: 100px;
+// }
+
+// .choice-btn {
+//     display: block;
+//     max-width: 192px;
+//     background-color: #ececec;
+// }

@@ -1,0 +1,124 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.reviews-form-container {
+    max-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.reviews-content__left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.reviews-form-title {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 18px;
+}
+
+.reviews-response-title {
+    margin-top: 40px;
+    margin-bottom: 8px;
+}
+
+.reviews-response-text {
+    border: 1px solid #000;
+    border-radius: 4px;
+    height: 70px;
+    margin-bottom: 15px;
+    padding: 0px 16px !important;
+}
+
+.reviews__text {
+    margin-top: 8px;
+    max-width: 240px;
+}
+
+.reviews-content__right {
+    display: flex;
+    flex-direction: row;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.padding-left-right_15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+::ng-deep {
+    .rating-content {
+        .rating {
+            font-size: 24px !important;
+        }
+    }
+    .mat-form-field {
+        border: 1px solid #000;
+        border-radius: 4px;
+
+      .mat-form-field-wrapper {
+        padding-bottom: 10px;
+  
+        .mat-form-field-flex {
+          .mat-form-field-infix {
+            width: 100%;
+            padding: 0;
+            border-top: 0 !important;
+            .mat-select {
+              margin-right: 5px;
+              margin-left: 0px;
+              margin-top: 4px;
+              padding-top: 0;
+              padding-right: 5px;
+              .mat-select-trigger {
+                .mat-select-value-text {
+                  font-size: 13px;
+                  margin-left: 7px;
+                }
+                .mat-select-arrow-wrapper {
+                  .mat-select-arrow {
+                    box-sizing: border-box;
+                    height: 10px;
+                    width: 10px;
+                    border-style: solid;
+                    border-color: #000;
+                    border-width: 0px 2px 2px 0px;
+                    transform: rotate(45deg);
+                    transition: border-width 150ms ease-in-out;
+                    margin-top: 3px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  ::ng-deep {
+    .mat-option {
+      height: 2.3em !important;
+      .mat-option-text {
+        font-size: 13px;
+      }
+    }
+  }
+  

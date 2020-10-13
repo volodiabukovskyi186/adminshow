@@ -83,4 +83,8 @@ export class SitePageService {
   put(data: any, id: number): Observable<any> {
     return this.http.put(`${environment.client.page.page}/${id}`, data);
   }
+
+  deleteSitePage(id: number): Observable<any> {
+    return this.http.delete(`${environment.host}page/${id}`);
+  }
 }

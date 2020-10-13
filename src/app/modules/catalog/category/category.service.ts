@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ICategoryResponse, ICategory } from "./interfaces";
 import { LanguageService } from 'src/app/core/language.service';
+import { ActivatedRoute} from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: "root",
@@ -18,10 +20,15 @@ export class CategoryService {
     host: null,
   };
   all: Array<ICategory> = [];
+  private querySubscription: Subscription;
 
-  constructor(private http: HttpClient, private lang: LanguageService) {
-    console.log(this.all)
-  }
+
+  constructor(
+    private http: HttpClient, 
+    private lang: LanguageService,
+    public route: ActivatedRoute
+  ) {}
+
 
   getList(): Observable<ICategoryResponse> {
     let skip = this.page * this.category.take - this.category.take;
@@ -29,6 +36,18 @@ export class CategoryService {
     let params = `?take=${this.category.take}&skip=${skip}&lang=${lang}`;
     return this.http.get<ICategoryResponse>(
       environment.catalog.category.categorys + params
+    );
+  }
+
+  getAllCategories(): Observable<ICategoryResponse> {
+    console.log(window.location.pathname.slice(1, 3));
+
+    //let lang = this.lang.current;
+    let lang = window.location.pathname.slice(1, 3);
+    console.log('1234lang==>', lang);
+    let params = `?skip=0&lang=${lang}`;
+    return this.http.get<ICategoryResponse>(
+      environment.host + `client/category${params}`
     );
   }
 

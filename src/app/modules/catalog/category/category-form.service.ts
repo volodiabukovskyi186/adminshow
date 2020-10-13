@@ -81,9 +81,9 @@ export class CategoryFormService {
     };
   }
 
-  private getDescByLangId(id: number, c: ICategory): ICategoryDesc {
-    for (let i = 0; i < c.description.length; i++) {
-      const d = c.description[i];
+  private getDescByLangId(id: number, c: any): ICategoryDesc {
+    for (let i = 0; i < c.length; i++) {
+      const d = c[i];
 
       if (d.lang_id == id) return d;
     }

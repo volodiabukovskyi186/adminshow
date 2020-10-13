@@ -7,6 +7,8 @@ import { RolesPageComponent } from "./roles-page/roles-page.component";
 import { PermissionGuard } from "../core/permission/permission.guard";
 import { ImagePageComponent } from "./image-page/image-page.component";
 import { LanguagePageComponent } from "./localization/language-page/language-page.component";
+import { CurrenciesPageComponent } from './localization/currencies-page/currencies-page.component';
+
 import {
   // CategoryPageComponent,
   AttribytesPageComponent,
@@ -20,6 +22,7 @@ import { UsersPageComponent } from "./users-page/users-page.component";
 import { SiteMenuPageComponent } from './client/site-menu-page/site-menu-page.component';
 import { SitePagePageComponent } from './client/site-page-page/site-page-page.component';
 import { OrdersComponent } from './orders/orders.component';
+import { CustomersComponent } from './customers/customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {OrderStatusPageComponent} from "./localization/order-status-page/order-status-page.component";
 import {StorageStatusPageComponent} from "./localization/storage-status-page/storage-status-page.component";
@@ -27,6 +30,8 @@ import {UnitWeightPageComponent} from "./localization/unit-weight-page/unit-weig
 import {PaymentMethodsPageComponent} from "./client/payment-methods-page/payment-methods-page.component";
 import {CountriesPageComponent} from "./localization/countries-page/countries-page.component";
 import {DeliveryMethodsPageComponent} from "./client/delivery-methods-page/delivery-methods-page.component";
+import { SettingsPageComponent } from '../pages/client/settings-page/settings-page.component';
+import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -151,6 +156,14 @@ export const pagesRoutes: Routes = [
     },
   },
   {
+    path: "currencies",
+    component: CurrenciesPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
     path: "images",
     component: ImagePageComponent,
     canActivate: [AuthGuard, PermissionGuard],
@@ -210,6 +223,30 @@ export const pagesRoutes: Routes = [
   {
     path: "country",
     component:CountriesPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "customers",
+    component: CustomersComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ["manage_categorys", "manage_albums"],
+    },
+  },
+  {
+    path: "settings",
+    component: SettingsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "reviews",
+    component: ReviewsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: [],
