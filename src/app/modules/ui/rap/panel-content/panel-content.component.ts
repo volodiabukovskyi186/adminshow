@@ -29,6 +29,7 @@ export class PanelContentComponent implements OnInit {
   @Input() get showForm(): boolean {
     return this._showForm;
   }
+  
 
   @Input() showFooter: boolean = true;
 

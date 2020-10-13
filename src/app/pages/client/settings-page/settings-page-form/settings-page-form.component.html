@@ -75,7 +75,7 @@
                     </form>
                     <rap-step-tabs (onSelect)="onClickChangeTabDescription($event)">
                         <rap-step-tab
-                            *ngFor="let item of selectedPlatform?.descriptions"
+                            *ngFor="let item of selectedPlatform?.descriptions; let indexAddress = index;"
                             [imgSrc]="languageService.getFromList(item?.lang_id)?.flag"
                             [title]="langShortTitle[item?.lang_id]?.title | translate"
                             (click)="getDescription(item)"
@@ -101,7 +101,6 @@
                                                 formControlName="adress"
                                                 class="settings-input"
                                                 id="adress"
-                                                [(ngModel)]="[i].adress"
                                                 (change)="getDescription(item)"
                                                 required>
                                         </div>

@@ -1,0 +1,47 @@
+<div class="reviews-form-container">
+    <div class="reviews-form-title">{{ 'reviews.moderationOfReview' | translate }}</div>
+    <div>
+        <div class="reviews-wrapper">
+            <div class="review-content">
+                <div class="reviews-content__left">
+                    <div class="reviews__author-name">{{ review?.author }}</div>
+                    <rap-rating class="rating-content" [rating]="review?.rating"></rap-rating>
+                    <div class="reviews__text">{{ review?.text }}</div>
+                </div>
+                <div class="reviews-content__right">
+                    <span> 
+                        {{ modifyDateString(review?.created_at, 'months') | translate }} 
+                        {{ modifyDateString(review?.created_at, 'day') }}, 
+                        {{ modifyDateString(review?.created_at, 'year') }}
+                    </span>
+                </div>
+            </div>
+            <form [formGroup]="reviewsForm">
+                <div class="reviews-response">
+                    <div class="reviews-response-title">{{ 'reviews.reviewResponse'| translate }}</div>
+                    <input formControlName="response" class="reviews-response-text"/>
+                </div>
+                <div class="reviews-status">
+                    <div class="reviews-response-title">{{ 'reviews.reviewStatus'| translate }}</div>
+                    <div class="reviews-response-status">
+                        <mat-form-field appearance="standart" class="sort-products">
+                            <div class="sort-products-wrapper">
+                                <mat-select
+                                    (selectionChange)="onChange($event.value)"
+                                    id="status"
+                                    required
+                                    formControlName="status">
+                                    <div *ngFor="let statusCode of allStatusCodes">
+                                        <mat-option [value]="statusCode.value">
+                                            {{ statusCode.name | translate }}
+                                        </mat-option>
+                                    </div>
+                                </mat-select>
+                            </div>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

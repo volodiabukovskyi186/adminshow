@@ -61,6 +61,9 @@ import { CurrencyFormComponent } from './localization/currencies-page/currency-f
 import { SettingsPageComponent } from './client/settings-page/settings-page.component';
 import { SettingsPageFormComponent } from './client/settings-page/settings-page-form/settings-page-form.component';
 import { OrderFormComponent } from './orders/order-form/order-form.component';
+import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
+import { ReviewsFormComponent } from './reviews-page/reviews-form/reviews-form.component';
+import { ReviewsFiltersFormComponent } from './reviews-page/reviews-filters-form/reviews-filters-form.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +93,10 @@ import { OrderFormComponent } from './orders/order-form/order-form.component';
     CurrencyFormComponent,
     SettingsPageComponent,
     SettingsPageFormComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    ReviewsPageComponent,
+    ReviewsFormComponent,
+    ReviewsFiltersFormComponent
   ],
   imports: [
     CommonModule,

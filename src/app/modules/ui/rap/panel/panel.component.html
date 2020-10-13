@@ -10,7 +10,7 @@
         *ngIf="showRightToggleBtn"
         class="button transparent small"
         [ngClass]="{ active: showRightSide }"
-        (click)="toggleRight()"
+        (click)="toggleFilter ? toggleRight() : onFilterClick()"
       >
         <rap-svg-ico [src]="'assets/icons/filter.svg'"></rap-svg-ico>
       </button>
@@ -30,6 +30,14 @@
         (click)="onCancelClick()"
       >
         <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>
+      </button>
+
+      <button style="position: relative;"  [attr.data-tooltip-left]="labels.review" @scale
+        *ngIf="isReviewBtn"
+        class="button transparent small"
+        (click)="onReviewClick()"
+      >
+        <rap-svg-ico [src]="'assets/icons/feedback.svg'"></rap-svg-ico>
       </button>
 
       <button style="position: relative;"  [attr.data-tooltip-left]="labels.add" @scale

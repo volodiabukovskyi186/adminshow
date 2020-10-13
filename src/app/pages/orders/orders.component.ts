@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { OrderService } from './services/order.service';
 import { FormControl, FormGroup } from "@angular/forms";
@@ -22,20 +22,16 @@ export class OrdersComponent extends BasePage implements OnInit {
 
   public statusCodes = {
     "1": {
-      name: 'statusCodes.done',
-      color: '#42996F'
+      name: 'statusCodes.new',
+      //color: '#42996F'
     },
     "2": {
-      name: 'statusCodes.inProgress',
-      color: '#ffff00'
+      name: 'statusCodes.approved',
+      //color: '#ffff00'
     },
     "3": {
       name: 'statusCodes.canceled',
-      color: '#ff0000'
-    },
-    "4": {
-      name: 'statusCodes.sent',
-      color: '#636363'
+      //color: '#ff0000'
     }
   }
 
@@ -50,6 +46,11 @@ export class OrdersComponent extends BasePage implements OnInit {
     super(pages);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.pages.panelButtonSettings.save = false;
+    this.pages.panelButtonSettings.plus = false;
+  }
+
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
@@ -57,9 +58,11 @@ export class OrdersComponent extends BasePage implements OnInit {
     this.initTranslate();
     this.generateOrdersForm();
     this.getList();
-    console.log(this.getList());
-    console.log(this.ordersForm.value);
-    
+    // console.log(this.getList());
+    // console.log(this.ordersForm.value);
+    this.pages.panelButtonSettings.save = false;
+    this.pages.panelButtonSettings.plus = false;
+    this.pages.panelButtonSettings.rightToggle = true;
   }
 
   initTranslate() {
@@ -75,7 +78,6 @@ export class OrdersComponent extends BasePage implements OnInit {
         ];
       });
   }
-
 
   generateOrdersForm(): void {
     this.ordersForm = new FormGroup({
@@ -97,8 +99,9 @@ export class OrdersComponent extends BasePage implements OnInit {
     })
   };
 
-  edit(selectedOrder) {
+  reviewOrder(selectedOrder) {
     this.selectedClientOrder = selectedOrder;
+    
     console.log(selectedOrder);
     this.openForm();
   }
@@ -106,11 +109,24 @@ export class OrdersComponent extends BasePage implements OnInit {
   sendOrdersFormData(event) {
     this.ordersFormData = event;
     console.log(event);
-
-    this.sendOrdersEditableData = {
-      
-    }
-
-    console.log(this.sendOrdersEditableData);
+    // this.sendOrdersEditableData = {
+    // }
+    // console.log(this.sendOrdersEditableData);
   }
+
+  closeForm = () => {
+    this.pages.panelSettings.form = false;
+    this.pages.panelButtonSettings.plus = false;
+    this.pages.panelButtonSettings.save = false;
+    this.pages.panelButtonSettings.cancel = false;
+    this.pages.panelButtonSettings.rightToggle = true;
+  }  
+
+  openForm = () => {
+    this.pages.panelSettings.form = true;
+    this.pages.panelButtonSettings.plus = false;
+    this.pages.panelButtonSettings.save = false;
+    this.pages.panelButtonSettings.cancel = true;
+    this.pages.panelButtonSettings.rightToggle = false;
+  };
 }

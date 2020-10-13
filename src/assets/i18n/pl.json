@@ -171,7 +171,11 @@
     "canceled": "Anulowany",
     "sent": "Wysłano",
     "inactive": "Nieaktywny",
-    "active": "Aktywny"
+    "active": "Aktywny",
+    "new": "Nowy",
+    "confirmed": "Potwierdzony",
+    "rejected": "Odrzucony",
+    "approved": "Zatwierdzony"
   },
   "customers": {
     "customerLastName": "Nazwisko",
@@ -183,7 +187,10 @@
     "customerActions": "Działania",
     "customersSubscription": "Subskrypcja",
     "customersPersonalCabinet": "Biuro osobiste",
-    "editCustomerInformation": "Edytuj informacje o kliencie"
+    "editCustomerInformation": "Edytuj informacje o kliencie",
+    "viewOrder": "Zobacz zamówienie",
+    "information": "Informacja",
+    "client": "Klient"
   },
   "currencies": {
     "currencyISOcode": "Kod ISO",
@@ -228,5 +235,55 @@
     "productsAttributesAttr": "Atrybut",
     "productsAttributesLang": "Język",
     "productsAttributesValue": "Wartość"
+  },
+  "reviews": {
+    "goods": "Dobra",
+    "producer": "Producent",
+    "authorOfTheReview": "Autor recenzji",
+    "review": "Odpowiedź",
+    "rating": "Ocena",
+    "date": "Data",
+    "status": "Status",
+    "moderationOfReview": "Moderacja odpowiedzi",
+    "reviewResponse": "Odpowiedź",
+    "reviewStatus": "Status",
+    "reviewsDateFrom": "Data od",
+    "reviewsDateTo": "Data do",
+    "reviewsFilters": "Filtracja"
+  },
+    "orders": {
+    "ordersOrder": "Zamówienie",
+    "ordersDate": "Data",
+    "ordersDelivery": "Dostawa",
+    "ordersPayment": "Zapłata",
+    "ordersProducer": "Producent",
+    "ordersListOfGoods": "Lista towarów",
+    "orderProductName": "Nazwa",
+    "orderProductModel": "Model",
+    "orderProductQuantity": "Ilość",
+    "orderProductPrice": "Cena",
+    "orderProductSum": "Suma",
+    "orderCost": "Koszt",
+    "orderDelivery": "Dostawa",
+    "orderTotal": "Wynik",
+    "orderCustomer": "Klient",
+    "orderFullName": "Pełne imię i nazwisko",
+    "orderPhone": "Telefon",
+    "orderEmail": "Email",
+    "orderRecipient": "Odbiorca"
+  },
+  "months": {
+    "Jan": "Styczeń", 
+    "Feb": "Luty",
+    "Mar": "Marsz",
+    "Apr": "Kwiecień",
+    "May": "Może",
+    "Jun": "Czerwiec",
+    "Jul": "Lipiec",
+    "Aug": "Sierpień",
+    "Sep": "Wrzesień",
+    "Oct": "Październik",
+    "Nov": "Listopad",
+    "Dec": "Grudzień"
   }
 }

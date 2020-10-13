@@ -23,7 +23,7 @@ export const MENU = [
     "assets/icons/menu-katalog.svg"
   ),
   group("MENU.reviews.reviews", [
-    item("MENU.reviews.product_reviews", "review/product"),
+    item("MENU.reviews.product_reviews", "reviews"),
     // item("Review Template", "review/template"),
   ]),
   group(

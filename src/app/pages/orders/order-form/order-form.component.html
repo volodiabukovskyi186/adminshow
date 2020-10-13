@@ -1,1 +1,159 @@
-<!-- <p>order-form works!</p> -->
+<div class="settings-form-container">
+    <div class="orders-form-title">{{ 'customers.viewOrder' | translate }}</div>
+    <div>
+        <div class="orders-input-wrapper tabs-header-settings-form">
+            <rap-step-tabs>
+                <rap-step-tab [active]="true" [title]="'customers.information' | translate">
+                    <table class="unset-border margin-top__15">
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersOrder' | translate }}
+                            </th>
+                            <th class="th-order order-text">
+                                №{{ order?.id }}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersDate' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ order?.created_at }}</th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersDelivery' | translate }}
+                            </th>
+                            <th class="th-order order-text">
+                                {{ order?.checkoutDelivery }} {{ order?.checkoutDeliveryAddress }}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersPayment' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ order?.checkoutPayment }}</th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersProducer' | translate }}
+                            </th>
+                            <th class="th-order order-text">
+                                {{ order?.manufacturer.description.name }}
+                            </th>
+                        </tr>
+                    </table>
+                    <div class="sale-list">
+                        <p class="order-title">{{ "orders.ordersListOfGoods" | translate }}</p>
+                        <div class="sale-list__block">
+                        <table>
+                            <tr>
+                                <th class="number">№</th>
+                                <th class="">{{ 'orders.orderProductName' | translate }}</th>
+                                <th class="">{{ 'orders.orderProductModel' | translate }}</th>
+                                <th class="">{{ 'orders.orderProductQuantity' | translate }}</th>
+                                <th class="price">{{ 'orders.orderProductPrice' | translate }}</th>
+                                <th class="">{{ 'orders.orderProductSum' | translate }}</th>
+                            </tr>
+                            <tr *ngFor="let userOrder of order?.products">
+                                <th>{{ userOrder.id }}</th>
+                                <th>{{ userOrder.product.description.name }}</th>
+                                <th>{{ userOrder.model }}</th>
+                                <th>{{ modifyPrice(userOrder.quantity) }}</th>
+                                <th>{{ modifyPrice(userOrder.product.price) }}</th>
+                                <th>{{ modifyPrice(userOrder.total) }}</th>
+                            </tr>
+                            <tr class="unset-border table-line-height">
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderCost' | translate }}</th>
+                                <th class="unset-height">{{ modifyPrice(order?.total) }}</th>
+                            </tr>
+                            <tr class="unset-border table-line-height">
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderDelivery' | translate }}</th>
+                                <th class="unset-height">0.00</th>
+                            </tr>
+                            <tr class="unset-border table-line-height">
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order"></th>
+                                <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderTotal' | translate }}</th>
+                                <th class="unset-height">{{ modifyPrice(order?.total) }}</th>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                </rap-step-tab>
+              
+                <rap-step-tab [title]="'customers.client' | translate">
+                    <table class="unset-border margin-top__15">
+                       <tr>
+                           <td class="th-order order-text">{{ 'orders.orderCustomer' | translate }}</td>
+                           <td class="th-order order-text"></td>
+                       </tr>
+                       <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.orderFullName' | translate }}
+                            </th>
+                            <th class="th-order order-text">
+                                {{ order?.first_name }}{{ order?.last_name }}
+                            </th>
+                       </tr>
+                       <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.orderPhone' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ order?.telephone }}</th>
+                       </tr>
+                       <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.orderEmail' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ order?.email }}</th>
+                        </tr>
+                    </table>
+                    <table class="unset-border margin-top__30">
+                        <tr>
+                            <td class="th-order order-text">
+                                {{ 'orders.orderRecipient' | translate }}
+                            </td>
+                            <td class="th-order order-text"></td>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.orderFullName' | translate }}
+                            </th>
+                            <th class="th-order order-text">
+                                <div class="margin-left__-34px">
+                                    {{ order?.recipientFirstName }}{{ order?.recipientLastName }}
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.orderPhone' | translate }}
+                            </th>
+                            <th class="th-order order-text">
+                                <div class="margin-left__-34px">{{ order?.recipientPhone }}</div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.orderEmail' | translate }}
+                            </th>
+                            <th class="th-order order-text">
+                                <div class="margin-left__-31px">{{ order?.email }}</div>
+                            </th>
+                        </tr>
+                    </table>
+                </rap-step-tab>
+            </rap-step-tabs>
+        </div>
+    </div>
+</div>

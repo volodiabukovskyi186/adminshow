@@ -169,7 +169,11 @@
     "canceled": "Отменено",
     "sent": "Отправлено",
     "inactive": "Неактивный",
-    "active": "Активный"
+    "active": "Активный",
+    "new": "Новый",
+    "confirmed": "Подтверждено",
+    "rejected": "Отклонено",
+    "approved": "Подтверждено"
   },
   "customers": {
     "customerLastName": "Фамилия",
@@ -181,7 +185,10 @@
     "customerActions": "Действия",
     "customersSubscription": "Оформление подписки",
     "customersPersonalCabinet": "Личный кабинет",
-    "editCustomerInformation": "Редактировать сведения о клиенте"
+    "editCustomerInformation": "Редактировать сведения о клиенте",
+    "viewOrder": "Просмотр заказа",
+    "information": "Информация",
+    "client": "Клиент"
   },
   "currencies": {
     "currencyISOcode": "Код ISO",
@@ -226,5 +233,55 @@
     "productsAttributesAttr": "Атрибут",
     "productsAttributesLang": "Язык",
     "productsAttributesValue": "Значение"
+  },
+  "reviews": {
+    "goods": "Товар",
+    "producer": "Производитель",
+    "authorOfTheReview": "Автор отзыва",
+    "review": "Отзыв",
+    "rating": "Оценка",
+    "date": "Дата",
+    "status": "Статус",
+    "moderationOfReview": "Модерация отзыва",
+    "reviewResponse": "Отклик",
+    "reviewStatus": "Статус",
+    "reviewsDateFrom": "Дата от",
+    "reviewsDateTo": "Дата до",
+    "reviewsFilters": "Фильтрования"
+  },
+  "orders": {
+    "ordersOrder": "Заказ",
+    "ordersDate": "Дата",
+    "ordersDelivery": "Доставка",
+    "ordersPayment": "Оплата",
+    "ordersProducer": "Производитель",
+    "ordersListOfGoods": "Список товаров",
+    "orderProductName": "Имя",
+    "orderProductModel": "Модель",
+    "orderProductQuantity": "Количество",
+    "orderProductPrice": "Цена",
+    "orderProductSum": "Сумма",
+    "orderCost": "Стоимость",
+    "orderDelivery": "Доставка",
+    "orderTotal": "Итог",
+    "orderCustomer": "Заказчик",
+    "orderFullName": "ФИО",
+    "orderPhone": "Телефон",
+    "orderEmail": "Email",
+    "orderRecipient": "Получатель"
+  },
+  "months": {
+    "Jan": "Январь", 
+    "Feb": "Февраль",
+    "Mar": "Март",
+    "Apr": "Апрель",
+    "May": "Май",
+    "Jun": "Июнь",
+    "Jul": "Июль",
+    "Aug": "Август",
+    "Sep": "Сентябрь",
+    "Oct": "Октябрь",
+    "Nov": "Ноябрь",
+    "Dec": "Декабрь"
   }
 }

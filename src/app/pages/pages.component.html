@@ -9,14 +9,19 @@
   [(isPlusBtn)]="pages.panelButtonSettings.plus"
   [(isSaveBtn)]="pages.panelButtonSettings.save"
   [(isCancelBtn)]="pages.panelButtonSettings.cancel"
+  [(isReviewBtn)]="pages.panelButtonSettings.review"
+  [(toggleFilter)]="pages.panelButtonSettings.toggleFilter"
   (plusClick)="onPlusClick()"
   (saveClick)="onSaveClick()"
   (cancelClick)="onCancelClick()"
+  (reviewClick)="onReviewClick()"
+  (filterClick)="onTogleFilterClick()"
   [labels]="{
     add: 'APP.add'| translate,
     filter: 'APP.filter'| translate,
     save: 'APP.save'| translate,
-    cancel: 'APP.cancel'| translate
+    cancel: 'APP.cancel'| translate,
+    review: 'APP.review' | translate
   }"
 >
   <app-rap-menu nav></app-rap-menu>

@@ -34,11 +34,11 @@
          <tr *ngFor="let order of orderService.order?.data">
             <td width="64px" class="text-center">{{ order.id }}</td>
             <td width="128px" class="text-center">{{ order.last_name }} {{ order.first_name }}</td>
-            <td width="128px" class="text-center">{{ order.telephone }}</td>
+            <td width="128px" class="text-center">{{ order.manufacturer.description.name }}</td>
             <td width="128px" class="text-center">{{ order.total.slice(0, -2) }}</td>
             <td width="128px" class="text-center">{{ order.created_at }}</td>
             <td width="128px" class="text-center">
-               <form [formGroup]="ordersForm">
+               <!-- <form [formGroup]="ordersForm">
                   <mat-form-field appearance="none">
                      <mat-select class="orders-select" formControlName="status">
                         <mat-option [value]="statusCodes[order.status_id] | translate">
@@ -55,19 +55,24 @@
                         </mat-option>
                      </mat-select>
                   </mat-form-field>
-               </form>
-               <!-- <div class="order-status">
-                  {{ order.status_id }}
-                  <mat-checkbox></mat-checkbox>
-               </div> -->
+               </form> -->
+               <div class="order-status-content">
+                  <div class="dot"
+                     [ngClass]="{
+                        'green-bg': statusCodes[order.status_id].name,
+                        'red-bg ': statusCodes[order.status_id].name,
+                        'blue-bg': statusCodes[order.status_id].name
+                     }"></div>
+                  <div class="status-text">{{ statusCodes[order.status_id].name | translate}}</div>
+               </div>
             </td>
             <td width="100%" class="panel-header-buttons text-center" style="padding: 19px;">
-               <button class="button transparent small">
-                  <rap-svg-ico [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
+               <button (click)="reviewOrder(order)" class="button transparent small">
+                  <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
                </button>
-               <button (click)="edit(order)" class="button transparent small">
+               <!-- <button class="button transparent small">
                   <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
-               </button>
+               </button> -->
             </td>
          </tr>
          <div  *ngIf="orderSideStatus" class="order-sideBar "  >

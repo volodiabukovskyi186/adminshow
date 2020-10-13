@@ -14,8 +14,14 @@
   </section>
 </div>
 
-<section class="fade" *ngIf="showForm" [@fade]></section>
+<section class="fade" *ngIf="showForm"></section>
 
-<section class="form" *ngIf="showForm" [@slideRight]>
+<section class="form" *ngIf="showForm" >
   <ng-content select="[form]"></ng-content>
 </section>
+
+<!-- <section class="fade" *ngIf="showFilter" [@fade]></section>
+
+<section class="form" *ngIf="showFilter" [@slideRight]>
+  <ng-content select="[filter]"></ng-content>
+</section> -->

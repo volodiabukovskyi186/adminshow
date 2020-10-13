@@ -25,6 +25,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { CustomersComponent } from './customers/customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SettingsPageComponent } from '../pages/client/settings-page/settings-page.component';
+import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -188,7 +189,15 @@ export const pagesRoutes: Routes = [
     data: {
       permissions: [],
     },
-  }
+  },
+  {
+    path: "reviews",
+    component: ReviewsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
 ];
 
 @NgModule({

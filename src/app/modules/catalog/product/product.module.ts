@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ProductFormComponent } from "./components/product-form/product-form.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UiModule } from "../../ui/ui.module";
 import { GalleryModule } from "../../gallery/gallery.module";
 import { DescriptionComponent } from "./components/layouts/description/description.component";
@@ -36,6 +36,7 @@ const c = [ProductFormComponent];
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     UiModule,
     GalleryModule,
     NgxSelectModule,

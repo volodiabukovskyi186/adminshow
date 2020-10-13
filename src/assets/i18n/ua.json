@@ -208,7 +208,11 @@
     "canceled": "Скасовано",
     "sent": "Відправлено",
     "inactive": "Неактивний",
-    "active": "Активний"
+    "active": "Активний",
+    "new": "Новий",
+    "confirmed": "Підтверджено",
+    "rejected": "Відхилено",
+    "approved": "Підтверджено"
   },
   "customers": {
     "customerLastName": "Прізвище",
@@ -220,7 +224,10 @@
     "customerActions": "Дії",
     "customersSubscription": "Оформлення підписки",
     "customersPersonalCabinet": "Особистий кабінет",
-    "editCustomerInformation": "Редагувати відомості про клієнта"
+    "editCustomerInformation": "Редагувати відомості про клієнта",
+    "viewOrder": "Перегляд замовлення",
+    "information": "Інформація",
+    "client": "Клієнт"
   },
   "currencies": {
     "currencyISOcode": "Код ISO",
@@ -265,5 +272,55 @@
     "productsAttributesAttr": "Атрибут",
     "productsAttributesLang": "Мова",
     "productsAttributesValue": "Значення"
+  },
+  "reviews": {
+    "goods": "Товар",
+    "producer": "Виробник",
+    "authorOfTheReview": "Автор відгуку",
+    "review": "Відгук",
+    "rating": "Оцінка",
+    "date": "Дата",
+    "status": "Статус",
+    "moderationOfReview": "Модерація відгуку",
+    "reviewResponse": "Відповідь",
+    "reviewStatus": "Статус",
+    "reviewsDateFrom": "Дата від",
+    "reviewsDateTo": "Дата до",
+    "reviewsFilters": "Фільтрування"
+  },
+    "orders": {
+    "ordersOrder": "Замовлення",
+    "ordersDate": "Дата",
+    "ordersDelivery": "Доставка",
+    "ordersPayment": "Оплата",
+    "ordersProducer": "Виробник",
+    "ordersListOfGoods": "Список товарів",
+    "orderProductName": "Найменування",
+    "orderProductModel": "Модель",
+    "orderProductQuantity": "Кількість",
+    "orderProductPrice": "Ціна",
+    "orderProductSum": "Сума",
+    "orderCost": "Вартість",
+    "orderDelivery": "Доставка",
+    "orderTotal": "Підсумок",
+    "orderCustomer": "Замовник",
+    "orderFullName": "ПІБ",
+    "orderPhone": "Телефон",
+    "orderEmail": "Email",
+    "orderRecipient": "Одержувач"
+  },
+  "months": {
+    "Jan": "Січень", 
+    "Feb": "Лютий",
+    "Mar": "Березень",
+    "Apr": "Квітень",
+    "May": "Травень",
+    "Jun": "Червень",
+    "Jul": "Липень",
+    "Aug": "Серпень",
+    "Sep": "Вересень",
+    "Oct": "Жовтень",
+    "Nov": "Листопад",
+    "Dec": "Грудень"
   }
 }

@@ -105,4 +105,12 @@ export class PagesComponent implements OnInit {
   onCancelClick() {
     if (this.pages.onCancelClick) this.pages.onCancelClick();
   }
+
+  onReviewClick() {
+    if (this.pages.onReviewClick) this.pages.onReviewClick();
+  }
+
+  onTogleFilterClick() {
+    if (this.pages.onTogleFilterClick) this.pages.onTogleFilterClick();
+  }
 }
