@@ -4,6 +4,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 import { ToastrService } from "ngx-toastr";
 import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { PagesService } from "../pages.service";
+import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
 // import {
 //   ManufacturerService,
 //   IManufacturer,
@@ -47,12 +48,10 @@ export class CustomersComponent extends BasePage implements OnInit {
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-
     this.breadcrumbs.breadcrumbs = [
       { link: "", title: "Dashboard" },
       { link: "/customers", title: "Customers" },
     ];
-
     this.getLangList();
     this.getList();
     this.initTranslate();
@@ -62,6 +61,11 @@ export class CustomersComponent extends BasePage implements OnInit {
       console.log(this.currentUserId);
     });
   }
+  test(){
+    debugger;
+    new Angular5Csv(this.customersService.customer?.data, 'Users');
+  }
+
 
   initTranslate() {
     this.lang.translate

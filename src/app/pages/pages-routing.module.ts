@@ -220,14 +220,14 @@ export const pagesRoutes: Routes = [
       permissions: [],
     },
   },
-  {
-    path: "country",
-    component:CountriesPageComponent,
-    canActivate: [AuthGuard, PermissionGuard],
-    data: {
-      permissions: [],
-    },
-  },
+  // {
+  //   path: "country",
+  //   component:CountriesPageComponent,
+  //   canActivate: [AuthGuard, PermissionGuard],
+  //   data: {
+  //     permissions: [],
+  //   },
+  // },
   {
     path: "customers",
     component: CustomersComponent,

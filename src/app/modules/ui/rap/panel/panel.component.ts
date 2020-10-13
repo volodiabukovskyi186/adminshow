@@ -7,6 +7,7 @@ export interface IPanelLabesl {
   cancel: string;
   save: string;
   review: string;
+  download:string;
 }
 @Component({
   selector: "rap-panel",
@@ -20,7 +21,9 @@ export class PanelComponent implements OnInit {
     add: "Add",
     cancel: "Calcel",
     save: "Save",
-    review: "Review"
+    review: "Review",
+    download: "Download"
+
   };
 
   private showRightSideValue: boolean = false;

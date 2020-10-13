@@ -164,7 +164,16 @@
       "stock_status": "Stock status",
       "order_status": "Order status",
       "departments": "Departments ShowU",
-      "addLanguage": "Dodaj język"
+      "addLanguage": "Dodaj język",
+      "storage_status": "Stan pamięci",
+      "unit_weight": "Jednostka wagi",
+      "country": "Kraje",
+      "add_edit_localization": "Dodaj / edytuj kolekcję",
+      "status": "Status",
+      "name": "Nazwa",
+      "marking": "Cechowanie",
+      "value": "Wartość",
+      "color": "Kolor"
     },
     "settings": {
       "siteSettings": "Ustawienia",

@@ -161,7 +161,16 @@
       "stock_status": "Сток статус",
       "order_status": "Статус замовлення",
       "departments": "Відділення ShowU",
-      "addLanguage": "Добавить язык"
+      "addLanguage": "Добавить язык",
+      "storage_status": "Статус на складе",
+      "unit_weight": "Единица веса",
+      "country": "Cтраны",
+      "add_edit_localization": "Добавить / изменить cтатус",
+      "status": "Статус",
+      "name": "Имя",
+      "marking": "Маркировка",
+      "value": "Значение",
+      "color": "Цвет"
     },
     "settings": {
       "siteSettings": "Настройки",
