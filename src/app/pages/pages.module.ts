@@ -66,6 +66,9 @@ import {CountriesModule} from "../modules/localization/countries/countries.modul
 import { DeliveryMethodsPageComponent } from './client/delivery-methods-page/delivery-methods-page.component';
 import {DeliveryMethodsModule} from "../modules/client/delivery-methods/delivery-methods.module";
 import {StorageModule} from "../modules/localization/storage/storage.module";
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { CdkTableExporterModule } from 'cdk-table-exporter';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -124,6 +127,8 @@ import {StorageModule} from "../modules/localization/storage/storage.module";
         SitePageModule,
         MatCheckboxModule,
         MatFormFieldModule,
+        MatTableExporterModule,
+        CdkTableExporterModule,
         MatSelectModule,
         NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
         //BrowserAnimationsModule, // required animations module
@@ -142,6 +147,7 @@ import {StorageModule} from "../modules/localization/storage/storage.module";
         CountriesModule,
         DeliveryMethodsModule,
         StorageModule,
+        MatTableModule,
         // ToastrModule added
     ],
   providers: [

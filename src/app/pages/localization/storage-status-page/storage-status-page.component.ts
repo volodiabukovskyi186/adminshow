@@ -5,6 +5,7 @@ import {FormControl} from "@angular/forms";
 import {PaymentService} from "../../client/services/payment.service";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {StorageService} from "../services/storage.service";
+import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 
 @Component({
   selector: 'app-storage-status-page',
@@ -14,20 +15,26 @@ import {StorageService} from "../services/storage.service";
 export class StorageStatusPageComponent extends BasePage implements OnInit {
   arrStorage: Array<any>
   selected: any;
+  alldata:any
   public descr: FormControl = new FormControl();
 
   constructor(public pages: PagesService,
               public storageService:StorageService,
               public langService: LanguageService,
+              public breadcrumbs: BreadcrumbsService,
   ) {
     super(pages);
   }
-
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
     this.getWeight();
     this.getLangList();
+
+    this.breadcrumbs.breadcrumbs = [
+      { link: "", title: "Dashboard" },
+      { link: "storage_status", title: "Storage status" },
+    ];
   }
 
 
@@ -43,6 +50,7 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
   getWeight(): void {
     this.storageService.getWeight().subscribe(data => {
       this.arrStorage = data.data;
+      this.alldata=data;
       console.log(this.arrStorage)
     })
 
@@ -84,5 +92,34 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
     this.selected = this.storageService.selected;
     this.openForm();
   };
+
+  postHandler = (data) => {
+    // this.ngxService.stopAll();
+    this.storageService.data.data.push(data.data);
+    this.storageService.data.count++;
+    this.closeForm();
+    // this.toastr.success("option ADDED");
+  };
+  // getListHandler = (data) => {
+  //     this.ngxService.stopAll();
+  //     this.localizationService.data = data;
+  // };
+
+  //#region pagination
+
+  pageToHandler(page: number): void {
+    this.storageService.page = page;
+  }
+  pagePrevHandler(): void {
+    this.storageService.page--;
+  }
+  pageNextHandler(): void {
+    this.storageService.page++;
+  }
+  pageChangedHandler(): void {
+    this.getWeight();
+    window.scrollTo(0, 0);
+  }
+  Math = Math;
 
 }

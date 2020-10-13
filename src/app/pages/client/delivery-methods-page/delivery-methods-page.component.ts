@@ -4,6 +4,7 @@ import {PagesService} from "../../pages.service";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {BasePage} from "../../@core";
 import {DeliveryMethodsService} from "../services/delivery-methods.service";
+import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 
 @Component({
   selector: 'app-delivery-methods-page',
@@ -11,7 +12,7 @@ import {DeliveryMethodsService} from "../services/delivery-methods.service";
   styleUrls: ['./delivery-methods-page.component.scss']
 })
 export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
-
+  alldata:any;
   arrPayment: Array<any>
   selected: any;
   public descr: FormControl = new FormControl();
@@ -19,6 +20,7 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   constructor(public pages: PagesService,
               public deliveryService:DeliveryMethodsService,
               public langService: LanguageService,
+              public breadcrumbs: BreadcrumbsService,
   ) {
     super(pages);
   }
@@ -28,6 +30,11 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
     super.initPanelButton();
     this.getWeight();
     this.getLangList();
+
+    this.breadcrumbs.breadcrumbs = [
+      { link: "", title: "Dashboard" },
+      { link: "unit_weight", title: " Delivery" },
+    ];
   }
 
 
@@ -43,6 +50,7 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   getWeight(): void {
     this.deliveryService.getDelivery().subscribe(data => {
       this.arrPayment = data.data;
+      this.alldata=data;
     })
 
   }
@@ -80,5 +88,34 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
     this.selected = this.deliveryService.selected;
     this.openForm();
   };
+
+  postHandler = (data) => {
+    // this.ngxService.stopAll();
+    this.deliveryService.data.data.push(data.data);
+    this.deliveryService.data.count++;
+    this.closeForm();
+    // this.toastr.success("option ADDED");
+  };
+  // getListHandler = (data) => {
+  //     this.ngxService.stopAll();
+  //     this.localizationService.data = data;
+  // };
+
+  //#region pagination
+
+  pageToHandler(page: number): void {
+    this.deliveryService.page = page;
+  }
+  pagePrevHandler(): void {
+    this.deliveryService.page--;
+  }
+  pageNextHandler(): void {
+    this.deliveryService.page++;
+  }
+  pageChangedHandler(): void {
+    this.getWeight();
+    window.scrollTo(0, 0);
+  }
+  Math = Math;
 
 }

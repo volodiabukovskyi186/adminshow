@@ -7,8 +7,13 @@ import {environment} from "../../../../environments/environment";
   providedIn: 'root'
 })
 export class CountriesService {
-
-
+  page: number = 1;
+  data = {
+    count: 0,
+    data: [],
+    skip: 0,
+    take: 10,
+  };
   selected:any;
   bSubject = new BehaviorSubject({selectedOrder:this.selected});
   initEmptyWeightForm(){
@@ -39,7 +44,9 @@ export class CountriesService {
     this.initEmptyWeightForm();
   }
   getCountry(): Observable<any> {
-    return this.http.get<any>(environment.countries.countrys);
+    let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${skip}`;
+    return this.http.get<any>(environment.countries.countrys+params);
   }
   editCountry(id: number, item): Observable<any> {
     return this.http.put<any>(`${environment.countries.country}/${id}`, item);

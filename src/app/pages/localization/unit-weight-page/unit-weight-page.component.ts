@@ -5,6 +5,7 @@ import {BasePage} from "../../@core";
 import {FormControl} from "@angular/forms";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {WeightService} from "../services/weight.service";
+import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 
 @Component({
   selector: 'app-unit-weight-page',
@@ -14,11 +15,13 @@ import {WeightService} from "../services/weight.service";
 export class UnitWeightPageComponent extends BasePage implements OnInit {
   arrWeight: Array<any>
   selected: any;
+  alldata:any;
   public descr: FormControl = new FormControl();
 
   constructor(public pages: PagesService,
               public weightService:WeightService,
               public langService: LanguageService,
+              public breadcrumbs: BreadcrumbsService,
   ) {
     super(pages);
 
@@ -29,6 +32,11 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
     super.initPanelButton();
     this.getWeight();
     this.getLangList();
+
+    this.breadcrumbs.breadcrumbs = [
+      { link: "", title: "Dashboard" },
+      { link: "unit_weight", title: " Weight" },
+    ];
   }
 
 
@@ -44,6 +52,7 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
   getWeight(): void {
     this.weightService.getWeight().subscribe(data => {
       this.arrWeight = data.data;
+      this.alldata=data
       console.log(this.arrWeight)
     })
 
@@ -89,4 +98,33 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
     this.selected = this.weightService.selected;
     this.openForm();
   };
+
+  postHandler = (data) => {
+    // this.ngxService.stopAll();
+    this.weightService.data.data.push(data.data);
+    this.weightService.data.count++;
+    this.closeForm();
+    // this.toastr.success("option ADDED");
+  };
+  // getListHandler = (data) => {
+  //     this.ngxService.stopAll();
+  //     this.localizationService.data = data;
+  // };
+
+  //#region pagination
+
+  pageToHandler(page: number): void {
+    this.weightService.page = page;
+  }
+  pagePrevHandler(): void {
+    this.weightService.page--;
+  }
+  pageNextHandler(): void {
+    this.weightService.page++;
+  }
+  pageChangedHandler(): void {
+    this.getWeight();
+    window.scrollTo(0, 0);
+  }
+  Math = Math;
 }

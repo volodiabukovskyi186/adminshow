@@ -63,6 +63,16 @@
             </tr>
             </tbody>
         </table>
+        <app-pagination
+                class="radius"
+                [page]="weightService.page"
+                [total]="Math.ceil(alldata?.count/alldata?.take)"
+                [pagesToShow]="5"
+                (goNext)="pageNextHandler()"
+                (goPrev)="pagePrevHandler()"
+                (goPage)="pageToHandler($event)"
+                (pageChanged)="pageChangedHandler()"
+        ></app-pagination>
     </div>
 </rap-panel-content>
 

@@ -11,12 +11,19 @@
     ></app-user-form>
   </div>
   <div filter></div>
+
+
+
   <div content class="padding">
     <!-- <pre>{{ userForm.model | json}}</pre> -->
+
+
     <table
       class="raisins-table border-all radius"
       *ngIf="user.data?.data.length > 0"
     >
+<!--      <button  (click) = "test()" >download</button>-->
+
       <thead>
         <tr>
           <th width="64px">{{ "APP.id" | translate }}</th>

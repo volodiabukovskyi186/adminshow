@@ -9,6 +9,13 @@ import {environment} from "../../../../environments/environment";
 export class DeliveryMethodsService {
 
   selected:any;
+  page: number = 1;
+  data = {
+    count: 0,
+    data: [],
+    skip: 0,
+    take: 10,
+  };
   bSubject = new BehaviorSubject({selectedOrder:this.selected});
   initEmptyWeightForm(){
     this.selected={
@@ -38,7 +45,9 @@ export class DeliveryMethodsService {
     this.initEmptyWeightForm();
   }
   getDelivery(): Observable<any> {
-    return this.http.get<any>(environment.delivery.deliverys);
+    let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${skip}`;
+    return this.http.get<any>(environment.delivery.deliverys+params);
   }
   editDelivery(id: number, item): Observable<any> {
     return this.http.put<any>(`${environment.delivery.delivery}/${id}`, item);

@@ -10,7 +10,9 @@
 </div>
 <div filter></div>
 <div content class="padding">
+<!--    <button  (click) = "test()" >download</button>-->
     <table  class="raisins-table border-all radius"  >
+
         <thead>
         <tr>
             <th width="64px">{{ "APP.id" | translate }}</th>
@@ -59,16 +61,18 @@
         </tr>
         </tbody>
     </table>
+    <app-pagination
+            class="radius"
+            [page]="localizationService.page"
+            [total]="Math.ceil(alldata?.count/alldata?.take)"
+            [pagesToShow]="5"
+            (goNext)="pageNextHandler()"
+            (goPrev)="pagePrevHandler()"
+            (goPage)="pageToHandler($event)"
+            (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+
 </div>
-<!--    <app-pagination-->
-<!--            class="radius"-->
-<!--            [page]="localizationService.page"-->
-<!--            [total]="Math.ceil(alldata.count / alldata.take)"-->
-<!--            [pagesToShow]="5"-->
-<!--            (goNext)="pageNextHandler()"-->
-<!--            (goPrev)="pagePrevHandler()"-->
-<!--            (goPage)="pageToHandler($event)"-->
-<!--            (pageChanged)="pageChangedHandler()"-->
-<!--    ></app-pagination>-->
+
 </rap-panel-content>
 

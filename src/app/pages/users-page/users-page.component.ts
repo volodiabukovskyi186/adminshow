@@ -9,6 +9,7 @@ import { PaginationPage } from "src/app/modules/ui/rap/pagination/pagination-pag
 import { UserFormService } from "src/app/modules/user/user-form.service";
 import { RolesService } from "src/app/modules/roles/roles.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
+import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
 
 @Component({
   selector: "app-users-page",
@@ -29,6 +30,11 @@ export class UsersPageComponent extends BasePage
   ) {
     super(pages);
   }
+
+  // test(){
+  //   debugger;
+  //   new Angular5Csv(this.user.data.data, 'My Report');
+  // }
 
   ngOnInit(): void {
     super.initPagesSettings();

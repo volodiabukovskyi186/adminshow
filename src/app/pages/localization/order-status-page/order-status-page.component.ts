@@ -6,6 +6,8 @@ import {LanguageService} from "../../../modules/localization/language/language.s
 import {IOrderStatusUp} from "../../../modules/localization/interfaces/order-status-interfaces";
 import {FormControl} from "@angular/forms";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
+import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 
 @Component({
     selector: 'app-order-status-page',
@@ -24,6 +26,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
                 public localizationService: LocalizationServicesService,
                 public langService: LanguageService,
                 protected ngxService: NgxUiLoaderService,
+                public breadcrumbs: BreadcrumbsService,
     ) {
         super(pages);
 
@@ -34,7 +37,19 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         super.initPanelButton();
         this.getStatus();
         this.getLangList();
+        this.breadcrumbs.breadcrumbs = [
+            { link: "", title: "Dashboard" },
+            { link: "order_status", title: "Order status" },
+        ];
     }
+
+
+
+    test(){
+        debugger;
+        new Angular5Csv(this.arrStatus , 'My Report');
+    }
+
 
 
     getLangList() {
@@ -104,6 +119,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         this.selectedOrder = this.localizationService.selectedOrder;
         this.openForm();
     };
+
     postHandler = (data) => {
         // this.ngxService.stopAll();
         this.localizationService.data.data.push(data.data);
@@ -111,10 +127,10 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         this.closeForm();
         // this.toastr.success("option ADDED");
     };
-    getListHandler = (data) => {
-        this.ngxService.stopAll();
-        this.localizationService.data = data;
-    };
+    // getListHandler = (data) => {
+    //     this.ngxService.stopAll();
+    //     this.localizationService.data = data;
+    // };
 
     //#region pagination
 

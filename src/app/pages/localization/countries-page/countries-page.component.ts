@@ -6,6 +6,7 @@ import {FormControl} from "@angular/forms";
 import {PaymentService} from "../../client/services/payment.service";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {CountriesService} from "../services/countries.service";
+import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 
 @Component({
   selector: 'app-countries-page',
@@ -15,11 +16,13 @@ import {CountriesService} from "../services/countries.service";
 export class CountriesPageComponent  extends BasePage implements OnInit{
   arrCountries: Array<any>
   selected: any;
+  alldata:any;
   public descr: FormControl = new FormControl();
 
   constructor(public pages: PagesService,
               public countriesServices:CountriesService,
               public langService: LanguageService,
+              public breadcrumbs: BreadcrumbsService,
   ) {
     super(pages);
   }
@@ -29,6 +32,10 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     super.initPanelButton();
     this.getWeight();
     this.getLangList();
+    this.breadcrumbs.breadcrumbs = [
+      { link: "", title: "Dashboard" },
+      { link: "country", title: " Countries" },
+    ];
   }
 
 
@@ -44,6 +51,7 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
   getWeight(): void {
     this.countriesServices.getCountry().subscribe(data => {
       this.arrCountries = data.data;
+      this.alldata=data;
     })
 
   }
@@ -82,5 +90,34 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     this.selected = this.countriesServices.selected;
     this.openForm();
   };
+
+  postHandler = (data) => {
+    // this.ngxService.stopAll();
+    this.countriesServices.data.data.push(data.data);
+    this.countriesServices.data.count++;
+    this.closeForm();
+    // this.toastr.success("option ADDED");
+  };
+  // getListHandler = (data) => {
+  //     this.ngxService.stopAll();
+  //     this.localizationService.data = data;
+  // };
+
+  //#region pagination
+
+  pageToHandler(page: number): void {
+    this.countriesServices.page = page;
+  }
+  pagePrevHandler(): void {
+    this.countriesServices.page--;
+  }
+  pageNextHandler(): void {
+    this.countriesServices.page++;
+  }
+  pageChangedHandler(): void {
+    this. getWeight();
+    window.scrollTo(0, 0);
+  }
+  Math = Math;
 
 }

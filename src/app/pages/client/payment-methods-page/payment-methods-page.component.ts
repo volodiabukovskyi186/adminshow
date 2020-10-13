@@ -6,6 +6,7 @@ import {FormControl} from "@angular/forms";
 import {WeightService} from "../../localization/services/weight.service";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {PaymentService} from "../services/payment.service";
+import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 
 @Component({
   selector: 'app-payment-methods-page',
@@ -16,11 +17,13 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
 
   arrPayment: Array<any>
   selected: any;
+  alldata:any;
   public descr: FormControl = new FormControl();
 
   constructor(public pages: PagesService,
               public paymentService:PaymentService,
               public langService: LanguageService,
+              public breadcrumbs: BreadcrumbsService,
   ) {
     super(pages);
   }
@@ -30,6 +33,11 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
     super.initPanelButton();
     this.getWeight();
     this.getLangList();
+
+    this.breadcrumbs.breadcrumbs = [
+      { link: "", title: "Dashboard" },
+      { link: "unit_weight", title: " Payment" },
+    ];
   }
 
 
@@ -43,8 +51,10 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
 
 
   getWeight(): void {
+
     this.paymentService.getWeight().subscribe(data => {
       this.arrPayment = data.data;
+      this.alldata=data
       console.log(this.arrPayment)
     })
 
@@ -86,5 +96,34 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
     this.selected = this.paymentService.selected;
     this.openForm();
   };
+
+  postHandler = (data) => {
+    // this.ngxService.stopAll();
+    this.paymentService.data.data.push(data.data);
+    this.paymentService.data.count++;
+    this.closeForm();
+    // this.toastr.success("option ADDED");
+  };
+  // getListHandler = (data) => {
+  //     this.ngxService.stopAll();
+  //     this.localizationService.data = data;
+  // };
+
+  //#region pagination
+
+  pageToHandler(page: number): void {
+    this.paymentService.page = page;
+  }
+  pagePrevHandler(): void {
+    this.paymentService.page--;
+  }
+  pageNextHandler(): void {
+    this.paymentService.page++;
+  }
+  pageChangedHandler(): void {
+    this.getWeight();
+    window.scrollTo(0, 0);
+  }
+  Math = Math;
 
 }

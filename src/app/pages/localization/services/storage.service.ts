@@ -8,6 +8,14 @@ import {environment} from "../../../../environments/environment";
 })
 export class StorageService {
   selected:any;
+  page: number = 1;
+  data = {
+    count: 0,
+    data: [],
+    skip: 0,
+    take: 10,
+  };
+
   bSubject = new BehaviorSubject({selectedOrder:this.selected});
   initEmptyWeightForm(){
     this.selected={
@@ -37,7 +45,9 @@ export class StorageService {
     this.initEmptyWeightForm();
   }
   getWeight(): Observable<any> {
-    return this.http.get<any>(environment.stockstatus.stockstatuss);
+    let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${skip}`;
+    return this.http.get<any>(environment.stockstatus.stockstatuss+params);
   }
   editWeight(id: number, item): Observable<any> {
     return this.http.put<any>(`${environment.stockstatus.stockstatus}/${id}`, item);
