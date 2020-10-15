@@ -110,6 +110,19 @@ export class PanelComponent implements OnInit {
     return this._isPlusBtn;
   }
 
+  //Download=>
+  private _isDwnloadBtn: boolean = false;
+  @Output() onDwnloadClick = new EventEmitter();
+
+  set isDwnloadBtn(val: boolean) {
+    this._isDwnloadBtn = val;
+    this.onDwnloadClick.emit(this._isDwnloadBtn);
+  }
+
+  @Input() get isDwnloadBtn(): boolean {
+    return this._isDwnloadBtn;
+  }
+
   @Output() plusClick = new EventEmitter();
 
   onPlusClick = () => this.plusClick.emit();
@@ -127,11 +140,7 @@ export class PanelComponent implements OnInit {
   }
 
   @Output() reviewClick = new EventEmitter();
-
   onReviewClick = () => this.reviewClick.emit();
-
-  
-
   private _toggleFilter: boolean = false;
   @Output() toggleFilterChange = new EventEmitter();
 

@@ -47,7 +47,6 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   public ngOnInit(): void {
     this.initPagesSettings();
     super.initPanelButton();
-
     this.breadcrumbs.breadcrumbs = [
       { link: "", title: "Dashboard" },
       { link: "reviews", title: "Reviews" },

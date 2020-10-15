@@ -48,6 +48,15 @@
         <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
       </button>
 
+      <button style="position: relative;"  [attr.data-tooltip-left]="labels.download" @scale
+              *ngIf="isDwnloadBtn"
+              class="button transparent small"
+              (click)="onDwnloadClick()"
+      >
+        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+      </button>
+
+
 
     </div>
     <ng-content select="[controls]"></ng-content>

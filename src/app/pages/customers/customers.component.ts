@@ -60,9 +60,11 @@ export class CustomersComponent extends BasePage implements OnInit {
       //this.currentUserId = res.data.user.id;
       console.log(this.currentUserId);
     });
+    this.pages.panelButtonSettings.download = true;
+
+
   }
-  test(){
-    debugger;
+  downloadCsv(){
     new Angular5Csv(this.customersService.customer?.data, 'Users');
   }
 
