@@ -8,6 +8,7 @@ import {FormControl} from "@angular/forms";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
     selector: 'app-order-status-page',
@@ -27,6 +28,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
                 public langService: LanguageService,
                 protected ngxService: NgxUiLoaderService,
                 public breadcrumbs: BreadcrumbsService,
+                protected toastr: ToastrService,
     ) {
         super(pages);
 
@@ -102,12 +104,14 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
             this.localizationService.editOrderStaus(this.selectedOrder.id, updateOrder).subscribe(data => {
             })
             this.getStatus()
+            this.toastr.success("ORDER EDIT");
         }
         else {
             this.localizationService.addNewOrderStatus(this.selectedOrder.id, updateOrder).subscribe(data => {
                 this.getStatus()
 
             })
+            this.toastr.success("ORDER ADDED");
 
         }
         this.closeForm();

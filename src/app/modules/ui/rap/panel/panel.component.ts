@@ -110,22 +110,38 @@ export class PanelComponent implements OnInit {
     return this._isPlusBtn;
   }
 
+  @Output() plusClick = new EventEmitter();
+
+  onPlusClick = () => this.plusClick.emit();
+
+
+
   //Download=>
   private _isDwnloadBtn: boolean = false;
-  @Output() onDwnloadClick = new EventEmitter();
+  @Output() isDwnloadClick = new EventEmitter();
 
   set isDwnloadBtn(val: boolean) {
     this._isDwnloadBtn = val;
-    this.onDwnloadClick.emit(this._isDwnloadBtn);
+    this.isDwnloadClick.emit(this._isDwnloadBtn);
   }
 
   @Input() get isDwnloadBtn(): boolean {
     return this._isDwnloadBtn;
   }
 
-  @Output() plusClick = new EventEmitter();
+  @Output() DownloadClick = new EventEmitter();
+  onDwnloadClick = () => {
+    console.log('wwww')
+    this.DownloadClick.emit();
+  }
 
-  onPlusClick = () => this.plusClick.emit();
+
+
+
+
+
+
+
 
   private _isReviewBtn: boolean = false;
   @Output() isReviewBtnChange = new EventEmitter();

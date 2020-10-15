@@ -6,6 +6,7 @@ import {PaymentService} from "../../client/services/payment.service";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {StorageService} from "../services/storage.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-storage-status-page',
@@ -22,6 +23,7 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
               public storageService:StorageService,
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
+              protected toastr: ToastrService,
   ) {
     super(pages);
   }
@@ -77,10 +79,12 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
       this.storageService.editWeight(this.selected.id, updateWeight).subscribe(data => {
       })
       this.getWeight()
+      this.toastr.success("STATUS EDIT");
     }
     else {
       this.storageService.addNewOrderStatus(this.selected.id, updateWeight).subscribe(data => {
         this.getWeight()
+        this.toastr.success("STATUS ADDED");
       })
     }
     this.closeForm();

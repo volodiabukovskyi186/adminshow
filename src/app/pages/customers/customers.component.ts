@@ -58,13 +58,14 @@ export class CustomersComponent extends BasePage implements OnInit {
 
     this.userService.getByToken().subscribe((res) => {
       //this.currentUserId = res.data.user.id;
-      console.log(this.currentUserId);
+
     });
     this.pages.panelButtonSettings.download = true;
 
 
   }
-  downloadCsv(){
+
+  download=()=>{
     new Angular5Csv(this.customersService.customer?.data, 'Users');
   }
 
@@ -133,7 +134,9 @@ export class CustomersComponent extends BasePage implements OnInit {
     });
     
     this.ngxService.start();
+    this.pages.panelButtonSettings.download = true;
   };
+
 
   postHandler = (data: { data: ICustomer }) => {
     this.ngxService.stopAll();
@@ -151,11 +154,12 @@ export class CustomersComponent extends BasePage implements OnInit {
     this.toastr.success("CUSTOMER UPDATED ^_^");
   };
 
-  // plus = () => {
+  plus = () => {
+    this.pages.panelButtonSettings.download = false;
   //   this.manufacturerForm.initEmptyCategory();
   //   this.manufacturerForm.initDesc(this.langService.languages.data);
   //   this.openForm();
-  // };
+  };
 
   //#endregion
 

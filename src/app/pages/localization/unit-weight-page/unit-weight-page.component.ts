@@ -6,6 +6,7 @@ import {FormControl} from "@angular/forms";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {WeightService} from "../services/weight.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-unit-weight-page',
@@ -22,6 +23,7 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
               public weightService:WeightService,
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
+              protected toastr: ToastrService,
   ) {
     super(pages);
 
@@ -83,10 +85,12 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
       this.weightService.editWeight(this.selected.id, updateWeight).subscribe(data => {
       })
       this.getWeight()
+      this.toastr.success("WEIGHT EDIT");
     }
     else {
       this.weightService.addNewOrderStatus(this.selected.id, updateWeight).subscribe(data => {
         this.getWeight()
+        this.toastr.success("WEIGHT ADDED");
       })
     }
     this.closeForm();

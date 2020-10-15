@@ -7,6 +7,7 @@ import {WeightService} from "../../localization/services/weight.service";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {PaymentService} from "../services/payment.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payment-methods-page',
@@ -24,6 +25,7 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
               public paymentService:PaymentService,
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
+              protected toastr: ToastrService,
   ) {
     super(pages);
   }
@@ -81,10 +83,12 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
       this.paymentService.editWeight(this.selected.id, updateWeight).subscribe(data => {
       })
       this.getWeight()
+      this.toastr.success("PAYMENT EDIT");
     }
     else {
       this.paymentService.addNewOrderStatus(this.selected.id, updateWeight).subscribe(data => {
         this.getWeight()
+        this.toastr.success("PAYMENT ADDED");
       })
     }
     this.closeForm();

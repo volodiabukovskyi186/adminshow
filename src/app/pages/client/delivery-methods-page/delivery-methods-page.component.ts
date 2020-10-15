@@ -5,6 +5,7 @@ import {LanguageService} from "../../../modules/localization/language/language.s
 import {BasePage} from "../../@core";
 import {DeliveryMethodsService} from "../services/delivery-methods.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-delivery-methods-page',
@@ -21,6 +22,7 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
               public deliveryService:DeliveryMethodsService,
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
+              protected toastr: ToastrService,
   ) {
     super(pages);
   }
@@ -74,11 +76,13 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
     if (this.selected.id !== undefined) {
       this.deliveryService.editDelivery(this.selected.id, updateWeight).subscribe(data => {
         this.getWeight()
+        this.toastr.success("DELIVERY EDIT");
       })
     }
     else {
       this.deliveryService.addNewDelivery(this.selected.id, updateWeight).subscribe(data => {
         this.getWeight()
+        this.toastr.success("DELIVERY ADDED");
       })
     }
     this.closeForm();

@@ -6,6 +6,13 @@
   <header *ngIf="showTop">
     <ng-content select="[header]"></ng-content>
     <div class="panel-header-buttons">
+      <button style="position: relative;"  [attr.data-tooltip-left]="labels.download" @scale
+              *ngIf="isDwnloadBtn"
+              class="button transparent small"
+              (click)="onDwnloadClick()"
+      >
+        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+      </button>
       <button style="position: relative;" [attr.data-tooltip-left]="labels.filter" @scale
         *ngIf="showRightToggleBtn"
         class="button transparent small"
@@ -48,13 +55,7 @@
         <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
       </button>
 
-      <button style="position: relative;"  [attr.data-tooltip-left]="labels.download" @scale
-              *ngIf="isDwnloadBtn"
-              class="button transparent small"
-              (click)="onDwnloadClick()"
-      >
-        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
-      </button>
+
 
 
 

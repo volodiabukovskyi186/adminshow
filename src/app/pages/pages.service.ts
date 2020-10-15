@@ -35,7 +35,7 @@ export class PagesService {
       right: false,
       top: false,
       form: false,
-      download:true
+      download:false
     };
   }
 
@@ -47,7 +47,7 @@ export class PagesService {
       save: false,
       review: false,
       toggleFilter: true,
-      download:true
+      download:false
     };
   }
 }
