@@ -65,6 +65,7 @@ initTranslate() {
 getList() {
   this.ngxService.start();
   this.option.getList().subscribe(this.getListHandler);
+
 }
 
 getListHandler = (data) => {
@@ -121,10 +122,8 @@ save = () => {
 
 postHandler = (data) => {
   this.ngxService.stopAll();
-
   this.option.data.data.push(data.data);
   this.option.data.count++;
-
   this.closeForm();
   this.toastr.success("option ADDED");
 };

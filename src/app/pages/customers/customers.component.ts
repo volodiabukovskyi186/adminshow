@@ -4,6 +4,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 import { ToastrService } from "ngx-toastr";
 import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { PagesService } from "../pages.service";
+import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
 // import {
 //   ManufacturerService,
 //   IManufacturer,
@@ -47,21 +48,27 @@ export class CustomersComponent extends BasePage implements OnInit {
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-
     this.breadcrumbs.breadcrumbs = [
       { link: "", title: "Dashboard" },
       { link: "/customers", title: "Customers" },
     ];
-
     this.getLangList();
     this.getList();
     this.initTranslate();
 
     this.userService.getByToken().subscribe((res) => {
       //this.currentUserId = res.data.user.id;
-      console.log(this.currentUserId);
+
     });
+    this.pages.panelButtonSettings.download = true;
+
+
   }
+
+  download=()=>{
+    new Angular5Csv(this.customersService.customer?.data, 'Users');
+  }
+
 
   initTranslate() {
     this.lang.translate
@@ -127,7 +134,9 @@ export class CustomersComponent extends BasePage implements OnInit {
     });
     
     this.ngxService.start();
+    this.pages.panelButtonSettings.download = true;
   };
+
 
   postHandler = (data: { data: ICustomer }) => {
     this.ngxService.stopAll();
@@ -145,11 +154,12 @@ export class CustomersComponent extends BasePage implements OnInit {
     this.toastr.success("CUSTOMER UPDATED ^_^");
   };
 
-  // plus = () => {
+  plus = () => {
+    this.pages.panelButtonSettings.download = false;
   //   this.manufacturerForm.initEmptyCategory();
   //   this.manufacturerForm.initDesc(this.langService.languages.data);
   //   this.openForm();
-  // };
+  };
 
   //#endregion
 

@@ -4,6 +4,7 @@ export interface PanelSettings {
   right: boolean;
   top: boolean;
   form?: boolean;
+  download:boolean;
 }
 
 export interface PanelButtonSettings {
@@ -13,4 +14,5 @@ export interface PanelButtonSettings {
   save: boolean;
   review: boolean;
   toggleFilter: boolean;
+  download: boolean;
 }

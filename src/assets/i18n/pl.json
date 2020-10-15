@@ -150,6 +150,11 @@
       "addManufacturer": "Dodaj producenta"
     },
     "users": { "users": "users", "roles": "users" },
+    "settings": {
+      "settings": "Ustawienia",
+      "payment_methods": " Metody Płatności"
+    },
+
     "localization": {
       "localization": "Localization",
       "languages": "Languages",
@@ -159,10 +164,30 @@
       "stock_status": "Stock status",
       "order_status": "Order status",
       "departments": "Departments ShowU",
-      "addLanguage": "Dodaj język"
+      "addLanguage": "Dodaj język",
+      "storage_status": "Stan pamięci",
+      "unit_weight": "Jednostka wagi",
+      "country": "Kraje",
+      "add_edit_localization": "Dodaj / edytuj kolekcję",
+      "status": "Status",
+      "name": "Nazwa",
+      "marking": "Cechowanie",
+      "value": "Wartość",
+      "color": "Kolor"
     },
     "settings": {
-      "siteSettings": "Ustawienia"
+      "siteSettings": "Ustawienia",
+      "addLanguage": "Dodaj język",
+      "storage_status": "Stan pamięci",
+      "unit_weight": "Jednostka wagi",
+      "country": "Kraje",
+      "add_edit_localization": "Dodaj / edytuj kolekcję",
+      "status": "Status",
+      "name": "Nazwa",
+      "marking": "Cechowanie",
+      "value": "Wartość",
+      "color": "Kolor"
+
     }
   },
   "statusCodes": {
@@ -273,7 +298,7 @@
     "orderRecipient": "Odbiorca"
   },
   "months": {
-    "Jan": "Styczeń", 
+    "Jan": "Styczeń",
     "Feb": "Luty",
     "Mar": "Marsz",
     "Apr": "Kwiecień",

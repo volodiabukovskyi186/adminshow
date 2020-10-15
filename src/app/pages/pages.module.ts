@@ -55,6 +55,21 @@ import { OrdersComponent } from './orders/orders.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { OrderStatusPageComponent } from './localization/order-status-page/order-status-page.component';
+import {OrderStatusModule} from "../modules/localization/order-status/order-status.module";
+import { StorageStatusPageComponent } from './localization/storage-status-page/storage-status-page.component';
+import { UnitWeightPageComponent } from './localization/unit-weight-page/unit-weight-page.component';
+import {UnitWeightModule} from "../modules/localization/unit-weight/unit-weight.module";
+import { PaymentMethodsPageComponent } from './client/payment-methods-page/payment-methods-page.component';
+import {PaymentMethodsModule} from "../modules/client/payment-methods/payment-methods.module";
+import { CountriesPageComponent } from './localization/countries-page/countries-page.component';
+import {CountriesModule} from "../modules/localization/countries/countries.module";
+import { DeliveryMethodsPageComponent } from './client/delivery-methods-page/delivery-methods-page.component';
+import {DeliveryMethodsModule} from "../modules/client/delivery-methods/delivery-methods.module";
+import {StorageModule} from "../modules/localization/storage/storage.module";
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { CdkTableExporterModule } from 'cdk-table-exporter';
+import {MatTableModule} from "@angular/material/table";
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
 import { CurrencyFormComponent } from './localization/currencies-page/currency-form/currency-form.component';
@@ -96,49 +111,66 @@ import { ReviewsFiltersFormComponent } from './reviews-page/reviews-filters-form
     OrderFormComponent,
     ReviewsPageComponent,
     ReviewsFormComponent,
-    ReviewsFiltersFormComponent
+    ReviewsFiltersFormComponent,
+    OrdersComponent,
+    OrderStatusPageComponent,
+    StorageStatusPageComponent,
+    UnitWeightPageComponent,
+    PaymentMethodsPageComponent,
+    CountriesPageComponent,
+    DeliveryMethodsPageComponent
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    AuthModule,
-    UiModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    GalleryModule,
-    PermissionModule,
-    NgxFilesizeModule,
-    TranslateModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RolesModule,
-    UserModule,
-    LanguageModule,
-    ManufacturerModule,
-    AttribyteModule,
-    CategoryModule,
-    ProductModule,
-    OptionModule,
-    CoreModule,
-    PromotionModule,
-    CollectionModule,
-    SiteMenuModule,
-    SitePageModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    //BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot({
-      closeButton: true,
-      positionClass: "toast-top-center",
-      enableHtml: true,
-      tapToDismiss: false,
-      // disableTimeOut: true,
-      progressBar: true,
-      // preventDuplicates: true,
-    }), // ToastrModule added
-  ],
+    imports: [
+        CommonModule,
+        PagesRoutingModule,
+        AuthModule,
+        UiModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        GalleryModule,
+        PermissionModule,
+        NgxFilesizeModule,
+        TranslateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RolesModule,
+        UserModule,
+        LanguageModule,
+        ManufacturerModule,
+        AttribyteModule,
+        CategoryModule,
+        ProductModule,
+        OptionModule,
+        CoreModule,
+        PromotionModule,
+        CollectionModule,
+        SiteMenuModule,
+        SitePageModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatTableExporterModule,
+        CdkTableExporterModule,
+        MatSelectModule,
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+        //BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot({
+            closeButton: true,
+            positionClass: "toast-top-center",
+            enableHtml: true,
+            tapToDismiss: false,
+            // disableTimeOut: true,
+            progressBar: true,
+            // preventDuplicates: true,
+        }),
+        OrderStatusModule,
+        UnitWeightModule,
+        PaymentMethodsModule,
+        CountriesModule,
+        DeliveryMethodsModule,
+        StorageModule,
+        MatTableModule,
+        // ToastrModule added
+    ],
   providers: [
     // LocalDatePipe
   ],

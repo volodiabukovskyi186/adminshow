@@ -1,0 +1,23 @@
+<rap-step-tabs>
+    <rap-step-tab [active]="true" [title]="'APP.base' | translate">
+        <fieldset class="radius" style="margin-bottom: 16px;">
+            <legend>{{ "category.description" | translate }}</legend>
+         <app-country-form-main [selected]="selected"></app-country-form-main>
+        </fieldset>
+    </rap-step-tab>
+
+    <rap-step-tab [title]="'Доставка'">
+        <fieldset class="radius" style="margin-bottom: 16px;">
+            <legend>Доставка</legend>
+            <app-country-form-delivery [selected]="selected"></app-country-form-delivery>
+        </fieldset>
+    </rap-step-tab>
+
+    <rap-step-tab [title]="'Оплата'">
+        <fieldset class="radius" style="margin-bottom: 16px;">
+            <legend>Оплата</legend>
+            <app-country-form-payment [selected]="selected" ></app-country-form-payment>
+        </fieldset>
+    </rap-step-tab>
+
+</rap-step-tabs>

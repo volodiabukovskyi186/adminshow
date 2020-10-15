@@ -196,7 +196,16 @@
       "stock_status": "Stock status",
       "order_status": "Order status",
       "departments": "Departments ShowU",
-      "addLanguage": "Add Language"
+      "addLanguage": "Add Language",
+      "storage_status": "Storage status",
+      "unit_weight": "Unit of weight",
+      "country": "Countries",
+      "add_edit_localization": "Add / Edit Status",
+      "status": "Status",
+      "name": "Name",
+      "marking": "Marking",
+      "value": "Value",
+      "color": "Color"
     },
     "settings": {
       "siteSettings": "Settings"

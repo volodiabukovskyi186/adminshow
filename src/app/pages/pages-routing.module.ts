@@ -24,6 +24,12 @@ import { SitePagePageComponent } from './client/site-page-page/site-page-page.co
 import { OrdersComponent } from './orders/orders.component';
 import { CustomersComponent } from './customers/customers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {OrderStatusPageComponent} from "./localization/order-status-page/order-status-page.component";
+import {StorageStatusPageComponent} from "./localization/storage-status-page/storage-status-page.component";
+import {UnitWeightPageComponent} from "./localization/unit-weight-page/unit-weight-page.component";
+import {PaymentMethodsPageComponent} from "./client/payment-methods-page/payment-methods-page.component";
+import {CountriesPageComponent} from "./localization/countries-page/countries-page.component";
+import {DeliveryMethodsPageComponent} from "./client/delivery-methods-page/delivery-methods-page.component";
 import { SettingsPageComponent } from '../pages/client/settings-page/settings-page.component';
 import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
 
@@ -169,6 +175,54 @@ export const pagesRoutes: Routes = [
   {
     path: "orders",
     component: OrdersComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "order_status",
+    component: OrderStatusPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "storage_status",
+    component: StorageStatusPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "unit_weight",
+    component:UnitWeightPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "payment_methods",
+    component:PaymentMethodsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "delivery_methods",
+    component:DeliveryMethodsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "country",
+    component:CountriesPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: [],

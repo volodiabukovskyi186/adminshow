@@ -7,6 +7,7 @@ export interface IPanelLabesl {
   cancel: string;
   save: string;
   review: string;
+  download:string;
 }
 @Component({
   selector: "rap-panel",
@@ -20,7 +21,9 @@ export class PanelComponent implements OnInit {
     add: "Add",
     cancel: "Calcel",
     save: "Save",
-    review: "Review"
+    review: "Review",
+    download: "Download"
+
   };
 
   private showRightSideValue: boolean = false;
@@ -111,6 +114,35 @@ export class PanelComponent implements OnInit {
 
   onPlusClick = () => this.plusClick.emit();
 
+
+
+  //Download=>
+  private _isDwnloadBtn: boolean = false;
+  @Output() isDwnloadClick = new EventEmitter();
+
+  set isDwnloadBtn(val: boolean) {
+    this._isDwnloadBtn = val;
+    this.isDwnloadClick.emit(this._isDwnloadBtn);
+  }
+
+  @Input() get isDwnloadBtn(): boolean {
+    return this._isDwnloadBtn;
+  }
+
+  @Output() DownloadClick = new EventEmitter();
+  onDwnloadClick = () => {
+    console.log('wwww')
+    this.DownloadClick.emit();
+  }
+
+
+
+
+
+
+
+
+
   private _isReviewBtn: boolean = false;
   @Output() isReviewBtnChange = new EventEmitter();
 
@@ -124,11 +156,7 @@ export class PanelComponent implements OnInit {
   }
 
   @Output() reviewClick = new EventEmitter();
-
   onReviewClick = () => this.reviewClick.emit();
-
-  
-
   private _toggleFilter: boolean = false;
   @Output() toggleFilterChange = new EventEmitter();
 

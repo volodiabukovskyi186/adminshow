@@ -28,7 +28,6 @@ export class CategoryFormComponent implements OnInit {
   @Input() category: ICategory;
   @Input() categoryes: any[] = [];
   @Input() langs: ILanguage[];
-
   @Input() title: string = "";
 
   editorConfig: AngularEditorConfig = {

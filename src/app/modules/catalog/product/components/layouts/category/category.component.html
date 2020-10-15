@@ -17,15 +17,14 @@
     let-option
     let-text="text"
   >
+    {{prodCategory.values|json}}
     <span [innerHtml]="text"></span>
     <!-- | {{option.data.id}} -->
   </ng-template>
-
   <ng-template ngx-select-option-not-found let-input>
     "{{ input }}" not found
   </ng-template>
 </ngx-select>
-
 <div class="flex center">
   <button
     style="position: relative;"

@@ -94,6 +94,8 @@
   "dashboard": {
     "dashboard": "Панель приладів"
   },
+
+
   "promotion": {
     "add_edit_promotion": "Додати/Редагувати Акцію"
   },
@@ -187,6 +189,10 @@
       "addManufacturer": "Додати виробника"
     },
     "users": { "users": "Ролі", "roles": "Користувачі" },
+    "settings": {
+      "settings": "Налаштування",
+      "payment_methods": "Cпособи оплати"
+    },
     "localization": {
       "localization": "Локалізація",
       "languages": "Мови",
@@ -196,10 +202,29 @@
       "stock_status": "Сток статус",
       "order_status": "Статус замовлення",
       "departments": "Відділення ShowU",
-      "addLanguage": "Додати мову"
+      "addLanguage": "Додати мову",
+      "storage_status": "Статус на складі",
+      "unit_weight": "Одиниця ваги",
+      "country": "Країни",
+      "add_edit_localization": "Додавання/Редагування",
+      "status": "Статус",
+      "name": "Найменування",
+      "marking": "Позначення",
+      "value": "Значення",
+      "color": "Колір"
     },
     "settings": {
-      "siteSettings": "Налаштування"
+      "siteSettings": "Налаштування",
+      "addLanguage": "Додати мову",
+      "storage_status": "Статус на складі",
+      "unit_weight": "Одиниця ваги",
+      "country": "Країни",
+      "add_edit_localization": "Додавання/Редагування",
+      "status": "Статус",
+      "name": "Найменування",
+      "marking": "Позначення",
+      "value": "Значення",
+      "color": "Колір"
     }
   },
   "statusCodes": {
@@ -310,7 +335,7 @@
     "orderRecipient": "Одержувач"
   },
   "months": {
-    "Jan": "Січень", 
+    "Jan": "Січень",
     "Feb": "Лютий",
     "Mar": "Березень",
     "Apr": "Квітень",

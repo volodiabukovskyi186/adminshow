@@ -74,4 +74,38 @@ export const environment = {
     manufacturers: host + `manufacturers`,
     manufacturer: host + `manufacturer`,
   },
+  localizations:{
+    orderstatus:host+`order_statuss`,
+    orderstatusdel:host+`order_status`,
+    orderstatusup:host+`order_status`,
+    orderstoragestatus:host+``
+  },
+  weight:{
+    weights:host+`weights`,
+    weight:host+`weight`,
+  },
+  payment:{
+    payments:host+`payments`,
+    payment:host+`payment`,
+    payment_description:host+'payment_description'
+  },
+  delivery:{
+    deliverys:host+'deliverys',
+    delivery:host+'delivery'
+  },
+  stockstatus:{
+    stockstatuss:host+'stock_statuss',
+    stockstatus:host+'stock_status'
+  },
+  countries:{
+    countrys:host+'countrys',
+    country:host+'country',
+    countrypay:host+'country_payment',
+    countrydeliverys:host+'country_deliverys',
+    delivers:{
+      deliverys:host+'country_deliverys',
+      delivery:host+'country_delivery'
+    }
+  }
+
 };

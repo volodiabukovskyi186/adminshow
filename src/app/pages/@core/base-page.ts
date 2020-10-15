@@ -40,6 +40,8 @@ export abstract class BasePage {
     this.pages.onSaveClick = this.save;
     this.pages.onPlusClick = this.plus;
     this.pages.onReviewClick = this.review;
+    this.pages.onDwnloadClick = this.download;
+
   }
 
   cancel = () => {
@@ -50,6 +52,8 @@ export abstract class BasePage {
 
   plus = () => {
     this.openForm();
+  };
+  download = () => {
   };
 
   review = () => {

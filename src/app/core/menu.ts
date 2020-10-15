@@ -35,7 +35,7 @@ export const MENU = [
     "assets/icons/menu-manufacturer.svg"
   ),
   group("MENU.customers.customers", [
-    item("MENU.customers.customers", "customers"),
+    item("MENU.customers.customers", "customers",true, ICON_MENU_ITEM),
     // item("Inactive", "customers/inactive"),
   ]),
   group(
@@ -52,8 +52,8 @@ export const MENU = [
     item("MENU.manage_site.settings", "settings"),
     item("MENU.manage_site.articles", "articles"),
     // item("Blocks", "blocks"),
-    item("MENU.manage_site.delivery_methods", "delivery_methods"),
-    item("MENU.manage_site.payment_methods", "payment_methods"),
+    item("MENU.manage_site.delivery_methods", "delivery_methods",true, ICON_MENU_ITEM),
+    item("MENU.manage_site.payment_methods", "payment_methods",true, ICON_MENU_ITEM),
     // item("Webhooks", "webhooks"),
   ]),
   group(
@@ -68,16 +68,28 @@ export const MENU = [
   //   item("Order", "statistic/order"),
   //   item("Product", "statistic/product"),
   // ]),
+  // group(
+  //     "MENU.settings.settings",
+  //     [
+  //       item("MENU.settings.payment_methods", "payment_methods", true, ICON_MENU_ITEM),
+  //     ],
+  //     "assets/icons/menu-people.svg"
+  // ),
   group("MENU.localization.localization", [
     item("MENU.localization.languages", "language", true, ICON_MENU_ITEM),
-    item("MENU.localization.currencies", "currencies"),
+    item("MENU.localization.currencies", "currencies",true, ICON_MENU_ITEM),
     // item("Countries", "countries"),
-    item("MENU.localization.measure_units", "measure_units"),
-    item("MENU.localization.weight_units", "weight_units"),
+    // item("MENU.localization.measure_units", "measure_units"),
+    // item("MENU.localization.weight_units", "weight_units"),
     item("MENU.localization.stock_status", "stock_status"),
-    item("MENU.localization.order_status", "order_status"),
+    item("MENU.localization.order_status", "order_status",true, ICON_MENU_ITEM),
+    item("MENU.localization.storage_status", "storage_status",true, ICON_MENU_ITEM),
+    item("MENU.localization.unit_weight", "unit_weight",true, ICON_MENU_ITEM),
+    item("MENU.localization.country", "country",true, ICON_MENU_ITEM),
     item("MENU.localization.departments", "departments"),
   ]),
+
+
   // group("Other", [item("Log", "log")]),
 ];
 

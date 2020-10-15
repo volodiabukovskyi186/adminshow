@@ -17,6 +17,7 @@ export class PagesService {
   onCancelClick: () => void;
   onReviewClick: () => void;
   onTogleFilterClick: () => void;
+  onDwnloadClick: () => void;
 
   constructor() {
     this.defaultSetting();
@@ -33,7 +34,8 @@ export class PagesService {
       left: false,
       right: false,
       top: false,
-      form: false
+      form: false,
+      download:false
     };
   }
 
@@ -44,7 +46,8 @@ export class PagesService {
       cancel: false,
       save: false,
       review: false,
-      toggleFilter: true
+      toggleFilter: true,
+      download:false
     };
   }
 }

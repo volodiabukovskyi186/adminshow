@@ -155,7 +155,7 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
   putHandler = (data) => {
     this.ngxService.stopAll();
     this.closeForm();
-    this.toastr.success("CURRENCY UPDATED ^_^");
+    this.toastr.success("CURRENCY UPDATED");
   };
 
   updateStatus(item: ICurrency) {

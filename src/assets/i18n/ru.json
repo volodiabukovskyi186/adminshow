@@ -148,6 +148,10 @@
       "addManufacturer": "Добавить производителя"
     },
     "users": { "users": "Ролі", "roles": "Користувачі" },
+    "settings": {
+      "settings": "Настройки",
+      "payment_methods": "Cпособы оплаты"
+    },
     "localization": {
       "localization": "Локалізація",
       "languages": "Мови",
@@ -157,10 +161,29 @@
       "stock_status": "Сток статус",
       "order_status": "Статус замовлення",
       "departments": "Відділення ShowU",
-      "addLanguage": "Добавить язык"
+      "addLanguage": "Добавить язык",
+      "storage_status": "Статус на складе",
+      "unit_weight": "Единица веса",
+      "country": "Cтраны",
+      "add_edit_localization": "Добавить / изменить cтатус",
+      "status": "Статус",
+      "name": "Имя",
+      "marking": "Маркировка",
+      "value": "Значение",
+      "color": "Цвет"
     },
     "settings": {
-      "siteSettings": "Настройки"
+      "siteSettings": "Настройки",
+      "addLanguage": "Добавить язык",
+      "storage_status": "Статус на складе",
+      "unit_weight": "Единица веса",
+      "country": "Cтраны",
+      "add_edit_localization": "Добавить / изменить cтатус",
+      "status": "Статус",
+      "name": "Имя",
+      "marking": "Маркировка",
+      "value": "Значение",
+      "color": "Цвет"
     }
   },
   "statusCodes": {
@@ -271,7 +294,7 @@
     "orderRecipient": "Получатель"
   },
   "months": {
-    "Jan": "Январь", 
+    "Jan": "Январь",
     "Feb": "Февраль",
     "Mar": "Март",
     "Apr": "Апрель",

@@ -1,0 +1,71 @@
+<rap-panel-content
+        [showForm]="pages.panelSettings.form"
+        [showRightSide]="pages.panelSettings.right"
+>
+    <div form>
+        <app-payment-methods-form [selected]="selected">
+        </app-payment-methods-form>
+    </div>
+    <div filter></div>
+    <div content class="padding">
+        <table class="raisins-table border-all radius">
+            <thead>
+            <tr>
+                <th width="">{{ "APP.title" | translate }}</th>
+                <th width="200px">{{ "APP.updated_at" | translate }}</th>
+                <th width="128px">{{ "APP.action" | translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let payment of arrPayment; let i=index"
+                [ngClass]="">
+                <td class="text-center">
+                    <div class="flex wrap" style="width: 100%;">
+                             <span class="title flag-container" *ngFor="let pays of payment.descriptions">
+                                 <img class="flag" src="{{ langService.getFromList(pays.lang_id)?.flag }}"/>
+                               <span class="name">{{ pays.name }}</span>
+                             </span>
+                    </div>
+                </td>
+                <td class="text-center">
+                    {{payment.updated_at==null?'-':payment.updated_at}}
+                </td>
+
+                <td>
+                    <div class="flex wrap center">
+                        <button
+                                style="position: relative;"
+                                [attr.data-tooltip-left]="'APP.edit' | translate"
+                                role="button"
+                                (click)="edit(payment)"
+                                class="button transparent radius"
+                        >
+                            <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+                        </button>
+
+                        <rap-delete-button
+                                (click)="deleteStatus(payment)"
+                                data-tooltip-left="Delete"
+                                class="button transparent radius"
+                                [src]="'assets/icons/delete.svg'"
+                        ></rap-delete-button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <app-pagination
+                class="radius"
+                [page]="deliveryService.page"
+                [total]="Math.ceil(alldata?.count/alldata?.take)"
+                [pagesToShow]="5"
+                (goNext)="pageNextHandler()"
+                (goPrev)="pagePrevHandler()"
+                (goPage)="pageToHandler($event)"
+                (pageChanged)="pageChangedHandler()"
+        ></app-pagination>
+    </div>
+</rap-panel-content>
+
+
+

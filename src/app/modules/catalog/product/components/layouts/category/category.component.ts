@@ -20,17 +20,14 @@ export class CategoryComponent implements OnInit {
 
     // this.getProdCategory();
   }
-
   @Input() get model(): IProduct {
     return this._model;
   }
-
   constructor(
     public category: CategoryService,
     public prodCategory: ProductCategoryService,
     protected toastr: ToastrService,
   ) {}
-
   ngOnInit(): void {}
   // save prod category
   save() {

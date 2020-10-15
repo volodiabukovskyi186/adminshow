@@ -10,7 +10,7 @@ import { IOptionResponse } from '../interfaces';
 export class OptionService {
   page: number = 1;
   data: IOptionResponse = {
-    count: 0,
+    count:0,
     data: [],
     skip: 0,
     take: 10,
@@ -19,6 +19,7 @@ export class OptionService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<IOptionResponse> {
+
     let skip = this.page * this.data.take - this.data.take;
     let params = `?take=${this.data.take}&skip=${skip}`;
     return this.http.get<IOptionResponse>(

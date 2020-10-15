@@ -5,7 +5,6 @@
       <header>
         <h4>{{ "APP.select_image" | translate }}</h4>
       </header>
-
       <div class="content">
         <app-gallery-view
           [selectable]="true"
@@ -31,8 +30,7 @@
           <rap-step-tab
             *ngFor="let item of model.descriptions"
             [imgSrc]="languageService.getFromList(item.lang.id)?.flag"
-            [title]="item.lang.short_title"
-          >
+            [title]="item.lang.short_title">
           <div class="form-row">
             <div class="description">
               <label for="">{{ "collection.title" | translate }}</label>

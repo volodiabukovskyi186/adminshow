@@ -32,9 +32,7 @@
       <tbody>
         <tr *ngFor="let item of attr.data?.data">
           <td data-label="ID" class="text-center">{{ item.id }}</td>
-
           <td class="text-center">{{ item.sort_order }}</td>
-
           <td>
             <div class="flex wrap" style="width: 100%;">
               <span class="title flag-container" *ngFor="let desc of item.description">
@@ -43,6 +41,7 @@
                 </span> -->
                 <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
                 <span class="name">{{ desc.name }}</span>
+                <span>|</span>
               </span>
             </div>
           </td>

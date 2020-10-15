@@ -22,11 +22,13 @@ export class CategoryService {
   all: Array<ICategory> = [];
   private querySubscription: Subscription;
 
+
   constructor(
     private http: HttpClient, 
     private lang: LanguageService,
     public route: ActivatedRoute
   ) {}
+
 
   getList(): Observable<ICategoryResponse> {
     let skip = this.page * this.category.take - this.category.take;

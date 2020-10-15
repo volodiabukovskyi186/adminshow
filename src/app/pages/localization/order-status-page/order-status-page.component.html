@@ -1,0 +1,78 @@
+<rap-panel-content
+        [showForm]="pages.panelSettings.form"
+        [showRightSide]="pages.panelSettings.right"
+>
+<div form>
+    <app-order-status-form
+            [selectedOrder]="selectedOrder"
+
+    ></app-order-status-form>
+</div>
+<div filter></div>
+<div content class="padding">
+<!--    <button  (click) = "test()" >download</button>-->
+    <table  class="raisins-table border-all radius"  >
+
+        <thead>
+        <tr>
+            <th width="64px">{{ "APP.id" | translate }}</th>
+            <th width="">{{ "APP.title" | translate }}</th>
+            <th width="168px">{{ "APP.updated_at" | translate }}</th>
+            <th width="168px">{{ "APP.action" | translate }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let order of arrStatus; let i=index"
+                [ngClass]=""
+        >
+            <td data-label="ID" class="text-center">{{i+1}}</td>
+            <td class="text-center">
+            <div class="flex wrap" style="width: 100%;">
+              <span class="title flag-container" *ngFor="let desc of order.descriptions">
+                <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+                <span class="name">{{ desc.dectiption }}</span>
+              </span>
+            </div>
+            </td>
+
+            <td class="text-center">
+                {{order?.created_at}}
+            </td>
+            <td>
+                <div class="flex wrap center">
+                    <button
+                            style="position: relative;"
+                            [attr.data-tooltip-left]="'APP.edit' | translate"
+                            role="button"
+                            (click)="edit(order)"
+                            class="button transparent radius"
+                    >
+                        <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+                    </button>
+
+                    <rap-delete-button
+                            (click)="deleteStatus(order)"
+                            data-tooltip-left="Delete"
+                            class="button transparent radius"
+                            [src]="'assets/icons/delete.svg'"
+                    ></rap-delete-button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <app-pagination
+            class="radius"
+            [page]="localizationService.page"
+            [total]="Math.ceil(alldata?.count/alldata?.take)"
+            [pagesToShow]="5"
+            (goNext)="pageNextHandler()"
+            (goPrev)="pagePrevHandler()"
+            (goPage)="pageToHandler($event)"
+            (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+
+</div>
+
+</rap-panel-content>
+

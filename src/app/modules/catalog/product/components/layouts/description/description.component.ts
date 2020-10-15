@@ -15,6 +15,7 @@ export class DescriptionComponent {
   constructor(
     public languageService: LocalizationLang,
     public langService: LanguageService
+
   ) {}
 
   editorConfig: AngularEditorConfig = {
