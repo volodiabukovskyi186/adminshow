@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { LanguageService } from "src/app/modules/localization/language/language.service";
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -10,6 +10,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class ReviewsFormComponent implements OnInit {
   @Input() review;
   @Input() langs;
+
+  @Output() reviewsFormData = new EventEmitter();
 
   public monthNames: any[] = [{
     0: 'months.Jan',
@@ -25,21 +27,6 @@ export class ReviewsFormComponent implements OnInit {
     10: 'months.Nov',
     11: 'months.Dec'
   }];
-
-  // public statusCodes = {
-  //   "1": {
-  //     name: 'statusCodes.new',
-  //     backgroundColor: '#3498DB'
-  //   },
-  //   "2": {
-  //     name: 'statusCodes.rejected',
-  //     backgroundColor: '#52BE80'
-  //   },
-  //   "3": {
-  //     name: 'statusCodes.approved',
-  //     backgroundColor: '#E74C3C '
-  //   }
-  // }
 
   public allStatusCodes = [
     {value: 1, name: "statusCodes.new"},
@@ -57,6 +44,7 @@ export class ReviewsFormComponent implements OnInit {
     console.log("review ====>>>>>>>>>.", this.review);
 
     this.generateReviewsForm();
+    this.getEditReviewsFormData();
   }
 
   generateReviewsForm(): void {
@@ -83,4 +71,15 @@ export class ReviewsFormComponent implements OnInit {
     this.reviewsForm.get('status').setValue(event);
   }
 
+  getEditReviewsFormData(): void {
+    this.reviewsForm.valueChanges
+    .subscribe(() => this.reviewsFormData.emit({ 
+      product_id: this.review.product_id,
+      user_id: this.review.user_id,
+      author: this.review.author,
+      text: this.reviewsForm.value.response,
+      rating: this.review.rating,
+      status: this.reviewsForm.value.status
+    }));
+  }
 }

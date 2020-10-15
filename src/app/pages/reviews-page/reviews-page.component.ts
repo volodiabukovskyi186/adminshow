@@ -30,6 +30,10 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     }
   }
 
+  public updateDateStart: any;
+  public updateDateEnd: any;
+  public updateStatus: number;
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -43,6 +47,8 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   }
 
   public showFilters: boolean = false;
+  public reviewsData: any;
+  public reviewId: number;
 
   public ngOnInit(): void {
     this.initPagesSettings();
@@ -105,14 +111,46 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     // this.manufacturerForm.initDesc(this.langService.languages.data);
   };
 
+  public modifyDateString(date: string, type?: string): string {
+    let substringDate = date?.substring(0, 16);
+    let t = new Date(substringDate);
+
+    return substringDate;
+  
+    // if (type === 'day') {
+    //   return t.getDate();
+    // } else if (type === 'months') {
+    //   return this.monthNames[0][t.getMonth()];
+    // } else if (type === 'year') {
+    //   return t.getFullYear()
+    // }
+  }
+
   moderationOfReview(reviewToModerate) {
     console.log(reviewToModerate);
 
     this.selectedReview = reviewToModerate;
+    this.reviewId = this.selectedReview.id;
   }
+
   initPagesSettings = () =>{
      super.initPagesSettings();
      this.pages.panelButtonSettings.toggleFilter = false;
+  }
+
+  
+  reviewsFiltersFormData(event) {
+    console.log(event);
+
+    this.updateDateStart = event.date_start;
+    this.updateDateEnd = event.date_end;
+    this.updateStatus = event.status;
+  }
+
+  reviewsFormData(event) {
+    console.log(event);
+
+    this.reviewsData = event;
   }
 
   closeForm = () => {
@@ -132,6 +170,34 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     this.pages.panelButtonSettings.cancel = true;
     this.pages.panelButtonSettings.rightToggle = false;
     this.pages.panelButtonSettings.review = false;
+  };
+
+  save = () => {
+    if (this.selectedReview && !this.showFilters) {
+      this.reviewsPageService.updateReviewById(this.reviewsData, this.reviewId).subscribe((res) => {
+        this.reviewsPageService.reviews?.data.forEach((val) => {
+          if (res.data.id === val.id) {
+            val.text = res.data.text;
+            val.status = res.data.status;
+          }
+        })
+      })
+    }
+
+    if (this.showFilters) {
+      this.reviewsPageService.getReviewsByFilter(this.updateDateStart, this.updateDateEnd, this.updateStatus)
+      .subscribe((res) => {
+        this.reviewsPageService.reviews.data = res.data;
+      })
+    }
+
+    this.closeForm();
+  }
+
+  putHandler = (data) => {
+    this.ngxService.stopAll();
+    this.closeForm();
+    this.toastr.success("REVIEW UPDATED ^_^");
   };
 
   pageToHandler(page: number): void {

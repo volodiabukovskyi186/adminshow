@@ -72,9 +72,10 @@
     .mat-form-field {
         border: 1px solid #000;
         border-radius: 4px;
+        line-height: 1.34;
 
       .mat-form-field-wrapper {
-        padding-bottom: 10px;
+        padding-bottom: 6px;
   
         .mat-form-field-flex {
           .mat-form-field-infix {
@@ -90,7 +91,7 @@
               .mat-select-trigger {
                 .mat-select-value-text {
                   font-size: 13px;
-                  margin-left: 7px;
+                  margin-left: 16px;
                 }
                 .mat-select-arrow-wrapper {
                   .mat-select-arrow {
@@ -102,7 +103,7 @@
                     border-width: 0px 2px 2px 0px;
                     transform: rotate(45deg);
                     transition: border-width 150ms ease-in-out;
-                    margin-top: 3px;
+                    margin-top: 1px;
                   }
                 }
               }

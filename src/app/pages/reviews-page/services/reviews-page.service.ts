@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IReviewsResponse } from '../interfaces/reviews-response';
 import { LanguageService } from 'src/app/core/language.service';
+import { IReviewUpdate } from '../interfaces/review-update';
 
 @Injectable({
   providedIn: "root",
@@ -31,5 +32,25 @@ export class ReviewsPageService {
     return this.http.get<IReviewsResponse>(`${environment.host}reviews${params}`);
   }
 
+  updateReviewById(reviewToUpdate, reviewId): Observable<IReviewUpdate> {
+    return this.http.put<IReviewUpdate>(`${environment.host}review/${reviewId}`, reviewToUpdate);
+  }
 
+  getReviewsByFilter(dateStart, dateEnd, status): Observable<IReviewsResponse> {
+    let params = `${environment.host}reviews/filter`;
+
+    if (dateStart) {
+      params = `${params}?date_start=${dateStart}`;
+    }
+
+    if (dateEnd) {
+      params = `${params}&date_end_${dateEnd}`;
+    }
+
+    if (status) {
+      params = `${params}&status_${status}`;
+    }
+
+    return this.http.get<IReviewsResponse>(`${params}`);
+  }
 }

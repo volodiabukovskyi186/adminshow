@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./reviews-filters-form.component.scss']
 })
 export class ReviewsFiltersFormComponent implements OnInit {
+  @Output() reviewsFiltersFormData = new EventEmitter();
+
   public reviewsFiltersForm: FormGroup;
   public allStatusCodes = [
     {value: 1, name: "statusCodes.new"},
@@ -18,6 +20,7 @@ export class ReviewsFiltersFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateReviewsFiltersForm();
+    this.getEditReviewsFiltersFormFormData();
   }
 
   generateReviewsFiltersForm() {
@@ -30,5 +33,14 @@ export class ReviewsFiltersFormComponent implements OnInit {
 
   public onChange(event) {
     this.reviewsFiltersForm.get('status').setValue(event);
+  }
+
+  getEditReviewsFiltersFormFormData(): void {
+    this.reviewsFiltersForm.valueChanges
+    .subscribe(() => this.reviewsFiltersFormData.emit({ 
+      date_start: this.reviewsFiltersForm.value.dateFrom,
+      date_end: this.reviewsFiltersForm.value.dateTo,
+      status: this.reviewsFiltersForm.value.status
+    }));
   }
 }
