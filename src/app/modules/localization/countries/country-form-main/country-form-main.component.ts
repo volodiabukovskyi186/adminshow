@@ -1,7 +1,9 @@
+import { CountriesService } from './../../../../pages/localization/services/countries.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {LanguageService, LanguageService as LocalizationLang} from "../../language/language.service";
 import {PaymentService} from "../../../../pages/client/services/payment.service";
+import { CountriesModule } from '../countries.module';
 
 @Component({
   selector: 'app-country-form-main',
@@ -16,17 +18,18 @@ export class CountryFormMainComponent implements OnInit {
   @Input() public descr: FormControl = new FormControl();
   constructor(public languageService: LocalizationLang,
               public langService: LanguageService,
+              public countriesServices:CountriesService,
               public paymentService: PaymentService) {
   }
   ngOnInit(): void {
     this.sub()
   }
   sub():void{
-    this.paymentService.bSubject.subscribe(data=>{
+    this.countriesServices.bSubject.subscribe(data=>{
       this.selected = data;
     })
-    console.log( this.selected)
   }
+
   public langShortTitle = {
     "1": {
       title: 'settings.settingsLangShortTitleEng'

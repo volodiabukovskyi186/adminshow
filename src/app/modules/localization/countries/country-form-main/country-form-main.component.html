@@ -2,7 +2,7 @@
 <fieldset class="radius" style="margin-bottom: 16px;">
     <div class="form-row">
         <div class="description">
-            <label for="">{{ "MENU.localization.name" | translate }}</label>
+            <label for="">Код iso</label>
         </div>
         <div class="original">
             <input class="radius" [(ngModel)]="selected.iso" type="text"/>
@@ -10,26 +10,27 @@
     </div>
     <div class="form-row">
         <div class="description">
-            <label for="">{{ "MENU.localization.name" | translate }}</label>
+            <label for="">Прапор</label>
         </div>
         <div class="original">
-            <input class="radius" [(ngModel)]="selected.image" type="text"/>
+            <input class="radius" [(ngModel)]="selected.image_id" type="text"/>
         </div>
     </div>
     <rap-step-tabs class="flag-tabs">
         <rap-step-tab
-                *ngFor="let item of selected?.descriptions"
-                [imgSrc]="langService.getFromList(item?.lang_id)?.flag"
-                [title]="langShortTitle[item?.lang_id]?.title | translate"
+                *ngFor="let selected of selected?.descriptions"
+                [imgSrc]="langService.getFromList(selected?.lang_id)?.flag"
+                [title]="langShortTitle[selected?.lang_id]?.title | translate"
         >
             <div class="form-row">
                 <div class="description">
                     <label for="">{{ "MENU.localization.name" | translate }}</label>
                 </div>
                 <div class="original">
-                    <input class="radius" [(ngModel)]="item.name" type="text"/>
+                    <input class="radius" [(ngModel)]="selected.name" type="text"/>
                 </div>
             </div>
         </rap-step-tab>
     </rap-step-tabs>
 </fieldset>
+

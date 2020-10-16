@@ -8,11 +8,12 @@ import {environment} from "../../../../../environments/environment";
 })
 export class CountryFormService {
     selected:any;
+    changeDeliver = new BehaviorSubject([]);
     bSubject = new BehaviorSubject({selectedOrder:this.selected});
     initEmptyWeightForm(){
         this.selected={
-            value:null,
-            default:null,
+            image_id:null,
+            iso:null,
             description: [
                 {
                     "lang_id": 1,
@@ -21,6 +22,11 @@ export class CountryFormService {
                 },
                 {
                     "lang_id": 2,
+                    "title":null,
+                    "unit": null
+                },
+                {
+                    "lang_id": 3,
                     "title":null,
                     "unit": null
                 },
@@ -43,8 +49,13 @@ export class CountryFormService {
         return this.http.get<any>(environment.countries.countrydeliverys);
     }
     editDeliver(id:any,arr:any): Observable<any> {
-        return this.http.put<any>(`https://api.showu.com.ua/country_delivery/updateArray/${id}`,arr );
+        return this.http.put<any>(`${environment.countrypaydeliver.countrydeliverarr}/${id}`,arr );
     }
+    getDeliversCountry(id:any): Observable<any> {
+        return this.http.get<any>(`${environment.countrypaydeliver.countrydeliver}/${id}`);
+    }
+
+
     // editDeliver(id: number, item): Observable<any> {
     //     return this.http.put<any>(`${environment.countries.countrypay}/${id}`, item);
     // }

@@ -3,8 +3,13 @@
         [showRightSide]="pages.panelSettings.right"
 >
     <div form>
-        <app-countries-form  [selected]="selected">
+        <app-countries-form  
+            [selected]="selected" 
+            [selectedCountryPayment]="selectedCountryPayment" 
+            [selectedCountryDeliver]="selectedCountryDeliver"
+        >
         </app-countries-form>
+       
     </div>
     <div filter></div>
     <div content class="padding">
@@ -12,9 +17,9 @@
             <thead>
             <tr>
                 <th width="64px">{{ "APP.id" | translate }}</th>
-                <th width="128px">{{ "APP.id" | translate }}</th>
+                <th width="128px">Прапор</th>
                 <th width="">{{ "APP.title" | translate }}</th>
-                <th width="200px">{{ "APP.updated_at" | translate }}</th>
+                <th width="200px">Код ISO</th>
                 <th width="200px">{{ "APP.updated_at" | translate }}</th>
                 <th width="128px">{{ "APP.action" | translate }}</th>
             </tr>
@@ -22,13 +27,13 @@
             <tbody>
 
             <tr *ngFor="let country of arrCountries; let i=index"
-                [ngClass]="">
-                <td class="text-center">1</td>
+              >
+                <td class="text-center">{{i+1}}</td>
                 <td class="text-center">
                     <div class="flex wrap" style="width: 100%;">
-<!--                             <span class="title country-img-wrap">-->
-<!--                                 <img class="flag country"  src=" {{langService.getFromList(country.image.src_mini)?.flag }}"/>-->
-<!--                             </span>-->
+                            <span class="title country-img-wrap" >
+                                <img class="flag country"  src={{country?.image.src}}/>
+                            </span>
                     </div>
                 </td>
                 <td class="text-center">
@@ -39,10 +44,11 @@
                              </span>
                     </div>
                 </td>
+                <td class="text-center">{{country.iso}}</td>
                 <td class="text-center">
                     {{country.updated_at == null ? '-' : country.updated_at}}
                 </td>
-                <td class="text-center">{{country.iso}}</td>
+              
 
                 <td>
                     <div class="flex wrap center">
@@ -77,8 +83,7 @@
                 (goPage)="pageToHandler($event)"
                 (pageChanged)="pageChangedHandler()"
         ></app-pagination>
+
     </div>
 </rap-panel-content>
-
-
 
