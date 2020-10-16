@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
 import {IProduct} from "../../../catalog/product/interfaces";
 import {CategoryService} from "../../../catalog/category/category.service";
 import {ProductCategoryService} from "../../../catalog/product/services/product-category.service";
@@ -13,12 +13,16 @@ import {filter, map, switchMap} from "rxjs/operators";
 })
 export class CountryFormDeliveryComponent implements OnInit {
   arrDelivery;
-  values=[1,3]
+  itemId:number;
   // one:any;
   getItemval:any;
   private _model: IProduct;
   @Input() selected;
+  // @Input() selectedCountryDeliver;
+  @Input() selectedCountryDeliver;
+  values=[];
   @Output() modelChange = new EventEmitter();
+  @Output() deliverChange = new EventEmitter();
 
   set model(val: IProduct) {
     this._model = val;
@@ -33,47 +37,34 @@ export class CountryFormDeliveryComponent implements OnInit {
       public prodCategory: ProductCategoryService,
       protected toastr: ToastrService,
       public  countryFormService:CountryFormService,
-
-  ) {}
+    
+  ) {
+  
+  }
   ngOnInit(): void {
+    this.getDevilver()
+    this.changeDeliver()
+  }
+  changeDeliver():void{
+    this.countryFormService.changeDeliver.subscribe(data=>{
 
-    let arr=new Set();
-    this.getItem().pipe(
-        map(resp=>arr.add(resp.data.map(item=>item.delivery_id))),
-        switchMap(()=>this.getDevilver()),
-        map(resp=>resp.data),
-    ).subscribe(resp=>{
-      this.arrDelivery=resp
-      this.values=resp.filter(resp=>arr.has(resp.id));
-      console.log(this.values)
+      this.values=data;
     })
   }
-  getItem(){
-    return this.countryFormService.getCountryDelivers()
-    // .subscribe(
-    //   data=>{
-    // this.getItemval=data;
-    // this.one=data.data.map(item=>({id:item.delivery_id,title:`${item.delivery_id}aaa`}))
-    //  console.log(this.one)
-    // }
-    // )
-  }
-
+ 
   getDevilver(){
-      return this.countryFormService.getDeliver();
-          // console.log(this.countryFormService.getDeliver())
-          // .subscribe(data=>{
-          //   this.arrDelivery=data.data;
-          //   console.log(this.arrDelivery)
-          // })
-  }
+    return this.countryFormService.getDeliver().subscribe(data=>{
+          this.arrDelivery=data.data;
+          this.values = this.selectedCountryDeliver;
+          this.itemId=this.selected.id;
+        })
+}
   // save prod category
   save() {
-    this.countryFormService.editDeliver(this.selected.id,this.values).subscribe(data=>{})
+    console.log( this.itemId,this.selected.id)
+    this.countryFormService.editDeliver(this.selected.id,this.values ).subscribe(data=>{})
   }
-
   saveHandler = (data) => {
     this.toastr.success("Saved");
   };
-
 }

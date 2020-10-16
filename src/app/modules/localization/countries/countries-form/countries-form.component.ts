@@ -11,6 +11,8 @@ import {LocalizationServicesService} from "../../../../pages/localization/servic
 export class CountriesFormComponent implements OnInit {
 
   @Input() selected;
+  @Input() selectedCountryDeliver;
+  @Input() selectedCountryPayment
   arrOrders:Array<any>
   oneOrderStatus:any;
   @Input() public descr: FormControl = new FormControl();
@@ -24,7 +26,6 @@ export class CountriesFormComponent implements OnInit {
   }
 
   sub():void{
-
     this.localizeServ.bSubject.subscribe(data=>{
       this.selected = data;
     })

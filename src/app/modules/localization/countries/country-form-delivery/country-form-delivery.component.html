@@ -2,7 +2,7 @@
         [allowClear]="true"
         [items]="arrDelivery"
         optionValueField="id"
-        optionTextField="descriptions.name"
+        optionTextField="name"
         [multiple]="true"
         [(ngModel)]="values"
         placeholder="No category selected"
@@ -13,13 +13,13 @@
             let-option
             let-text="text"
     >
-        {{values|json}}
-        <span [innerHtml]="text"></span>
-        <!-- | {{option.data.id}} -->
+       <ng-container *ngFor="let item of option.data.descriptions">
+     {{item.name}} &#32;
+       </ng-container>
     </ng-template>
-
     <ng-template ngx-select-option-not-found let-input>
-        "{{ input }}" not found
+        <span> "{{ input }}" not found</span>
+       
     </ng-template>
 </ngx-select>
 

@@ -79,11 +79,13 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
       image_id:null,
       description: this.selected.descriptions,
     }
+    console.log(updateWeight)
     if (this.selected.id !== undefined) {
       this.paymentService.editWeight(this.selected.id, updateWeight).subscribe(data => {
+        this.toastr.success("PAYMENT EDIT");
       })
       this.getWeight()
-      this.toastr.success("PAYMENT EDIT");
+   
     }
     else {
       this.paymentService.addNewOrderStatus(this.selected.id, updateWeight).subscribe(data => {
@@ -96,7 +98,7 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
 
   }
   plus = () => {
-    this.paymentService.initEmptyWeightForm();
+    // this.paymentService.initEmptyWeightForm();
     this.selected = this.paymentService.selected;
     this.openForm();
   };

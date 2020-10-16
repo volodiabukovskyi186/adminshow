@@ -105,7 +105,14 @@ export const environment = {
     delivers:{
       deliverys:host+'country_deliverys',
       delivery:host+'country_delivery'
-    }
+    },
+  },
+  countrypaydeliver:{
+      countrypayarr:host+'country_payment/updateArray',
+      countrypay:host+'getPaymentsCountry',
+      countrydeliverarr:host+'country_delivery/updateArray',
+      countrydeliver:host+'getDeliveriesCountry'
+
   }
 
 };

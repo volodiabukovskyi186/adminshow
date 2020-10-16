@@ -16,9 +16,11 @@ export class CountriesService {
   };
   selected:any;
   bSubject = new BehaviorSubject({selectedOrder:this.selected});
+  addnewCountry = new BehaviorSubject({});
   initEmptyWeightForm(){
     this.selected={
       image_id:null,
+      iso:null,
       descriptions: [
         {
           "name":null,
@@ -49,12 +51,12 @@ export class CountriesService {
     return this.http.get<any>(environment.countries.countrys+params);
   }
   editCountry(id: number, item): Observable<any> {
-    return this.http.put<any>(`${environment.countries.country}/${id}`, item);
+    return this.http.put<any>(`${environment.countries.country}/${id}`,item);
   }
   deleteCountry(id:number):Observable<any> {
     return this.http.delete<any>(`${environment.countries.country}/${id}`)
   }
   addNewCountry(id:number,item) : Observable <any> {
-    return this.http.post<any>(`${environment.countries.country}`, item);
+    return this.http.post<any>(`${environment.countries.country}`,item);
   }
 }
