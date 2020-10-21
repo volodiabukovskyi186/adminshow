@@ -17,6 +17,7 @@ export class PaymentService {
     };
     bSubject = new BehaviorSubject({selectedOrder:this.selected});
     initEmptyWeightForm(){
+        
         this.selected={
             image_id:null,
             descriptions: [
@@ -57,6 +58,9 @@ export class PaymentService {
     }
     editWeight(id: number, item): Observable<any> {
         return this.http.put<any>(`${environment.payment.payment_description}/${id}`, item);
+    }
+    editPayment(id: number, item): Observable<any> {
+        return this.http.put<any>(`${environment.payment.payment}/${id}`, item);
     }
     deleteWeight(id:number):Observable<any> {
         return this.http.delete<any>(`${environment.payment.payment}/${id}`)

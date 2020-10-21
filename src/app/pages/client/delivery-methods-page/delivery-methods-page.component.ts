@@ -70,9 +70,11 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
 
   save = () => {
     const updateWeight = {
+
       image_id:null,
       description: this.selected.descriptions,
     }
+  
     if (this.selected.id !== undefined) {
       this.deliveryService.editDelivery(this.selected.id, updateWeight).subscribe(data => {
         this.getWeight()

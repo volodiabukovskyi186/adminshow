@@ -79,8 +79,10 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
       image_id:null,
       description: this.selected.descriptions,
     }
+   
     if (this.selected.id !== undefined) {
-      this.paymentService.editWeight(this.selected.id, updateWeight).subscribe(data => {
+      console.log(this.selected.descriptions)
+      this.paymentService.editPayment(this.selected.id, updateWeight).subscribe(data => {
       })
       this.getWeight()
       this.toastr.success("PAYMENT EDIT");
