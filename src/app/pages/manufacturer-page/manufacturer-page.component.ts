@@ -80,7 +80,6 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
   getLangListHandler = (data) => {
     this.ngxService.stopAll();
     this.langService.languages = data;
-
     this.manufacturerForm.initDesc(this.langService.languages.data);
   };
 

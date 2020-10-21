@@ -1,4 +1,95 @@
-<rap-panel-content
+<rap-panel-content [showForm]="pages.panelSettings.form" [showRightSide]="pages.panelSettings.right">
+  <div form>
+    <!-- <app-order-status-form [selectedOrder]="selected"></app-order-status-form> -->
+    <app-customer-form
+    [selected]="selected"
+    ></app-customer-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <!--    <button  (click) = "test()" >download</button>-->
+    <table class="raisins-table border-all radius">
+
+      <thead>
+        <tr>
+          <th width="55px">{{ "APP.id" | translate }}</th>
+          <th width="146px">{{ "customers.customerLastName" | translate }}</th>
+          <th width="140px">{{ "customers.customerFirstName" | translate }}</th>
+          <th width="170px">{{ "customers.customerEmail" | translate }}</th>
+          <th width="128px">{{ "customers.customerPhoneNumber" | translate }}</th>
+          <th width="138px">{{ "customers.customerRegistrationDate" | translate }}</th>
+          <th width="150px">{{ "customers.customerTypeOfRegistration" | translate }}</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of arrCustomers?.data; let i=index" [ngClass]="">
+          <td data-label="ID" class="text-center">{{i+1}}</td>
+          <td class="text-center">
+            {{ customer?.last_name }}
+          </td>
+          <td class="text-center">
+            {{ customer?.first_name }}
+          </td>
+          <td class="text-center">
+            {{ customer?.email }}
+          </td>
+          <td class="text-center">
+            {{ customer?.telephone }}
+          </td>
+          <td class="text-center">
+            {{customer?.created_at}}
+          </td>
+
+          <td class="text-center">
+          <div class="type-of-registration"
+          *ngIf="!customer?.last_name || !customer?.first_name || !customer?.telephone">
+           {{ 'customers.customersSubscription' | translate }}
+        </div>
+        <div class="type-of-registration"
+          *ngIf="!!customer?.last_name || !!customer?.first_name || !!customer?.telephone">
+           {{ 'customers.customersPersonalCabinet' | translate }}
+        </div>
+      </td>
+          <td>
+            <div class="flex wrap center">
+              <button style="position: relative;" [attr.data-tooltip-left]="'APP.edit' | translate" role="button"
+                (click)="editCustomers(customer)" class="button transparent radius">
+                <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+
+              <rap-delete-button (click)="deleteStatus(customer)" data-tooltip-left="Delete"
+                class="button transparent radius" [src]="'assets/icons/delete.svg'"></rap-delete-button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-pagination
+      class="radius"
+      [page]="customersService.page"
+      [total]="Math.ceil(customersService.customer.count / customersService.customer.take)"
+      [pagesToShow]="5"
+      (goNext)="pageNextHandler()"
+      (goPrev)="pagePrevHandler()"
+      (goPage)="pageToHandler($event)"
+      (pageChanged)="pageChangedHandler()"
+    ></app-pagination>
+
+  </div>
+
+</rap-panel-content>
+
+
+
+
+
+
+
+
+
+
+<!-- <rap-panel-content
   [showForm]="pages.panelSettings.form"
   [showRightSide]="pages.panelSettings.right"
 >
@@ -8,6 +99,7 @@
       [customer]="customersService.customer"
       [langs]="this.langService.languages.data"
       class="customer-form-style"
+      [selected]="selected"
       (customersFormData)="customersFormData($event)"
     ></app-customer-form>
   </div>
@@ -67,18 +159,7 @@
           </td>
           <td>
             <div class="flex wrap center">
-              <!-- <rap-delete-button
-                data-tooltip-left="on/off"
-                class="button transparent radius"
-                [ngClass]="{ on: item.status, off: !item.status }"
-                
-                [@changeValueHighlight]="item.status"
-                [src]="
-                  item.status != 1
-                    ? 'assets/icons/eye-cloce.svg'
-                    : 'assets/icons/eye-open.svg'
-                "
-              ></rap-delete-button> -->
+   
 
               <button
                 style="position: relative;"
@@ -102,7 +183,7 @@
       </tbody>
     </table>
 
-    <!-- <pre>{{ langServise.languages.data | json }}</pre> -->
+
 
     <app-pagination
       class="radius"
@@ -115,4 +196,4 @@
       (pageChanged)="pageChangedHandler()"
     ></app-pagination>
   </div>
-</rap-panel-content>
+</rap-panel-content> -->

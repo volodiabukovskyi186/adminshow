@@ -41,6 +41,16 @@
                                 {{ order?.manufacturer.description.name }}
                             </th>
                         </tr>
+                             <tr>
+                                <th class="th-order order-text order-title">
+                                    {{ 'orders.ordersProducer' | translate }}
+                                </th>
+                                <th class="th-order order-text">
+                                            <select class="radius" (change)="changeStatus(userOrders)"  [(ngModel)]="userOrders" >
+                                                <option  *ngFor="let item of status" value={{item.id}} >{{item.name}}</option>
+                                            </select>        
+                                </th>
+                            </tr>
                     </table>
                     <div class="sale-list">
                         <p class="order-title">{{ "orders.ordersListOfGoods" | translate }}</p>

@@ -29,6 +29,8 @@ export class CustomersComponent extends BasePage implements OnInit {
   customerFormData: any;
   public currentUserId: number;
   public sendCustomerEditableData;
+  selected:any;
+  arrCustomers:any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -48,13 +50,13 @@ export class CustomersComponent extends BasePage implements OnInit {
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-    this.breadcrumbs.breadcrumbs = [
-      { link: "", title: "Dashboard" },
-      { link: "/customers", title: "Customers" },
-    ];
-    this.getLangList();
-    this.getList();
-    this.initTranslate();
+    // this.breadcrumbs.breadcrumbs = [
+    //   { link: "", title: "Dashboard" },
+    //   { link: "/customers", title: "Customers" },
+    // ];
+    // this.getLangList();
+    // this.getList();
+    // this.initTranslate();
 
     this.userService.getByToken().subscribe((res) => {
       //this.currentUserId = res.data.user.id;
@@ -62,14 +64,66 @@ export class CustomersComponent extends BasePage implements OnInit {
     });
     this.pages.panelButtonSettings.download = true;
 
+    this.getCustomers();
 
+  }
+
+  getCustomers():void{
+      this.customersService.getCustomers().subscribe(data=>{
+        this.arrCustomers=data;
+        console.log(this.arrCustomers)
+      })
+  }
+  editCustomers(i) {
+    this.selected= i;
+    this.openForm();
+    this.pages.panelButtonSettings.download = false;
+  }
+
+  save = () => {
+    this.pages.panelButtonSettings.download = true;
+    const customer={
+    subscriptions_type_id: this.selected.subscriptions_type_id,
+		email:this.selected.email ,
+		first_name: this.selected.first_name,
+		last_name: this.selected.last_name,
+		telephone: this.selected.telephone
+    }
+
+    if (this.selected.id !== undefined) {
+      this.customersService.editCustomerInfo(this.selected, this.selected.id).subscribe((res) => {
+        this.putHandler(res);
+        this.customersService.getCustomers();
+        this.getCustomers();
+      });     
+    }
+    else{
+        customer.subscriptions_type_id=1;
+        this.customersService.createCustomerInfo(customer).subscribe((res) => {
+        this.putHandler(res);
+        this.customersService.getCustomers();
+        this.getCustomers();
+      });
+    }
+
+
+ 
+    console.log(customer)
+    // this.ngxService.start();
+    this.pages.panelButtonSettings.download = false;
+    this.pages.panelButtonSettings.download = true;
+    this.pages.panelButtonSettings.toggleFilter=false;
+  };
+
+  deleteStatus(item){
+      this.customersService.deleteCustomers(item).subscribe(data=>{
+        this.getCustomers();
+      })
   }
 
   download=()=>{
-    new Angular5Csv(this.customersService.customer?.data, 'Users');
+    new Angular5Csv(this.arrCustomers.data, 'Users');
   }
-
-
   initTranslate() {
     this.lang.translate
       .get([
@@ -121,21 +175,20 @@ export class CustomersComponent extends BasePage implements OnInit {
   //#region override
 
   edit(i: ICustomer) {
-    console.log(i);
     this.currentUserId = i.id;
+    this.selected=i;
+    this.pages.panelButtonSettings.download = false;
     //this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
+    // console.log(this.oneCustomer);
   }
 
-  save = () => {
-    this.customersService.editCustomerInfo(this.sendCustomerEditableData, this.currentUserId).subscribe((res) => {
-      this.putHandler(res);
-      this.customersService.getCustomers();
-    });
-    
-    this.ngxService.start();
+
+  cancel=()=>{
     this.pages.panelButtonSettings.download = true;
-  };
+    this.closeForm();
+    this.pages.panelButtonSettings.rightToggle = false;
+  }
 
 
   postHandler = (data: { data: ICustomer }) => {
@@ -156,9 +209,13 @@ export class CustomersComponent extends BasePage implements OnInit {
 
   plus = () => {
     this.pages.panelButtonSettings.download = false;
-  //   this.manufacturerForm.initEmptyCategory();
-  //   this.manufacturerForm.initDesc(this.langService.languages.data);
-  //   this.openForm();
+    // this.manufacturerForm.initEmptyCategory();
+    // this.manufacturerForm.initDesc(this.langService.languages.data);
+    // this.openForm();
+
+    this.customersService.initEmptyCustomerForm()
+    this.selected = this.customersService.selected;
+    this.openForm();
   };
 
   //#endregion

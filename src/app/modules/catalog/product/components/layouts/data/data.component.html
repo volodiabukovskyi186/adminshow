@@ -46,9 +46,9 @@
   <div class="description">
     <label for="">{{ "APP.weightClass" | translate }}</label>
   </div>
-  <div class="original">
-    <select class="radius" [(ngModel)]="model.weight_class_id">
-      <option value="1">{{ "APP.defaultKg" | translate }}</option>
+  <div class="original">  
+    <select class="radius"  [(ngModel)]="model.weight_class_id" >
+      <option  *ngFor="let i of arrWeight?.data" value={{i.id}}  (click)='test(i.id)'>{{i.description[0].title}}</option>
     </select>
   </div>
 </div>
@@ -139,12 +139,21 @@
     <label for="">{{ "APP.stockStatus" | translate}}</label>
   </div>
   <div class="original">
-    <select class="radius" [(ngModel)]="model.stock_status_id">
+    <!-- <select class="radius" [(ngModel)]="model.stock_status_id">
       <option value="1">{{ "APP.default" | translate }}</option>
+    </select> -->
+    <select class="radius"  [(ngModel)]="model.stock_status_id" >
+        <option  *ngFor="let item of arrStorage?.data" value={{item.id}}   >
+         <span>{{item.descriptions[0].name}}</span>
+           <!-- <span class="title flag-container" *ngFor="let desc of item?.descriptions">
+              <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+              <span class="name">{{ desc.name }}</span>
+            </span> -->
+        </option>
     </select>
   </div>
 </div>
-
+<!-- 
 <div class="form-row">
   <div class="description">
     <label for="">{{ "APP.taxClass" | translate}}</label>
@@ -154,4 +163,4 @@
       <option value="1">{{ "APP.default" | translate }}</option>
     </select>
   </div>
-</div>
+</div> -->

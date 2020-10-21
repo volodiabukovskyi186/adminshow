@@ -55,7 +55,6 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
       this.alldata=data;
       console.log(this.arrStorage)
     })
-
   }
 
   deleteStatus(order): void {

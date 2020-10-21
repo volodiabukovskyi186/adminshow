@@ -5,7 +5,6 @@
         <header>
           <h4>{{ 'APP.selectImage' | translate }}</h4>
         </header>
-  
         <div class="content">
           <app-gallery-view
             [selectable]="true"
@@ -16,6 +15,7 @@
       </div>
     </div>
   </div>
+
   
   <h2 class="text-center" *ngIf="title">{{ title }}</h2>
   
@@ -39,6 +39,8 @@
           (press)="onPress()"
           (reset)="onReset()"
         ></app-choice-button>
+      
+        {{  manufacturer|json}}
         <input type="hidden" [(ngModel)]="manufacturer.image_id" />
       </div>
     </div>

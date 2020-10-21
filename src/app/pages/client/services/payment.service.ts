@@ -36,7 +36,13 @@ export class PaymentService {
                     "name":null,
                     "lang_id": 4,
                 }
+               
+            ],
+            image:[
+                {"src":null},
+                {"src_mini":null}
             ]
+          
         }
         this.bSubject.next(this.selected)
     }

@@ -37,10 +37,9 @@ export class ImagesComponent implements OnInit {
   ngOnInit(): void {}
 
   getProdImages() {
-    this.prodImage
-      .getByProdId(this.model.id)
-      .subscribe(this.getProdImagesHandler);
+    this.prodImage.getByProdId(this.model.id).subscribe(this.getProdImagesHandler);
   }
+
   getProdImagesHandler = (data) => {
     console.log(data.data.images, "|");
     let host = data.host;

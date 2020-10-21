@@ -26,6 +26,10 @@ export class OrderService {
       environment.orders + params
     );
   }
+  UpdateUserOrder(id:any,data:any): Observable<any>{
+    console.log(id,data)
+    return this.http.put(`https://api.showu.com.ua/order/${id}`, data);
+  }
 
   // post(data: any): Observable<any> {
   //   return this.http.post(environment.catalog.option.option, data);

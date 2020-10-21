@@ -12,6 +12,7 @@ export class ProductFormSaleComponent implements OnInit {
   public productDiscountForm: FormGroup;
   public productDiscountFormValue;
   public productDiscounts;
+  arrSelectedSale=[];
 
   @Input() model: IProduct;
 
@@ -73,5 +74,28 @@ export class ProductFormSaleComponent implements OnInit {
       this.productDiscounts = response.data;
       this.productDiscounts = this.productDiscounts.filter((res) => { return res.product_id === this.model.id});
     })
+  }
+
+  public deleteSale(discount):void{
+    this.arrSelectedSale.push(discount.id);
+      if(this.arrSelectedSale.length>0){
+        this.arrSelectedSale.forEach((elem,index)=>{
+        if(elem==discount.id){
+          this.arrSelectedSale.slice(1,index)
+        }
+      })
+      console.log( this.arrSelectedSale)
+      }
+    // this.arrSelectedSale.forEach((elem,index)=>{
+
+    //   if(elem==discount.id&& this.arrSelectedSale.length>1){ 
+    //     
+    //     console.log(elem)
+    //   }
+     
+    // })
+   
+  
+    // console.log(this.arrSelectedSale)
   }
 }

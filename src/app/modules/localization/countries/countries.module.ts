@@ -10,7 +10,7 @@ import { CountryFormMainComponent } from './country-form-main/country-form-main.
 import { CountryFormPaymentComponent } from './country-form-payment/country-form-payment.component';
 import { CountryFormDeliveryComponent } from './country-form-delivery/country-form-delivery.component';
 import {NgxSelectModule} from "ngx-select-ex";
-
+import { GalleryModule } from '../../gallery/gallery.module';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import {NgxSelectModule} from "ngx-select-ex";
         TranslateModule,
         RapModule,
         FormsModule,
-        NgxSelectModule
+        NgxSelectModule,
+        GalleryModule
     ]
 })
 export class CountriesModule { }

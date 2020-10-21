@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ICustomerResponse } from '../interfaces/customer-response';
 import { ICustomerPostData } from '../interfaces/customer';
@@ -10,6 +10,7 @@ import { ICustomerPostData } from '../interfaces/customer';
 })
 export class CustomersService {
   page: number = 1;
+  selected:any;
   customer: ICustomerResponse = {
     count: 0,
     data: [],
@@ -18,7 +19,21 @@ export class CustomersService {
     host: environment.host
   };
 
-  constructor(private http: HttpClient) {}
+  bSubject = new BehaviorSubject({selectedOrder:this.selected});
+  initEmptyCustomerForm(){
+      this.selected={
+        subscriptions_type_id: null,
+        email:null ,
+        first_name: null,
+        last_name: null,
+        telephone: null
+      }
+      this.bSubject.next(this.selected)
+  }
+
+  constructor(private http: HttpClient) {
+    this.initEmptyCustomerForm();
+  }
 
   getCustomers(): Observable<ICustomerResponse> {
     let skip = this.page * this.customer.take - this.customer.take;
@@ -28,10 +43,15 @@ export class CustomersService {
       `${environment.host}subscription_clients${params}`
     );
   }
-
   editCustomerInfo(customerEditedInfo, userId): Observable<any> {
-    console.log(customerEditedInfo);
-
     return this.http.put<ICustomerPostData>(`${environment.host}subscription_client/${userId}`, customerEditedInfo);
   }
+  
+  createCustomerInfo(customerEditedInfo): Observable<any> {
+    return this.http.post<any>(`${environment.host}subscription_client`, customerEditedInfo);
+  }
+  deleteCustomers(item):Observable<any>{
+    return this.http.delete<ICustomerPostData>(`${environment.host}subscription_client`,item.id);
+  }
+
 }

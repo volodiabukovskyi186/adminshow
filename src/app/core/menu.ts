@@ -49,8 +49,8 @@ export const MENU = [
   group("MENU.manage_site.manage_site", [
     item("MENU.manage_site.menu", "menu", true, ICON_MENU_ITEM),
     item("MENU.manage_site.pages", "pages", true, ICON_MENU_ITEM),
-    item("MENU.manage_site.settings", "settings"),
-    item("MENU.manage_site.articles", "articles"),
+    item("MENU.manage_site.settings", "settings", true, ICON_MENU_ITEM),
+    // item("MENU.manage_site.articles", "articles"),
     // item("Blocks", "blocks"),
     item("MENU.manage_site.delivery_methods", "delivery_methods",true, ICON_MENU_ITEM),
     item("MENU.manage_site.payment_methods", "payment_methods",true, ICON_MENU_ITEM),
@@ -81,12 +81,12 @@ export const MENU = [
     // item("Countries", "countries"),
     // item("MENU.localization.measure_units", "measure_units"),
     // item("MENU.localization.weight_units", "weight_units"),
-    item("MENU.localization.stock_status", "stock_status"),
+    // item("MENU.localization.stock_status", "stock_status"),
     item("MENU.localization.order_status", "order_status",true, ICON_MENU_ITEM),
     item("MENU.localization.storage_status", "storage_status",true, ICON_MENU_ITEM),
     item("MENU.localization.unit_weight", "unit_weight",true, ICON_MENU_ITEM),
     item("MENU.localization.country", "country",true, ICON_MENU_ITEM),
-    item("MENU.localization.departments", "departments"),
+    // item("MENU.localization.departments", "departments"),
   ]),
 
 

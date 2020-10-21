@@ -73,7 +73,6 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
             this.localizationService.data=data;
             console.log( this.alldata)
         })
-
     }
 
     deleteStatus(order): void {
@@ -91,7 +90,6 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
     edit(i) {
         this.selectedOrder = i;
         this.openForm();
-
     }
 
     save = () => {

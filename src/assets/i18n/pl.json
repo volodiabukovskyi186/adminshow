@@ -173,7 +173,9 @@
       "name": "Nazwa",
       "marking": "Cechowanie",
       "value": "Wartość",
-      "color": "Kolor"
+      "color": "Kolor",
+      "flag":"Flaga"
+      
     },
     "settings": {
       "siteSettings": "Ustawienia",

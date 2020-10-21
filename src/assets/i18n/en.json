@@ -205,7 +205,8 @@
       "name": "Name",
       "marking": "Marking",
       "value": "Value",
-      "color": "Color"
+      "color": "Color",
+      "flag":"Flag"
     },
     "settings": {
       "siteSettings": "Settings"

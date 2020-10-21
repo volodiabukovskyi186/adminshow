@@ -1,3 +1,25 @@
+<div class="modal" *ngIf="modalOpen">
+    <div class="modal-wrapper">
+      <div class="modal-close" (click)="modalOpen = false"></div>
+      <div class="modal-content">
+        <header>
+          <h4>Select images</h4>
+        </header>
+  
+        <div class="content">
+          <app-gallery-view
+            [selectable]="true"
+            [singleSelectable]="false"
+            [editable]="false"
+          ></app-gallery-view>
+        </div>
+        <footer>
+          <button class="button" role="button" (click)="onOk()">OK</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
 <div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
 <fieldset class="radius" style="margin-bottom: 16px;">
     <div class="form-row">
@@ -10,10 +32,35 @@
     </div>
     <div class="form-row">
         <div class="description">
-            <label for="">{{ "MENU.localization.name" | translate }}</label>
+            <label for="">{{ "MENU.localization.flag" | translate }}</label>
         </div>
         <div class="original">
-            <input class="radius" [(ngModel)]="selected.image" type="text"/>
+     
+      <div class="original">
+          <app-choice-button
+          style="max-width: 80px;"
+          class="radius"
+          (press)="onPress()"
+      
+         [src]="
+            'api.showu.com.ua'
+             ? '//' + 'api.showu.com.ua' + selected.image?.src_mini
+             : selected.image?.src_mini
+      "
+          ></app-choice-button>
+          <input type="hidden" [(ngModel)]="selected.image_id" />
+    
+        </div>
+            <!-- <input class="radius" [(ngModel)]="selected.image" type="text"/> -->
+            <!-- <button
+            style="position: relative;"
+            data-tooltip-top="Select images"
+            role="button"
+            (click)="onPress()"
+            class="button transparent radius"
+          >
+            <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+          </button> -->
         </div>
     </div>
     <rap-step-tabs class="flag-tabs">

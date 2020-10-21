@@ -1,4 +1,46 @@
-<div class="customer-form-container">
+<div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
+<fieldset class="radius" style="margin-bottom: 16px;" *ngIf="selected!==undefined">
+    <div class="form-row">
+        <div class="description">
+            <label for="">{{ "customers.customerLastName" | translate }}</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selected.last_name" type="text" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="description">
+            <label for="">{{ "customers.customerFirstName" | translate }}</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selected.first_name" type="text" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="description">
+            <label for="">{{ "customers.customerEmail" | translate }}</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selected.email" type="text" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="description">
+            <label for="">{{ "customers.customerPhoneNumber" | translate }}</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selected.telephone" type="text" />
+        </div>
+    </div>
+</fieldset>
+
+
+
+
+
+
+
+<!-- <div class="customer-form-container">
     <div class="customer-form-title">{{ title }}</div>
     <form [formGroup]="editCustomerInfoForm" (submit)="getEditCustomerFormData()">
         <div class="customer-input-wrapper">
@@ -44,4 +86,4 @@
             </div>
         </div>
     </form>
-</div>
+</div> -->

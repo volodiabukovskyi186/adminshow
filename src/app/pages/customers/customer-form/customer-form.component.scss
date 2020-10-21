@@ -1,26 +1,39 @@
-.customer-form-title {
+// .customer-form-title {
+//     text-align: center;
+//     font-size: 17px;
+//     margin-top: 40px;
+// }
+
+// .customer-input-wrapper {
+//     margin-top: 20px;
+//     width: 79%;
+//     display: block;
+//     margin-left: auto;
+//     margin-right: auto;
+// }
+
+// .customer-input-content {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     align-items: center;
+//     line-height: 3;
+// }
+
+// .customer-input {
+//     height: 28px;
+//     border-radius: 3px;
+// }
+
+.tabs-header{
     text-align: center;
-    font-size: 17px;
-    margin-top: 40px;
-}
-
-.customer-input-wrapper {
-    margin-top: 20px;
-    width: 79%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.customer-input-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    line-height: 3;
-}
-
-.customer-input {
-    height: 28px;
-    border-radius: 3px;
-}
+    margin-bottom: 40px;
+    margin-top: 30px;
+  }
+  .form-row,.flag-tabs{
+    padding-top: 20px;
+  }
+  .description{
+    text-align: left;
+  }
+  

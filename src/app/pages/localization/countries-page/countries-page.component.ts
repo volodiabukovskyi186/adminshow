@@ -7,6 +7,7 @@ import {PaymentService} from "../../client/services/payment.service";
 import {LanguageService} from "../../../modules/localization/language/language.service";
 import {CountriesService} from "../services/countries.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
+import { ProductFormService } from 'src/app/modules/catalog/product/services/product-form.service';
 
 @Component({
   selector: 'app-countries-page',
@@ -23,6 +24,7 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
               public countriesServices:CountriesService,
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
+              public prodForm: ProductFormService,
   ) {
     super(pages);
   }
@@ -69,10 +71,11 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
 
   save = () => {
     const updateWeight = {
-      image_id:null,
+      image_id:this.selected.image_id,
       iso: this.selected.iso,
       description: this.selected.descriptions,
     }
+    console.log(updateWeight.image_id)
     if (this.selected.id !== undefined) {
       this.countriesServices.editCountry(this.selected.id, updateWeight).subscribe(data => {
       })

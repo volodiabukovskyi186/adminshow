@@ -55,19 +55,30 @@
         <div class="sale-list__block">
         <table>
             <tr>
+                <th class="number"></th>
                 <th class="number">№</th>
                 <th class="date-start">{{ "APP.saleListStart" | translate }}</th>
                 <th class="date-end">{{ "APP.saleListEnd" | translate }}</th>
                 <th class="price">{{ "APP.price" | translate }}</th>
             </tr>
+            
             <tr *ngFor="let discount of productDiscounts">
+                <th>
+                    <input
+                    class="checkbox-item  label"
+                    type="checkbox"
+                    name="check"
+                    (click)="deleteSale(discount)"
+                    /></th>
                 <th>{{ discount.id }}</th>
                 <th>{{ discount.date_start }}</th>
                 <th>{{ discount.date_end }}</th>
                 <th>{{ discount.price }} грн</th>
             </tr>
+
         </table>
         </div>
     </div>
 </div>
+
 

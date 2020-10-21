@@ -52,6 +52,7 @@ export class ProductsPageComponent extends BasePage
     this.getList();
     this.getAllManufacturer();
     this.initTranslate();
+    console.log(this.prodForm.model)
   }
 
   initTranslate() {

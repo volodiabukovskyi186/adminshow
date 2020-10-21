@@ -1,3 +1,6 @@
+
+
+
 <rap-panel-content
         [showForm]="pages.panelSettings.form"
         [showRightSide]="pages.panelSettings.right"
@@ -12,7 +15,7 @@
             <thead>
             <tr>
                 <th width="64px">{{ "APP.id" | translate }}</th>
-                <th width="128px">{{ "APP.id" | translate }}</th>
+                <th width="128px">{{ "MENU.localization.flag" | translate }}</th>
                 <th width="">{{ "APP.title" | translate }}</th>
                 <th width="200px">{{ "APP.updated_at" | translate }}</th>
                 <th width="200px">{{ "APP.updated_at" | translate }}</th>
@@ -23,13 +26,20 @@
 
             <tr *ngFor="let country of arrCountries; let i=index"
                 [ngClass]="">
-                <td class="text-center">1</td>
-                <td class="text-center">
-                    <div class="flex wrap" style="width: 100%;">
-<!--                             <span class="title country-img-wrap">-->
-<!--                                 <img class="flag country"  src=" {{langService.getFromList(country.image.src_mini)?.flag }}"/>-->
-<!--                             </span>-->
-                    </div>
+                <td class="text-center">{{i+1}}</td>
+                <td class="text-center" data-label="LOGO">
+                
+                   
+                        <div class="ratio">
+                          <div class="imax">
+                            <img
+                            class="contain"
+                            [src]="'//' + 'api.showu.com.ua' + country.image.src_mini"
+                            [alt]="country.id"
+                            />
+                          </div>
+                        </div>
+                
                 </td>
                 <td class="text-center">
                     <div class="flex wrap" style="width: 100%;">

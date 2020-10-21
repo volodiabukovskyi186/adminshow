@@ -131,7 +131,6 @@ export class PanelComponent implements OnInit {
 
   @Output() DownloadClick = new EventEmitter();
   onDwnloadClick = () => {
-    console.log('wwww')
     this.DownloadClick.emit();
   }
 
