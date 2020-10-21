@@ -22,7 +22,7 @@ export abstract class BasePage {
     this.pages.panelButtonSettings.plus = true;
     this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.cancel = false;
-    this.pages.panelButtonSettings.rightToggle = true;
+    this.pages.panelButtonSettings.rightToggle = false;
     this.pages.panelButtonSettings.review = false;
   };
 

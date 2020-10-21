@@ -50,10 +50,10 @@ export class CustomersComponent extends BasePage implements OnInit {
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-    // this.breadcrumbs.breadcrumbs = [
-    //   { link: "", title: "Dashboard" },
-    //   { link: "/customers", title: "Customers" },
-    // ];
+    this.breadcrumbs.breadcrumbs = [
+      { link: "", title: "Dashboard" },
+      { link: "/customers", title: "Customers" },
+    ];
     // this.getLangList();
     // this.getList();
     // this.initTranslate();
@@ -75,6 +75,9 @@ export class CustomersComponent extends BasePage implements OnInit {
       })
   }
   editCustomers(i) {
+   
+
+
     this.selected= i;
     this.openForm();
     this.pages.panelButtonSettings.download = false;
@@ -107,15 +110,16 @@ export class CustomersComponent extends BasePage implements OnInit {
     }
 
 
- 
-    console.log(customer)
-    // this.ngxService.start();
-    this.pages.panelButtonSettings.download = false;
+    this.closeForm()
+
     this.pages.panelButtonSettings.download = true;
-    this.pages.panelButtonSettings.toggleFilter=false;
+    this.pages.panelButtonSettings.review = false;
+    // this.pages.panelButtonSettings.toggleFilter=true;
+    this.pages.panelButtonSettings.rightToggle = false;
   };
 
   deleteStatus(item){
+    console.log('delete=>',item)
       this.customersService.deleteCustomers(item).subscribe(data=>{
         this.getCustomers();
       })
@@ -216,6 +220,7 @@ export class CustomersComponent extends BasePage implements OnInit {
     this.customersService.initEmptyCustomerForm()
     this.selected = this.customersService.selected;
     this.openForm();
+    this.pages.panelButtonSettings.rightToggle = false;
   };
 
   //#endregion

@@ -76,6 +76,7 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
 
   save = () => {
     const updateWeight = {
+
       image_id:null,
       description: this.selected.descriptions,
     }
