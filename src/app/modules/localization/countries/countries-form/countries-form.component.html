@@ -6,18 +6,26 @@
         </fieldset>
     </rap-step-tab>
 
-    <rap-step-tab [title]="'Доставка'">
+
+    <rap-step-tab *ngIf="selected.id" [title]="'Доставка'">
         <fieldset class="radius" style="margin-bottom: 16px;">
             <legend>Доставка</legend>
-            <app-country-form-delivery [selected]="selected"></app-country-form-delivery>
+            <app-country-form-delivery 
+                [selected]="selected" 
+                [selectedCountryDeliver]="selectedCountryDeliver"
+            ></app-country-form-delivery>
+        
         </fieldset>
     </rap-step-tab>
 
-    <rap-step-tab [title]="'Оплата'">
+    <rap-step-tab *ngIf="selected.id" [title]="'Оплата'">
         <fieldset class="radius" style="margin-bottom: 16px;">
             <legend>Оплата</legend>
-            <app-country-form-payment [selected]="selected" ></app-country-form-payment>
+            <app-country-form-payment 
+                [selected]="selected" 
+                [selectedCountryPayment]="selectedCountryPayment"
+            ></app-country-form-payment>
         </fieldset>
     </rap-step-tab>
-
 </rap-step-tabs>
+

@@ -1,13 +1,10 @@
-<!-- <pre>{{ category.all | json }}</pre> -->
-<!-- <pre>{{ prodCategory.list | json }}</pre> -->
-<!-- <pre>{{ prodCategory.values | json }}</pre> -->
 <ngx-select
         [allowClear]="true"
-        [items]="category.all"
+        [items]="arrDelivery"
         optionValueField="id"
-        optionTextField="title"
+        optionTextField="name"
         [multiple]="true"
-        [(ngModel)]="prodCategory.values"
+        [(ngModel)]="values"
         placeholder="No category selected"
 >
     <ng-template
@@ -16,13 +13,17 @@
             let-option
             let-text="text"
     >
-        <span [innerHtml]="text"></span>
-        <!-- | {{option.data.id}} -->
+       <ng-container *ngFor="let item of option.data.descriptions">
+     {{item.name}} &#32;
+       </ng-container>
+     
     </ng-template>
     <ng-template ngx-select-option-not-found let-input>
-        "{{ input }}" not found
+        <span> "{{ input }}" not found</span>
+       
     </ng-template>
 </ngx-select>
+
 <div class="flex center">
     <button
             style="position: relative;"
@@ -31,6 +32,6 @@
             (click)="save()"
             class="button transparent radius"
     >
-        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+        <rap-svg-ico class="black" [src]="'assets/icons/save.svg'"></rap-svg-ico>
     </button>
 </div>

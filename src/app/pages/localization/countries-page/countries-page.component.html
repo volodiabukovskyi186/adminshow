@@ -6,7 +6,10 @@
         [showRightSide]="pages.panelSettings.right"
 >
     <div form>
-        <app-countries-form  [selected]="selected">
+        <app-countries-form  
+        [selected]="selected"
+        [selectedCountryPayment]="selectedCountryPayment" 
+        [selectedCountryDeliver]="selectedCountryDeliver">
         </app-countries-form>
     </div>
     <div filter></div>
