@@ -257,7 +257,10 @@
     "adminLanguage": "Язык администратора",
     "currency": "Валюта",
     "unitsOfMeasurement": "Меры измерения",
-    "weight": "Вес"
+    "weight": "Вес",
+    "requiredDateStart": "Дата начала скидки обязательна.",
+    "requiredDateEnd": "Дата окончания скидки обязательна.",
+    "requiredNewPrice": "Требуется новая цена."
   },
   "productsAttributes": {
     "productsAttributesAttr": "Атрибут",

@@ -262,7 +262,10 @@
     "adminLanguage": "Język administratora",
     "currency": "Waluta",
     "unitsOfMeasurement": "Jednostki miary",
-    "weight": "Waga"
+    "weight": "Waga",
+    "requiredDateStart": "Data rozpoczęcia rabatu jest wymagana.",
+    "requiredDateEnd": "Data zakończenia rabatu jest wymagana.",
+    "requiredNewPrice": "Nowa cena jest wymagana."
   },
   "productsAttributes": {
     "productsAttributesAttr": "Atrybut",

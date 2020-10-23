@@ -99,3 +99,37 @@ th {
 -webkit-appearance:auto;
 margin: 0 auto;
 }
+
+.delete-discount-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.delete-discount-btn {
+  margin-top: 10px;
+}
+
+.error-message {
+  height: 33px;
+  width: 100%;
+  background-color: #fae2e5;
+  //border: 0.5px solid #b14464;
+  color: #b14464;
+  border-radius: 3px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
+  margin-top: 2px;
+}
+
+.change-pass-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.change-data__input-container-password {
+  padding-bottom: 15px !important;
+}

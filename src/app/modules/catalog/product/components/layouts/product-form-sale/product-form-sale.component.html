@@ -2,35 +2,56 @@
     <form [formGroup]="productDiscountForm">
         <div class="form-row">
             <div class="description">
-                <label for="">{{ "APP.saleDateStart" | translate }}</label>
+                <label for="date_start">{{ "APP.saleDateStart" | translate }}</label>
             </div>
             <div class="original">
                 <input 
                     class="radius"
                     type="date"
-                    formControlName="date_start"/>
+                    id="date_start"
+                    formControlName="date_start"
+                    required/>
+                <div *ngIf="formAuthControls?.date_start?.invalid && (formAuthControls?.date_start?.dirty || formAuthControls?.date_start?.touched)" class="error-message">
+                    <div *ngIf="formAuthControls?.date_start?.errors.required" class="">
+                        {{ 'settings.requiredDateStart' | translate }}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-row">
             <div class="description">
-                <label for="">{{ "APP.saleDateEnd" | translate }}</label>
+                <label for="date_end">{{ "APP.saleDateEnd" | translate }}</label>
             </div>
             <div class="original">
                 <input 
                     class="radius" 
                     type="date"
-                    formControlName="date_end"/>
+                    id="date_end"
+                    formControlName="date_end"
+                    required/>
+                <div *ngIf="formAuthControls?.date_end?.invalid && (formAuthControls?.date_end?.dirty || formAuthControls?.date_end?.touched)" class="error-message">
+                    <div *ngIf="formAuthControls?.date_end?.errors.required" class="">
+                        {{ 'settings.requiredDateEnd' | translate }}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-row">
             <div class="description">
-                <label for="">{{ "APP.saleNewPrice" | translate }}</label>
+                <label for="new_price">{{ "APP.saleNewPrice" | translate }}</label>
             </div>
             <div class="original">
                 <input 
                     class="radius" 
                     type="text"
-                    formControlName="new_price"/>
+                    id="new_price"
+                    formControlName="new_price"
+                    required/>
+                <div *ngIf="formAuthControls?.new_price?.invalid && (formAuthControls?.new_price?.dirty || formAuthControls?.new_price?.touched)" class="error-message">
+                    <div *ngIf="formAuthControls?.new_price?.errors.required" class="">
+                        {{ 'settings.requiredNewPrice' | translate }}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="button-add-save">
@@ -45,7 +66,7 @@
                 <rap-svg-ico 
                     class="cursor-pointer"
                     [src]="'assets/icons/save.svg'"
-                    (click)="saveNewPrice()">
+                    (click)="saveNewPrice(!!productDiscountForm.valid)">
                 </rap-svg-ico>
             </button>
         </div>
@@ -68,7 +89,7 @@
                     class="checkbox-item  label"
                     type="checkbox"
                     name="check"
-                    (click)="deleteSale(discount)"
+                    (click)="selectedDiscount(discount.id)"
                     /></th>
                 <th>{{ discount.id }}</th>
                 <th>{{ discount.date_start }}</th>
@@ -77,6 +98,13 @@
             </tr>
 
         </table>
+        <div class="delete-discount-btn-wrapper">
+            <rap-delete-button
+                class="button transparent radius delete-discount-btn"
+                (click)="deleteSale(selectedDiscountId)"
+                [src]="'assets/icons/delete.svg'"
+            ></rap-delete-button>
+        </div>
         </div>
     </div>
 </div>

@@ -298,7 +298,10 @@
     "adminLanguage": "Мова адміністратора",
     "currency": "Валюта",
     "unitsOfMeasurement": "Одиниці виміру",
-    "weight": "Вага"
+    "weight": "Вага",
+    "requiredDateStart": "Потрібна дата початку знижки.",
+    "requiredDateEnd": "Потрібна дата закінчення знижки.",
+    "requiredNewPrice": "Потрібна нова ціна."
   },
   "productsAttributes": {
     "productsAttributesAttr": "Атрибут",

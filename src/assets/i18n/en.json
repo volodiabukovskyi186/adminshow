@@ -282,7 +282,10 @@
     "adminLanguage": "Admin language",
     "currency": "Currency",
     "unitsOfMeasurement": "Units of measurement",
-    "weight": "Weight"
+    "weight": "Weight",
+    "requiredDateStart": "Date start of discount is required.",
+    "requiredDateEnd": "Date end of discount is required.",
+    "requiredNewPrice": "New price is required."
   },
   "productsAttributes": {
     "productsAttributesAttr": "Attribute",
