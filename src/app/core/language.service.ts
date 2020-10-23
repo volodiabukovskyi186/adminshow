@@ -1,5 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable,Inject } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+
+import {DOCUMENT} from "@angular/common";
 // import { pl } from '../../../../assets/icons/pl.svg';
 
 export interface ILangItem {
@@ -13,7 +15,13 @@ export interface ILangItem {
 })
 export class LanguageService {
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService,
+    @Inject(DOCUMENT) private document: Document) {
+      translate.onLangChange.subscribe(lang => {
+        localStorage.setItem('currentLang',lang.lang)
+        console.log('vvvvvvvv=>',lang.lang);
+      
+    });
     this.init();
   }
 
@@ -25,28 +33,33 @@ export class LanguageService {
 
   use(language: string) {
     // get browser lang
+   
     const browserLang = this.getBrowserLang();
     console.log('browserLang', browserLang);
 
     // if data["lang"] is null set browserLang
     let lang = language ?? browserLang;
-
     console.log("set lang:", lang);
-
-    // set lang
+   
     this.translate.use(
       lang.match(/en|pl|ru|ua/) ? lang : this.translate.defaultLang
     );
     console.log('(/en|pl|ru|ua/)', lang.match(/en|pl|ru|ua/));
     console.log('defaultLang', this.translate.defaultLang);
+   
+    // set lang
     console.log("CURRENT LANG: ", this.translate.currentLang);
+    
+    
   }
 
   public get routeLang(): string {
+    
     return this.translate.currentLang != undefined &&
       this.translate.defaultLang != this.translate.currentLang
       ? this.translate.currentLang
       : "";
+   
   }
 
   get current() {
@@ -64,16 +77,18 @@ export class LanguageService {
 
   init() {
     // init langs
+
     const pl: ILangItem = { flag: "pl", name: "pl", locale: "pl" };
     const en: ILangItem = { flag: "en", name: "en", locale: "en" };
     const ru: ILangItem = { flag: "ru", name: "ru", locale: "ru" };
     const ua: ILangItem = { flag: "ua", name: "ua", locale: "ua" };
-
+  
     let defaultLang = pl;
 
     this.langs = [pl, en, ru, ua];
     this.translate.addLangs([defaultLang.name, en.name]);
     this.translate.defaultLang = defaultLang.name;
     this.use(defaultLang.name);
+    
   }
 }

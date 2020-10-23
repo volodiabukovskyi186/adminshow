@@ -78,7 +78,10 @@ export const environment = {
     orderstatus:host+`order_statuss`,
     orderstatusdel:host+`order_status`,
     orderstatusup:host+`order_status`,
+    weightclient:host+`weight/client`,
+    stockstatus:host+`stock_status/client`,
     orderstoragestatus:host+``
+
   },
   weight:{
     weights:host+`weights`,

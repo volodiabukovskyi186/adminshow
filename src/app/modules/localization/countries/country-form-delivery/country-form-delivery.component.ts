@@ -16,6 +16,8 @@ export class CountryFormDeliveryComponent implements OnInit {
   itemId:number;
   // one:any;
   getItemval:any;
+
+
   private _model: IProduct;
   @Input() selected;
   // @Input() selectedCountryDeliver;
@@ -47,24 +49,28 @@ export class CountryFormDeliveryComponent implements OnInit {
   }
   changeDeliver():void{
     this.countryFormService.changeDeliver.subscribe(data=>{
-
       this.values=data;
     })
   }
  
   getDevilver(){
+
     return this.countryFormService.getDeliver().subscribe(data=>{
           this.arrDelivery=data.data;
           this.values = this.selectedCountryDeliver;
           this.itemId=this.selected.id;
         })
+     
 }
   // save prod category
   save() {
-    console.log( this.itemId,this.selected.id)
+
     this.countryFormService.editDeliver(this.selected.id,this.values ).subscribe(data=>{})
   }
   saveHandler = (data) => {
     this.toastr.success("Saved");
   };
+
+
+  
 }

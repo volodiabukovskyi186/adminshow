@@ -15,7 +15,16 @@ $navWidth: 192px;
     rgba(darken($primary, 16%), 1) 110%
   );
 }
+a{
+ display: flex;
+ align-items: center;
 
+  button{
+    height: 100%;
+  }
+ 
+}
+a,
 .button {
   rap-svg-ico {
     width: 20px;

@@ -1,9 +1,10 @@
 import { WeightService } from './../../../../../../pages/localization/services/weight.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject,Input } from '@angular/core';
 import { IProduct } from '../../../interfaces';
 import { StorageService } from 'src/app/pages/localization/services/storage.service';
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
-
+import {TranslateService} from "@ngx-translate/core";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'product-form-data',
@@ -14,7 +15,9 @@ export class DataComponent implements OnInit {
   @Input() model: IProduct;
   constructor( public weightService:WeightService,
                public storageService:StorageService,
-               public langService: LanguageService,) { }
+               public langService: LanguageService,
+               private translate: TranslateService,
+               @Inject(DOCUMENT) private document: Document ) { }
   arrWeight:any;
   arrStorage:any;
   alldata:any;
@@ -22,20 +25,21 @@ export class DataComponent implements OnInit {
     this.getWeight();
     this.getStorageStatus();
   }
-  test(i):void{
-    // this.model.weight_class_id = i;
-  };
   getWeight():void{
-    this.weightService.getWeight().subscribe(data => {
-      this.arrWeight=data
-      console.log(this.arrWeight)
+    this.translate.onLangChange.subscribe(lang => {
+      this.weightService.getWeightProd(lang.lang).subscribe(data => {
+        this.arrWeight=data
+  
+      })
     })
   }
   getStorageStatus(): void {
-    this.storageService.getWeight().subscribe(data => {
+    this.translate.onLangChange.subscribe(lang => {
+    this.storageService.getStorageStatus(lang.lang).subscribe(data => {
       this.arrStorage = data;
-      console.log(this.arrStorage)
+      console.log('hello=>',this.arrStorage)
     })
+  })
   }
   getLangList() {
     this.langService.getLangs().subscribe(this.getLangListHandler);

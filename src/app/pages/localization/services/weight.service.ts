@@ -51,6 +51,10 @@ export class WeightService {
         let params = `?take=${this.data.take}&skip=${skip}`;
         return this.http.get<any>(environment.weight.weights+params);
     }
+    // https://api.showu.com.ua/order_status/client
+    getWeightProd(lang:string): Observable<any> {
+        return this.http.get<any>(`${environment.localizations.weightclient}?lang=${lang}`);
+      }
     editWeight(id: number, item): Observable<any> {
         return this.http.put<any>(`${environment.weight.weight}/${id}`, item);
     }

@@ -1,3 +1,4 @@
+import { CountriesService } from './../localization/services/countries.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BasePage } from "../@core";
 import { NgxUiLoaderService } from "ngx-ui-loader";
@@ -31,6 +32,7 @@ export class CustomersComponent extends BasePage implements OnInit {
   public sendCustomerEditableData;
   selected:any;
   arrCustomers:any;
+  XLSX:any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -40,6 +42,7 @@ export class CustomersComponent extends BasePage implements OnInit {
     public customersService: CustomersService,
     //public manufacturer: ManufacturerService,
     public langService: LanguageService,
+    countryFormService:CountriesService,
     // public manufacturerForm: ManufacturerFormService,
     public lang: Lang,
     public userService: UserService
@@ -123,10 +126,6 @@ export class CustomersComponent extends BasePage implements OnInit {
       this.customersService.deleteCustomers(item).subscribe(data=>{
         this.getCustomers();
       })
-  }
-
-  download=()=>{
-    new Angular5Csv(this.arrCustomers.data, 'Users');
   }
   initTranslate() {
     this.lang.translate

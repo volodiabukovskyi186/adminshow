@@ -49,6 +49,9 @@ export class StorageService {
     let params = `?take=${this.data.take}&skip=${skip}`;
     return this.http.get<any>(environment.stockstatus.stockstatuss+params);
   }
+  getStorageStatus(lang): Observable<any> {
+    return this.http.get<any>(`${environment.localizations.stockstatus}?lang=${lang}`);
+  }
   editWeight(id: number, item): Observable<any> {
     return this.http.put<any>(`${environment.stockstatus.stockstatus}/${id}`, item);
   }

@@ -46,6 +46,7 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
       { link: "", title: "Dashboard" },
       { link: "country", title: " Countries" },
     ];
+
   }
 
 
@@ -134,6 +135,8 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     this.countryPaymentService.changeDeliverPay.next(this.selectedCountryPayment)
     this.openForm();
   };
+
+
 
 
   pageToHandler(page: number): void {

@@ -33,4 +33,5 @@ export class ProductCategoryService {
       this.values.push(element.category_id);
     });
   }
+
 }

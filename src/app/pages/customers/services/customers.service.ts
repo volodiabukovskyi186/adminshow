@@ -54,4 +54,5 @@ export class CustomersService {
     return this.http.delete<ICustomerPostData>(`${environment.host}subscription_client`,item.id);
   }
 
+
 }

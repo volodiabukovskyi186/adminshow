@@ -54,7 +54,7 @@ export class CountryFormService {
     getDeliversCountry(id:any): Observable<any> {
         return this.http.get<any>(`${environment.countrypaydeliver.countrydeliver}/${id}`);
     }
-
+  
 
     // editDeliver(id: number, item): Observable<any> {
     //     return this.http.put<any>(`${environment.countries.countrypay}/${id}`, item);
