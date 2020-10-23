@@ -21,11 +21,11 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
       backgroundColor: '#3498DB'
     },
     "2": {
-      name: 'statusCodes.confirmed',
+      name: 'statusCodes.rejected',
       backgroundColor: '#52BE80'
     },
     "3": {
-      name: 'statusCodes.rejected',
+      name: 'statusCodes.approved',
       backgroundColor: '#E74C3C '
     }
   }

@@ -78,7 +78,7 @@ export class SettingsPageService {
   }
 
   editSettingsPageInfo(settingsPageEditableData, siteId): Observable<any> {
-    return this.http.post(`${environment.host}site/${siteId}`, settingsPageEditableData);
+    return this.http.put(`${environment.host}site/${siteId}`, settingsPageEditableData);
   }
 
   getLangById(langId): Observable<any> {
@@ -89,6 +89,26 @@ export class SettingsPageService {
     let lang = window.location.pathname.slice(1, 3);
 
     return this.http.get(`${environment.host}site_description/getByLang?${lang}`)
+  }
+
+  getDefaultLanguage(): Observable<any> {
+    return this.http.get(`${environment.host}getDefaultLanguage`);
+  }
+
+  getlanguageAdminDefault(): Observable<any> {
+    return this.http.get(`${environment.host}language/admin/default`);
+  }
+
+  getDefaultCurrency(): Observable<any> {
+    return this.http.get(`${environment.host}currency/getDefaultCurrency`);
+  }
+
+  getDefaultWeight(): Observable<any> {
+    return this.http.get(`${environment.host}weight/default`);
+  }
+
+  getDefaultLength(): Observable<any> {
+    return this.http.get(`${environment.host}lenght/default`);
   }
 
   // post(data: any): Observable<any> {

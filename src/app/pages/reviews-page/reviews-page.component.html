@@ -55,10 +55,10 @@
             <div class="order-status-content">
               <div class="dot"
                  [ngClass]="{
-                    'green-bg': statusCodes[item?.status]?.name,
-                    'red-bg ': statusCodes[item?.status]?.name,
-                    'blue-bg': statusCodes[item?.status]?.name,
-                    'white-bg': !statusCodes[item?.status]?.name
+                    'green-bg': item?.status === 1,
+                    'red-bg ': item?.status === 2,
+                    'blue-bg': item?.status === 3,
+                    'white-bg': !item?.status
                  }">
               </div>
               <div class="status-text">{{ statusCodes[item?.status]?.name | translate}}</div>

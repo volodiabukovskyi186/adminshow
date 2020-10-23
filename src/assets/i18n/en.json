@@ -275,7 +275,13 @@
     "settingsLangShortTitleEng": "Eng",
     "settingsLangShortTitlePl": "Pl",
     "settingsLangShortTitleRus": "Рус",
-    "settingsLangShortTitleUa": "Укр"
+    "settingsLangShortTitleUa": "Укр",
+    "settingsLocalization": "Localization",
+    "language": "Language",
+    "adminLanguage": "Admin language",
+    "currency": "Currency",
+    "unitsOfMeasurement": "Units of measurement",
+    "weight": "Weight"
   },
   "productsAttributes": {
     "productsAttributesAttr": "Attribute",

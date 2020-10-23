@@ -43,6 +43,12 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public items: FormArray;
   public tabTitleName: string = 'Eng';
   public langId: number = 1;
+  public siteSettingsLocalizationForm: FormGroup;
+  public defaultLanguage: any;
+  public defaultAdminLanguage: any;
+  public defaultCurrency: any;
+  public defaultWeight: any;
+  public defaultLength: any;
 
   public langShortTitle = {
     "1": {
@@ -93,7 +99,15 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.getGenerateShopDetailsForm();
     this.getSiteSettingsContactTopForm();
     this.getSiteSettingsContactBottomForm();
+    this.generateSiteSettingsLocalizationForm();
 
+    this.getSiteDefaultLanguage();
+    this.getSiteLanguageAdminDefault();
+    this.getSiteDefaultCurrency();
+    this.getSiteDefaultWeight();
+    this.getSiteDefaultLength();
+
+    //this.setLocalizationValues();
   }
 
   generatePageSettingsForm() {
@@ -136,6 +150,16 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       meta_description: new FormControl('', []),
       meta_keywords: new FormControl('', [])
     });
+  }
+
+  generateSiteSettingsLocalizationForm(): void {
+    this.siteSettingsLocalizationForm = new FormGroup({
+      language: new FormControl('', []),
+      adminLanguage: new FormControl('', []),
+      currency: new FormControl('', []),
+      unitsOfMeasurement: new FormControl('', []),
+      weight: new FormControl('', [])
+    })
   }
 
   setDataInForm(tabTitleN, id?) {
@@ -215,6 +239,10 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     console.log(this.selectedPlatform?.descriptions);
   }
 
+  onChangeLocalization(eventValue): void {
+    console.log(eventValue);
+  }
+
   addDescription(): void {
     this.items = this.shopDetailsForm.get('items') as FormArray;
     
@@ -278,6 +306,51 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     })
   }
 
+  getSiteDefaultLanguage(): void {
+    this.settingsPageService.getDefaultLanguage().subscribe((res) => {
+      this.defaultLanguage = res.data;
+      console.log(res);
+    })
+  }
+
+  getSiteLanguageAdminDefault(): void {
+    this.settingsPageService.getlanguageAdminDefault().subscribe((res) => {
+      this.defaultAdminLanguage = res.data;
+      console.log(res);
+    })
+  }
+
+  getSiteDefaultCurrency(): void {
+    this.settingsPageService.getDefaultCurrency().subscribe((res) => {
+      this.defaultCurrency = res.data;
+      console.log(res);
+    })
+  }
+
+  getSiteDefaultWeight(): void {
+    this.settingsPageService.getDefaultWeight().subscribe((res) => {
+      this.defaultWeight = res.data;
+      console.log(res);
+    })
+  }
+
+  getSiteDefaultLength(): void {
+    this.settingsPageService.getDefaultLength().subscribe((res) => {
+      this.defaultLength = res.data;
+      console.log(res);
+    })
+  }
+
+  // setLocalizationValues(): void {
+  //   this.siteSettingsLocalizationForm.patchValue({
+  //     language: this.defaultLanguage?.title,
+  //     adminLanguage: this.defaultAdminLanguage?.title,
+  //     currency: this.defaultCurrency?.currency_title,
+  //     unitsOfMeasurement: this.defaultLength?.descriptions?.unit,
+  //     weight: this.defaultWeight?.descriptions?.unit
+  //   })
+  // }
+
   getEditSettingsPageFormData(): void {
     console.log(this.generalSettingsForm.value.logo);
     this.generalSettingsForm.value.logo = this.selectedImageLogo?.src;
@@ -299,6 +372,11 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   getSiteSettingsContactBottomForm() {
     this.siteSettingsContactBottomForm.valueChanges
+    .subscribe(() => this.emitFormDataChanges());
+  }
+
+  getSiteSettingsLocalizationForm() {
+    this.siteSettingsLocalizationForm.valueChanges
     .subscribe(() => this.emitFormDataChanges());
   }
 
