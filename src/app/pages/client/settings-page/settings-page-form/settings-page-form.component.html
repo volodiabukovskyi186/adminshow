@@ -27,13 +27,13 @@
                         <div class="settings-input-content settings-img-container" (click)="onPressLogo()">
                             <label>{{ "settings.logo" | translate }}</label>
                             <div class="upload-file">
-                                <div class="upload-file-img logo-img">
+                                <div class="upload-file-img logo-img cursor-pointer">
                                     <div class="site-icon-content-logo">
                                         200&#215;100
                                         <img *ngIf="selectedImageLogo" src="{{ host + selectedImageLogo?.src }}" class="selected-logo-img"/>
                                     </div>
                                 </div>
-                                <div class="upload-file-container cursor-pointer">
+                                <!-- <div class="upload-file-container cursor-pointer">
                                     <div class="upload-file-container__input-wrapper padding-left-right_15">
                                         <span class="upload-file-container__input-text">Завантажити фото</span>
                                         <input matInput
@@ -41,17 +41,17 @@
                                             class="upload-file-container__input"
                                             id="logo">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="settings-input-content settings-img-container" (click)="onPressSiteIcon()">
                             <label>{{ "settings.siteIcon" | translate }}</label>
                             <div class="upload-file upload-file-bottom">
-                                <div class="upload-file-img site-icon-img">
+                                <div class="upload-file-img site-icon-img cursor-pointer">
                                     <div class="site-icon-content">112&#215;112</div>
                                     <img *ngIf="selectedImageSiteIcon" src="{{ host + selectedImageSiteIcon?.src }}" class="selected-site-icon-img"/>
                                 </div>
-                                <div class="upload-file-container cursor-pointer">
+                                <!-- <div class="upload-file-container cursor-pointer">
                                     <div class="upload-file-container__input-wrapper padding-left-right_15">
                                         <span class="upload-file-container__input-text">Завантажити фото</span>
                                         <input matInput
@@ -59,7 +59,7 @@
                                             class="upload-file-container__input"
                                             id="siteIcon">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="settings-input-content">
@@ -254,6 +254,132 @@
                                     class="settings-input"
                                     id="youtube">
                             </div>
+                        </div>
+                    </form>
+                </rap-step-tab>
+                <rap-step-tab [title]="'settings.settingsLocalization' | translate">
+                    <form [formGroup]="siteSettingsLocalizationForm" (submit)="getSiteSettingsLocalizationForm()" class="phone-form-container">
+                        <div class="settings-input-content sort-content">
+                            <label>{{ "settings.language" | translate }}</label>
+                            <mat-form-field appearance="standart" class="sort-products">
+                                <div class="sort-products-wrapper">
+                                    <mat-select
+                                        id="language"
+                                        required
+                                        formControlName="language"
+                                        (selectionChange)="onChangeLocalization($event.value)"
+                                        >
+                                        <div>
+                                            <mat-option value="{{ defaultLanguage?.title }}">
+                                                {{ defaultLanguage?.title }}
+                                            </mat-option>
+                                        </div>
+                                    </mat-select>
+                                </div>
+                            </mat-form-field>
+                            <!-- <div>
+                                <input matInput
+                                    formControlName="language"
+                                    class="settings-input"
+                                    id="language">
+                            </div> -->
+                        </div>
+                        <div class="settings-input-content sort-content">
+                            <label>{{ "settings.adminLanguage" | translate }}</label>
+                            <mat-form-field appearance="standart" class="sort-products">
+                                <div class="sort-products-wrapper sort-content">
+                                    <mat-select
+                                        id="adminLanguage"
+                                        required
+                                        formControlName="adminLanguage"
+                                        (selectionChange)="onChangeLocalization($event.value)"
+                                        >
+                                        <div>
+                                            <mat-option value="{{ defaultAdminLanguage?.title }}">
+                                                {{ defaultAdminLanguage?.title }}
+                                            </mat-option>
+                                        </div>
+                                    </mat-select>
+                                </div>
+                            </mat-form-field>
+                            <!-- <div>
+                                <input matInput
+                                    formControlName="adminLanguage"
+                                    class="settings-input"
+                                    id="adminLanguage">
+                            </div> -->
+                        </div>
+                        <div class="settings-input-content sort-content">
+                            <label>{{ "settings.currency" | translate }}</label>
+                            <mat-form-field appearance="standart" class="sort-products">
+                                <div class="sort-products-wrapper sort-content">
+                                    <mat-select
+                                        id="currency"
+                                        required
+                                        formControlName="currency"
+                                        (selectionChange)="onChangeLocalization($event.value)">
+                                        <div>
+                                            <mat-option value="{{ defaultCurrency?.currency_title }}">
+                                                {{ defaultCurrency?.currency_title }}
+                                            </mat-option>
+                                        </div>
+                                    </mat-select>
+                                </div>
+                            </mat-form-field>
+                            <!-- <div>
+                                <input matInput
+                                    formControlName="currency"
+                                    class="settings-input"
+                                    id="currency">
+                            </div> -->
+                        </div>
+                        <div class="settings-input-content sort-content">
+                            <label>{{ "settings.unitsOfMeasurement" | translate }}</label>
+                            <mat-form-field appearance="standart" class="sort-products">
+                                <div class="sort-products-wrapper sort-content">
+                                    <mat-select
+                                        id="unitsOfMeasurement"
+                                        required
+                                        formControlName="unitsOfMeasurement"
+                                        (selectionChange)="onChangeLocalization($event.value)">
+                                        <div *ngFor="let lengthUnit of defaultLength?.descriptions">
+                                            <mat-option [value]="lengthUnit?.unit">
+                                                {{ lengthUnit?.unit }}
+                                            </mat-option>
+                                        </div>
+                                    </mat-select>
+                                </div>
+                            </mat-form-field>
+                            <!-- <div>
+                                <input matInput
+                                    formControlName="unitsOfMeasurement"
+                                    class="settings-input"
+                                    id="unitsOfMeasurement">
+                            </div> -->
+                        </div>
+                        <div class="settings-input-content sort-content">
+                            <label>{{ "settings.weight" | translate }}</label>
+                            <mat-form-field appearance="standart" class="sort-products">
+                                <div class="sort-products-wrapper sort-content">
+                                    <mat-select
+                                        id="weight"
+                                        required
+                                        formControlName="weight"
+                                        (selectionChange)="onChangeLocalization($event.value)">
+                                        <div *ngFor="let weightUnit of defaultWeight?.descriptions">
+                                            <mat-option value="{{ weightUnit?.unit }}">
+                                                {{ weightUnit?.unit }}
+                                            </mat-option>
+                                        </div>
+                                    </mat-select>
+                                </div>
+                            </mat-form-field>
+                            <!-- <div>
+                                <input matInput
+                                    formControlName="weight"
+                                    class="settings-input"
+                                    id="weight">
+                            </div> -->
                         </div>
                     </form>
                 </rap-step-tab>

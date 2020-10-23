@@ -28,9 +28,10 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let item of siteSettingsDescriptions"
+          
         >
-          <td data-label="ID" class="text-center">{{ item.name }}</td>
+        <!-- *ngFor="let item of siteSettingsDescriptions" -->
+          <td data-label="ID" class="text-center">{{ siteSettingsDescriptions?.name }}</td>
 
           <td class="text-center center padding__top-bottom_10">
                 <div class="title flag-container">

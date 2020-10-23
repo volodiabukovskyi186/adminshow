@@ -256,7 +256,13 @@
     "settingsLangShortTitleEng": "Eng",
     "settingsLangShortTitlePl": "Pl",
     "settingsLangShortTitleRus": "Рус",
-    "settingsLangShortTitleUa": "Укр"
+    "settingsLangShortTitleUa": "Укр",
+    "settingsLocalization": "Lokalizacja",
+    "language": "Język",
+    "adminLanguage": "Język administratora",
+    "currency": "Waluta",
+    "unitsOfMeasurement": "Jednostki miary",
+    "weight": "Waga"
   },
   "productsAttributes": {
     "productsAttributesAttr": "Atrybut",

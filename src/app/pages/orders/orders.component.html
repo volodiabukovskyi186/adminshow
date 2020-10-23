@@ -36,11 +36,11 @@
 
          <tbody class="table-body">
          <tr *ngFor="let order of orderService.order?.data">
-            <td width="64px" class="text-center">{{ order.id }}</td>
-            <td width="128px" class="text-center">{{ order.last_name }} {{ order.first_name }}</td>
-            <td width="128px" class="text-center">{{ order.manufacturer.description.name }}</td>
-            <td width="128px" class="text-center">{{ order.total.slice(0, -2) }}</td>
-            <td width="128px" class="text-center">{{ order.created_at }}</td>
+            <td width="64px" class="text-center">{{ order?.id }}</td>
+            <td width="128px" class="text-center">{{ order?.last_name }} {{ order?.first_name }}</td>
+            <td width="128px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
+            <td width="128px" class="text-center">{{ order?.total.slice(0, -2) }}</td>
+            <td width="128px" class="text-center">{{ order?.created_at }}</td>
             <td width="128px" class="text-center">
                <!-- <form [formGroup]="ordersForm">
                   <mat-form-field appearance="none">

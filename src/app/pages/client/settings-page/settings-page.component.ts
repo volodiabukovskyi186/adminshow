@@ -25,7 +25,7 @@ export class SettingsPageComponent extends BasePage implements OnInit {
   public generateShopDetailsFormData;
   public shopDetailsFormDataEvent;
   public settingsContactBottomData;
-  public siteSettingsDescriptions: any[] = [];
+  public siteSettingsDescriptions;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -92,7 +92,8 @@ export class SettingsPageComponent extends BasePage implements OnInit {
 
   getDescByLang() {
     this.settingsPageService.getSiteByLang().subscribe((res) => {
-      this.siteSettingsDescriptions = res.data;
+      this.siteSettingsDescriptions = res.data[0];
+      console.log(this.siteSettingsDescriptions);
       //this.settingsPageService.settings.data.descriptions = res.data;
     })
   }
@@ -132,18 +133,18 @@ export class SettingsPageComponent extends BasePage implements OnInit {
   save = () => {
     this.siteId = 1;
 
-    // this.settingsPageService.editSettingsPageInfo(this.sendSettingsPageEditableData, this.siteId).subscribe((res) => {
-    //   this.putHandler(res);
-    //   this.settingsPageService.getSiteDataById();
-    // });
+    this.settingsPageService.editSettingsPageInfo(this.sendSettingsPageEditableData, this.siteId).subscribe((res) => {
+      this.putHandler(res);
+      this.settingsPageService.getSiteDataById();
+    });
     
-    //this.ngxService.start();
+    this.ngxService.start();
   };
 
   putHandler = (data) => {
     this.ngxService.stopAll();
     this.closeForm();
-    this.toastr.success("CURRENCY UPDATED ^_^");
+    this.toastr.success("SETTINGS UPDATED ^_^");
   };
 
 
