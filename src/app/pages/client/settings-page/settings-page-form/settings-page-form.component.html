@@ -268,10 +268,11 @@
                                         required
                                         formControlName="language"
                                         (selectionChange)="onChangeLocalization($event.value)"
+                                        [(ngModel)]="selectedDefaultLang"
                                         >
                                         <div>
-                                            <mat-option value="{{ defaultLanguage?.title }}">
-                                                {{ defaultLanguage?.title }}
+                                            <mat-option *ngFor="let lang of siteLanguages" [value]="lang.title">
+                                                {{ lang?.title }}
                                             </mat-option>
                                         </div>
                                     </mat-select>
@@ -293,10 +294,11 @@
                                         required
                                         formControlName="adminLanguage"
                                         (selectionChange)="onChangeLocalization($event.value)"
+                                        [(ngModel)]="selectedDefaultAdminLang"
                                         >
                                         <div>
-                                            <mat-option value="{{ defaultAdminLanguage?.title }}">
-                                                {{ defaultAdminLanguage?.title }}
+                                            <mat-option *ngFor="let adminLang of siteLanguages" [value]="adminLang.title">
+                                                {{ adminLang?.title }}
                                             </mat-option>
                                         </div>
                                     </mat-select>
@@ -317,10 +319,11 @@
                                         id="currency"
                                         required
                                         formControlName="currency"
-                                        (selectionChange)="onChangeLocalization($event.value)">
+                                        (selectionChange)="onChangeLocalization($event.value)"
+                                        [(ngModel)]="selectedDefaultCurrency">
                                         <div>
-                                            <mat-option value="{{ defaultCurrency?.currency_title }}">
-                                                {{ defaultCurrency?.currency_title }}
+                                            <mat-option *ngFor="let currency of siteCurrencies" [value]="currency.currency_title">
+                                                {{ currency?.currency_title }}
                                             </mat-option>
                                         </div>
                                     </mat-select>
@@ -341,8 +344,9 @@
                                         id="unitsOfMeasurement"
                                         required
                                         formControlName="unitsOfMeasurement"
-                                        (selectionChange)="onChangeLocalization($event.value)">
-                                        <div *ngFor="let lengthUnit of defaultLength?.descriptions">
+                                        (selectionChange)="onChangeLocalization($event.value)"
+                                        [(ngModel)]="selectedLength">
+                                        <div *ngFor="let lengthUnit of allLength">
                                             <mat-option [value]="lengthUnit?.unit">
                                                 {{ lengthUnit?.unit }}
                                             </mat-option>
@@ -365,9 +369,10 @@
                                         id="weight"
                                         required
                                         formControlName="weight"
-                                        (selectionChange)="onChangeLocalization($event.value)">
-                                        <div *ngFor="let weightUnit of defaultWeight?.descriptions">
-                                            <mat-option value="{{ weightUnit?.unit }}">
+                                        (selectionChange)="onChangeLocalization($event.value)"
+                                        [(ngModel)]="selectedWeight">
+                                        <div *ngFor="let weightUnit of siteWeightDesc">
+                                            <mat-option [value]="weightUnit?.unit">
                                                 {{ weightUnit?.unit }}
                                             </mat-option>
                                         </div>

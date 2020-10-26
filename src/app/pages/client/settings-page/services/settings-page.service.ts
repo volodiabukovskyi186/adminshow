@@ -111,6 +111,22 @@ export class SettingsPageService {
     return this.http.get(`${environment.host}lenght/default`);
   }
 
+  getAllLanguages(): Observable<any> {
+    return this.http.get(`${environment.host}languages`);
+  }
+
+  getAllCurrencies(): Observable<any> {
+    return this.http.get(`${environment.host}currencys`);
+  }
+
+  getAllLenghts(): Observable<any> {
+    return this.http.get<any>(`${environment.host}lenghts`);
+  }
+
+  getWeightDescription(): Observable<any> {
+    return this.http.get(`${environment.host}weight_descs`);
+  }
+
   // post(data: any): Observable<any> {
   //   return this.http.post(environment.catalog.option.option, data);
   // }

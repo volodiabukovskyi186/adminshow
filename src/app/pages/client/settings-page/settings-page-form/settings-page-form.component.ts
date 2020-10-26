@@ -49,6 +49,16 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public defaultCurrency: any;
   public defaultWeight: any;
   public defaultLength: any;
+  public siteLanguages;
+  public selectedDefaultLang;
+  public selectedDefaultAdminLang;
+  public siteCurrencies;
+  public selectedDefaultCurrency;
+  public siteLenghts;
+  public selectedLength;
+  public allLength: any[] = [];
+  public siteWeightDesc: any[] = [];
+  public selectedWeight;
 
   public langShortTitle = {
     "1": {
@@ -106,8 +116,10 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.getSiteDefaultCurrency();
     this.getSiteDefaultWeight();
     this.getSiteDefaultLength();
-
-    //this.setLocalizationValues();
+    this.getLanguages();
+    this.getCurrencies();
+    this.getLenghts();
+    this.getWeightDesc();
   }
 
   generatePageSettingsForm() {
@@ -341,15 +353,64 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     })
   }
 
-  // setLocalizationValues(): void {
-  //   this.siteSettingsLocalizationForm.patchValue({
-  //     language: this.defaultLanguage?.title,
-  //     adminLanguage: this.defaultAdminLanguage?.title,
-  //     currency: this.defaultCurrency?.currency_title,
-  //     unitsOfMeasurement: this.defaultLength?.descriptions?.unit,
-  //     weight: this.defaultWeight?.descriptions?.unit
-  //   })
-  // }
+  getLanguages(): void {
+    this.settingsPageService.getAllLanguages().subscribe((res) => {
+      this.siteLanguages = res.data;
+
+      this.siteLanguages.forEach((val) => {
+        if (val.code === this.defaultLanguage?.code) {
+          this.selectedDefaultLang = this.defaultLanguage?.title;
+          console.log(this.selectedDefaultLang);
+        }
+
+        if (val.code === this.defaultAdminLanguage?.code) {
+          this.selectedDefaultAdminLang = this.defaultAdminLanguage?.title;
+          console.log(this.selectedDefaultAdminLang);
+        }
+      })
+    })
+  }
+
+  getCurrencies(): void {
+    this.settingsPageService.getAllCurrencies().subscribe((res) => {
+      this.siteCurrencies = res.data;
+
+      this.siteCurrencies.forEach((currency) => {
+        if (currency.code === this.defaultCurrency?.code) {
+          this.selectedDefaultCurrency = this.defaultCurrency?.currency_title;
+          console.log(this.selectedDefaultCurrency);
+        }
+      })
+    })
+  }
+
+  getLenghts(): void {
+    this.settingsPageService.getAllLenghts().subscribe((res) => {
+      this.siteLenghts = res.data;
+
+      this.siteLenghts.forEach((length) => {
+        this.allLength.push(length.description[0]);
+      })
+
+      this.allLength.forEach((val) => {
+        if (val.id === this.defaultLength.descriptions[0].id) {
+          this.selectedLength = this.defaultLength.descriptions[0].unit;
+        }
+      })
+    })
+  }
+
+  getWeightDesc(): void {
+    this.settingsPageService.getWeightDescription().subscribe((res) => {
+      this.siteWeightDesc = res.data;
+
+      this.siteWeightDesc.forEach((val) => {
+        if (val.id === this.defaultWeight.descriptions[0].id) {
+          this.selectedWeight = this.defaultWeight.descriptions[0].unit;
+        }
+      })
+    })
+  }
 
   getEditSettingsPageFormData(): void {
     console.log(this.generalSettingsForm.value.logo);
