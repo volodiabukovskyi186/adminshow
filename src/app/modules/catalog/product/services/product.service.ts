@@ -60,4 +60,8 @@ export class ProductService {
   updateProductPrice(newPrice): Observable<any> {
     return this.http.post(`${environment.host}product_discont`, newPrice);
   }
+
+  deleteDiscount(discountId): Observable<any> {
+    return this.http.delete(`${environment.host}product_discont/${discountId}`);
+  }
 }

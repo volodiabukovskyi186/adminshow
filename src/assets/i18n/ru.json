@@ -251,7 +251,16 @@
     "settingsLangShortTitleEng": "Eng",
     "settingsLangShortTitlePl": "Pl",
     "settingsLangShortTitleRus": "Рус",
-    "settingsLangShortTitleUa": "Укр"
+    "settingsLangShortTitleUa": "Укр",
+    "settingsLocalization": "Локализация",
+    "language": "Язык",
+    "adminLanguage": "Язык администратора",
+    "currency": "Валюта",
+    "unitsOfMeasurement": "Меры измерения",
+    "weight": "Вес",
+    "requiredDateStart": "Дата начала скидки обязательна.",
+    "requiredDateEnd": "Дата окончания скидки обязательна.",
+    "requiredNewPrice": "Требуется новая цена."
   },
   "productsAttributes": {
     "productsAttributesAttr": "Атрибут",

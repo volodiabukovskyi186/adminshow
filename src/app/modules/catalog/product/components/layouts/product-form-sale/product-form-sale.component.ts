@@ -14,6 +14,8 @@ export class ProductFormSaleComponent implements OnInit {
   public productDiscounts;
   arrSelectedSale=[];
 
+  public selectedDiscountId: number;
+
   @Input() model: IProduct;
 
   constructor(
@@ -40,6 +42,10 @@ export class ProductFormSaleComponent implements OnInit {
     })
   }
 
+  get formAuthControls(): any {
+    return this.productDiscountForm['controls'];
+  }
+
   public getProductDiscountFormValue(): void {
     this.productDiscountForm.valueChanges.subscribe((res) => {
       this.productDiscountFormValue = {
@@ -55,10 +61,12 @@ export class ProductFormSaleComponent implements OnInit {
     })
   }
 
-  public saveNewPrice(): void {
-    this.productService.updateProductPrice(this.productDiscountFormValue).subscribe((res) => {
-      this.getDiscounts();
-    })
+  public saveNewPrice(isNotEmptyDiscount): void {
+    if (isNotEmptyDiscount) {
+      this.productService.updateProductPrice(this.productDiscountFormValue).subscribe((res) => {
+        this.getDiscounts();
+      })
+    }
   }
 
   public addNewPrice(): void {
@@ -76,16 +84,24 @@ export class ProductFormSaleComponent implements OnInit {
     })
   }
 
-  public deleteSale(discount):void{
-    this.arrSelectedSale.push(discount.id);
-      if(this.arrSelectedSale.length>0){
-        this.arrSelectedSale.forEach((elem,index)=>{
-        if(elem==discount.id){
-          this.arrSelectedSale.slice(1,index)
-        }
-      })
-      console.log( this.arrSelectedSale)
-      }
+  public selectedDiscount(discountId): void {
+    this.selectedDiscountId = discountId;
+  }
+
+  public deleteSale(discount): void {
+    this.productService.deleteDiscount(discount).subscribe((res) => {
+      this.getDiscounts();
+    })
+
+    // this.arrSelectedSale.push(discount.id);
+    //   if(this.arrSelectedSale.length>0){
+    //     this.arrSelectedSale.forEach((elem,index)=>{
+    //     if(elem==discount.id){
+    //       this.arrSelectedSale.slice(1,index)
+    //     }
+    //   })
+    //   console.log( this.arrSelectedSale)
+    //   }
     // this.arrSelectedSale.forEach((elem,index)=>{
 
     //   if(elem==discount.id&& this.arrSelectedSale.length>1){ 
