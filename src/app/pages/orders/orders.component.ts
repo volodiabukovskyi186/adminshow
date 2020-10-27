@@ -179,4 +179,21 @@ export class OrdersComponent extends BasePage implements OnInit {
     this.pages.panelButtonSettings.cancel = true;
     this.pages.panelButtonSettings.rightToggle = false;
   };
+
+  //#region pagination
+
+  pageToHandler(page: number): void {
+    this.orderService.page = page;
+  }
+  pagePrevHandler(): void {
+    this.orderService.page--;
+  }
+  pageNextHandler(): void {
+    this.orderService.page++;
+  }
+  pageChangedHandler(): void {
+    this.getList();
+    window.scrollTo(0, 0);
+  }
+  Math = Math;
 }

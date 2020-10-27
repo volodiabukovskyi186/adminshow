@@ -15,7 +15,7 @@ export class CustomersService {
     count: 0,
     data: [],
     skip: 0,
-    take: 10,
+    take: 30,
     host: environment.host
   };
 

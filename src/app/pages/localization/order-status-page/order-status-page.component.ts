@@ -143,6 +143,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         this.localizationService.page--;
     }
     pageNextHandler(): void {
+        
         this.localizationService.page++;
     }
     pageChangedHandler(): void {

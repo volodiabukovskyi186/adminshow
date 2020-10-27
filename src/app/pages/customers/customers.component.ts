@@ -233,7 +233,8 @@ export class CustomersComponent extends BasePage implements OnInit {
     this.customersService.page--;
   }
   pageNextHandler(): void {
-    this.customersService.page++;
+    // this.customersService.customer.take+=10
+    // this.customersService.customer.page++;
   }
   pageChangedHandler(): void {
     this.getList();

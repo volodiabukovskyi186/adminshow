@@ -68,7 +68,7 @@
     <app-pagination
       class="radius"
       [page]="customersService.page"
-      [total]="Math.ceil(customersService.customer.count / customersService.customer.take)"
+      [total]="Math.ceil(arrCustomers?.count/arrCustomers?.take)"
       [pagesToShow]="5"
       (goNext)="pageNextHandler()"
       (goPrev)="pagePrevHandler()"
@@ -79,4 +79,5 @@
   </div>
 
 </rap-panel-content>
+
 
