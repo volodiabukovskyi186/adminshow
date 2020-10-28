@@ -43,13 +43,15 @@
                         </tr>
                              <tr>
                                 <th class="th-order order-text order-title">
-                                    {{ 'orders.ordersProducer' | translate }}
+                                    {{ 'orders.orderStatus' | translate }}
                                 </th>
                                 <th class="th-order order-text">
                                             <select class="radius" (change)="changeStatus(userOrders)"  [(ngModel)]="userOrders" >
-                                                <option  *ngFor="let item of status" value={{item.id}} >{{item.name}}</option>
-                                            </select>        
+                                                <option  *ngFor="let item of statusIte" [value]="item.id">{{item.descriptions[0].dectiption}}</option>
+                                            </select>   
+                                        
                                 </th>
+                                <!-- {{statusIte|json}} -->
                             </tr>
                     </table>
                     <div class="sale-list">

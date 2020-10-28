@@ -66,15 +66,15 @@
       </tbody>
     </table>
     <app-pagination
-      class="radius"
-      [page]="customersService.page"
-      [total]="Math.ceil(arrCustomers?.count/arrCustomers?.take)"
-      [pagesToShow]="5"
-      (goNext)="pageNextHandler()"
-      (goPrev)="pagePrevHandler()"
-      (goPage)="pageToHandler($event)"
-      (pageChanged)="pageChangedHandler()"
-    ></app-pagination>
+    class="radius"
+    [page]="customersService.page"
+    [total]="Math.ceil(arrCustomers?.count/arrCustomers?.take)"
+    [pagesToShow]="5"
+    (goNext)="pageNextHandler()"
+    (goPrev)="pagePrevHandler()"
+    (goPage)="pageToHandler($event)"
+    (pageChanged)="pageChangedHandler()"
+></app-pagination>
 
   </div>
 

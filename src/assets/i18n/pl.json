@@ -306,7 +306,9 @@
     "orderFullName": "Pełne imię i nazwisko",
     "orderPhone": "Telefon",
     "orderEmail": "Email",
-    "orderRecipient": "Odbiorca"
+    "orderRecipient": "Odbiorca",
+    "orderStatus":"Status zamówienia"
+
   },
   "months": {
     "Jan": "Styczeń",

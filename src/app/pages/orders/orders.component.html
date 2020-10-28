@@ -88,16 +88,16 @@
          </div>
          </tbody>
       </table>
-      <!-- <app-pagination
+      <app-pagination
       class="radius"
       [page]="orderService.page"
-      [total]="Math.ceil(orderService.data.count / orderService.data.take)"
+      [total]="Math.ceil(orderService.order?.count / orderService.order?.take)"
       [pagesToShow]="5"
       (goNext)="pageNextHandler()"
       (goPrev)="pagePrevHandler()"
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
-    ></app-pagination> -->
+    ></app-pagination>
    </div>
 </rap-panel-content>
 

@@ -26,19 +26,25 @@ export class DataComponent implements OnInit {
     this.getStorageStatus();
   }
   getWeight():void{
-    this.translate.onLangChange.subscribe(lang => {
-      this.weightService.getWeightProd(lang.lang).subscribe(data => {
+    const lang=localStorage.getItem('currentLang')
+    // this.translate.onLangChange.subscribe(lang => {
+    //   // lang=lang.lang
+    //   console.log('language====>',lang)
+    // })
+    
+      this.weightService.getWeightProd(lang).subscribe(data => {
         this.arrWeight=data
-  
+          console.log('weightqqqqqqqqqqq===>',this.arrWeight)
       })
-    })
+    
   }
   getStorageStatus(): void {
-    this.translate.onLangChange.subscribe(lang => {
-    this.storageService.getStorageStatus(lang.lang).subscribe(data => {
+    // this.translate.onLangChange.subscribe(lang => {
+      const lang=localStorage.getItem('currentLang')
+    this.storageService.getStorageStatus(lang).subscribe(data => {
       this.arrStorage = data;
       console.log('hello=>',this.arrStorage)
-    })
+    // })
   })
   }
   getLangList() {

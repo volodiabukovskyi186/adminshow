@@ -342,7 +342,8 @@
     "orderFullName": "ПІБ",
     "orderPhone": "Телефон",
     "orderEmail": "Email",
-    "orderRecipient": "Одержувач"
+    "orderRecipient": "Одержувач",
+    "orderStatus":"Статус замовлення"
   },
   "months": {
     "Jan": "Січень",

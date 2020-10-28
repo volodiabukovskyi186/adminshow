@@ -301,7 +301,8 @@
     "orderFullName": "ФИО",
     "orderPhone": "Телефон",
     "orderEmail": "Email",
-    "orderRecipient": "Получатель"
+    "orderRecipient": "Получатель",
+    "orderStatus":"Статус заказа"
   },
   "months": {
     "Jan": "Январь",

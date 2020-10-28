@@ -86,15 +86,17 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     }
     if (this.selected.id !== undefined) {
       this.countriesServices.editCountry(this.selected.id, updateWeight).subscribe(data => {
+        this.getWeight()
       })
-      this.getWeight()
+     
     }
     else if(updateWeight.image_id!==null) {
       this.countriesServices.addNewCountry(this.selected.id,  updateWeight).subscribe(data => {
+        this.getWeight()
       })
     
       this.countriesServices.addnewCountry.next(true)
-      this.getWeight()
+     
     }
     this.closeForm();
   }

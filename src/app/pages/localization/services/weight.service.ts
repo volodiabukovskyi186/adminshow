@@ -38,6 +38,11 @@ export class WeightService {
                     "lang_id": 3,
                     "title":null,
                     "unit": null
+                },
+                {
+                    "lang_id": 4,
+                    "title":null,
+                    "unit": null
                 }
             ]
         }

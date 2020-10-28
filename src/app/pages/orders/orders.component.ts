@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, SimpleChanges,OnChanges } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { OrderService } from './services/order.service';
 import { FormControl, FormGroup } from "@angular/forms";
@@ -8,13 +8,14 @@ import { LanguageService } from "src/app/modules/localization/language/language.
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { LocalizationServicesService } from '../localization/services/localization-services.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent extends BasePage implements OnInit {
+export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   orderSideStatus = false;
   ordersForm: FormGroup;
   selectedClientOrder: any;
@@ -45,6 +46,7 @@ export class OrdersComponent extends BasePage implements OnInit {
     public langService: LanguageService,
     public lang: Lang,
     public breadcrumbs: BreadcrumbsService,
+    private translate: TranslateService,
     public localizationService: LocalizationServicesService,
   ) { 
     super(pages);
@@ -53,7 +55,9 @@ export class OrdersComponent extends BasePage implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     // this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.plus = false;
+    // console.log('updateItems=====>',this.orderService.order)
   }
+
 
   ngOnInit(): void {
     super.initPagesSettings();
@@ -61,7 +65,7 @@ export class OrdersComponent extends BasePage implements OnInit {
     this.initTranslate();
     this.generateOrdersForm();
     this.getList();
-    this.getStatus()
+    // this.getStatus()
     this.getClient()
     // console.log(this.getList());
     // console.log(this.ordersForm.value);
@@ -69,13 +73,12 @@ export class OrdersComponent extends BasePage implements OnInit {
     this.pages.panelButtonSettings.plus = false;
     this.pages.panelButtonSettings.rightToggle = true;
   }
-  getStatus(): void {
-    this.localizationService.getOrderStatus().subscribe(
-        data => {
-        this.status = data.data;
-        // console.log(this.status)
+  uodateAllItems():void{
+    this.orderService.getList().subscribe(data=>{
+      this.orderService.order=data;
     })
   }
+
   getClient():void{
     this.orderService.getList().subscribe(data=>{
       // this.userOrders=data;
@@ -141,8 +144,11 @@ export class OrdersComponent extends BasePage implements OnInit {
       manufactured_id: this.selectedClientOrder.manufactured_id,
       total: this.selectedClientOrder.total 
     }
-    console.log('orderStatus+==>',userOrde)
+
     this.orderService.UpdateUserOrder(this.selectedClientOrder.id,userOrde).subscribe(data=>{
+      // this.getStatus();
+      this.uodateAllItems()
+   
     })
     this.closeForm();
   

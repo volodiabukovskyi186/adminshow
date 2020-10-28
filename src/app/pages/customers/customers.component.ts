@@ -122,7 +122,7 @@ export class CustomersComponent extends BasePage implements OnInit {
   };
 
   deleteStatus(item){
-    console.log('delete=>',item)
+   
       this.customersService.deleteCustomers(item).subscribe(data=>{
         this.getCustomers();
       })
@@ -228,19 +228,18 @@ export class CustomersComponent extends BasePage implements OnInit {
 
   pageToHandler(page: number): void {
     this.customersService.page = page;
-  }
-  pagePrevHandler(): void {
+}
+pagePrevHandler(): void {
     this.customersService.page--;
-  }
-  pageNextHandler(): void {
-    // this.customersService.customer.take+=10
-    // this.customersService.customer.page++;
-  }
-  pageChangedHandler(): void {
-    this.getList();
+}
+pageNextHandler(): void {
+    
+    this.customersService.page++;
+}
+pageChangedHandler(): void {
+   this. getCustomers();
     window.scrollTo(0, 0);
-  }
-  Math = Math;
-
+}
+Math = Math;
   //#endregion
 }

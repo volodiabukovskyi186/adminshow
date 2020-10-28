@@ -36,6 +36,10 @@ export class LocalizationServicesService {
         {
           "lang_id": 3,
           "dectiption": null
+        },
+        {
+          "lang_id": 4,
+          "dectiption": null
         }
       ]
     }
@@ -49,6 +53,10 @@ export class LocalizationServicesService {
     let skip = this.page * this.data.take - this.data.take;
     let params = `?take=${this.data.take}&skip=${skip}`;
     return this.http.get<any>(environment.localizations.orderstatus+ params);
+  }
+
+  getOrderAllStatus(lang:string): Observable<any> {
+    return this.http.get<any>(`${environment.localizations.orderstatuslang}?lang=${lang}`);
   }
   deleteOrderStatus(id:number):Observable<any> {
     return this.http.delete<any>(`${environment.localizations.orderstatusdel}/${id}`)

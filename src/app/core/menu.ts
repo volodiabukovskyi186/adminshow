@@ -4,7 +4,7 @@ const ICON_MENU_ITEM = "assets/icons/menu-item.svg";
 
 export const MENU = [
   group("MENU.orders.orders", [
-    item("MENU.orders.orders", "orders"),
+    item("MENU.orders.orders", "orders", true, ICON_MENU_ITEM),
     // item("Accepted", "orders/accepted"),
     // item("Done", "orders/done"),
     // item("Canceled", "orders/canceled"),
