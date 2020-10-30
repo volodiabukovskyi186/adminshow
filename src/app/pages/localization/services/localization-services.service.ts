@@ -55,7 +55,9 @@ export class LocalizationServicesService {
     return this.http.get<any>(environment.localizations.orderstatus+ params);
   }
 
-  getOrderAllStatus(lang:string): Observable<any> {
+  getOrderAllStatus(): Observable<any> {
+    const lang=localStorage.getItem('currentLang')
+    console.log('langlanglang===>',lang)
     return this.http.get<any>(`${environment.localizations.orderstatuslang}?lang=${lang}`);
   }
   deleteOrderStatus(id:number):Observable<any> {

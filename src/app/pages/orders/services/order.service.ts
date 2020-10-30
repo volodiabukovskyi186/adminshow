@@ -13,21 +13,26 @@ export class OrderService {
     count: 0,
     data: [],
     skip: 0,
-    take: 10,
+    take: 20,
     host: environment.host
   };
 
   constructor(private http: HttpClient) {}
 
   getList(): Observable<IOrderResponse> {
+    const lang=localStorage.getItem('currentLang')
     let skip = this.page * this.order.take - this.order.take;
-    let params = `?take=${this.order.take}&skip=${skip}`;
+    let params = `?take=10&skip=${skip}&lang=${lang}`;
+    // ${this.order.take}
     return this.http.get<IOrderResponse>(
-      environment.orders + params
+      environment.orderang + params
+      //
     );
+  
   }
+  // 
   UpdateUserOrder(id:any,data:any): Observable<any>{
-    console.log(id,data)
+
     return this.http.put(`https://api.showu.com.ua/order/${id}`, data);
   }
 

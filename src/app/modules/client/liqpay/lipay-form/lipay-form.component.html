@@ -1,0 +1,32 @@
+<div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
+
+<div class="form-row">
+        <div class="description">
+            <label for="">{{ "MENU.orders.status" | translate }}</label>
+        </div>
+        <div class="original">
+            <!-- <input class="radius" [(ngModel)]="item.name" type="text"/> -->
+           <select [(ngModel)]="selected.status" >
+               <option value="1">видимий</option>
+               <option value="0">не видимий</option>
+           </select>
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="description">
+                <label for="">Public key</label>
+            </div>
+            <div class="original">
+                
+                <textarea class="textArea" [(ngModel)]="selected.public_key"></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+                <div class="description">
+                    <label for="">Private key</label>
+                </div>
+                <div class="original">
+                    <textarea class="textArea" [(ngModel)]="selected.private_key"></textarea>
+                   
+                </div>
+            </div>

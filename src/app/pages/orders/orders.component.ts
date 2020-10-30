@@ -24,6 +24,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   status:any;
   userOrders:any;
 
+
   public statusCodes = {
     "1": {
       name: 'statusCodes.new',
@@ -50,12 +51,18 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     public localizationService: LocalizationServicesService,
   ) { 
     super(pages);
+
+    this.translate.onLangChange.subscribe(lang => {
+       this.getList()
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     // this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.plus = false;
     // console.log('updateItems=====>',this.orderService.order)
+    this.getList()
+    
   }
 
 
@@ -65,24 +72,22 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.initTranslate();
     this.generateOrdersForm();
     this.getList();
-    // this.getStatus()
     this.getClient()
-    // console.log(this.getList());
-    // console.log(this.ordersForm.value);
-    // this.pages.panelButtonSettings.save = false;
+   
+
     this.pages.panelButtonSettings.plus = false;
     this.pages.panelButtonSettings.rightToggle = true;
   }
   uodateAllItems():void{
     this.orderService.getList().subscribe(data=>{
       this.orderService.order=data;
+     
     })
   }
-
   getClient():void{
     this.orderService.getList().subscribe(data=>{
-      // this.userOrders=data;
-      // console.log(this.userOrders)
+      this.userOrders=data;
+      console.log(this.userOrders)
     })
    }
 
@@ -108,7 +113,11 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
   getList() {
     this.ngxService.start();
-    this.orderService.getList().subscribe(this.getListHandler);
+    this.orderService.getList().subscribe(
+      this.getListHandler
+    );
+    
+   
   }
 
   getListHandler = (data) => {

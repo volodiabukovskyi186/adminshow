@@ -27,10 +27,10 @@
         <tr>
           <th width="64px">{{ "APP.id" | translate }}</th>
           <th width="64px">{{ "APP.photo" | translate }}</th>
-          <th width="64px">{{ "APP.sort_order" | translate }}</th>
           <th width="">{{ "APP.title" | translate }}</th>
           <th width="">{{ "APP.model" | translate }}</th>
           <th width="128px">{{ "APP.quantity" | translate }}</th>
+          <th width="64px">{{ "APP.price" | translate }}</th>
           <th width="128px">{{ "APP.rating" | translate }}</th>
           <th width="128px">{{ "APP.updated_at" | translate }}</th>
           <th width="128px">{{ "APP.action" | translate }}</th>
@@ -54,8 +54,7 @@
             </div>
           </td>
 
-          <td class="text-center">{{ item.sort_order }}</td>
-
+      
           <td>
             <div class="flex wrap" style="width: 100%;">
               <span class="title flag-container" *ngFor="let desc of item.descriptions">
@@ -70,6 +69,7 @@
 
           <td class="text-center">{{ item.model }}</td>
           <td class="text-center">{{ item.quantity }}</td>
+          <td class="text-center">{{ item.price }}</td>
           <td class="text-center">
             <rap-rating style="position: relative;" [attr.data-tooltip-top]="item.rating" [rating]="item.rating"></rap-rating>
           </td>
@@ -112,6 +112,7 @@
             </div>
           </td>
         </tr>
+      
       </tbody>
     </table>
 
@@ -127,3 +128,4 @@
     ></app-pagination>
   </div>
 </rap-panel-content>
+

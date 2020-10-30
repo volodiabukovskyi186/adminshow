@@ -148,6 +148,7 @@
     "FORGOT_PASSWORD": "Forgot a password"
   },
   "MENU": {
+    "liqpay":"Liqpay",
     "orders": {
       "orders": "Orders",
       "client": "Client",
@@ -328,6 +329,9 @@
     "orderEmail": "Email",
     "orderRecipient": "Recipient",
     "orderStatus":"Order status"
+  },
+  "liqpay":{
+    "onlinePay":"Online pay"
   },
   "months": {
     "Jan": "January", 
