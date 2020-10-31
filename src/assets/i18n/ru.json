@@ -115,6 +115,7 @@
     "FORGOT_PASSWORD": "Я забыл пароль :/"
   },
   "MENU": {
+    "liqpay":"Liqpay",
     "orders": {
       "orders": "Заказы",
       "client": "Клиент",
@@ -304,6 +305,9 @@
     "orderEmail": "Email",
     "orderRecipient": "Получатель",
     "orderStatus":"Статус заказа"
+  },
+  "liqpay":{
+    "onlinePay":"ОНЛАЙН ОПЛАТА"
   },
   "months": {
     "Jan": "Январь",

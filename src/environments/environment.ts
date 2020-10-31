@@ -12,6 +12,7 @@ export const environment = {
     role: host + `role`,
   },
   orders: host + `orders`,
+  orderang:host+`ownerOrders`,
   gallery: {
     images: {
       images: host + `images`,
@@ -100,6 +101,10 @@ export const environment = {
   stockstatus:{
     stockstatuss:host+'stock_statuss',
     stockstatus:host+'stock_status'
+  },
+  liqpay:{
+    liqpay:host+'keys'
+  
   },
   countries:{
     countrys:host+'countrys',

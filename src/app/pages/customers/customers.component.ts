@@ -114,6 +114,7 @@ export class CustomersComponent extends BasePage implements OnInit {
 
 
     this.closeForm()
+    
 
     this.pages.panelButtonSettings.download = true;
     this.pages.panelButtonSettings.review = false;

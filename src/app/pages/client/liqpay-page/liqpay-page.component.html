@@ -3,35 +3,33 @@
         [showRightSide]="pages.panelSettings.right"
 >
     <div form>
-        <app-payment-methods-form [selected]="selected">
-
-        </app-payment-methods-form>
- 
+        <app-lipay-form [selected]="selected"></app-lipay-form>
     </div>
     <div filter></div>
     <div content class="padding">
         <table class="raisins-table border-all radius">
             <thead>
-            <tr>
-                <th width="">{{ "APP.title" | translate }}</th>
-                <th width="200px">{{ "APP.updated_at" | translate }}</th>
+            <tr> 
+                    <!-- {{ "APP.title" | translate }} -->
+                <th width="160px">{{ "liqpay.onlinePay" | translate }}</th>
+                <th width="160px">Publick key</th>
+                <th width="240px">Privat key</th>
                 <th width="128px">{{ "APP.action" | translate }}</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let payment of arrPayment; let i=index"
+                    <!-- *ngFor="let payment of arrPayment; let i=index" -->
+            <tr
                 [ngClass]="">
                 <td class="text-center">
-                    <div class="flex wrap" style="width: 100%;">
-                             <span class="title flag-container" *ngFor="let pays of payment.descriptions">
-                                 <img class="flag" src="{{ langService.getFromList(pays.lang_id)?.flag }}"/>
-                               <span class="name">{{ pays.name }}</span>
-                             </span>
-                    </div>
+                  LiqPay
                 </td>
                 <td class="text-center">
-                    {{payment.updated_at==null?'-':payment.updated_at}}
+                   {{liqPay?.public_key}}
                 </td>
+                <td class="text-center">
+                    {{liqPay?.private_key}}
+                 </td>
 
                 <td>
                     <div class="flex wrap center">
@@ -39,18 +37,11 @@
                                 style="position: relative;"
                                 [attr.data-tooltip-left]="'APP.edit' | translate"
                                 role="button"
-                                (click)="edit(payment)"
+                                (click)="edit(liqPay)"
                                 class="button transparent radius"
                         >
                             <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
                         </button>
-
-                        <rap-delete-button
-                                (click)="deleteStatus(payment)"
-                                data-tooltip-left="Delete"
-                                class="button transparent radius"
-                                [src]="'assets/icons/delete.svg'"
-                        ></rap-delete-button>
                     </div>
                 </td>
             </tr>
@@ -68,6 +59,7 @@
         ></app-pagination>
     </div>
 </rap-panel-content>
+
 
 
 

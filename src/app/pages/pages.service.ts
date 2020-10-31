@@ -9,9 +9,7 @@ import {
 })
 export class PagesService {
   panelSettings: PanelSettings;
-
   panelButtonSettings: PanelButtonSettings;
-
   onPlusClick: () => void;
   onSaveClick: () => void;
   onCancelClick: () => void;

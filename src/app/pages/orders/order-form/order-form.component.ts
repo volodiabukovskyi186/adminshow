@@ -23,6 +23,9 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(public pages: PagesService,
     private translate: TranslateService,
     public localizationService: LocalizationServicesService,) { 
+      this.translate.onLangChange.subscribe(lang => {
+        this. getStatus();
+     })
   }
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -39,11 +42,11 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
   getStatus(): void {
     // this.translate.onLangChange.subscribe(lang => {
-    const lang=localStorage.getItem('currentLang')
-    this.localizationService.getOrderAllStatus(lang).subscribe(
+   
+    this.localizationService.getOrderAllStatus().subscribe(
         data => {
         this.statusIte = data.data;
-        // console.log('orderStatus===>',this.statusIte)
+        console.log('orderStatus===>',this.statusIte)
     })
   // })
   }
@@ -54,7 +57,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   changeStatus(i):void{
      this.userOrders=i
      this.ordersStaus.emit(this.userOrders)
-     console.log( this.order)
+    
   }
 
 }

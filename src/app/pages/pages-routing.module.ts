@@ -32,6 +32,7 @@ import {CountriesPageComponent} from "./localization/countries-page/countries-pa
 import {DeliveryMethodsPageComponent} from "./client/delivery-methods-page/delivery-methods-page.component";
 import { SettingsPageComponent } from '../pages/client/settings-page/settings-page.component';
 import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
+import { LiqpayPageComponent } from './client/liqpay-page/liqpay-page.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -247,6 +248,14 @@ export const pagesRoutes: Routes = [
   {
     path: "reviews",
     component: ReviewsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: [],
+    },
+  },
+  {
+    path: "liqpay",
+    component: LiqpayPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: [],

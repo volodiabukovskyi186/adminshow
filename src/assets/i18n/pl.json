@@ -116,6 +116,7 @@
     "FORGOT_PASSWORD": "Zapomniałem hasła"
   },
   "MENU": {
+    "liqpay":"Liqpay",
     "orders": {
       "orders": "Zamówienia",
       "client": "Klient",
@@ -310,6 +311,9 @@
     "orderRecipient": "Odbiorca",
     "orderStatus":"Status zamówienia"
 
+  },
+  "liqpay":{
+    "onlinePay":"PŁATNOŚĆ ONLINE"
   },
   "months": {
     "Jan": "Styczeń",
