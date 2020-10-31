@@ -74,7 +74,8 @@
     "saleOldprice": "Cтарая цена",
     "listSale": "Списки скидок для товарy",
     "saleListStart": "Начало скидки",
-    "saleListEnd":"Завершение скидки"
+    "saleListEnd":"Завершение скидки",
+    "discountExpired": "Срок действия скидки уже прошел"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",

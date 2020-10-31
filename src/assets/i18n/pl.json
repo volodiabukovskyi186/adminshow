@@ -74,7 +74,8 @@
     "saleOldprice": "Stara cena",
     "listSale": "Listy rabatowe na towary",
     "saleListStart": "Początek rabatu",
-    "saleListEnd":"Zakończenie zniżki"
+    "saleListEnd":"Zakończenie zniżki",
+    "discountExpired": "Rabat wygasł"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",

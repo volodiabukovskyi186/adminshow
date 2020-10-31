@@ -12,6 +12,7 @@ export class ProductFormSaleComponent implements OnInit {
   public productDiscountForm: FormGroup;
   public productDiscountFormValue;
   public productDiscounts;
+  public isDiscountExpired: boolean = false;
   arrSelectedSale=[];
 
   public selectedDiscountId: number;
@@ -25,6 +26,7 @@ export class ProductFormSaleComponent implements OnInit {
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.model) {
       this.getDiscounts();
+      //this.deleteExpiredDiscounts();
     }
   }
 
@@ -32,6 +34,7 @@ export class ProductFormSaleComponent implements OnInit {
     this.generateProductDiscountForm();
     this.getProductDiscountFormValue();
     this.getDiscounts();
+    //this.deleteExpiredDiscounts();
   }
 
   public generateProductDiscountForm(): void {
@@ -62,7 +65,22 @@ export class ProductFormSaleComponent implements OnInit {
   }
 
   public saveNewPrice(isNotEmptyDiscount): void {
-    if (isNotEmptyDiscount) {
+    let currentDay = new Date();
+    let dd = String(currentDay.getDate()).substring(0, 2);
+    let mm = String(currentDay.getMonth() + 1).substring(0, 2);
+    let yyyy = currentDay.getFullYear();
+
+    let today = mm + '-' + dd + '-' + yyyy;
+
+    //console.log(today);
+    //console.log('MODEL!!!!=======>>>>>>', this.model);
+
+    if (new Date(this.productDiscountFormValue.date_end) < new Date(today)) {
+      this.isDiscountExpired = true;
+    }
+
+    if (isNotEmptyDiscount && new Date(this.productDiscountFormValue.date_end) > new Date(today)) {
+      this.isDiscountExpired = false;
       this.productService.updateProductPrice(this.productDiscountFormValue).subscribe((res) => {
         this.getDiscounts();
       })
@@ -81,6 +99,8 @@ export class ProductFormSaleComponent implements OnInit {
     this.productService.getProductDiscounts().subscribe((response) => {
       this.productDiscounts = response.data;
       this.productDiscounts = this.productDiscounts.filter((res) => { return res.product_id === this.model.id});
+
+      this.deleteExpiredDiscounts(this.productDiscounts);
     })
   }
 
@@ -113,5 +133,20 @@ export class ProductFormSaleComponent implements OnInit {
    
   
     // console.log(this.arrSelectedSale)
+  }
+
+  public deleteExpiredDiscounts(discounts): void {
+    let currentDay = new Date();
+    let dd = String(currentDay.getDate()).substring(0, 2);
+    let mm = String(currentDay.getMonth() + 1).substring(0, 2);
+    let yyyy = currentDay.getFullYear();
+
+    let today = mm + '-' + dd + '-' + yyyy;
+
+    discounts?.forEach((discount) => {
+      if (new Date(discount?.date_end) < new Date(today)) {
+        this.deleteSale(discount.id);
+      }
+    })
   }
 }

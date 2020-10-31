@@ -82,7 +82,8 @@
     "saleOldprice": "The old price",
     "listSale": "Discount lists for the product",
     "saleListStart": "Discount lists for goods",
-    "saleListEnd":"Completion of the discount"
+    "saleListEnd":"Completion of the discount",
+    "discountExpired": "The discount has expired"
   },
   "pageNotFound": {
     "backToHome": "Back To Home",
