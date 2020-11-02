@@ -64,7 +64,7 @@
             &>.nav-tabs {
                 li {
                     padding-left: 5px;
-                    padding-right: 15px;
+                    padding-right: 9px;
                     //width: 33.3%;
                     text-align: center;
                     color: #5F5F62 !important;
@@ -287,8 +287,15 @@
     }
 }
 
+.sort-products-container {
+    width: 55% !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .sort-products {
-    width: 49%;
+    width: 79%;
     border: 1px solid #808080;
     border-radius: 4px;
     padding-left: 8px;
@@ -351,3 +358,13 @@
       }
     }
   }
+
+.edit-btn {
+    width: 17px;
+    margin-bottom: 7px;
+}
+
+.default-input {
+    display: flex;
+    flex-direction: row;;
+}

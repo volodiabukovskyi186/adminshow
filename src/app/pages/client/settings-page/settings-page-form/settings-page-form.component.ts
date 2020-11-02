@@ -59,6 +59,12 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public allLength: any[] = [];
   public siteWeightDesc: any[] = [];
   public selectedWeight;
+  public localizationLang;
+  public localizationAdminLang;
+  public localizationCurrency;
+  public localizationLength;
+  public localizationWeight;
+  public siteSocials;
 
   public langShortTitle = {
     "1": {
@@ -85,6 +91,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public ngOnChanges(changes: SimpleChanges) {
     if(changes.selectedPlatform?.currentValue) {
       this.setDataInForm(this.tabTitleName);
+      this.setSocialsValue();
     }
   }
 
@@ -120,6 +127,8 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.getCurrencies();
     this.getLenghts();
     this.getWeightDesc();
+    this.setSocialsValue();
+    this.getSocials();
   }
 
   generatePageSettingsForm() {
@@ -249,10 +258,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     })
 
     console.log(this.selectedPlatform?.descriptions);
-  }
-
-  onChangeLocalization(eventValue): void {
-    console.log(eventValue);
   }
 
   addDescription(): void {
@@ -392,9 +397,9 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
         this.allLength.push(length.description[0]);
       })
 
-      this.allLength.forEach((val) => {
-        if (val.id === this.defaultLength.descriptions[0].id) {
-          this.selectedLength = this.defaultLength.descriptions[0].unit;
+      this.allLength?.forEach((val) => {
+        if (val?.id === this.defaultLength?.descriptions[0]?.id) {
+          this.selectedLength = this.defaultLength?.descriptions[0]?.unit;
         }
       })
     })
@@ -404,11 +409,196 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.settingsPageService.getWeightDescription().subscribe((res) => {
       this.siteWeightDesc = res.data;
 
-      this.siteWeightDesc.forEach((val) => {
-        if (val.id === this.defaultWeight.descriptions[0].id) {
-          this.selectedWeight = this.defaultWeight.descriptions[0].unit;
+      this.siteWeightDesc?.forEach((val) => {
+        if (val.id === this.defaultWeight?.descriptions[0]?.id) {
+          this.selectedWeight = this.defaultWeight?.descriptions[0]?.unit;
         }
       })
+    })
+  }
+
+  setSocialsValue(): void {
+    this.siteSettingsContactBottomForm?.get('siteEmail').setValue(this.selectedPlatform?.email);
+
+    this.selectedPlatform?.socials?.forEach((val) => {
+      if (val.name === "facebook") {
+        this.siteSettingsContactBottomForm.get('facebook').setValue(val.url);
+      }
+
+      if (val.name === "Instagram") {
+        this.siteSettingsContactBottomForm.get('instagram').setValue(val.url);
+      }
+
+      if (val.name === "Telegram") {
+        this.siteSettingsContactBottomForm.get('telegram').setValue(val.url);
+      }
+
+      if (val.name === "Viber") {
+        this.siteSettingsContactBottomForm.get('viber').setValue(val.url);
+      }
+
+      if (val.name === "Youtube") {
+        this.siteSettingsContactBottomForm.get('youtube').setValue(val.url)
+      }
+    });
+  }
+
+  onChangeLocalizationLang(eventValue): void {
+    this.localizationLang = eventValue;
+    console.log(this.localizationLang);
+  }
+
+  onChangeLocalizationAdminLang(eventValue): void {
+    this.localizationAdminLang = eventValue;
+    console.log(this.localizationLang);
+  }
+
+  onChangeLocalizationCurrency(eventValue): void {
+    this.localizationCurrency = eventValue;
+    console.log(this.localizationCurrency)
+  }
+
+  onChangeLocalizationLength(eventValue): void {
+    this.localizationLength = eventValue;
+    console.log(this.localizationLength);
+  }
+
+  onChangeLocalizationWeight(eventValue): void {
+    this.localizationWeight = eventValue;
+    console.log(this.localizationWeight);
+  }
+
+  saveSiteDefaultLang(): void {
+    this.siteLanguages.forEach((val) => {
+      if (val.title === this.localizationLang.value) {
+        this.settingsPageService.updateDefaultSiteLang(val.id, { "default": 1}).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+  }
+
+  saveSiteDefaultAdminLang(): void {
+    this.siteLanguages.forEach((val) => {
+      if (val.title === this.localizationAdminLang.value) {
+        this.settingsPageService.updateDefaultSiteAdminLang(val.id, { "admin_default": 1 }).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+
+    //{ "admin_default": 1 }
+    //updateDefaultSiteAdminLang()
+  }
+
+  saveSiteCurrency(): void {
+    this.siteCurrencies.forEach((currency) => {
+      if (currency.currency_title === this.localizationCurrency.value) {
+        this.settingsPageService.updateDefaultSiteCurrency(currency.id, { "default": 1 }).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+    //{ "default": 1 }
+    //updateDefaultSiteCurrency()
+  }
+
+  saveSiteunitsOfMeasurement(): void {
+    this.siteLenghts.forEach((length) => {
+      if (length.description[0].unit === this.localizationLength.value) {
+        this.settingsPageService.updateDefaultSiteLenght(length.id, { "default": 1 }).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+    //updateDefaultSiteLenght()
+  }
+
+  saveSiteWeight(): void {
+    this.siteWeightDesc.forEach((weight) => {
+      if (weight.title === this.localizationWeight.value) {
+        this.settingsPageService.updateDefaultSiteWeight(weight.id, { "default": 1 }).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+    //updateDefaultSiteWeight()
+  }
+
+  getSocials(): void {
+    this.settingsPageService.getSiteSocials().subscribe((res) => {
+      this.siteSocials = res.data;
+    })
+  }
+
+  socialsToSend(socialName, socialUrl) {
+    return {
+      site_id: 1,
+      name: socialName,
+      url: socialUrl,
+      priority: 1,
+      icon_id: 100
+    }
+  }
+
+  saveSiteFacebookData(): void {
+    this.siteSocials.forEach((val) => {
+      if (val.name === "facebook") {
+        this.settingsPageService.updateSiteSocials(
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('facebook').value)
+        ).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+    //updateSiteSocials()
+  }
+
+  saveSiteInstagramData(): void {
+    this.siteSocials.forEach((val) => {
+      if (val.name === "Instagram") {
+        this.settingsPageService.updateSiteSocials(
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('instagram').value)
+        ).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+  }
+
+  saveSiteTelegramData(): void {
+    this.siteSocials.forEach((val) => {
+      if (val.name === "Telegram") {
+        this.settingsPageService.updateSiteSocials(
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('telegram').value)
+        ).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+  }
+
+  saveSiteViberData(): void {
+    this.siteSocials.forEach((val) => {
+      if (val.name === "Viber") {
+        this.settingsPageService.updateSiteSocials(
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('viber').value)
+        ).subscribe((res) => {
+          console.log(res);
+        })
+      }
+    })
+  }
+
+  saveSiteYoutubeData(): void {
+    this.siteSocials.forEach((val) => {
+      if (val.name === "Youtube") {
+        this.settingsPageService.updateSiteSocials(
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('youtube').value)
+        ).subscribe((res) => {
+          console.log(res);
+        })
+      }
     })
   }
 
@@ -470,23 +660,23 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       src_mini: this.selectedImageSiteIcon?.src_mini
     }
 
-    this.selectedPlatform?.socials.forEach((val) => {
-      if (val.name === "facebook") {
-        val.url = this.siteSettingsContactBottomForm.value.facebook;
-      }
-      if (val.name === "Instagram") {
-        val.url = this.siteSettingsContactBottomForm.value.instagram;
-      }
-      if (val.name === "Telegram") {
-        val.url = this.siteSettingsContactBottomForm.value.telegram;
-      }
-      if (val.name === "Viber") {
-        val.url = this.siteSettingsContactBottomForm.value.viber;
-      }
-      if (val.name === "Youtube") {
-        val.url = this.siteSettingsContactBottomForm.value.youtube;
-      }
-    })
+    // this.selectedPlatform?.socials.forEach((val) => {
+    //   if (val.name === "facebook") {
+    //     val.url = this.siteSettingsContactBottomForm.value.facebook;
+    //   }
+    //   if (val.name === "Instagram") {
+    //     val.url = this.siteSettingsContactBottomForm.value.instagram;
+    //   }
+    //   if (val.name === "Telegram") {
+    //     val.url = this.siteSettingsContactBottomForm.value.telegram;
+    //   }
+    //   if (val.name === "Viber") {
+    //     val.url = this.siteSettingsContactBottomForm.value.viber;
+    //   }
+    //   if (val.name === "Youtube") {
+    //     val.url = this.siteSettingsContactBottomForm.value.youtube;
+    //   }
+    // })
 
     this.formDataChange.emit({
       id: this.selectedPlatform?.id,

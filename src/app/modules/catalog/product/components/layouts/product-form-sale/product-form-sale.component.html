@@ -70,6 +70,14 @@
                 </rap-svg-ico>
             </button>
         </div>
+        <div *ngIf="isDiscountExpired" class="error-container">
+            <div class="reset-success-content">
+              <div class="success-message">
+                <img class="success-message-icon" src="assets/icons/mistake-red.svg"/>
+                <div class="success-message-text">{{ 'APP.discountExpired' | translate }}</div>
+              </div>
+            </div>
+        </div>
     </form>
     <div class="sale-list">
         <p>{{ "APP.listSale" | translate }}</p>

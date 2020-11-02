@@ -76,6 +76,9 @@ export class SettingsPageComponent extends BasePage implements OnInit {
   getListHandler = (data) => {
     this.ngxService.stopAll();
     this.settingsPageService.settings = data;
+
+    console.log(this.settingsPageService.settings?.data);
+    console.log(data);
   };
 
   getLangList() {

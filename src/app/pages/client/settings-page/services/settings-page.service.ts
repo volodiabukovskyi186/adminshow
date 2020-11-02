@@ -124,7 +124,37 @@ export class SettingsPageService {
   }
 
   getWeightDescription(): Observable<any> {
-    return this.http.get(`${environment.host}weight_descs`);
+    let lang = this.languageService.current;
+
+    return this.http.get(`${environment.host}weight_descs?lang=${lang}`);
+  }
+
+  updateDefaultSiteLang(langId, data): Observable<any> {
+    return this.http.put(`${environment.host}language/default/${langId}`, data);
+  }
+
+  updateDefaultSiteAdminLang(langId, data): Observable<any> {
+    return this.http.put(`${environment.host}language/admin/default/${langId}`, data);
+  }
+
+  updateDefaultSiteCurrency(currencyId, data): Observable<any> {
+    return this.http.put(`${environment.host}currency/default/${currencyId}`, data);
+  }
+
+  updateDefaultSiteWeight(weightId, data): Observable<any> {
+    return this.http.put(`${environment.host}weight/default/${weightId}`, data);
+  }
+
+  updateDefaultSiteLenght(lenghtId, data): Observable<any> {
+    return this.http.put(`${environment.host}lenght/default/${lenghtId}`, data);
+  }
+
+  updateSiteSocials(socialId, data): Observable<any> {
+    return this.http.put(`${environment.host}site_social/${socialId}`, data);
+  }
+
+  getSiteSocials(): Observable<any> {
+    return this.http.get<any>(`${environment.host}site_socials`);
   }
 
   // post(data: any): Observable<any> {

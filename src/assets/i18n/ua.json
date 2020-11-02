@@ -83,7 +83,8 @@
     "saleOldprice": "Стара ціна",
     "listSale": "Списки знижок для товару",
     "saleListStart": "Початок знижки",
-    "saleListEnd":"Завершення знижки"
+    "saleListEnd":"Завершення знижки",
+    "discountExpired": "Термін дії знижки вже минув"
 
   },
   "pageNotFound": {

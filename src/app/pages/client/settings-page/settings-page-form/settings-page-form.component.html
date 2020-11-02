@@ -212,47 +212,92 @@
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteFacebook" | translate }}</label>
-                            <div>
+                            <div class="sort-products-container">
                                 <input matInput
                                     formControlName="facebook"
                                     class="settings-input"
-                                    id="facebook">
+                                    id="facebook"
+                                >
+                                <button
+                                    style="position: relative;"
+                                    role="button"
+                                    (click)="saveSiteFacebookData()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteInstagram" | translate }}</label>
-                            <div>
+                            <div class="sort-products-container">
                                 <input matInput
                                     formControlName="instagram"
                                     class="settings-input"
-                                    id="instagram">
+                                    id="instagram"
+                                >
+                                <button
+                                    style="position: relative;"
+                                    role="button"
+                                    (click)="saveSiteInstagramData()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteTelegram" | translate }}</label>
-                            <div>
+                            <div class="sort-products-container">
                                 <input matInput
                                     formControlName="telegram"
                                     class="settings-input"
-                                    id="telegram">
+                                    id="telegram"
+                                >
+                                <button
+                                    style="position: relative;"
+                                    role="button"
+                                    (click)="saveSiteTelegramData()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteViber" | translate }}</label>
-                            <div>
+                            <div class="sort-products-container">
                                 <input matInput
                                     formControlName="viber"
                                     class="settings-input"
-                                    id="viber">
+                                    id="viber"
+                                >
+                                <button
+                                    style="position: relative;"
+                                    role="button"
+                                    (click)="saveSiteViberData()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
                             </div>
                         </div>
                         <div class="settings-input-content">
                             <label>{{ "settings.siteYoutube" | translate }}</label>
-                            <div>
+                            <div class="sort-products-container">
                                 <input matInput
                                     formControlName="youtube"
                                     class="settings-input"
-                                    id="youtube">
+                                    id="youtube"
+                                >
+                                <button
+                                    style="position: relative;"
+                                    role="button"
+                                    (click)="saveSiteYoutubeData()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -261,23 +306,34 @@
                     <form [formGroup]="siteSettingsLocalizationForm" (submit)="getSiteSettingsLocalizationForm()" class="phone-form-container">
                         <div class="settings-input-content sort-content">
                             <label>{{ "settings.language" | translate }}</label>
-                            <mat-form-field appearance="standart" class="sort-products">
-                                <div class="sort-products-wrapper">
-                                    <mat-select
-                                        id="language"
-                                        required
-                                        formControlName="language"
-                                        (selectionChange)="onChangeLocalization($event.value)"
-                                        [(ngModel)]="selectedDefaultLang"
-                                        >
-                                        <div>
-                                            <mat-option *ngFor="let lang of siteLanguages" [value]="lang.title">
-                                                {{ lang?.title }}
-                                            </mat-option>
-                                        </div>
-                                    </mat-select>
-                                </div>
-                            </mat-form-field>
+                            <div class="sort-products-container">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="language"
+                                            required
+                                            formControlName="language"
+                                            (selectionChange)="onChangeLocalizationLang($event)"
+                                            [(ngModel)]="selectedDefaultLang"
+                                            >
+                                            <div>
+                                                <mat-option *ngFor="let lang of siteLanguages" [value]="lang.title">
+                                                    {{ lang?.title }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                                <button
+                                    style="position: relative;"
+                                    data-tooltip-left="Save"
+                                    role="button"
+                                    (click)="saveSiteDefaultLang()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
+                            </div>
                             <!-- <div>
                                 <input matInput
                                     formControlName="language"
@@ -287,23 +343,34 @@
                         </div>
                         <div class="settings-input-content sort-content">
                             <label>{{ "settings.adminLanguage" | translate }}</label>
-                            <mat-form-field appearance="standart" class="sort-products">
-                                <div class="sort-products-wrapper sort-content">
-                                    <mat-select
-                                        id="adminLanguage"
-                                        required
-                                        formControlName="adminLanguage"
-                                        (selectionChange)="onChangeLocalization($event.value)"
-                                        [(ngModel)]="selectedDefaultAdminLang"
-                                        >
-                                        <div>
-                                            <mat-option *ngFor="let adminLang of siteLanguages" [value]="adminLang.title">
-                                                {{ adminLang?.title }}
-                                            </mat-option>
-                                        </div>
-                                    </mat-select>
-                                </div>
-                            </mat-form-field>
+                            <div class="sort-products-container">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper sort-content">
+                                        <mat-select
+                                            id="adminLanguage"
+                                            required
+                                            formControlName="adminLanguage"
+                                            (selectionChange)="onChangeLocalizationAdminLang($event)"
+                                            [(ngModel)]="selectedDefaultAdminLang"
+                                            >
+                                            <div>
+                                                <mat-option *ngFor="let adminLang of siteLanguages" [value]="adminLang.title">
+                                                    {{ adminLang?.title }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                                <button
+                                    style="position: relative;"
+                                    data-tooltip-left="Save"
+                                    role="button"
+                                    (click)="saveSiteDefaultAdminLang()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
+                            </div>
                             <!-- <div>
                                 <input matInput
                                     formControlName="adminLanguage"
@@ -313,22 +380,33 @@
                         </div>
                         <div class="settings-input-content sort-content">
                             <label>{{ "settings.currency" | translate }}</label>
-                            <mat-form-field appearance="standart" class="sort-products">
-                                <div class="sort-products-wrapper sort-content">
-                                    <mat-select
-                                        id="currency"
-                                        required
-                                        formControlName="currency"
-                                        (selectionChange)="onChangeLocalization($event.value)"
-                                        [(ngModel)]="selectedDefaultCurrency">
-                                        <div>
-                                            <mat-option *ngFor="let currency of siteCurrencies" [value]="currency.currency_title">
-                                                {{ currency?.currency_title }}
-                                            </mat-option>
-                                        </div>
-                                    </mat-select>
-                                </div>
-                            </mat-form-field>
+                            <div class="sort-products-container">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper sort-content">
+                                        <mat-select
+                                            id="currency"
+                                            required
+                                            formControlName="currency"
+                                            (selectionChange)="onChangeLocalizationCurrency($event)"
+                                            [(ngModel)]="selectedDefaultCurrency">
+                                            <div>
+                                                <mat-option *ngFor="let currency of siteCurrencies" [value]="currency.currency_title">
+                                                    {{ currency?.currency_title }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                                <button
+                                    style="position: relative;"
+                                    data-tooltip-left="Save"
+                                    role="button"
+                                    (click)="saveSiteCurrency()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
+                            </div>
                             <!-- <div>
                                 <input matInput
                                     formControlName="currency"
@@ -338,22 +416,33 @@
                         </div>
                         <div class="settings-input-content sort-content">
                             <label>{{ "settings.unitsOfMeasurement" | translate }}</label>
-                            <mat-form-field appearance="standart" class="sort-products">
-                                <div class="sort-products-wrapper sort-content">
-                                    <mat-select
-                                        id="unitsOfMeasurement"
-                                        required
-                                        formControlName="unitsOfMeasurement"
-                                        (selectionChange)="onChangeLocalization($event.value)"
-                                        [(ngModel)]="selectedLength">
-                                        <div *ngFor="let lengthUnit of allLength">
-                                            <mat-option [value]="lengthUnit?.unit">
-                                                {{ lengthUnit?.unit }}
-                                            </mat-option>
-                                        </div>
-                                    </mat-select>
-                                </div>
-                            </mat-form-field>
+                            <div class="sort-products-container">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper sort-content">
+                                        <mat-select
+                                            id="unitsOfMeasurement"
+                                            required
+                                            formControlName="unitsOfMeasurement"
+                                            (selectionChange)="onChangeLocalizationLength($event)"
+                                            [(ngModel)]="selectedLength">
+                                            <div *ngFor="let lengthUnit of allLength">
+                                                <mat-option [value]="lengthUnit?.unit">
+                                                    {{ lengthUnit?.unit }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                                <button
+                                    style="position: relative;"
+                                    data-tooltip-left="Save"
+                                    role="button"
+                                    (click)="saveSiteunitsOfMeasurement()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
+                            </div>
                             <!-- <div>
                                 <input matInput
                                     formControlName="unitsOfMeasurement"
@@ -363,22 +452,33 @@
                         </div>
                         <div class="settings-input-content sort-content">
                             <label>{{ "settings.weight" | translate }}</label>
-                            <mat-form-field appearance="standart" class="sort-products">
-                                <div class="sort-products-wrapper sort-content">
-                                    <mat-select
-                                        id="weight"
-                                        required
-                                        formControlName="weight"
-                                        (selectionChange)="onChangeLocalization($event.value)"
-                                        [(ngModel)]="selectedWeight">
-                                        <div *ngFor="let weightUnit of siteWeightDesc">
-                                            <mat-option [value]="weightUnit?.unit">
-                                                {{ weightUnit?.unit }}
-                                            </mat-option>
-                                        </div>
-                                    </mat-select>
-                                </div>
-                            </mat-form-field>
+                            <div class="sort-products-container">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper sort-content">
+                                        <mat-select
+                                            id="weight"
+                                            required
+                                            formControlName="weight"
+                                            (selectionChange)="onChangeLocalizationWeight($event)"
+                                            [(ngModel)]="selectedWeight">
+                                            <div *ngFor="let weightUnit of siteWeightDesc">
+                                                <mat-option [value]="weightUnit?.title">
+                                                    {{ weightUnit?.title }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                                <button
+                                    style="position: relative;"
+                                    data-tooltip-left="Save"
+                                    role="button"
+                                    (click)="saveSiteWeight()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
+                            </div>
                             <!-- <div>
                                 <input matInput
                                     formControlName="weight"
