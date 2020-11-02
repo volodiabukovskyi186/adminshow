@@ -120,13 +120,14 @@ export class SettingsPageService {
   }
 
   getAllLenghts(): Observable<any> {
-    return this.http.get<any>(`${environment.host}lenghts`);
+    return this.http.get<any>(`${environment.host}lenght_descs`);
   }
 
   getWeightDescription(): Observable<any> {
-    let lang = this.languageService.current;
+    //let lang = this.languageService.current;
+    let lang = window.location.pathname.slice(1, 3);
 
-    return this.http.get(`${environment.host}weight_descs?lang=${lang}`);
+    return this.http.get(`${environment.host}weight/client?lang=${lang}`);
   }
 
   updateDefaultSiteLang(langId, data): Observable<any> {

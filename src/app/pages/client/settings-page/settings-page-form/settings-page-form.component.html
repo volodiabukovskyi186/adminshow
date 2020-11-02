@@ -143,6 +143,15 @@
                         </form>
                         </rap-step-tab>
                     </rap-step-tabs>
+                    <button
+                        style="position: relative;"
+                        data-tooltip-left="Save"
+                        role="button"
+                        (click)="saveGeneralSettingsData()"
+                        class="button transparent radius general-settings__save-btn"
+                    >
+                        <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                    </button>
                 </rap-step-tab>
               
                 <rap-step-tab [title]="'settings.contactData' | translate">
@@ -203,11 +212,19 @@
                     <form [formGroup]="siteSettingsContactBottomForm" (submit)="getSiteSettingsContactBottomForm()">
                         <div class="settings-input-content email-input-content">
                             <label>{{ "settings.siteEmail" | translate }}</label>
-                            <div>
+                            <div class="email-inner-content">
                                 <input matInput
                                     formControlName="siteEmail"
                                     class="settings-input"
                                     id="siteEmail">
+                                <button
+                                    style="position: relative;"
+                                    role="button"
+                                    (click)="saveGeneralSettingsData()"
+                                    class="button transparent radius"
+                                >
+                                    <rap-svg-ico [src]="'assets/icons/save.svg'" class="edit-btn"></rap-svg-ico>
+                                </button>
                             </div>
                         </div>
                         <div class="settings-input-content">
@@ -427,7 +444,7 @@
                                             [(ngModel)]="selectedLength">
                                             <div *ngFor="let lengthUnit of allLength">
                                                 <mat-option [value]="lengthUnit?.unit">
-                                                    {{ lengthUnit?.unit }}
+                                                    {{ lengthUnit?.title }}
                                                 </mat-option>
                                             </div>
                                         </mat-select>
@@ -462,8 +479,8 @@
                                             (selectionChange)="onChangeLocalizationWeight($event)"
                                             [(ngModel)]="selectedWeight">
                                             <div *ngFor="let weightUnit of siteWeightDesc">
-                                                <mat-option [value]="weightUnit?.title">
-                                                    {{ weightUnit?.title }}
+                                                <mat-option [value]="weightUnit?.description?.title">
+                                                    {{ weightUnit?.description?.title }}
                                                 </mat-option>
                                             </div>
                                         </mat-select>

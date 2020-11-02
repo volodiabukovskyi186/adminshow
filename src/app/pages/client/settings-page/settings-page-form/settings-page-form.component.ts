@@ -192,21 +192,25 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
       if (tabTitleN === 'Eng' && description.lang_id === 1) {
         this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
+        console.log('eng', this.shopDetailsForm.controls.items['controls']);
       }
 
       if (tabTitleN === 'Укр' && description.id === 2) {
         this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
+        console.log('укр', this.shopDetailsForm.controls.items['controls']);
       }
 
       if (tabTitleN === 'Рус' && description.id === 3) {
         this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
+        console.log('рус', this.shopDetailsForm.controls.items['controls']);
       }
 
       if (tabTitleN === 'Pl' && description.id === 4) {
         this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
+        console.log('pl', this.shopDetailsForm.controls.items['controls']);
       }
 
-      console.log(this.shopDetailsForm.controls.items['controls']);
+      //console.log(this.shopDetailsForm.controls.items['controls']);
     })
   }
 
@@ -313,6 +317,63 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.isSelectedImageSiteIcon = false;
   };
 
+  saveGeneralSettingsData(): void {
+    console.log(this.shopDetailsForm.get('items')['controls']);
+    console.log(this.shopDetailsForm.get('items')['controls'][0].value);
+
+    console.log(this.items);
+    console.log(this.formBuilder);
+
+    if (this.selectedPlatform && 
+      this.selectedPlatform?.logo && 
+      this.selectedPlatform?.logo?.src) {
+      this.selectedPlatform.logo.id = this.selectedImageLogo?.id;
+      this.selectedPlatform.logo.src = this.selectedImageLogo?.src;
+      this.selectedPlatform.logo.src_mini = this.selectedImageLogo?.src_mini;
+    }
+
+    if (this.selectedPlatform && 
+      this.selectedPlatform?.icon && 
+      this.selectedPlatform?.icon?.src) {
+      this.selectedPlatform.icon.id = this.selectedImageSiteIcon?.id;
+      this.selectedPlatform.icon.src = this.selectedImageSiteIcon?.src;
+      this.selectedPlatform.icon.src_mini = this.selectedImageSiteIcon?.src_mini;
+    }
+
+    const selectedImageLogoObj = {
+      id: this.selectedImageLogo?.id,
+      src: this.selectedImageLogo?.src,
+      src_mini: this.selectedImageLogo?.src_mini
+    }
+
+    const selectedImageSiteIconObj = {
+      id: this.selectedImageSiteIcon?.id,
+      src: this.selectedImageSiteIcon?.src,
+      src_mini: this.selectedImageSiteIcon?.src_mini
+    }
+
+    let generalSettingsData = {
+      id: this.selectedPlatform?.id,
+      logo_id: this.selectedPlatform?.logo_id,
+      icon_id: this.selectedPlatform?.icon_id,
+      // created_at: this.selectedPlatform?.created_at,
+      // updated_at: this.selectedPlatform?.updated_at,
+      logo: selectedImageLogoObj,
+      icon: selectedImageSiteIconObj,
+      description: this.selectedPlatform?.descriptions,
+      email: this.siteSettingsContactBottomForm?.value?.siteEmail,
+      location: this.selectedPlatform?.location
+    };
+
+    let siteId = 1;
+    
+    this.settingsPageService.editSettingsPageInfo(generalSettingsData, siteId).subscribe((res) => {
+      console.log(res);
+    })
+
+    console.log('test!!');
+  }
+
   deletePhoneNumber(sitePhone) {
     this.settingsPageService.deletePhone(sitePhone.id).subscribe((res) => {
       console.log(res);
@@ -392,28 +453,34 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   getLenghts(): void {
     this.settingsPageService.getAllLenghts().subscribe((res) => {
       this.siteLenghts = res.data;
+      console.log(this.siteLenghts);
 
       this.siteLenghts.forEach((length) => {
-        this.allLength.push(length.description[0]);
+        this.allLength.push(length);
       })
 
       this.allLength?.forEach((val) => {
-        if (val?.id === this.defaultLength?.descriptions[0]?.id) {
-          this.selectedLength = this.defaultLength?.descriptions[0]?.unit;
+        if (val?.id === this.defaultLength?.description?.id) {
+          this.selectedLength = this.defaultLength?.description?.title;
         }
       })
+
+      console.log(this.selectedLength);
     })
   }
 
   getWeightDesc(): void {
     this.settingsPageService.getWeightDescription().subscribe((res) => {
       this.siteWeightDesc = res.data;
+      console.log(this.siteWeightDesc);
 
       this.siteWeightDesc?.forEach((val) => {
         if (val.id === this.defaultWeight?.descriptions[0]?.id) {
           this.selectedWeight = this.defaultWeight?.descriptions[0]?.unit;
         }
       })
+
+      console.log(this.selectedWeight);
     })
   }
 
@@ -421,7 +488,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.siteSettingsContactBottomForm?.get('siteEmail').setValue(this.selectedPlatform?.email);
 
     this.selectedPlatform?.socials?.forEach((val) => {
-      if (val.name === "facebook") {
+      if (val.name === "Facebook") {
         this.siteSettingsContactBottomForm.get('facebook').setValue(val.url);
       }
 
@@ -516,7 +583,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   saveSiteWeight(): void {
     this.siteWeightDesc.forEach((weight) => {
-      if (weight.title === this.localizationWeight.value) {
+      if (weight.description.title === this.localizationWeight.value) {
         this.settingsPageService.updateDefaultSiteWeight(weight.id, { "default": 1 }).subscribe((res) => {
           console.log(res);
         })
@@ -531,21 +598,23 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     })
   }
 
-  socialsToSend(socialName, socialUrl) {
+  socialsToSend(socialName, socialUrl, socialIconId) {
     return {
       site_id: 1,
       name: socialName,
       url: socialUrl,
       priority: 1,
-      icon_id: 100
+      icon_id: socialIconId
     }
   }
 
   saveSiteFacebookData(): void {
+    let iconId = 587;
+
     this.siteSocials.forEach((val) => {
       if (val.name === "facebook") {
         this.settingsPageService.updateSiteSocials(
-          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('facebook').value)
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('facebook').value, iconId)
         ).subscribe((res) => {
           console.log(res);
         })
@@ -555,10 +624,12 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   saveSiteInstagramData(): void {
+    let iconId = 586;
+
     this.siteSocials.forEach((val) => {
       if (val.name === "Instagram") {
         this.settingsPageService.updateSiteSocials(
-          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('instagram').value)
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('instagram').value, iconId)
         ).subscribe((res) => {
           console.log(res);
         })
@@ -567,10 +638,12 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   saveSiteTelegramData(): void {
+    let iconId = 588;
+
     this.siteSocials.forEach((val) => {
       if (val.name === "Telegram") {
         this.settingsPageService.updateSiteSocials(
-          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('telegram').value)
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('telegram').value, iconId)
         ).subscribe((res) => {
           console.log(res);
         })
@@ -579,10 +652,12 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   saveSiteViberData(): void {
+    let iconId = 589;
+
     this.siteSocials.forEach((val) => {
       if (val.name === "Viber") {
         this.settingsPageService.updateSiteSocials(
-          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('viber').value)
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('viber').value, iconId)
         ).subscribe((res) => {
           console.log(res);
         })
@@ -591,10 +666,12 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   saveSiteYoutubeData(): void {
+    let iconId = 590;
+
     this.siteSocials.forEach((val) => {
       if (val.name === "Youtube") {
         this.settingsPageService.updateSiteSocials(
-          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('youtube').value)
+          val.id, this.socialsToSend(val.name, this.siteSettingsContactBottomForm.get('youtube').value, iconId)
         ).subscribe((res) => {
           console.log(res);
         })
@@ -632,33 +709,33 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   emitFormDataChanges(){
-    if (this.selectedPlatform && 
-        this.selectedPlatform?.logo && 
-        this.selectedPlatform?.logo?.src) {
-        this.selectedPlatform.logo.id = this.selectedImageLogo?.id;
-        this.selectedPlatform.logo.src = this.selectedImageLogo?.src;
-        this.selectedPlatform.logo.src_mini = this.selectedImageLogo?.src_mini;
-    }
+    // if (this.selectedPlatform && 
+    //     this.selectedPlatform?.logo && 
+    //     this.selectedPlatform?.logo?.src) {
+    //     this.selectedPlatform.logo.id = this.selectedImageLogo?.id;
+    //     this.selectedPlatform.logo.src = this.selectedImageLogo?.src;
+    //     this.selectedPlatform.logo.src_mini = this.selectedImageLogo?.src_mini;
+    // }
 
-    if (this.selectedPlatform && 
-        this.selectedPlatform?.icon && 
-        this.selectedPlatform?.icon?.src) {
-        this.selectedPlatform.icon.id = this.selectedImageSiteIcon?.id;
-        this.selectedPlatform.icon.src = this.selectedImageSiteIcon?.src;
-        this.selectedPlatform.icon.src_mini = this.selectedImageSiteIcon?.src_mini;
-    }
+    // if (this.selectedPlatform && 
+    //     this.selectedPlatform?.icon && 
+    //     this.selectedPlatform?.icon?.src) {
+    //     this.selectedPlatform.icon.id = this.selectedImageSiteIcon?.id;
+    //     this.selectedPlatform.icon.src = this.selectedImageSiteIcon?.src;
+    //     this.selectedPlatform.icon.src_mini = this.selectedImageSiteIcon?.src_mini;
+    // }
 
-    const selectedImageLogoObj = {
-      id: this.selectedImageLogo?.id,
-      src: this.selectedImageLogo?.src,
-      src_mini: this.selectedImageLogo?.src_mini
-    }
+    // const selectedImageLogoObj = {
+    //   id: this.selectedImageLogo?.id,
+    //   src: this.selectedImageLogo?.src,
+    //   src_mini: this.selectedImageLogo?.src_mini
+    // }
 
-    const selectedImageSiteIconObj = {
-      id: this.selectedImageSiteIcon?.id,
-      src: this.selectedImageSiteIcon?.src,
-      src_mini: this.selectedImageSiteIcon?.src_mini
-    }
+    // const selectedImageSiteIconObj = {
+    //   id: this.selectedImageSiteIcon?.id,
+    //   src: this.selectedImageSiteIcon?.src,
+    //   src_mini: this.selectedImageSiteIcon?.src_mini
+    // }
 
     // this.selectedPlatform?.socials.forEach((val) => {
     //   if (val.name === "facebook") {
@@ -678,19 +755,19 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     //   }
     // })
 
-    this.formDataChange.emit({
-      id: this.selectedPlatform?.id,
-      logo_id: this.selectedPlatform?.logo_id,
-      icon_id: this.selectedPlatform?.icon_id,
-      created_at: this.selectedPlatform?.created_at,
-      updated_at: this.selectedPlatform?.updated_at,
-      phones: this.selectedPlatform?.phones,
-      logo: selectedImageLogoObj,
-      icon: selectedImageSiteIconObj,
-      socials: this.selectedPlatform?.socials,
-      description: this.selectedPlatform?.descriptions,
-      email: this.siteSettingsContactBottomForm?.value?.siteEmail,
-      location: this.selectedPlatform?.location
-    });
+    // this.formDataChange.emit({
+    //   id: this.selectedPlatform?.id,
+    //   logo_id: this.selectedPlatform?.logo_id,
+    //   icon_id: this.selectedPlatform?.icon_id,
+    //   created_at: this.selectedPlatform?.created_at,
+    //   updated_at: this.selectedPlatform?.updated_at,
+    //   phones: this.selectedPlatform?.phones,
+    //   logo: selectedImageLogoObj,
+    //   icon: selectedImageSiteIconObj,
+    //   socials: this.selectedPlatform?.socials,
+    //   description: this.selectedPlatform?.descriptions,
+    //   email: this.siteSettingsContactBottomForm?.value?.siteEmail,
+    //   location: this.selectedPlatform?.location
+    // });
   }
 }
