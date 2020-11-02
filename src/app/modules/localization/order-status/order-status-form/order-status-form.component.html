@@ -1,5 +1,14 @@
 <div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
+
 <fieldset class="radius" style="margin-bottom: 16px;">
+    <div class="form-row">
+        <div class="description">
+            <label for="">{{ "MENU.localization.color" | translate }}</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selectedOrder.color"  type="text"/>
+        </div>
+    </div>
     <rap-step-tabs class="flag-tabs">
         <rap-step-tab
                 *ngFor="let item of selectedOrder?.descriptions"

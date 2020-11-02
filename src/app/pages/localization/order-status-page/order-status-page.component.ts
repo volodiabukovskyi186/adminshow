@@ -94,10 +94,11 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
 
     save = () => {
         const updateOrder = {
+            color:this.selectedOrder.color,
             name: this.selectedOrder.descriptions[0].dectiption,
             description: this.selectedOrder.descriptions,
         }
-        console.log(updateOrder)
+        console.log('colorStatus====>',updateOrder)
         if (this.selectedOrder.id !== undefined) {
             this.localizationService.editOrderStaus(this.selectedOrder.id, updateOrder).subscribe(data => {
             })

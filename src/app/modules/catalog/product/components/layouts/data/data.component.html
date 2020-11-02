@@ -47,16 +47,10 @@
     <label for="">{{ "APP.weightClass" | translate }}</label>
   </div>
   <div class="original">  
-      <!-- (click)='test(i.id)' -->
     <select class="radius"  [(ngModel)]="model.weight_class_id" >
-
-      <!-- <option  *ngFor="let i of arrWeight?.data" value={{i.id}}  >{{i.descriptions[0]?.title}}</option> -->
- 
-      <option  *ngFor="let i of arrWeight?.data" value={{i.id}}>{{i.descriptions[0]?.title}}</option>
-
-    </select>
+      <option  *ngFor="let i of arrWeight?.data"  value={{i.id}} > {{ i?.description?.title}}</option>
+    </select>  
   </div>
-
 </div>
 
 <div class="form-row">

@@ -313,7 +313,9 @@
 
   },
   "liqpay":{
-    "onlinePay":"PŁATNOŚĆ ONLINE"
+    "onlinePay":"PŁATNOŚĆ ONLINE",
+    "see":"Widoczny",
+    "notSee":"Niewidoczny"
   },
   "months": {
     "Jan": "Styczeń",

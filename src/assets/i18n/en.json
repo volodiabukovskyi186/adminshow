@@ -188,7 +188,7 @@
       "addEditMenu": "Add/Edit Menu",
       "addManufacturer": "Add manufacturer"
     },
-    "users": { "users": "users", "roles": "users" },
+    "users": { "users": "Users", "roles": "Roles" },
     "localization": {
       "localization": "Localization",
       "languages": "Languages",
@@ -332,7 +332,9 @@
     "orderStatus":"Order status"
   },
   "liqpay":{
-    "onlinePay":"Online pay"
+    "onlinePay":"Online pay",
+    "see":"Visible",
+    "notSee":"Not visible"
   },
   "months": {
     "Jan": "January", 

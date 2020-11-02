@@ -307,7 +307,9 @@
     "orderStatus":"Статус заказа"
   },
   "liqpay":{
-    "onlinePay":"ОНЛАЙН ОПЛАТА"
+    "onlinePay":"ОНЛАЙН ОПЛАТА",
+    "see":"Видимый",
+    "notSee":"Не виден"
   },
   "months": {
     "Jan": "Январь",
