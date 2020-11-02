@@ -60,8 +60,8 @@ export const MENU = [
   group(
     "MENU.users.users",
     [
-      item("MENU.users.roles", "roles", true, ICON_MENU_ITEM),
-      item("MENU.users.users", "users", true, ICON_MENU_ITEM),
+      item("MENU.users.users", "roles", true, ICON_MENU_ITEM),
+      item("MENU.users.roles", "users", true, ICON_MENU_ITEM),
     ],
     "assets/icons/menu-people.svg"
   ),

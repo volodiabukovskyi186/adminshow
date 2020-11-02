@@ -10,7 +10,7 @@
         <table class="raisins-table border-all radius">
             <thead>
             <tr> 
-                    <!-- {{ "APP.title" | translate }} -->
+
                 <th width="160px">{{ "liqpay.onlinePay" | translate }}</th>
                 <th width="160px">Publick key</th>
                 <th width="240px">Privat key</th>
@@ -18,9 +18,9 @@
             </tr>
             </thead>
             <tbody>
-                    <!-- *ngFor="let payment of arrPayment; let i=index" -->
-            <tr
-                [ngClass]="">
+                   
+            <tr  [ngClass]="{ off:liqPay?.status==0 }" >
+               
                 <td class="text-center">
                   LiqPay
                 </td>

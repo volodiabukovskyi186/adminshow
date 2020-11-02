@@ -17,7 +17,12 @@ export class DataComponent implements OnInit {
                public storageService:StorageService,
                public langService: LanguageService,
                private translate: TranslateService,
-               @Inject(DOCUMENT) private document: Document ) { }
+               @Inject(DOCUMENT) private document: Document ) {
+                this.translate.onLangChange.subscribe(lang => {
+                  this.getWeight();
+                  this.getStorageStatus();
+                })
+                }
   arrWeight:any;
   arrStorage:any;
   alldata:any;
@@ -25,19 +30,8 @@ export class DataComponent implements OnInit {
     this.getWeight();
     this.getStorageStatus();
   }
-  getWeight():void{
-    const lang=localStorage.getItem('currentLang')
-    // this.translate.onLangChange.subscribe(lang => {
-    //   // lang=lang.lang
-    //   console.log('language====>',lang)
-    // })
-    
-      this.weightService.getWeightProd(lang).subscribe(data => {
-        this.arrWeight=data
-          console.log('weightqqqqqqqqqqq===>',this.arrWeight)
-      })
-    
-  }
+
+ 
   getStorageStatus(): void {
     // this.translate.onLangChange.subscribe(lang => {
       const lang=localStorage.getItem('currentLang')
@@ -46,6 +40,18 @@ export class DataComponent implements OnInit {
       console.log('hello=>',this.arrStorage)
     // })
   })
+  }
+  getWeight():void{
+    const lang=localStorage.getItem('currentLang')
+    // this.translate.onLangChange.subscribe(lang => {
+    //   // lang=lang.lang
+    //   console.log('language====>',lang)
+    // })
+      this.weightService.getWeightProd(lang).subscribe(data => {
+        this.arrWeight=data
+          console.log('weightqqqqqqqqqqq===>',this.arrWeight)
+      })
+    
   }
   getLangList() {
     this.langService.getLangs().subscribe(this.getLangListHandler);

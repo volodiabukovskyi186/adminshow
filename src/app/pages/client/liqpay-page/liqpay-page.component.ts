@@ -89,20 +89,6 @@ export class LiqpayPageComponent extends BasePage implements OnInit {
       this.getPayment()
       this.pages.panelButtonSettings.plus = false;
     })
-
-    // if (this.selected.id !== undefined) {
-    //   console.log(this.selected.descriptions)
-    //   this.paymentService.editPayment(this.selected.id, updateWeight).subscribe(data => {
-    //   })
-
-    //   this.toastr.success("PAYMENT EDIT");
-    // }
-    // else {
-    //   this.paymentService.addNewOrderStatus(this.selected.id, updateWeight).subscribe(data => {
-
-    //     this.toastr.success("PAYMENT ADDED");
-    //   })
-    // }
     this.closeForm();
   }
   plus = () => {
@@ -110,17 +96,12 @@ export class LiqpayPageComponent extends BasePage implements OnInit {
     this.selected = this.paymentService.selected;
     this.openForm();
   };
-
-
   postHandler = (data) => {
     this.paymentService.data.data.push(data.data);
     this.paymentService.data.count++;
     this.closeForm();
   };
-
-
   //#region pagination
-
   pageToHandler(page: number): void {
     this.paymentService.page = page;
   }
