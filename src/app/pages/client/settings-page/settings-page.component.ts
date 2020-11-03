@@ -54,6 +54,15 @@ export class SettingsPageComponent extends BasePage implements OnInit {
     this.getDescByLang();
   }
 
+  openForm = () => {
+    this.pages.panelSettings.form = true;
+    this.pages.panelButtonSettings.plus = false;
+    this.pages.panelButtonSettings.cancel = true;
+    this.pages.panelButtonSettings.rightToggle = false;
+    this.pages.panelButtonSettings.review = false;
+    this.pages.panelButtonSettings.save = false;
+  }
+
   public initTranslate() {
     this.lang.translate
       .get([

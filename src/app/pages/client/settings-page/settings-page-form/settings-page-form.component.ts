@@ -65,6 +65,9 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public localizationLength;
   public localizationWeight;
   public siteSocials;
+  public generalSettingsData;
+  public siteId: number;
+  public selectedDescription;
 
   public langShortTitle = {
     "1": {
@@ -86,7 +89,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     public image: ImagesService,
     private formBuilder: FormBuilder,
     public settingsPageService: SettingsPageService
-  ) { }
+  ) {}
 
   public ngOnChanges(changes: SimpleChanges) {
     if(changes.selectedPlatform?.currentValue) {
@@ -96,9 +99,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   public onClickChangeTabDescription(tab) {
-    // console.log('---tab--->', tab);
-    // console.log('---selectedPlatform--->', this.selectedPlatform);
-
     this.setDataInForm(tab.title, this.langId);
   }
 
@@ -184,18 +184,13 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   setDataInForm(tabTitleN, id?) {
-    // console.log('selectedPlatform==>', this.selectedPlatform);
-
     this.selectedPlatform?.descriptions?.forEach((description) => {
-      // console.log(Boolean(tabTitleN === 'Eng' && !description.lang_id));
-      // console.log('description =====>', description);
-
-      if (tabTitleN === 'Eng' && description.lang_id === 1) {
+      if (tabTitleN === 'Eng' && description.id === 1) {
         this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
         console.log('eng', this.shopDetailsForm.controls.items['controls']);
       }
 
-      if (tabTitleN === 'Укр' && description.id === 2) {
+      if (tabTitleN === 'Укр' && description.id === 2) {  
         this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
         console.log('укр', this.shopDetailsForm.controls.items['controls']);
       }
@@ -205,26 +200,33 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
         console.log('рус', this.shopDetailsForm.controls.items['controls']);
       }
 
-      if (tabTitleN === 'Pl' && description.id === 4) {
+      if (tabTitleN === 'Pl' && description.id === 4) { 
         this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
         console.log('pl', this.shopDetailsForm.controls.items['controls']);
       }
-
-      //console.log(this.shopDetailsForm.controls.items['controls']);
     })
   }
 
   getDescription(selectedDescription) {
-    // console.log(selectedDescription);
-    // console.log(this.shopDetailsForm.controls.items['controls']);
-    // console.log(this.shopDetailsForm.controls.items.value[0]?.name);
+    this.selectedDescription = selectedDescription;
+    this.selectedPlatform?.descriptions?.forEach((description) => {
+      if (selectedDescription.id === description.id) {
+        if (this.shopDetailsForm.valueChanges) {
+          this.shopDetailsForm.valueChanges.subscribe((res) => {
+            console.log(res.items[0]);
+            description.name = res.items[0]?.name;
+            description.adress = res.items[0]?.adress;
+            description.work_schedule = res.items[0]?.work_schedule;
+            description.meta_description = res.items[0]?.meta_description;
+            description.meta_keywords = res.items[0]?.meta_keywords;
+          })
+        }
+      }
+    });
+
+    this.shopDetailsForm.controls.items['controls'][0].patchValue({...selectedDescription});
 
     this.selectedPlatform?.descriptions?.forEach((description) => {
-
-      // console.log(description);
-      // console.log(Boolean(selectedDescription.id === description.id));
-      // console.log(Boolean(this.shopDetailsForm.controls.items.value[0]?.name > 0));
-
       if ((selectedDescription) &&
           (selectedDescription.id === description.id) && 
           
@@ -317,7 +319,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.isSelectedImageSiteIcon = false;
   };
 
-  saveGeneralSettingsData(): void {
+  settingsDataToSend(): void {
     console.log(this.shopDetailsForm.get('items')['controls']);
     console.log(this.shopDetailsForm.get('items')['controls'][0].value);
 
@@ -352,23 +354,27 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       src_mini: this.selectedImageSiteIcon?.src_mini
     }
 
-    let generalSettingsData = {
+    this.generalSettingsData = {
       id: this.selectedPlatform?.id,
-      logo_id: this.selectedPlatform?.logo_id,
-      icon_id: this.selectedPlatform?.icon_id,
-      // created_at: this.selectedPlatform?.created_at,
-      // updated_at: this.selectedPlatform?.updated_at,
-      logo: selectedImageLogoObj,
-      icon: selectedImageSiteIconObj,
+      logo_id: this.selectedImageLogo?.id,
+      icon_id: this.selectedImageSiteIcon?.id,
+      // logo: selectedImageLogoObj,
+      // icon: selectedImageSiteIconObj,
       description: this.selectedPlatform?.descriptions,
       email: this.siteSettingsContactBottomForm?.value?.siteEmail,
       location: this.selectedPlatform?.location
     };
 
-    let siteId = 1;
+    this.siteId = 1;
+
+  }
+
+  saveGeneralSettingsData(): void {
+    this.settingsDataToSend();
     
-    this.settingsPageService.editSettingsPageInfo(generalSettingsData, siteId).subscribe((res) => {
+    this.settingsPageService.editSettingsPageInfo(this.generalSettingsData, this.siteId).subscribe((res) => {
       console.log(res);
+      this.selectedPlatform.descriptions = res.data.descriptions;
     })
 
     console.log('test!!');
@@ -537,7 +543,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   saveSiteDefaultLang(): void {
     this.siteLanguages.forEach((val) => {
-      if (val.title === this.localizationLang.value) {
+      if (val.title === this.localizationLang?.value) {
         this.settingsPageService.updateDefaultSiteLang(val.id, { "default": 1}).subscribe((res) => {
           console.log(res);
         })
@@ -547,49 +553,42 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   saveSiteDefaultAdminLang(): void {
     this.siteLanguages.forEach((val) => {
-      if (val.title === this.localizationAdminLang.value) {
+      if (val.title === this.localizationAdminLang?.value) {
         this.settingsPageService.updateDefaultSiteAdminLang(val.id, { "admin_default": 1 }).subscribe((res) => {
           console.log(res);
         })
       }
     })
-
-    //{ "admin_default": 1 }
-    //updateDefaultSiteAdminLang()
   }
 
   saveSiteCurrency(): void {
     this.siteCurrencies.forEach((currency) => {
-      if (currency.currency_title === this.localizationCurrency.value) {
+      if (currency.currency_title === this.localizationCurrency?.value) {
         this.settingsPageService.updateDefaultSiteCurrency(currency.id, { "default": 1 }).subscribe((res) => {
           console.log(res);
         })
       }
     })
-    //{ "default": 1 }
-    //updateDefaultSiteCurrency()
   }
 
   saveSiteunitsOfMeasurement(): void {
     this.siteLenghts.forEach((length) => {
-      if (length.description[0].unit === this.localizationLength.value) {
+      if (length.title === this.localizationLength?.value) {
         this.settingsPageService.updateDefaultSiteLenght(length.id, { "default": 1 }).subscribe((res) => {
           console.log(res);
         })
       }
     })
-    //updateDefaultSiteLenght()
   }
 
   saveSiteWeight(): void {
     this.siteWeightDesc.forEach((weight) => {
-      if (weight.description.title === this.localizationWeight.value) {
+      if (weight.description.title === this.localizationWeight?.value) {
         this.settingsPageService.updateDefaultSiteWeight(weight.id, { "default": 1 }).subscribe((res) => {
           console.log(res);
         })
       }
     })
-    //updateDefaultSiteWeight()
   }
 
   getSocials(): void {
@@ -620,7 +619,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
         })
       }
     })
-    //updateSiteSocials()
   }
 
   saveSiteInstagramData(): void {
@@ -690,7 +688,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   getGenerateShopDetailsForm() {
     this.shopDetailsForm.valueChanges
-    .subscribe(() => this.emitFormDataChanges());
+    .subscribe(() => this.settingsDataToSend());
   }
 
   getSiteSettingsContactTopForm() {
@@ -708,66 +706,5 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     .subscribe(() => this.emitFormDataChanges());
   }
 
-  emitFormDataChanges(){
-    // if (this.selectedPlatform && 
-    //     this.selectedPlatform?.logo && 
-    //     this.selectedPlatform?.logo?.src) {
-    //     this.selectedPlatform.logo.id = this.selectedImageLogo?.id;
-    //     this.selectedPlatform.logo.src = this.selectedImageLogo?.src;
-    //     this.selectedPlatform.logo.src_mini = this.selectedImageLogo?.src_mini;
-    // }
-
-    // if (this.selectedPlatform && 
-    //     this.selectedPlatform?.icon && 
-    //     this.selectedPlatform?.icon?.src) {
-    //     this.selectedPlatform.icon.id = this.selectedImageSiteIcon?.id;
-    //     this.selectedPlatform.icon.src = this.selectedImageSiteIcon?.src;
-    //     this.selectedPlatform.icon.src_mini = this.selectedImageSiteIcon?.src_mini;
-    // }
-
-    // const selectedImageLogoObj = {
-    //   id: this.selectedImageLogo?.id,
-    //   src: this.selectedImageLogo?.src,
-    //   src_mini: this.selectedImageLogo?.src_mini
-    // }
-
-    // const selectedImageSiteIconObj = {
-    //   id: this.selectedImageSiteIcon?.id,
-    //   src: this.selectedImageSiteIcon?.src,
-    //   src_mini: this.selectedImageSiteIcon?.src_mini
-    // }
-
-    // this.selectedPlatform?.socials.forEach((val) => {
-    //   if (val.name === "facebook") {
-    //     val.url = this.siteSettingsContactBottomForm.value.facebook;
-    //   }
-    //   if (val.name === "Instagram") {
-    //     val.url = this.siteSettingsContactBottomForm.value.instagram;
-    //   }
-    //   if (val.name === "Telegram") {
-    //     val.url = this.siteSettingsContactBottomForm.value.telegram;
-    //   }
-    //   if (val.name === "Viber") {
-    //     val.url = this.siteSettingsContactBottomForm.value.viber;
-    //   }
-    //   if (val.name === "Youtube") {
-    //     val.url = this.siteSettingsContactBottomForm.value.youtube;
-    //   }
-    // })
-
-    // this.formDataChange.emit({
-    //   id: this.selectedPlatform?.id,
-    //   logo_id: this.selectedPlatform?.logo_id,
-    //   icon_id: this.selectedPlatform?.icon_id,
-    //   created_at: this.selectedPlatform?.created_at,
-    //   updated_at: this.selectedPlatform?.updated_at,
-    //   phones: this.selectedPlatform?.phones,
-    //   logo: selectedImageLogoObj,
-    //   icon: selectedImageSiteIconObj,
-    //   socials: this.selectedPlatform?.socials,
-    //   description: this.selectedPlatform?.descriptions,
-    //   email: this.siteSettingsContactBottomForm?.value?.siteEmail,
-    //   location: this.selectedPlatform?.location
-    // });
-  }
+  emitFormDataChanges() {}
 }

@@ -443,7 +443,7 @@
                                             (selectionChange)="onChangeLocalizationLength($event)"
                                             [(ngModel)]="selectedLength">
                                             <div *ngFor="let lengthUnit of allLength">
-                                                <mat-option [value]="lengthUnit?.unit">
+                                                <mat-option [value]="lengthUnit?.title">
                                                     {{ lengthUnit?.title }}
                                                 </mat-option>
                                             </div>
