@@ -7,12 +7,12 @@
     "created_at": "Utworzono",
     "updated_at": "Zaktualizowano",
     "id": "ID",
-    "sort_order": "Sort",
-    "image": "Image",
+    "sort_order": "Sortować",
+    "image": "Wizerunek",
     "on_off":"On/Off",
-    "edit": "Edit",
-    "del": "Delete",
-    "title": "Title",
+    "edit": "Edytować",
+    "del": "Usunąć",
+    "title": "Tytuł",
     "photo": "Zdjęcie",
     "model": "Kod produktu",
     "quantity": "Ilość",
@@ -75,7 +75,10 @@
     "listSale": "Listy rabatowe na towary",
     "saleListStart": "Początek rabatu",
     "saleListEnd":"Zakończenie zniżki",
-    "discountExpired": "Rabat wygasł"
+    "discountExpired": "Rabat wygasł",
+    "visibility": "Widoczność",
+    "visible": "Widoczne",
+    "hidden": "Ukryte"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",
@@ -86,12 +89,30 @@
     "dashboard": "Deska rozdzielcza"
   },
   "category": {
-    "category": "Category",
-    "categories": "Categories",
+    "category": "Kategoria",
+    "categories": "Kategorie",
     "description": "Opis",
     "parrent_id": "Parrent ID",
-    "title": "Title",
-    "add_edit_category": "Add/edit Category"
+    "title": "Tytuł",
+    "add_edit_category": "Dodaj/Edytuj kategorię"
+  },
+  "collection": {
+    "collections": "Kolekcje",
+    "msgAdded": "Kolekcja pomyślnie dodana",
+    "msgUpdated": "Kolekcja pomyślnie zaktualizowana",
+    "msgDeleted": "Kolekcja została pomyślnie usunięta",
+    "add_edit_collection": "Dodaj/Edytuj kolekcja",
+    "mainData": "Główne dane",
+    "products": "Produkty",
+    "title": "Tytuł",
+    "subtitle": "Podtytuł",
+    "description": "Opis",
+    "manufacturer": "Producent",
+    "category": "Kategoria",
+    "product": "Produkt",
+    "productsNotFound": "Nie znaleziono produktów",
+    "listOfProducts": "Lista produktów",
+    "codes": "Kody"
   },
   "roles": {
     "roles": "Role",
