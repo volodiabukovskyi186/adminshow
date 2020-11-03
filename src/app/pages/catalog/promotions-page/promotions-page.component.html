@@ -1,6 +1,7 @@
 <rap-panel-content
   [showForm]="pages.panelSettings.form"
   [showRightSide]="pages.panelSettings.right"
+  
 >
   <div form>
     <app-promotion-form
@@ -8,6 +9,7 @@
       [model]="promForm.model"
       [products]="productsList"
       (selectedProducts)="selectedProducts($event)"
+
     ></app-promotion-form>
   </div>
   <div filter></div>

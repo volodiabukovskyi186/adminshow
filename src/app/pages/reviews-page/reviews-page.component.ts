@@ -44,6 +44,7 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     public langService: LanguageService
   ) { 
     super(pages);
+    
   }
 
   public showFilters: boolean = false;
@@ -126,7 +127,6 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   }
 
   moderationOfReview(reviewToModerate) {
-    console.log(reviewToModerate);
 
     this.selectedReview = reviewToModerate;
     this.reviewId = this.selectedReview.id;

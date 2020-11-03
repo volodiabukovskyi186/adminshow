@@ -101,14 +101,14 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         console.log('colorStatus====>',updateOrder)
         if (this.selectedOrder.id !== undefined) {
             this.localizationService.editOrderStaus(this.selectedOrder.id, updateOrder).subscribe(data => {
+                this.getStatus()
             })
-            this.getStatus()
+          
             this.toastr.success("ORDER EDIT");
         }
         else {
             this.localizationService.addNewOrderStatus(this.selectedOrder.id, updateOrder).subscribe(data => {
                 this.getStatus()
-
             })
             this.toastr.success("ORDER ADDED");
 
