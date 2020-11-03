@@ -17,6 +17,7 @@
         <tr>
             <th width="64px">{{ "APP.id" | translate }}</th>
             <th width="">{{ "APP.title" | translate }}</th>
+            <th width="128px">{{ 'MENU.localization.color' | translate }}</th>
             <th width="168px">{{ "APP.updated_at" | translate }}</th>
             <th width="168px">{{ "APP.action" | translate }}</th>
         </tr>
@@ -34,6 +35,9 @@
               </span>
             </div>
             </td>
+            <td class="text-center ">
+                <div class="box" [ngStyle]="{'background':order.color}" ></div>
+      </td>
 
             <td class="text-center">
                 {{order?.created_at}}

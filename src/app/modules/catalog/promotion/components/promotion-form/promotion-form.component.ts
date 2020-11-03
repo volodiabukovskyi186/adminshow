@@ -24,7 +24,6 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   @Input() title: string = "";
   @Input() host: string = null;
   @Input() public products: any[];
-
   @Output() selectedProducts = new EventEmitter<any>();
 
   editorConfig: AngularEditorConfig = {
@@ -153,6 +152,9 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     this.promotionService.get().subscribe((res) => {
       console.log(res);
     })
+  }
+  test(imagee):void{
+    console.log('image====>',imagee)
   }
 
   ngOnDestroy(): void {

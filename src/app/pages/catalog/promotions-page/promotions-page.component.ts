@@ -129,6 +129,7 @@ save = () => {
         data_end: d.data_end,
       });
     });
+   
     this.prom.post(data).subscribe((res) => {
       this.postHandler(res);
       this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
@@ -137,7 +138,7 @@ save = () => {
       })
     })
   }
-
+  console.log('data========>hellow',data);
   this.ngxService.start();
 };
 
