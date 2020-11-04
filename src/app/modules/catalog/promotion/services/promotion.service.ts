@@ -144,4 +144,7 @@ export class PromotionService {
     // }
     return this.http.put(`https://api.showu.com.ua/product_promotion/updateArray/${promotionId}`, newProducts);
   }
+  createPromotion(newProducts): Observable<any>{
+    return this.http.post(`https://api.showu.com.ua/promotion`,newProducts);
+  }
 }

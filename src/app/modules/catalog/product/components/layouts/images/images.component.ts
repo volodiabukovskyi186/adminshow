@@ -53,7 +53,9 @@ export class ImagesComponent implements OnInit {
   };
 
   onDeleteImage(prodImage: IProdImage) {
+    console.log('imagedelete===>',prodImage)
     this.prodImage.deleteProdImage(prodImage);
+    // this.prodImage.deleteImages(prodImage.id,)
   }
 
   modalOpen: boolean = false;

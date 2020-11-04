@@ -76,9 +76,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   public productsListForm: FormGroup;
   public searchProducts: any;
   public isSelectedProduct: boolean;
-
   public destroy$: Subject<boolean> = new Subject<boolean>();
-
   public isActive: boolean = false;
   public isCategoriesActive: boolean = false;
   public displayAllManufactures: any;
@@ -99,8 +97,17 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   // public selectedProducts: any[];
 
   onPress(model: IPromotionDescription) {
+    console.log('one item',this.model)
     this.descEdit = model;
     this.modalOpen = true;
+    if(model.id!==null){
+      this.model.descriptions.forEach(elem=>{
+        elem.image_id=elem.image.id
+      })
+    }
+   
+
+    // this.model.descriptions[]
   }
   onReset(model: IPromotionDescription) {
     model.image_id = null;
@@ -150,7 +157,8 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     this.generateProductsListForm();
 
     this.promotionService.get().subscribe((res) => {
-      console.log(res);
+   
+      
     })
   }
 
