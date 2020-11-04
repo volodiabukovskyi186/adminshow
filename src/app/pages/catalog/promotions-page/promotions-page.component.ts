@@ -91,26 +91,40 @@ getLangListHandler = (data) => {
 
 save = () => {
   // console.log("ADD/UPDATE", this.categoryForm.category);
-
   // THIS SHOULD NOT BE HERE ! ! !
   let c = this.promForm.model;
-
+    // console.log('ccccc=>',c.descriptions)
   let data = {
     status: c.status,
     description: [],
   };
+  debugger;
   if (c.id != null) {
     c.descriptions.forEach((d) => {
-      data.description.push({
-        id: d.id,
-        lang_id: d.lang_id,
-        description: d.description,
-        image_id: d.image_id,
-        subtitle: d.subtitle,
-        title: d.title,
-        data_start: d.data_start,
-        data_end: d.data_end,
-      });
+      if(d.image_id==0){
+        data.description.push({
+          id: d.id,
+          lang_id: d.lang_id,
+          description: d.description,
+          image_id:d.image.id,
+          subtitle: d.subtitle,
+          title: d.title,
+          data_start: d.data_start,
+          data_end: d.data_end,
+        })
+      }
+      else{
+        data.description.push({
+          id: d.id,
+          lang_id: d.lang_id,
+          description: d.description,
+          image_id: d.image_id,
+          subtitle: d.subtitle,
+          title: d.title,
+          data_start: d.data_start,
+          data_end: d.data_end,
+        });
+      }
     });
     this.prom.put(data, c.id).subscribe(this.putHandler);
     this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
@@ -129,7 +143,7 @@ save = () => {
         data_end: d.data_end,
       });
     });
-   
+    console.log('create new action===>',data)
     this.prom.post(data).subscribe((res) => {
       this.postHandler(res);
       this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
@@ -138,7 +152,7 @@ save = () => {
       })
     })
   }
-  console.log('data========>hellow',data);
+  // console.log('data========>hellow',data);
   this.ngxService.start();
 };
 

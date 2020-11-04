@@ -36,7 +36,13 @@ export class ProductImagesService {
       data
     );
   }
-
+  
+  deleteImages(prodId: number,array:any): Observable<any>{
+    return this.http.put(
+      `${environment.host}product_image/updateArray/${prodId}`,
+      array
+    );
+  }
   // initVales() {
   //   this.values = [];
   //   this.list.forEach((element) => {
@@ -60,10 +66,12 @@ export class ProductImagesService {
   }
 
 
-  protected deleteFromArray(object: Object, array: Array<Object>) {
+  protected deleteFromArray(object: any, array: Array<Object>) {
     const index: number = array.indexOf(object);
     if (index !== -1) {
       array.splice(index, 1);
     }
+    this.put(object.product_id)
+   console.log('object====>', object.product_id)
   }
 }

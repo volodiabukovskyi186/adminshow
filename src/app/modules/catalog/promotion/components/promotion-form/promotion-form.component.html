@@ -58,16 +58,37 @@
           </div>
   
           <div class="original">
+              <!-- <app-choice-button
+              style="max-width: 80px;"
+              class="radius"
+            
+          
+             [src]="
+                'api.showu.com.ua'
+                 ? '//' + 'api.showu.com.ua' + item.image?.src_mini
+                 : item.image?.src_mini
+          "
+              ></app-choice-button> -->
+
             <app-choice-button
               style="max-width: 192px;"
               class="radius"
-              [src]="host ? '//' + host + item.image?.src_mini : item.image?.src_mini"
+              [src]="
+              'api.showu.com.ua'
+               ? '//' + 'api.showu.com.ua' + item.image?.src_mini
+               : item.image?.src_mini"
               (press)="onPress(item)"
               (reset)="onReset(item)"
+              
+              
             ></app-choice-button>
             <input type="hidden" [(ngModel)]="item.image_id" />
           </div>
         </div>
+
+        <!-- [src]="host ? '//' + host + item.image?.src_mini : item.image?.src_mini" -->
+       
+
         
         
   
@@ -200,7 +221,7 @@
           </div>
         </div>
       </form>
-    
+
     </rap-step-tab>
   </rap-step-tabs>
 </div>
