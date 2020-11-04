@@ -28,9 +28,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
      })
   }
   ngOnChanges(changes: SimpleChanges): void {
-
     this.pages.panelButtonSettings.plus = false;
-  
   }
 
   ngAfterViewInit() {}
@@ -42,11 +40,10 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
   getStatus(): void {
     // this.translate.onLangChange.subscribe(lang => {
-   
-    this.localizationService.getOrderAllStatus().subscribe(
-        data => {
+
+    this.localizationService.getOrderAllStatus().subscribe(data => {
         this.statusIte = data.data;
-        console.log('orderStatus===>',this.statusIte)
+        console.log('orderStatus===>',this.statusIte);
     })
   // })
   }
@@ -54,10 +51,9 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   public modifyPrice(price: string): string {
     return Number(price).toFixed(2);
   }
-  changeStatus(i):void{
-     this.userOrders=i
-     this.ordersStaus.emit(this.userOrders)
-    
-  }
 
+  changeStatus(i): void {
+    this.userOrders = i;
+    this.ordersStaus.emit(this.userOrders);
+  }
 }

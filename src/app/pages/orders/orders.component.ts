@@ -8,7 +8,8 @@ import { LanguageService } from "src/app/modules/localization/language/language.
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { LocalizationServicesService } from '../localization/services/localization-services.service';
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
+import { UserService } from '../../modules/user/user.service';
 
 @Component({
   selector: 'app-orders',
@@ -24,6 +25,8 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   status:any;
   userOrders:any;
 
+  public showFilters: boolean = false;
+  public currentUserRoleId: number;
 
   public statusCodes = {
     "1": {
@@ -49,6 +52,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     public breadcrumbs: BreadcrumbsService,
     private translate: TranslateService,
     public localizationService: LocalizationServicesService,
+    public userService: UserService
   ) { 
     super(pages);
 
@@ -74,22 +78,39 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.getList();
     this.getClient()
    
-
     this.pages.panelButtonSettings.plus = false;
     this.pages.panelButtonSettings.rightToggle = true;
+    this.pages.panelButtonSettings.save = false;
+
+    this.pages.panelButtonSettings.toggleFilter = false;
+    this.pages.onTogleFilterClick = () => {    
+      this.showFilters = true;      
+      this.openForm();      
+    }
+
+    this.getUserRoleId();
   }
-  uodateAllItems():void{
-    this.orderService.getList().subscribe(data=>{
-      this.orderService.order=data;
-     
+
+  uodateAllItems(): void{
+    this.orderService.getList().subscribe(data => {
+      this.orderService.order = data;
     })
   }
-  getClient():void{
-    this.orderService.getList().subscribe(data=>{
-      this.userOrders=data;
-      console.log(this.userOrders)
+
+  getClient():void {
+    this.orderService.getList().subscribe(data => {
+      this.userOrders = data;
+      console.log(this.userOrders);
     })
-   }
+  }
+
+  getUserRoleId(): void {
+    this.userService.getByToken().subscribe((res) => {
+      this.currentUserRoleId = res.data.user.role_id;
+
+      console.log(this.currentUserRoleId);
+    });
+  }
 
   initTranslate() {
     this.lang.translate
@@ -116,22 +137,33 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.orderService.getList().subscribe(
       this.getListHandler
     );
-    
-   
   }
 
   getListHandler = (data) => {
     this.ngxService.stopAll();
     this.orderService.order = data;
+    console.log(this.orderService.order);
+
     this.orderService.order.data.forEach((val) => {
       this.ordersForm.get('status').setValue(this.statusCodes[val.status_id]);
     })
   };
-  seveStatus(OrderStatus):void{
-  this.userOrders=OrderStatus
+
+  initPagesSettings = () =>{
+    super.initPagesSettings();
+    this.pages.panelButtonSettings.toggleFilter = false;
   }
-  save=()=>{
-    const userOrde={
+
+  orderFiltersFormData(event): void {
+    console.log(event);
+  }
+
+  seveStatus(OrderStatus): void{
+  this.userOrders = OrderStatus
+  }
+
+  save = () => {
+    const userOrde = {
       sort_order: this.selectedClientOrder.sort_order,
       costumer:  this.selectedClientOrder.costumer, 
       currency_id: this.selectedClientOrder.currency_id,
@@ -157,8 +189,8 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.orderService.UpdateUserOrder(this.selectedClientOrder.id,userOrde).subscribe(data=>{
       // this.getStatus();
       this.uodateAllItems()
-   
     })
+
     this.closeForm();
   
   }
@@ -167,7 +199,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   reviewOrder(selectedOrder) {
     console.log(selectedOrder.status_id);
     this.selectedClientOrder = selectedOrder;
-    this.userOrders=selectedOrder.status_id
+    this.userOrders = selectedOrder.status_id
     this.openForm();
   }
 
@@ -182,15 +214,16 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   closeForm = () => {
     this.pages.panelSettings.form = false;
     this.pages.panelButtonSettings.plus = false;
-    // this.pages.panelButtonSettings.save = false;
+    this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.cancel = false;
     this.pages.panelButtonSettings.rightToggle = true;
+    this.showFilters = false;
   }  
 
   openForm = () => {
     this.pages.panelSettings.form = true;
     this.pages.panelButtonSettings.plus = false;
-    this.pages.panelButtonSettings.save = true;
+    this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.cancel = true;
     this.pages.panelButtonSettings.rightToggle = false;
   };

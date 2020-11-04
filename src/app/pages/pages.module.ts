@@ -81,6 +81,7 @@ import { ReviewsFormComponent } from './reviews-page/reviews-form/reviews-form.c
 import { ReviewsFiltersFormComponent } from './reviews-page/reviews-filters-form/reviews-filters-form.component';
 import { LiqpayPageComponent } from './client/liqpay-page/liqpay-page.component';
 import { LipayFormComponent } from '../modules/client/liqpay/lipay-form/lipay-form.component';
+import { OrderFiltersFormComponent } from './orders/order-filters-form/order-filters-form.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { LipayFormComponent } from '../modules/client/liqpay/lipay-form/lipay-fo
     CountriesPageComponent,
     DeliveryMethodsPageComponent,
     LiqpayPageComponent,
-    LipayFormComponent
+    LipayFormComponent,
+    OrderFiltersFormComponent
   ],
     imports: [
         CommonModule,

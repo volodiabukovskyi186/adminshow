@@ -91,12 +91,12 @@
                 <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
               </button>
 
-              <!-- <rap-delete-button
-                [attr.data-tooltip-left]="APP.delete' | translate "
+              <rap-delete-button
+                [attr.data-tooltip-left]="'APP.del' | translate "
                 class="button transparent radius"
-                (confirmed)="(null)"
+                (click)="deleteCollection(item)"
                 [src]="'assets/icons/delete.svg'"
-              ></rap-delete-button> -->
+              ></rap-delete-button>
             </div>
           </td>
         </tr>

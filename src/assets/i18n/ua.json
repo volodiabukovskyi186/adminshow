@@ -325,7 +325,7 @@
     "reviewsDateTo": "Дата до",
     "reviewsFilters": "Фільтрування"
   },
-    "orders": {
+  "orders": {
     "ordersOrder": "Замовлення",
     "ordersDate": "Дата",
     "ordersDelivery": "Доставка",
@@ -345,7 +345,9 @@
     "orderPhone": "Телефон",
     "orderEmail": "Email",
     "orderRecipient": "Одержувач",
-    "orderStatus":"Статус замовлення"
+    "orderStatus":"Статус замовлення",
+    "orderManufacturer": "Виробник",
+    "orderClient": "Клієнт"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

@@ -1,0 +1,63 @@
+<div class="reviews-form-container">
+    <div class="reviews-form-title">{{ 'reviews.reviewsFilters' | translate }}</div>
+    <div>
+        <div class="reviews-wrapper">
+            <div class="review-content">
+                <div class="reviews-content__main">
+                    <form [formGroup]="orderFiltersForm">
+                        <div class="reviews-date">
+                            <div class="reviews-date-title">{{ 'reviews.reviewsDateFrom' | translate }}</div>
+                            <input formControlName="dateFrom" type="date" class="reviews-date-text"/>
+                        </div>
+                        <div class="reviews-date">
+                            <div class="reviews-date-title">{{ 'reviews.reviewsDateTo' | translate }}</div>
+                            <input formControlName="dateTo" type="date" class="reviews-date-text"/>
+                        </div>
+                        <div class="reviews-date">
+                            <div class="reviews-response-title">{{ 'orders.orderManufacturer'| translate }}</div>
+                            <div class="reviews-response-status">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            (selectionChange)="onChange($event.value)"
+                                            id="manufacturer"
+                                            required
+                                            formControlName="manufacturer">
+                                            <div *ngFor="let manufacturer of allManufacturers">
+                                                <mat-option [value]="manufacturer.value">
+                                                    {{ manufacturer.name | translate }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="reviews-date">
+                            <div class="reviews-response-title">{{ 'orders.orderClient'| translate }}</div>
+                            <div class="reviews-response-status">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            (selectionChange)="onChange($event.value)"
+                                            id="client"
+                                            required
+                                            formControlName="client">
+                                            <div *ngFor="let client of allClients">
+                                                <mat-option [value]="client.value">
+                                                    {{ client.name | translate }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <button class="order-filters__submit-btn cursor-pointer">Фільтрувати</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

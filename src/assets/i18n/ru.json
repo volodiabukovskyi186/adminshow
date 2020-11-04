@@ -325,7 +325,9 @@
     "orderPhone": "Телефон",
     "orderEmail": "Email",
     "orderRecipient": "Получатель",
-    "orderStatus":"Статус заказа"
+    "orderStatus":"Статус заказа",
+    "orderManufacturer": "Производитель",
+    "orderClient": "Клиент"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",
