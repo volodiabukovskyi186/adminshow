@@ -7,11 +7,25 @@
                     <form [formGroup]="orderFiltersForm">
                         <div class="reviews-date">
                             <div class="reviews-date-title">{{ 'reviews.reviewsDateFrom' | translate }}</div>
-                            <input formControlName="dateFrom" type="date" class="reviews-date-text"/>
+                            <div class="orders-filter__input-content">
+                                <input formControlName="date_start" type="date" class="reviews-date-text" required/>
+                                <div *ngIf="formAuthControls?.date_start?.invalid && (formAuthControls?.date_start?.dirty || formAuthControls?.date_start?.touched)" class="error-message">
+                                    <div *ngIf="formAuthControls?.date_start?.errors.required" class="">
+                                        {{ 'orders.orderDateStart' | translate }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="reviews-date">
                             <div class="reviews-date-title">{{ 'reviews.reviewsDateTo' | translate }}</div>
-                            <input formControlName="dateTo" type="date" class="reviews-date-text"/>
+                            <div class="orders-filter__input-content">
+                                <input formControlName="date_end" type="date" class="reviews-date-text" required/>
+                                <div *ngIf="formAuthControls?.date_end?.invalid && (formAuthControls?.date_end?.dirty || formAuthControls?.date_end?.touched)" class="error-message">
+                                    <div *ngIf="formAuthControls?.date_end?.errors.required" class="">
+                                        {{ 'orders.orderDateEnd' | translate }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="reviews-date">
                             <div class="reviews-response-title">{{ 'orders.orderManufacturer'| translate }}</div>
@@ -19,18 +33,24 @@
                                 <mat-form-field appearance="standart" class="sort-products">
                                     <div class="sort-products-wrapper">
                                         <mat-select
-                                            (selectionChange)="onChange($event.value)"
+                                            
                                             id="manufacturer"
+                                            formControlName="manufacturer"
                                             required
-                                            formControlName="manufacturer">
+                                        >
                                             <div *ngFor="let manufacturer of allManufacturers">
-                                                <mat-option [value]="manufacturer.value">
+                                                <mat-option [value]="manufacturer.id">
                                                     {{ manufacturer.name | translate }}
                                                 </mat-option>
                                             </div>
                                         </mat-select>
                                     </div>
                                 </mat-form-field>
+                                <div *ngIf="formAuthControls?.manufacturer?.invalid && (formAuthControls?.manufacturer?.dirty || formAuthControls?.manufacturer?.touched)" class="error-message">
+                                    <div *ngIf="formAuthControls?.manufacturer?.errors.required" class="">
+                                        {{ 'orders.orderManufacturerIsRequired' | translate }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="reviews-date">
@@ -39,21 +59,32 @@
                                 <mat-form-field appearance="standart" class="sort-products">
                                     <div class="sort-products-wrapper">
                                         <mat-select
-                                            (selectionChange)="onChange($event.value)"
+
                                             id="client"
+                                            formControlName="client"
                                             required
-                                            formControlName="client">
+                                        >
                                             <div *ngFor="let client of allClients">
-                                                <mat-option [value]="client.value">
+                                                <mat-option [value]="client.id">
                                                     {{ client.name | translate }}
                                                 </mat-option>
                                             </div>
                                         </mat-select>
                                     </div>
                                 </mat-form-field>
+                                <div *ngIf="formAuthControls?.client?.invalid && (formAuthControls?.client?.dirty || formAuthControls?.client?.touched)" class="error-message">
+                                    <div *ngIf="formAuthControls?.client?.errors.required" class="">
+                                        {{ 'orders.orderClientIsRequired' | translate }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <button class="order-filters__submit-btn cursor-pointer">Фільтрувати</button>
+                        <button 
+                            class="order-filters__submit-btn cursor-pointer"
+                            (click)="filterClientOrders()"
+                        >
+                            {{ 'orders.orderFilterBtn' | translate }}
+                        </button>
                     </form>
                 </div>
             </div>

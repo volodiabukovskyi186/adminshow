@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IOrderResponse } from '../interfaces/order-response';
+import { LanguageService } from 'src/app/core/language.service';
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,10 @@ export class OrderService {
     host: environment.host
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    public lang: LanguageService
+  ) {}
 
   getList(): Observable<IOrderResponse> {
     const lang = localStorage.getItem('currentLang');
@@ -33,6 +37,15 @@ export class OrderService {
   // 
   UpdateUserOrder(id: any, data: any): Observable<any>{
     return this.http.put(`https://api.showu.com.ua/order/${id}`, data);
+  }
+
+  filterOrders(dateStart, dateEnd, manufacturer: number[] = [], userId): Observable<any> {
+    console.log(manufacturer);
+
+    let lang = this.lang.current;
+    let params = `?lang=${lang}&date_start=${dateStart}&date_end=${dateEnd}&manufacturer=${JSON.stringify(manufacturer)}&user_id=${userId}`;
+
+    return this.http.get(`${environment.host}ownerOrders` + params);
   }
 
   // post(data: any): Observable<any> {

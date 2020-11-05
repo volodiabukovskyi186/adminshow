@@ -347,7 +347,12 @@
     "orderRecipient": "Одержувач",
     "orderStatus":"Статус замовлення",
     "orderManufacturer": "Виробник",
-    "orderClient": "Клієнт"
+    "orderClient": "Клієнт",
+    "orderDateStart": "Потрібна початкова дата замовлення",
+    "orderDateEnd": "Потрібна кінцева дата замовлення",
+    "orderManufacturerIsRequired": "Потрібно обрати виробника",
+    "orderClientIsRequired": "Потрібно обрати клієнта",
+    "orderFilterBtn": "Фільтрувати"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

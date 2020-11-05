@@ -327,7 +327,12 @@
     "orderRecipient": "Получатель",
     "orderStatus":"Статус заказа",
     "orderManufacturer": "Производитель",
-    "orderClient": "Клиент"
+    "orderClient": "Клиент",
+    "orderDateStart": "Начальная дата заказа обязательна",
+    "orderDateEnd": "Конечная дата заказа обязательна",
+    "orderManufacturerIsRequired": "Нужно выбрать производителя",
+    "orderClientIsRequired": "Нужно выбрать клиента",
+    "orderFilterBtn": "Фильтровать"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

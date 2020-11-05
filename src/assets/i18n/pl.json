@@ -332,8 +332,12 @@
     "orderRecipient": "Odbiorca",
     "orderStatus":"Status zamówienia",
     "orderManufacturer": "Producent",
-    "orderClient": "Klient"
-
+    "orderClient": "Klient",
+    "orderDateStart": "Data rozpoczęcia zamówienia jest wymagana",
+    "orderDateEnd": "Data zakończenia zamówienia jest wymagana",
+    "orderManufacturerIsRequired": "Producent jest wymagany",
+    "orderClientIsRequired": "Klient jest wymagany",
+    "orderFilterBtn": "Filtr"
   },
   "liqpay":{
     "onlinePay":"PŁATNOŚĆ ONLINE",
