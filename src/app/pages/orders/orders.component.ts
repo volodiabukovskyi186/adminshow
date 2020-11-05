@@ -155,11 +155,15 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   }
 
   orderFiltersFormData(event): void {
+    this.orderService.order.data = event.data;
+
     console.log(event);
+
+    this.closeForm();
   }
 
   seveStatus(OrderStatus): void{
-  this.userOrders = OrderStatus
+    this.userOrders = OrderStatus;
   }
 
   save = () => {

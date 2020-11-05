@@ -316,7 +316,7 @@
   //   }
 }
   
-.sort-content ::ng-deep {
+.sort-settings-content ::ng-deep {
     .mat-form-field {
       .mat-form-field-wrapper {
         .mat-form-field-flex {
@@ -339,7 +339,8 @@
                     border-width: 0px 1px 1px 0px;
                     transform: rotate(45deg);
                     transition: border-width 150ms ease-in-out;
-                    margin-top: -6px;
+                    //margin-top: -6px;
+                    margin-top: -4px;
                   }
                 }
               }
@@ -381,4 +382,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.settings-tabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
 }

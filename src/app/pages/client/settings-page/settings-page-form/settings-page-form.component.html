@@ -21,7 +21,7 @@
     <div class="settings-form-title">{{ title }}</div>
     <div>
         <div class="settings-input-wrapper tabs-header-settings-form">
-            <rap-step-tabs>
+            <rap-step-tabs class="settings-tabs">
                 <rap-step-tab [active]="true" [title]="'settings.generalSettings' | translate">
                     <form [formGroup]="generalSettingsForm" (submit)="getEditSettingsPageFormData()">
                         <div class="settings-input-content settings-img-container" (click)="onPressLogo()">
@@ -321,7 +321,7 @@
                 </rap-step-tab>
                 <rap-step-tab [title]="'settings.settingsLocalization' | translate">
                     <form [formGroup]="siteSettingsLocalizationForm" (submit)="getSiteSettingsLocalizationForm()" class="phone-form-container">
-                        <div class="settings-input-content sort-content">
+                        <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.language" | translate }}</label>
                             <div class="sort-products-container">
                                 <mat-form-field appearance="standart" class="sort-products">
@@ -358,11 +358,11 @@
                                     id="language">
                             </div> -->
                         </div>
-                        <div class="settings-input-content sort-content">
+                        <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.adminLanguage" | translate }}</label>
                             <div class="sort-products-container">
                                 <mat-form-field appearance="standart" class="sort-products">
-                                    <div class="sort-products-wrapper sort-content">
+                                    <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="adminLanguage"
                                             required
@@ -395,11 +395,11 @@
                                     id="adminLanguage">
                             </div> -->
                         </div>
-                        <div class="settings-input-content sort-content">
+                        <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.currency" | translate }}</label>
                             <div class="sort-products-container">
                                 <mat-form-field appearance="standart" class="sort-products">
-                                    <div class="sort-products-wrapper sort-content">
+                                    <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="currency"
                                             required
@@ -431,11 +431,11 @@
                                     id="currency">
                             </div> -->
                         </div>
-                        <div class="settings-input-content sort-content">
+                        <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.unitsOfMeasurement" | translate }}</label>
                             <div class="sort-products-container">
                                 <mat-form-field appearance="standart" class="sort-products">
-                                    <div class="sort-products-wrapper sort-content">
+                                    <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="unitsOfMeasurement"
                                             required
@@ -467,11 +467,11 @@
                                     id="unitsOfMeasurement">
                             </div> -->
                         </div>
-                        <div class="settings-input-content sort-content">
+                        <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.weight" | translate }}</label>
                             <div class="sort-products-container">
                                 <mat-form-field appearance="standart" class="sort-products">
-                                    <div class="sort-products-wrapper sort-content">
+                                    <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="weight"
                                             required
