@@ -17,7 +17,7 @@ import { LanguageService as Lang } from "src/app/core/language.service";
 import { CustomersService } from '../customers/services/customers.service';
 import { ICustomer, ICustomerPostData } from '../customers/interfaces/customer';
 import { UserService } from '../../modules/user/user.service';
-
+import {Router} from '@angular/router';
 @Component({
   animations: [changeValueHighlight],
   selector: "app-customers",
@@ -45,6 +45,7 @@ export class CustomersComponent extends BasePage implements OnInit {
     countryFormService:CountriesService,
     // public manufacturerForm: ManufacturerFormService,
     public lang: Lang,
+     private route: Router,
     public userService: UserService
   ) {
     super(pages);
@@ -76,6 +77,12 @@ export class CustomersComponent extends BasePage implements OnInit {
         this.arrCustomers=data;
         console.log(this.arrCustomers)
       })
+  }
+  download=()=>{
+    this.customersService.getCustomerTable().subscribe(data=>{
+      console.log('XML',data.path)
+      window.location.href=`https://${data.path}`
+    })
   }
   editCustomers(i) {
    

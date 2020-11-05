@@ -53,6 +53,8 @@ export class CustomersService {
   deleteCustomers(item):Observable<any>{
     return this.http.delete<ICustomerPostData>(`${environment.host}subscription_client`,item.id);
   }
-
+  getCustomerTable():Observable<any>{
+    return this.http.get(`${environment.host}getXLSXFile  `)
+  }
 
 }

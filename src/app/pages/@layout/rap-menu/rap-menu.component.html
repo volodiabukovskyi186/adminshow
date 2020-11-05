@@ -12,14 +12,19 @@
     [title]="item.title"
     [icon]="item.icon"
     [(open)]="item.open"
-    *ngFor="let item of menu.nav"
+   
+    *ngFor="let item of menu.nav;let i=index"
+    (click)="closeMenu(item,i)"
   >
+
     <rap-nav-item
+  
       *ngFor="let link of item.items"
       [langLink]="lang.routeLang"
       [nav]="link"
     ></rap-nav-item>
   </rap-nav-group>
+
 </div>
 
 <footer>

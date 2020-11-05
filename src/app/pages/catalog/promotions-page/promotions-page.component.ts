@@ -127,10 +127,12 @@ save = () => {
       }
     });
     this.prom.put(data, c.id).subscribe(this.putHandler);
+    if(this.selectedProductsPromotion){
     this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
       this.ngxService.stopAll();
       this.toastr.success("PROMOTION UPDATED ^_^");
     })
+  }
   } else {
     c.descriptions.forEach((d) => {
       data.description.push({

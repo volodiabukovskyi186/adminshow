@@ -60,7 +60,7 @@ export class CollectionService {
   }
 
   getByCollectionId(collectionId): Observable<any>  {
-    return this.http.get(`https://api.showu.com.ua/product_promotion/getByPromotion/${collectionId}`);
+    return this.http.get(`https://api.showu.com.ua/product_collection/getByCollection/${collectionId}`);
   }
 
   post(data: any): Observable<any> {
@@ -93,6 +93,6 @@ export class CollectionService {
     // const params = {
     //   products: JSON.stringify(newProducts)
     // }
-    return this.http.put(`https://api.showu.com.ua/product_promotion/updateArray/${collectionId}`, newProducts);
+    return this.http.put(`https://api.showu.com.ua/product_collection/updateArray/${collectionId}`, newProducts);
   }
 }
