@@ -20,7 +20,7 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<IOrderResponse> {
-    const lang=localStorage.getItem('currentLang')
+    const lang = localStorage.getItem('currentLang');
     let skip = this.page * this.order.take - this.order.take;
     let params = `?take=10&skip=${skip}&lang=${lang}`;
     // ${this.order.take}
@@ -31,8 +31,7 @@ export class OrderService {
   
   }
   // 
-  UpdateUserOrder(id:any,data:any): Observable<any>{
-
+  UpdateUserOrder(id: any, data: any): Observable<any>{
     return this.http.put(`https://api.showu.com.ua/order/${id}`, data);
   }
 

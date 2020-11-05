@@ -329,7 +329,9 @@
     "orderPhone": "Phone",
     "orderEmail": "Email",
     "orderRecipient": "Recipient",
-    "orderStatus":"Order status"
+    "orderStatus":"Order status",
+    "orderManufacturer": "Manufacturer",
+    "orderClient": "Client"
   },
   "liqpay":{
     "onlinePay":"Online pay",

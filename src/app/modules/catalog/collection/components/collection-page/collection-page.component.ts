@@ -213,6 +213,18 @@ export class CollectionPageComponent extends BasePage
     this.openForm();
   }
 
+  deleteCollection(collectionToDelete): void {
+    console.log(collectionToDelete);
+    
+    this.collection.deleteCollectionById(collectionToDelete.id).subscribe((res) => {
+      console.log(res);
+    })
+
+    this.collection.data.data = this.collection?.data?.data?.filter((val) => {
+      return val.id !== collectionToDelete.id;
+    })
+  }
+
   selectedProducts(event) {
     console.log(event);
   

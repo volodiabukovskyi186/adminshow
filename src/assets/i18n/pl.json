@@ -310,7 +310,7 @@
     "reviewsDateTo": "Data do",
     "reviewsFilters": "Filtracja"
   },
-    "orders": {
+  "orders": {
     "ordersOrder": "Zamówienie",
     "ordersDate": "Data",
     "ordersDelivery": "Dostawa",
@@ -330,7 +330,9 @@
     "orderPhone": "Telefon",
     "orderEmail": "Email",
     "orderRecipient": "Odbiorca",
-    "orderStatus":"Status zamówienia"
+    "orderStatus":"Status zamówienia",
+    "orderManufacturer": "Producent",
+    "orderClient": "Klient"
 
   },
   "liqpay":{

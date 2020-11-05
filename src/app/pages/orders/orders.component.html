@@ -5,16 +5,23 @@
 >
 
    <div form>
-      <app-order-form
-         [title]="'currencies.addEditCurrencyInfo' | translate"
-         [order]="selectedClientOrder"
-         [langs]="langService.languages.data"
-         [status]="status"
-         [userOrders]="userOrders"
-         class="currency-form-style"
-         (ordersFormData)="sendOrdersFormData($event)"
-         (ordersStaus)="seveStatus($event)"
-      ></app-order-form>
+      <div *ngIf="selectedClientOrder && !showFilters">
+         <app-order-form
+            [title]="'currencies.addEditCurrencyInfo' | translate"
+            [order]="selectedClientOrder"
+            [langs]="langService.languages.data"
+            [status]="status"
+            [userOrders]="userOrders"
+            class="currency-form-style"
+            (ordersFormData)="sendOrdersFormData($event)"
+            (ordersStaus)="seveStatus($event)"
+         ></app-order-form>
+      </div>
+      <div *ngIf="showFilters">
+         <app-order-filters-form 
+            (orderFiltersFormData)="orderFiltersFormData($event)">
+         </app-order-filters-form>
+      </div>
    </div>
    <div filter></div>
    <div content class="order-container padding">
@@ -27,7 +34,7 @@
             <th width="64px">ID</th>
             <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.manufacturer' | translate }}</th>
-            <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
+            <th width="128px" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.sum' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.actions' | translate }}</th>
@@ -37,9 +44,9 @@
          <tbody class="table-body">
          <tr *ngFor="let order of orderService.order?.data">
             <td width="64px" class="text-center">{{ order?.id }}</td>
-            <td width="128px" class="text-center">{{ order?.user.last_name }} {{ order?.user.first_name }}</td>
+            <td width="128px" class="text-center">{{ order?.last_name }} {{ order?.first_name }}</td>
             <td width="128px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
-            <td width="128px" class="text-center">{{ order?.total.slice(0, -2) }}</td>
+            <td width="128px" class="text-center" *ngIf="currentUserRoleId === 1">{{ order?.total.slice(0, -2) }}</td>
             <td width="128px" class="text-center">{{ order?.created_at }}</td>
             <td width="128px" class="text-center">
                <div class="order-status-content">

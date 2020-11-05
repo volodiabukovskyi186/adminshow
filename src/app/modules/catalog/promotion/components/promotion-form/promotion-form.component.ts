@@ -161,8 +161,9 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
       
     })
   }
-  test(imagee):void{
-    console.log('image====>',imagee)
+
+  test(imagee): void{
+    console.log('image====>', imagee);
   }
 
   ngOnDestroy(): void {
@@ -328,6 +329,8 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     if (!uniqueProducts.has(currentProduct.id)) {
       this.products?.push(currentProduct);
     }
+
+    console.log(this.products);
 
     this.selectedProducts.emit(this.products);
   }

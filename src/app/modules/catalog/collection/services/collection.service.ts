@@ -67,6 +67,10 @@ export class CollectionService {
     return this.http.post(environment.catalog.collection.collection, data);
   }
 
+  deleteCollectionById(collectionId: number): Observable<any> {
+    return this.http.delete(`${environment.host}collection/${collectionId}`);
+  }
+
   updateStatus(id: number, status: number): Observable<any> {
     let data = JSON.stringify({
       status,
