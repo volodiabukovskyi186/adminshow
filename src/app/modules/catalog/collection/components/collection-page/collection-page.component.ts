@@ -141,10 +141,13 @@ export class CollectionPageComponent extends BasePage
         });
       });
       this.collection.put(data, c.id).subscribe(this.putHandler);
-      this.collection.updateCollectionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
-        this.ngxService.stopAll();
-        this.toastr.success("COLLECTION UPDATED ^_^");
-      })
+      if(this.selectedProductsPromotion){
+        this.collection.updateCollectionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
+          this.ngxService.stopAll();
+          this.toastr.success("COLLECTION UPDATED ^_^");
+        })
+      }
+     
     } else {
       c.descriptions.forEach((d) => {
         data.description.push({
@@ -156,10 +159,12 @@ export class CollectionPageComponent extends BasePage
       });
       this.collection.post(data).subscribe((res) => {
         this.postHandler(res);
+        if(this.selectedProductsPromotion){
          this.collection.updateCollectionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
           this.ngxService.stopAll();
           this.toastr.success("COLLECTION ADDED");
         })
+      }
       });
     }
     this.ngxService.start();

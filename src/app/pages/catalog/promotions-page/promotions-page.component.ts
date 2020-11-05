@@ -127,12 +127,21 @@ save = () => {
       }
     });
     this.prom.put(data, c.id).subscribe(this.putHandler);
+<<<<<<< HEAD
     if (this.selectedProductsPromotion === undefined) {
       this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
         this.ngxService.stopAll();
         this.toastr.success("PROMOTION UPDATED ^_^");
       })
     }
+=======
+    if(this.selectedProductsPromotion){
+    this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
+      this.ngxService.stopAll();
+      this.toastr.success("PROMOTION UPDATED ^_^");
+    })
+  }
+>>>>>>> e2c1a67a0817b2de167c12fb9a7e985204894f07
   } else {
     c.descriptions.forEach((d) => {
       data.description.push({

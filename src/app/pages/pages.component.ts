@@ -114,7 +114,7 @@ export class PagesComponent implements OnInit {
     if (this.pages.onTogleFilterClick) this.pages.onTogleFilterClick();
   }
   onDwnloadClick() {
-    console.log(this.pages.onDwnloadClick,'qqqq')
+    
 
     if (this.pages.onDwnloadClick) this.pages.onDwnloadClick();
   }

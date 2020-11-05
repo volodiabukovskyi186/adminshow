@@ -20,7 +20,7 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   // @Input() langs: ILanguage[];
   @Input() title: string = "";
   @Input() host: string = null;
-  @Input() public products: any[];
+  @Input() public products: any[] ;
   @Output() selectedProducts = new EventEmitter<any>();
 
   editorConfig: AngularEditorConfig = {
@@ -138,6 +138,7 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.generateProductsListForm();
     this.image.select.subscribe(this.selectHandler);
+    // this.products=[21,20]
   }
 
   ngOnDestroy(): void {
@@ -261,9 +262,7 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   public getSelectedProduct(currentProduct) {
     this.isSelectedProduct = false;
     this.productName = currentProduct.description.name;
-
     this.productsListForm.get('products').patchValue(this.productName);
-
     let uniqueProducts = new Set(this.products?.map(function(product) {
       return product.id;
     }));

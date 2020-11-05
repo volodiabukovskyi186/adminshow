@@ -114,8 +114,6 @@ export class PanelComponent implements OnInit {
 
   onPlusClick = () => this.plusClick.emit();
 
-
-
   //Download=>
   private _isDwnloadBtn: boolean = false;
   @Output() isDwnloadClick = new EventEmitter();

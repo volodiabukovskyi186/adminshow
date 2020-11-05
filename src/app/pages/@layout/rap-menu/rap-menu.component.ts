@@ -38,6 +38,13 @@ export class RapMenuComponent implements OnInit {
     });
     return res;
   }
+  closeMenu(item,indexItem):void{
+    this.menu.nav.forEach((elem,index)=>{
+      if(index!==indexItem){
+        elem.open=false;
+      }
+    })
+  }
 
   show(i) {
     console.log(i);

@@ -6,16 +6,15 @@
   <header *ngIf="showTop">
     <ng-content select="[header]"></ng-content>
     <div class="panel-header-buttons">
-        <a  href="http://api.showu.com.ua//src//Modules//Client//SubscriptionsClients//Subscriptions.xlsx">
+        <!-- <a  href="http://api.showu.com.ua//src//Modules//Client//SubscriptionsClients//Subscriptions.xlsx"></a> -->
       <button  class="button transparent small" style="position: relative;"  [attr.data-tooltip-left]="labels.download" @scale
               *ngIf="isDwnloadBtn"
-             
               (click)="onDwnloadClick()"
       >
         <rap-svg-ico [src]="'assets/icons/download.svg'"></rap-svg-ico>
       
       </button>
-    </a>
+    <!-- </a> -->
       <button style="position: relative;" [attr.data-tooltip-left]="labels.filter" @scale
         *ngIf="showRightToggleBtn"
         class="button transparent small"
