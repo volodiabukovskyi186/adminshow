@@ -283,7 +283,9 @@
     "weight": "Вес",
     "requiredDateStart": "Дата начала скидки обязательна.",
     "requiredDateEnd": "Дата окончания скидки обязательна.",
-    "requiredNewPrice": "Требуется новая цена."
+    "requiredNewPrice": "Требуется новая цена.",
+    "logoIsRequired": "Выберите логотип сайта",
+    "siteIconIsRequired": "Выберите иконку сайта"
   },
   "productsAttributes": {
     "productsAttributesAttr": "Атрибут",

@@ -287,7 +287,9 @@
     "weight": "Weight",
     "requiredDateStart": "Date start of discount is required.",
     "requiredDateEnd": "Date end of discount is required.",
-    "requiredNewPrice": "New price is required."
+    "requiredNewPrice": "New price is required.",
+    "logoIsRequired": "Logo is required",
+    "siteIconIsRequired": "Site icon is required"
   },
   "productsAttributes": {
     "productsAttributesAttr": "Attribute",

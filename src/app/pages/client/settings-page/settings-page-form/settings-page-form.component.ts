@@ -7,6 +7,7 @@ import { IImage } from "src/app/modules/gallery/folder/interfaces";
 import { ISiteSettingImg } from "../interfaces/site-descriptions";
 import { environment } from "src/environments/environment";
 import { SettingsPageService } from "../services/settings-page.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-settings-page-form',
@@ -85,6 +86,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   constructor(
+    protected toastr: ToastrService,
     public languageService: LocalizationLang,
     public image: ImagesService,
     private formBuilder: FormBuilder,
@@ -185,24 +187,24 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   setDataInForm(tabTitleN, id?) {
     this.selectedPlatform?.descriptions?.forEach((description) => {
-      if (tabTitleN === 'Eng' && description.id === 1) {
-        this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
-        console.log('eng', this.shopDetailsForm.controls.items['controls']);
+      if (tabTitleN === 'Eng' && description?.id === 1) {
+        this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
+        console.log('eng', this.shopDetailsForm?.controls?.items['controls']);
       }
 
-      if (tabTitleN === 'Укр' && description.id === 2) {  
-        this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
-        console.log('укр', this.shopDetailsForm.controls.items['controls']);
+      if (tabTitleN === 'Укр' && description?.id === 2) {  
+        this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
+        console.log('укр', this.shopDetailsForm?.controls?.items['controls']);
       }
 
-      if (tabTitleN === 'Рус' && description.id === 3) {
-        this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
-        console.log('рус', this.shopDetailsForm.controls.items['controls']);
+      if (tabTitleN === 'Рус' && description?.id === 3) {
+        this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
+        console.log('рус', this.shopDetailsForm?.controls?.items['controls']);
       }
 
-      if (tabTitleN === 'Pl' && description.id === 4) { 
-        this.shopDetailsForm.controls.items['controls'][0].patchValue({...description});
-        console.log('pl', this.shopDetailsForm.controls.items['controls']);
+      if (tabTitleN === 'Pl' && description?.id === 4) { 
+        this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
+        console.log('pl', this.shopDetailsForm?.controls?.items['controls']);
       }
     })
   }
@@ -371,11 +373,15 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   saveGeneralSettingsData(): void {
     this.settingsDataToSend();
-    
-    this.settingsPageService.editSettingsPageInfo(this.generalSettingsData, this.siteId).subscribe((res) => {
-      console.log(res);
-      this.selectedPlatform.descriptions = res.data.descriptions;
-    })
+
+    if (this.selectedImageSiteIcon && this.selectedImageLogo) {
+      this.settingsPageService.editSettingsPageInfo(this.generalSettingsData, this.siteId).subscribe((res) => {
+        console.log(res);
+        this.selectedPlatform.descriptions = res.data.descriptions;
+
+        this.toastr.success("SETTINGS UPDATED ^_^");
+      })
+    }
 
     console.log('test!!');
   }
@@ -495,23 +501,23 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
     this.selectedPlatform?.socials?.forEach((val) => {
       if (val.name === "Facebook") {
-        this.siteSettingsContactBottomForm.get('facebook').setValue(val.url);
+        this.siteSettingsContactBottomForm?.get('facebook').setValue(val.url);
       }
 
       if (val.name === "Instagram") {
-        this.siteSettingsContactBottomForm.get('instagram').setValue(val.url);
+        this.siteSettingsContactBottomForm?.get('instagram').setValue(val.url);
       }
 
       if (val.name === "Telegram") {
-        this.siteSettingsContactBottomForm.get('telegram').setValue(val.url);
+        this.siteSettingsContactBottomForm?.get('telegram').setValue(val.url);
       }
 
       if (val.name === "Viber") {
-        this.siteSettingsContactBottomForm.get('viber').setValue(val.url);
+        this.siteSettingsContactBottomForm?.get('viber').setValue(val.url);
       }
 
       if (val.name === "Youtube") {
-        this.siteSettingsContactBottomForm.get('youtube').setValue(val.url)
+        this.siteSettingsContactBottomForm?.get('youtube').setValue(val.url)
       }
     });
   }

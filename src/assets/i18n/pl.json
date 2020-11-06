@@ -88,6 +88,9 @@
   "dashboard" :{
     "dashboard": "Deska rozdzielcza"
   },
+  "promotion": {
+    "add_edit_promotion": "Добавить/Изменить акцию"
+  },
   "category": {
     "category": "Kategoria",
     "categories": "Kategorie",
@@ -288,7 +291,9 @@
     "weight": "Waga",
     "requiredDateStart": "Data rozpoczęcia rabatu jest wymagana.",
     "requiredDateEnd": "Data zakończenia rabatu jest wymagana.",
-    "requiredNewPrice": "Nowa cena jest wymagana."
+    "requiredNewPrice": "Nowa cena jest wymagana.",
+    "logoIsRequired": "Logo jest wymagane.",
+    "siteIconIsRequired": "Site ikonę jest wymagane."
   },
   "productsAttributes": {
     "productsAttributesAttr": "Atrybut",

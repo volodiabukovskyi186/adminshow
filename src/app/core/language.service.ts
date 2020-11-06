@@ -1,7 +1,9 @@
-import { Injectable,Inject } from "@angular/core";
+import { Injectable, Inject, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-
-import {DOCUMENT} from "@angular/common";
+import { Observable } from "rxjs";
+import { DOCUMENT } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 // import { pl } from '../../../../assets/icons/pl.svg';
 
 export interface ILangItem {
@@ -13,16 +15,22 @@ export interface ILangItem {
 @Injectable({
   providedIn: "root",
 })
-export class LanguageService {
+export class LanguageService implements OnInit {
 
-  constructor(public translate: TranslateService,
+  constructor(
+    public translate: TranslateService,
+    private http: HttpClient,
     @Inject(DOCUMENT) private document: Document) {
       translate.onLangChange.subscribe(lang => {
         localStorage.setItem('currentLang',lang.lang)
         console.log('vvvvvvvv=>',lang.lang);
-      
     });
+    this.getDefaultLanguage();
     this.init();
+  }
+
+  ngOnInit(): void {
+    //this.getDefaultLength();
   }
 
   public langs: Array<ILangItem> = [];
@@ -75,6 +83,10 @@ export class LanguageService {
     }
   }
 
+  getDefaultLanguage(): Observable<any> {
+    return this.http.get(`${environment.host}getDefaultLanguage`);
+  }
+
   init() {
     // init langs
 
@@ -82,13 +94,16 @@ export class LanguageService {
     const en: ILangItem = { flag: "en", name: "en", locale: "en" };
     const ru: ILangItem = { flag: "ru", name: "ru", locale: "ru" };
     const ua: ILangItem = { flag: "ua", name: "ua", locale: "ua" };
-  
-    let defaultLang = pl;
 
     this.langs = [pl, en, ru, ua];
-    this.translate.addLangs([defaultLang.name, en.name]);
-    this.translate.defaultLang = defaultLang.name;
-    this.use(defaultLang.name);
-    
+
+    this.getDefaultLanguage().subscribe((res) => {
+      this.translate.addLangs([res.data.code, en.name]);
+      this.translate.defaultLang = res.data.code;
+      this.use(res.data.code);
+    })
+
+    //console.log('defaultLanggggggggg =====>>>>', defaultLang);
+    //console.log('this.translate.defaultLang', this.translate.defaultLang);
   }
 }

@@ -33,6 +33,14 @@
                                         <img *ngIf="selectedImageLogo" src="{{ host + selectedImageLogo?.src }}" class="selected-logo-img"/>
                                     </div>
                                 </div>
+                                <div *ngIf="!selectedImageLogo">
+                                    <div class="reset-error-content">
+                                      <div class="error-message">
+                                        <img class="error-message-icon" src="assets/icons/mistake-red.svg"/>
+                                        <div class="error-message-text">{{ 'settings.logoIsRequired' | translate }}</div>
+                                      </div>
+                                    </div>
+                                </div>
                                 <!-- <div class="upload-file-container cursor-pointer">
                                     <div class="upload-file-container__input-wrapper padding-left-right_15">
                                         <span class="upload-file-container__input-text">Завантажити фото</span>
@@ -50,6 +58,14 @@
                                 <div class="upload-file-img site-icon-img cursor-pointer">
                                     <div class="site-icon-content">112&#215;112</div>
                                     <img *ngIf="selectedImageSiteIcon" src="{{ host + selectedImageSiteIcon?.src }}" class="selected-site-icon-img"/>
+                                </div>
+                                <div *ngIf="!selectedImageSiteIcon">
+                                    <div class="reset-error-content">
+                                      <div class="error-message">
+                                        <img class="error-message-icon" src="assets/icons/mistake-red.svg"/>
+                                        <div class="error-message-text">{{ 'settings.siteIconIsRequired' | translate }}</div>
+                                      </div>
+                                    </div>
                                 </div>
                                 <!-- <div class="upload-file-container cursor-pointer">
                                     <div class="upload-file-container__input-wrapper padding-left-right_15">

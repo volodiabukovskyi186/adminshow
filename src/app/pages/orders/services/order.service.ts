@@ -48,6 +48,10 @@ export class OrderService {
     return this.http.get(`${environment.host}ownerOrders` + params);
   }
 
+  getClients(): Observable<any> {
+    return this.http.get(`${environment.host}/users`);
+  }
+
   // post(data: any): Observable<any> {
   //   return this.http.post(environment.catalog.option.option, data);
   // }

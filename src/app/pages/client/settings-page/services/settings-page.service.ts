@@ -34,7 +34,7 @@ export class SettingsPageService {
   };
 
   constructor(
-    private http: HttpClient,
+    public http: HttpClient,
     public languageService: LanguageService
   ) {}
 

@@ -303,7 +303,9 @@
     "weight": "Вага",
     "requiredDateStart": "Потрібна дата початку знижки.",
     "requiredDateEnd": "Потрібна дата закінчення знижки.",
-    "requiredNewPrice": "Потрібна нова ціна."
+    "requiredNewPrice": "Потрібна нова ціна.",
+    "logoIsRequired": "Оберіть лого сайту",
+    "siteIconIsRequired": "Оберіть іконку сайту"
   },
   "productsAttributes": {
     "productsAttributesAttr": "Атрибут",

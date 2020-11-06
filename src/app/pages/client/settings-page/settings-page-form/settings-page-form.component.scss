@@ -176,7 +176,7 @@
 .upload-file-img {
     background-color: #fff;
     border: 1px solid #000;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 }
 
 .logo-img {
@@ -389,4 +389,32 @@
     flex-direction: column;
     justify-content: center;
     flex-wrap: nowrap;
+}
+
+.reset-error-content {
+    display: flex;
+    flex-direction: column;
+}
+  
+.error-message {
+    max-width: 95%;
+    height: 45px;
+    background-color: #fae2e5;
+    border: 0.5px solid #b14464;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+}
+  
+.error-message-icon {
+    max-width: 23px;
+    margin-left: 18px;
+}
+  
+.error-message-text {
+    margin-left: 13px;
+    font-size: 14px;
 }
