@@ -29,9 +29,9 @@ export class ReviewsFormComponent implements OnInit {
   }];
 
   public allStatusCodes = [
-    {value: 1, name: "statusCodes.new"},
-    {value: 2, name: "statusCodes.rejected"},
-    {value: 3, name: "statusCodes.approved"},
+    {value: 0, name: "statusCodes.new"},
+    {value: -1, name: "statusCodes.rejected"},
+    {value: 1, name: "statusCodes.approved"},
   ];
 
   public reviewsForm: FormGroup;

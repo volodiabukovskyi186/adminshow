@@ -16,15 +16,15 @@ import { LanguageService } from "src/app/modules/localization/language/language.
 export class ReviewsPageComponent extends BasePage implements OnInit {
   public selectedReview: any;
   public statusCodes = {
-    "1": {
+    "0": {
       name: 'statusCodes.new',
       backgroundColor: '#3498DB'
     },
-    "2": {
+    "-1": {
       name: 'statusCodes.rejected',
       backgroundColor: '#52BE80'
     },
-    "3": {
+    "1": {
       name: 'statusCodes.approved',
       backgroundColor: '#E74C3C '
     }
@@ -88,7 +88,6 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
         ];
       });
   }
-
   getList() {
     this.ngxService.start();
     this.reviewsPageService.getReviews().subscribe(this.getListHandler);
@@ -97,8 +96,8 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   getListHandler = (data) => {
     this.ngxService.stopAll();
     this.reviewsPageService.reviews = data;
+    console.log('reviews',this.reviewsPageService.reviews)
   };
-
   getLangList() {
     this.ngxService.start();
     this.langService.getLangs().subscribe(this.getLangListHandler);
