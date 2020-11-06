@@ -148,10 +148,12 @@ save = () => {
     console.log('create new action===>',data)
     this.prom.post(data).subscribe((res) => {
       this.postHandler(res);
-      this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
-        this.ngxService.stopAll();
-        this.toastr.success("PROMOTION ADDED");
-      })
+      if(this.selectedProductsPromotion) {
+        this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
+          this.ngxService.stopAll();
+          this.toastr.success("PROMOTION ADDED");
+        })
+      }
     })
   }
   // console.log('data========>hellow',data);
