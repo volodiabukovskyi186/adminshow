@@ -9,11 +9,11 @@
                     <div class="reviews__text">{{ review?.text }}</div>
                 </div>
                 <div class="reviews-content__right">
-                    <span> 
-                        {{ modifyDateString(review?.created_at, 'months') | translate }} 
-                        {{ modifyDateString(review?.created_at, 'day') }}, 
-                        {{ modifyDateString(review?.created_at, 'year') }}
-                    </span>
+                                        <span> 
+                                            {{ modifyDateString(review?.created_at, 'months') | translate }} 
+                                            {{ modifyDateString(review?.created_at, 'day') }}, 
+                                            {{ modifyDateString(review?.created_at, 'year') }}
+                                        </span>
                 </div>
             </div>
             <form [formGroup]="reviewsForm">
@@ -27,10 +27,10 @@
                         <mat-form-field appearance="standart" class="sort-products">
                             <div class="sort-products-wrapper">
                                 <mat-select
-                                    (selectionChange)="onChange($event.value)"
-                                    id="status"
-                                    required
-                                    formControlName="status">
+                                        (selectionChange)="onChange($event.value)"
+                                        id="status"
+                                        required
+                                        formControlName="status">
                                     <div *ngFor="let statusCode of allStatusCodes">
                                         <mat-option [value]="statusCode.value">
                                             {{ statusCode.name | translate }}
@@ -45,3 +45,4 @@
         </div>
     </div>
 </div>
+

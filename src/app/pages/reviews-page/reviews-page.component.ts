@@ -46,7 +46,6 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     super(pages);
     
   }
-
   public showFilters: boolean = false;
   public reviewsData: any;
   public reviewId: number;
@@ -147,7 +146,6 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
 
   reviewsFormData(event) {
     console.log(event);
-
     this.reviewsData = event;
   }
 
@@ -171,7 +169,9 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   };
 
   save = () => {
+
     if (this.selectedReview && !this.showFilters) {
+    console.log('reviews',this.reviewsData)
       this.reviewsPageService.updateReviewById(this.reviewsData, this.reviewId).subscribe((res) => {
         this.reviewsPageService.reviews?.data.forEach((val) => {
           if (res.data.id === val.id) {

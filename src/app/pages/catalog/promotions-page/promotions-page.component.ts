@@ -204,15 +204,18 @@ edit(i) {
 public deletePromotion(promotionId) {
   this.prom.removePromotion(promotionId).subscribe((res) => {
     console.log(res);
+    this.getList()
   });
   this.prom.data.data = this.prom.data.data.filter((d) => {
     return d.id !== promotionId;
   });
+  //   this.prom.getList().subscribe((res) => {
+  //     this.prom.data = res;
+  //   });
   
-  this.prom.getList().subscribe((res) => {
-    this.prom.data = res;
-  });
+  
 }
+
 
 selectedProducts(event) {
   console.log(event);
