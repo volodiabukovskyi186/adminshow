@@ -338,7 +338,8 @@
     "orderDateEnd": "End date is required",
     "orderManufacturerIsRequired": "Manufacturer is required",
     "orderClientIsRequired": "Client is required",
-    "orderFilterBtn": "Filter"
+    "orderFilterBtn": "Filter",
+    "clientSearch": "Search"
   },
   "liqpay":{
     "onlinePay":"Online pay",

@@ -82,6 +82,7 @@ import { ReviewsFiltersFormComponent } from './reviews-page/reviews-filters-form
 import { LiqpayPageComponent } from './client/liqpay-page/liqpay-page.component';
 import { LipayFormComponent } from '../modules/client/liqpay/lipay-form/lipay-form.component';
 import { OrderFiltersFormComponent } from './orders/order-filters-form/order-filters-form.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 @NgModule({
   declarations: [
@@ -175,6 +176,7 @@ import { OrderFiltersFormComponent } from './orders/order-filters-form/order-fil
         DeliveryMethodsModule,
         StorageModule,
         MatTableModule,
+        ClickOutsideModule,
         // ToastrModule added
     ],
   providers: [

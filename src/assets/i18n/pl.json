@@ -342,7 +342,8 @@
     "orderDateEnd": "Data zakończenia zamówienia jest wymagana",
     "orderManufacturerIsRequired": "Producent jest wymagany",
     "orderClientIsRequired": "Klient jest wymagany",
-    "orderFilterBtn": "Filtr"
+    "orderFilterBtn": "Filtr",
+    "clientSearch": "Szukaj"
   },
   "liqpay":{
     "onlinePay":"PŁATNOŚĆ ONLINE",

@@ -51,6 +51,13 @@ export class OrderService {
   getClients(): Observable<any> {
     return this.http.get(`${environment.host}/users`);
   }
+  
+  searchClient(searchData): Observable<any> {
+    //let params = `?first_name=${firstName}&last_name=${lastName}&tel=${tel}&email=${email}`;
+    let params = `?q=${searchData}`;
+
+    return this.http.get(`${environment.host}clients/search` + params);
+  }
 
   // post(data: any): Observable<any> {
   //   return this.http.post(environment.catalog.option.option, data);
