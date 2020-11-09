@@ -36,6 +36,10 @@ export class ReviewsPageService {
     return this.http.put<IReviewUpdate>(`${environment.host}review/${reviewId}`, reviewToUpdate);
   }
 
+  // addcommentReviewById(reviewToUpdate, reviewId): Observable<IReviewUpdate> {
+  //   return this.http.post<IReviewUpdate>(`${environment.host}review_comment`, reviewToUpdate);
+  // }
+
   getReviewsByFilter(dateStart, dateEnd, status): Observable<IReviewsResponse> {
     let params = `${environment.host}reviews/filter`;
 
