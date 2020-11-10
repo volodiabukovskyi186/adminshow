@@ -34,7 +34,7 @@
             <th width="64px">ID</th>
             <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.manufacturer' | translate }}</th>
-            <th width="128px" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.sum' | translate }}</th>
+            <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.actions' | translate }}</th>
@@ -46,7 +46,7 @@
             <td width="64px" class="text-center">{{ order?.id }}</td>
             <td width="128px" class="text-center">{{ order?.last_name }} {{ order?.first_name }}</td>
             <td width="128px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
-            <td width="128px" class="text-center" *ngIf="currentUserRoleId === 1">{{ order?.total.slice(0, -2) }}</td>
+            <td width="128px" class="text-center">{{ order?.total.slice(0, -2) }}</td>
             <td width="128px" class="text-center">{{ order?.created_at }}</td>
             <td width="128px" class="text-center">
                <div class="order-status-content">
@@ -73,6 +73,11 @@
          </div>
          </tbody>
       </table>
+      <div *ngIf="currentUserRoleId === 1" class="general-sum">
+         <div>{{ 'orders.totalSum' | translate }} :</div>
+         <div class="sum-bold"> {{ totalSum }}</div> 
+         <div> {{ 'orders.ordersUAH' | translate }}</div>
+      </div>
   
       <app-pagination
          *ngIf="orderService.order?.data.length > 9"

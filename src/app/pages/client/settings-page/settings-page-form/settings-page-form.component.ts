@@ -94,9 +94,13 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   ) {}
 
   public ngOnChanges(changes: SimpleChanges) {
-    if(changes.selectedPlatform?.currentValue) {
+    if (changes.selectedPlatform?.currentValue) {
       this.setDataInForm(this.tabTitleName);
       this.setSocialsValue();
+
+      this.generalSettingsForm?.get('location').setValue(this.selectedPlatform?.data?.location);
+
+      console.log('selectedPlatform ========>>>>>>>>', this.selectedPlatform);
     }
   }
 
@@ -113,7 +117,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
     this.image.select.subscribe(this.selectHandler);
 
-    this.generalSettingsForm.get('location').setValue(this.selectedPlatform?.location);
     this.getEditSettingsPageFormData();
     this.getGenerateShopDetailsForm();
     this.getSiteSettingsContactTopForm();
@@ -186,7 +189,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   setDataInForm(tabTitleN, id?) {
-    this.selectedPlatform?.descriptions?.forEach((description) => {
+    this.selectedPlatform?.data?.descriptions?.forEach((description) => {
       if (tabTitleN === 'Eng' && description?.id === 1) {
         this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
         console.log('eng', this.shopDetailsForm?.controls?.items['controls']);
@@ -211,7 +214,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   getDescription(selectedDescription) {
     this.selectedDescription = selectedDescription;
-    this.selectedPlatform?.descriptions?.forEach((description) => {
+    this.selectedPlatform?.data?.descriptions?.forEach((description) => {
       if (selectedDescription.id === description.id) {
         if (this.shopDetailsForm.valueChanges) {
           this.shopDetailsForm.valueChanges.subscribe((res) => {
@@ -228,7 +231,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
     this.shopDetailsForm.controls.items['controls'][0].patchValue({...selectedDescription});
 
-    this.selectedPlatform?.descriptions?.forEach((description) => {
+    this.selectedPlatform?.data?.descriptions?.forEach((description) => {
       if ((selectedDescription) &&
           (selectedDescription.id === description.id) && 
           
@@ -265,7 +268,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       }
     })
 
-    console.log(this.selectedPlatform?.descriptions);
+    console.log(this.selectedPlatform?.data?.descriptions);
   }
 
   addDescription(): void {
@@ -282,7 +285,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     }
 
     this.settingsPageService.createPhone(this.newPhoneData).subscribe((newPhones) => {
-      this.selectedPlatform.phones.push(newPhones.data);
+      this.selectedPlatform.data?.phones.push(newPhones.data);
     })
 
      this.additionalPhoneNumber = null;
@@ -328,20 +331,20 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     console.log(this.items);
     console.log(this.formBuilder);
 
-    if (this.selectedPlatform && 
-      this.selectedPlatform?.logo && 
-      this.selectedPlatform?.logo?.src) {
-      this.selectedPlatform.logo.id = this.selectedImageLogo?.id;
-      this.selectedPlatform.logo.src = this.selectedImageLogo?.src;
-      this.selectedPlatform.logo.src_mini = this.selectedImageLogo?.src_mini;
+    if (this.selectedPlatform.data && 
+      this.selectedPlatform?.data?.logo && 
+      this.selectedPlatform?.data?.logo?.src) {
+      this.selectedPlatform.data.logo.id = this.selectedImageLogo?.id;
+      this.selectedPlatform.data.logo.src = this.selectedImageLogo?.src;
+      this.selectedPlatform.data.logo.src_mini = this.selectedImageLogo?.src_mini;
     }
 
-    if (this.selectedPlatform && 
-      this.selectedPlatform?.icon && 
-      this.selectedPlatform?.icon?.src) {
-      this.selectedPlatform.icon.id = this.selectedImageSiteIcon?.id;
-      this.selectedPlatform.icon.src = this.selectedImageSiteIcon?.src;
-      this.selectedPlatform.icon.src_mini = this.selectedImageSiteIcon?.src_mini;
+    if (this.selectedPlatform.data && 
+      this.selectedPlatform?.data?.icon && 
+      this.selectedPlatform?.data?.icon?.src) {
+      this.selectedPlatform.data.icon.id = this.selectedImageSiteIcon?.id;
+      this.selectedPlatform.data.icon.src = this.selectedImageSiteIcon?.src;
+      this.selectedPlatform.data.icon.src_mini = this.selectedImageSiteIcon?.src_mini;
     }
 
     const selectedImageLogoObj = {
@@ -357,14 +360,14 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     }
 
     this.generalSettingsData = {
-      id: this.selectedPlatform?.id,
+      id: this.selectedPlatform?.data?.id,
       logo_id: this.selectedImageLogo?.id,
       icon_id: this.selectedImageSiteIcon?.id,
       // logo: selectedImageLogoObj,
       // icon: selectedImageSiteIconObj,
-      description: this.selectedPlatform?.descriptions,
+      description: this.selectedPlatform?.data?.descriptions,
       email: this.siteSettingsContactBottomForm?.value?.siteEmail,
-      location: this.selectedPlatform?.location
+      location: this.selectedPlatform?.data?.location
     };
 
     this.siteId = 1;
@@ -377,7 +380,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     if (this.selectedImageSiteIcon && this.selectedImageLogo) {
       this.settingsPageService.editSettingsPageInfo(this.generalSettingsData, this.siteId).subscribe((res) => {
         console.log(res);
-        this.selectedPlatform.descriptions = res.data.descriptions;
+        this.selectedPlatform.data.descriptions = res.data.descriptions;
 
         this.toastr.success("SETTINGS UPDATED ^_^");
       })
@@ -391,7 +394,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       console.log(res);
     })
 
-    this.selectedPlatform.phones = this.selectedPlatform?.phones.filter((val) => {
+    this.selectedPlatform.data.phones = this.selectedPlatform?.data?.phones.filter((val) => {
       return val.id !== sitePhone.id;
     })
   }
@@ -497,9 +500,9 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   setSocialsValue(): void {
-    this.siteSettingsContactBottomForm?.get('siteEmail').setValue(this.selectedPlatform?.email);
+    this.siteSettingsContactBottomForm?.get('siteEmail').setValue(this.selectedPlatform?.data?.email);
 
-    this.selectedPlatform?.socials?.forEach((val) => {
+    this.selectedPlatform?.data?.socials?.forEach((val) => {
       if (val.name === "Facebook") {
         this.siteSettingsContactBottomForm?.get('facebook').setValue(val.url);
       }

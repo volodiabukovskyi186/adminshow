@@ -15,6 +15,7 @@ export class OrderService {
     data: [],
     skip: 0,
     take: 20,
+    sum: 0,
     host: environment.host
   };
 

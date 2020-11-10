@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ILanguage } from "src/app/modules/localization/language/language.service";
 import { FormGroup, FormControl } from "@angular/forms";
 
@@ -7,7 +7,7 @@ import { FormGroup, FormControl } from "@angular/forms";
   templateUrl: './currency-form.component.html',
   styleUrls: ['./currency-form.component.scss']
 })
-export class CurrencyFormComponent implements OnInit {
+export class CurrencyFormComponent implements OnInit, OnChanges {
   @Input() currency;
   @Input() langs: ILanguage[];
   @Input() title: string = "";
@@ -35,11 +35,19 @@ export class CurrencyFormComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.generateEditCurrencyInfoForm();
     this.getEditCurrencyFormData();
+  }
 
-    this.editCurrencyInfoForm.get('currencyStatus').setValue(this.currency?.status);
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (this.currency === '') {
+      this.editCurrencyInfoForm.reset();
+    }
+
+    if (changes.currency && (this.currency !== '')) {
+      this.setValueToCurrencyForm();
+    }
   }
 
   generateEditCurrencyInfoForm(): void {
@@ -53,12 +61,21 @@ export class CurrencyFormComponent implements OnInit {
     })
   }
 
-  onChange(event) {
-    this.editCurrencyInfoForm.get('currencyStatus').setValue(event);
-  }
-
   getEditCurrencyFormData(): void {
     this.editCurrencyInfoForm.valueChanges
     .subscribe(() => this.currenciesFormData.emit(this.editCurrencyInfoForm.value));
+  }
+
+  setValueToCurrencyForm(): void {
+    this.editCurrencyInfoForm?.setValue({ 
+      currencyName: this.currency?.currency_title,
+      currencyISOcode: this.currency?.code,
+      currencySymbolOnTheLeft: this.currency?.simbol_left,
+      currencySymbolOnTheRight: this.currency?.simbol_right,
+      currencyValue: this.currency?.value,
+      currencyStatus: this.currency?.status
+    });
+
+    console.log(this.currency?.status);
   }
 }

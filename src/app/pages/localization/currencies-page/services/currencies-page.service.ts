@@ -61,14 +61,14 @@ export class CurrenciesService {
     return this.http.post<any>(`${environment.host}currency`, newCurrency);
   }
 
-  updateCurrencyStatus(id: number, status: number): Observable<any> {
-    let data = JSON.stringify({
-      status,
-    });
-    return this.http.put(
-      `${environment.host}updateStatus/${id}`,
-      data
-    );
+  updateCurrencyStatus(id: number, statusNumber: number): Observable<any> {
+    let data = {
+      status: statusNumber
+    };
+
+    console.log(data);
+
+    return this.http.put(`${environment.host}currency/updateStatus/${id}`, data);
   }
 
   updateStatusCurrencyInList(id: number, status: number) {
@@ -77,5 +77,9 @@ export class CurrenciesService {
         element.status = status;
       }
     });
+  }
+
+  deleteCurrency(currencyId: number) {
+    return this.http.delete(`${environment.host}currency/${currencyId}`);
   }
 }

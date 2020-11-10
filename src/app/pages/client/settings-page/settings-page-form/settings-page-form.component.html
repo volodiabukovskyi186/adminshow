@@ -27,27 +27,21 @@
                         <div class="settings-input-content settings-img-container" (click)="onPressLogo()">
                             <label>{{ "settings.logo" | translate }}</label>
                             <div class="upload-file">
-                                <div class="upload-file-img logo-img cursor-pointer">
-                                    <div class="site-icon-content-logo">
-                                        200&#215;100
-                                        <img *ngIf="selectedImageLogo" src="{{ host + selectedImageLogo?.src }}" class="selected-logo-img"/>
+                                <div class="upload-file">
+                                    <div class="upload-file-img logo-img cursor-pointer">
+                                        <div class="site-icon-content-logo">
+                                            <div *ngIf="!selectedImageLogo && !selectedPlatform?.data?.logo?.src">200&#215;100</div>
+                                            <img *ngIf="selectedPlatform?.data?.logo?.src" src="{{ host + selectedPlatform?.data?.logo?.src }}" class="selected-logo-img"/>
+                                            <img *ngIf="selectedImageLogo" src="{{ host + selectedImageLogo?.src }}" class="selected-logo-img"/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div *ngIf="!selectedImageLogo">
+                                <!-- <div *ngIf="!selectedImageLogo">
                                     <div class="reset-error-content">
                                       <div class="error-message">
                                         <img class="error-message-icon" src="assets/icons/mistake-red.svg"/>
                                         <div class="error-message-text">{{ 'settings.logoIsRequired' | translate }}</div>
                                       </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="upload-file-container cursor-pointer">
-                                    <div class="upload-file-container__input-wrapper padding-left-right_15">
-                                        <span class="upload-file-container__input-text">Завантажити фото</span>
-                                        <input matInput
-                                            formControlName="logo"
-                                            class="upload-file-container__input"
-                                            id="logo">
                                     </div>
                                 </div> -->
                             </div>
@@ -56,17 +50,18 @@
                             <label>{{ "settings.siteIcon" | translate }}</label>
                             <div class="upload-file upload-file-bottom">
                                 <div class="upload-file-img site-icon-img cursor-pointer">
-                                    <div class="site-icon-content">112&#215;112</div>
+                                    <div *ngIf="!selectedImageSiteIcon && !selectedPlatform?.icon?.logo?.src" class="site-icon-content">112&#215;112</div>
+                                    <img *ngIf="selectedPlatform?.data?.icon?.src" src="{{ host + selectedPlatform?.data?.icon?.src }}" class="selected-site-icon-img"/>
                                     <img *ngIf="selectedImageSiteIcon" src="{{ host + selectedImageSiteIcon?.src }}" class="selected-site-icon-img"/>
                                 </div>
-                                <div *ngIf="!selectedImageSiteIcon">
+                                <!-- <div *ngIf="!selectedImageSiteIcon">
                                     <div class="reset-error-content">
                                       <div class="error-message">
                                         <img class="error-message-icon" src="assets/icons/mistake-red.svg"/>
                                         <div class="error-message-text">{{ 'settings.siteIconIsRequired' | translate }}</div>
                                       </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- <div class="upload-file-container cursor-pointer">
                                     <div class="upload-file-container__input-wrapper padding-left-right_15">
                                         <span class="upload-file-container__input-text">Завантажити фото</span>
@@ -85,13 +80,13 @@
                                     formControlName="location"
                                     class="settings-input"
                                     id="location"
-                                    [(ngModel)]="selectedPlatform.location">
+                                    >
                             </div>
                         </div>
                     </form>
                     <rap-step-tabs (onSelect)="onClickChangeTabDescription($event)">
                         <rap-step-tab
-                            *ngFor="let item of selectedPlatform?.descriptions; let indexAddress = index;"
+                            *ngFor="let item of selectedPlatform?.data?.descriptions; let indexAddress = index;"
                             [imgSrc]="languageService.getFromList(item?.lang_id)?.flag"
                             [title]="langShortTitle[item?.lang_id]?.title | translate"
                             (click)="getDescription(item)"
@@ -173,7 +168,7 @@
                 <rap-step-tab [title]="'settings.contactData' | translate">
                     <form [formGroup]="siteSettingsContactTopForm" (submit)="getSiteSettingsContactTopForm()" class="phone-form-container">
                         <label class="phone-input">{{ "settings.siteTelephone" | translate }}</label>
-                        <div *ngFor="let phoneNumber of selectedPlatform?.phones; index as i">
+                        <div *ngFor="let phoneNumber of selectedPlatform?.data?.phones; index as i">
                             <div class="settings-input-content">
                                 <div></div>
                                 <div class="settings-input-content-wrapper">
@@ -341,7 +336,7 @@
                             <label>{{ "settings.language" | translate }}</label>
                             <div class="sort-products-container">
                                 <mat-form-field appearance="standart" class="sort-products">
-                                    <div class="sort-products-wrapper sort-settings-content">
+                                    <div class="sort-products-wrapper">
                                         <mat-select
                                             id="language"
                                             required

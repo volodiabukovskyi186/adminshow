@@ -41,10 +41,11 @@ export class SettingsPageComponent extends BasePage implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getList();
+
     super.initPagesSettings();
     super.initPanelButton();
 
-    this.getList();
     this.getLangList();
     this.initTranslate();
 
@@ -77,18 +78,24 @@ export class SettingsPageComponent extends BasePage implements OnInit {
       });
   }
 
+  public allSettingsData: any;
+
   getList() {
     this.ngxService.start();
-    this.settingsPageService.getSiteDataById().subscribe(this.getListHandler);
+    this.settingsPageService.getSiteDataById().subscribe((res) => {
+      console.log('tartatat', res);
+      this.allSettingsData = res;
+
+      this.settingsPageService.settings.data = this.allSettingsData;
+      //this.getListHandler(res);
+    });
   }
 
-  getListHandler = (data) => {
-    this.ngxService.stopAll();
-    this.settingsPageService.settings = data;
-
-    console.log(this.settingsPageService.settings?.data);
-    console.log(data);
-  };
+  // getListHandler(data) {
+  //   this.ngxService.stopAll();
+  //   console.log(data);
+  //   this.settingsPageService.settings.data = data;
+  // };
 
   getLangList() {
     this.ngxService.start();
@@ -98,8 +105,6 @@ export class SettingsPageComponent extends BasePage implements OnInit {
   getLangListHandler = (data) => {
     this.ngxService.stopAll();
     this.langService.languages = data;
-
-    //this.siteMenuForm.initDescription(this.langService.languages.data);
   };
 
   getDescByLang() {
@@ -110,9 +115,9 @@ export class SettingsPageComponent extends BasePage implements OnInit {
     })
   }
 
-  objectKeys(obj) {
-    return Object.assign(obj);
-  }
+  // objectKeys(obj) {
+  //   return Object.assign(obj);
+  // }
 
   getDefaultLanguage() {
     this.settingsPageService.getSiteDefaultLanguage().subscribe((res) => {

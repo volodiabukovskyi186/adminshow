@@ -335,7 +335,9 @@
     "orderManufacturerIsRequired": "Нужно выбрать производителя",
     "orderClientIsRequired": "Нужно выбрать клиента",
     "orderFilterBtn": "Фильтровать",
-    "clientSearch": "Поиск"
+    "clientSearch": "Поиск",
+    "totalSum": "Общий оборот",
+    "ordersUAH": " грн"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

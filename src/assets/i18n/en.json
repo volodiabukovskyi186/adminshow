@@ -339,7 +339,9 @@
     "orderManufacturerIsRequired": "Manufacturer is required",
     "orderClientIsRequired": "Client is required",
     "orderFilterBtn": "Filter",
-    "clientSearch": "Search"
+    "clientSearch": "Search",
+    "totalSum": "Total sum",
+    "ordersUAH": " uah"
   },
   "liqpay":{
     "onlinePay":"Online pay",

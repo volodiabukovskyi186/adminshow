@@ -5,5 +5,6 @@ export interface IOrderResponse {
     count: number;
     skip: number;
     take: number;
+    sum: number;
     host: string;
   }

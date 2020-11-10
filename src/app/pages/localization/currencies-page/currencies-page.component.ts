@@ -137,7 +137,9 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
   };
 
   plus = () => {
-    this.currenciesService.initEmptyModel();
+    this.selectedCurrency = '';
+
+    //this.currenciesService.initEmptyModel();
     // this.manufacturerForm.initDesc(this.langService.languages.data);
     this.openForm();
   };
@@ -171,6 +173,16 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
       this.editedCurrency.status == 0 ? 1 : 0
     );
   };
+
+  deleteSelectedCurrency(currency): void {
+    this.currenciesService.deleteCurrency(currency.id).subscribe((res) => {
+      console.log(res);
+    })
+
+    this.currenciesService.currency.data = this.currenciesService.currency?.data.filter((val) => {
+      return val.id !== currency.id;
+    })
+  }
 
   pageToHandler(page: number): void {
     this.currenciesService.page = page;

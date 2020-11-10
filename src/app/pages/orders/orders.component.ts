@@ -27,6 +27,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
   public showFilters: boolean = false;
   public currentUserRoleId: number;
+  public totalSum: string;
 
   public statusCodes = {
     "1": {
@@ -142,6 +143,8 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   getListHandler = (data) => {
     this.ngxService.stopAll();
     this.orderService.order = data;
+    this.totalSum = '\xa0' + this.orderService.order.sum + '\xa0';
+
     console.log(this.orderService.order);
 
     this.orderService.order.data.forEach((val) => {

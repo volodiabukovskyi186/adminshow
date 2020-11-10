@@ -25,8 +25,16 @@ export class SettingsPageService {
       descriptions: [],
       phones: [],
       socials: [],
-      logo: {},
-      icon: {}
+      logo: {
+        id: null, 
+        src: null, 
+        src_mini: null
+      },
+      icon: {
+        id: null, 
+        src: null, 
+        src_mini: null
+      }
     },
     // skip: 0,
     // take: 10,
