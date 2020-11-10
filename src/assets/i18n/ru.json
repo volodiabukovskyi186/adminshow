@@ -334,7 +334,8 @@
     "orderDateEnd": "Конечная дата заказа обязательна",
     "orderManufacturerIsRequired": "Нужно выбрать производителя",
     "orderClientIsRequired": "Нужно выбрать клиента",
-    "orderFilterBtn": "Фильтровать"
+    "orderFilterBtn": "Фильтровать",
+    "clientSearch": "Поиск"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

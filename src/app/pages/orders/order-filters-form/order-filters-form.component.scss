@@ -7,91 +7,91 @@
 }
 
 .reviews-form-container {
-    max-width: 453px;
-    margin-left: auto;
-    margin-right: auto;
+  max-width: 453px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .review-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .reviews-content__left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .reviews-form-title {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    font-size: 18px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 18px;
 }
 
 .reviews-response-text {
-    border: 0.5px solid #808080;
-    border-radius: 4px;
-    height: 70px;
-    margin-bottom: 15px;
-    padding: 0px 16px !important;
+  border: 0.5px solid #808080;
+  border-radius: 4px;
+  height: 70px;
+  margin-bottom: 15px;
+  padding: 0px 16px !important;
 }
 
 .reviews__text {
-    margin-top: 8px;
-    //min-width: 240px;
+  margin-top: 8px;
+  //min-width: 240px;
 }
 
 .reviews-content__right {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .padding-left-right_15 {
-    padding-left: 15px;
-    padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .reviews-content__main {
-    width: 100%;
+  width: 100%;
 }
 
 .reviews-response-status {
-    width: 66%;
+  width: 66%;
 }
 
 .reviews-date {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 .reviews-date-text {
-    border-radius: 4px;
-    padding: 4px 16px !important;
-    width: 100%;
+  border-radius: 4px;
+  padding: 4px 16px !important;
+  width: 100%;
 }
 
 .reviews-date {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-::ng-deep {
-    .rating-content {
-        .rating {
-            font-size: 24px !important;
-        }
+.sort-orders-content ::ng-deep {
+  .rating-content {
+    .rating {
+      font-size: 24px !important;
     }
+  }
     .mat-form-field {
         border: 0.5px solid #808080;
         border-radius: 4px;
@@ -147,36 +147,77 @@
   }
 
 .order-filters__submit-btn {
-    background-color: #dddddd;
-    border-radius: 5px;
-    border: none;
-    padding: 6px 20px;
-    outline: none;
-    margin-left: auto;
-    display: block;
+  background-color: #dddddd;
+  border-radius: 5px;
+  border: none;
+  padding: 6px 20px;
+  outline: none;
+  margin-left: auto;
+  display: block;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .error-message {
-    height: 33px;
-    width: 100%;
-    background-color: #fae2e5;
-    //border: 0.5px solid #b14464;
-    color: #b14464;
-    border-radius: 3px;
-    font-weight: 500;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 8px;
-    margin-top: 2px;
+  height: 33px;
+  width: 100%;
+  background-color: #fae2e5;
+  //border: 0.5px solid #b14464;
+  color: #b14464;
+  border-radius: 3px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8px;
+  margin-top: 2px;
 }
 
 .orders-filter__input-content {
-    width: 66%;
-    //display: flex;
-    //flex-direction: column;
+  width: 66%;
+  //display: flex;
+  //flex-direction: column;
+}
+
+.order-client-search__wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.order-search-client__input {
+  border-radius: 4px;
+  padding: 5px 16px !important;
+  width: 100%;
+  position: relative;
+  margin-bottom: 3px;
+}
+
+.order-client-search__icon {
+  width: 20px;
+  height: 21px;
+  position: absolute;
+  right: 17px;
+  top: 5px;
+}
+
+.clients__list-wrapper {
+  // margin-top: 3px;
+  background-color: #F8F9F9;
+  border-radius: 5px;
+}
+
+.clients__list {
+  padding-bottom: 7px;
+}
+
+.selected-client {
+  padding: 5px 17px;
+}
+
+.selected-client {
+  &:hover {
+    background-color: #EBEDEF;
+  }
 }

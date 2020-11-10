@@ -354,7 +354,8 @@
     "orderDateEnd": "Потрібна кінцева дата замовлення",
     "orderManufacturerIsRequired": "Потрібно обрати виробника",
     "orderClientIsRequired": "Потрібно обрати клієнта",
-    "orderFilterBtn": "Фільтрувати"
+    "orderFilterBtn": "Фільтрувати",
+    "clientSearch": "Пошук"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

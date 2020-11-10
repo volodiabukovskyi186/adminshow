@@ -29,7 +29,7 @@
                         </div>
                         <div class="reviews-date">
                             <div class="reviews-response-title">{{ 'orders.orderManufacturer'| translate }}</div>
-                            <div class="reviews-response-status">
+                            <div class="reviews-response-status sort-orders-content">
                                 <mat-form-field appearance="standart" class="sort-products">
                                     <div class="sort-products-wrapper">
                                         <mat-select
@@ -55,8 +55,8 @@
                         </div>
                         <div class="reviews-date">
                             <div class="reviews-response-title">{{ 'orders.orderClient'| translate }}</div>
-                            <div class="reviews-response-status">
-                                <mat-form-field appearance="standart" class="sort-products">
+                            <div class="reviews-response-status" (clickOutside)="isSelectedClient = false;">
+                                <!-- <mat-form-field appearance="standart" class="sort-products">
                                     <div class="sort-products-wrapper">
                                         <mat-select
 
@@ -71,7 +71,28 @@
                                             </div>
                                         </mat-select>
                                     </div>
-                                </mat-form-field>
+                                </mat-form-field> -->
+                                <div class="order-client-search__wrapper">
+                                    <input
+                                        class="order-search-client__input cursor-pointer"
+                                        type="text"
+                                        id="client"
+                                        formControlName="client"
+                                        (input)="searchClient()"
+                                        placeholder="{{ 'orders.clientSearch' | translate }}"
+                                        required
+                                    />
+                                    <img src="assets/icons/search.svg" class="order-client-search__icon cursor-pointer"/>
+                                </div>
+                                <div *ngIf="ordersSearchClientsData && isSelectedClient" class="clients__list-wrapper">
+                                    <div *ngFor="let client of ordersSearchClientsData" class="clients__list">
+                                        <div class="selected-client cursor-pointer"
+                                            (click)="selectedClient(client)"
+                                        >
+                                            {{ client?.first_name }} {{ client?.last_name }}
+                                        </div>
+                                    </div>
+                                </div>
                                 <div *ngIf="formAuthControls?.client?.invalid && (formAuthControls?.client?.dirty || formAuthControls?.client?.touched)" class="error-message">
                                     <div *ngIf="formAuthControls?.client?.errors.required" class="">
                                         {{ 'orders.orderClientIsRequired' | translate }}
@@ -79,7 +100,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button 
+                        <button
+                            [disabled]="!orderFiltersForm.valid"
                             class="order-filters__submit-btn cursor-pointer"
                             (click)="filterClientOrders()"
                         >

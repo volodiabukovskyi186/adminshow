@@ -17,6 +17,9 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   public allManufacturers;
   public allClients;
   public destroy$: Subject<boolean> = new Subject<boolean>();
+  public ordersSearchClientsData: any;
+  public isSelectedClient: boolean = false;
+  public selectedClientId: number;
 
   constructor(
     public manufacturerService: ManufacturerService,
@@ -71,12 +74,32 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
       this.orderFiltersForm.value.date_start,
       this.orderFiltersForm.value.date_end,
       [this.orderFiltersForm.value.manufacturer],
-      1
+      this.selectedClientId
     ).subscribe((res) => {
-      console.log(res);
-
       this.orderFiltersFormData.emit(res);
     })
+  }
+
+  public searchClient(): void {
+    console.log(this.orderFiltersForm.value.client);
+    this.isSelectedClient = true;
+
+    this.orderService.searchClient(this.orderFiltersForm.value.client).subscribe((res) => {
+      console.log(res);
+      this.ordersSearchClientsData = res.data;
+    })
+  }
+
+  public selectedClient(seletedClient): void {
+    this.selectedClientId = seletedClient.id;
+
+    this.orderFiltersForm.get('client').setValue(`${seletedClient.first_name} ${seletedClient.last_name}`);
+
+    if (seletedClient) {
+      this.isSelectedClient = false;
+    }
+
+    console.log(this.selectedClientId);
   }
 
 }
