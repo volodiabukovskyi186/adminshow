@@ -32,13 +32,17 @@ export class ReviewsPageService {
     return this.http.get<IReviewsResponse>(`${environment.host}reviews${params}`);
   }
 
-  updateReviewById(reviewToUpdate, reviewId): Observable<IReviewUpdate> {
-    return this.http.put<IReviewUpdate>(`${environment.host}review/${reviewId}`, reviewToUpdate);
+  // updateReviewById(reviewToUpdate, reviewId): Observable<IReviewUpdate> {
+  //   return this.http.put<IReviewUpdate>(`${environment.host}review/${reviewId}`, reviewToUpdate);
+  // }
+  updateReviewStatus(reviewId:number,reviewToUpdate:Object):Observable<Object>{
+    return this.http.put<Object>(`${environment.host}reviews/updateStatus/${reviewId}`, reviewToUpdate);
   }
 
-  // addcommentReviewById(reviewToUpdate, reviewId): Observable<IReviewUpdate> {
-  //   return this.http.post<IReviewUpdate>(`${environment.host}review_comment`, reviewToUpdate);
-  // }
+  addcommentReviewById(reviewToUpdate, reviewId): Observable<IReviewUpdate> {
+    console.log('comment-review==>',reviewToUpdate)
+    return this.http.post<IReviewUpdate>(`${environment.host}review_comment`, reviewToUpdate);
+  }
 
   getReviewsByFilter(dateStart, dateEnd, status): Observable<IReviewsResponse> {
     let params = `${environment.host}reviews/filter`;

@@ -15,6 +15,8 @@ import { LanguageService } from "src/app/modules/localization/language/language.
 })
 export class ReviewsPageComponent extends BasePage implements OnInit {
   public selectedReview: any;
+  public reviewsStatus: number;
+
   public statusCodes = {
     "0": {
       name: 'statusCodes.new',
@@ -125,9 +127,10 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   }
 
   moderationOfReview(reviewToModerate) {
-
     this.selectedReview = reviewToModerate;
     this.reviewId = this.selectedReview.id;
+    // this.reviewsStatus=this.selec
+    console.log('selected==>', this.selectedReview)
   }
 
   initPagesSettings = () =>{
@@ -167,19 +170,42 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     this.pages.panelButtonSettings.rightToggle = false;
     this.pages.panelButtonSettings.review = false;
   };
+  reviewsSatus(event):void{
+    this.reviewsStatus=event
+   
+  }
+
 
   save = () => {
-
+    console.log('statussave===>',this.reviewsStatus)
     if (this.selectedReview && !this.showFilters) {
     console.log('reviews',this.reviewsData)
-      this.reviewsPageService.updateReviewById(this.reviewsData, this.reviewId).subscribe((res) => {
-        this.reviewsPageService.reviews?.data.forEach((val) => {
-          if (res.data.id === val.id) {
-            val.text = res.data.text;
-            val.status = res.data.status;
-          }
+      const commentreview={
+        parent_id: this.reviewId ,
+        user_id: this.reviewsData.user_id,
+        author: this.reviewsData.author,
+        text: this.reviewsData.text,
+        like_count: 0,
+        dislike_count: 0,
+        status: 1
+      }
+      this.reviewsPageService.addcommentReviewById(commentreview, this.reviewId).subscribe((res) => {
+        // this.reviewsPageService.reviews?.data.forEach((val) => {
+          // if (res.data.id === val.id) {
+          //   val.text = res.data.text;
+          //   val.status = res.data.status;
+          // }
+        // })
+        this.reviewsPageService.getReviews().subscribe(data=>{
+          this.reviewsPageService.reviews=data
         })
+        this.toastr.success("REVIEW  ADDED ^_^");
       })
+      if(this.reviewsStatus){
+        this.reviewsPageService.updateReviewStatus(this.reviewId,{status:this.reviewsStatus}).subscribe(data=>{
+          this.toastr.success("REVIEW STATUS UPDATED ^_^");
+        })
+      }
     }
 
     if (this.showFilters) {
