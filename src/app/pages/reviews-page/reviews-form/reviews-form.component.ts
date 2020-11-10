@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,OnChanges } from '@angular/core';
 import { LanguageService } from "src/app/modules/localization/language/language.service";
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -7,12 +7,12 @@ import { FormGroup, FormControl } from '@angular/forms';
   templateUrl: './reviews-form.component.html',
   styleUrls: ['./reviews-form.component.scss']
 })
-export class ReviewsFormComponent implements OnInit {
+export class ReviewsFormComponent implements OnInit,OnChanges {
   @Input() review;
   @Input() langs;
 
   @Output() reviewsFormData = new EventEmitter();
-
+  @Output() reviewsSatus = new EventEmitter();
   public monthNames: any[] = [{
     0: 'months.Jan',
     1: 'months.Feb',
@@ -41,17 +41,27 @@ export class ReviewsFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("review ====>>>>>>>>>.", this.review);
+   
 
     this.generateReviewsForm();
     this.getEditReviewsFormData();
   }
+  ngOnChanges():void{
+    this.generateReviewsForm()
+    console.log("review ====>>>>>>>>>.", this.review.status);
+  }
 
   generateReviewsForm(): void {
+
     this.reviewsForm = new FormGroup({
       response: new FormControl(""),
       status: new FormControl("")
     });
+    this.reviewsForm.setValue({
+      response:'',
+      status:this.review.status
+    })
+   
   }
 
   public modifyDateString(date, type: string) {
@@ -69,6 +79,7 @@ export class ReviewsFormComponent implements OnInit {
 
   public onChange(event) {
     this.reviewsForm.get('status').setValue(event);
+    this.reviewsSatus.emit(event)
   }
 
   getEditReviewsFormData(): void {
@@ -79,7 +90,7 @@ export class ReviewsFormComponent implements OnInit {
       author: this.review.author,
       text: this.reviewsForm.value.response,
       rating: this.review.rating,
-      status: this.reviewsForm.value.status
+      status:1
     }));
   }
 }
