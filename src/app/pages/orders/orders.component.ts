@@ -67,6 +67,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.pages.panelButtonSettings.plus = false;
     // console.log('updateItems=====>',this.orderService.order)
     this.getList()
+   
     
   }
 
@@ -145,7 +146,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.orderService.order = data;
     this.totalSum = '\xa0' + this.orderService.order.sum + '\xa0';
 
-    console.log(this.orderService.order);
+
 
     this.orderService.order.data.forEach((val) => {
       this.ordersForm.get('status').setValue(this.statusCodes[val.status_id]);
@@ -159,8 +160,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
   orderFiltersFormData(event): void {
     this.orderService.order.data = event.data;
-
-    console.log(event);
+    this.totalSum=event.sum
 
     this.closeForm();
   }

@@ -41,11 +41,11 @@ export class OrderService {
   }
 
   filterOrders(dateStart, dateEnd, manufacturer: number[] = [], userId): Observable<any> {
-    console.log(manufacturer);
 
+    console.log('orders===>',  );
     let lang = this.lang.current;
     let params = `?lang=${lang}&date_start=${dateStart}&date_end=${dateEnd}&manufacturer=${JSON.stringify(manufacturer)}&user_id=${userId}`;
-
+    console.log(`${environment.host}ownerOrders` + params)
     return this.http.get(`${environment.host}ownerOrders` + params);
   }
 
