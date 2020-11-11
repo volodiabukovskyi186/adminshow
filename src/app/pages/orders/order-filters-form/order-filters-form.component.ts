@@ -59,8 +59,6 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   public getManufactures(): void {
     this.manufacturerService.getAllManufactures().pipe(takeUntil(this.destroy$))
     .subscribe((res) => {
-      console.log('getAllManufactures', res);
-
       this.allManufacturers = res.data;
     })
   }
@@ -83,23 +81,33 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   public searchClient(): void {
     console.log(this.orderFiltersForm.value.client);
     this.isSelectedClient = true;
-
+    const user=this.orderFiltersForm.value.client
+    
     this.orderService.searchClient(this.orderFiltersForm.value.client).subscribe((res) => {
-      console.log(res);
+    
       this.ordersSearchClientsData = res.data;
+      if(res.count>0){
+        this.selectedClientId=this.ordersSearchClientsData[0].id
+        console.log('good',res);
+      }
+      else{
+        console.log('bad',res);
+      }
+     
     })
   }
 
   public selectedClient(seletedClient): void {
+    
     this.selectedClientId = seletedClient.id;
-
+    console.log('userid++++>',this.selectedClientId)
+    console.log('userid++++>',seletedClient)
     this.orderFiltersForm.get('client').setValue(`${seletedClient.first_name} ${seletedClient.last_name}`);
 
     if (seletedClient) {
       this.isSelectedClient = false;
     }
 
-    console.log(this.selectedClientId);
   }
 
 }
