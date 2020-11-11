@@ -8,6 +8,12 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
 import { ToastrService } from "ngx-toastr";
 import { LanguageService as LangS} from 'src/app/core/language.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ISiteDescriptions } from '../settings-page/interfaces/site-descriptions';
+import { IDefaultCurrency, IDefaultCurrencyData } from '../settings-page/interfaces/default-currency';
+import { IDefaultLanguage, IDefaultLanguageData } from '../settings-page/interfaces/default-language';
+import { ISiteDescriptionsResponse, ISiteDescriptionsResponseData } from '../settings-page/interfaces/site-descriptions-response';
 
 @Component({
   selector: 'app-settings-page',
@@ -15,17 +21,15 @@ import { LanguageService as LangS} from 'src/app/core/language.service';
   styleUrls: ['./settings-page.component.scss']
 })
 export class SettingsPageComponent extends BasePage implements OnInit {
-  public siteDescriptions: any[] = [];
-  public defaultLanguage: any;
-  public defaultCurrency: any;
+  public defaultLanguage: IDefaultLanguage;
+  public defaultCurrency: IDefaultCurrency;
   public selectedMainPlatform: any;
   public settingsPageFormData: any;
-  public sendSettingsPageEditableData: any;
+  //public sendSettingsPageEditableData: any;
   public siteId: number;
-  public generateShopDetailsFormData;
-  public shopDetailsFormDataEvent;
-  public settingsContactBottomData;
-  public siteSettingsDescriptions;
+  public siteSettingsDescriptions: ISiteDescriptions;
+  public destroy$: Subject<boolean> = new Subject<boolean>();
+  public settingsPageData: ISiteDescriptionsResponseData;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -40,12 +44,11 @@ export class SettingsPageComponent extends BasePage implements OnInit {
     super(pages);
    }
 
-  ngOnInit(): void {
-    this.getList();
-
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
 
+    this.getList();
     this.getLangList();
     this.initTranslate();
 
@@ -64,7 +67,7 @@ export class SettingsPageComponent extends BasePage implements OnInit {
     this.pages.panelButtonSettings.save = false;
   }
 
-  public initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -78,28 +81,28 @@ export class SettingsPageComponent extends BasePage implements OnInit {
       });
   }
 
-  public allSettingsData: any;
-
-  getList() {
+  public getList(): void {
     this.ngxService.start();
-    this.settingsPageService.getSiteDataById().subscribe((res) => {
-      console.log('tartatat', res);
-      this.allSettingsData = res;
+    this.settingsPageService.getSiteDataById()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((res: ISiteDescriptionsResponse) => {
+      if (res) {
+        this.settingsPageData = res?.data;
 
-      this.settingsPageService.settings.data = this.allSettingsData;
-      //this.getListHandler(res);
+        this.settingsPageData.logo.src = res?.data?.logo?.src;
+        this.settingsPageData.icon.src = res?.data?.icon?.src;
+
+        this.settingsPageData.logo.id = res?.data?.logo?.id;
+        this.settingsPageData.icon.id = res?.data?.icon?.id;
+      }
     });
   }
 
-  // getListHandler(data) {
-  //   this.ngxService.stopAll();
-  //   console.log(data);
-  //   this.settingsPageService.settings.data = data;
-  // };
-
-  getLangList() {
+  public getLangList(): void {
     this.ngxService.start();
-    this.langService.getLangs().subscribe(this.getLangListHandler);
+    this.langService.getLangs()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(this.getLangListHandler);
   }
 
   getLangListHandler = (data) => {
@@ -107,68 +110,60 @@ export class SettingsPageComponent extends BasePage implements OnInit {
     this.langService.languages = data;
   };
 
-  getDescByLang() {
-    this.settingsPageService.getSiteByLang().subscribe((res) => {
-      this.siteSettingsDescriptions = res.data[0];
-      console.log(this.siteSettingsDescriptions);
+  public getDescByLang(): void {
+    this.settingsPageService.getSiteByLang()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        this.siteSettingsDescriptions = res.data[0];
+        console.log(this.siteSettingsDescriptions);
       //this.settingsPageService.settings.data.descriptions = res.data;
-    })
+      })
   }
 
-  // objectKeys(obj) {
-  //   return Object.assign(obj);
-  // }
-
-  getDefaultLanguage() {
-    this.settingsPageService.getSiteDefaultLanguage().subscribe((res) => {
+  public getDefaultLanguage(): void {
+    this.settingsPageService.getSiteDefaultLanguage()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((res: IDefaultLanguageData) => {
       this.defaultLanguage = res.data;
     })
   }
 
-  getDefaultCurrency() {
-    this.settingsPageService.getSiteDefaultCurrency().subscribe((res) => {
+  public getDefaultCurrency(): void {
+    this.settingsPageService.getSiteDefaultCurrency()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((res: IDefaultCurrencyData) => {
       this.defaultCurrency = res.data;
     })
   }
 
-  edit(selectedPlatform: any) {
+  public edit(selectedPlatform: ISiteDescriptionsResponseData): void {
     console.log(selectedPlatform);
-
     this.selectedMainPlatform = selectedPlatform;
 
-    //this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
 
-  formDataChange(event) {
-    console.log(event);
-
-    this.sendSettingsPageEditableData = event;
-  }
-
-
-  save = () => {
-    this.siteId = 1;
-
-    this.settingsPageService.editSettingsPageInfo(this.sendSettingsPageEditableData, this.siteId).subscribe((res) => {
-      this.putHandler(res);
-      this.settingsPageService.getSiteDataById();
-    });
-    
-    this.ngxService.start();
-  };
-
-  putHandler = (data) => {
-    this.ngxService.stopAll();
-    this.closeForm();
-    this.toastr.success("SETTINGS UPDATED ^_^");
-  };
-
-
-  // public getPageDescription() {
-  //   this.settingsPageService.getSiteDescriptionList().subscribe((res) => {
-  //     console.log(res);
-  //     this.siteDescriptions = res.data;
-  //   })
+  // public formDataChange(event): void {
+  //   console.log(event);
+  //   this.sendSettingsPageEditableData = event;
   // }
+
+
+  // save = () => {
+  //   this.siteId = 1;
+  //   this.settingsPageService.editSettingsPageInfo(this.sendSettingsPageEditableData, this.siteId)
+  //   .pipe(takeUntil(this.destroy$))
+  //   .subscribe((res) => {
+  //     this.putHandler(res);
+  //     this.settingsPageService.getSiteDataById();
+  //   });
+    
+  //   this.ngxService.start();
+  // };
+
+  // putHandler = (data) => {
+  //   this.ngxService.stopAll();
+  //   this.closeForm();
+  //   this.toastr.success("SETTINGS UPDATED ^_^");
+  // };
 }

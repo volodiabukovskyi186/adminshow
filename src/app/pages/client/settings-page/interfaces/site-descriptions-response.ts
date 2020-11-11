@@ -11,19 +11,18 @@ export interface ISiteDescriptionsResponseData {
   descriptions: any[];
   phones: any[];
   socials: any[];
-  logo: ISiteImgs,
-  icon: ISiteImgs
+  logo: ISiteImgs;
+  icon: ISiteImgs;
 }
-export interface ISiteDescriptionsResponse {
-    data: ISiteDescriptionsResponseData;
-    // count: number;
-    // skip: number;
-    // take: number;
-    host: string;
-  }
 
 export interface ISiteImgs {
-    id: number, 
-    src: string, 
-    src_mini: string
+  id: number;
+  src: string;
+  src_mini: string;
 }
+
+export interface ISiteDescriptionsResponse {
+  data: ISiteDescriptionsResponseData;
+  host: string;
+}
+

@@ -5,8 +5,11 @@
   <div form>
     <app-settings-page-form
       [title]="'settings.editSettings' | translate"
-      [selectedPlatform]="settingsPageService.settings?.data"
-      (formDataChange)="formDataChange($event)"
+      [selectedPlatform]="settingsPageData"
+      [siteLogoSrc]="settingsPageData?.logo?.src"
+      [siteIconSrc]="settingsPageData?.icon?.src"
+      [siteLogoId]="settingsPageData?.logo?.id"
+      [siteIconId]="settingsPageData?.icon?.id"
     ></app-settings-page-form>
   </div>
   <div filter></div>
@@ -16,7 +19,7 @@
     </ng-template>
     <table
       class="raisins-table border-all radius"
-      *ngIf="settingsPageService.settings?.data; else notfound"
+      *ngIf="settingsPageData; else notfound"
     >
       <thead>
         <tr>
@@ -48,7 +51,7 @@
                 style="position: relative;"
                 data-tooltip-left="Edit"
                 role="button"
-                (click)="edit(settingsPageService.settings?.data)"
+                (click)="edit(settingsPageData)"
                 class="button transparent radius"
               >
                 <rap-svg-ico [src]="'assets/icons/edit.svg'" class="settings-edit__img"></rap-svg-ico>

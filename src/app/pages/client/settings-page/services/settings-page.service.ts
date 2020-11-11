@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 //import { ISiteDescriptions } from '../interfaces/site-descriptions';
-import { ISiteDescriptionsResponse } from '../interfaces/site-descriptions-response';
+import { ISiteDescriptionsResponse, ISiteDescriptionsResponseData } from '../interfaces/site-descriptions-response';
 import { LanguageService } from 'src/app/core/language.service';
 
 @Injectable({
@@ -11,35 +11,25 @@ import { LanguageService } from 'src/app/core/language.service';
 })
 
 export class SettingsPageService {
+  // settings: ISiteDescriptionsResponse = {
+  //   data: {
+  //     id: null,
+  //     email: null,
+  //     location: null,
+  //     logo_id: null,
+  //     icon_id: null,
+  //     created_at: null,
+  //     updated_at: null,
+  //     descriptions: [],
+  //     phones: [],
+  //     socials: [],
+  //     logo: null,
+  //     icon: null
+  //   },
+  //   host: environment.host
+  // };
+
   page: number = 1;
-  settings: ISiteDescriptionsResponse = {
-    // count: 0,
-    data: {
-      id: null,
-      email: null,
-      location: null,
-      logo_id: null,
-      icon_id: null,
-      created_at: null,
-      updated_at: null,
-      descriptions: [],
-      phones: [],
-      socials: [],
-      logo: {
-        id: null, 
-        src: null, 
-        src_mini: null
-      },
-      icon: {
-        id: null, 
-        src: null, 
-        src_mini: null
-      }
-    },
-    // skip: 0,
-    // take: 10,
-    host: environment.host
-  };
 
   constructor(
     public http: HttpClient,
@@ -67,8 +57,8 @@ export class SettingsPageService {
     return this.http.get<any>(`${environment.host}site/getSiteData`);
   }
 
-  getSiteDataById(): Observable<any> {
-    return this.http.get<any>(`${environment.host}site/1`);
+  getSiteDataById(): Observable<ISiteDescriptionsResponse> {
+    return this.http.get<ISiteDescriptionsResponse>(`${environment.host}site/1`);
   }
 
   getSiteDataByLang() {
