@@ -73,7 +73,7 @@
          </div>
          </tbody>
       </table>
-      <div *ngIf="currentUserRoleId === 1" class="general-sum">
+      <div *ngIf="(currentUserRoleId === 1) && (orderService.order?.data.length !== 0)"  class="general-sum">
          <div>{{ 'orders.totalSum' | translate }} :</div>
          <div class="sum-bold"> {{ totalSum }}</div> 
          <div> {{ 'orders.ordersUAH' | translate }}</div>

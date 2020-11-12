@@ -9,22 +9,22 @@
                             <div class="reviews-date-title">{{ 'reviews.reviewsDateFrom' | translate }}</div>
                             <div class="orders-filter__input-content">
                                 <input formControlName="date_start" type="date" class="reviews-date-text" required/>
-                                <div *ngIf="formAuthControls?.date_start?.invalid && (formAuthControls?.date_start?.dirty || formAuthControls?.date_start?.touched)" class="error-message">
+                                <!-- <div *ngIf="formAuthControls?.date_start?.invalid && (formAuthControls?.date_start?.dirty || formAuthControls?.date_start?.touched)" class="error-message">
                                     <div *ngIf="formAuthControls?.date_start?.errors.required" class="">
                                         {{ 'orders.orderDateStart' | translate }}
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="reviews-date">
                             <div class="reviews-date-title">{{ 'reviews.reviewsDateTo' | translate }}</div>
                             <div class="orders-filter__input-content">
                                 <input formControlName="date_end" type="date" class="reviews-date-text" required/>
-                                <div *ngIf="formAuthControls?.date_end?.invalid && (formAuthControls?.date_end?.dirty || formAuthControls?.date_end?.touched)" class="error-message">
+                                <!-- <div *ngIf="formAuthControls?.date_end?.invalid && (formAuthControls?.date_end?.dirty || formAuthControls?.date_end?.touched)" class="error-message">
                                     <div *ngIf="formAuthControls?.date_end?.errors.required" class="">
                                         {{ 'orders.orderDateEnd' | translate }}
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="reviews-date">
@@ -33,7 +33,6 @@
                                 <mat-form-field appearance="standart" class="sort-products">
                                     <div class="sort-products-wrapper">
                                         <mat-select
-                                            
                                             id="manufacturer"
                                             formControlName="manufacturer"
                                             required
@@ -46,32 +45,16 @@
                                         </mat-select>
                                     </div>
                                 </mat-form-field>
-                                <div *ngIf="formAuthControls?.manufacturer?.invalid && (formAuthControls?.manufacturer?.dirty || formAuthControls?.manufacturer?.touched)" class="error-message">
+                                <!-- <div *ngIf="formAuthControls?.manufacturer?.invalid && (formAuthControls?.manufacturer?.dirty || formAuthControls?.manufacturer?.touched)" class="error-message">
                                     <div *ngIf="formAuthControls?.manufacturer?.errors.required" class="">
                                         {{ 'orders.orderManufacturerIsRequired' | translate }}
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="reviews-date">
                             <div class="reviews-response-title">{{ 'orders.orderClient'| translate }}</div>
                             <div class="reviews-response-status" (clickOutside)="isSelectedClient = false;">
-                                <!-- <mat-form-field appearance="standart" class="sort-products">
-                                    <div class="sort-products-wrapper">
-                                        <mat-select
-
-                                            id="client"
-                                            formControlName="client"
-                                            required
-                                        >
-                                            <div *ngFor="let client of allClients">
-                                                <mat-option [value]="client.id">
-                                                    {{ client.name | translate }}
-                                                </mat-option>
-                                            </div>
-                                        </mat-select>
-                                    </div>
-                                </mat-form-field> -->
                                 <div class="order-client-search__wrapper">
                                     <input
                                         class="order-search-client__input cursor-pointer"
@@ -93,15 +76,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div *ngIf="formAuthControls?.client?.invalid && (formAuthControls?.client?.dirty || formAuthControls?.client?.touched)" class="error-message">
+                                <!-- <div *ngIf="formAuthControls?.client?.invalid && (formAuthControls?.client?.dirty || formAuthControls?.client?.touched)" class="error-message">
                                     <div *ngIf="formAuthControls?.client?.errors.required" class="">
                                         {{ 'orders.orderClientIsRequired' | translate }}
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <button
-                            [disabled]="!orderFiltersForm.valid"
                             class="order-filters__submit-btn cursor-pointer"
                             (click)="filterClientOrders()"
                         >

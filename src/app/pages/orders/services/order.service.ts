@@ -35,17 +35,31 @@ export class OrderService {
     );
   
   }
-  // 
-  UpdateUserOrder(id: any, data: any): Observable<any>{
-    return this.http.put(`https://api.showu.com.ua/order/${id}`, data);
+  
+  updateUserOrder(id: any, data: any): Observable<any>{
+    return this.http.put(`${environment.host}order/${id}`, data);
   }
 
-  filterOrders(dateStart, dateEnd, manufacturer: number[] = [], userId): Observable<any> {
-
-    console.log('orders===>',  );
+  filterOrders(dateStart: string, dateEnd: string, manufacturers: number[], userId: number): Observable<any> {
     let lang = this.lang.current;
-    let params = `?lang=${lang}&date_start=${dateStart}&date_end=${dateEnd}&manufacturer=${JSON.stringify(manufacturer)}&user_id=${userId}`;
-    console.log(`${environment.host}ownerOrders` + params)
+    let params = `?lang=${lang}`;
+
+    if (dateEnd) {
+      params = params + `&date_end=${dateEnd}`;
+    }
+
+    if (dateStart) {
+      params = params + `&date_start=${dateStart}`;
+    }
+
+    if (manufacturers.length !== 0) {
+      params = params + `&manufacturer=${JSON.stringify(manufacturers)}`;
+    }
+
+    if (userId) {
+      params = params + `&user_id=${userId}`;
+    }
+
     return this.http.get(`${environment.host}ownerOrders` + params);
   }
 

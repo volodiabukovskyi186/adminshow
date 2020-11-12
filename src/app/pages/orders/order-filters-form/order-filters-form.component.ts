@@ -68,10 +68,16 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   }
 
   public filterClientOrders(): void {
+    let manufacturers = [];
+
+    if (this.orderFiltersForm.value.manufacturer) {
+      manufacturers.push(this.orderFiltersForm.value.manufacturer);
+    }
+
     this.orderService.filterOrders(
       this.orderFiltersForm.value.date_start,
       this.orderFiltersForm.value.date_end,
-      [this.orderFiltersForm.value.manufacturer],
+      manufacturers,
       this.selectedClientId
     ).subscribe((res) => {
       this.orderFiltersFormData.emit(res);
@@ -86,8 +92,8 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
     this.orderService.searchClient(this.orderFiltersForm.value.client).subscribe((res) => {
     
       this.ordersSearchClientsData = res.data;
-      if(res.count>0){
-        this.selectedClientId=this.ordersSearchClientsData[0].id
+      if (res.count > 0){
+        this.selectedClientId = this.ordersSearchClientsData[0].id
         console.log('good',res);
       }
       else{
