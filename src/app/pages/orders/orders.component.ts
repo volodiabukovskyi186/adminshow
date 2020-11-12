@@ -168,6 +168,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   }
 
   save = () => {
+    // this.selectedClientOrder.sort_order
     const userOrde = {
       sort_order: this.selectedClientOrder.sort_order,
       costumer:  this.selectedClientOrder.costumer, 
@@ -188,8 +189,10 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
       checkoutDeliveryAddress: this.selectedClientOrder.checkoutDeliveryAddress,
       checkoutPayment: this.selectedClientOrder.checkoutPayment,
       manufactured_id: this.selectedClientOrder.manufactured_id,
-      total: this.selectedClientOrder.total 
+      total: this.selectedClientOrder.total ,
+     
     }
+    console.log('userOrder===>',userOrde);
 
     this.orderService.updateUserOrder(this.selectedClientOrder.id, userOrde).subscribe((data) => {
       // this.getStatus();
@@ -227,7 +230,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   openForm = () => {
     this.pages.panelSettings.form = true;
     this.pages.panelButtonSettings.plus = false;
-    this.pages.panelButtonSettings.save = false;
+    this.pages.panelButtonSettings.save = true;
     this.pages.panelButtonSettings.cancel = true;
     this.pages.panelButtonSettings.rightToggle = false;
   };
