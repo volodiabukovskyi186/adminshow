@@ -26,8 +26,8 @@ export class ReviewsPageService {
   ) {}
 
   getReviews(): Observable<IReviewsResponse> {
-    let skip = this.page * this.reviews.take - this.reviews.take;
-    let params = `?take=${this.reviews.take}&skip=${skip}`;
+    // let skip = this.page * this.reviews.take - this.reviews.take;
+    let params = `?take=${this.reviews.take}&skip=${this.reviews.skip}`;
 
     return this.http.get<IReviewsResponse>(`${environment.host}reviews${params}`);
   }

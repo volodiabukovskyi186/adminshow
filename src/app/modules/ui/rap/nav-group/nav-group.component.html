@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="title">{{ title | translate }}</div>
-    <div class="status">
+    <div class="status" *ngIf="title!='showupage'">
       <rap-svg-ico src="assets/icons/plus.svg"></rap-svg-ico>
     </div>
   

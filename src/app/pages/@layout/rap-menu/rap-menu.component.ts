@@ -23,7 +23,6 @@ export class RapMenuComponent implements OnInit {
 
   logout(event: Event) {
     event.preventDefault();
-
     this.auth.logout();
     this.router.navigate([this.lang.current, "login"]);
   }

@@ -9,7 +9,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { CategoryPageComponent } from "./category-page/category-page.component";
 import { CoreModule } from 'src/app/core/core.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 const c = [CategoryFormComponent];
 
 @NgModule({
@@ -24,6 +24,7 @@ const c = [CategoryFormComponent];
     TranslateModule,
     CategoryRoutingModule,
     AngularEditorModule,
+    MatPaginatorModule
   ],
 })
 export class CategoryModule {}

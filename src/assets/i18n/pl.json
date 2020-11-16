@@ -169,6 +169,7 @@
       "menu": "Menu",
       "pages": "Pages",
       "settings": "Settings",
+      "settingsMain": "Ustawienia główne",
       "articles":"Articles",
       "delivery_methods":"Delivery methods",
       "payment_methods":"Payment methods",
@@ -374,5 +375,6 @@
     "local":"Kod pocztowy",
     "default":"Domyślna",
     "available":"Status"
-  }
+  },
+  "showupage":"Odwiedź sklep"
 }

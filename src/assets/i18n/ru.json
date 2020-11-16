@@ -164,6 +164,7 @@
       "menu": "Меню",
       "pages": "Страницы",
       "settings": "Настройки",
+      "settingsMain": " Oбщие настройки",
       "articles": "Статьи",
       "delivery_methods":"Способи доставки",
       "payment_methods":"Способи оплати",
@@ -366,5 +367,6 @@
     "local":"Код Страны",
     "default":"Дефолтная",
     "available":"Статус"
-  }
+  },
+  "showupage":"Посетить магазин"
 }

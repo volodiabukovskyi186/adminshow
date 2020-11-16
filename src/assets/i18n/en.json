@@ -182,6 +182,7 @@
       "menu": "Menu",
       "pages": "Pages",
       "settings": "Settings",
+      "settingsMain": "General settings",
       "articles":"Articles",
       "delivery_methods":"Delivery methods",
       "payment_methods":"Payment methods",
@@ -370,5 +371,6 @@
     "local":"local",
     "default":"default",
     "available":"Status"
-  }
+  },
+  "showupage":" Visit the store"
 }

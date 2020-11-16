@@ -62,6 +62,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     })
   }
 
+
   public ngOnChanges(changes: SimpleChanges): void {
     // this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.plus = false;
@@ -90,6 +91,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
     this.getUserRoleId();
   }
+
 
   public uodateAllItems(): void {
     this.orderService.getList().subscribe(data => {
@@ -234,6 +236,14 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.pages.panelButtonSettings.cancel = true;
     this.pages.panelButtonSettings.rightToggle = false;
   };
+
+  pageEvent(event):void{
+  
+    this.orderService.order.count=event.length
+    this.orderService.order.take=event.pageSize
+    this.orderService.order.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
 
   //#region pagination
 

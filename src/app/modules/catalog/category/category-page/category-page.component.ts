@@ -232,6 +232,13 @@ export class CategoryPageComponent extends BasePage
     this.openForm();
   }
 
+  pageEvent(event):void{
+    console.log('event===>',event)
+    this.category.category.count=event.length
+    this.category.category.take=event.pageSize
+    this.category.category.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
   //#region pagination
 
   pageToHandler(page: number): void {

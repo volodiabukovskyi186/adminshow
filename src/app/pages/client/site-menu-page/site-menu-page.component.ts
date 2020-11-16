@@ -166,6 +166,14 @@ export class SiteMenuPageComponent extends BasePage
     );
   };
 
+  pageEvent(event):void{
+  
+    this.siteMenu.data.count=event.length
+    this.siteMenu.data.take=event.pageSize
+    this.siteMenu.data.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
+
   //#region pagination
 
   pageToHandler(page: number): void {

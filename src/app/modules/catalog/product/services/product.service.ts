@@ -20,8 +20,8 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<IProductResponse> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<IProductResponse>(
       environment.catalog.product.products + params
     );

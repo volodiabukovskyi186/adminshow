@@ -31,9 +31,9 @@ export class CategoryService {
 
 
   getList(): Observable<ICategoryResponse> {
-    let skip = this.page * this.category.take - this.category.take;
+    // let skip = this.page * this.category.take - this.category.take;
     let lang = this.lang.current;
-    let params = `?take=${this.category.take}&skip=${skip}&lang=${lang}`;
+    let params = `?take=${this.category.take}&skip=${this.category.skip}&lang=${lang}`;
     return this.http.get<ICategoryResponse>(
       environment.catalog.category.categorys + params
     );

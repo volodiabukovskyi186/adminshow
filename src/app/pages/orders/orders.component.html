@@ -79,8 +79,8 @@
          <div> {{ 'orders.ordersUAH' | translate }}</div>
       </div>
   
-      <app-pagination
-         *ngIf="orderService.order?.data.length > 9"
+      <!-- <app-pagination
+         *ngIf="orderService.order?.data.length > 0"
          class="radius"
          [page]="orderService.page"
          [total]="Math.ceil(orderService.order?.count / orderService.order?.take)"
@@ -89,7 +89,16 @@
          (goPrev)="pagePrevHandler()"
          (goPage)="pageToHandler($event)"
          (pageChanged)="pageChangedHandler()"
-      ></app-pagination>
+      ></app-pagination> -->
+
+      <mat-paginator
+      [length]="orderService.order?.count"
+      [pageSize]="orderService.order?.take"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="pageEvent($event)  "
+      >
+      </mat-paginator>
    </div>
+
 </rap-panel-content>
 

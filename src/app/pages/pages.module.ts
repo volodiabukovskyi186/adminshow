@@ -83,6 +83,7 @@ import { LiqpayPageComponent } from './client/liqpay-page/liqpay-page.component'
 import { LipayFormComponent } from '../modules/client/liqpay/lipay-form/lipay-form.component';
 import { OrderFiltersFormComponent } from './orders/order-filters-form/order-filters-form.component';
 import { ClickOutsideModule } from 'ng-click-outside';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -177,6 +178,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
         StorageModule,
         MatTableModule,
         ClickOutsideModule,
+        MatPaginatorModule
         // ToastrModule added
     ],
   providers: [

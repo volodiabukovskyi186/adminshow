@@ -250,6 +250,13 @@ export class ProductsPageComponent extends BasePage
       this.editItem.status == 0 ? 1 : 0
     );
   };
+  pageEvent(event):void{
+    console.log('event===>',event)
+    this.product.data.count=event.length
+    this.product.data.take=event.pageSize
+    this.product.data.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
 
   //#region pagination
 

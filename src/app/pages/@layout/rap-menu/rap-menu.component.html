@@ -7,6 +7,7 @@
     alt="ShowU"
   ></rap-svg-ico>
 </header>
+
 <div>
   <rap-nav-group
     [title]="item.title"
@@ -16,15 +17,12 @@
     *ngFor="let item of menu.nav;let i=index"
     (click)="closeMenu(item,i)"
   >
-
     <rap-nav-item
-  
       *ngFor="let link of item.items"
       [langLink]="lang.routeLang"
       [nav]="link"
     ></rap-nav-item>
   </rap-nav-group>
-
 </div>
 
 <footer>
@@ -38,3 +36,14 @@
       </a>
   </div>
 </footer>
+<div class="open-shop">
+  <a href="https://showu.com.ua/">
+  <rap-nav-group
+  [routerLink]="['']"
+    [title]="'showupage'"
+    [icon]="'assets/icons/web.svg'"
+   
+  >
+  </rap-nav-group>
+</a>
+</div>

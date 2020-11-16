@@ -79,7 +79,7 @@
       </tbody>
     </table>
     <!-- <pre>{{ langServise.languages.data | json }}</pre> -->
-    <app-pagination
+    <!-- <app-pagination
       class="radius"
       [page]="reviewsPageService.page"
       [total]="Math.ceil(reviewsPageService.reviews.count / reviewsPageService.reviews.take)"
@@ -88,6 +88,13 @@
       (goPrev)="pagePrevHandler()"
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
-    ></app-pagination>
+    ></app-pagination> -->
+    <mat-paginator
+    [length]="reviewsPageService.reviews.count"
+    [pageSize]="reviewsPageService.reviews.take"
+    [pageSizeOptions]="[5, 10, 25]"
+    (page)="pageEvent($event)  "
+    >
+    </mat-paginator>
   </div>
 </rap-panel-content>

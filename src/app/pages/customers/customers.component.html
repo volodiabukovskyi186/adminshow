@@ -65,7 +65,7 @@
         </tr>
       </tbody>
     </table>
-    <app-pagination
+    <!-- <app-pagination
     class="radius"
     [page]="customersService.page"
     [total]="Math.ceil(arrCustomers?.count/arrCustomers?.take)"
@@ -74,7 +74,14 @@
     (goPrev)="pagePrevHandler()"
     (goPage)="pageToHandler($event)"
     (pageChanged)="pageChangedHandler()"
-></app-pagination>
+></app-pagination> -->
+ <mat-paginator
+      [length]="arrCustomers?.count"
+      [pageSize]="arrCustomers?.take"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="pageEvent($event)  "
+      >
+  </mat-paginator>
 
   </div>
 

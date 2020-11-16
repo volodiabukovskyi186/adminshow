@@ -50,8 +50,8 @@ export class SiteMenuService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<ISiteMenuResponse> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<ISiteMenuResponse>(
       environment.client.menu.menus + params
     );

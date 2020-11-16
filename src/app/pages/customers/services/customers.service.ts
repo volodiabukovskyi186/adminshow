@@ -36,8 +36,8 @@ export class CustomersService {
   }
 
   getCustomers(): Observable<ICustomerResponse> {
-    let skip = this.page * this.customer.take - this.customer.take;
-    let params = `?take=${this.customer.take}&skip=${skip}`;
+    // let skip = this.page * this.customer.take - this.customer.take;
+    let params = `?take=${this.customer.take}&skip=${this.customer.skip}`;
 
     return this.http.get<ICustomerResponse>(
       `${environment.host}subscription_clients${params}`

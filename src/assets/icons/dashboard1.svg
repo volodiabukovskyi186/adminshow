@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27" height="22.1" viewBox="0 0 27 22.1">
+  <g id="dashboard1" transform="translate(-2.5 -4.5)">
+    <path id="Контур_12" data-name="Контур 12" d="M16,24a24.828,24.828,0,0,1,10.2,2.1A12.639,12.639,0,0,0,29,18,13,13,0,0,0,3,18a13.229,13.229,0,0,0,2.8,8.1A24.828,24.828,0,0,1,16,24Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Линия_35" data-name="Линия 35" y2="2" transform="translate(16 8)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Линия_36" data-name="Линия 36" x2="1.4" y2="1.4" transform="translate(8.9 10.9)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Линия_37" data-name="Линия 37" x2="2" transform="translate(6 18)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Линия_38" data-name="Линия 38" x1="2" transform="translate(24 18)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Линия_39" data-name="Линия 39" x1="1.4" y2="1.4" transform="translate(21.7 10.9)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Линия_40" data-name="Линия 40" y1="8" x2="4" transform="translate(16 16)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>

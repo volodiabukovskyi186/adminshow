@@ -14,7 +14,7 @@ export class OrderService {
     count: 0,
     data: [],
     skip: 0,
-    take: 20,
+    take: 10,
     sum: 0,
     host: environment.host
   };
@@ -26,16 +26,14 @@ export class OrderService {
 
   getList(): Observable<IOrderResponse> {
     const lang = localStorage.getItem('currentLang');
-    let skip = this.page * this.order.take - this.order.take;
-    let params = `?take=10&skip=${skip}&lang=${lang}`;
+    // let skip = this.page * this.order.take - this.order.take;
+    let params = `?take=${this.order.take}&skip=${this.order.skip}&lang=${lang}`;
     // ${this.order.take}
     return this.http.get<IOrderResponse>(
       environment.orderang + params
-      //
     );
-  
   }
-  
+
   updateUserOrder(id: any, data: any): Observable<any>{
     return this.http.put(`${environment.host}order/${id}`, data);
   }

@@ -51,8 +51,8 @@ export class SitePageService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<ISitePageResponse> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<ISitePageResponse>(
       environment.client.page.pages + params
     );

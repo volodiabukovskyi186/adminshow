@@ -218,6 +218,14 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     this.closeForm();
   }
 
+  pageEvent(event):void{
+    console.log('event===>',event)
+    this.reviewsPageService.reviews.count=event.length
+    this.reviewsPageService.reviews.take=event.pageSize
+    this.reviewsPageService.reviews.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
+
   putHandler = (data) => {
     this.ngxService.stopAll();
     this.closeForm();

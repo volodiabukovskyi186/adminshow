@@ -231,7 +231,14 @@ export class CustomersComponent extends BasePage implements OnInit {
   };
 
   //#endregion
-
+  pageEvent(event):void{
+    console.log('event===>',event)
+    this.arrCustomers.count=event.length
+    this.arrCustomers.take=event.pageSize
+    this.customersService.customer.take=event.pageSize
+    this.customersService.customer.skip=event.pageSize*event.pageIndex
+    this.getCustomers();
+  }
   //#region pagination
 
   pageToHandler(page: number): void {

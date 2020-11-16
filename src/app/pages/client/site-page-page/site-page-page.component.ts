@@ -179,6 +179,15 @@ deletePage(page) {
   })
 }
 
+
+
+
+pageEvent(event):void{
+  this.sitePage.data.count=event.length
+  this.sitePage.data.take=event.pageSize
+  this.sitePage.data.skip=event.pageSize*event.pageIndex
+  this.getList();
+}
 //#region pagination
 
 pageToHandler(page: number): void {
