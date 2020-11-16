@@ -37,6 +37,7 @@ export class LoginFormComponent {
   });
 
   onSubmit() {
+
     this.ngxService.start();
     this.toastr.clear();
     
@@ -45,6 +46,7 @@ export class LoginFormComponent {
   }
 
   authHandler = (data: AuthResponse) => {
+   
     this.ngxService.stopAll();
     this.auth.saveToken(data.data.token);
     this.authForm.reset();

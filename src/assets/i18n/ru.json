@@ -357,5 +357,14 @@
     "Oct": "Октябрь",
     "Nov": "Ноябрь",
     "Dec": "Декабрь"
+  },
+  "languageCountry":{
+    "code":"ISO",
+    "title":"Название",
+    "short_title":"Короткое имя",
+    "flag":"Флаг",
+    "local":"Код Страны",
+    "default":"Дефолтная",
+    "available":"Статус"
   }
 }

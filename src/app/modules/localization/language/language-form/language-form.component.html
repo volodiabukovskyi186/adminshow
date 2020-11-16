@@ -1,3 +1,25 @@
+<div class="modal" *ngIf="modalOpen">
+    <div class="modal-wrapper">
+      <div class="modal-close" (click)="modalOpen = false"></div>
+      <div class="modal-content">
+        <header>
+          <h4>Select images</h4>
+        </header>
+  
+        <div class="content">
+          <app-gallery-view
+            [selectable]="true"
+            [singleSelectable]="false"
+            [editable]="false"
+          ></app-gallery-view>
+        </div>
+        <footer>
+          <button class="button" role="button" (click)="onOk()">OK</button>
+        </footer>
+      </div>
+    </div>
+</div>
+
 <h2 class="text-center" *ngIf="title">{{ title }}</h2>
 
 <rap-dynamic-form
@@ -6,3 +28,29 @@
   [isSubmitButton]="false"
   (formSubmit)="onSubmit($event)"
 ></rap-dynamic-form>
+
+<div class="form-row">
+    <div class="description">
+        <label for=""> {{ "languageCountry.flag" | translate }}</label>
+    </div>
+<!--    {{"languageCountry.flag"|}}-->
+    <div class="original">
+ 
+  <div class="original">
+
+      <app-choice-button
+ [src]="
+        'api.showu.com.ua'
+         ? '//' + 'api.showu.com.ua' + selected?.flag
+         : selected?.flag
+  "
+      style="max-width: 80px;"
+      class="radius"
+      (press)="onPress()"
+    
+      ></app-choice-button>
+      <input type="hidden"  />
+
+    </div>
+    </div>
+</div>

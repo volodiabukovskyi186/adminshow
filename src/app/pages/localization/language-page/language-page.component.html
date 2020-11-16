@@ -7,6 +7,8 @@
       [title]="'MENU.localization.addLanguage' | translate"
       [questions$]="langForm.questions$"
       (formSubmit)="onSubmit($event)"
+      [selected]="selected"
+      
     ></app-language-form>
   </div>
   <div filter></div>

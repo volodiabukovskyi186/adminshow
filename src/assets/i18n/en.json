@@ -361,5 +361,14 @@
     "Oct": "October",
     "Nov": "November",
     "Dec": "December"
+  },
+  "languageCountry":{
+    "code":"Code",
+    "title":"Title",
+    "short_title":"Language locate",
+    "flag":"flag",
+    "local":"local",
+    "default":"default",
+    "available":"Status"
   }
 }

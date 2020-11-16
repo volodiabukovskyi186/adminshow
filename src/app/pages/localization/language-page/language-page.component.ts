@@ -20,7 +20,9 @@ import { BasePage } from "../../@core";
 })
 export class LanguagePageComponent extends BasePage implements OnInit {
   @ViewChild(LanguageFormComponent) langFormComponent: LanguageFormComponent;
-
+  selected={
+    flag:''
+  }
   deleteId = 0;
   editId: number = null;
 
@@ -85,11 +87,14 @@ export class LanguagePageComponent extends BasePage implements OnInit {
 
   save = () => {
     this.langFormComponent.submitForm();
+    this.getLangs()
   };
 
   plus = () => {
+
     this.editId = null;
     this.langForm.questions$ = this.langForm.getQuestions();
+
     this.openForm();
   };
 
@@ -101,11 +106,13 @@ export class LanguagePageComponent extends BasePage implements OnInit {
     this.ngxService.start();
     this.deleteId = langItem.id;
     this.langServise.delete(langItem.id).subscribe(this.deleteHandler);
+   
   }
 
   deleteHandler = (data: any) => {
     this.langServise.deleteFromList(this.deleteId);
     this.toastr.success("LANG DELETED");
+    this.getLangs()
     this.ngxService.stopAll();
   };
 
@@ -130,10 +137,15 @@ export class LanguagePageComponent extends BasePage implements OnInit {
   edit(langItem: ILanguage) {
     this.langForm.questions$ = this.langForm.getQuestions(langItem);
     this.editId = langItem.id;
+    this.selected=langItem
+    console.log('hello===>',langItem)
     this.openForm();
   }
 
   onSubmit(e: ILanguage) {
+   
+    e.flag=this.selected.flag
+    console.log('ReactiveForm===>',e)
     this.ngxService.start();
     if (this.editId == null) {
       this.langServise.postRole(e).subscribe(this.submitHandler);

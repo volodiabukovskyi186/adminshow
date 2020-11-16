@@ -40,6 +40,7 @@ export class CountryFormMainComponent implements OnInit {
     //   .subscribe(this.getProdImagesHandler);
     this.image.select.subscribe(this.selectHandler);
   }
+  
   selectHandler = (data) => {
     let list: IImage[] = this.image.getSelected();
       console.log(data,"<=======")

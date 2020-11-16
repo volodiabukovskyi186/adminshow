@@ -1,8 +1,9 @@
 <div class="form-row" [formGroup]="form">
   <div class="description">
-    <label [attr.for]="question.key">{{ question.label }}</label>
+    <label [attr.for]="question.key">{{question.label | translate}} </label>
   </div>
 
+  
   <div class="original">
     <div [ngSwitch]="question.controlType">
       <input
@@ -40,7 +41,9 @@
           opt.value
         }}</option>
       </select>
+    
     </div>
+    
 
     <!-- <div class="validation-msg red" *ngIf="!isValid">{{ question.label }} is required</div> -->
   </div>

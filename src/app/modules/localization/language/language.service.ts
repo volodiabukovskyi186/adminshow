@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 
 export interface ILanguage {
   id: number;
@@ -15,6 +15,7 @@ export interface ILanguage {
   updated_at: string;
   default: number;
 }
+
 
 export interface ILanguageResponse {
   data: Array<ILanguage>;
@@ -34,6 +35,8 @@ export interface IFlags {
   providedIn: "root",
 })
 export class LanguageService {
+  flagNew:any;
+  flagFlag
   languages: ILanguageResponse = {
     count: 0,
     data: [],
@@ -48,6 +51,7 @@ export class LanguageService {
     ru: "assets/icons/ru.svg",
     ua: "assets/icons/ua.svg",
   };
+  bSubjectFlag = new BehaviorSubject({'flag':this.flagNew});
 
   getLangs(): Observable<ILanguageResponse> {
     let params = `?take=${this.languages.take}&skip=${this.languages.skip}`;
@@ -71,6 +75,8 @@ export class LanguageService {
   }
 
   updateInList(lang: ILanguage) {
+  
+    console.log('bSubjectFlag==>',this.flagFlag)
     this.languages.data.forEach((element) => {
       if (element.id === lang.id) {
         element.title = lang.title;
@@ -78,7 +84,7 @@ export class LanguageService {
         element.code = lang.code;
         element.available = lang.available;
         element.default = lang.default;
-        element.flag = lang.flag;
+        element.flag = this.flagFlag;
         element.locate = lang.locate;
         element.updated_at = lang.updated_at;
       }
@@ -93,18 +99,15 @@ export class LanguageService {
 
   getFromList(id: number) {
     let role;
-    for (let i = 0; i < this.languages.data.length; i++) {
-      role = this.languages.data[i];
-      if (role.id == id) {
-        role.flag = this.flags[role.code];
-        return role;
-      }
-    }
+    // for (let i = 0; i < this.languages.data.length; i++) {
+    //   role = this.languages.data[i];
+    //   if (role.id == id) {
+    //     role.flag = this.flags[role.code];
+    //     return role;
+    //   }
+    // }
     return null;
   }  
-
-  //
-  //
 
   postRole(lang: ILanguage): Observable<any> {
     let data = JSON.stringify(lang);
@@ -112,6 +115,7 @@ export class LanguageService {
   }
 
   putRole(lang: ILanguage, id: number): Observable<any> {
+    debugger;
     let data = JSON.stringify(lang);
     return this.http.put(
       `${environment.localization.language.language}/${id}`,

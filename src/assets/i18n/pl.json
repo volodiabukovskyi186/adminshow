@@ -365,5 +365,14 @@
     "Oct": "Październik",
     "Nov": "Listopad",
     "Dec": "Grudzień"
+  },
+  "languageCountry":{
+    "code":"ISO",
+    "title":"Nazva",
+    "short_title":"Krótkie imię",
+    "flag":"flaga",
+    "local":"Kod pocztowy",
+    "default":"Domyślna",
+    "available":"Status"
   }
 }

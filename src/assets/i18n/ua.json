@@ -377,5 +377,14 @@
     "Oct": "Жовтень",
     "Nov": "Листопад",
     "Dec": "Грудень"
+  },  
+  "languageCountry":{
+    "code":"ISO",
+    "title":"Назва",
+    "short_title":"Коротка назва",
+    "flag":"Прапор",
+    "local":"Код Країни",
+    "default":"Дефолтна",
+    "available":"Статус"
   }
 }

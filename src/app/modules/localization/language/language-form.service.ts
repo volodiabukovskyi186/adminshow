@@ -15,46 +15,46 @@ export class LanguageFormService {
     let questions: QuestionBase<string>[] = [
       new TextboxQuestion({
         key: "code",
-        label: "Lang code",
-        value: lang?.code ?? "code",
+        label: "languageCountry.code",
+        value: lang?.code ?? "",
         required: true,
         order: 1,
       }),
       new TextboxQuestion({
         key: "title",
-        label: "Lang title",
-        value: lang?.title ?? "tile",
+        label: "languageCountry.title",
+        value: lang?.title ?? "",
         required: true,
         order: 3,
       }),
 
       new TextboxQuestion({
         key: "short_title",
-        label: "Lang short title",
-        value: lang?.short_title ?? "sh t",
+        label: "languageCountry.short_title",
+        value: lang?.short_title ?? " ",
         required: true,
         order: 4,
       }),
 
       new TextboxQuestion({
         key: "flag",
-        label: "Lang flag (emojipedia.org/flags)",
-        value: lang?.flag ?? "flag",
+        label: "languageCountry.flag",
+        value: lang?.flag ?? "" ,
         required: true,
         order: 1,
       }),
 
       new TextboxQuestion({
         key: "locate",
-        label: "Lang locate (UK, GR, etc.)",
-        value: lang?.locate ?? "locate",
+        label: "languageCountry.local",
+        value: lang?.locate ?? "",
         required: true,
         order: 2,
       }),
 
       new TextboxQuestion({
         key: "available",
-        label: "Lang available",
+        label: "languageCountry.available",
         value: lang?.available ?? "0",
         required: true,
         order: 5,
@@ -64,7 +64,7 @@ export class LanguageFormService {
 
       new TextboxQuestion({
         key: "default",
-        label: "Lang default",
+        label: "",
         value: lang?.default ?? "0",
         type: "hidden",
         required: true,
@@ -74,4 +74,5 @@ export class LanguageFormService {
 
     return of(questions.sort((a, b) => a.order - b.order));
   }
+  // languageCountry.default
 }
