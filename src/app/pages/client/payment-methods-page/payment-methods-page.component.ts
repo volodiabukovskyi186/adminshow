@@ -117,6 +117,12 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
   // };
 
   //#region pagination
+  pageEvent(event):void{
+    this.paymentService.data.count=event.length
+    this.paymentService.data.take=event.pageSize
+    this.paymentService.data.skip=event.pageSize*event.pageIndex
+    this.getWeight();
+  }
 
   pageToHandler(page: number): void {
     this.paymentService.page = page;

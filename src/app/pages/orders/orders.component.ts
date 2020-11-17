@@ -238,7 +238,6 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   };
 
   pageEvent(event):void{
-  
     this.orderService.order.count=event.length
     this.orderService.order.take=event.pageSize
     this.orderService.order.skip=event.pageSize*event.pageIndex

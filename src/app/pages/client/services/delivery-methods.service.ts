@@ -45,8 +45,9 @@ export class DeliveryMethodsService {
     this.initEmptyWeightForm();
   }
   getDelivery(): Observable<any> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+   
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<any>(environment.delivery.deliverys+params);
   }
   editDelivery(id: number, item): Observable<any> {

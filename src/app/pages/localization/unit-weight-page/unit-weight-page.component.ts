@@ -117,6 +117,14 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
 
   //#region pagination
 
+  pageEvent(event):void{
+    this.weightService.data.count=event.length
+    this.weightService.data.take=event.pageSize
+    this.weightService.data.skip=event.pageSize*event.pageIndex
+    this.getWeight();
+  }
+
+
   pageToHandler(page: number): void {
     this.weightService.page = page;
   }

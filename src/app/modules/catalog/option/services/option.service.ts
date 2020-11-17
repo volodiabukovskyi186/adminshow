@@ -20,8 +20,8 @@ export class OptionService {
 
   getList(): Observable<IOptionResponse> {
 
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<IOptionResponse>(
       environment.catalog.option.options + params
     );

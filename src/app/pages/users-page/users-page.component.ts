@@ -158,6 +158,13 @@ export class UsersPageComponent extends BasePage
   // };
 
   //#region pagination
+  pageEvent(event):void{
+    this.user.data.count=event.length
+    this.user.data.take=event.pageSize
+    this.user.data.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
+
 
   pageToHandler(page: number): void {
     this.user.page = page;

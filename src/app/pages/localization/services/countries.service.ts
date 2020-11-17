@@ -50,8 +50,8 @@ export class CountriesService {
     this.initEmptyWeightForm();
   }
   getCountry(): Observable<any> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<any>(environment.countries.countrys+params);
   }
   editCountry(id: number, item): Observable<any> {

@@ -71,8 +71,8 @@ export class PromotionService {
   }
 
   getList(): Observable<IPromotionResponse> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<IPromotionResponse>(
       environment.catalog.promotion.promotions + params
     );

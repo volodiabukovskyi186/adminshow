@@ -50,8 +50,8 @@ export class LocalizationServicesService {
   }
   getOrderStatus(): Observable<any> {
     console.log(this.data)
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<any>(environment.localizations.orderstatus+ params);
   }
 

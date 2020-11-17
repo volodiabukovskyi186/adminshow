@@ -244,6 +244,12 @@ editItem: IPromotion = null;
   };
 
 //#region pagination
+pageEvent(event):void{
+  this.prom.data.count=event.length
+  this.prom.data.take=event.pageSize
+  this.prom.data.skip=event.pageSize*event.pageIndex
+  this.getList();
+}
 
 pageToHandler(page: number): void {
   this.prom.page = page;

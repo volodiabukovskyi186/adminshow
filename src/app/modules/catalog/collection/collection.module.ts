@@ -11,7 +11,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 const c = [CollectionFormComponent];
 
 @NgModule({
@@ -28,6 +28,7 @@ const c = [CollectionFormComponent];
     ReactiveFormsModule,
     ClickOutsideModule,
     AngularEditorModule,
+    MatPaginatorModule
   ],
 })
 export class CollectionModule {}

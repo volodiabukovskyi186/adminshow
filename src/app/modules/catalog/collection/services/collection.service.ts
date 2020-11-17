@@ -45,15 +45,15 @@ export class CollectionService {
     count: 0,
     data: [],
     skip: 0,
-    take: 30,
+    take: 10,
     host: null,
   };
 
   constructor(private http: HttpClient) {}
 
   getList(): Observable<ICollectionResponse> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<ICollectionResponse>(
       environment.catalog.collection.collections + params
     );

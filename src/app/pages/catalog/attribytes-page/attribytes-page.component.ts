@@ -159,6 +159,14 @@ edit(i) {
   this.openForm();
 }
 
+pageEvent(event):void{
+  
+  this.attr.data.count=event.length
+  this.attr.data.take=event.pageSize
+  this.attr.data.skip=event.pageSize*event.pageIndex
+  this.getList();
+}
+
 //#region pagination
 
 pageToHandler(page: number): void {

@@ -101,9 +101,17 @@
           </td>
         </tr>
       </tbody>
+ 
     </table>
+    <mat-paginator
+    [length]="collection.data.count"
+    [pageSize]="collection.data.take"
+    [pageSizeOptions]="[5, 10, 25]"
+    (page)="pageEvent($event)  "
+    >
+    </mat-paginator>
 
-    <app-pagination
+    <!-- <app-pagination
       class="radius"
       [page]="collection.page"
       [total]="Math.ceil(collection.data.count / collection.data.take)"
@@ -112,6 +120,8 @@
       (goPrev)="pagePrevHandler()"
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
-    ></app-pagination>
+    ></app-pagination> -->
+
+  
   </div>
 </rap-panel-content>

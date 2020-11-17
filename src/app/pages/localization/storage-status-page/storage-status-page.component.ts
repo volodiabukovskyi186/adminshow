@@ -109,6 +109,13 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
   // };
 
   //#region pagination
+  pageEvent(event):void{
+    this.storageService.data.count=event.length
+    this.storageService.data.take=event.pageSize
+    this.storageService.data.skip=event.pageSize*event.pageIndex
+    this.getWeight()
+  }
+
 
   pageToHandler(page: number): void {
     this.storageService.page = page;

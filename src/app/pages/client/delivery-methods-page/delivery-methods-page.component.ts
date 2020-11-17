@@ -108,6 +108,16 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   // };
 
   //#region pagination
+    pageEvent(event):void{
+
+    this.deliveryService.data.count=event.length
+    this.deliveryService.data.take=event.pageSize
+    this.deliveryService.data.skip=event.pageSize*event.pageIndex
+    this.alldata.count=event.length
+    this.alldata.take=event.pageSize
+    this.alldata.skip=event.pageSize*event.pageIndex
+    this.getWeight()
+  }
 
   pageToHandler(page: number): void {
     this.deliveryService.page = page;

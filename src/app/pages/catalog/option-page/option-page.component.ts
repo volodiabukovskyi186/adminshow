@@ -152,6 +152,13 @@ edit(i: IOption) {
   this.openForm();
 }
 
+pageEvent(event):void{
+  this.option.data.count=event.length
+  this.option.data.take=event.pageSize
+  this.option.data.skip=event.pageSize*event.pageIndex
+  this.getList();
+}
+
 //#region pagination
 
 pageToHandler(page: number): void {

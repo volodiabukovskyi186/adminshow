@@ -136,6 +136,14 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
     // };
 
     //#region pagination
+      pageEvent(event):void{
+    this.localizationService.data.count=event.length
+    this.localizationService.data.take=event.pageSize
+    this.localizationService.data.skip=event.pageSize*event.pageIndex
+    this.getStatus()
+    
+  }
+
 
     pageToHandler(page: number): void {
         this.localizationService.page = page;

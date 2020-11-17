@@ -264,7 +264,7 @@ export const pagesRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(pagesRoutes), BrowserAnimationsModule],
+  imports: [RouterModule.forRoot(pagesRoutes, { useHash: true }), BrowserAnimationsModule],
   exports: [RouterModule],
 })
 export class PagesRoutingModule {}

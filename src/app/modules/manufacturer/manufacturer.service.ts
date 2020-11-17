@@ -46,7 +46,7 @@ export class ManufacturerService {
     count: 0,
     data: [],
     skip: 0,
-    take: 20,
+    take: 10,
   };
   page = 1;
 
@@ -58,8 +58,8 @@ export class ManufacturerService {
   ) {}
 
   getList(): Observable<IManufacturerResponse> {
-    let skip = this.page * this.manufacturer.take - this.manufacturer.take;
-    let params = `?take=${this.manufacturer.take}&skip=${skip}`;
+    // let skip = this.page * this.manufacturer.take - this.manufacturer.take;
+    let params = `?take=${this.manufacturer.take}&skip=${this.manufacturer.skip}`;
     return this.http.get<IManufacturerResponse>(
       environment.manufacturer.manufacturers + params
     );

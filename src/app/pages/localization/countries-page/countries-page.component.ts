@@ -137,6 +137,12 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     this.countryPaymentService.changeDeliverPay.next(this.selectedCountryPayment)
     this.openForm();
   };
+  pageEvent(event):void{
+    this.countriesServices.data.count=event.length
+    this.countriesServices.data.take=event.pageSize
+    this.countriesServices.data.skip=event.pageSize*event.pageIndex
+    this.getWeight()
+  }
 
 
 

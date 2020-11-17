@@ -231,8 +231,7 @@ export class CollectionPageComponent extends BasePage
     this.selectedProductsPromotion = event?.map(function(product) {
       return product.id;
     })
-  
-    console.log(this.selectedProductsPromotion);
+
   }
 
   editItem: ICollection = null;
@@ -252,6 +251,12 @@ export class CollectionPageComponent extends BasePage
   };
 
   //#region pagination
+  pageEvent(event):void{
+    this.collection.data.count=event.length
+    this.collection.data.take=event.pageSize
+    this.collection.data.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
 
   pageToHandler(page: number): void {
     this.collection.page = page;

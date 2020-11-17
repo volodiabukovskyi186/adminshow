@@ -105,7 +105,7 @@
 
     <!-- <pre>{{ langServise.languages.data | json }}</pre> -->
 
-    <app-pagination
+    <!-- <app-pagination
       class="radius"
       [page]="manufacturer.page"
       [total]="Math.ceil(manufacturer.manufacturer.count / manufacturer.manufacturer.take)"
@@ -114,6 +114,14 @@
       (goPrev)="pagePrevHandler()"
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
-    ></app-pagination>
+    ></app-pagination> -->
+    <mat-paginator
+    *ngIf="manufacturer.manufacturer.count>9"
+    [length]="manufacturer.manufacturer.count"
+    [pageSize]=" manufacturer.manufacturer.take"
+    [pageSizeOptions]="[5, 10, 25]"
+    (page)="pageEvent($event)  "
+    >
+    </mat-paginator>
   </div>
 </rap-panel-content>

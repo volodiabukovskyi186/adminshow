@@ -168,6 +168,12 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
   }
 
   //#region pagination
+  pageEvent(event):void{
+    this.manufacturer.manufacturer.count=event.length
+    this.manufacturer.manufacturer.take=event.pageSize
+    this.manufacturer.manufacturer.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
 
   pageToHandler(page: number): void {
     this.manufacturer.page = page;

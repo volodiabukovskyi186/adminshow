@@ -63,7 +63,7 @@
             </tr>
             </tbody>
         </table>
-        <app-pagination
+        <!-- <app-pagination
                 class="radius"
                 [page]="weightService.page"
                 [total]="Math.ceil(alldata?.count/alldata?.take)"
@@ -72,7 +72,16 @@
                 (goPrev)="pagePrevHandler()"
                 (goPage)="pageToHandler($event)"
                 (pageChanged)="pageChangedHandler()"
-        ></app-pagination>
+        ></app-pagination> -->
+
+      <mat-paginator
+      *ngIf="alldata?.count>9"
+      [length]="alldata?.count"
+      [pageSize]="alldata?.take"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="pageEvent($event)  "
+      >
+      </mat-paginator>
     </div>
 </rap-panel-content>
 

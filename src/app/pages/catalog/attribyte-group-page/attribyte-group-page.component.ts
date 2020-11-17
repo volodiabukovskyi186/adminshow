@@ -157,6 +157,14 @@ export class AttribyteGroupPageComponent extends BasePage
     this.openForm();
   }
 
+  pageEvent(event):void{
+  
+    this.attrGr.data.count=event.length
+    this.attrGr.data.take=event.pageSize
+    this.attrGr.data.skip=event.pageSize*event.pageIndex
+    this.getList();
+  }
+
   //#region pagination
 
   pageToHandler(page: number): void {

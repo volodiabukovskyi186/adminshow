@@ -45,8 +45,8 @@ export class StorageService {
     this.initEmptyWeightForm();
   }
   getWeight(): Observable<any> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<any>(environment.stockstatus.stockstatuss+params);
   }
   getStorageStatus(lang): Observable<any> {

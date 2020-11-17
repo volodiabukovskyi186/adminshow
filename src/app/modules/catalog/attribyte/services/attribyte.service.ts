@@ -20,8 +20,8 @@ export class AttribyteService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<IResponseDataPagination<IAttribyte>> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<IResponseDataPagination<IAttribyte>>(
       environment.catalog.attr.atrribytes + params
     );

@@ -14,13 +14,13 @@ export class UserService {
     count: 0,
     host: null,
     skip: 0,
-    take: 20,
+    take: 10,
   };
   constructor(private _http: HttpClient) {}
 
   getList(): Observable<IUserResponse> {
-    let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${skip}`;
+    // let skip = this.page * this.data.take - this.data.take;
+    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this._http.get<IUserResponse>(environment.user.users + params);
   }
 
