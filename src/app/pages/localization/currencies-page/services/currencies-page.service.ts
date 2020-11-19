@@ -43,7 +43,6 @@ export class CurrenciesService {
   getCurrencies(): Observable<any> {
     let skip = this.page * this.currency.take - this.currency.take;
     let params = `?take=${this.currency.take}&skip=${skip}`;
-
     return this.http.get<any>(
       `${environment.host}currencys${params}`
     );

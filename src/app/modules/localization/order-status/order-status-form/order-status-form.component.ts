@@ -23,7 +23,9 @@ export class OrderStatusFormComponent implements OnInit {
                 public localizeServ: LocalizationServicesService) {
     }
     ngOnInit(): void {
+    
         this.sub()
+    
     }
 
     sub():void{

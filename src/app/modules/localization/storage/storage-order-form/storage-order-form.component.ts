@@ -21,14 +21,16 @@ export class StorageOrderFormComponent implements OnInit {
               public storageService:StorageService,) {
   }
   ngOnInit(): void {
+    
     this.sub()
+    console.log( 'this.selected===>',this.langService.getFromList(1).flag)
   }
 
   sub():void{
     this.storageService.bSubject.subscribe(data=>{
       this.selected = data;
     })
-    console.log( this.selected)
+   
   }
   public langShortTitle = {
     "1": {

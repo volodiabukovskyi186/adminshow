@@ -1,7 +1,7 @@
 @import "~src/styles/raisins/variables";
 @import "~src/styles/raisins/mixins";
 
-$navWidth: 192px;
+$navWidth: 250px;
 
 :host {
   //   overflow-x: hidden;
@@ -63,6 +63,7 @@ aside {
   position: sticky;
   max-height: 100vh;
   top: 0;
+  background: transparent linear-gradient(180deg, rgba(14, 64, 97, 1) 0%, rgba(14, 64, 97, 1) 0%, rgba(58, 34, 61, 1) 87%, rgba(88, 14, 36, 1) 100%) 0% 0% no-repeat padding-box;
 }
 
 header {
@@ -77,6 +78,7 @@ header {
   background-color: rgba($white, 0.8);
   @include material-shadow(1);
   backdrop-filter: blur(1rem);
+  //
 }
 
 footer {
@@ -97,4 +99,210 @@ footer {
   display: flex;
   flex-direction: row;
   margin-left: auto;
+}
+.panel-top-bar{
+  width: 100%;
+  height: 64px;
+  padding-right: 65px;
+  background: transparent linear-gradient(270deg, rgba(88, 14, 36, 1) 0%, rgba(14, 64, 97, 1) 100%) 0% 0% no-repeat padding-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  .currency{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    color: white;
+    margin-right: 63px;
+    p{
+      padding-right: 10px;
+      margin-bottom: 0;
+     
+    }
+    .currencyItem{
+      font-weight: 100;
+      display: flex;
+      justify-content: center;
+      padding-right: 10px;
+    }
+    
+  }
+}
+.lang-conteiner{
+  position: relative;
+  background: orangered;
+  z-index: 10000;
+  width: 45px;
+
+
+
+}
+
+.all{
+  position: absolute;
+  z-index: 10000;
+  width: 40px;
+  display:block;
+  list-style:none;
+  li{
+    display:block;
+    a{
+      display:block;
+    }
+  }
+  
+}
+
+.dropdown {
+  
+  position: relative;
+  display: inline-block;
+  z-index: 10000;
+  width: 35px;
+  .active-lang{
+    width: 55px;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+.drop-icon{
+
+  // padding-left: 10px
+}
+  }
+  div{
+    width: 135px;
+    img{
+      border-radius: 6px;
+      width: 35px;
+      height: 35px;
+    margin-right: 10px;
+    }
+  }
+}
+
+.dropdown-content {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  background-color:white;
+
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ position: absolute;
+ top: 64px;
+ left: -75px;
+  width: 45px;
+  z-index: 10000;
+  
+  
+  div{
+    // width: 35px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 7px;
+    img{
+      width: 35px;
+    }
+    p{
+      font-size: 14px;
+      font-weight: 100;
+      padding-left: 12px;
+      margin-bottom:0; 
+    }
+  }
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  align-items: center
+}
+.dropdown:hover .drop-icon  {
+  transform: rotate(180deg);
+}
+.drop-item:hover {
+  background: rgb(233, 231, 231);
+}
+.user-drop{
+  cursor: pointer;
+  margin-left: 50px;
+  .drop-top{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    padding:20px 0;
+    cursor: pointer;
+    .drop-icon{
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      background: white;
+      border-radius: 7px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+      p{
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 100;
+        padding-left: 10px;
+        margin-bottom: 0;
+        color: white;
+      }
+  }
+  .dropdown-content-user{
+    display: none;
+  position: absolute;
+  background-color:white;
+
+  width:135px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ position: absolute;
+ top: 69px;
+ left: 0px;
+  width: 135px;
+  z-index: 10000;
+  &:hover{
+    background: rgb(233, 231, 231);
+  }
+
+  p{
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 100;
+    padding:10px 0; 
+    margin-bottom: 0;
+ 
+  }
+  }
+}
+.user-drop:hover .dropdown-content-user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  
+  
+}
+.dropdown-content-user:hover {
+  cursor: pointer;
+  background: rgb(233, 231, 231);
+}
+.prapor{
+  width: 35px;
+  height: 35px;
+  img{
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+  }
+}
+.drop-item{
+  width: 135px;
 }

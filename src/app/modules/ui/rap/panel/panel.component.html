@@ -2,68 +2,104 @@
   <ng-content select="[nav]"></ng-content>
 </aside>
 
-<div class="panel-wrapper">
-  <header *ngIf="showTop">
-    <ng-content select="[header]"></ng-content>
-    <div class="panel-header-buttons">
-        <!-- <a  href="http://api.showu.com.ua//src//Modules//Client//SubscriptionsClients//Subscriptions.xlsx"></a> -->
-      <button  class="button transparent small" style="position: relative;"  [attr.data-tooltip-left]="labels.download" @scale
-              *ngIf="isDwnloadBtn"
-              (click)="onDwnloadClick()"
-      >
-        <rap-svg-ico [src]="'assets/icons/download.svg'"></rap-svg-ico>
-      
-      </button>
-    <!-- </a> -->
-      <button style="position: relative;" [attr.data-tooltip-left]="labels.filter" @scale
-        *ngIf="showRightToggleBtn"
-        class="button transparent small"
-        [ngClass]="{ active: showRightSide }"
-        (click)="toggleFilter ? toggleRight() : onFilterClick()"
-      >
-        <rap-svg-ico [src]="'assets/icons/filter.svg'"></rap-svg-ico>
-      </button>
-
-      <button style="position: relative;"  [attr.data-tooltip-left]="labels.save" @scale
-        *ngIf="isSaveBtn"
-        class="button transparent small"
-        (click)="onSaveClick()"
-      >
-        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
-      </button>
-
-      <button style="position: relative;"  [attr.data-tooltip-left]="labels.cancel"
-       @scale
-        *ngIf="isCancelBtn"
-        class="button transparent small"
-        (click)="onCancelClick()"
-      >
-        <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>
-      </button>
-
-      <button style="position: relative;"  [attr.data-tooltip-left]="labels.review" @scale
-        *ngIf="isReviewBtn"
-        class="button transparent small"
-        (click)="onReviewClick()"
-      >
-        <rap-svg-ico [src]="'assets/icons/feedback.svg'"></rap-svg-ico>
-      </button>
-
-      <button style="position: relative;"  [attr.data-tooltip-left]="labels.add" @scale
-        *ngIf="isPlusBtn"
-        class="button transparent small"
-        (click)="onPlusClick()"
-      >
-        <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
-      </button>
-
-
-
-
-
+<div class="panel-wrapper" >
+  <div class="panel-top-bar" *ngIf="showTop">
+    <div class="currency">
+      <p>Курс Валют: </p>
+      <ng-container *ngFor="let item of arrCurrency?.data">
+        <div class="currencyItem" *ngIf="item.currency_title!=='UAH'">{{item.currency_title}} {{item.value}}</div>
+      </ng-container>
     </div>
-    <ng-content select="[controls]"></ng-content>
-  </header>
 
-  <ng-content select="[content]"></ng-content>
+    <div class="dropdown">
+      <div class="active-lang">
+        <span  class="prapor">
+                 <img  class="" src="{{flagicon}}" />
+       </span>
+         
+        
+      <rap-svg-ico class="drop-icon" [src]="'assets/icons/drop-down.svg'"></rap-svg-ico>
+    </div>
+    <div class="dropdown-content">
+      <div class="drop-item" *ngFor="let item of lang.langs" [routerLink]="getRoute(item.locale)">
+        <img src="{{ languageService.getCountryFlag(item.flag) }}" />
+        <p> {{item.name}}</p>
+      </div>
+    </div>
+  </div>
+  <!-- <app-user-menu></app-user-menu> -->
+  <!-- <rap-nav-group
+  [icon]="'assets/icons/menu-user.svg'"
+  [title]="user.getUser().user.first_name + ' ' + user.getUser().user.last_name"
+  [(open)]="open"
+>
+  <rap-nav-item
+    [isButton]="true"
+    data-tooltip-right="Logout"
+    [langLink]=""
+    [nav]="{ title: 'Logout' }"
+    (click)="logout($event)"
+  ></rap-nav-item>
+</rap-nav-group> -->
+  <div class="user-drop">
+    <div class="drop-top">
+      <div class="drop-icon">{{user.getUser().user.first_name.substring(0, 1)| uppercase}}</div>
+      <p>{{user.getUser().user.first_name + ' ' + user.getUser().user.last_name}}</p>
+    </div>
+    <div class="dropdown-content-user" (click)="logout($event)">
+      <p>Logout</p>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+<header *ngIf="showTop">
+  <ng-content select="[header]"></ng-content>
+  <div class="panel-header-buttons">
+    <!-- <a  href="http://api.showu.com.ua//src//Modules//Client//SubscriptionsClients//Subscriptions.xlsx"></a> -->
+    <button class="button transparent small" style="position: relative;" [attr.data-tooltip-left]="labels.download"
+      @scale *ngIf="isDwnloadBtn" (click)="onDwnloadClick()">
+      <rap-svg-ico [src]="'assets/icons/download.svg'"></rap-svg-ico>
+
+    </button>
+    <!-- </a> -->
+    <button style="position: relative;" [attr.data-tooltip-left]="labels.filter" @scale *ngIf="showRightToggleBtn"
+      class="button transparent small" [ngClass]="{ active: showRightSide }"
+      (click)="toggleFilter ? toggleRight() : onFilterClick()">
+      <rap-svg-ico [src]="'assets/icons/filter.svg'"></rap-svg-ico>
+    </button>
+
+    <button style="position: relative;" [attr.data-tooltip-left]="labels.save" @scale *ngIf="isSaveBtn"
+      class="button transparent small" (click)="onSaveClick()">
+      <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
+    </button>
+
+    <button style="position: relative;" [attr.data-tooltip-left]="labels.cancel" @scale *ngIf="isCancelBtn"
+      class="button transparent small" (click)="onCancelClick()">
+      <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>
+    </button>
+
+    <button style="position: relative;" [attr.data-tooltip-left]="labels.review" @scale *ngIf="isReviewBtn"
+      class="button transparent small" (click)="onReviewClick()">
+      <rap-svg-ico [src]="'assets/icons/feedback.svg'"></rap-svg-ico>
+    </button>
+
+    <button style="position: relative;" [attr.data-tooltip-left]="labels.add" @scale *ngIf="isPlusBtn"
+      class="button transparent small" (click)="onPlusClick()">
+      <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+    </button>
+
+
+
+
+
+  </div>
+  <ng-content select="[controls]"></ng-content>
+</header>
+
+<ng-content select="[content]"></ng-content>
 </div>

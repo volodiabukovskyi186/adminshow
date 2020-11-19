@@ -17,6 +17,7 @@ import localeRu from '@angular/common/locales/ru';
 import localeUa from "@angular/common/locales/uk";
 import { registerLocaleData } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { UserMenuComponent } from './modules/user/user-menu/user-menu.component';
 
 registerLocaleData(localeRu, "ru");
 registerLocaleData(localePl, "pl");
@@ -29,7 +30,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,UserMenuComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     AppRoutingModule,

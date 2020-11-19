@@ -10,6 +10,7 @@ export interface ILangItem {
   flag: string;
   name: string;
   locale?: string;
+  src?:string;
 }
 
 @Injectable({
@@ -90,10 +91,10 @@ export class LanguageService implements OnInit {
   init() {
     // init langs
 
-    const pl: ILangItem = { flag: "pl", name: "pl", locale: "pl" };
-    const en: ILangItem = { flag: "en", name: "en", locale: "en" };
-    const ru: ILangItem = { flag: "ru", name: "ru", locale: "ru" };
-    const ua: ILangItem = { flag: "ua", name: "ua", locale: "ua" };
+    const pl: ILangItem = { flag: "pl", name: "Poland", locale: "pl", src:'assets/icons/poland.jpg' };
+    const en: ILangItem = { flag: "en", name: "England", locale: "en"  ,src:'assets/icons/eangland.png'};
+    const ru: ILangItem = { flag: "ru", name: "Russia", locale: "ru" , src:'assets/icons/russia.webp'};
+    const ua: ILangItem = { flag: "ua", name: "Ukraine", locale: "ua", src:'assets/icons/ukraine.webp' };
 
     this.langs = [pl, en, ru, ua];
 

@@ -71,6 +71,7 @@
         ></app-pagination> -->
 
       <mat-paginator
+      *ngIf="alldata?.count>9"
       [length]="alldata?.count"
       [pageSize]="alldata?.take"
       [pageSizeOptions]="[5, 10, 25]"

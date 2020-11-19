@@ -1,6 +1,12 @@
+import { CurrenciesService } from './../../../../pages/localization/currencies-page/services/currencies-page.service';
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { slideRight, scale } from "../../animations";
-
+import { LanguageService } from 'src/app/core/language.service';
+import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
+import { Router } from "@angular/router";
+import { UserService } from 'src/app/modules/user/user.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { NavLink } from '../nav-item/nav-link';
 export interface IPanelLabesl {
   filter: string;
   add: string;
@@ -8,6 +14,7 @@ export interface IPanelLabesl {
   save: string;
   review: string;
   download:string;
+
 }
 @Component({
   selector: "rap-panel",
@@ -169,13 +176,79 @@ export class PanelComponent implements OnInit {
   @Output() filterClick = new EventEmitter();
 
   onFilterClick = () => this.filterClick.emit();
+  arrCurrency:any;
+  currentLang:any;
+  langStatus: boolean = false;
+  langItem:any;
+  statusItem=false
 
-  constructor() {}
+  open: boolean = false;
+  nav: NavLink = {
+    link: '',
+    title: "logout",
+  }
 
-  ngOnInit(): void {}
+ flagicon;
+  
+
+  constructor(private currencyService:CurrenciesService,
+    public lang: LanguageService,
+    public languageService: LocalizationLang,
+    private router: Router,
+    public user: UserService,
+    private auth: AuthService,) {}
+
+  ngOnInit(): void {
+   
+    this.getCurrency()
+    this.currentLang=localStorage.getItem('currentLang')
+    this.user.getByToken().subscribe(this.getByTokenHandler);
+    this.lang.langs.forEach(elem=>{
+      if(elem.locale==this.currentLang){
+        this.flagicon=elem.src
+      }
+    })
+  
+  
+  }
 
   toggleRight = () => (this.showRightSide = !this.showRightSide);
 
   public showModalForm = () => (this.showForm = true);
   public hideModalForm = () => (this.showForm = false);
+
+  getCurrency():void{
+    this.currencyService.getCurrencies().subscribe(data=>{
+        this.arrCurrency=data;
+    })
+  }
+  getRoute(locale: string) {
+    let route = this.router.url.split("/");
+    let res = ["/", locale];
+    route.forEach((item) => {
+      if (item != "" && !item.match(/en|pl|ru|ua/)) {
+        res.push(item);
+      }
+    });
+    this.currentLang=localStorage.getItem('currentLang')
+
+    this.lang.langs.forEach(elem=>{
+      if(elem.locale==this.currentLang){
+        this.flagicon=elem.src
+      }
+    })
+    return res;
+  }
+  
+  logout(event: Event) {
+    event.preventDefault();
+    this.auth.logout();
+    this.router.navigate(["login"]);
+  }
+
+  getByTokenHandler = (data) => {
+    this.user.saveUser(data.data);
+  };
+
+  
 }

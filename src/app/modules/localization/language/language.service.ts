@@ -99,13 +99,13 @@ export class LanguageService {
 
   getFromList(id: number) {
     let role;
-    // for (let i = 0; i < this.languages.data.length; i++) {
-    //   role = this.languages.data[i];
-    //   if (role.id == id) {
-    //     role.flag = this.flags[role.code];
-    //     return role;
-    //   }
-    // }
+    for (let i = 0; i < this.languages.data.length; i++) {
+      role = this.languages.data[i];
+      if (role.id == id) {
+        role.flag = this.flags[role.code];
+        return role;
+      }
+    }
     return null;
   }  
 
@@ -115,7 +115,6 @@ export class LanguageService {
   }
 
   putRole(lang: ILanguage, id: number): Observable<any> {
-    debugger;
     let data = JSON.stringify(lang);
     return this.http.put(
       `${environment.localization.language.language}/${id}`,
