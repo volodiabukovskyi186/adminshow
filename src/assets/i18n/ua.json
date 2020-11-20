@@ -267,7 +267,8 @@
     "currencyUpdateDate": "Дата оновлення",
     "currencyActions": "Дії",
     "addEditCurrencyInfo": "Додавання / Редагування валюти",
-    "currencyDefault": "За замовчуванням"
+    "currencyDefault": "За замовчуванням",
+    "priceCurrency":"Курс Валют "
   },
   "settings": {
     "nameOfThePlatform": "Найменування платформи",

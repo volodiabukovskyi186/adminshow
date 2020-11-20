@@ -38,7 +38,11 @@
           <td>
             <div class="flag-container">
               <!-- <span class="flag">{{ item.flag }}</span> -->
-              <img class="flag" src="{{ langServise.getFromList(item.id)?.flag }}"/>
+              <img class="flag"  [src]="
+              'api.showu.com.ua'
+               ? '//' + 'api.showu.com.ua' + item?.flag
+               : '//' + 'api.showu.com.ua' + item?.flag
+        "/>
               {{ item.short_title }} | {{ item.title }}
               
               <app-permission-item

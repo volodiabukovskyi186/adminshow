@@ -251,7 +251,8 @@
     "currencyUpdateDate": "Update date",
     "currencyActions": "Actions",
     "addEditCurrencyInfo": "Add / Edit currency",
-    "currencyDefault": "Default"
+    "currencyDefault": "Default",
+    "priceCurrency":"Exchange rate "
   },
   "settings": {
     "nameOfThePlatform": "Name of the platform",

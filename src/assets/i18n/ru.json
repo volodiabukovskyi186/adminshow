@@ -247,7 +247,8 @@
     "currencyUpdateDate": "Дата обновления",
     "currencyActions": "Действия",
     "addEditCurrencyInfo": "Добавление / Редактирование валюты",
-    "currencyDefault": "По умолчанию"
+    "currencyDefault": "По умолчанию",
+    "priceCurrency":"Курс Валют "
   },
   "settings": {
     "nameOfThePlatform": "Наименование платформы",

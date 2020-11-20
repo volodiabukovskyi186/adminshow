@@ -48,13 +48,17 @@ export class LanguageFormComponent implements OnInit ,OnChanges {
       this.modalOpen = false;
       console.log('selectImage==>',selectedImage)
     }
+
   };
   onOk() {
     let list: IImage[] = this.image.getSelected();
     this.languageService.flagFlag=list[0].src;
+  
     this.languageService.bSubjectFlag.next(this.selected.flag)
     this.selected.flag= list[0].src
     this.modalOpen = false;
+    console.log('selected==>',this.selected.flag)
+   
   }
 
   onReset() {

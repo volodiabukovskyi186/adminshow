@@ -255,7 +255,8 @@
     "currencyUpdateDate": "Data aktualizacji",
     "currencyActions": "Działania",
     "addEditCurrencyInfo": "Dodawanie / Edycja waluty",
-    "currencyDefault": "Domyślna"
+    "currencyDefault": "Domyślna",
+    "priceCurrency":"Kurs wymiany "
   },
   "settings": {
     "nameOfThePlatform": "Nazwa platformy",

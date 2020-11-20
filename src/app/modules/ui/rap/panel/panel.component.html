@@ -5,7 +5,8 @@
 <div class="panel-wrapper" >
   <div class="panel-top-bar" *ngIf="showTop">
     <div class="currency">
-      <p>Курс Валют: </p>
+      <p>{{"currencies.priceCurrency"|translate}}: </p>
+     
       <ng-container *ngFor="let item of arrCurrency?.data">
         <div class="currencyItem" *ngIf="item.currency_title!=='UAH'">{{item.currency_title}} {{item.value}}</div>
       </ng-container>

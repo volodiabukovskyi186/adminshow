@@ -88,15 +88,21 @@ export class LanguagePageComponent extends BasePage implements OnInit {
   save = () => {
     this.langFormComponent.submitForm();
     this.getLangs()
+   
   };
 
   plus = () => {
-
+    this.selected.flag=''
     this.editId = null;
     this.langForm.questions$ = this.langForm.getQuestions();
-
+    
     this.openForm();
   };
+  cancel=()=>{
+    this.selected.flag=''
+    this.getLangs()
+    this.closeForm();
+  }
 
   //#endregion
 

@@ -42,13 +42,14 @@
  [src]="
         'api.showu.com.ua'
          ? '//' + 'api.showu.com.ua' + selected?.flag
-         : selected?.flag
+         : '//' + 'api.showu.com.ua' + selected?.flag
   "
       style="max-width: 80px;"
       class="radius"
       (press)="onPress()"
     
       ></app-choice-button>
+    
       <input type="hidden"  />
 
     </div>
