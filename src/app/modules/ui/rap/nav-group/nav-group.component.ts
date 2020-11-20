@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { fade } from "../../animations";
 import { trigger, style, transition, animate } from "@angular/animations";
+import { RapService } from '../../rap.service';
 
 const TIME = ".3s";
 const FN = "ease-in-out";
@@ -25,7 +26,7 @@ const FN = "ease-in-out";
 })
 export class NavGroupComponent implements OnInit {
   private openValue: boolean = false;
-
+  public burderStatus:boolean=false;
   @Input() title: string;
   @Input() icon: string;
 
@@ -40,11 +41,22 @@ export class NavGroupComponent implements OnInit {
     this.openChange.emit(this.openValue);
   }
 
-  constructor() {}
+  constructor(public rapService:RapService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.BurgerStatus()
+  }
+  
+  BurgerStatus():void{
+    this.rapService.SBurder.subscribe(data=>{
+      this.burderStatus=data;
+      console.log('statusBurger==>',data)
+    })
+  }
 
   toggle() {
     this.open = !this.open;
+    this.burderStatus=false
+    this.rapService.SBurder.next(false)
   }
 }

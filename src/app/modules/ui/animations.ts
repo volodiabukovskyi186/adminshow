@@ -87,3 +87,14 @@ export const scale = trigger("scale", [
     animate(`${TIME} ${FN}`, style({ transform: "scale(0)" })),
   ]),
 ]);
+
+export const smallBar = trigger("scale", [
+  transition(":enter", [
+    style({ transform: "scale(0)" }),
+    animate(`${TIME} ${FN}`, style({ width: "80" })),
+  ]),
+  transition(":leave", [
+    style({ transform: "scale(1)" }),
+    animate(`${TIME} ${FN}`, style({  width: "250" })),
+  ]),
+]);

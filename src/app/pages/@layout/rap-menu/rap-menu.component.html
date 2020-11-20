@@ -1,14 +1,20 @@
 <header>
-  <rap-svg-ico
+  <rap-svg-ico *ngIf="!logoStatus"
     [routerLink]="['/',lang.routeLang]"
     routerLinkActive="active"
-
     src="assets/showu.svg"
+    alt="ShowU"
+  ></rap-svg-ico>
+
+  <rap-svg-ico class="small-logo" *ngIf="logoStatus"
+    [routerLink]="['/',lang.routeLang]"
+    routerLinkActive="active"
+    src="assets/icons/showlogo.svg"
     alt="ShowU"
   ></rap-svg-ico>
 </header>
 
-<div>
+<div [ngClass]="{smallBar: logoStatus}">
   <rap-nav-group
     [title]="item.title"
     [icon]="item.icon"
@@ -36,9 +42,10 @@
       </a>
   </div> -->
 </footer>
-<div class="open-shop">
+<div class="open-shop" >
   <a href="https://showu.com.ua/">
   <rap-nav-group
+  [ngClass]="{'small-move-show': logoStatus}"
   [routerLink]="['']"
     [title]="'showupage'"
     [icon]="'assets/icons/web.svg'"

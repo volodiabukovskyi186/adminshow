@@ -65,6 +65,14 @@ aside {
   top: 0;
   background: transparent linear-gradient(180deg, rgba(14, 64, 97, 1) 0%, rgba(14, 64, 97, 1) 0%, rgba(58, 34, 61, 1) 87%, rgba(88, 14, 36, 1) 100%) 0% 0% no-repeat padding-box;
 }
+.smallBar{
+  width: 70px;
+}
+.burger-btn{
+  border: none;
+  background: transparent;
+  outline: none;
+}
 
 header {
   z-index: 98;
@@ -107,7 +115,7 @@ footer {
   background: transparent linear-gradient(270deg, rgba(88, 14, 36, 1) 0%, rgba(14, 64, 97, 1) 100%) 0% 0% no-repeat padding-box;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-direction: row;
   .currency{
     display: flex;
@@ -127,6 +135,12 @@ footer {
       padding-right: 10px;
     }
     
+  }
+  .currency-block{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
   }
 }
 .lang-conteiner{

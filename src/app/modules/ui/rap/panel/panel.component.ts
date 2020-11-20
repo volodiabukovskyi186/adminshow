@@ -1,5 +1,5 @@
 import { CurrenciesService } from './../../../../pages/localization/currencies-page/services/currencies-page.service';
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter,OnChanges } from "@angular/core";
 import { slideRight, scale } from "../../animations";
 import { LanguageService } from 'src/app/core/language.service';
 import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
@@ -7,6 +7,9 @@ import { Router } from "@angular/router";
 import { UserService } from 'src/app/modules/user/user.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { NavLink } from '../nav-item/nav-link';
+import { RapService } from '../../rap.service';
+import { smallBar } from "../../animations";
+import { trigger, style, transition, animate } from "@angular/animations";
 export interface IPanelLabesl {
   filter: string;
   add: string;
@@ -16,13 +19,15 @@ export interface IPanelLabesl {
   download:string;
 
 }
+const TIME = ".3s";
+const FN = "ease-in-out";
 @Component({
   selector: "rap-panel",
-  animations: [slideRight, scale],
+  animations: [slideRight, scale, smallBar], 
   templateUrl: "./panel.component.html",
   styleUrls: ["./panel.component.scss"],
 })
-export class PanelComponent implements OnInit {
+export class PanelComponent implements OnInit ,OnChanges{
   @Input() labels: IPanelLabesl = {
     filter: "Filter",
     add: "Add",
@@ -139,14 +144,6 @@ export class PanelComponent implements OnInit {
     this.DownloadClick.emit();
   }
 
-
-
-
-
-
-
-
-
   private _isReviewBtn: boolean = false;
   @Output() isReviewBtnChange = new EventEmitter();
 
@@ -189,14 +186,15 @@ export class PanelComponent implements OnInit {
   }
 
  flagicon;
-  
+    burderStatus=false;
 
   constructor(private currencyService:CurrenciesService,
     public lang: LanguageService,
     public languageService: LocalizationLang,
     private router: Router,
     public user: UserService,
-    private auth: AuthService,) {}
+    private auth: AuthService,
+    public rapService:RapService) {}
 
   ngOnInit(): void {
    
@@ -210,6 +208,11 @@ export class PanelComponent implements OnInit {
     })
   
   
+  }
+  ngOnChanges():void{
+  this.rapService.SBurder.subscribe(data=>{
+    this.burderStatus=data;
+  })
   }
 
   toggleRight = () => (this.showRightSide = !this.showRightSide);
@@ -249,6 +252,11 @@ export class PanelComponent implements OnInit {
   getByTokenHandler = (data) => {
     this.user.saveUser(data.data);
   };
+  sideBar():void{
+    this.burderStatus=!this.burderStatus;
+    this.rapService.SBurder.next(this.burderStatus)
+      console.log('status===>', this.burderStatus)
+  }
 
   
 }

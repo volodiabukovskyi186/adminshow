@@ -1,9 +1,18 @@
-<aside *ngIf="showLeftSide">
+<aside @smallBar [ngClass]="{smallBar: burderStatus}" *ngIf="showLeftSide">
   <ng-content select="[nav]"></ng-content>
 </aside>
 
 <div class="panel-wrapper" >
   <div class="panel-top-bar" *ngIf="showTop">
+    <div class="search">
+      <button class="burger-btn" (click)="sideBar()">
+        <rap-svg-ico 
+        src="assets/icons/burger.svg"
+        alt="ShowU"
+      ></rap-svg-ico>
+      </button>
+    </div>
+      <div class="currency-block">
     <div class="currency">
       <p>{{"currencies.priceCurrency"|translate}}: </p>
      
@@ -52,7 +61,7 @@
     </div>
   </div>
 
-
+</div>
 
 
 

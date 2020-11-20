@@ -6,13 +6,15 @@
        
       </div>
     </div>
-    <div class="title">{{ title | translate }}</div>
+
+    <div class="title" *ngIf="!burderStatus" >{{ title | translate }}</div>
     <div class="status" *ngIf="title!='showupage'">
-      <rap-svg-ico src="assets/icons/plus.svg"></rap-svg-ico>
+      <rap-svg-ico *ngIf="!burderStatus" src="assets/icons/plus.svg"></rap-svg-ico>
     </div>
+
   
 </header>
 
-<section @fade2 *ngIf="open" [ngClass]="{ active: open }">
+<section @fade2 *ngIf="open && !burderStatus"  [ngClass]="{ active: open }">
   <ng-content ></ng-content>
 </section>
