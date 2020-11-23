@@ -22,6 +22,12 @@
             (orderFiltersFormData)="orderFiltersFormData($event)">
          </app-order-filters-form>
       </div>
+      <div *ngIf="isOpenEditOrderForm">
+         <app-edit-order-form
+            [selectedClientOrder]="editedOrder"
+         >
+         </app-edit-order-form>
+      </div>
    </div>
    <div filter></div>
    <div content class="order-container padding">
@@ -60,9 +66,9 @@
                <button (click)="reviewOrder(order)" class="button transparent small">
                   <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
                </button>
-               <!-- <button class="button transparent small">
+               <button (click)="openEditOrder(order)" class="button transparent small">
                   <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
-               </button> -->
+               </button>
             </td>
       
          </tr>

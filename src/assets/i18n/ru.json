@@ -339,7 +339,17 @@
     "orderFilterBtn": "Фильтровать",
     "clientSearch": "Поиск",
     "totalSum": "Общий оборот",
-    "ordersUAH": " грн"
+    "ordersUAH": " грн",
+    "informationAboutClient": "Информация о покупателе",
+    "products": "Товары",
+    "editOrder": "Редактирования заказа",
+    "paymentAndDeliveryDetails": "Детали оплаты и доставки",
+    "paymentMethod": "Способ оплаты",
+    "deliveryMethod": "Способ доставки",
+    "details": "Реквизиты",
+    "orderProductActions": "Действие",
+    "addProducts": "Добавить товары",
+    "selectProduct": "Выбрать товар"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

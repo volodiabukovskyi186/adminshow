@@ -347,7 +347,17 @@
     "orderFilterBtn": "Filtr",
     "clientSearch": "Szukaj",
     "totalSum": "Całkowity obrót",
-    "ordersUAH": " uah"
+    "ordersUAH": " uah",
+    "informationAboutClient": "Informacje o kupującym",
+    "products": "Ładunek",
+    "editOrder": "Zamów edycję",
+    "paymentAndDeliveryDetails": "Szczegóły płatności i dostawy",
+    "paymentMethod": "Metoda płatności",
+    "deliveryMethod": "Sposób dostawy",
+    "details": "Detale",
+    "orderProductActions": "Działanie",
+    "addProducts": "Dodaj produkty",
+    "selectProduct": "Wybierz produkt"
   },
   "liqpay":{
     "onlinePay":"PŁATNOŚĆ ONLINE",

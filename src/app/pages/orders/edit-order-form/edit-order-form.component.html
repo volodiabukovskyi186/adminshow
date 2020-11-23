@@ -1,0 +1,221 @@
+<div class="orders-form-container">
+    <div class="orders-form-title">{{ 'orders.editOrder' | translate }}</div>
+    <div>
+        <div class="orders-input-wrapper tabs-header-settings-form">
+            <rap-step-tabs>
+                <rap-step-tab [active]="true" [title]="'orders.informationAboutClient' | translate">
+                    <form [formGroup]="clientInfoForm">
+                        <div class="orders-field-content orders-field-content__center">
+                            <div class="">{{ 'customers.customerFirstName' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input
+                                    class="orders-filter__input cursor-pointer"
+                                    type="text"
+                                    id="name"
+                                    formControlName="name"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="orders-field-content orders-field-content__center">
+                            <div class="">{{ 'customers.customerLastName' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input
+                                    class="orders-filter__input cursor-pointer"
+                                    type="text"
+                                    id="surname"
+                                    formControlName="surname"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="orders-field-content orders-field-content__center">
+                            <div class="">{{ 'orders.orderPhone' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input
+                                    class="orders-filter__input cursor-pointer"
+                                    type="text"
+                                    id="phone"
+                                    formControlName="phone"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="orders-field-content orders-field-content__center">
+                            <div class="">{{ 'orders.orderEmail' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input
+                                    class="orders-filter__input cursor-pointer"
+                                    type="text"
+                                    id="email"
+                                    formControlName="email"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </form>
+                </rap-step-tab>
+              
+                <rap-step-tab [title]="'orders.products' | translate">
+                    <form [formGroup]="productQuantityForm">
+                        <div class="products-list">
+                            <div class="products-list__block">
+                                <table>
+                                    <tr>
+                                        <th class="number">№</th>
+                                        <th class="">{{ "orders.orderProductName" | translate }}</th>
+                                        <th class="">{{ "orders.orderProductModel" | translate }}</th>
+                                        <th class="">{{ "orders.orderProductQuantity" | translate }}</th>
+                                        <th class="">{{ "orders.orderProductPrice" | translate }}</th>
+                                        <th class="">{{ "orders.orderProductSum" | translate }}</th>
+                                        <th class="">{{ "orders.orderProductActions" | translate }}</th>
+                                    </tr>
+                                    
+                                    <tr *ngFor="let prod of selectedClientOrder.products">
+                                        <th>{{ prod.product_id }}</th>
+                                        <th>{{ prod.product.description.name }}</th>
+                                        <th>{{ prod.product.model }}</th>
+                                        <th>
+                                            <input
+                                                class="quantity-input"
+                                                type="text"
+                                                id="quantity"
+                                                formControlName="quantity"
+                                                ngModel="{{ modifyQuantity(prod.quantity) }}"
+                                            />
+                                        </th>
+                                        <th>{{ modifyPrice(prod.product.price) }}</th>
+                                        <th>{{ modifyPrice(selectedClientOrder.total) }}</th>
+                                        <th>
+                                            <rap-delete-button
+                                                [attr.data-tooltip-left]="'APP.del' | translate "
+                                                class="button transparent radius"
+                                                (click)="deleteProduct(prod)"
+                                                [src]="'assets/icons/delete.svg'"
+                                            ></rap-delete-button>
+                                        </th>
+                                    </tr>
+                                    <tr class="unset-border table-line-height">
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderCost' | translate }}</th>
+                                        <th class="th-order__border-right"></th>
+                                        <th class="th-order__border-left">{{ modifyPrice(selectedClientOrder?.total) }}</th>
+                                    </tr>
+                                    <tr class="unset-border table-line-height">
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderDelivery' | translate }}</th>
+                                        <th class="th-order__border-right"></th>
+                                        <th class="th-order__border-left">0.00</th>
+                                    </tr>
+                                    <tr class="unset-border table-line-height">
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order"></th>
+                                        <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderTotal' | translate }}</th>
+                                        <th class="th-order__border-right"></th>
+                                        <th class="th-order__border-left">{{ modifyPrice(selectedClientOrder?.total) }}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="add-product-wrapper">
+                        <div>{{ 'orders.addProducts' | translate }}</div>
+                        <form [formGroup]="addProductForm">
+                            <hr class="add-product-hr">
+                            <div class="orders-field-content orders-field-content__center">
+                                <div class="">{{ 'orders.selectProduct' | translate }}</div>
+                                <div class="orders-filter__input-content add-product__input-content">
+                                    <input
+                                        class="orders-filter__input cursor-pointer"
+                                        type="text"
+                                        id="selectProduct"
+                                        formControlName="selectProduct"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="orders-field-content orders-field-content__center">
+                                <div class="">{{ 'orders.orderProductQuantity' | translate }}</div>
+                                <div class="orders-filter__input-content add-product__input-content">
+                                    <input
+                                        class="orders-filter__input cursor-pointer"
+                                        type="text"
+                                        id="productQuantity"
+                                        formControlName="productQuantity"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <button class="plus-btn">
+                                <rap-svg-ico
+                                    class="cursor-pointer"
+                                    [src]="'assets/icons/plus.svg'"
+                                    (click)="addProduct()">
+                                </rap-svg-ico>
+                            </button>
+                        </form>
+                    </div>
+                </rap-step-tab>
+
+                <rap-step-tab [title]="'orders.paymentAndDeliveryDetails' | translate">
+                    <form [formGroup]="editClientInfoForm">
+                        <div class="orders-field-content orders-field-content__center">
+                            <div class="">{{ 'orders.paymentMethod' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input
+                                    class="orders-filter__input cursor-pointer"
+                                    type="text"
+                                    id="paymentMethod"
+                                    formControlName="paymentMethod"
+                                    required
+                                />
+                            </div>
+                            <!-- <div *ngIf="ordersSearchClientsData && isSelectedClient" class="clients__list-wrapper">
+                                <div *ngFor="let client of ordersSearchClientsData" class="clients__list">
+                                    <div class="selected-client cursor-pointer"
+                                        (click)="selectedClient(client)"
+                                    >
+                                        {{ client?.first_name }} {{ client?.last_name }}
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="orders-field-content orders-field-content__center">
+                            <div class="">{{ 'orders.deliveryMethod' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input
+                                    class="orders-filter__input cursor-pointer"
+                                    type="text"
+                                    id="deliveryMethod"
+                                    formControlName="deliveryMethod"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="orders-field-content orders-field-content__start">
+                            <div class="orders-title">{{ 'orders.details' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <textarea
+                                    class="orders-filter__input-details cursor-pointer"
+                                    type="text"
+                                    id="details"
+                                    formControlName="details"
+                                    required
+                                ></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </rap-step-tab>
+            </rap-step-tabs>
+        </div>
+    </div>
+</div>
+

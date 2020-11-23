@@ -359,7 +359,17 @@
     "orderFilterBtn": "Фільтрувати",
     "clientSearch": "Пошук",
     "totalSum": "Загальний оборот",
-    "ordersUAH": " грн"
+    "ordersUAH": " грн",
+    "informationAboutClient": "Інформація про покупця",
+    "products": "Товари",
+    "editOrder": "Редагування замовлення",
+    "paymentAndDeliveryDetails": "Деталі оплати та доставки",
+    "paymentMethod": "Спосіб оплати",
+    "deliveryMethod": "Спосіб доставки",
+    "details": "Реквізити",
+    "orderProductActions": "Дія",
+    "addProducts": "Додати товари",
+    "selectProduct": "Вибрати товар"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",
