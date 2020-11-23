@@ -1,6 +1,7 @@
-<aside @smallBar [ngClass]="{smallBar: burderStatus}" *ngIf="showLeftSide">
+<aside [@smallbar]='myAnimatiom'  *ngIf="showLeftSide">
   <ng-content select="[nav]"></ng-content>
 </aside>
+<!-- [ngClass]="{smallBar: burderStatus}" -->
 
 <div class="panel-wrapper" >
   <div class="panel-top-bar" *ngIf="showTop">
@@ -57,7 +58,7 @@
       <p>{{user.getUser().user.first_name + ' ' + user.getUser().user.last_name}}</p>
     </div>
     <div class="dropdown-content-user" (click)="logout($event)">
-      <p>Logout</p>
+      <p>{{ "logout" | translate }}</p>
     </div>
   </div>
 

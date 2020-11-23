@@ -43,7 +43,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     this.localizationService.getOrderAllStatus().subscribe(data => {
         this.statusIte = data.data;
-        console.log('orderStatus===>',this.statusIte);
+        // console.log('orderStatus===>',this.statusIte);
     })
   // })
   }

@@ -4,6 +4,7 @@ import { ManufacturerService } from '../../../modules/manufacturer/manufacturer.
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { OrderService } from '../services/order.service';
+import { LocalizationServicesService } from '../../localization/services/localization-services.service';
 
 @Component({
   selector: 'app-order-filters-form',
@@ -20,16 +21,18 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   public ordersSearchClientsData: any;
   public isSelectedClient: boolean = false;
   public selectedClientId: number;
-
+  public allStatus:Array<any>;
   constructor(
     public manufacturerService: ManufacturerService,
-    public orderService: OrderService
+    public orderService: OrderService,
+    public localizationService: LocalizationServicesService
   ) { }
 
   public ngOnInit(): void {
     this.generateOrderFiltersForm();
     this.getEditOrderFiltersFormFormData();
     this.getManufactures();
+    this.getStatus();
   }
 
   public ngOnDestroy(): void {
@@ -42,8 +45,17 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
       date_start: new FormControl('', []),
       date_end: new FormControl('', []),
       manufacturer: new FormControl('', []),
-      client: new FormControl('', [])
+      client: new FormControl('', []),
+      status: new FormControl('', [])
     })
+  }
+  getStatus(): void {
+    // this.translate.onLangChange.subscribe(lang => {
+    this.localizationService.getOrderAllStatus().subscribe(data => {
+        this.allStatus = data.data;
+        console.log('orderStatus===>',this.allStatus);
+    })
+  // })
   }
 
   public getEditOrderFiltersFormFormData(): void {

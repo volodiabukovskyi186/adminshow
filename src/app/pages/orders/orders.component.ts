@@ -104,7 +104,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   public getClient(): void {
     this.orderService.getList().subscribe(data => {
       this.userOrders = data;
-      console.log(this.userOrders);
+      console.log('orders=====>',this.userOrders);
     })
   }
 
