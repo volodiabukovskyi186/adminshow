@@ -373,5 +373,6 @@
     "default":"default",
     "available":"Status"
   },
-  "showupage":" Visit the store"
+  "showupage":" Visit the store",
+  "logout":"Logout"
 }

@@ -15,6 +15,6 @@
   
 </header>
 
-<section @fade2 *ngIf="open && !burderStatus"  [ngClass]="{ active: open }">
-  <ng-content ></ng-content>
+<section @fade2 *ngIf="open && !burderStatus"  [@smallbar]='myAnimatiom' [ngClass]="{ active: open }">
+  <ng-content  ></ng-content>
 </section>

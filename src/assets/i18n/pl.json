@@ -377,5 +377,6 @@
     "default":"Domyślna",
     "available":"Status"
   },
-  "showupage":"Odwiedź sklep"
+  "showupage":"Odwiedź sklep",
+  "logout":"Wyloguj"
 }

@@ -13,6 +13,7 @@ import { RapService } from 'src/app/modules/ui/rap.service';
 })
 export class RapMenuComponent implements OnInit,OnChanges {
   logoStatus:boolean=false
+  myAnimatiom='small'
   constructor(
     public menu: MenuService,
     public lang: LanguageService,
@@ -25,14 +26,14 @@ export class RapMenuComponent implements OnInit,OnChanges {
   ngOnInit(): void {
     this.rapService.SBurder.subscribe(data=>{
       this.logoStatus=data;
-      console.log('icon===>',this.logoStatus)
+      // console.log('icon===>',this.logoStatus)
     })
   }
 
   ngOnChanges():void{
       this.rapService.SBurder.subscribe(data=>{
         this.logoStatus=data;
-        console.log('icon===>',this.logoStatus)
+        // console.log('icon===>',this.logoStatus)
       })
   }
   logout(event: Event) {

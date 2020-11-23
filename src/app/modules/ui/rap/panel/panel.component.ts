@@ -8,8 +8,8 @@ import { UserService } from 'src/app/modules/user/user.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { NavLink } from '../nav-item/nav-link';
 import { RapService } from '../../rap.service';
-import { smallBar } from "../../animations";
-import { trigger, style, transition, animate } from "@angular/animations";
+import { smallBar, fade} from "../../animations";
+import { trigger, style, transition, animate,state } from "@angular/animations";
 export interface IPanelLabesl {
   filter: string;
   add: string;
@@ -23,11 +23,30 @@ const TIME = ".3s";
 const FN = "ease-in-out";
 @Component({
   selector: "rap-panel",
-  animations: [slideRight, scale, smallBar], 
+  animations: [slideRight, scale, smallBar,
+    trigger("smallBar1", [
+      transition(":enter", [
+        style({ opacity: "0", width: "80px" }),
+        animate(`${TIME} ${FN}`, style({ opacity: "1", background:'red' }))
+      ]),
+      transition(":leave", [
+        style({ opacity: "1", width: "280px" }),
+        animate(`${TIME} ${FN}`, style({ opacity: "1", background:'yellow' }))
+      ])
+    ]),
+
+    trigger('smallbar', [
+      state('small', style({ width: '80px', opacity: 1 })),
+      state('large', style({ width: '250px', opacity: 1 })),
+      transition('large=>small', animate('400ms ease-in')),
+      transition('small=>large', animate('400ms ease-in'))
+    ]),
+    ], 
   templateUrl: "./panel.component.html",
   styleUrls: ["./panel.component.scss"],
 })
 export class PanelComponent implements OnInit ,OnChanges{
+  
   @Input() labels: IPanelLabesl = {
     filter: "Filter",
     add: "Add",
@@ -185,16 +204,18 @@ export class PanelComponent implements OnInit ,OnChanges{
     title: "logout",
   }
 
- flagicon;
+    flagicon;
     burderStatus=false;
-
+    myAnimatiom: string = 'large';
   constructor(private currencyService:CurrenciesService,
     public lang: LanguageService,
     public languageService: LocalizationLang,
     private router: Router,
     public user: UserService,
     private auth: AuthService,
-    public rapService:RapService) {}
+    public rapService:RapService) {
+  
+    }
 
   ngOnInit(): void {
    
@@ -212,7 +233,10 @@ export class PanelComponent implements OnInit ,OnChanges{
   ngOnChanges():void{
   this.rapService.SBurder.subscribe(data=>{
     this.burderStatus=data;
+      this.burderStatus==false?this.myAnimatiom="large":this.myAnimatiom="small"
+      console.log('panell===>',this.myAnimatiom)
   })
+
   }
 
   toggleRight = () => (this.showRightSide = !this.showRightSide);
@@ -223,6 +247,7 @@ export class PanelComponent implements OnInit ,OnChanges{
   getCurrency():void{
     this.currencyService.getCurrencies().subscribe(data=>{
         this.arrCurrency=data;
+      
     })
   }
   getRoute(locale: string) {
@@ -255,7 +280,8 @@ export class PanelComponent implements OnInit ,OnChanges{
   sideBar():void{
     this.burderStatus=!this.burderStatus;
     this.rapService.SBurder.next(this.burderStatus)
-      console.log('status===>', this.burderStatus)
+    // console.log('status===>rrrr', this.burderStatus)
+    this.burderStatus==false?this.myAnimatiom="large":this.myAnimatiom="small"
   }
 
   
