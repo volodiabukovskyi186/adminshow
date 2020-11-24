@@ -17,17 +17,19 @@ import { UserService } from '../../modules/user/user.service';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent extends BasePage implements OnInit,OnChanges {
-  orderSideStatus = false;
-  ordersForm: FormGroup;
-  selectedClientOrder: any;
-  ordersFormData: any;
-  sendOrdersEditableData: any;
-  status: any;
-  userOrders: any;
+  public orderSideStatus = false;
+  public ordersForm: FormGroup;
+  public selectedClientOrder: any;
+  public ordersFormData: any;
+  public sendOrdersEditableData: any;
+  public status: any;
+  public userOrders: any;
 
   public showFilters: boolean = false;
   public currentUserRoleId: number;
   public totalSum: string;
+  public isOpenEditOrderForm: boolean = false;
+  public editedOrder: any;
 
   public statusCodes = {
     "1": {
@@ -146,8 +148,6 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.orderService.order = data;
     this.totalSum = '\xa0' + this.orderService.order.sum + '\xa0';
 
-
-
     this.orderService.order.data.forEach((val) => {
       this.ordersForm.get('status').setValue(this.statusCodes[val.status_id]);
     })
@@ -218,6 +218,14 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     // this.sendOrdersEditableData = {
     // }
     // console.log(this.sendOrdersEditableData);
+  }
+
+  public openEditOrder(orderToEdit): void {
+    console.log(orderToEdit);
+    this.editedOrder = orderToEdit;
+    this.isOpenEditOrderForm = true;
+
+    this.openForm();
   }
 
   closeForm = () => {

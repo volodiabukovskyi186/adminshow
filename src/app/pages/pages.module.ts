@@ -84,6 +84,7 @@ import { LipayFormComponent } from '../modules/client/liqpay/lipay-form/lipay-fo
 import { OrderFiltersFormComponent } from './orders/order-filters-form/order-filters-form.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { EditOrderFormComponent } from './orders/edit-order-form/edit-order-form.component';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     DeliveryMethodsPageComponent,
     LiqpayPageComponent,
     LipayFormComponent,
-    OrderFiltersFormComponent
+    OrderFiltersFormComponent,
+    EditOrderFormComponent
   ],
     imports: [
         CommonModule,
