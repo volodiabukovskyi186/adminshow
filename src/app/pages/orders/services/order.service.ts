@@ -38,9 +38,15 @@ export class OrderService {
     return this.http.put(`${environment.host}order/${id}`, data);
   }
 
-  filterOrders(dateStart: string, dateEnd: string, manufacturers: number[], userId: number): Observable<any> {
+  filterOrders(dateStart: string, dateEnd: string, manufacturers: number[],status:number[], userId: number): Observable<any> {
     let lang = this.lang.current;
     let params = `?lang=${lang}`;
+   
+  
+    if (status&&status.length>0) {
+     
+      params = params + `&status=[${status}]`;
+    }
 
     if (dateEnd) {
       params = params + `&date_end=${dateEnd}`;
@@ -56,7 +62,8 @@ export class OrderService {
 
     if (userId) {
       params = params + `&user_id=${userId}`;
-    }
+    } 
+    console.log(`${environment.host}ownerOrders` + params)
 
     return this.http.get(`${environment.host}ownerOrders` + params);
   }

@@ -1,9 +1,7 @@
-
 <rap-panel-content
 [showForm]="pages.panelSettings.form"
 [showRightSide]="pages.panelSettings.right"
 >
-
    <div form>
       <div *ngIf="selectedClientOrder && !showFilters">
          <app-order-form
@@ -50,9 +48,7 @@
             <td width="128px" class="text-center">{{ order?.created_at }}</td>
             <td width="128px" class="text-center">
                <div class="order-status-content">
-                  <div class="dot"
-                  [style]="{'background': order.status[0].color}"></div>
-                 
+                   <div class="dot" [style]="{'background': order.status[0].color}"></div>
                    <div class="status-text">{{ order.status[0].description.dectiption}}</div>
                </div>
             </td>
