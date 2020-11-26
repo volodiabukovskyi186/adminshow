@@ -13,6 +13,7 @@ export const environment = {
   },
   orders: host + `orders`,
   orderang:host+`ownerOrders`,
+  managerorder: host+`manager/orders`,
   gallery: {
     images: {
       images: host + `images`,

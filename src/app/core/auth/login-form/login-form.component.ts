@@ -2,7 +2,7 @@
 import { UserService } from 'src/app/modules/user/user.service';
 import { Component, OnInit, Input, Output, EventEmitter ,OnDestroy} from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { AuthService } from "../auth.service";
+import { AuthService } from "../models/auth.service";
 import { ToastrService } from "ngx-toastr";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { Router } from "@angular/router";

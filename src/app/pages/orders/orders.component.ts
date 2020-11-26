@@ -10,6 +10,7 @@ import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { LocalizationServicesService } from '../localization/services/localization-services.service';
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from '../../modules/user/user.service';
+import { RoleService } from 'src/app/core/auth/models/role.service';
 
 @Component({
   selector: 'app-orders',
@@ -30,7 +31,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   public totalSum: string;
   public isOpenEditOrderForm: boolean = false;
   public editedOrder: any;
-
+  public userRoleId:number;
   public statusCodes = {
     "1": {
       name: 'statusCodes.new',
@@ -55,7 +56,9 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     public breadcrumbs: BreadcrumbsService,
     private translate: TranslateService,
     public localizationService: LocalizationServicesService,
-    public userService: UserService
+    public userService: UserService,
+    public roleService:RoleService
+    
   ) { 
     super(pages);
 
@@ -78,9 +81,8 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     super.initPanelButton();
     this.initTranslate();
     this.generateOrdersForm();
-    this.getList();
-    this.getClient();
-   
+    this.getUserByTokin()
+  
     this.pages.panelButtonSettings.plus = false;
     this.pages.panelButtonSettings.rightToggle = true;
     this.pages.panelButtonSettings.save = false;
@@ -90,19 +92,26 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
       this.showFilters = true;      
       this.openForm();      
     }
-
+    this.getClient();
     this.getUserRoleId();
   }
+  
+    getUserByTokin():void{
+      this.roleService.getByToken().subscribe(data=>{
+        this.userRoleId=data.data.user.role_id
+        this.getList(this.userRoleId);
+      })
+    }
 
 
   public uodateAllItems(): void {
-    this.orderService.getList().subscribe(data => {
+    this.orderService.getList(this.userRoleId).subscribe(data => {
       this.orderService.order = data;
     })
   }
 
   public getClient(): void {
-    this.orderService.getList().subscribe(data => {
+    this.orderService.getList(this.userRoleId).subscribe(data => {
       this.userOrders = data;
       console.log('orders=====>',this.userOrders);
     })
@@ -136,9 +145,9 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     });
   }
 
-  public getList(): void {
+  public getList(role_id?): void {
     this.ngxService.start();
-    this.orderService.getList().subscribe(
+    this.orderService.getList(role_id).subscribe(
       this.getListHandler
     );
   }
@@ -249,7 +258,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.orderService.order.count=event.length
     this.orderService.order.take=event.pageSize
     this.orderService.order.skip=event.pageSize*event.pageIndex
-    this.getList();
+    this.getList(this.userRoleId);
   }
 
   //#region pagination

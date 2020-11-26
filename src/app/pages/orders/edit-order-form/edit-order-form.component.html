@@ -87,7 +87,7 @@
                                             />
                                         </th>
                                         <th>{{ modifyPrice(prod?.price) }}</th>
-                                        <th>{{ modifyPrice(prod?.quantity * prod?.price) }}</th>
+                                        <!-- <th>{{ modifyPrice(prod?.quantity * prod?.price) }}</th> -->
                                         <th>
                                             <rap-delete-button
                                                 [attr.data-tooltip-left]="'APP.del' | translate "
@@ -96,7 +96,8 @@
                                                 [src]="'assets/icons/delete.svg'"
                                             ></rap-delete-button>
                                         </th>
-                                    </tr>
+                                    </tr> 
+                                    
                                     <tr class="unset-border table-line-height">
                                         <th class="th-order"></th>
                                         <th class="th-order"></th>

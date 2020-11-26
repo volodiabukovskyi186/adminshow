@@ -24,14 +24,23 @@ export class OrderService {
     public lang: LanguageService
   ) {}
 
-  getList(): Observable<IOrderResponse> {
+  getList(role_id?:number): Observable<IOrderResponse> {
     const lang = localStorage.getItem('currentLang');
     // let skip = this.page * this.order.take - this.order.take;
     let params = `?take=${this.order.take}&skip=${this.order.skip}&lang=${lang}`;
     // ${this.order.take}
-    return this.http.get<IOrderResponse>(
-      environment.orderang + params
-    );
+    console.log('role_id===>',role_id)
+    if(role_id==1){
+      return this.http.get<IOrderResponse>(
+        environment.orderang + params
+      );
+    }
+    else{  
+      return this.http.get<IOrderResponse>(
+        environment.managerorder + params
+      );
+    }
+  
   }
 
   updateUserOrder(id: any, data: any): Observable<any>{

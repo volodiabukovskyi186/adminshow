@@ -5,7 +5,7 @@ import { LanguageService } from 'src/app/core/language.service';
 import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 import { Router } from "@angular/router";
 import { UserService } from 'src/app/modules/user/user.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AuthService } from 'src/app/core/auth/models/auth.service';
 import { NavLink } from '../nav-item/nav-link';
 import { RapService } from '../../rap.service';
 import { smallBar, fade} from "../../animations";

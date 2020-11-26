@@ -178,7 +178,7 @@ export const pagesRoutes: Routes = [
     component: OrdersComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_orders","manage_orderstatusdescriptions","manage_orderproductss"],
+      permissions: ["manage_orders"],
     },
   },
   {

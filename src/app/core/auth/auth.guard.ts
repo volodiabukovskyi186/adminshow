@@ -9,7 +9,7 @@ import {
   ActivatedRoute
 } from "@angular/router";
 import { Observable } from "rxjs";
-import { AuthService } from "./auth.service";
+import { AuthService } from "./models/auth.service";
 import { LanguageService } from "../language.service";
 
 @Injectable({
