@@ -2,6 +2,8 @@
     <div class="orders-form-title">{{ 'orders.editOrder' | translate }}</div>
     <div>
         <div class="orders-input-wrapper tabs-header-settings-form">
+            <img class="prev-icon" src="assets/icons/left-arrow.svg"/>
+            <img class="next-icon" src="assets/icons/next.svg"/>
             <rap-step-tabs>
                 <rap-step-tab [active]="true" [title]="'orders.informationAboutClient' | translate">
                     <form [formGroup]="clientInfoForm">
@@ -71,21 +73,21 @@
                                         <th class="">{{ "orders.orderProductActions" | translate }}</th>
                                     </tr>
                                     
-                                    <tr *ngFor="let prod of selectedClientOrder.products">
-                                        <th>{{ prod.product_id }}</th>
-                                        <th>{{ prod.product.description.name }}</th>
-                                        <th>{{ prod.product.model }}</th>
+                                    <tr *ngFor="let prod of products">
+                                        <th>{{ prod?.id }}</th>
+                                        <th>{{ prod?.description?.name }}</th>
+                                        <th>{{ prod?.model }}</th>
                                         <th>
                                             <input
                                                 class="quantity-input"
                                                 type="text"
                                                 id="quantity"
                                                 formControlName="quantity"
-                                                ngModel="{{ modifyQuantity(prod.quantity) }}"
+                                                ngModel="{{ modifyQuantity(prod?.quantity) }}"
                                             />
                                         </th>
-                                        <th>{{ modifyPrice(prod.product.price) }}</th>
-                                        <th>{{ modifyPrice(selectedClientOrder.total) }}</th>
+                                        <th>{{ modifyPrice(prod?.price) }}</th>
+                                        <th>{{ modifyPrice(prod?.quantity * prod?.price) }}</th>
                                         <th>
                                             <rap-delete-button
                                                 [attr.data-tooltip-left]="'APP.del' | translate "
@@ -102,7 +104,7 @@
                                         <th class="th-order"></th>
                                         <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderCost' | translate }}</th>
                                         <th class="th-order__border-right"></th>
-                                        <th class="th-order__border-left">{{ modifyPrice(selectedClientOrder?.total) }}</th>
+                                        <th class="th-order__border-left">{{ modifyPrice(orderTotal) }}</th>
                                     </tr>
                                     <tr class="unset-border table-line-height">
                                         <th class="th-order"></th>
@@ -120,7 +122,7 @@
                                         <th class="th-order"></th>
                                         <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderTotal' | translate }}</th>
                                         <th class="th-order__border-right"></th>
-                                        <th class="th-order__border-left">{{ modifyPrice(selectedClientOrder?.total) }}</th>
+                                        <th class="th-order__border-left">{{ modifyPrice(orderTotal) }}</th>
                                     </tr>
                                 </table>
                             </div>
@@ -130,9 +132,31 @@
                         <div>{{ 'orders.addProducts' | translate }}</div>
                         <form [formGroup]="addProductForm">
                             <hr class="add-product-hr">
-                            <div class="orders-field-content orders-field-content__center">
+                            <div class="orders-field-content orders-field-content__start">
                                 <div class="">{{ 'orders.selectProduct' | translate }}</div>
+
                                 <div class="orders-filter__input-content add-product__input-content">
+                                    <input
+                                        (click)="getProducts()"
+                                        (clickOutside)="isSelectedProduct = false;"
+                                        id="selectProduct"
+                                        formControlName="selectProduct"
+                                        class="orders-filter__input cursor-pointer"
+                                        type="text" 
+                                    />
+                                    <div *ngIf="isSelectedProduct" class="manufacrures-list">
+                                        <div class="manufacrures-list-item" *ngIf="(filteredProducts$ | async).length === 0">
+                                           <span>{{ "collection.productsNotFound" | translate }}</span>
+                                        </div>
+                                        <div class="search-product-content" *ngFor="let product of filteredProducts$ | async">
+                                            <div class="manufacrures-list-item" (click)="getSelectedProduct(product)"> 
+                                                {{ product.description.name }} 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="orders-filter__input-content add-product__input-content">
                                     <input
                                         class="orders-filter__input cursor-pointer"
                                         type="text"
@@ -140,7 +164,8 @@
                                         formControlName="selectProduct"
                                         required
                                     />
-                                </div>
+                                </div> -->
+
                             </div>
                             <div class="orders-field-content orders-field-content__center">
                                 <div class="">{{ 'orders.orderProductQuantity' | translate }}</div>

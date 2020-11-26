@@ -135,7 +135,7 @@ export class PromotionService {
 
   getAllProducts(): Observable<any> {
     let lang = this.languageService.current;
-    return this.http.get(`https://api.showu.com.ua/client/products?lang=${lang}`);
+    return this.http.get(`${environment.host}client/products?lang=${lang}`);
   }
 
   updatePromotionProducts(newProducts, promotionId): Observable<any> {

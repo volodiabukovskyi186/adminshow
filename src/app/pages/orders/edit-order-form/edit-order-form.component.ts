@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { PromotionService } from '../../../modules/catalog/promotion/services/promotion.service';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-edit-order-form',
@@ -14,7 +16,18 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   public productQuantityForm: FormGroup;
   public addProductForm: FormGroup;
 
-  constructor() { }
+  public displayProducts: any;
+  public filteredProducts = new BehaviorSubject([]);
+  public filteredProducts$ = this.filteredProducts.asObservable();
+
+  public isSelectedProduct: boolean = false;
+  public selectedProduct: any;
+  public products = [];
+  public orderTotal = 0;
+
+  constructor(
+    public promotionService: PromotionService
+  ) { }
 
   public ngOnInit(): void {
     console.log(this.selectedClientOrder);
@@ -32,6 +45,18 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     if (changes.selectedClientOrder) {
       // this.clientInfoForm?.reset();
       // this.editClientInfoForm?.reset();
+
+      this.products = [];
+
+      this.selectedClientOrder.products.forEach((val) => {
+        if (val.hasOwnProperty('product')) {
+          //this.orderTotal = '' || this.selectedClientOrder?.total;
+          //this.orderTotal += val.quantity * val.price;
+          this.products.push(val.product);
+        }
+      })
+
+      console.log(this.products);
     }
   }
 
@@ -49,8 +74,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     //   deliveryMethod: "",
     //   details: ""
     // })
-
-    //this.editClientInfoForm?.reset();
 
     this.editClientInfoForm?.setValue({
       paymentMethod: this.selectedClientOrder.checkoutPayment,
@@ -75,8 +98,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     //   phone: "",
     //   email: "",
     // })
-
-    //this.clientInfoForm?.reset();
 
     this.clientInfoForm?.setValue({
       name: this.selectedClientOrder.recipientLastName,
@@ -111,7 +132,52 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     })
   }
 
+  public getProducts(): void {
+    this.isSelectedProduct = true;
+
+    this.promotionService.getAllProducts().subscribe((res) => {
+      this.displayProducts = res.data.products;
+      this.filteredProducts.next(this.displayProducts);
+    })
+  }
+
+  public getSelectedProduct(currentProduct): void {
+    this.isSelectedProduct = false;
+    // this.productName = currentProduct.description.name;
+    this.selectedProduct = currentProduct;
+
+    this.addProductForm.get('selectProduct').patchValue(this.selectedProduct.description.name);
+
+  }
+
   public addProduct(): void {
     console.log('Product added!');
+
+    let uniqueProducts = new Set(this.products?.map(function(product) {
+      return product.id;
+    }));
+
+    if (!uniqueProducts.has(this.selectedProduct?.id)) {
+      this.selectedProduct.quantity = this.addProductForm.value.productQuantity;
+      this.products?.push(this.selectedProduct);
+    }
+
+    this.products.forEach((val) => {
+      let sum = val.quantity * val.price;
+      let result = 0;
+
+      console.log(sum);
+
+      if (sum) {
+        this.orderTotal += sum;
+      }
+
+      console.log(this.orderTotal);
+    })
+
+    console.log(this.orderTotal);
+
+    console.log('this.products', this.products);
+    console.log('this.selectedClientOrder', this.selectedClientOrder);
   }
 }
