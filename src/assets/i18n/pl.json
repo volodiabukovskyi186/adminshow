@@ -148,7 +148,8 @@
       "sum": "Sum, uah",
       "date": "Data",
       "status": "Status",
-      "actions": "Działania"
+      "actions": "Działania",
+      "manager": "Menedżer"
     },
     "catalog": {
       "catalog": "Catalog",

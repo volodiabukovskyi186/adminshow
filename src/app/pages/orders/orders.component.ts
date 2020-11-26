@@ -92,17 +92,17 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
       this.showFilters = true;      
       this.openForm();      
     }
+
     this.getClient();
     this.getUserRoleId();
   }
   
-    getUserByTokin():void{
-      this.roleService.getByToken().subscribe(data=>{
-        this.userRoleId=data.data.user.role_id
-        this.getList(this.userRoleId);
-      })
-    }
-
+  public getUserByTokin(): void {
+    this.roleService.getByToken().subscribe((data) => {
+      this.userRoleId = data.data.user.role_id;
+      this.getList(this.userRoleId);
+    })
+  }
 
   public uodateAllItems(): void {
     this.orderService.getList(this.userRoleId).subscribe(data => {
@@ -147,9 +147,10 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
   public getList(role_id?): void {
     this.ngxService.start();
-    this.orderService.getList(role_id).subscribe(
-      this.getListHandler
-    );
+    this.orderService.getList(role_id).subscribe((res) => {
+      console.log(res);
+      this.getListHandler(res);
+    });
   }
 
   getListHandler = (data) => {

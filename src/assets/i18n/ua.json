@@ -164,7 +164,8 @@
       "order_status": {
         "new": "Новий",
         "old": "Старий"
-      }
+      },
+      "manager": "Менеджер"
     },
     "catalog": {
       "catalog": "Каталог",

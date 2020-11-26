@@ -161,7 +161,8 @@
       "order_status": {
         "new": "New",
         "old": "Old"
-      }
+      },
+      "manager": "Manager"
     },
     "catalog": {
       "catalog": "Catalog",

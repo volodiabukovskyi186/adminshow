@@ -27,7 +27,7 @@
                                 </div> -->
                             </div>
                         </div>
-                        <div class="reviews-date">
+                        <div class="reviews-date" *ngIf="isManufacturersOwner">
                             <div class="reviews-response-title">{{ 'orders.orderManufacturer'| translate }}</div>
                             <div class="reviews-response-status sort-orders-content">
                                 <mat-form-field appearance="standart" class="sort-products">
@@ -37,14 +37,38 @@
                                             formControlName="manufacturer"
                                             required
                                         >
-                                            <div *ngFor="let manufacturer of allManufacturers">
-                                                <mat-option [value]="manufacturer.id">
-                                                    {{ manufacturer.name | translate }}
+                                            <div *ngFor="let manufacturer of allManufacturersOwner">
+                                                <mat-option [value]="manufacturer?.id">
+                                                    {{ manufacturer?.name | translate }}
+                                                </mat-option>  
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                                <!-- <div *ngIf="formAuthControls?.manufacturer?.invalid && (formAuthControls?.manufacturer?.dirty || formAuthControls?.manufacturer?.touched)" class="error-message">
+                                    <div *ngIf="formAuthControls?.manufacturer?.errors.required" class="">
+                                        {{ 'orders.orderManufacturerIsRequired' | translate }}
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="reviews-date" *ngIf="isManufacturersManager">
+                            <div class="reviews-response-title">{{ 'orders.orderManufacturer'| translate }}</div>
+                            <div class="reviews-response-status sort-orders-content">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="manufacturer"
+                                            formControlName="manufacturer"
+                                            required
+                                        >
+                                            <div *ngFor="let manufacturer of allManufacturersManager">
+                                                <mat-option [value]="manufacturer?.id">
+                                                    {{ manufacturer?.description?.name | translate }}
                                                 </mat-option>
                                                
                                             </div>
                                         </mat-select>
-                          
                                     </div>
                                 </mat-form-field>
                                 <!-- <div *ngIf="formAuthControls?.manufacturer?.invalid && (formAuthControls?.manufacturer?.dirty || formAuthControls?.manufacturer?.touched)" class="error-message">
@@ -102,18 +126,18 @@
                                  </div>
                         </div> -->
                         <div class="reviews-date">
-                            <div class="reviews-response-title">meneger</div>
+                            <div class="reviews-response-title">Manager</div>
                             <div class="reviews-response-status sort-orders-content">
                                 <mat-form-field appearance="standart" class="sort-products">
                                     <div class="sort-products-wrapper">
                                         <mat-select
-                                            id="status"
-                                            formControlName="status"
+                                            id="manager"
+                                            formControlName="manager"
                                             required
                                         >
-                                            <div *ngFor="let status of allStatus">
-                                                <mat-option [value]="status.id">
-                                                    {{ status.descriptions[0].dectiption  }}
+                                            <div *ngFor="let manager of allManagers">
+                                                <mat-option [value]="manager.id">
+                                                    {{ manager.first_name }} {{ manager.last_name }}
                                                 </mat-option>
                                                
                                             </div>
@@ -151,4 +175,3 @@
         </div>
     </div>
 </div>
-

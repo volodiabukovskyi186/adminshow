@@ -45,7 +45,10 @@ export class UserService {
     localStorage.setItem("user", JSON.stringify(user));
     console.log('user++++++++++===>',user)
     this.SUser$.next(user);
-  
+  }
+
+  public getManagers(): Observable<any> {
+    return this._http.get(`${environment.host}users/getByRole/4`);
   }
 
   public getUser(): any {

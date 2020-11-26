@@ -10,6 +10,12 @@ export interface IManufacuturerOrderDescription {
   updated_at: string
 }
 
+export interface IManager {
+  first_name: string,
+  id: number,
+  last_name: string
+}
+
 export interface IManufacuturerOrder {
   id: number,
   image_id: number,
@@ -19,7 +25,8 @@ export interface IManufacuturerOrder {
   rating: number,
   created_at: string,
   updated_at: string,
-  description: IManufacuturerOrderDescription
+  description: IManufacuturerOrderDescription,
+  manager: IManager
 }
 
 export interface IOrder {

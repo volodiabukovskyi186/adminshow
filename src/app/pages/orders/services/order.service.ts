@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IOrderResponse } from '../interfaces/order-response';
 import { LanguageService } from 'src/app/core/language.service';
+import { ManufacturerService } from '../../../modules/manufacturer/manufacturer.service';
 
 @Injectable({
   providedIn: "root",
@@ -21,38 +22,40 @@ export class OrderService {
 
   constructor(
     private http: HttpClient,
-    public lang: LanguageService
+    public lang: LanguageService,
+    public manufacturerService: ManufacturerService
   ) {}
 
-  getList(role_id?:number): Observable<IOrderResponse> {
+  getList(role_id?: number): Observable<IOrderResponse> {
     const lang = localStorage.getItem('currentLang');
     // let skip = this.page * this.order.take - this.order.take;
+
     let params = `?take=${this.order.take}&skip=${this.order.skip}&lang=${lang}`;
+
     // ${this.order.take}
-    console.log('role_id===>',role_id)
-    if(role_id==1){
+    console.log('role_id===>' , role_id);
+
+    if (role_id == 1) {
       return this.http.get<IOrderResponse>(
         environment.orderang + params
       );
     }
-    else{  
+    else {  
       return this.http.get<IOrderResponse>(
         environment.managerorder + params
       );
     }
-  
   }
 
   updateUserOrder(id: any, data: any): Observable<any>{
     return this.http.put(`${environment.host}order/${id}`, data);
   }
 
-  filterOrders(dateStart: string, dateEnd: string, manufacturers: number[],status:number[], userId: number): Observable<any> {
+  filterOrders(dateStart: string, dateEnd: string, manufacturers: number[], status: number[], managerId: number, userId: number): Observable<any> {
     let lang = this.lang.current;
     let params = `?lang=${lang}`;
    
-  
-    if (status&&status.length>0) {
+    if (status && status.length > 0) {
      
       params = params + `&status=[${status}]`;
     }
@@ -67,6 +70,10 @@ export class OrderService {
 
     if (manufacturers.length !== 0) {
       params = params + `&manufacturer=${JSON.stringify(manufacturers)}`;
+    }
+
+    if (managerId) {
+      params = params + `&manager=${managerId}`;
     }
 
     if (userId) {
