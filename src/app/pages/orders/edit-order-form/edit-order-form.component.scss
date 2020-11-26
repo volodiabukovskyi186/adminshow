@@ -83,9 +83,8 @@
 .orders-input-wrapper {
     margin-top: 20px;
     width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .delete-icon {
@@ -417,11 +416,11 @@ th {
 
 .prev-icon {
     margin-left: -10px;
-    margin-bottom: -34px;
+    margin-bottom: -14px;
 }
 
 .next-icon {
     display: block;
     margin-left: auto;
-    margin-bottom: -34px;
+    margin-bottom: -37px;
 }

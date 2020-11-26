@@ -10,5 +10,8 @@ export interface IUser {
   created_at: string;
   updated_at: string;
   permissions: Array<any>
-  password: string;
+  //password: string;
+  city: String;
+  country: String;
+  delivery_adress: String;
 }

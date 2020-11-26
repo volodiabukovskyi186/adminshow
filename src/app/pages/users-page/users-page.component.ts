@@ -90,15 +90,26 @@ export class UsersPageComponent extends BasePage
     // console.log("ADD/UPDATE", this.categoryForm.category);
     // THIS SHOULD NOT BE HERE ! ! !
     let c = this.userForm.model;
+
+    console.log(this.userForm.model);
+
     let data = {
       role_id: c.role_id,
+      id: c.id,
       email: c.email,
-      password: c.password,
+      //password: c.password,
       first_name: c.first_name,
       last_name: c.last_name,
       permissions: "[]",
       secret: null,
       phone: c.tel,
+      is_confirm_email: 0,
+      is_confirm_tel: 0,
+      album_id: 1,
+      tel: c.tel,
+      city: c.city,
+      country: c.country,
+      delivery_adress: c.delivery_adress
     };
     if (c.id != null) {
       this.user.put(data, c.id).subscribe(this.putHandler);
