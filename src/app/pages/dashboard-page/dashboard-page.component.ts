@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/modules/user/user.service';
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { TranslateService } from "@ngx-translate/core";
@@ -14,7 +15,8 @@ export class DashboardPageComponent implements OnInit {
     private _title: Title,
     public breadcrumbs: BreadcrumbsService,
     public pages: PagesService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private UserService:UserService,
   ) {
     breadcrumbs.breadcrumbs = [{ link: "", title: "Dashboard" }];
     pages.defaultSetting();
@@ -24,5 +26,6 @@ export class DashboardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this._title.setTitle("Dashboard | RAP for ShowU");
+    // this.UserService.SUser.next(true)
   }
 }

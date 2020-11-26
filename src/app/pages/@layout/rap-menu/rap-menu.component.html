@@ -15,21 +15,28 @@
 </header>
 
 <div [ngClass]="{smallBar: logoStatus}">
+  <ng-container *ngFor="let item of menu.nav;let i=index">
   <rap-nav-group
     [title]="item.title"
     [icon]="item.icon"
     [(open)]="item.open"
-   
-    *ngFor="let item of menu.nav;let i=index"
+    *ngIf="!item.hidden"
     (click)="closeMenu(item,i)"
+    [item]="item"
+  
   >
+  <ng-container  *ngFor="let link of item.items">
     <rap-nav-item
-      *ngFor="let link of item.items"
+    *ngIf="!link.hidden"
       [langLink]="lang.routeLang"
       [nav]="link"
     ></rap-nav-item>
+    </ng-container>
+    
   </rap-nav-group>
+</ng-container>
 </div>
+<!-- {{menu.nav|json}} -->
 
 <footer>
   <!-- <app-user-menu></app-user-menu> --> 

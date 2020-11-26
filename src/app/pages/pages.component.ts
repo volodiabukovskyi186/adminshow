@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { ActivatedRoute, RouterOutlet } from "@angular/router";
 import { LanguageService } from "../core/language.service";
@@ -73,17 +74,20 @@ export class PagesComponent implements OnInit {
     private route: ActivatedRoute,
     public pages: PagesService,
     public breadcrumbs: BreadcrumbsService,
-    public lang: LanguageService // public translate: TranslateService
+    public lang: LanguageService, // public translate: TranslateService,
+    private UserService:UserService
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data) => {
       // set lang
       this.lang.use(data["lang"]);
     });
+    // this.UserService.SUser.next(true)
   }
 
   ngAfterViewChecked() {
     this.cdRef.detectChanges();
+   
   }
 
   prepareRoute(outlet: RouterOutlet) {

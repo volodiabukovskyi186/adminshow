@@ -1,3 +1,5 @@
+import { UserService } from './../../modules/user/user.service';
+import { MenuService } from 'src/app/core/menu.service';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
@@ -14,8 +16,9 @@ export class AuthService {
   public get authenticated(): boolean {
     return localStorage.getItem("token") != undefined;
   }
-
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient,
+              private menu:MenuService,
+              private userService:UserService) {}
 
   login(login: string, password: string): Observable<any> {
     let data = JSON.stringify({
@@ -26,7 +29,10 @@ export class AuthService {
   }
 
   public saveToken(token: string): void {
+    // this.userService.SUser.next(true);
     localStorage.setItem("token", token);
+    
+
   }
 
   public getToken(): string {
@@ -34,6 +40,10 @@ export class AuthService {
   }
 
   public logout(): void {
+    localStorage.removeItem("user");
     localStorage.removeItem("token");
+    // this.userService.SUser.next(true);
+
+   
   }
 }

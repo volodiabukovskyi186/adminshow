@@ -54,8 +54,8 @@
 </rap-nav-group> -->
   <div class="user-drop">
     <div class="drop-top">
-      <div class="drop-icon">{{user.getUser().user.first_name.substring(0, 1)| uppercase}}</div>
-      <p>{{user.getUser().user.first_name + ' ' + user.getUser().user.last_name}}</p>
+      <div class="drop-icon">{{user?.getUser().user?.first_name.substring(0, 1)| uppercase}}</div>
+      <p>{{user?.getUser().user.first_name + ' ' + user?.getUser().user.last_name}}</p>
     </div>
     <div class="dropdown-content-user" (click)="logout($event)">
       <p>{{ "logout" | translate }}</p>
