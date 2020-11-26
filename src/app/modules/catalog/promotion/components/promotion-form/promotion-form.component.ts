@@ -100,13 +100,12 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     console.log('one item',this.model)
     this.descEdit = model;
     this.modalOpen = true;
-    if(model.id!==null){
-      this.model.descriptions.forEach(elem=>{
-        elem.image_id=elem.image.id
+    if(model.id! == null){
+      this.model.descriptions.forEach(elem=> {
+        elem.image_id = elem.image.id;
       })
     }
    
-
     // this.model.descriptions[]
   }
   onReset(model: IPromotionDescription) {
@@ -152,21 +151,18 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   //     }
   // }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.image.select.subscribe(this.selectHandler);
     this.generateProductsListForm();
 
-    this.promotionService.get().subscribe((res) => {
-   
-      
-    })
+    this.promotionService.get().subscribe((res) => {})
   }
 
   test(imagee): void{
     console.log('image====>', imagee);
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }

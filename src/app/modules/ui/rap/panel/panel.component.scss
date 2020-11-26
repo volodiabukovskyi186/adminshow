@@ -323,3 +323,20 @@ footer {
 .drop-item{
   width: 135px;
 }
+
+.search-input-container {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-input {
+  border-radius: 5px;
+}
+
+.search-icon {
+  width: 25px;
+  height: 25px;
+  margin-left: -37px;
+}
