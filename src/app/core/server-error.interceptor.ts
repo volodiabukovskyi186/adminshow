@@ -10,7 +10,7 @@ import { Observable, of } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { catchError } from "rxjs/operators";
 import { NgxUiLoaderService } from "ngx-ui-loader";
-import { AuthService } from "./auth/auth.service";
+import { AuthService } from "./auth/models/auth.service";
 import { Router } from "@angular/router";
 
 @Injectable()

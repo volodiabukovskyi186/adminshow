@@ -8,7 +8,7 @@ import {
   Navigation
 } from "@angular/router";
 import { Observable } from "rxjs";
-import { AuthService } from "../auth/auth.service";
+import { AuthService } from "../auth/models/auth.service";
 import { LanguageService } from "../language.service";
 import { PermissionService } from './permission.service';
 

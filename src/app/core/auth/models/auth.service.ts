@@ -1,4 +1,4 @@
-import { UserService } from './../../modules/user/user.service';
+import { UserService } from '../../../modules/user/user.service';
 import { MenuService } from 'src/app/core/menu.service';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";

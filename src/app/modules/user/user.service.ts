@@ -45,8 +45,7 @@ export class UserService {
     localStorage.setItem("user", JSON.stringify(user));
     console.log('user++++++++++===>',user)
     this.SUser$.next(user);
-   
-
+  
   }
 
   public getUser(): any {

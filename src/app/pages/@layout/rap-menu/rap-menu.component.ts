@@ -3,7 +3,7 @@ import { UserService } from 'src/app/modules/user/user.service';
 import { Component, OnInit,OnChanges } from "@angular/core";
 import { MenuService } from "src/app/core/menu.service";
 import { LanguageService } from "src/app/core/language.service";
-import { AuthService } from "src/app/core/auth/auth.service";
+import { AuthService } from "src/app/core/auth/models/auth.service";
 import { Router, NavigationEnd } from "@angular/router";
 import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 import { RapService } from 'src/app/modules/ui/rap.service';

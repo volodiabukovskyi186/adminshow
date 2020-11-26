@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../user.service";
-import { AuthService } from "src/app/core/auth/auth.service";
+import { AuthService } from "src/app/core/auth/models/auth.service";
 import { Router } from "@angular/router";
 import { NavLink } from '../../ui/rap/nav-item/nav-link';
 

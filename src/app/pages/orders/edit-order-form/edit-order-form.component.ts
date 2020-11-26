@@ -23,7 +23,7 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   public isSelectedProduct: boolean = false;
   public selectedProduct: any;
   public products = [];
-  public orderTotal = 0;
+  public orderTotal ;
 
   constructor(
     public promotionService: PromotionService
