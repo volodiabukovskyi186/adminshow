@@ -13,7 +13,7 @@
 
   <rap-folder
     @fadeScale
-    *ngIf="album.activeAlbum?.id != null"
+    *ngIf="album.activeAlbum?.id != null && (this.parent !== 'close')"
     class="radius"
     tabindex="0"
     [mode]="mode"

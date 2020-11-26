@@ -400,5 +400,12 @@
     "available":"Статус"
   },
    "showupage":"Відвідати магазин",
-   "logout":"Вийти"
+   "logout":"Вийти",
+   "user": {
+    "userRole": "Роль",
+    "userFirstName": "Ім'я",
+    "userLastName": "Прізвище",
+    "userEmail": "Email",
+    "userPhone": "Телефон"
+  }
 }

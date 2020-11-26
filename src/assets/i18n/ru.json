@@ -380,5 +380,12 @@
     "available":"Статус"
   },
   "showupage":"Посетить магазин",
-  "logout":"Выйти"
+  "logout":"Выйти",
+  "user": {
+    "userRole": "Роль",
+    "userFirstName": "Имя",
+    "userLastName": "Фамилия",
+    "userEmail": "Телефон",
+    "userPhone": "Phone"
+  }
 }

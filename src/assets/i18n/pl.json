@@ -388,5 +388,12 @@
     "available":"Status"
   },
   "showupage":"Odwiedź sklep",
-  "logout":"Wyloguj"
+  "logout":"Wyloguj",
+  "user": {
+    "userRole": "Rola",
+    "userFirstName": "Imię",
+    "userLastName": "Nazwisko",
+    "userEmail": "Email",
+    "userPhone": "Telefon"
+  }
 }

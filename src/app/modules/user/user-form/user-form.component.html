@@ -3,7 +3,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">ROLE</label>
+      <label for="">{{ 'user.userRole' | translate }}</label>
     </div>
 
     <div class="original">
@@ -15,7 +15,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">FIRST NAME</label>
+      <label for="">{{ 'user.userFirstName' | translate }}</label>
     </div>
 
     <div class="original">
@@ -25,7 +25,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">LAST NAME</label>
+      <label for="">{{ 'user.userLastName' | translate }}</label>
     </div>
 
     <div class="original">
@@ -35,7 +35,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">EMAIL</label>
+      <label for="">{{ 'user.userEmail' | translate }}</label>
     </div>
 
     <div class="original">
@@ -45,7 +45,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">PHONE</label>
+      <label for="">{{ 'user.userPhone' | translate }}</label>
     </div>
 
     <div class="original">
@@ -53,7 +53,7 @@
     </div>
   </div>
 
-  <div class="form-row" *ngIf="!isEdit">
+  <!-- <div class="form-row" *ngIf="!isEdit">
     <div class="description">
       <label for="">PASSWORD</label>
     </div>
@@ -61,6 +61,6 @@
     <div class="original">
       <input class="radius" type="text" [(ngModel)]="user.password" />
     </div>
-  </div>
+  </div> -->
 
 </fieldset>

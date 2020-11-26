@@ -18,7 +18,9 @@ export class GalleryViewComponent implements OnInit {
   @Input() singleSelectable: boolean = false;
   @Input() mode: ViewMode = ViewMode.card;
   ViewMode = ViewMode;
+
   public albumId: number;
+  public parent: string;
 
   constructor(
     public album: AlbumService,
@@ -27,8 +29,9 @@ export class GalleryViewComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.startLoad();
+    this.getAlbumsByManager();
   }
 
   startLoad() {
@@ -150,6 +153,14 @@ export class GalleryViewComponent implements OnInit {
     if (this.singleSelectable) this.image.resetSelected(img);
     img.selected = img.selected ? !img.selected : true;
     this.image.select.emit();
+  }
+
+  public getAlbumsByManager(): void {
+    this.album.getAlbumsByManager().subscribe((res) => {
+      console.log(res);
+      
+      this.parent = res.parent;
+    })
   }
 
   pageNextHandler(): void {

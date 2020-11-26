@@ -130,4 +130,8 @@ export class AlbumService {
       array.splice(index, 1);
     }
   }
+
+  public getAlbumsByManager(): Observable<any> {
+    return this.http.get(`${environment.host}manager/albums`);
+  }
 }
