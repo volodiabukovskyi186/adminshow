@@ -62,7 +62,7 @@ export const pagesRoutes: Routes = [
     loadChildren: () => import('src/app/modules/catalog/category/category.module').then(m => m.CategoryModule),
     // canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: ["manage_categorys"],
     },
   },
   {
@@ -70,7 +70,7 @@ export const pagesRoutes: Routes = [
     component: AttribyteGroupPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: ["manage_attribytes","manage_attribytedescriptions","manage_attribytegroups","manage_attribytegroupdescriptions"],
     },
   },
   {
@@ -86,7 +86,7 @@ export const pagesRoutes: Routes = [
     component: OptionPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: ["manage_categorys", "manage_productoptions"],
     },
   },
   {
@@ -94,7 +94,7 @@ export const pagesRoutes: Routes = [
     component: ProductsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: ["manage_categorys", "manage_products"],
     },
   },
   {
@@ -102,7 +102,7 @@ export const pagesRoutes: Routes = [
     component: PromotionsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: ["manage_categorys", "manage_productpromotions"],
     },
   },
   {
@@ -111,7 +111,7 @@ export const pagesRoutes: Routes = [
       .then(m => m.CollectionModule),
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: ["manage_categorys", "manage_productcollections"],
     },
   },
   {
@@ -119,7 +119,7 @@ export const pagesRoutes: Routes = [
     component: UsersPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: [ "manage_users"],
     },
   },
   {
@@ -127,7 +127,7 @@ export const pagesRoutes: Routes = [
     component: ManufacturerPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_manufacturers","manage_manufacturerdescriptions"],
       animation: "ManufacturerPage",
     },
   },
@@ -136,7 +136,7 @@ export const pagesRoutes: Routes = [
     component: SiteMenuPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_menus","manage_menudescriptions"],
     },
   },
   {
@@ -144,7 +144,7 @@ export const pagesRoutes: Routes = [
     component: SitePagePageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_pages","manage_pagedescriptions"],
     },
   },
   {
@@ -152,7 +152,7 @@ export const pagesRoutes: Routes = [
     component: LanguagePageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_languagess"],
       animation: "",
     },
   },
@@ -161,7 +161,7 @@ export const pagesRoutes: Routes = [
     component: CurrenciesPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_currencys"],
     },
   },
   {
@@ -178,7 +178,7 @@ export const pagesRoutes: Routes = [
     component: OrdersComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_orders","manage_orderstatusdescriptions","manage_orderproductss"],
     },
   },
   {
@@ -186,7 +186,7 @@ export const pagesRoutes: Routes = [
     component: OrderStatusPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_orderstatuss"],
     },
   },
   {
@@ -194,7 +194,7 @@ export const pagesRoutes: Routes = [
     component: StorageStatusPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_stockstatuss"],
     },
   },
   {
@@ -202,7 +202,7 @@ export const pagesRoutes: Routes = [
     component:UnitWeightPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_weightclasss"],
     },
   },
   {
@@ -210,7 +210,7 @@ export const pagesRoutes: Routes = [
     component:PaymentMethodsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_payments"],
     },
   },
   {
@@ -218,7 +218,7 @@ export const pagesRoutes: Routes = [
     component:DeliveryMethodsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_deliverys","manage_deliverydescriptions"],
     },
   },
   {
@@ -226,7 +226,7 @@ export const pagesRoutes: Routes = [
     component:CountriesPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_countrys","manage_countrydescriptions","manage_countrydeliverys","manage_countrypayments"],
     },
   },
   {
@@ -250,7 +250,7 @@ export const pagesRoutes: Routes = [
     component: ReviewsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_reviews","manage_reviewcomments"],
     },
   },
   {
@@ -258,7 +258,7 @@ export const pagesRoutes: Routes = [
     component: LiqpayPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: [],
+      permissions: ["manage_reviews","manage_reviewcomments"],
     },
   },
 ];

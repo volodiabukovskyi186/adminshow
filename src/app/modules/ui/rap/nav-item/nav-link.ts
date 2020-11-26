@@ -3,4 +3,7 @@ export class NavLink {
   title: string;
   isIcon?: boolean;
   icon?: string;
+  manage?:string;
+  mainManage?:Array<string>;
+  hidden?:boolean;
 }

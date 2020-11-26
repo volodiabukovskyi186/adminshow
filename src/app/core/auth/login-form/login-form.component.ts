@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+
+import { UserService } from 'src/app/modules/user/user.service';
+import { Component, OnInit, Input, Output, EventEmitter ,OnDestroy} from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { AuthService } from "../auth.service";
 import { ToastrService } from "ngx-toastr";
@@ -11,7 +13,7 @@ import { AuthResponse } from "../models";
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.scss"]
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnDestroy{
   @Input() labelLogin: string;
   @Input() labelPassword: string;
   @Input() labelForgotPassword: string;
@@ -28,7 +30,9 @@ export class LoginFormComponent {
     public auth: AuthService,
     private ngxService: NgxUiLoaderService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private UserService:UserService,
+
   ) {}
 
   authForm = new FormGroup({
@@ -36,21 +40,24 @@ export class LoginFormComponent {
     password: new FormControl("")
   });
 
-  onSubmit() {
+  ngOnDestroy(): void{
+    // this.UserService.SUser.next(true)
+  }
 
+  onSubmit() {
     this.ngxService.start();
     this.toastr.clear();
-    
     let form = this.authForm.value;
     this.auth.login(form.login, form.password).subscribe(this.authHandler);
+
   }
 
   authHandler = (data: AuthResponse) => {
-   
     this.ngxService.stopAll();
     this.auth.saveToken(data.data.token);
     this.authForm.reset();
     this.authed.emit();
+   
     this.router.navigate(["/"]);
     
   };

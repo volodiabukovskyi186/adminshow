@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { OrderService } from '../services/order.service';
 import { LocalizationServicesService } from '../../localization/services/localization-services.service';
+import { UserService } from 'src/app/modules/user/user.service';
 
 @Component({
   selector: 'app-order-filters-form',
@@ -25,7 +26,8 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   constructor(
     public manufacturerService: ManufacturerService,
     public orderService: OrderService,
-    public localizationService: LocalizationServicesService
+    public localizationService: LocalizationServicesService,
+    public user:UserService
   ) { }
 
   public ngOnInit(): void {
@@ -33,6 +35,7 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
     this.getEditOrderFiltersFormFormData();
     this.getManufactures();
     this.getStatus();
+    this.getManager()
   }
 
   public ngOnDestroy(): void {
@@ -49,6 +52,14 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
       status: new FormControl('', [])
     })
   }
+  getManager() {
+    // this.ngxService.start();
+    this.user.getList().subscribe(data=>{
+      console.log('maneger==>',data)
+    });
+  }
+
+
   getStatus(): void {
     // this.translate.onLangChange.subscribe(lang => {
     this.localizationService.getOrderAllStatus().subscribe(data => {
@@ -80,16 +91,22 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   }
 
   public filterClientOrders(): void {
+    
     let manufacturers = [];
-
+    let status = [];
+    if (this.orderFiltersForm.value.status) {
+      status.push(this.orderFiltersForm.value.status);
+    }
     if (this.orderFiltersForm.value.manufacturer) {
       manufacturers.push(this.orderFiltersForm.value.manufacturer);
     }
+    console.log('block==>',status)
 
     this.orderService.filterOrders(
       this.orderFiltersForm.value.date_start,
       this.orderFiltersForm.value.date_end,
       manufacturers,
+      status,
       this.selectedClientId
     ).subscribe((res) => {
       this.orderFiltersFormData.emit(res);

@@ -35,5 +35,6 @@ export class LoginPageComponent implements OnInit {
 
   getByTokenHandler = (data) => {
     this.user.saveUser(data.data);
+    // console.log("userMove+++>",data.data)
   };
 }

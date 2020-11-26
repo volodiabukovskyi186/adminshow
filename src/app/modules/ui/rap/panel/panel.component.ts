@@ -234,7 +234,7 @@ export class PanelComponent implements OnInit ,OnChanges{
   this.rapService.SBurder.subscribe(data=>{
     this.burderStatus=data;
       this.burderStatus==false?this.myAnimatiom="large":this.myAnimatiom="small"
-      console.log('panell===>',this.myAnimatiom)
+    
   })
 
   }
@@ -272,10 +272,13 @@ export class PanelComponent implements OnInit ,OnChanges{
     event.preventDefault();
     this.auth.logout();
     this.router.navigate(["login"]);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   }
 
   getByTokenHandler = (data) => {
     this.user.saveUser(data.data);
+    
   };
   sideBar():void{
     this.burderStatus=!this.burderStatus;

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, Subject, BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IUserResponse } from './models';
 
@@ -9,6 +9,11 @@ import { IUserResponse } from './models';
 })
 export class UserService {
   page: number = 1;
+  // SUser=new Subject<boolean>();
+  userOne:any;
+  SUser$=new BehaviorSubject<any>({});
+  SUser = this.SUser$.asObservable();
+  
   data: IUserResponse = {
     data: [],
     count: 0,
@@ -38,6 +43,10 @@ export class UserService {
 
   public saveUser(user: any): void {
     localStorage.setItem("user", JSON.stringify(user));
+    console.log('user++++++++++===>',user)
+    this.SUser$.next(user);
+   
+
   }
 
   public getUser(): any {

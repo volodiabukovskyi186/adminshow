@@ -40,8 +40,8 @@
                                             <div *ngFor="let manufacturer of allManufacturers">
                                                 <mat-option [value]="manufacturer.id">
                                                     {{ manufacturer.name | translate }}
-                                                
                                                 </mat-option>
+                                               
                                             </div>
                                         </mat-select>
                           
@@ -87,6 +87,22 @@
                         </div>
                         <!-- <div class="reviews-date">
                             <div class="reviews-response-title">{{ 'MENU.orders.status'| translate }}</div>
+                                <div class="reviews-response-status sort-orders-content">
+                                    <mat-form-field appearance="standart" class="sort-products">
+                                        <div class="sort-products-wrapper">
+                                            <mat-select id="manufacturer" formControlName="manufacturer" required >
+                                                <div *ngFor="let status of allStatus">
+                                                    <mat-option [value]="status.order_status_id">
+                                                    {{ status.descriptions[0].dectiption | translate }}
+                                                    </mat-option>
+                                                </div>
+                                            </mat-select>
+                                        </div>
+                                    </mat-form-field>
+                                 </div>
+                        </div> -->
+                        <div class="reviews-date">
+                            <div class="reviews-response-title">meneger</div>
                             <div class="reviews-response-status sort-orders-content">
                                 <mat-form-field appearance="standart" class="sort-products">
                                     <div class="sort-products-wrapper">
@@ -95,21 +111,38 @@
                                             formControlName="status"
                                             required
                                         >
-                                            <div *ngFor="let item of allStatus">
-                                                <mat-option [value]="item.order_status_id">
-                                                    {{ item.descriptions[0].dectiption | translate }}
+                                            <div *ngFor="let status of allStatus">
+                                                <mat-option [value]="status.id">
+                                                    {{ status.descriptions[0].dectiption  }}
+                                                </mat-option>
+                                               
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="reviews-date">
+                            <div class="reviews-response-title">{{ 'MENU.orders.status'| translate}}</div>
+                            <div class="reviews-response-status sort-orders-content">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="status"
+                                            formControlName="status"
+                                            required
+                                        >
+                                            <div *ngFor="let status of allStatus">
+                                                <mat-option [value]="status.id">
+                                                    {{ status.descriptions[0].dectiption  }}
                                                 </mat-option>
                                             </div>
                                         </mat-select>
                                     </div>
                                 </mat-form-field>
-                              
                             </div>
-                        </div> -->
-                        <button
-                            class="order-filters__submit-btn cursor-pointer"
-                            (click)="filterClientOrders()"
-                        >
+                        </div>
+                        <button class="order-filters__submit-btn cursor-pointer" (click)="filterClientOrders()" >
                             {{ 'orders.orderFilterBtn' | translate }}
                         </button>
                     </form>

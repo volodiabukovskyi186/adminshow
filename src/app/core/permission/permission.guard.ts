@@ -35,6 +35,7 @@ export class PermissionGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+     
     let permissions = next.data.permissions as Array<string> ?? [];
     let diff = this.difference(permissions, this.permissionsService.permissions);
 

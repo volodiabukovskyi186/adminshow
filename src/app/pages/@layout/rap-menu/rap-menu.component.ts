@@ -1,8 +1,10 @@
+import { Permission } from 'src/app/core/permission/permission';
+import { UserService } from 'src/app/modules/user/user.service';
 import { Component, OnInit,OnChanges } from "@angular/core";
 import { MenuService } from "src/app/core/menu.service";
 import { LanguageService } from "src/app/core/language.service";
 import { AuthService } from "src/app/core/auth/auth.service";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
 import { RapService } from 'src/app/modules/ui/rap.service';
 
@@ -13,6 +15,7 @@ import { RapService } from 'src/app/modules/ui/rap.service';
 })
 export class RapMenuComponent implements OnInit,OnChanges {
   logoStatus:boolean=false
+  navStatus:boolean=false
   myAnimatiom='small'
   constructor(
     public menu: MenuService,
@@ -20,14 +23,46 @@ export class RapMenuComponent implements OnInit,OnChanges {
     private auth: AuthService,
     private router: Router,
     public languageService: LocalizationLang,
-    private rapService:RapService
-  ) {}
+    private rapService:RapService,
+    private UserService:UserService
+  ) {
+ 
+  }
+  chack(event):void{
+    // console.log('chack======>29304823',event)
+    // this.menu.nav=this.menu.nav
+  }
 
   ngOnInit(): void {
+   
     this.rapService.SBurder.subscribe(data=>{
       this.logoStatus=data;
       // console.log('icon===>',this.logoStatus)
     })
+    this.UserService.SUser.subscribe(user=>{
+      this.menu.nav=this.menu.nav
+      this.menu.nav=this.menu.nav.map(navGropup=>{
+        // console.log('navGropup==>',navGropup)
+        navGropup.items=navGropup.items.map(navItem=>{
+          const perm=user&&user.role&&user.role.permissions&& JSON.parse(user.role.permissions)||[];
+          
+          // console.log('perm',perm)
+          const premissinSet=new Set(perm.map(premission=>{
+            return premission.name;
+          }))
+            navItem.hidden= perm.length ==0|| !premissinSet.has(navItem.manage);
+            // console.log('permSet===>',premissinSet,navItem.manage,navItem.hidden)
+            return navItem;
+            
+        })
+        navGropup.hidden=navGropup.items.every(navItem=>navItem.hidden);
+        return navGropup
+      });
+       
+      this.navStatus=true;
+
+    })
+    console.log('eeeeee=>',this.menu.nav)
   }
 
   ngOnChanges():void{
@@ -35,11 +70,15 @@ export class RapMenuComponent implements OnInit,OnChanges {
         this.logoStatus=data;
         // console.log('icon===>',this.logoStatus)
       })
+     
+  
+     
   }
   logout(event: Event) {
     event.preventDefault();
     this.auth.logout();
     this.router.navigate([this.lang.current, "login"]);
+    this.menu.nav=this.menu.nav
   }
 
   getRoute(locale: string) {
