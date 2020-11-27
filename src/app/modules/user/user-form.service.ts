@@ -20,7 +20,10 @@ export class UserFormService {
       tel: null,
       updated_at: null,
       permissions: [],
-      password: null
+      city: null,
+      country: null,
+      delivery_adress: null
+      //password: null
     };
   }
 
