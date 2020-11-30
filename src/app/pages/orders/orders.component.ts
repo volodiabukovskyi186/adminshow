@@ -251,6 +251,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.pages.panelButtonSettings.cancel = false;
     this.pages.panelButtonSettings.rightToggle = true;
     this.showFilters = false;
+    this.isOpenEditOrderForm = false;
   }  
 
   openForm = () => {

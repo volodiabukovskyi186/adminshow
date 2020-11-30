@@ -3,7 +3,7 @@
 [showRightSide]="pages.panelSettings.right"
 >
    <div form>
-      <div *ngIf="selectedClientOrder && !showFilters">
+      <div *ngIf="selectedClientOrder && !showFilters && !isOpenEditOrderForm">
          <app-order-form
             [title]="'currencies.addEditCurrencyInfo' | translate"
             [order]="selectedClientOrder"
