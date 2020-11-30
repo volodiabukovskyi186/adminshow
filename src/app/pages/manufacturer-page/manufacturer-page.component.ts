@@ -44,6 +44,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
   }
   userRoleId:number;
   userRoleStatus:boolean=false;
+  userId:number;
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
@@ -64,6 +65,8 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
         this.userRoleStatus=true;
       }
       this.getList(this.userRoleId);
+    this.userId=data.data.user.id
+      console.log('ueqweqw',data.data.user.id)
     })
   }
 
@@ -131,6 +134,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       rating: c.rating,
       status: c.status,
       description: [],
+      user_id:this.userId
     };
     if (c.id != null) {
       c.description.forEach((d) => {

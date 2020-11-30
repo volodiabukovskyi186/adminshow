@@ -56,8 +56,8 @@
           <td class="text-center">{{ item.product.description?.name }}</td>
           <td class="text-center">{{ item.product.manufactured.description?.name }}</td>
           <td class="text-center">{{ item.author }}</td>
-         
-          <td class="text-center" >{{ item?.comments[0]?.text }}</td>
+          <!-- .comments[0]? -->
+          <td class="text-center" >{{ item?.text }}</td>
           <td class="text-center">
             <rap-rating [rating]="item.rating"></rap-rating>
           </td>
