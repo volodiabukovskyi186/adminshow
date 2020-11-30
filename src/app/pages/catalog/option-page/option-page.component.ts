@@ -11,6 +11,7 @@ import { OptionFormService } from 'src/app/modules/catalog/option/services/optio
 import { IOption } from 'src/app/modules/catalog/option/interfaces';
 import { fadeScale } from 'src/app/modules/ui/animations';
 import { LanguageService as Lang } from "src/app/core/language.service";
+import { RoleService } from 'src/app/core/auth/models/role.service';
 
 
 @Component({
@@ -29,11 +30,13 @@ constructor(
   public option: OptionService,
   public optionForm: OptionFormService,
   public langService: LanguageService,
+  public roleService:RoleService,
   public lang: Lang,
 ) {
   super(pages);
 }
-
+userRoleId:number;
+userRoleStatus:boolean=false;
 ngOnInit(): void {
   super.initPagesSettings();
   super.initPanelButton();
@@ -46,8 +49,22 @@ ngOnInit(): void {
   this.getLangList();
   this.getList();
   this.initTranslate();
-}
+  this.getUserByTokin()
 
+}
+getUserByTokin():void{
+  this.roleService.getByToken().subscribe(data=>{
+    this.userRoleId=data.data.user.role_id
+    if(this.userRoleId==1){
+      this.userRoleStatus=true;
+      this.pages.panelButtonSettings.plus = true;
+    }
+    else{
+      this.pages.panelButtonSettings.plus = false;
+    }
+ 
+  })
+}
 initTranslate() {
   this.lang.translate
     .get([

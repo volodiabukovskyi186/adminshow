@@ -62,12 +62,27 @@ export class ManufacturerService {
     this.getUserRoleId();
   }
 
-  getList(): Observable<IManufacturerResponse> {
+  getList(user_role): Observable<IManufacturerResponse> {
+    
     // let skip = this.page * this.manufacturer.take - this.manufacturer.take;
-    let params = `?take=${this.manufacturer.take}&skip=${this.manufacturer.skip}`;
-    return this.http.get<IManufacturerResponse>(
-      environment.manufacturer.manufacturers + params
-    );
+    const lang=localStorage.getItem('currentLang')
+   
+    if(user_role==1){
+      let params = `?take=${this.manufacturer.take}&skip=${this.manufacturer.skip}`;
+      return this.http.get<IManufacturerResponse>(
+        environment.manufacturer.manufacturers + params
+      );
+    }
+    else{
+      let params = `?take=${this.manufacturer.take}&skip=${this.manufacturer.skip}&lang=${lang}`;
+      // return this.http.get<IManufacturerResponse>(
+      //   environment.manufacturer.manufacturers + params
+      // );
+      return this.http.get<IManufacturerResponse>(
+        environment.manufacturer.manager + params
+      );
+    }
+   
   }
 
   getAll(): Observable<IManufacturerResponse> {

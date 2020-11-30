@@ -26,10 +26,10 @@ export const MENU = [
   group(
     "MENU.catalog.catalog",
     [
-      item("MENU.catalog.categories", "category", true, ICON_MENU_ITEM,"manage_categorys"),
+      item("MENU.catalog.categories", "category", true, ICON_MENU_ITEM,"manage_orders"),
       item("MENU.catalog.attr_groups", "attrgroups", true, ICON_MENU_ITEM,"manage_attribytegroups"),
-      item("MENU.catalog.attr", "attribytes", true, ICON_MENU_ITEM,"manage_attribytes"),
-      item("MENU.catalog.options", "option", true, ICON_MENU_ITEM,"manage_options"),
+      item("MENU.catalog.attr", "attribytes", true, ICON_MENU_ITEM,"manage_orders"),
+      item("MENU.catalog.options", "option", true, ICON_MENU_ITEM,"manage_orders"),
       item("MENU.catalog.products", "products", true, ICON_MENU_ITEM,"manage_products"),
       item("MENU.catalog.promotions", "promotions", true, ICON_MENU_ITEM,"manage_productpromotions"),
       item("MENU.catalog.colection", "collection", true, ICON_MENU_ITEM,"manage_collections"),
@@ -82,7 +82,7 @@ export const MENU = [
       item("MENU.manage_site.settingsMain", "settings", true, ICON_MENU_ITEM,"manage_sites"),
       item("MENU.manage_site.pages", "pages", true, ICON_MENU_ITEM,"manage_pages"),
       item("MENU.users.users", "roles", true, ICON_MENU_ITEM,"manage_roles"),
-      item("MENU.users.roles", "users", true, ICON_MENU_ITEM,"manage_users"),
+      item("MENU.users.roles", "users", true, ICON_MENU_ITEM,"manage_roles"),
      
       // item("Video", "videos"),
     ],
@@ -109,10 +109,10 @@ export const MENU = [
   // ),
   group("MENU.localization.localization", [
     item("MENU.localization.languages", "language", true, ICON_MENU_ITEM,"manage_languagess"),
-    item("MENU.localization.currencies", "currencies",true, ICON_MENU_ITEM,"manage_orders"),
-    item("MENU.localization.order_status", "order_status",true, ICON_MENU_ITEM,"manage_orders"),
+    item("MENU.localization.currencies", "currencies",true, ICON_MENU_ITEM,"manage_currencys"),
+    item("MENU.localization.order_status", "order_status",true, ICON_MENU_ITEM,"manage_countrys"),
     item("MENU.localization.storage_status", "storage_status",true, ICON_MENU_ITEM,"storage_status"),
-    item("MENU.localization.unit_weight", "unit_weight",true, ICON_MENU_ITEM,"manage_weightclasss"),
+    item("MENU.localization.unit_weight", "unit_weight",true, ICON_MENU_ITEM,"manage_countrys"),
     item("MENU.localization.country", "country",true, ICON_MENU_ITEM,"manage_countrys"),
     // item("MENU.localization.departments", "departments"),
   ],

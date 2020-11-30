@@ -70,11 +70,13 @@ export const environment = {
     product: {
       products: host + `products`,
       product: host + `product`,
+      manager:host+`manager/products`
     },
   },
   manufacturer: {
     manufacturers: host + `manufacturers`,
     manufacturer: host + `manufacturer`,
+    manager:host+`manager/manufacturers`
   },
   localizations:{
     orderstatus:host+`order_statuss`,

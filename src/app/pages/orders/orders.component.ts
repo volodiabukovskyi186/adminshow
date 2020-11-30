@@ -32,6 +32,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   public isOpenEditOrderForm: boolean = false;
   public editedOrder: any;
   public userRoleId:number;
+  public userRoleStatus:boolean=false;
   public statusCodes = {
     "1": {
       name: 'statusCodes.new',
@@ -97,12 +98,17 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.getUserRoleId();
   }
   
-  public getUserByTokin(): void {
-    this.roleService.getByToken().subscribe((data) => {
+  public getUserByTokin(): void{
+    this.roleService.getByToken().subscribe(data=>{
       this.userRoleId = data.data.user.role_id;
+
+      if (this.userRoleId === 1){
+          this.userRoleStatus = true;
+      }
       this.getList(this.userRoleId);
     })
   }
+
 
   public uodateAllItems(): void {
     this.orderService.getList(this.userRoleId).subscribe(data => {

@@ -15,6 +15,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() status;
   @Input() langs: ILanguage[];
   @Input() userOrders;
+  @Input() roleStatus
   @Output() ordersFormData = new EventEmitter<any>();
   @Output() ordersStaus = new EventEmitter<any>();
   statusIte=[];

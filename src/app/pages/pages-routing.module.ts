@@ -78,7 +78,7 @@ export const pagesRoutes: Routes = [
     component: AttribytesPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_albums"],
+      permissions: ["manage_orders", "manage_albums"],
     },
   },
   {
@@ -86,7 +86,7 @@ export const pagesRoutes: Routes = [
     component: OptionPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_productoptions"],
+      permissions: ["manage_orders"],
     },
   },
   {
@@ -94,7 +94,7 @@ export const pagesRoutes: Routes = [
     component: ProductsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_categorys", "manage_products"],
+      permissions: ["manage_products"],
     },
   },
   {
@@ -218,7 +218,7 @@ export const pagesRoutes: Routes = [
     component:DeliveryMethodsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_deliverys","manage_deliverydescriptions"],
+      permissions: ["manage_deliverys"],
     },
   },
   {
@@ -250,7 +250,7 @@ export const pagesRoutes: Routes = [
     component: ReviewsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_reviews","manage_reviewcomments"],
+      permissions: ["manage_reviews"],
     },
   },
   {
@@ -258,7 +258,7 @@ export const pagesRoutes: Routes = [
     component: LiqpayPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_reviews","manage_reviewcomments"],
+      permissions: ["manage_payments"],
     },
   },
 ];

@@ -25,11 +25,17 @@ export class ReviewsPageService {
     public languageService: LanguageService
   ) {}
 
-  getReviews(): Observable<IReviewsResponse> {
+  getReviews(user_role): Observable<IReviewsResponse> {
     // let skip = this.page * this.reviews.take - this.reviews.take;
     let params = `?take=${this.reviews.take}&skip=${this.reviews.skip}`;
-
-    return this.http.get<IReviewsResponse>(`${environment.host}reviews${params}`);
+      if(user_role==1){
+        return this.http.get<IReviewsResponse>(`${environment.host}reviews${params}`);
+      }
+      else{
+        // return this.http.get<IReviewsResponse>(`${environment.host}reviews${params}`);
+        return this.http.get<IReviewsResponse>(`${environment.host}manager/reviews${params}`);
+      }
+   
   }
 
   // updateReviewById(reviewToUpdate, reviewId): Observable<IReviewUpdate> {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, Inject } from "@angular/core";
 import { BasePage } from "../@core";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { ToastrService } from "ngx-toastr";
@@ -12,6 +13,8 @@ import { LanguageService } from "src/app/modules/localization/language/language.
 //import { changeValueHighlight } from "src/app/modules/ui/animations";
 import { ManufacturerFormService } from "src/app/modules/manufacturer/manufacturer-form.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
+import { RoleService } from 'src/app/core/auth/models/role.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   //animations: [changeValueHighlight],
@@ -29,11 +32,19 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     public manufacturer: ManufacturerService,
     public langService: LanguageService,
     public manufacturerForm: ManufacturerFormService,
+    public roleService:RoleService,
     public lang: Lang,
+    private translate: TranslateService,
+    @Inject(DOCUMENT) private document: Document
   ) {
     super(pages);
+    this.translate.onLangChange.subscribe(lang => {
+      this.getList(this.userRoleId);
+    })
   }
-
+  userRoleId:number;
+  userRoleStatus:boolean=false;
+  userId:number;
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
@@ -44,8 +55,19 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     ];
 
     this.getLangList();
-    this.getList();
+    this.getUserByTokin()
     this.initTranslate();
+  }
+  getUserByTokin():void{
+    this.roleService.getByToken().subscribe(data=>{
+      this.userRoleId=data.data.user.role_id
+      if(this.userRoleId==1){
+        this.userRoleStatus=true;
+      }
+      this.getList(this.userRoleId);
+    this.userId=data.data.user.id
+      console.log('ueqweqw',data.data.user.id)
+    })
   }
 
   initTranslate() {
@@ -62,14 +84,16 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       });
   }
 
-  getList() {
+  getList(user_role) {
     this.ngxService.start();
-    this.manufacturer.getList().subscribe(this.getListHandler);
+    this.manufacturer.getList(user_role).subscribe(this.getListHandler);
   }
 
   getListHandler = (data) => {
+    // debugger;
     this.ngxService.stopAll();
     this.manufacturer.manufacturer = data;
+    console.log('manufac====>',data)
   };
 
   getLangList() {
@@ -110,6 +134,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       rating: c.rating,
       status: c.status,
       description: [],
+      user_id:this.userId
     };
     if (c.id != null) {
       c.description.forEach((d) => {
@@ -122,6 +147,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
           meta_keywords: d.meta_keywords,
         });
       });
+      console.log('updateitem__=>',data,c.id)
       this.manufacturer.put(data, c.id).subscribe(this.putHandler);
     } else {
       c.description.forEach((d) => {
@@ -172,7 +198,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.manufacturer.manufacturer.count=event.length
     this.manufacturer.manufacturer.take=event.pageSize
     this.manufacturer.manufacturer.skip=event.pageSize*event.pageIndex
-    this.getList();
+    this.getList(this.userRoleId);
   }
 
   pageToHandler(page: number): void {
@@ -185,7 +211,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.manufacturer.page++;
   }
   pageChangedHandler(): void {
-    this.getList();
+    this.getList(this.userRoleId);
     window.scrollTo(0, 0);
   }
   Math = Math;
