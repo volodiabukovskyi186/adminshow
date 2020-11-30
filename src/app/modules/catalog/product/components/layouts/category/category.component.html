@@ -21,7 +21,7 @@
     <!-- | {{option.data.id}} -->
   </ng-template>
   <ng-template ngx-select-option-not-found let-input>
-    "{{ input }}" not found
+    "{{ input }}" {{ 'APP.notFound' | translate }}
   </ng-template>
 </ngx-select>
 <div class="flex center">

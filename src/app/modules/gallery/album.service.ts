@@ -132,6 +132,11 @@ export class AlbumService {
   }
 
   public getAlbumsByManager(): Observable<any> {
-    return this.http.get(`${environment.host}manager/albums`);
+    let parent_id;
+    if (this.activeAlbum?.id) {
+      parent_id = this.activeAlbum.id;
+    }
+
+    return this.http.get(`${environment.host}manager/albums?parent_id=${parent_id}`);
   }
 }
