@@ -14,4 +14,5 @@ export interface IUser {
   city: String;
   country: String;
   delivery_adress: String;
+  password?:string
 }

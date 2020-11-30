@@ -11,6 +11,7 @@
             [status]="status"
             [userOrders]="userOrders"
             class="currency-form-style"
+            [roleStatus]="userRoleStatus"
             (ordersFormData)="sendOrdersFormData($event)"
             (ordersStaus)="seveStatus($event)"
          ></app-order-form>
@@ -62,7 +63,7 @@
                <button (click)="reviewOrder(order)" class="button transparent small">
                   <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
                </button>
-               <button (click)="openEditOrder(order)" class="button transparent small">
+               <button (click)="openEditOrder(order)" *ngIf="userRoleStatus" class="button transparent small">
                   <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
                </button>
             </td>

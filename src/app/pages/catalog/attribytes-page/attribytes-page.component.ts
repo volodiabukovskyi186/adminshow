@@ -11,6 +11,7 @@ import { LanguageService } from 'src/app/modules/localization/language/language.
 import { IAttribyte, IResponseData } from 'src/app/modules/catalog/attribyte/interfaces';
 import { AttribyteGroupService } from 'src/app/modules/catalog/attribyte/services/attribyte-group.service';
 import { LanguageService as Lang } from "src/app/core/language.service";
+import { RoleService } from 'src/app/core/auth/models/role.service';
 
 @Component({
   selector: 'app-attribytes-page',
@@ -29,9 +30,12 @@ constructor(
   public attrForm: AttribyteFormService,
   public langService: LanguageService,
   public lang: Lang,
+  public roleService:RoleService
 ) {
   super(pages);
 }
+userRoleId:number;
+userRoleStatus:boolean=false;
 
 ngOnInit(): void {
   super.initPagesSettings();
@@ -46,6 +50,7 @@ ngOnInit(): void {
   this.getList();
   this.getAllGroup();
   this.initTranslate();
+  this.getUserByTokin()
 }
 
 initTranslate() {
@@ -61,7 +66,15 @@ initTranslate() {
       ];
     });
 }
-
+getUserByTokin():void{
+  this.roleService.getByToken().subscribe(data=>{
+    this.userRoleId=data.data.user.role_id
+    if(this.userRoleId==1){
+      this.userRoleStatus=true;
+    }
+    
+  })
+}
 
 getList() {
   this.ngxService.start();

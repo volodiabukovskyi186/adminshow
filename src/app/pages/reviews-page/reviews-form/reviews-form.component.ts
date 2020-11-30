@@ -10,7 +10,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class ReviewsFormComponent implements OnInit,OnChanges {
   @Input() review;
   @Input() langs;
-
+  @Input() userStatus;
   @Output() reviewsFormData = new EventEmitter();
   @Output() reviewsSatus = new EventEmitter();
   public monthNames: any[] = [{

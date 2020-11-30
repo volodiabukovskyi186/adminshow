@@ -10,6 +10,7 @@
       [langs]="langService.languages.data"
       (reviewsFormData)="reviewsFormData($event)"
       (reviewsSatus)="reviewsSatus($event)"
+      [userStatus]='userRoleId'
       ></app-reviews-form>
     </div>
     <div *ngIf="showFilters">
@@ -52,10 +53,11 @@
               <mat-checkbox class="example-margin"    (change)="moderationOfReview(item)"  [checked]="item.id==reviewId" [color]="'primary'" ></mat-checkbox>  
           </section>
         </td>
-          <td class="text-center">{{ item.product.description.name }}</td>
-          <td class="text-center">{{ item.product.manufactured.description.name }}</td>
+          <td class="text-center">{{ item.product.description?.name }}</td>
+          <td class="text-center">{{ item.product.manufactured.description?.name }}</td>
           <td class="text-center">{{ item.author }}</td>
-          <td class="text-center">{{ item.text }}</td>
+         
+          <td class="text-center" >{{ item?.comments[0]?.text }}</td>
           <td class="text-center">
             <rap-rating [rating]="item.rating"></rap-rating>
           </td>

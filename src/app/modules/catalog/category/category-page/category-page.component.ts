@@ -13,6 +13,7 @@ import { Title } from "@angular/platform-browser";
 import { Router, NavigationEnd } from "@angular/router";
 import { BasePage } from "src/app/pages/@core";
 import { PagesService } from "src/app/pages/pages.service";
+import { RoleService } from 'src/app/core/auth/models/role.service';
 
 @Component({
   animations: [changeValueHighlight],
@@ -32,7 +33,8 @@ export class CategoryPageComponent extends BasePage
     public langService: LanguageService,
     public lang: Lang,
     private _title: Title,
-    private _router: Router
+    private _router: Router,
+    private roleService:RoleService
   ) {
     super(pages);
   }
@@ -42,25 +44,35 @@ export class CategoryPageComponent extends BasePage
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
   }
-
+  userRoleId:number;
+  userRoleStatus:boolean=false;
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-
     this.getLangList();
-    this.getList();
-    //this.getCategories();
-
+    this.getList(); 
     this.initTranslate();
     this.routerSubscription = this._router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.initTranslate();
         this.getList();
-        //this.getCategories();
         console.log(e);
       }
-      
     });
+    this.getUserByTokin()
+  }
+  getUserByTokin():void{
+    this.roleService.getByToken().subscribe(data=>{
+      this.userRoleId=data.data.user.role_id
+      if(this.userRoleId==1){
+        this.userRoleStatus=true;
+        this.pages.panelButtonSettings.plus = true;
+      }
+      else{
+        this.pages.panelButtonSettings.plus = false;
+      }
+   
+    })
   }
 
   initTranslate() {

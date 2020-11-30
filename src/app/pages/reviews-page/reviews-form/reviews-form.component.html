@@ -16,14 +16,15 @@
                                         </span>
                 </div>
             </div>
-            <form [formGroup]="reviewsForm">
+            <form [formGroup]="reviewsForm" *ngIf="userStatus!==1">
                 <div class="reviews-response">
                     <div class="reviews-response-title">{{ 'reviews.reviewResponse'| translate }}</div>
                     <input formControlName="response" class="reviews-response-text"/>
                 </div>
                 <div class="reviews-status">
+                    
                     <div class="reviews-response-title">{{ 'reviews.reviewStatus'| translate }}</div>
-                    <div class="reviews-response-status">
+                    <div class="reviews-response-status" >
                         <mat-form-field appearance="standart" class="sort-products">
                             <div class="sort-products-wrapper">
                                 <mat-select

@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Permission } from './../../../core/permission/permission';
+import { Component, OnInit,OnChanges, Inject } from "@angular/core";
 import { BasePage } from "../../@core";
 import { PaginationPage } from "src/app/modules/ui/rap/pagination/pagination-page";
 import { NgxUiLoaderService } from "ngx-ui-loader";
@@ -14,6 +15,10 @@ import { ManufacturerService } from "src/app/modules/manufacturer/manufacturer.s
 import { CategoryService } from "src/app/modules/catalog/category/category.service";
 import { ProductCategoryService } from "src/app/modules/catalog/product/services/product-category.service";
 import { LanguageService as LanguageLocalizationService } from "src/app/core/language.service";
+import { RolesModule } from 'src/app/modules/roles/roles.module';
+import { RoleService } from 'src/app/core/auth/models/role.service';
+import { TranslateService } from '@ngx-translate/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   animations: [changeValueHighlight],
@@ -22,7 +27,7 @@ import { LanguageService as LanguageLocalizationService } from "src/app/core/lan
   styleUrls: ["./products-page.component.scss"],
 })
 export class ProductsPageComponent extends BasePage
-  implements OnInit, PaginationPage {
+  implements OnInit,OnChanges, PaginationPage {
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -34,10 +39,17 @@ export class ProductsPageComponent extends BasePage
     public langService: LanguageService,
     public category: CategoryService,
     public prodCategory: ProductCategoryService,
-    public languageLocalizationService: LanguageLocalizationService
-  ) {
+    public languageLocalizationService: LanguageLocalizationService,
+    private roleService:RoleService,
+    private translate: TranslateService,
+    @Inject(DOCUMENT) private document: Document) {
     super(pages);
+      this.translate.onLangChange.subscribe(lang => {
+        this.getList(this.userRole);
+      })
+ 
   }
+  userRole:number=0;
 
   ngOnInit(): void {
     super.initPagesSettings();
@@ -48,11 +60,24 @@ export class ProductsPageComponent extends BasePage
       { link: "products", title: "Products" },
     ];
 
+
+
     this.getLangList();
-    this.getList();
+    
     this.getAllManufacturer();
     this.initTranslate();
-    console.log(this.prodForm.model)
+    // console.log(this.prodForm.model)
+    this. getUserByTokin()
+  }
+  getUserByTokin():void{
+    this.roleService.getByToken().subscribe(data=>{
+          this.userRole=data.data.role.id
+          // console.log('misha===>',this.userRole)
+          this.getList(this.userRole);
+    })
+  }
+  ngOnChanges():void{
+    this.getUserByTokin()
   }
 
   initTranslate() {
@@ -69,9 +94,10 @@ export class ProductsPageComponent extends BasePage
       });
   }
 
-  getList() {
+
+  getList(role_id) {
     this.ngxService.start();
-    this.product.getList().subscribe(this.getListHandler);
+    this.product.getList(role_id).subscribe(this.getListHandler);
   }
 
   getListHandler = (data) => {
@@ -97,7 +123,7 @@ export class ProductsPageComponent extends BasePage
   }
   getAllManufacturerHandler = (data) => {
     this.manufacturer.all = data.data;
-    console.log(data, this.manufacturer.all);
+    // console.log(data, this.manufacturer.all);
 
     this.ngxService.stopAll();
   };
@@ -251,11 +277,11 @@ export class ProductsPageComponent extends BasePage
     );
   };
   pageEvent(event):void{
-    console.log('event===>',event)
+    // console.log('event===>',event)
     this.product.data.count=event.length
     this.product.data.take=event.pageSize
     this.product.data.skip=event.pageSize*event.pageIndex
-    this.getList();
+    this.getList(this.userRole);
   }
 
   //#region pagination
@@ -270,7 +296,7 @@ export class ProductsPageComponent extends BasePage
     this.product.page++;
   }
   pageChangedHandler(): void {
-    this.getList();
+    this.getList(this.userRole);
     window.scrollTo(0, 0);
   }
   Math = Math;

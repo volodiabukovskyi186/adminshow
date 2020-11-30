@@ -14,6 +14,7 @@
     <ng-template #notfound>
       <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
     </ng-template>
+    <!-- {{manufacturer.manufacturer?.data.manufacturers|json}} -->
     <table
       class="raisins-table border-all radius"
       *ngIf="manufacturer.manufacturer?.data.length > 0; else notfound"
@@ -30,6 +31,7 @@
         </tr>
       </thead>
       <tbody>
+       
         <tr
           *ngFor="let item of manufacturer.manufacturer?.data"
           [ngClass]="{ off: !item.status }"
@@ -41,7 +43,7 @@
               <div class="imax">
                 <img
                   class="contain"
-                  [src]="'//' + item.host + item.image.src_mini"
+                  [src]="'//' + 'api.showu.com.ua' + item.image.src_mini"
                   [alt]="item.id"
                 />
               </div>
@@ -52,13 +54,26 @@
           </td>
           <td>
             <div class="flex wrap" style="width: 100%;">
-              <span class="title flag-container" *ngFor="let desc of item.description">
+              <ng-container *ngIf="!userRoleStatus">
+                  <!-- *ngFor="let desc of item.description" -->
+                <span class="title flag-container"  >
+                  <!-- <span class="flag">
+                    {{ langService.getFromList(desc.lang_id)?.flag }}
+                  </span> -->
+                  <img class="flag" src="{{ langService.getFromList(item.description.lang_id)?.flag }}"/>
+                  <span class="name">{{ item.description.name }}</span>
+                </span>
+              </ng-container>
+              <ng-container *ngIf="userRoleStatus"> 
+              <span class="title flag-container"  *ngFor="let desc of item.description">
                 <!-- <span class="flag">
                   {{ langService.getFromList(desc.lang_id)?.flag }}
                 </span> -->
                 <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
                 <span class="name">{{ desc.name }}</span>
               </span>
+            </ng-container>
+           
             </div>
           </td>
 

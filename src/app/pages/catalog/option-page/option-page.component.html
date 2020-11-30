@@ -26,7 +26,7 @@
           <th width="">{{ "APP.title" | translate }}</th>
           <th width="128px">{{ "APP.type" | translate }}</th>
           <th width="128px">{{ "APP.updated_at" | translate }}</th>
-          <th width="128px">{{ "APP.action" | translate }}</th>
+          <th width="128px" *ngIf="userRoleStatus">{{ "APP.action" | translate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -57,7 +57,7 @@
             <small>{{ item.updated_at | localDate: "short" }}</small>
             <small *ngIf="!item.updated_at">—</small>
           </td>
-          <td>
+          <td *ngIf="userRoleStatus">
             <div class="flex wrap center">
               <button
                 style="position: relative;"

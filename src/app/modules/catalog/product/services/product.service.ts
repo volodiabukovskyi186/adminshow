@@ -19,12 +19,22 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getList(): Observable<IProductResponse> {
+  getList(role_id): Observable<IProductResponse> {
+    console.log('roleId===-0-=>',role_id)
+    const lang=localStorage.getItem('currentLang')
     // let skip = this.page * this.data.take - this.data.take;
-    let params = `?take=${this.data.take}&skip=${this.data.skip}`;
-    return this.http.get<IProductResponse>(
-      environment.catalog.product.products + params
-    );
+    let params = `?take=${this.data.take}&skip=${this.data.skip}&lang=${lang}`;
+    if(role_id==1){
+      return this.http.get<IProductResponse>(
+        environment.catalog.product.products + params
+      );
+    }
+    else{
+      return this.http.get<IProductResponse>(
+        environment.catalog.product.manager + params
+      );
+    }
+  
   }
 
   post(data: any): Observable<any> {

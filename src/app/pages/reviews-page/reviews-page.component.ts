@@ -7,6 +7,7 @@ import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { ReviewsPageService } from  "../reviews-page/services/reviews-page.service";
 import { LanguageService } from "src/app/modules/localization/language/language.service";
+import { RoleService } from 'src/app/core/auth/models/role.service';
 
 @Component({
   selector: 'app-reviews-page',
@@ -43,7 +44,8 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     public breadcrumbs: BreadcrumbsService,
     public lang: Lang,
     public reviewsPageService: ReviewsPageService,
-    public langService: LanguageService
+    public langService: LanguageService,
+    public roleService:RoleService
   ) { 
     super(pages);
     
@@ -51,6 +53,9 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   public showFilters: boolean = false;
   public reviewsData: any;
   public reviewId: number;
+
+  userRoleId:number;
+  userRoleStatus:boolean=false;
 
   public ngOnInit(): void {
     this.initPagesSettings();
@@ -61,10 +66,10 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     ];
 
     this.getLangList();
-    this.getList();
+    
     this.initTranslate();
 
-       
+    this. getUserByTokin()
     this.pages.panelButtonSettings.review = true;
     this.pages.panelButtonSettings.plus = false;
 
@@ -74,6 +79,15 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
       this.showFilters = true;      
       this.openForm();      
     }
+  }
+  getUserByTokin():void{
+    this.roleService.getByToken().subscribe(data=>{
+      this.userRoleId=data.data.user.role_id
+      if(this.userRoleId==1){
+        this.userRoleStatus=true;
+      }
+      this.getList(this.userRoleId);
+    })
   }
 
   public initTranslate(): void {
@@ -89,12 +103,13 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
         ];
       });
   }
-  getList() {
+  getList(user_role) {
     this.ngxService.start();
-    this.reviewsPageService.getReviews().subscribe(this.getListHandler);
+    this.reviewsPageService.getReviews(user_role).subscribe(this.getListHandler);
   }
 
   getListHandler = (data) => {
+   
     this.ngxService.stopAll();
     this.reviewsPageService.reviews = data;
     console.log('reviews',this.reviewsPageService.reviews)
@@ -196,7 +211,7 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
           //   val.status = res.data.status;
           // }
         // })
-        this.reviewsPageService.getReviews().subscribe(data=>{
+        this.reviewsPageService.getReviews(this.userRoleId).subscribe(data=>{
           this.reviewsPageService.reviews=data
         })
         this.toastr.success("REVIEW  ADDED ^_^");
@@ -223,7 +238,7 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     this.reviewsPageService.reviews.count=event.length
     this.reviewsPageService.reviews.take=event.pageSize
     this.reviewsPageService.reviews.skip=event.pageSize*event.pageIndex
-    this.getList();
+    this.getList(this.userRoleId);
   }
 
   putHandler = (data) => {
@@ -242,7 +257,7 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     this.reviewsPageService.page++;
   }
   pageChangedHandler(): void {
-    this.getList();
+    this.getList(this.userRoleId);
     window.scrollTo(0, 0);
   }
   Math = Math;
