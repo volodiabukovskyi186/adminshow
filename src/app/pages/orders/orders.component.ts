@@ -98,28 +98,16 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.getUserRoleId();
   }
   
-<<<<<<< HEAD
-  public getUserByTokin(): void{
+  public getUserByTokin(): void {
     this.roleService.getByToken().subscribe(data=>{
       this.userRoleId = data.data.user.role_id;
 
-      if (this.userRoleId === 1){
-          this.userRoleStatus = true;
+      if (this.userRoleId === 1) {
+        this.userRoleStatus = true;
       }
       this.getList(this.userRoleId);
     })
   }
-=======
-    getUserByTokin():void{
-      this.roleService.getByToken().subscribe(data=>{
-        this.userRoleId=data.data.user.role_id
-        if(this.userRoleId==1){
-          this.userRoleStatus=true;
-        }
-        this.getList(this.userRoleId);
-      })
-    }
->>>>>>> 9ad72c0f1b5e5335678a3f06d539110e522ad3f8
 
 
   public uodateAllItems(): void {
