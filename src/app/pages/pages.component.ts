@@ -78,6 +78,7 @@ export class PagesComponent implements OnInit {
     private UserService:UserService
   ) {}
   ngOnInit(): void {
+    
     this.route.params.subscribe((data) => {
       // set lang
       this.lang.use(data["lang"]);
