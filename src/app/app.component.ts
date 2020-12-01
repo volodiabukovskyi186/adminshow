@@ -17,7 +17,6 @@ export class AppComponent implements OnInit,OnDestroy {
 
   constructor(public http: HttpClient) {
     this.favIcon = document.querySelector('#appIcon') || document.querySelector("link[href='favicon.ico']");
-
     this.getAllSiteData();
   }
   ngOnInit(){

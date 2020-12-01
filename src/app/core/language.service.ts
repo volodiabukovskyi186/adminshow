@@ -26,14 +26,12 @@ export class LanguageService implements OnInit {
         localStorage.setItem('currentLang',lang.lang)
         console.log('vvvvvvvv=>',lang.lang);
     });
-    this.getDefaultLanguage();
-    this.init();
+      this.getDefaultLanguage();
+      this.init();
   }
-
   ngOnInit(): void {
-    //this.getDefaultLength();
+   
   }
-
   public langs: Array<ILangItem> = [];
 
   getBrowserLang() {
@@ -41,29 +39,17 @@ export class LanguageService implements OnInit {
   }
 
   use(language: string) {
-    // get browser lang
-   
-    const browserLang = this.getBrowserLang();
-    console.log('browserLang', browserLang);
 
-    // if data["lang"] is null set browserLang
+    const browserLang = this.getBrowserLang();
+
     let lang = language ?? browserLang;
-    console.log("set lang:", lang);
-   
+  
     this.translate.use(
       lang.match(/en|pl|ru|ua/) ? lang : this.translate.defaultLang
     );
-    console.log('(/en|pl|ru|ua/)', lang.match(/en|pl|ru|ua/));
-    console.log('defaultLang', this.translate.defaultLang);
-   
-    // set lang
-    console.log("CURRENT LANG: ", this.translate.currentLang);
-    
-    
   }
 
   public get routeLang(): string {
-    
     return this.translate.currentLang != undefined &&
       this.translate.defaultLang != this.translate.currentLang
       ? this.translate.currentLang
@@ -84,13 +70,12 @@ export class LanguageService implements OnInit {
     }
   }
 
-  getDefaultLanguage(): Observable<any> {
+  getDefaultLanguage(): Observable <any> {
     return this.http.get(`${environment.host}getDefaultLanguage`);
   }
 
   init() {
     // init langs
-
     const pl: ILangItem = { flag: "pl", name: "Poland", locale: "pl", src:'assets/icons/poland.jpg' };
     const en: ILangItem = { flag: "en", name: "England", locale: "en"  ,src:'assets/icons/eangland.png'};
     const ru: ILangItem = { flag: "ru", name: "Russia", locale: "ru" , src:'assets/icons/russia.webp'};
@@ -98,13 +83,17 @@ export class LanguageService implements OnInit {
 
     this.langs = [pl, en, ru, ua];
 
-    this.getDefaultLanguage().subscribe((res) => {
-      this.translate.addLangs([res.data.code, en.name]);
-      this.translate.defaultLang = res.data.code;
-      this.use(res.data.code);
+    this.getDefaultLanguage().subscribe((res) => { 
+      if(localStorage.getItem('currentLang')){
+        const userLang=localStorage.getItem('currentLang')
+        this.use(userLang);
+      }
+      else{
+        this.translate.addLangs([res.data.code, en.name]);
+        this.translate.defaultLang = res.data.code;
+        this.use(res.data.code);
+      }
+      localStorage.setItem('currentLang',res.data.code)
     })
-
-    //console.log('defaultLanggggggggg =====>>>>', defaultLang);
-    //console.log('this.translate.defaultLang', this.translate.defaultLang);
   }
 }
