@@ -7,55 +7,60 @@ import {environment} from "../../../../../environments/environment";
   providedIn: 'root'
 })
 export class CountryFormService {
-    selected:any;
-    changeDeliver = new BehaviorSubject([]);
-    bSubject = new BehaviorSubject({selectedOrder:this.selected});
-    initEmptyWeightForm(){
-        this.selected={
-            image_id:null,
-            iso:null,
+    public selected:any;
+    public changeDeliver = new BehaviorSubject([]);
+    public bSubject = new BehaviorSubject({selectedOrder:this.selected});
+
+    constructor(private http: HttpClient) {
+        this.initEmptyWeightForm();
+    }
+
+    public initEmptyWeightForm(): void {
+        this.selected = {
+            image_id: null,
+            iso: null,
             description: [
                 {
                     "lang_id": 1,
-                    "title":null,
+                    "title": null,
                     "unit": null
                 },
                 {
                     "lang_id": 2,
-                    "title":null,
+                    "title": null,
                     "unit": null
                 },
                 {
                     "lang_id": 3,
-                    "title":null,
+                    "title": null,
                     "unit": null
                 },
                 {
                     "lang_id": 3,
-                    "title":null,
+                    "title": null,
                     "unit": null
                 }
             ]
         }
-        this.bSubject.next(this.selected)
+        this.bSubject.next(this.selected);
     }
-    constructor(private http: HttpClient) {
-        this.initEmptyWeightForm();
-    }
-    getDeliver(): Observable<any> {
+    
+    public getDeliver(): Observable<any> {
         return this.http.get<any>(environment.delivery.deliverys);
     }
-    getCountryDelivers(): Observable<any> {
+
+    public getCountryDelivers(): Observable<any> {
         return this.http.get<any>(environment.countries.countrydeliverys);
     }
-    editDeliver(id:any,arr:any): Observable<any> {
+
+    public editDeliver(id:any,arr:any): Observable<any> {
         return this.http.put<any>(`${environment.countrypaydeliver.countrydeliverarr}/${id}`,arr );
     }
-    getDeliversCountry(id:any): Observable<any> {
+
+    public getDeliversCountry(id:any): Observable<any> {
         return this.http.get<any>(`${environment.countrypaydeliver.countrydeliver}/${id}`);
     }
   
-
     // editDeliver(id: number, item): Observable<any> {
     //     return this.http.put<any>(`${environment.countries.countrypay}/${id}`, item);
     // }

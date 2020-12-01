@@ -12,27 +12,32 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CategoryComponent implements OnInit {
   private _model: IProduct;
+
   @Output() modelChange = new EventEmitter();
+  @Input() get model(): IProduct {
+    return this._model;
+  }
 
   set model(val: IProduct) {
     this._model = val;
     this.modelChange.emit(this._model);
-
     // this.getProdCategory();
   }
-  @Input() get model(): IProduct {
-    return this._model;
-  }
+
   constructor(
     public category: CategoryService,
     public prodCategory: ProductCategoryService,
     protected toastr: ToastrService,
   ) {}
-  ngOnInit(): void {}
+
+  public ngOnInit(): void {
+    console.log('category.all (category.component) ====== >>>>>>>', this.category.all);
+  }
   // save prod category
-  save() {
+  public save(): void {
     this.prodCategory.put(this.model.id).subscribe(this.saveHandler);
   }
+
   saveHandler = (data) => {
     this.toastr.success("Saved");
   };

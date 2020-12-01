@@ -40,11 +40,9 @@ export class CategoryService {
   }
 
   getAllCategories(): Observable<ICategoryResponse> {
-    console.log(window.location.pathname.slice(1, 3));
-
     //let lang = this.lang.current;
     let lang = window.location.pathname.slice(1, 3);
-    console.log('1234lang==>', lang);
+
     let params = `?skip=0&lang=${lang}`;
     return this.http.get<ICategoryResponse>(
       environment.host + `client/category${params}`

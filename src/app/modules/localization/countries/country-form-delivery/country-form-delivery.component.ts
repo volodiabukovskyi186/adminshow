@@ -12,17 +12,16 @@ import {filter, map, switchMap} from "rxjs/operators";
   styleUrls: ['./country-form-delivery.component.scss']
 })
 export class CountryFormDeliveryComponent implements OnInit {
-  arrDelivery;
-  itemId:number;
-  // one:any;
-  getItemval:any;
-
+  public arrDelivery;
+  public itemId: number;
+  // one: any;
+  public getItemval: any;
+  public values = [];
 
   private _model: IProduct;
   @Input() selected;
   // @Input() selectedCountryDeliver;
   @Input() selectedCountryDeliver;
-  values=[];
   @Output() modelChange = new EventEmitter();
   @Output() deliverChange = new EventEmitter();
 
@@ -31,46 +30,42 @@ export class CountryFormDeliveryComponent implements OnInit {
     this.modelChange.emit(this._model);
     // this.getProdCategory();
   }
+
   @Input() get model(): IProduct {
     return this._model;
   }
+
   constructor(
-      public category: CategoryService,
-      public prodCategory: ProductCategoryService,
-      protected toastr: ToastrService,
-      public  countryFormService:CountryFormService,
-    
-  ) {
-  
+    public category: CategoryService,
+    public prodCategory: ProductCategoryService,
+    protected toastr: ToastrService,
+    public countryFormService: CountryFormService,
+  ) {}
+
+  public ngOnInit(): void {
+    this.getDevilver();
+    this.changeDeliver();
   }
-  ngOnInit(): void {
-    this.getDevilver()
-    this.changeDeliver()
-  }
-  changeDeliver():void{
-    this.countryFormService.changeDeliver.subscribe(data=>{
-      this.values=data;
+
+  public changeDeliver(): void {
+    this.countryFormService.changeDeliver.subscribe(data => {
+      this.values = data;
     })
   }
  
-  getDevilver(){
-
-    return this.countryFormService.getDeliver().subscribe(data=>{
-          this.arrDelivery=data.data;
+  public getDevilver() {
+    return this.countryFormService.getDeliver().subscribe(data => {
+          this.arrDelivery = data.data;
           this.values = this.selectedCountryDeliver;
-          this.itemId=this.selected.id;
+          this.itemId = this.selected.id;
         })
-     
-}
+  }
   // save prod category
-  save() {
-
+  public save(): void {
     this.countryFormService.editDeliver(this.selected.id,this.values ).subscribe(data=>{})
   }
+
   saveHandler = (data) => {
     this.toastr.success("Saved");
   };
-
-
-  
 }

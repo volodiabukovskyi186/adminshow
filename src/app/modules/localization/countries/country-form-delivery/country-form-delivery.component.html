@@ -1,35 +1,34 @@
 <ngx-select
-        [allowClear]="true"
-        [items]="arrDelivery"
-        optionValueField="id"
-        optionTextField="name"
-        [multiple]="true"
-        [(ngModel)]="values"
-        placeholder="No category selected"
+    [allowClear]="true"
+    [items]="arrDelivery"
+    optionValueField="id"
+    optionTextField="name"
+    [multiple]="true"
+    [(ngModel)]="values"
+    placeholder="No category selected"
 >
     <ng-template
-            ngx-select-option
-            ngx-select-option-selected
-            let-option
-            let-text="text"
+        ngx-select-option
+        ngx-select-option-selected
+        let-option
+        let-text="text"
     >
        <ng-container *ngFor="let item of option.data.descriptions">
-     {{item.name}} &#32;
+            {{item.name}} &#32;
        </ng-container>
     </ng-template>
     <ng-template ngx-select-option-not-found let-input>
-        <span> "{{ input }}" not found</span>
-       
+        <span> "{{ input }}" not found</span>  
     </ng-template>
 </ngx-select>
 
 <div class="flex center">
     <button
-            style="position: relative;"
-            data-tooltip-left="Save"
-            role="button"
-            (click)="save()"
-            class="button transparent radius"
+        style="position: relative;"
+        data-tooltip-left="Save"
+        role="button"
+        (click)="save()"
+        class="button transparent radius"
     >
         <rap-svg-ico class="black" [src]="'assets/icons/save.svg'"></rap-svg-ico>
     </button>

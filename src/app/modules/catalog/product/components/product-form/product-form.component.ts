@@ -30,19 +30,19 @@ export class ProductFormComponent implements OnInit {
 
   constructor(public image: ImagesService) {}
 
-  onPress() {
+  public ngOnInit(): void {
+    this.image.select.subscribe(this.selectHandler);
+  }
+
+  public onPress(): void {
     this.modalOpen = true;
   }
 
-  getCatDesc(langId: number): IProductDescription {
+  public getCatDesc(langId: number): IProductDescription {
     this.model.descriptions.forEach((cd) => {
       if (cd.lang_id == langId) return cd;
     });
     return null;
-  }
-
-  public ngOnInit(): void {
-    this.image.select.subscribe(this.selectHandler);
   }
 
   public onReset(): void {

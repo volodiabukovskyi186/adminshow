@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { IUser } from "../models";
 import { Role } from "../../roles/models";
+import { IProduct } from "src/app/modules/catalog/product/interfaces/product";
 
 @Component({
   selector: "app-user-form",
@@ -10,11 +11,12 @@ import { Role } from "../../roles/models";
 export class UserFormComponent implements OnInit {
   @Input() user: IUser;
   @Input() roles: Role[] = [];
+  @Input() model: IProduct;
 
   @Input() title: string = "";
   @Input() isEdit: boolean = false;
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
   constructor() {}
 }

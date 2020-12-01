@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { BasePage } from "../@core";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { ToastrService } from "ngx-toastr";
@@ -9,15 +9,18 @@ import { PaginationPage } from "src/app/modules/ui/rap/pagination/pagination-pag
 import { UserFormService } from "src/app/modules/user/user-form.service";
 import { RolesService } from "src/app/modules/roles/roles.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
-import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
+import { Angular5Csv } from "angular5-csv/dist/Angular5-csv";
+import { IProduct } from "src/app/modules/catalog/product/interfaces/product";
 
 @Component({
   selector: "app-users-page",
   templateUrl: "./users-page.component.html",
   styleUrls: ["./users-page.component.scss"],
 })
-export class UsersPageComponent extends BasePage
-  implements OnInit, PaginationPage {
+export class UsersPageComponent extends BasePage implements OnInit, PaginationPage {
+  public isEdit: boolean = false;
+  @Input() model: IProduct;
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -45,7 +48,7 @@ export class UsersPageComponent extends BasePage
     this.initTranslate();
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -127,8 +130,6 @@ export class UsersPageComponent extends BasePage
     this.toastr.success("user UPDATED ^_^");
   };
 
-  isEdit: boolean = false;
-
   plus = () => {
     this.userForm.initEmptyModel();
     this.isEdit = false;
@@ -138,6 +139,8 @@ export class UsersPageComponent extends BasePage
   //#endregion
 
   edit(i) {
+    console.log('i===========>>>>>>>>', i);
+
     this.userForm.initByModel(i);
     this.isEdit = true;
     this.openForm();
