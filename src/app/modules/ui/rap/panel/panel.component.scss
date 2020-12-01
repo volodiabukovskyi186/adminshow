@@ -15,7 +15,7 @@ $navWidth: 250px;
     rgba(darken($primary, 16%), 1) 110%
   );
 }
-a{
+a {
  display: flex;
  align-items: center;
 
@@ -149,20 +149,17 @@ footer {
   background: orangered;
   z-index: 10000;
   width: 45px;
-
-
-
 }
 
-.all{
+.all {
   position: absolute;
   z-index: 10000;
   width: 40px;
   display:block;
   list-style:none;
-  li{
+  li {
     display:block;
-    a{
+    a {
       display:block;
     }
   }
@@ -170,11 +167,11 @@ footer {
 }
 
 .dropdown {
-  
   position: relative;
   display: inline-block;
-  z-index: 1000;
+  z-index: 1010;
   width: 35px;
+
   .active-lang{
     width: 55px;
     padding: 15px 0;
@@ -182,18 +179,17 @@ footer {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-.drop-icon{
-
-  // padding-left: 10px
-}
+    .drop-icon{
+      // padding-left: 10px
+    }
   }
-  div{
+  div {
     width: 135px;
-    img{
+    img {
       border-radius: 6px;
       width: 35px;
       height: 35px;
-    margin-right: 10px;
+      margin-right: 10px;
     }
   }
 }
