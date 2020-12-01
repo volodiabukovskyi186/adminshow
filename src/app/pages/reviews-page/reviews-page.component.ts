@@ -54,8 +54,8 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
   public reviewsData: any;
   public reviewId: number;
 
-  userRoleId:number;
-  userRoleStatus:boolean=false;
+  public userRoleId: number;
+  public userRoleStatus: boolean = false;
 
   public ngOnInit(): void {
     this.initPagesSettings();
@@ -66,10 +66,9 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     ];
 
     this.getLangList();
-    
     this.initTranslate();
+    this.getUserByTokin();
 
-    this. getUserByTokin()
     this.pages.panelButtonSettings.review = true;
     this.pages.panelButtonSettings.plus = false;
 
@@ -80,11 +79,12 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
       this.openForm();      
     }
   }
-  getUserByTokin():void{
+
+  public getUserByTokin(): void {
     this.roleService.getByToken().subscribe(data=>{
-      this.userRoleId=data.data.user.role_id
-      if(this.userRoleId==1){
-        this.userRoleStatus=true;
+      this.userRoleId = data.data.user.role_id;
+      if (this.userRoleId == 1 ) {
+        this.userRoleStatus = true;
       }
       this.getList(this.userRoleId);
     })
@@ -103,18 +103,18 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
         ];
       });
   }
-  getList(user_role) {
+
+  public getList(user_role): void {
     this.ngxService.start();
     this.reviewsPageService.getReviews(user_role).subscribe(this.getListHandler);
   }
 
   getListHandler = (data) => {
-   
     this.ngxService.stopAll();
     this.reviewsPageService.reviews = data;
-    console.log('reviews',this.reviewsPageService.reviews)
   };
-  getLangList() {
+
+  public getLangList(): void {
     this.ngxService.start();
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
@@ -131,39 +131,26 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     let t = new Date(substringDate);
 
     return substringDate;
-  
-    // if (type === 'day') {
-    //   return t.getDate();
-    // } else if (type === 'months') {
-    //   return this.monthNames[0][t.getMonth()];
-    // } else if (type === 'year') {
-    //   return t.getFullYear()
-    // }
   }
 
-  moderationOfReview(reviewToModerate) {
+  public moderationOfReview(reviewToModerate): void {
     this.selectedReview = reviewToModerate;
     this.reviewId = this.selectedReview.id;
-    // this.reviewsStatus=this.selec
-    console.log('selected==>', this.selectedReview)
+    // this.reviewsStatu = this.selec;
   }
 
-  initPagesSettings = () =>{
-     super.initPagesSettings();
-     this.pages.panelButtonSettings.toggleFilter = false;
+  initPagesSettings = () => {
+    super.initPagesSettings();
+    this.pages.panelButtonSettings.toggleFilter = false;
   }
 
-  
-  reviewsFiltersFormData(event) {
-    console.log(event);
-
+  public reviewsFiltersFormData(event): void {
     this.updateDateStart = event.date_start;
     this.updateDateEnd = event.date_end;
     this.updateStatus = event.status;
   }
 
-  reviewsFormData(event) {
-    console.log(event);
+  public reviewsFormData(event): void {
     this.reviewsData = event;
   }
 
@@ -185,17 +172,14 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     this.pages.panelButtonSettings.rightToggle = false;
     this.pages.panelButtonSettings.review = false;
   };
-  reviewsSatus(event):void{
-    this.reviewsStatus=event
-   
+
+  public reviewsSatus(event): void {
+    this.reviewsStatus = event;
   }
 
-
   save = () => {
-    console.log('statussave===>',this.reviewsStatus)
     if (this.selectedReview && !this.showFilters) {
-    console.log('reviews',this.reviewsData)
-      const commentreview={
+      const commentreview = {
         parent_id: this.reviewId ,
         user_id: this.reviewsData.user_id,
         author: this.reviewsData.author,
@@ -204,19 +188,14 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
         dislike_count: 0,
         status: 1
       }
+
       this.reviewsPageService.addcommentReviewById(commentreview, this.reviewId).subscribe((res) => {
-        // this.reviewsPageService.reviews?.data.forEach((val) => {
-          // if (res.data.id === val.id) {
-          //   val.text = res.data.text;
-          //   val.status = res.data.status;
-          // }
-        // })
-        this.reviewsPageService.getReviews(this.userRoleId).subscribe(data=>{
+        this.reviewsPageService.getReviews(this.userRoleId).subscribe(data=> {
           this.reviewsPageService.reviews=data
         })
         this.toastr.success("REVIEW  ADDED ^_^");
       })
-      if(this.reviewsStatus){
+      if (this.reviewsStatus) {
         this.reviewsPageService.updateReviewStatus(this.reviewId,{status:this.reviewsStatus}).subscribe(data=>{
           this.toastr.success("REVIEW STATUS UPDATED ^_^");
         })
@@ -233,11 +212,10 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     this.closeForm();
   }
 
-  pageEvent(event):void{
-    console.log('event===>',event)
-    this.reviewsPageService.reviews.count=event.length
-    this.reviewsPageService.reviews.take=event.pageSize
-    this.reviewsPageService.reviews.skip=event.pageSize*event.pageIndex
+  public pageEvent(event): void {
+    this.reviewsPageService.reviews.count = event.length;
+    this.reviewsPageService.reviews.take = event.pageSize;
+    this.reviewsPageService.reviews.skip = event.pageSize * event.pageIndex;
     this.getList(this.userRoleId);
   }
 

@@ -18,12 +18,12 @@ export class ReviewsFiltersFormComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.generateReviewsFiltersForm();
     this.getEditReviewsFiltersFormFormData();
   }
 
-  generateReviewsFiltersForm() {
+  public generateReviewsFiltersForm(): void {
     this.reviewsFiltersForm = new FormGroup({
       dateFrom: new FormControl('', []),
       dateTo: new FormControl('', []),
@@ -31,11 +31,11 @@ export class ReviewsFiltersFormComponent implements OnInit {
     })
   }
 
-  public onChange(event) {
+  public onChange(event): void {
     this.reviewsFiltersForm.get('status').setValue(event);
   }
 
-  getEditReviewsFiltersFormFormData(): void {
+  public getEditReviewsFiltersFormFormData(): void {
     this.reviewsFiltersForm.valueChanges
     .subscribe(() => this.reviewsFiltersFormData.emit({ 
       date_start: this.reviewsFiltersForm.value.dateFrom,

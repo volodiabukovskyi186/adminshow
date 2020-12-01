@@ -31,12 +31,7 @@ export class UsersPageComponent extends BasePage
     super(pages);
   }
 
-  // test(){
-  //   debugger;
-  //   new Angular5Csv(this.user.data.data, 'My Report');
-  // }
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
 
@@ -87,11 +82,8 @@ export class UsersPageComponent extends BasePage
   //#region override
 
   save = () => {
-    // console.log("ADD/UPDATE", this.categoryForm.category);
     // THIS SHOULD NOT BE HERE ! ! !
     let c = this.userForm.model;
-
-    console.log(this.userForm.model);
 
     let data = {
       role_id: c.role_id,
@@ -117,7 +109,6 @@ export class UsersPageComponent extends BasePage
       this.user.post(data).subscribe(this.postHandler);
     }
     this.ngxService.start();
-    console.log("SEND PROD DATA: ", data);
   };
 
   postHandler = (data) => {
@@ -169,27 +160,30 @@ export class UsersPageComponent extends BasePage
   // };
 
   //#region pagination
-  pageEvent(event):void{
-    this.user.data.count=event.length
-    this.user.data.take=event.pageSize
-    this.user.data.skip=event.pageSize*event.pageIndex
+  public pageEvent(event): void {
+    this.user.data.count = event.length;
+    this.user.data.take = event.pageSize;
+    this.user.data.skip = event.pageSize * event.pageIndex;
     this.getList();
   }
-
 
   pageToHandler(page: number): void {
     this.user.page = page;
   }
+
   pagePrevHandler(): void {
     this.user.page--;
   }
+
   pageNextHandler(): void {
     this.user.page++;
   }
+
   pageChangedHandler(): void {
     this.getList();
     window.scrollTo(0, 0);
   }
+
   Math = Math;
 
   //#endregion

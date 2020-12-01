@@ -31,6 +31,7 @@ export class CollectionPageComponent extends BasePage
   public productsList;
   public products: any[];
   public selectedProductsPromotion: any[];
+  public editItem: ICollection = null;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -47,7 +48,7 @@ export class CollectionPageComponent extends BasePage
     super(pages);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
 
@@ -68,11 +69,11 @@ export class CollectionPageComponent extends BasePage
     });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this._routerSubscription.unsubscribe();
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "collection.collections",
@@ -196,16 +197,11 @@ export class CollectionPageComponent extends BasePage
   //#endregion
 
   edit(i) {
-    console.log(i);
     this.collection.getByCollectionId(i.id).subscribe((res) => {
       this.products = res.data;
-      console.log(this.products);
-  
       this.productsList = this.products.map(function(val) {
         return val.product;
       })
-      
-      console.log(this.productsList);
     })
 
     this.collectionForm.initByModel(i, this.langService.languages.data);
@@ -214,8 +210,6 @@ export class CollectionPageComponent extends BasePage
   }
 
   deleteCollection(collectionToDelete): void {
-    console.log(collectionToDelete);
-    
     this.collection.deleteCollectionById(collectionToDelete.id).subscribe((res) => {
       console.log(res);
     })
@@ -226,15 +220,10 @@ export class CollectionPageComponent extends BasePage
   }
 
   selectedProducts(event) {
-    console.log(event);
-  
     this.selectedProductsPromotion = event?.map(function(product) {
       return product.id;
     })
-
   }
-
-  editItem: ICollection = null;
 
   //
   updateStatus(item: ICollection) {

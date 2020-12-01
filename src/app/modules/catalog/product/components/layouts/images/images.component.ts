@@ -15,7 +15,12 @@ import { ToastrService } from "ngx-toastr";
 })
 export class ImagesComponent implements OnInit {
   private _model: IProduct;
+  public modalOpen: boolean = false;
+
   @Output() modelChange = new EventEmitter();
+  @Input() get model(): IProduct {
+    return this._model;
+  }
 
   set model(val: IProduct) {
     this._model = val;
@@ -24,17 +29,13 @@ export class ImagesComponent implements OnInit {
     this.getProdImages();
   }
 
-  @Input() get model(): IProduct {
-    return this._model;
-  }
-
   constructor(
     public image: ImagesService,
     public prodImage: ProductImagesService,
     protected toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
   getProdImages() {
     this.prodImage.getByProdId(this.model.id).subscribe(this.getProdImagesHandler);
@@ -53,12 +54,9 @@ export class ImagesComponent implements OnInit {
   };
 
   onDeleteImage(prodImage: IProdImage) {
-    console.log('imagedelete===>',prodImage)
     this.prodImage.deleteProdImage(prodImage);
     // this.prodImage.deleteImages(prodImage.id,)
   }
-
-  modalOpen: boolean = false;
 
   onPress() {
     this.modalOpen = true;

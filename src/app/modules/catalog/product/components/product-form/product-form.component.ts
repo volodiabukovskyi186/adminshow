@@ -22,10 +22,13 @@ export class ProductFormComponent implements OnInit {
   @Input() manufacturers: IManufacturer[] = [];
   @Input() langs: ILanguage[];
   @Input() host: string;
-
   @Input() title: string = "";
 
-  modalOpen: boolean = false;
+  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
+
+  public modalOpen: boolean = false;
+
+  constructor(public image: ImagesService) {}
 
   onPress() {
     this.modalOpen = true;
@@ -38,11 +41,11 @@ export class ProductFormComponent implements OnInit {
     return null;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.image.select.subscribe(this.selectHandler);
   }
 
-  onReset() {
+  public onReset(): void {
     this.model.image_id = null;
     this.host = null;
     this.model.image.src = "assets/icons/color-none-image.svg";
@@ -62,11 +65,7 @@ export class ProductFormComponent implements OnInit {
     }
   };
 
-  constructor(public image: ImagesService) {}
-
-  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
-
-  onSubmit(data: any) {
+  public onSubmit(data: any) {
     this.formSubmit.emit(data);
   }
 }

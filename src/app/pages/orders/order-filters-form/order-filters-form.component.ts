@@ -35,14 +35,13 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
     public orderService: OrderService,
     public localizationService: LocalizationServicesService,
     public user: UserService
-  ) {
+  ){
     this.getUserRoleId();
-   }
+  }
 
   public ngOnInit(): void {
     this.generateOrderFiltersForm();
     this.getEditOrderFiltersFormFormData();
-    // this.getUserRoleId();
 
     this.getManufactures();
     this.getStatus();
@@ -69,7 +68,6 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
     // this.ngxService.start();
     this.user.getManagers().subscribe((res) => {
       this.allManagers = res.data;
-      console.log('maneger==>', res);
     });
   }
 
@@ -77,27 +75,16 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   public getStatus(): void {
     // this.translate.onLangChange.subscribe(lang => {
     this.localizationService.getOrderAllStatus().subscribe(data => {
-        this.allStatus = data.data;
-        console.log('orderStatus===>',this.allStatus);
+      this.allStatus = data.data;
     })
   // })
   }
 
-  public getEditOrderFiltersFormFormData(): void {
-    // this.orderFiltersForm.valueChanges
-    // .subscribe(() => this.orderFiltersFormData.emit({ 
-    //   date_start: this.orderFiltersForm.value.date_start,
-    //   date_end: this.orderFiltersForm.value.date_end,
-    //   manufacturer: this.orderFiltersForm.value.manufacturer,
-    //   client: this.orderFiltersForm.value.client
-    // }));
-  }
+  public getEditOrderFiltersFormFormData(): void {}
 
-  getUserRoleId(): void {
+  public getUserRoleId(): void {
     this.user.getByToken().subscribe((res) => {
       this.currentUserRoleId = res.data.user.role_id;
-
-      console.log(this.currentUserRoleId);
     });
   }
   
@@ -128,10 +115,10 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
     if (this.orderFiltersForm.value.status) {
       status.push(this.orderFiltersForm.value.status);
     }
+
     if (this.orderFiltersForm.value.manufacturer) {
       manufacturers.push(this.orderFiltersForm.value.manufacturer);
     }
-    console.log('block==>',status)
 
     this.orderService.filterOrders(
       this.orderFiltersForm.value.date_start,
@@ -146,34 +133,23 @@ export class OrderFiltersFormComponent implements OnInit, OnDestroy {
   }
 
   public searchClient(): void {
-    console.log(this.orderFiltersForm.value.client);
     this.isSelectedClient = true;
-    const user = this.orderFiltersForm.value.client
     
     this.orderService.searchClient(this.orderFiltersForm.value.client).subscribe((res) => {
     
       this.ordersSearchClientsData = res.data;
-      if (res.count > 0){
+      if (res.count > 0) {
         this.selectedClientId = this.ordersSearchClientsData[0].id;
-        console.log('good', res);
-      }
-      else{
-        console.log('bad', res);
-      }
-     
+      } 
     })
   }
 
   public selectedClient(seletedClient): void {
     this.selectedClientId = seletedClient.id;
-
-    console.log('userid++++>',this.selectedClientId);
-    console.log('userid++++>',seletedClient);
     this.orderFiltersForm.get('client').setValue(`${seletedClient.first_name} ${seletedClient.last_name}`);
 
     if (seletedClient) {
       this.isSelectedClient = false;
     }
   }
-
 }

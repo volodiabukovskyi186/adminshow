@@ -37,7 +37,7 @@ constructor(
 userRoleId:number;
 userRoleStatus:boolean=false;
 
-ngOnInit(): void {
+public ngOnInit(): void {
   super.initPagesSettings();
   super.initPanelButton();
 
@@ -53,7 +53,7 @@ ngOnInit(): void {
   this.getUserByTokin()
 }
 
-initTranslate() {
+public initTranslate(): void {
   this.lang.translate
     .get([
       "dashboard.dashboard",
@@ -66,13 +66,13 @@ initTranslate() {
       ];
     });
 }
-getUserByTokin():void{
-  this.roleService.getByToken().subscribe(data=>{
-    this.userRoleId=data.data.user.role_id
-    if(this.userRoleId==1){
-      this.userRoleStatus=true;
+
+public getUserByTokin(): void {
+  this.roleService.getByToken().subscribe(data => {
+    this.userRoleId = data.data.user.role_id;
+    if (this.userRoleId === 1) {
+      this.userRoleStatus = true;
     }
-    
   })
 }
 
@@ -111,8 +111,6 @@ getLangListHandler = (data) => {
 //#region override
 
 save = () => {
-  // console.log("ADD/UPDATE", this.categoryForm.category);
-
   // THIS SHOULD NOT BE HERE ! ! !
   let c = this.attrForm.model;
 
@@ -167,16 +165,15 @@ plus = () => {
 
 //#endregion
 
-edit(i) {
+edit(i): void {
   this.attrForm.initByModel(i, this.langService.languages.data);
   this.openForm();
 }
 
-pageEvent(event):void{
-  
-  this.attr.data.count=event.length
-  this.attr.data.take=event.pageSize
-  this.attr.data.skip=event.pageSize*event.pageIndex
+pageEvent(event): void {
+  this.attr.data.count = event.length;
+  this.attr.data.take = event.pageSize;
+  this.attr.data.skip = event.pageSize * event.pageIndex;
   this.getList();
 }
 

@@ -147,7 +147,6 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
           meta_keywords: d.meta_keywords,
         });
       });
-      console.log('updateitem__=>',data,c.id)
       this.manufacturer.put(data, c.id).subscribe(this.putHandler);
     } else {
       c.description.forEach((d) => {

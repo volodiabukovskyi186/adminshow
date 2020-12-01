@@ -11,33 +11,30 @@ import { CountryFormService } from 'src/app/modules/localization/countries/servi
 import { CountryPaymentService } from 'src/app/modules/localization/countries/services/country-payment.service';
 import { BehaviorSubject } from 'rxjs';
 
-
 @Component({
   selector: 'app-countries-page',
   templateUrl: './countries-page.component.html',
   styleUrls: ['./countries-page.component.scss']
 })
 export class CountriesPageComponent  extends BasePage implements OnInit{
-  arrCountries: Array<any>
-  selected: any;
-  alldata:any;
-  selectedCountryDeliver=[];
-  selectedCountryPayment=[];
-
+  public arrCountries: Array<any>
+  public selected: any;
+  public alldata: any;
+  public selectedCountryDeliver = [];
+  public selectedCountryPayment = [];
   public descr: FormControl = new FormControl();
 
   constructor(public pages: PagesService,
-              public countriesServices:CountriesService,
-              public langService: LanguageService,
-              public breadcrumbs: BreadcrumbsService,
-              public countryFormService:CountryFormService,
-              public countryPaymentService:CountryPaymentService,
-          
+    public countriesServices:CountriesService,
+    public langService: LanguageService,
+    public breadcrumbs: BreadcrumbsService,
+    public countryFormService:CountryFormService,
+    public countryPaymentService:CountryPaymentService,    
   ) {
     super(pages);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
     this.getWeight();
@@ -49,33 +46,32 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
 
   }
 
-
   getLangList() {
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
+
   getLangListHandler = (data) => {
     this.langService.languages = data;
   };
+
   getWeight(): void {
     this.countriesServices.getCountry().subscribe(data => {
       this.arrCountries = data.data;
-      this.alldata=data;
-    
+      this.alldata = data;
     })
-  
   }
+
   deleteStatus(country): void {
     this.countriesServices.deleteCountry(country.id).subscribe(data => {
       this.getWeight()
     })
-  
   }
-  edit(i) {
+
+  edit(i): void {
     this.selected = i;
     this.openForm();
-    this.getDeliversCountry()
-    this.getPaymentCountry() 
-     
+    this.getDeliversCountry();
+    this.getPaymentCountry();
   }
  
   save = () => {
@@ -84,68 +80,64 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
       iso: this.selected.iso,
       description: this.selected.descriptions,
     }
+
     if (this.selected.id !== undefined) {
       this.countriesServices.editCountry(this.selected.id, updateWeight).subscribe(data => {
-        this.getWeight()
+        this.getWeight();
       })
-     
-    }
-    else if(updateWeight.image_id!==null) {
+    } else if(updateWeight.image_id !== null) {
       this.countriesServices.addNewCountry(this.selected.id,  updateWeight).subscribe(data => {
-        this.getWeight()
+        this.getWeight();
       })
-    
-      this.countriesServices.addnewCountry.next(true)
+      this.countriesServices.addnewCountry.next(true);
      
     }
     this.closeForm();
   }
  
+  public getDeliversCountry(): void {
+    this.selectedCountryDeliver = [];
 
-  getDeliversCountry():void{
-    this.selectedCountryDeliver=[]
-    this.countryFormService.getDeliversCountry(this.selected.id).subscribe(data=>{
+    this.countryFormService.getDeliversCountry(this.selected.id).subscribe(data => {
      data.data.deliveries.forEach(elem => {
-      this.selectedCountryDeliver.push(elem.delivery_id)
-      this.countryFormService.changeDeliver.next(this.selectedCountryDeliver)
+      this.selectedCountryDeliver.push(elem.delivery_id);
+      this.countryFormService.changeDeliver.next(this.selectedCountryDeliver);
      });
-     
     })
   }
-  getPaymentCountry():void{
-    this.selectedCountryPayment=[]
-    this.countryPaymentService.getDeliversCountry(this.selected.id).subscribe(data=>{
+
+  public getPaymentCountry(): void {
+    this.selectedCountryPayment = [];
+    this.countryPaymentService.getDeliversCountry(this.selected.id).subscribe(data => {
      data.data.payments.forEach(elem => {
-      this.selectedCountryPayment.push(elem.payment_id)
-      this.countryPaymentService.changeDeliverPay.next(this.selectedCountryPayment)
+      this.selectedCountryPayment.push(elem.payment_id);
+      this.countryPaymentService.changeDeliverPay.next(this.selectedCountryPayment);
      });
     })
   }
+
   postHandler = (data) => {
-  
     this.countriesServices.data.data.push(data.data);
     this.countriesServices.data.count++;
     this.closeForm();
-  
   };
+
   plus = () => {
-    this.selectedCountryPayment=[];
-    this.selectedCountryDeliver=[];
+    this.selectedCountryPayment = [];
+    this.selectedCountryDeliver = [];
     this.countriesServices.initEmptyWeightForm();
     this.selected = this.countriesServices.selected;
-    this.countryFormService.changeDeliver.next(this.selectedCountryDeliver)
-    this.countryPaymentService.changeDeliverPay.next(this.selectedCountryPayment)
+    this.countryFormService.changeDeliver.next(this.selectedCountryDeliver);
+    this.countryPaymentService.changeDeliverPay.next(this.selectedCountryPayment);
     this.openForm();
   };
-  pageEvent(event):void{
-    this.countriesServices.data.count=event.length
-    this.countriesServices.data.take=event.pageSize
-    this.countriesServices.data.skip=event.pageSize*event.pageIndex
-    this.getWeight()
+
+  public pageEvent(event): void {
+    this.countriesServices.data.count = event.length;
+    this.countriesServices.data.take = event.pageSize;
+    this.countriesServices.data.skip = event.pageSize * event.pageIndex;
+    this.getWeight();
   }
-
-
-
 
   pageToHandler(page: number): void {
     this.countriesServices.page = page;

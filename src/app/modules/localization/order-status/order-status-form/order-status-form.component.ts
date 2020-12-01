@@ -14,26 +14,10 @@ import {connectableObservableDescriptor} from "rxjs/internal/observable/Connecta
 })
 export class OrderStatusFormComponent implements OnInit {
     @Input() selectedOrder;
-    arrOrders:Array<any>
-    oneOrderStatus:any;
     @Input() public descr: FormControl = new FormControl();
 
-    constructor(public languageService: LocalizationLang,
-                public langService: LanguageService,
-                public localizeServ: LocalizationServicesService) {
-    }
-    ngOnInit(): void {
-    
-        this.sub()
-    
-    }
-
-    sub():void{
-        this.localizeServ.bSubject.subscribe(data=>{
-           this.selectedOrder = data;
-        })
-
-    }
+    public arrOrders: Array<any>;
+    public oneOrderStatus: any;
     public langShortTitle = {
         "1": {
             title: 'settings.settingsLangShortTitleEng'
@@ -49,4 +33,19 @@ export class OrderStatusFormComponent implements OnInit {
         }
     }
 
+    constructor(public languageService: LocalizationLang,
+                public langService: LanguageService,
+                public localizeServ: LocalizationServicesService) {
+    }
+
+    public ngOnInit(): void {
+        this.sub();
+    }
+
+    public sub(): void {
+        this.localizeServ.bSubject.subscribe(data=>{
+           this.selectedOrder = data;
+        })
+
+    }
 }

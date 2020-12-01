@@ -20,8 +20,9 @@ import { LanguageService as Lang } from "src/app/core/language.service";
   templateUrl: "./site-menu-page.component.html",
   styleUrls: ["./site-menu-page.component.scss"],
 })
-export class SiteMenuPageComponent extends BasePage
-  implements OnInit, PaginationPage {
+export class SiteMenuPageComponent extends BasePage implements OnInit, PaginationPage {
+  public editItem: ISiteMenu = null;
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -35,7 +36,7 @@ export class SiteMenuPageComponent extends BasePage
     super(pages);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
 
@@ -49,7 +50,7 @@ export class SiteMenuPageComponent extends BasePage
     this.initTranslate();
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -144,16 +145,14 @@ export class SiteMenuPageComponent extends BasePage
 
   //#endregion
 
-  edit(i) {
+  public edit(i): void {
     this.siteMenuForm.initByModel(i, this.langService.languages.data);
     this.siteMenuForm.host = this.siteMenu.data.host;
     this.openForm();
   }
 
-  editItem: ISiteMenu = null;
-
   //
-  updateStatus(item: ISiteMenu) {
+  updateStatus(item: ISiteMenu): void {
     this.siteMenu
       .updateStatus(item.id, item.status == 0 ? 1 : 0)
       .subscribe(this.updateStatusHandler);
@@ -166,11 +165,10 @@ export class SiteMenuPageComponent extends BasePage
     );
   };
 
-  pageEvent(event):void{
-  
-    this.siteMenu.data.count=event.length
-    this.siteMenu.data.take=event.pageSize
-    this.siteMenu.data.skip=event.pageSize*event.pageIndex
+  public pageEvent(event): void {
+    this.siteMenu.data.count = event.length;
+    this.siteMenu.data.take = event.pageSize;
+    this.siteMenu.data.skip = event.pageSize*event.pageIndex;
     this.getList();
   }
 

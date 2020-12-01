@@ -26,13 +26,13 @@ import {Router} from '@angular/router';
 })
 export class CustomersComponent extends BasePage implements OnInit {
   // editItem: IManufacturer = null;
-  customerI: ICustomer;
-  customerFormData: any;
+  public customerI: ICustomer;
+  public customerFormData: any;
   public currentUserId: number;
   public sendCustomerEditableData;
-  selected:any;
-  arrCustomers:any;
-  XLSX:any;
+  public selected: any;
+  public arrCustomers: any;
+  public XLSX: any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -51,16 +51,13 @@ export class CustomersComponent extends BasePage implements OnInit {
     super(pages);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
     this.breadcrumbs.breadcrumbs = [
       { link: "", title: "Dashboard" },
       { link: "/customers", title: "Customers" },
     ];
-    // this.getLangList();
-    // this.getList();
-    // this.initTranslate();
 
     this.userService.getByToken().subscribe((res) => {
       //this.currentUserId = res.data.user.id;
@@ -72,35 +69,32 @@ export class CustomersComponent extends BasePage implements OnInit {
 
   }
 
-  getCustomers():void{
-      this.customersService.getCustomers().subscribe(data=>{
-        this.arrCustomers=data;
-        console.log(this.arrCustomers)
-      })
-  }
-  download=()=>{
-    this.customersService.getCustomerTable().subscribe(data=>{
-      console.log('XML',data.path)
-      window.location.href=`https://${data.path}`
+  public getCustomers(): void {
+    this.customersService.getCustomers().subscribe(data => {
+      this.arrCustomers = data;
     })
   }
-  editCustomers(i) {
-   
 
+  download =()=> {
+    this.customersService.getCustomerTable().subscribe(data => {
+      window.location.href=`https://${data.path}`;
+    })
+  }
 
-    this.selected= i;
+  public editCustomers(i): void {
+    this.selected = i;
     this.openForm();
     this.pages.panelButtonSettings.download = false;
   }
 
   save = () => {
     this.pages.panelButtonSettings.download = true;
-    const customer={
-    subscriptions_type_id: this.selected.subscriptions_type_id,
-		email:this.selected.email ,
-		first_name: this.selected.first_name,
-		last_name: this.selected.last_name,
-		telephone: this.selected.telephone
+    const customer = {
+      subscriptions_type_id: this.selected.subscriptions_type_id,
+      email: this.selected.email ,
+      first_name: this.selected.first_name,
+      last_name: this.selected.last_name,
+      telephone: this.selected.telephone
     }
 
     if (this.selected.id !== undefined) {
@@ -109,8 +103,7 @@ export class CustomersComponent extends BasePage implements OnInit {
         this.customersService.getCustomers();
         this.getCustomers();
       });     
-    }
-    else{
+    } else {
         customer.subscriptions_type_id=1;
         this.customersService.createCustomerInfo(customer).subscribe((res) => {
         this.putHandler(res);
@@ -119,23 +112,21 @@ export class CustomersComponent extends BasePage implements OnInit {
       });
     }
 
-
     this.closeForm()
     
-
     this.pages.panelButtonSettings.download = true;
     this.pages.panelButtonSettings.review = false;
-    // this.pages.panelButtonSettings.toggleFilter=true;
+    // this.pages.panelButtonSettings.toggleFilter = true;
     this.pages.panelButtonSettings.rightToggle = false;
   };
 
-  deleteStatus(item){
-   
-      this.customersService.deleteCustomers(item).subscribe(data=>{
-        this.getCustomers();
-      })
+  public deleteStatus(item) {
+    this.customersService.deleteCustomers(item).subscribe(data => {
+      this.getCustomers();
+    })
   }
-  initTranslate() {
+
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -171,7 +162,7 @@ export class CustomersComponent extends BasePage implements OnInit {
     //this.manufacturerForm.initDesc(this.langService.languages.data);
   };
   
-  customersFormData(event) {
+  public customersFormData(event): void {
     this.customerFormData = event;
 
     this.sendCustomerEditableData = {
@@ -185,17 +176,16 @@ export class CustomersComponent extends BasePage implements OnInit {
 
   //#region override
 
-  edit(i: ICustomer) {
+  public edit(i: ICustomer): void {
     this.currentUserId = i.id;
     this.selected=i;
     this.pages.panelButtonSettings.download = false;
     //this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
-    // console.log(this.oneCustomer);
   }
 
 
-  cancel=()=>{
+  cancel =()=> {
     this.pages.panelButtonSettings.download = true;
     this.closeForm();
     this.pages.panelButtonSettings.rightToggle = false;
@@ -231,30 +221,32 @@ export class CustomersComponent extends BasePage implements OnInit {
   };
 
   //#endregion
-  pageEvent(event):void{
-    console.log('event===>',event)
-    this.arrCustomers.count=event.length
-    this.arrCustomers.take=event.pageSize
-    this.customersService.customer.take=event.pageSize
-    this.customersService.customer.skip=event.pageSize*event.pageIndex
+  public pageEvent(event): void {
+    this.arrCustomers.count = event.length;
+    this.arrCustomers.take = event.pageSize;
+    this.customersService.customer.take = event.pageSize;
+    this.customersService.customer.skip = event.pageSize * event.pageIndex;
     this.getCustomers();
   }
   //#region pagination
 
   pageToHandler(page: number): void {
     this.customersService.page = page;
-}
-pagePrevHandler(): void {
+  }
+
+  pagePrevHandler(): void {
     this.customersService.page--;
-}
-pageNextHandler(): void {
-    
+  }
+
+  pageNextHandler(): void {
     this.customersService.page++;
-}
-pageChangedHandler(): void {
-   this. getCustomers();
+  }
+
+  pageChangedHandler(): void {
+    this.getCustomers();
     window.scrollTo(0, 0);
-}
-Math = Math;
+  }
+
+  Math = Math;
   //#endregion
 }

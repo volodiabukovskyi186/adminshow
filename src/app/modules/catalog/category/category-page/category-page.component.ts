@@ -21,8 +21,16 @@ import { RoleService } from 'src/app/core/auth/models/role.service';
   templateUrl: "./category-page.component.html",
   styleUrls: ["./category-page.component.scss"],
 })
-export class CategoryPageComponent extends BasePage
-  implements OnInit, PaginationPage, OnDestroy {
+export class CategoryPageComponent extends BasePage implements OnInit, PaginationPage, OnDestroy {
+  public routerSubscription;
+  public displayAllCaterories;
+  public userRoleId: number;
+  public userRoleStatus:boolean = false;
+  public editItem: ICategory = null;
+  public msgAdded: string = "Category successfully added";
+  public msgUpdated: string = "Category successfully updated";
+  public msgDeleted: string = "Category successfully deleted";
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -38,15 +46,12 @@ export class CategoryPageComponent extends BasePage
   ) {
     super(pages);
   }
-  routerSubscription;
-  displayAllCaterories;
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
   }
-  userRoleId:number;
-  userRoleStatus:boolean=false;
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
     this.getLangList();
@@ -56,26 +61,24 @@ export class CategoryPageComponent extends BasePage
       if (e instanceof NavigationEnd) {
         this.initTranslate();
         this.getList();
-        console.log(e);
       }
     });
-    this.getUserByTokin()
+    this.getUserByTokin();
   }
-  getUserByTokin():void{
-    this.roleService.getByToken().subscribe(data=>{
-      this.userRoleId=data.data.user.role_id
-      if(this.userRoleId==1){
-        this.userRoleStatus=true;
+
+  public getUserByTokin(): void {
+    this.roleService.getByToken().subscribe(data => {
+      this.userRoleId = data.data.user.role_id;
+      if(this.userRoleId === 1) {
+        this.userRoleStatus = true;
         this.pages.panelButtonSettings.plus = true;
-      }
-      else{
+      } else {
         this.pages.panelButtonSettings.plus = false;
-      }
-   
+      }  
     })
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "category.categories",
@@ -111,7 +114,7 @@ export class CategoryPageComponent extends BasePage
     this.category.category = data;
   };
 
-  getCategories() {
+  getCategories(): void {
     this.category.getAllCategories().subscribe((res) => {
       //this.getListHandler(res);
       console.log(res);
@@ -148,8 +151,6 @@ export class CategoryPageComponent extends BasePage
     this.categoryForm.initDesc(this.langService.languages.data);
   };
 
-  editItem: ICategory = null;
-
   //
   updateStatus(item: ICategory) {
     this.category
@@ -157,6 +158,7 @@ export class CategoryPageComponent extends BasePage
       .subscribe(this.updateStatusHandler);
     this.editItem = item;
   }
+
   updateStatusHandler = (data) => {
     this.category.updateStatusInList(
       this.editItem.id,
@@ -168,18 +170,13 @@ export class CategoryPageComponent extends BasePage
 
   //#region
 
-  //#endregion
-
   //#region onSubmit($event)
 
   onSubmit($event) {}
 
-  //#endregion
-
   //#region override
 
   save = () => {
-    // console.log("ADD/UPDATE", this.categoryForm.category);
     // THIS SHOULD NOT BE HERE ! ! !
     let c = this.categoryForm.category;
 
@@ -216,8 +213,6 @@ export class CategoryPageComponent extends BasePage
   postHandler = (data: { data: ICategory }) => {
     this.ngxService.stopAll();
 
-    console.log(data.data);
-
     this.category.category.data.push(data.data);
     this.category.category.count++;
 
@@ -239,16 +234,15 @@ export class CategoryPageComponent extends BasePage
 
   //#endregion
 
-  edit(i) {
+  edit(i): void {
     this.categoryForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
 
-  pageEvent(event):void{
-    console.log('event===>',event)
-    this.category.category.count=event.length
-    this.category.category.take=event.pageSize
-    this.category.category.skip=event.pageSize*event.pageIndex
+  pageEvent(event): void {
+    this.category.category.count = event.length;
+    this.category.category.take = event.pageSize;
+    this.category.category.skip = event.pageSize * event.pageIndex;
     this.getList();
   }
   //#region pagination
@@ -268,13 +262,7 @@ export class CategoryPageComponent extends BasePage
   }
   Math = Math;
 
-  //#endregion
-
   //#region pagination
-
-  msgAdded: string = "Category successfully added";
-  msgUpdated: string = "Category successfully updated";
-  msgDeleted: string = "Category successfully deleted";
 
   //#endregion
 }

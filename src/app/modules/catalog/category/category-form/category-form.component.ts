@@ -29,6 +29,19 @@ export class CategoryFormComponent implements OnInit {
   @Input() categoryes: any[] = [];
   @Input() langs: ILanguage[];
   @Input() title: string = "";
+  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
+
+  public modalOpen: boolean = false;
+
+  constructor(
+    public image: ImagesService, 
+    public lang: Lang,
+    public languageService: LocalizationLang
+  ) {}
+
+  public ngOnInit(): void {
+    this.image.select.subscribe(this.selectHandler);
+  }
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -76,31 +89,22 @@ export class CategoryFormComponent implements OnInit {
     ]
   };
 
-  public submitForm() {
+  public submitForm(): void {
     this.dynamicForm.onSubmit();
   }
 
-  modalOpen: boolean = false;
-
-  onPress() {
+  public onPress(): void {
     this.modalOpen = true;
   }
 
-  getCatDesc(langId: number): ICategoryDesc {
+  public getCatDesc(langId: number): ICategoryDesc {
     this.category.description.forEach((cd) => {
       if (cd.lang_id == langId) return cd;
     });
     return null;
   }
 
-  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
-
-  ngOnInit(): void {
-    this.image.select.subscribe(this.selectHandler);
-    console.log(this.categoryes);
-  }
-
-  onReset() {
+  public onReset(): void {
     this.category.image_id = null;
     this.category.host = null;
     this.category.image = {
@@ -130,13 +134,7 @@ export class CategoryFormComponent implements OnInit {
     }
   };
 
-  constructor(
-    public image: ImagesService, 
-    public lang: Lang,
-    public languageService: LocalizationLang
-  ) {}
-
-  onSubmit(data: any) {
+  public onSubmit(data: any) {
     this.formSubmit.emit(data);
   }
 }

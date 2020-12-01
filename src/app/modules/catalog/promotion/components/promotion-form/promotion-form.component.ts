@@ -336,7 +336,5 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     this.selectedProducts.emit(this.products);
   }
 
-  public save(): void {
-    
-  }
+  public save(): void {}
 }

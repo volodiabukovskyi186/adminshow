@@ -36,7 +36,7 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
     super(pages);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
     
@@ -198,5 +198,4 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
     window.scrollTo(0, 0);
   }
   Math = Math;
-
 }

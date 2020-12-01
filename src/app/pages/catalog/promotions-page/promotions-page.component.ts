@@ -21,6 +21,7 @@ implements OnInit, PaginationPage {
 public productsList;
 public products: any[];
 public selectedProductsPromotion: any[];
+public editItem: IPromotion = null;
 
 // @Output() products: EventEmitter<any> = new EventEmitter();
 
@@ -37,7 +38,7 @@ constructor(
   super(pages);
 }
 
-ngOnInit(): void {
+public ngOnInit(): void {
   super.initPagesSettings();
   super.initPanelButton();
 
@@ -51,7 +52,7 @@ ngOnInit(): void {
   this.initTranslate();
 }
 
-initTranslate() {
+public initTranslate(): void {
   this.lang.translate
     .get([
       "dashboard.dashboard",
@@ -90,10 +91,9 @@ getLangListHandler = (data) => {
 //#region override
 
 save = () => {
-  // console.log("ADD/UPDATE", this.categoryForm.category);
   // THIS SHOULD NOT BE HERE ! ! !
   let c = this.promForm.model;
-    // console.log('ccccc=>',c.descriptions)
+    
   let data = {
     status: c.status,
     description: [],
@@ -113,7 +113,7 @@ save = () => {
           data_end: d.data_end,
         })
       }
-      else{
+      else {
         data.description.push({
           id: d.id,
           lang_id: d.lang_id,
@@ -127,12 +127,13 @@ save = () => {
       }
     });
     this.prom.put(data, c.id).subscribe(this.putHandler);
-    if(this.selectedProductsPromotion){
-    this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
-      this.ngxService.stopAll();
-      this.toastr.success("PROMOTION UPDATED ^_^");
-    })
-  }
+
+    if (this.selectedProductsPromotion) {
+      this.prom.updatePromotionProducts(this.selectedProductsPromotion, c.id).subscribe((res) => {
+        this.ngxService.stopAll();
+        this.toastr.success("PROMOTION UPDATED ^_^");
+      })
+    }
   } else {
     c.descriptions.forEach((d) => {
       data.description.push({
@@ -145,10 +146,10 @@ save = () => {
         data_end: d.data_end,
       });
     });
-    console.log('create new action===>',data)
+    
     this.prom.post(data).subscribe((res) => {
       this.postHandler(res);
-      if(this.selectedProductsPromotion) {
+      if (this.selectedProductsPromotion) {
         this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
           this.ngxService.stopAll();
           this.toastr.success("PROMOTION ADDED");
@@ -156,7 +157,7 @@ save = () => {
       }
     })
   }
-  // console.log('data========>hellow',data);
+  
   this.ngxService.start();
 };
 
@@ -184,17 +185,13 @@ plus = () => {
 
 //#endregion
 
-edit(i) {
-  console.log(i);
+public edit(i): void {
   this.prom.getByPromotionId(i.id).subscribe((res) => {
     this.products = res.data;
-    console.log(this.products);
 
     this.productsList = this.products.map(function(val) {
       return val.product;
     })
-    
-    console.log(this.productsList);
   })
 
   this.promForm.initByModel(i, this.langService.languages.data);
@@ -203,31 +200,19 @@ edit(i) {
 
 public deletePromotion(promotionId) {
   this.prom.removePromotion(promotionId).subscribe((res) => {
-    console.log(res);
     this.getList()
   });
+
   this.prom.data.data = this.prom.data.data.filter((d) => {
     return d.id !== promotionId;
   });
-  //   this.prom.getList().subscribe((res) => {
-  //     this.prom.data = res;
-  //   });
-  
-  
 }
 
-
-selectedProducts(event) {
-  console.log(event);
-
+public selectedProducts(event): void {
   this.selectedProductsPromotion = event.map(function(product) {
     return product.id;
   })
-
-  console.log(this.selectedProductsPromotion);
 }
-
-editItem: IPromotion = null;
 
   //
   updateStatus(item: IPromotion) {
@@ -244,10 +229,10 @@ editItem: IPromotion = null;
   };
 
 //#region pagination
-pageEvent(event):void{
-  this.prom.data.count=event.length
-  this.prom.data.take=event.pageSize
-  this.prom.data.skip=event.pageSize*event.pageIndex
+pageEvent(event): void {
+  this.prom.data.count = event.length;
+  this.prom.data.take = event.pageSize;
+  this.prom.data.skip = event.pageSize * event.pageIndex;
   this.getList();
 }
 

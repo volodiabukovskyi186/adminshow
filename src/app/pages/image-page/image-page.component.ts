@@ -17,7 +17,10 @@ import { LanguageService as Lang } from "src/app/core/language.service";
 })
 export class ImagePageComponent implements OnInit {
   ViewMode = ViewMode;
-  mode: ViewMode = ViewMode.card;
+
+  public mode: ViewMode = ViewMode.card;
+  public editable: boolean = true;
+
   constructor(
     private ngxService: NgxUiLoaderService,
     private toastr: ToastrService,
@@ -30,7 +33,11 @@ export class ImagePageComponent implements OnInit {
     this.init();
   }
 
-  init() {
+  public ngOnInit(): void {
+    this.initTranslate();
+  }
+
+  public init(): void {
     this.pages.defaultSetting();
     this.pages.panelSettings.left = true;
     this.pages.panelSettings.top = true;
@@ -51,7 +58,7 @@ export class ImagePageComponent implements OnInit {
 
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -78,13 +85,4 @@ export class ImagePageComponent implements OnInit {
     this.pages.panelButtonSettings.cancel = false;
     this.pages.panelButtonSettings.rightToggle = true;
   };
-
-
-
-  ngOnInit(): void {
-    this.initTranslate();
-  }
-
-  editable: boolean = true;
-
 }
