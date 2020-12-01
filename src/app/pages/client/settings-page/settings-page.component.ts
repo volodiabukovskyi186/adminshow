@@ -137,33 +137,7 @@ export class SettingsPageComponent extends BasePage implements OnInit {
   }
 
   public edit(selectedPlatform: ISiteDescriptionsResponseData): void {
-    console.log(selectedPlatform);
     this.selectedMainPlatform = selectedPlatform;
-
     this.openForm();
   }
-
-  // public formDataChange(event): void {
-  //   console.log(event);
-  //   this.sendSettingsPageEditableData = event;
-  // }
-
-
-  // save = () => {
-  //   this.siteId = 1;
-  //   this.settingsPageService.editSettingsPageInfo(this.sendSettingsPageEditableData, this.siteId)
-  //   .pipe(takeUntil(this.destroy$))
-  //   .subscribe((res) => {
-  //     this.putHandler(res);
-  //     this.settingsPageService.getSiteDataById();
-  //   });
-    
-  //   this.ngxService.start();
-  // };
-
-  // putHandler = (data) => {
-  //   this.ngxService.stopAll();
-  //   this.closeForm();
-  //   this.toastr.success("SETTINGS UPDATED ^_^");
-  // };
 }

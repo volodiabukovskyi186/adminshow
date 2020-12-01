@@ -23,11 +23,11 @@
     <div class="row dragover-hide">
       <div class="col text-center flex column center v_center">
         <p class="text-center">
-          Drag and drop images here
-          <br />or
+          {{ 'imagesGallery.dragAndDropImagesHere' | translate }}
+          <br />{{ 'imagesGallery.imagesOr' | translate }}
         </p>
         <button (click)="fileElem.click()" class="button primary radius">
-          Select from device
+          {{ 'imagesGallery.selectFromDevice' | translate }}
         </button>
       </div>
       <div class="col flex text-center center v_center column">
@@ -51,7 +51,7 @@
     *ngIf="image.uploadImages.length > 0"
     (click)="upload()"
   >
-    Upload
+    {{ 'imagesGallery.upload' | translate }}
   </button>
 </div>
 

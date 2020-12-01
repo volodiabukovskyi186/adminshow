@@ -97,8 +97,6 @@ export class AttribyteGroupPageComponent extends BasePage
   //#region override
 
   save = () => {
-    // console.log("ADD/UPDATE", this.categoryForm.category);
-
     // THIS SHOULD NOT BE HERE ! ! !
     let c = this.attrGrForm.model;
 
@@ -152,16 +150,15 @@ export class AttribyteGroupPageComponent extends BasePage
 
   //#endregion
 
-  edit(i) {
+  edit(i): void {
     this.attrGrForm.initByModel(i, this.langService.languages.data);
     this.openForm();
   }
 
-  pageEvent(event):void{
-  
-    this.attrGr.data.count=event.length
-    this.attrGr.data.take=event.pageSize
-    this.attrGr.data.skip=event.pageSize*event.pageIndex
+  pageEvent(event): void {
+    this.attrGr.data.count = event.length;
+    this.attrGr.data.take = event.pageSize;
+    this.attrGr.data.skip = event.pageSize * event.pageIndex;
     this.getList();
   }
 

@@ -30,8 +30,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   ) { }
 
   public ngOnInit(): void {
-    console.log(this.selectedClientOrder);
-    
     this.generateClientInfoForm();
     this.generateAddProductForm();
     this.generateEditClientInfoForm();
@@ -43,20 +41,13 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.selectedClientOrder) {
-      // this.clientInfoForm?.reset();
-      // this.editClientInfoForm?.reset();
-
       this.products = [];
 
       this.selectedClientOrder.products.forEach((val) => {
         if (val.hasOwnProperty('product')) {
-          //this.orderTotal = '' || this.selectedClientOrder?.total;
-          //this.orderTotal += val.quantity * val.price;
           this.products.push(val.product);
         }
       })
-
-      console.log(this.products);
     }
   }
 
@@ -69,12 +60,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   }
 
   public setClientPaymentDeliveryDetails(): void {
-    // this.editClientInfoForm.setValue({
-    //   paymentMethod: "",
-    //   deliveryMethod: "",
-    //   details: ""
-    // })
-
     this.editClientInfoForm?.setValue({
       paymentMethod: this.selectedClientOrder.checkoutPayment,
       deliveryMethod: this.selectedClientOrder.checkoutDelivery,
@@ -92,13 +77,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   }
 
   public setClientInfo(): void {
-    // this.clientInfoForm.setValue({
-    //   name: "",
-    //   surname: "",
-    //   phone: "",
-    //   email: "",
-    // })
-
     this.clientInfoForm?.setValue({
       name: this.selectedClientOrder.recipientLastName,
       surname: this.selectedClientOrder.recipientFirstName,
@@ -151,8 +129,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   }
 
   public addProduct(): void {
-    console.log('Product added!');
-
     let uniqueProducts = new Set(this.products?.map(function(product) {
       return product.id;
     }));
@@ -164,20 +140,10 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
 
     this.products.forEach((val) => {
       let sum = val.quantity * val.price;
-      let result = 0;
-
-      console.log(sum);
 
       if (sum) {
         this.orderTotal += sum;
       }
-
-      console.log(this.orderTotal);
     })
-
-    console.log(this.orderTotal);
-
-    console.log('this.products', this.products);
-    console.log('this.selectedClientOrder', this.selectedClientOrder);
   }
 }

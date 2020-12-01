@@ -35,16 +35,13 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   public userRoleStatus:boolean=false;
   public statusCodes = {
     "1": {
-      name: 'statusCodes.new',
-      //color: '#42996F'
+      name: 'statusCodes.new'
     },
     "2": {
-      name: 'statusCodes.approved',
-      //color: '#ffff00'
+      name: 'statusCodes.approved'
     },
     "3": {
-      name: 'statusCodes.canceled',
-      //color: '#ff0000'
+      name: 'statusCodes.canceled'
     }
   }
 
@@ -64,15 +61,13 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     super(pages);
 
     this.translate.onLangChange.subscribe(lang => {
-       this.getList();
+      this.getList();
     })
   }
 
 
   public ngOnChanges(changes: SimpleChanges): void {
-    // this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.plus = false;
-
     this.getList();
   }
 
@@ -93,19 +88,21 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
       this.showFilters = true;      
       this.openForm();      
     }
+
     this.getClient();
     this.getUserRoleId();
   }
   
-    getUserByTokin():void{
-      this.roleService.getByToken().subscribe(data=>{
-        this.userRoleId=data.data.user.role_id
-        if(this.userRoleId==1){
-          this.userRoleStatus=true;
-        }
-        this.getList(this.userRoleId);
-      })
-    }
+  public getUserByTokin(): void {
+    this.roleService.getByToken().subscribe(data=>{
+      this.userRoleId = data.data.user.role_id;
+
+      if (this.userRoleId === 1) {
+        this.userRoleStatus = true;
+      }
+      this.getList(this.userRoleId);
+    })
+  }
 
 
   public uodateAllItems(): void {
@@ -117,15 +114,12 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   public getClient(): void {
     this.orderService.getList(this.userRoleId).subscribe(data => {
       this.userOrders = data;
-      console.log('orders=====>',this.userOrders);
     })
   }
 
   public getUserRoleId(): void {
     this.userService.getByToken().subscribe((res) => {
       this.currentUserRoleId = res.data.user.role_id;
-
-      console.log(this.currentUserRoleId);
     });
   }
 
@@ -151,9 +145,10 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
   public getList(role_id?): void {
     this.ngxService.start();
-    this.orderService.getList(role_id).subscribe(
-      this.getListHandler
-    );
+    this.orderService.getList(role_id).subscribe((res) => {
+      console.log(res);
+      this.getListHandler(res);
+    });
   }
 
   getListHandler = (data) => {
@@ -183,7 +178,6 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   }
 
   save = () => {
-    // this.selectedClientOrder.sort_order
     const userOrde = {
       sort_order: this.selectedClientOrder.sort_order,
       costumer:  this.selectedClientOrder.costumer, 
@@ -207,10 +201,8 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
       total: this.selectedClientOrder.total ,
      
     }
-    console.log('userOrder===>',userOrde);
 
     this.orderService.updateUserOrder(this.selectedClientOrder.id, userOrde).subscribe((data) => {
-      // this.getStatus();
       this.uodateAllItems();
     })
 
@@ -219,7 +211,6 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
 
   public reviewOrder(selectedOrder): void {
-    console.log(selectedOrder.status_id);
     this.selectedClientOrder = selectedOrder;
     this.userOrders = selectedOrder.status_id;
     this.openForm();
@@ -227,14 +218,9 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
 
   public sendOrdersFormData(event): void {
     this.ordersFormData = event;
-    console.log(event);
-    // this.sendOrdersEditableData = {
-    // }
-    // console.log(this.sendOrdersEditableData);
   }
 
   public openEditOrder(orderToEdit): void {
-    console.log(orderToEdit);
     this.editedOrder = orderToEdit;
     this.isOpenEditOrderForm = true;
 
@@ -248,6 +234,7 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     this.pages.panelButtonSettings.cancel = false;
     this.pages.panelButtonSettings.rightToggle = true;
     this.showFilters = false;
+    this.isOpenEditOrderForm = false;
   }  
 
   openForm = () => {

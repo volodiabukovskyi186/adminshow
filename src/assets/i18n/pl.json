@@ -78,7 +78,8 @@
     "discountExpired": "Rabat wygasł",
     "visibility": "Widoczność",
     "visible": "Widoczne",
-    "hidden": "Ukryte"
+    "hidden": "Ukryte",
+    "notFound": " nie znaleziono"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",
@@ -148,7 +149,8 @@
       "sum": "Sum, uah",
       "date": "Data",
       "status": "Status",
-      "actions": "Działania"
+      "actions": "Działania",
+      "manager": "Menedżer"
     },
     "catalog": {
       "catalog": "Catalog",
@@ -388,5 +390,27 @@
     "available":"Status"
   },
   "showupage":"Odwiedź sklep",
-  "logout":"Wyloguj"
+  "logout":"Wyloguj",
+  "user": {
+    "userRole": "Rola",
+    "userFirstName": "Imię",
+    "userLastName": "Nazwisko",
+    "userEmail": "Email",
+    "userPhone": "Telefon"
+  },
+  "imagesGallery": {
+    "createAlbum": "Stwórz album",
+    "changeView": "Zmień widok",
+    "toggleEditable": "Przełącz edytowalność",
+    "countAlbumsPerPage": "Policz albumy na stronie",
+    "countImagesPerPage": "Policz obrazy na stronie",
+    "filter": "Filtr",
+    "albums": "Albumy",
+    "images": "Zdjęcia",
+    "selectImages": "Wybierz obrazy",
+    "dragAndDropImagesHere": "Przeciągnij i upuść obrazy tutaj",
+    "imagesOr": "lub",
+    "selectFromDevice": "Wybierz z urządzenia",
+    "upload": "Pobieranie"
+  }
 }

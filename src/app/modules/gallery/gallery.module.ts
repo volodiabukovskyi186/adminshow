@@ -11,6 +11,7 @@ import { GalleryViewComponent } from "./gallery-view/gallery-view.component";
 import { ChoiceButtonComponent } from "./choice-button/choice-button.component";
 import { AlbumBreadcrumbComponent } from "./album-breadcrumb/album-breadcrumb.component";
 import { AlbumBreadcrumbsComponent } from "./album-breadcrumbs/album-breadcrumbs.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 const c = [
   FolderComponent,
@@ -26,6 +27,12 @@ const c = [
 @NgModule({
   declarations: [...c],
   exports: [...c],
-  imports: [CommonModule, FormsModule, UiModule, NgxFilesizeModule],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    UiModule, 
+    NgxFilesizeModule,
+    TranslateModule
+  ],
 })
 export class GalleryModule {}

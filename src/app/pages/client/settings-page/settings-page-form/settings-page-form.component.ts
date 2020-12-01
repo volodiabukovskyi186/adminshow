@@ -109,18 +109,11 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
       this.generalSettingsForm?.get('location').setValue(this.selectedPlatform?.location);
 
-      // console.log('selectedPlatform ========>>>>>>>>', this.selectedPlatform);
-      // console.log(this.siteLogoSrc);
-      // console.log(this.siteIconSrc);
-
       this.selectedLogo = this.siteLogoSrc;
       this.selectedIcon = this.siteIconSrc;
 
       this.selectedLogoId = this.siteLogoId;
       this.selectedIconId = this.siteIconId;
-
-      // console.log(this.selectedLogoId);
-      // console.log(this.selectedIconId);
     }
   }
 
@@ -137,10 +130,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
     this.image.select.subscribe(this.selectHandler);
 
-    //this.getEditSettingsPageFormData();
-    // this.getGenerateShopDetailsForm();
-    // this.getSiteSettingsContactTopForm();
-    // this.getSiteSettingsContactBottomForm();
     this.generateSiteSettingsLocalizationForm();
 
     this.getSiteDefaultLanguage();
@@ -154,9 +143,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.getWeightDesc();
     this.setSocialsValue();
     this.getSocials();
-
-    // console.log(this.siteLogoSrc);
-    // console.log(this.siteIconSrc);
   }
 
   public generatePageSettingsForm(): void {
@@ -215,22 +201,18 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.selectedPlatform?.descriptions?.forEach((description) => {
       if (tabTitleN === 'Eng' && description?.id === 1) {
         this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
-        console.log('eng', this.shopDetailsForm?.controls?.items['controls']);
       }
 
       if (tabTitleN === 'Укр' && description?.id === 2) {  
         this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
-        console.log('укр', this.shopDetailsForm?.controls?.items['controls']);
       }
 
       if (tabTitleN === 'Рус' && description?.id === 3) {
         this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
-        console.log('рус', this.shopDetailsForm?.controls?.items['controls']);
       }
 
       if (tabTitleN === 'Pl' && description?.id === 4) { 
         this.shopDetailsForm?.controls?.items['controls'][0]?.patchValue({...description});
-        console.log('pl', this.shopDetailsForm?.controls?.items['controls']);
       }
     })
   }
@@ -290,13 +272,10 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
           description.meta_keywords = this.shopDetailsForm.controls.items.value[0]?.meta_keywords;
       }
     })
-
-    console.log(this.selectedPlatform?.descriptions);
   }
 
   public addDescription(): void {
     this.items = this.shopDetailsForm.get('items') as FormArray;
-    
     this.items.push(this.createDescription());
   }
 
@@ -311,7 +290,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       this.selectedPlatform.phones.push(newPhones.data);
     })
 
-     this.additionalPhoneNumber = null;
+    this.additionalPhoneNumber = null;
   }
 
   public onPressLogo(): void {
@@ -325,8 +304,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   }
 
   public onReset(): void {
-    //this.imageSrc.image_id = null;
-    //this.imageSrc.host = null;
     this.imageSrc.image = {
       src: "assets/icons/color-none-image.svg",
       src_mini: "assets/icons/color-none-image.svg",
@@ -342,18 +319,13 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     if (this.list[0] && this.isSelectedImageSiteIcon) {
       this.selectedImageSiteIcon = this.list[0];
     }
+
     this.modalOpen = false;
     this.isSelectedImageLogo = false;
     this.isSelectedImageSiteIcon = false;
   };
 
   public settingsDataToSend(): void {
-    // console.log(this.shopDetailsForm.get('items')['controls']);
-    // console.log(this.shopDetailsForm.get('items')['controls'][0].value);
-
-    // console.log(this.items);
-    // console.log(this.formBuilder);
-
     if (this.selectedPlatform && 
       this.selectedPlatform?.logo && 
       this.selectedPlatform?.logo?.src) {
@@ -369,18 +341,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       this.selectedPlatform.icon.src = this.selectedImageSiteIcon?.src;
       this.selectedPlatform.icon.src_mini = this.selectedImageSiteIcon?.src_mini;
     }
-
-    // const selectedImageLogoObj = {
-    //   id: this.selectedImageLogo?.id,
-    //   src: this.selectedImageLogo?.src,
-    //   src_mini: this.selectedImageLogo?.src_mini
-    // }
-
-    // const selectedImageSiteIconObj = {
-    //   id: this.selectedImageSiteIcon?.id,
-    //   src: this.selectedImageSiteIcon?.src,
-    //   src_mini: this.selectedImageSiteIcon?.src_mini
-    // }
 
     this.generalSettingsData = {
       id: this.selectedPlatform?.id,
@@ -408,7 +368,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
     //if (this.selectedImageSiteIcon && this.selectedImageLogo) {
       this.settingsPageService.editSettingsPageInfo(this.generalSettingsData, this.siteId).subscribe((res) => {
-        console.log(res);
         this.selectedPlatform.descriptions = res.data.descriptions;
 
         this.toastr.success("SETTINGS UPDATED ^_^");
@@ -429,35 +388,30 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public getSiteDefaultLanguage(): void {
     this.settingsPageService.getDefaultLanguage().subscribe((res) => {
       this.defaultLanguage = res.data;
-      console.log(res);
     })
   }
 
   public getSiteLanguageAdminDefault(): void {
     this.settingsPageService.getlanguageAdminDefault().subscribe((res) => {
       this.defaultAdminLanguage = res.data;
-      console.log(res);
     })
   }
 
   public getSiteDefaultCurrency(): void {
     this.settingsPageService.getDefaultCurrency().subscribe((res) => {
       this.defaultCurrency = res.data;
-      console.log(res);
     })
   }
 
   public getSiteDefaultWeight(): void {
     this.settingsPageService.getDefaultWeight().subscribe((res) => {
       this.defaultWeight = res.data;
-      console.log(res);
     })
   }
 
   public getSiteDefaultLength(): void {
     this.settingsPageService.getDefaultLength().subscribe((res) => {
       this.defaultLength = res.data;
-      console.log(res);
     })
   }
 
@@ -468,12 +422,10 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       this.siteLanguages.forEach((val) => {
         if (val.code === this.defaultLanguage?.code) {
           this.selectedDefaultLang = this.defaultLanguage?.title;
-          console.log(this.selectedDefaultLang);
         }
 
         if (val.code === this.defaultAdminLanguage?.code) {
           this.selectedDefaultAdminLang = this.defaultAdminLanguage?.title;
-          console.log(this.selectedDefaultAdminLang);
         }
       })
     })
@@ -486,7 +438,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       this.siteCurrencies.forEach((currency) => {
         if (currency.code === this.defaultCurrency?.code) {
           this.selectedDefaultCurrency = this.defaultCurrency?.currency_title;
-          console.log(this.selectedDefaultCurrency);
         }
       })
     })
@@ -495,7 +446,6 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public getLenghts(): void {
     this.settingsPageService.getAllLenghts().subscribe((res) => {
       this.siteLenghts = res.data;
-      console.log(this.siteLenghts);
 
       this.siteLenghts.forEach((length) => {
         this.allLength.push(length);
@@ -506,23 +456,18 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
           this.selectedLength = this.defaultLength?.description?.title;
         }
       })
-
-      console.log(this.selectedLength);
     })
   }
 
   public getWeightDesc(): void {
     this.settingsPageService.getWeightDescription().subscribe((res) => {
       this.siteWeightDesc = res.data;
-      console.log(this.siteWeightDesc);
 
       this.siteWeightDesc?.forEach((val) => {
         if (val.id === this.defaultWeight?.descriptions[0]?.id) {
           this.selectedWeight = this.defaultWeight?.descriptions[0]?.unit;
         }
       })
-
-      console.log(this.selectedWeight);
     })
   }
 
@@ -554,27 +499,22 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
 
   public onChangeLocalizationLang(eventValue): void {
     this.localizationLang = eventValue;
-    console.log(this.localizationLang);
   }
 
   public onChangeLocalizationAdminLang(eventValue): void {
     this.localizationAdminLang = eventValue;
-    console.log(this.localizationLang);
   }
 
   public onChangeLocalizationCurrency(eventValue): void {
     this.localizationCurrency = eventValue;
-    console.log(this.localizationCurrency)
   }
 
   public onChangeLocalizationLength(eventValue): void {
     this.localizationLength = eventValue;
-    console.log(this.localizationLength);
   }
 
   public onChangeLocalizationWeight(eventValue): void {
     this.localizationWeight = eventValue;
-    console.log(this.localizationWeight);
   }
 
   public saveSiteDefaultLang(): void {
@@ -712,35 +652,4 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
       }
     })
   }
-
-  // public getEditSettingsPageFormData(): void {
-  //   console.log(this.generalSettingsForm.value.logo);
-  //   this.generalSettingsForm.value.logo = this.selectedImageLogo?.src;
-  //   this.generalSettingsForm.value.siteIcon = this.selectedImageSiteIcon?.src;
-
-  //   this.generalSettingsForm.valueChanges
-  //   .subscribe(() => this.emitFormDataChanges());
-  // }
-
-  // public getGenerateShopDetailsForm() {
-  //   this.shopDetailsForm.valueChanges
-  //   .subscribe(() => this.settingsDataToSend());
-  // }
-
-  // public getSiteSettingsContactTopForm() {
-  //   this.siteSettingsContactTopForm.valueChanges
-  //   .subscribe(() => this.emitFormDataChanges());
-  // }
-
-  // public getSiteSettingsContactBottomForm() {
-  //   this.siteSettingsContactBottomForm.valueChanges
-  //   .subscribe(() => this.emitFormDataChanges());
-  // }
-
-  // public getSiteSettingsLocalizationForm() {
-  //   this.siteSettingsLocalizationForm.valueChanges
-  //   .subscribe(() => this.emitFormDataChanges());
-  // }
-
-  // emitFormDataChanges() {}
 }

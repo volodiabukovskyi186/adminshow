@@ -75,7 +75,5 @@ export class CurrencyFormComponent implements OnInit, OnChanges {
       currencyValue: this.currency?.value,
       currencyStatus: this.currency?.status
     });
-
-    console.log(this.currency?.status);
   }
 }

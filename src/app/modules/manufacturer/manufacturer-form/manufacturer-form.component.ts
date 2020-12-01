@@ -17,6 +17,17 @@ export class ManufacturerFormComponent implements OnInit {
 
   @Input() title: string = "";
 
+  public modalOpen: boolean = false;
+
+  constructor(
+    public image: ImagesService,
+    public languageService: LanguageService
+  ) {}
+
+  public ngOnInit(): void {
+    this.image.select.subscribe(this.selectHandler);
+  }
+
   editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
@@ -63,11 +74,7 @@ export class ManufacturerFormComponent implements OnInit {
     ]
   };
 
-  ngOnInit(): void {
-    this.image.select.subscribe(this.selectHandler);
-  }
-
-  onReset() {
+  onReset(): void {
     this.manufacturer.image_id = null;
     this.manufacturer.host = null;
     this.manufacturer.image = {
@@ -89,15 +96,7 @@ export class ManufacturerFormComponent implements OnInit {
     }
   };
 
-  constructor(
-    public image: ImagesService,
-    public languageService: LanguageService
-  ) {}
-
-  modalOpen: boolean = false;
-
   onPress() {
     this.modalOpen = true;
   }
-
 }

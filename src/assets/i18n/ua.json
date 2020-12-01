@@ -84,7 +84,8 @@
     "listSale": "Списки знижок для товару",
     "saleListStart": "Початок знижки",
     "saleListEnd":"Завершення знижки",
-    "discountExpired": "Термін дії знижки вже минув"
+    "discountExpired": "Термін дії знижки вже минув",
+    "notFound": " не знайдено"
 
   },
   "pageNotFound": {
@@ -164,7 +165,8 @@
       "order_status": {
         "new": "Новий",
         "old": "Старий"
-      }
+      },
+      "manager": "Менеджер"
     },
     "catalog": {
       "catalog": "Каталог",
@@ -400,5 +402,27 @@
     "available":"Статус"
   },
    "showupage":"Відвідати магазин",
-   "logout":"Вийти"
+   "logout":"Вийти",
+   "user": {
+    "userRole": "Роль",
+    "userFirstName": "Ім'я",
+    "userLastName": "Прізвище",
+    "userEmail": "Email",
+    "userPhone": "Телефон"
+  },
+  "imagesGallery": {
+    "createAlbum": "Створити альбом",
+    "changeView": "Змінити вигляд",
+    "toggleEditable": "Переключити для редагування",
+    "countAlbumsPerPage": "Підрахувати альбоми на сторінці",
+    "countImagesPerPage": "Підрахувати зображення на сторінці",
+    "filter": "Фільтр",
+    "albums": "Альбоми",
+    "images": "Зображення",
+    "selectImages": "Виберіть зображення",
+    "dragAndDropImagesHere": "Перетягніть сюди зображення",
+    "imagesOr": "або",
+    "selectFromDevice": "Виберіть з пристрою",
+    "upload": "Завантажити"
+  }
 }

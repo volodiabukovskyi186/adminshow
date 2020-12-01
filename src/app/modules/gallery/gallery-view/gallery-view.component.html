@@ -1,20 +1,18 @@
 <rap-album-breadcrumbs class="radius"
-  [breadcrumbs]="album.albumBreadcrumbs"
-  [activeId]="album.activeAlbum?.id"
+  [breadcrumbs]="album?.albumBreadcrumbs"
+  [activeId]="album?.activeAlbum?.id"
   (press)="onOpenAlbum($event)"
 ></rap-album-breadcrumbs>
 
-<header *ngIf="album.albums?.data.length > 0">
-  <h6>Albums [{{ album.albums?.data.length }}/{{ album.albums?.count }}]</h6>
+<header *ngIf="album?.albums?.data.length > 0">
+  <h6>{{ 'imagesGallery.albums' | translate }} [{{ album?.albums?.data.length }}/{{ album?.albums?.count }}]</h6>
 </header>
 
 <div [ngClass]="{ list: mode == ViewMode.item }" class="grid">
-  <!--  -->
-
   <rap-folder
     @fadeScale
-    *ngIf="album.activeAlbum?.id != null"
-    class="radius"
+    *ngIf="album?.activeAlbum?.id != null"
+    class="radius rap-folder"
     tabindex="0"
     [mode]="mode"
     [icon]="'assets/icons/color-folder-image-return.svg'"
@@ -23,18 +21,19 @@
     [album]="{ title: 'Up' }"
     (open)="
       onOpenAlbum({
-        id: album.activeAlbum.parent_id,
+        id: album?.activeAlbum?.parent_id,
         title: null,
         created_at: null,
         updated_at: null,
         parent_id: null
       })
     "
-  ></rap-folder>
-
+  >
+  </rap-folder>
+  
   <rap-folder
     @fadeScale
-    *ngFor="let a of album.albums?.data"
+    *ngFor="let a of album?.albums?.data"
     class="radius"
     tabindex="0"
     [mode]="mode"
@@ -48,7 +47,7 @@
   <ng-container *ngIf="editable">
     <rap-folder
       @fadeScale
-      *ngFor="let a of album.newAlbums"
+      *ngFor="let a of album?.newAlbums"
       class="radius"
       tabindex="0"
       [mode]="mode"
@@ -75,7 +74,7 @@
 </div>
 
 <header *ngIf="image.images?.data.length > 0">
-  <h6>Images [{{ image.images?.data.length }}/{{ image.images?.count }}]</h6>
+  <h6>{{ 'imagesGallery.images' | translate }} [{{ image.images?.data.length }}/{{ image.images?.count }}]</h6>
 </header>
 
 <div
@@ -100,7 +99,7 @@
   ></rap-folder>
 </div>
 
-<app-pagination
+<app-pagination *ngIf="image.images.data.length > 10"
   class="radius"
   [page]="image.page"
   [total]="Math.ceil(image.images.count / image.images.take)"

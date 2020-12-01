@@ -18,33 +18,34 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() roleStatus
   @Output() ordersFormData = new EventEmitter<any>();
   @Output() ordersStaus = new EventEmitter<any>();
-  statusIte=[];
-  stausId:any;
+  
+  public statusIte = [];
+  public stausId: any;
 
   constructor(public pages: PagesService,
     private translate: TranslateService,
-    public localizationService: LocalizationServicesService,) { 
-      this.translate.onLangChange.subscribe(lang => {
-        this. getStatus();
-     })
+    public localizationService: LocalizationServicesService
+  ){ 
+    this.translate.onLangChange.subscribe((lang) => {
+      this.getStatus();
+    })
   }
-  ngOnChanges(changes: SimpleChanges): void {
+
+  public ngOnChanges(changes: SimpleChanges): void {
     this.pages.panelButtonSettings.plus = false;
   }
 
-  ngAfterViewInit() {}
+  public ngAfterViewInit() {}
 
-  ngOnInit(): void {
-    // console.log('order =>>>>>>>>>>>', this.order);
-    this.getStatus()
-    
+  public ngOnInit(): void {
+    this.getStatus();
   }
-  getStatus(): void {
+
+  public getStatus(): void {
     // this.translate.onLangChange.subscribe(lang => {
 
     this.localizationService.getOrderAllStatus().subscribe(data => {
-        this.statusIte = data.data;
-        // console.log('orderStatus===>',this.statusIte);
+      this.statusIte = data.data;
     })
   // })
   }
@@ -53,7 +54,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
     return Number(price).toFixed(2);
   }
 
-  changeStatus(i): void {
+  public changeStatus(i): void {
     this.userOrders = i;
     this.ordersStaus.emit(this.userOrders);
   }

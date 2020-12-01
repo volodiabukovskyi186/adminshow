@@ -20,11 +20,13 @@ import { BasePage } from "../../@core";
 })
 export class LanguagePageComponent extends BasePage implements OnInit {
   @ViewChild(LanguageFormComponent) langFormComponent: LanguageFormComponent;
-  selected={
-    flag:''
+
+  public selected = {
+    flag: ''
   }
-  deleteId = 0;
-  editId: number = null;
+  public deleteId = 0;
+  public editId: number = null;
+  public editItem: ILanguage = null;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -38,11 +40,11 @@ export class LanguagePageComponent extends BasePage implements OnInit {
     super(pages);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.init();
   }
 
-  init() {
+  public init(): void {
     super.initPagesSettings();
     super.initPanelButton();
 
@@ -55,7 +57,7 @@ export class LanguagePageComponent extends BasePage implements OnInit {
     this.initTranslate();
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.language.translate
       .get([
         "dashboard.dashboard",
@@ -87,20 +89,20 @@ export class LanguagePageComponent extends BasePage implements OnInit {
 
   save = () => {
     this.langFormComponent.submitForm();
-    this.getLangs()
-   
+    this.getLangs();
   };
 
   plus = () => {
-    this.selected.flag=''
+    this.selected.flag = '';
     this.editId = null;
     this.langForm.questions$ = this.langForm.getQuestions();
     
     this.openForm();
   };
-  cancel=()=>{
-    this.selected.flag=''
-    this.getLangs()
+
+  cancel = () => {
+    this.selected.flag = '';
+    this.getLangs();
     this.closeForm();
   }
 
@@ -108,11 +110,10 @@ export class LanguagePageComponent extends BasePage implements OnInit {
 
   //#region delete
 
-  delete(langItem) {
+  delete(langItem): void {
     this.ngxService.start();
     this.deleteId = langItem.id;
     this.langServise.delete(langItem.id).subscribe(this.deleteHandler);
-   
   }
 
   deleteHandler = (data: any) => {
@@ -123,8 +124,6 @@ export class LanguagePageComponent extends BasePage implements OnInit {
   };
 
   //#endregion
-
-  editItem: ILanguage = null;
 
   //
   updateStatus(item: ILanguage) {
@@ -140,19 +139,17 @@ export class LanguagePageComponent extends BasePage implements OnInit {
     );
   };
 
-  edit(langItem: ILanguage) {
+  public edit(langItem: ILanguage): void {
     this.langForm.questions$ = this.langForm.getQuestions(langItem);
     this.editId = langItem.id;
-    this.selected=langItem
-    console.log('hello===>',langItem)
+    this.selected = langItem;
     this.openForm();
   }
 
-  onSubmit(e: ILanguage) {
-   
-    e.flag=this.selected.flag
-    console.log('ReactiveForm===>',e)
+  public onSubmit(e: ILanguage): void {
+    e.flag = this.selected.flag;
     this.ngxService.start();
+
     if (this.editId == null) {
       this.langServise.postRole(e).subscribe(this.submitHandler);
     } else {

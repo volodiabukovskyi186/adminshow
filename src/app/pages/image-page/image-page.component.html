@@ -9,7 +9,7 @@
         (click)="closeForm(); album.newAlbum()"
         class="button radius transparent emoji large"
       >
-        Create album
+        {{ 'imagesGallery.createAlbum' | translate }}
       </button>
     </div>
     <app-upload-image-drop-form></app-upload-image-drop-form>
@@ -20,12 +20,12 @@
     <div class="padding">
       <div class="form-row">
         <div class="description">
-          <label for="takeImages">Change view</label>
+          <label for="takeImages">{{ 'imagesGallery.changeView' | translate }}</label>
         </div>
         <div class="original">
           <div class="flex">
             <button class="button" (click)="editable = !editable">
-              Toggle editable
+              {{ 'imagesGallery.toggleEditable' | translate }}
             </button>
             <button
               [ngClass]="{ active: mode == ViewMode.item }"
@@ -47,7 +47,7 @@
 
       <div class="form-row">
         <div class="description">
-          <label for="takeAlbums">Count albums per page</label>
+          <label for="takeAlbums">{{ 'imagesGallery.countAlbumsPerPage' | translate }}</label>
         </div>
         <div class="original">
           <input
@@ -63,7 +63,7 @@
       </div>
       <div class="form-row">
         <div class="description">
-          <label for="takeImages">Count images per page</label>
+          <label for="takeImages">{{ 'imagesGallery.countImagesPerPage' | translate }}</label>
         </div>
         <div class="original">
           <input
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      <button class="button transparent radius" (click)="gView.startLoad()">Filter</button>
+      <button class="button transparent radius" (click)="gView.startLoad()">{{ 'imagesGallery.filter' | translate }}</button>
     </div>
   </div>
 

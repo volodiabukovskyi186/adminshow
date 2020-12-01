@@ -9,6 +9,7 @@ import { PagesService } from '../../pages.service';
   templateUrl: './customer-form.component.html',
   styleUrls: ['./customer-form.component.scss']
 })
+
 export class CustomerFormComponent implements OnInit {
 
   @Input() customer: ICustomer;
@@ -19,10 +20,10 @@ export class CustomerFormComponent implements OnInit {
   @Output() customersFormData = new EventEmitter<any>();
 
   public editCustomerInfoForm: FormGroup;
-  constructor( public pages: PagesService,) { 
-    
-  }
 
-  ngOnInit(): void {
-  }
+  constructor( 
+    public pages: PagesService
+  ) { }
+
+  public ngOnInit(): void {}
 }

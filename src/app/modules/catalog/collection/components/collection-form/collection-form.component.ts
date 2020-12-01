@@ -90,6 +90,7 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   public filteredProducts = new BehaviorSubject([]);
   public filteredProducts$ = this.filteredProducts.asObservable();
   public productName: any;
+  public modalOpen: boolean = false;
 
   onPress() {
     this.modalOpen = true;
@@ -102,7 +103,7 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
       src_mini: "assets/icons/color-none-image.svg",
     };
   }
-  modalOpen: boolean = false;
+  
   selectHandler = (data) => {
     let list: IImage[] = this.image.getSelected();
 
@@ -135,13 +136,13 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
       }
   }
   
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.generateProductsListForm();
     this.image.select.subscribe(this.selectHandler);
     // this.products=[21,20]
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
@@ -184,7 +185,6 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
     this.isActive = true;
     this.manufacturerService.getAllManufactures().pipe(takeUntil(this.destroy$))
     .subscribe((res) => {
-      console.log('getAllManufactures', res);
       this.displayAllManufactures = res.data;
       this.filteredManufactures.next(this.displayAllManufactures);
     })

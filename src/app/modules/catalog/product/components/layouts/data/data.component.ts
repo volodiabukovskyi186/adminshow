@@ -13,46 +13,48 @@ import {DOCUMENT} from "@angular/common";
 })
 export class DataComponent implements OnInit {
   @Input() model: IProduct;
+
+  public arrWeight: any;
+  public arrStorage: any;
+  public alldata: any;
+
   constructor( public weightService:WeightService,
-               public storageService:StorageService,
-               public langService: LanguageService,
-               private translate: TranslateService,
-               @Inject(DOCUMENT) private document: Document ) {
-                this.translate.onLangChange.subscribe(lang => {
-                  this.getWeight();
-                  this.getStorageStatus();
-                })
-                }
-  arrWeight:any;
-  arrStorage:any;
-  alldata:any;
-  ngOnInit(): void {
+    public storageService:StorageService,
+    public langService: LanguageService,
+    private translate: TranslateService,
+    @Inject(DOCUMENT) private document: Document ) {
+      this.translate.onLangChange.subscribe(lang => {
+        this.getWeight();
+        this.getStorageStatus();
+      })
+  }
+
+  public ngOnInit(): void {
     this.getWeight();
     this.getStorageStatus();
   }
 
- 
-  getStorageStatus(): void {
+  public getStorageStatus(): void {
     // this.translate.onLangChange.subscribe(lang => {
-      const lang=localStorage.getItem('currentLang')
+    const lang = localStorage.getItem('currentLang');
+
     this.storageService.getStorageStatus(lang).subscribe(data => {
-      this.arrStorage = data;
-      console.log('hello=>',this.arrStorage)
+    this.arrStorage = data;
     // })
-  })
+    })
   }
-  getWeight():void{
-    const lang=localStorage.getItem('currentLang')
+
+  public getWeight(): void {
+    const lang = localStorage.getItem('currentLang');
     // this.translate.onLangChange.subscribe(lang => {
     //   // lang=lang.lang
-    //   console.log('language====>',lang)
     // })
       this.weightService.getWeightProd(lang).subscribe(data => {
-        this.arrWeight=data
-          console.log('weightqqqqqqqqqqq===>',this.arrWeight)
+        this.arrWeight = data;
       })
     
   }
+  
   getLangList() {
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
@@ -60,6 +62,4 @@ export class DataComponent implements OnInit {
   getLangListHandler = (data) => {
     this.langService.languages = data;
   };
- 
-
 }

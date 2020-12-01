@@ -83,7 +83,8 @@
     "listSale": "Discount lists for the product",
     "saleListStart": "Discount lists for goods",
     "saleListEnd":"Completion of the discount",
-    "discountExpired": "The discount has expired"
+    "discountExpired": "The discount has expired",
+    "notFound": " not found"
   },
   "pageNotFound": {
     "backToHome": "Back To Home",
@@ -161,7 +162,8 @@
       "order_status": {
         "new": "New",
         "old": "Old"
-      }
+      },
+      "manager": "Manager"
     },
     "catalog": {
       "catalog": "Catalog",
@@ -384,5 +386,27 @@
     "available":"Status"
   },
   "showupage":" Visit the store",
-  "logout":"Logout"
+  "logout":"Logout",
+  "user": {
+    "userRole": "Role",
+    "userFirstName": "First name",
+    "userLastName": "Last name",
+    "userEmail": "Email",
+    "userPhone": "Phone"
+  },
+  "imagesGallery": {
+    "createAlbum": "Create album",
+    "changeView": "Change view",
+    "toggleEditable": "Toggle editable",
+    "countAlbumsPerPage": "Count albums per page",
+    "countImagesPerPage": "Count images per page",
+    "filter": "Filter",
+    "albums": "Albums",
+    "images": "Images",
+    "selectImages": "Select images",
+    "dragAndDropImagesHere": "Drag and drop images here",
+    "imagesOr": "or",
+    "selectFromDevice": "Select from device",
+    "upload": "Upload"
+  }
 }

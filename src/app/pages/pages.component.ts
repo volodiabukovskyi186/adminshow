@@ -77,8 +77,8 @@ export class PagesComponent implements OnInit {
     public lang: LanguageService, // public translate: TranslateService,
     private UserService:UserService
   ) {}
-  ngOnInit(): void {
-    
+
+  public ngOnInit(): void {
     this.route.params.subscribe((data) => {
       // set lang
       this.lang.use(data["lang"]);
@@ -88,7 +88,6 @@ export class PagesComponent implements OnInit {
 
   ngAfterViewChecked() {
     this.cdRef.detectChanges();
-   
   }
 
   prepareRoute(outlet: RouterOutlet) {
@@ -118,9 +117,8 @@ export class PagesComponent implements OnInit {
   onTogleFilterClick() {
     if (this.pages.onTogleFilterClick) this.pages.onTogleFilterClick();
   }
+  
   onDwnloadClick() {
-    
-
     if (this.pages.onDwnloadClick) this.pages.onDwnloadClick();
   }
 }

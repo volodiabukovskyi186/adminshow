@@ -13,6 +13,7 @@ export class ReviewsFormComponent implements OnInit,OnChanges {
   @Input() userStatus;
   @Output() reviewsFormData = new EventEmitter();
   @Output() reviewsSatus = new EventEmitter();
+  
   public monthNames: any[] = [{
     0: 'months.Jan',
     1: 'months.Feb',
@@ -40,28 +41,25 @@ export class ReviewsFormComponent implements OnInit,OnChanges {
     public langService: LanguageService
   ) { }
 
-  ngOnInit(): void {
-   
-
+  public ngOnInit(): void {
     this.generateReviewsForm();
     this.getEditReviewsFormData();
   }
-  ngOnChanges():void{
-    this.generateReviewsForm()
-    console.log("review ====>>>>>>>>>.", this.review.status);
+
+  public ngOnChanges(): void {
+    this.generateReviewsForm();
   }
 
-  generateReviewsForm(): void {
-
+  public generateReviewsForm(): void {
     this.reviewsForm = new FormGroup({
       response: new FormControl(""),
       status: new FormControl("")
     });
+
     this.reviewsForm.setValue({
-      response:'',
-      status:this.review.status
-    })
-   
+      response: '',
+      status: this.review.status
+    });
   }
 
   public modifyDateString(date, type: string) {
@@ -73,16 +71,16 @@ export class ReviewsFormComponent implements OnInit,OnChanges {
     } else if (type === 'months') {
       return this.monthNames[0][t.getMonth()];
     } else if (type === 'year') {
-      return t.getFullYear()
+      return t.getFullYear();
     }
   }
 
-  public onChange(event) {
+  public onChange(event): void {
     this.reviewsForm.get('status').setValue(event);
     this.reviewsSatus.emit(event)
   }
 
-  getEditReviewsFormData(): void {
+  public getEditReviewsFormData(): void {
     this.reviewsForm.valueChanges
     .subscribe(() => this.reviewsFormData.emit({ 
       product_id: this.review.product_id,

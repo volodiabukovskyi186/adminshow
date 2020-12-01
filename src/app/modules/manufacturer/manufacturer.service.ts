@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { IImageSrc } from "../gallery";
 import { ILanguage } from "../localization/language/language.service";
 import { LanguageService } from 'src/app/core/language.service';
+import { UserService } from '../user/user.service';
 
 export interface IManufacturerDesc {
   id: number;
@@ -51,11 +52,15 @@ export class ManufacturerService {
   page = 1;
 
   all: IManufacturer[] = [];
+  currentUserRoleId: number;
 
   constructor(
     private http: HttpClient,
-    private languageService: LanguageService
-  ) {}
+    private languageService: LanguageService,
+    public userService: UserService
+  ) {
+    this.getUserRoleId();
+  }
 
   getList(user_role): Observable<IManufacturerResponse> {
     
@@ -89,6 +94,30 @@ export class ManufacturerService {
   getAllManufactures(): Observable<any> {
     let lang = this.languageService.current;
     return this.http.get(`https://api.showu.com.ua/client/manufacturers?lang=${lang}`);
+  }
+
+  getManagerManufacturers(): Observable<any> {
+    return this.http.get(`${environment.host}manager/manufacturers`);
+  }
+
+  getUserRoleId(): void {
+    this.userService.getByToken().subscribe((res) => {
+      this.currentUserRoleId = res.data.user.role_id;
+
+      console.log(this.currentUserRoleId);
+    });
+  }
+
+  getManufacturersByRoleId(): Observable<any> {
+    let lang = this.languageService.current;
+
+    if (this.currentUserRoleId === 1) {
+      return this.http.get(`https://api.showu.com.ua/client/manufacturers?lang=${lang}`);
+    }
+    
+    if (this.currentUserRoleId !== 1) {
+      return this.http.get(`${environment.host}manager/manufacturers`);
+    }
   }
 
   post(data: any): Observable<any> {

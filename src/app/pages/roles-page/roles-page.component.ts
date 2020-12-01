@@ -18,6 +18,8 @@ import { LanguageService as Lang } from "src/app/core/language.service";
 export class RolesPageComponent implements OnInit {
   @ViewChild(RoleFormComponent) roleFormComponent: RoleFormComponent;
 
+  public editId: number = null;
+
   constructor(
     private ngxService: NgxUiLoaderService,
     private toastr: ToastrService,
@@ -30,7 +32,18 @@ export class RolesPageComponent implements OnInit {
     this.init();
   }
 
-  init() {
+  public ngOnInit(): void {
+    this.getRoles();
+
+    this.roleForm.questions$ = this.roleForm.getQuestions();
+    this.pages.onSaveClick = this.saveRole;
+    this.pages.onPlusClick = this.plusRole;
+    this.pages.onCancelClick = this.cancel;
+
+    this.initTranslate();
+  }
+
+  public init(): void {
     this.pages.defaultSetting();
     this.pages.panelSettings.left = true;
     this.pages.panelSettings.top = true;
@@ -44,7 +57,7 @@ export class RolesPageComponent implements OnInit {
     ];
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -58,9 +71,7 @@ export class RolesPageComponent implements OnInit {
       });
   }
 
-  editId: number = null;
-
-  getRoles() {
+  public getRoles(): void {
     this.ngxService.start();
     this.role.getRoles().subscribe(this.roleHandler);
   }
@@ -71,10 +82,11 @@ export class RolesPageComponent implements OnInit {
   };
 
 
-  onSubmit(data: any) {
+  public onSubmit(data: any) {
     let prms = [];
 
     let keys = Object.keys(data.permissions);
+
     keys.forEach(name => {
       if (data.permissions[name] === true) {
         prms.push({ name, state: 1 });
@@ -137,28 +149,18 @@ export class RolesPageComponent implements OnInit {
     this.pages.panelButtonSettings.cancel = true;
   }
 
-  ngOnInit(): void {
-    this.getRoles();
-
-    this.roleForm.questions$ = this.roleForm.getQuestions();
-    this.pages.onSaveClick = this.saveRole;
-    this.pages.onPlusClick = this.plusRole;
-    this.pages.onCancelClick = this.cancel;
-
-    this.initTranslate();
-  }
-
   saveRole = () => {
     this.roleFormComponent.submitForm();
   };
+
   plusRole = () => {
     this.editId = null;
     this.openFormPanel();
   };
+  
   cancel = () => {
     this.closeForm();
   };
-
 
   private closeForm() {
     this.pages.panelButtonSettings.plus = true;

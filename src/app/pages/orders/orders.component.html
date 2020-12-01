@@ -3,7 +3,7 @@
 [showRightSide]="pages.panelSettings.right"
 >
    <div form>
-      <div *ngIf="selectedClientOrder && !showFilters">
+      <div *ngIf="selectedClientOrder && !showFilters && !isOpenEditOrderForm">
          <app-order-form
             [title]="'currencies.addEditCurrencyInfo' | translate"
             [order]="selectedClientOrder"
@@ -21,7 +21,7 @@
             (orderFiltersFormData)="orderFiltersFormData($event)">
          </app-order-filters-form>
       </div>
-      <div *ngIf="isOpenEditOrderForm">
+      <div *ngIf="isOpenEditOrderForm && !showFilters">
          <app-edit-order-form
             [selectedClientOrder]="editedOrder"
          >
@@ -39,6 +39,7 @@
             <th width="64px">ID</th>
             <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.manufacturer' | translate }}</th>
+            <th width="128px" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.manager' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
@@ -51,6 +52,7 @@
             <td width="64px" class="text-center">{{ order?.id }}</td>
             <td width="128px" class="text-center">{{ order?.last_name }} {{ order?.first_name }}</td>
             <td width="128px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
+            <td width="128px" class="text-center" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
             <td width="128px" class="text-center">{{ order?.total.slice(0, -2) }}</td>
             <td width="128px" class="text-center">{{ order?.created_at }}</td>
             <td width="128px" class="text-center">

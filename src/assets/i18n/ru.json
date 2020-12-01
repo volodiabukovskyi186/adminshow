@@ -78,7 +78,8 @@
     "discountExpired": "Срок действия скидки уже прошел",
     "visibility": "Видимость",
     "visible": "Видимый",
-    "hidden": "Скрытый"
+    "hidden": "Скрытый",
+    "notFound": " не найдено"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",
@@ -144,7 +145,8 @@
       "sum": "Сумма, грн",
       "date": "Дата",
       "status": "Статус",
-      "actions": "Действия"
+      "actions": "Действия",
+      "manager": "Менеджер"
     },
     "catalog": {
       "catalog": "Каталог",
@@ -380,5 +382,27 @@
     "available":"Статус"
   },
   "showupage":"Посетить магазин",
-  "logout":"Выйти"
+  "logout":"Выйти",
+  "user": {
+    "userRole": "Роль",
+    "userFirstName": "Имя",
+    "userLastName": "Фамилия",
+    "userEmail": "Телефон",
+    "userPhone": "Phone"
+  },
+  "imagesGallery": {
+    "createAlbum": "Создать альбом",
+    "changeView": "Сменить вид",
+    "toggleEditable": "Переключить для редактирования",
+    "countAlbumsPerPage": "Подсчет альбомов на странице",
+    "countImagesPerPage": "Подсчет изображений на странице",
+    "filter": "Фильтр",
+    "albums": "Альбомы",
+    "images": "Изображения",
+    "selectImages": "Выбрать изображения",
+    "dragAndDropImagesHere": "Перетащите сюда изображения",
+    "imagesOr": "или",
+    "selectFromDevice": "Выбрать с устройства",
+    "upload": "Загрузить"
+  }
 }
