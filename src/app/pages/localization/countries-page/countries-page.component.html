@@ -1,15 +1,12 @@
-
-
-
 <rap-panel-content
-        [showForm]="pages.panelSettings.form"
-        [showRightSide]="pages.panelSettings.right"
+    [showForm]="pages.panelSettings.form"
+    [showRightSide]="pages.panelSettings.right"
 >
     <div form>
         <app-countries-form  
-        [selected]="selected"
-        [selectedCountryPayment]="selectedCountryPayment" 
-        [selectedCountryDeliver]="selectedCountryDeliver">
+            [selected]="selected"
+            [selectedCountryPayment]="selectedCountryPayment" 
+            [selectedCountryDeliver]="selectedCountryDeliver">
         </app-countries-form>
     </div>
     <div filter></div>
@@ -26,54 +23,48 @@
             </tr>
             </thead>
             <tbody>
-
             <tr *ngFor="let country of arrCountries; let i=index"
                 [ngClass]="">
                 <td class="text-center">{{i+1}}</td>
                 <td class="text-center" data-label="LOGO">
-                
-                   
-                        <div class="ratio">
-                          <div class="imax">
+                    <div class="ratio">
+                        <div class="imax">
                             <img
                             class="contain"
                             [src]="'//' + 'api.showu.com.ua' + country.image.src_mini"
                             [alt]="country.id"
                             />
-                          </div>
                         </div>
-                
+                    </div>
                 </td>
                 <td class="text-center">
                     <div class="flex wrap" style="width: 100%;">
-                             <span class="title flag-container" *ngFor="let count of country.descriptions">
-                                 <img class="flag" src="{{ langService.getFromList(count.lang_id)?.flag }}"/>
-                               <span class="name">{{ count.name }}</span>
-                             </span>
+                        <span class="title flag-container" *ngFor="let count of country.descriptions">
+                            <img class="flag" src="{{ langService.getFromList(count.lang_id)?.flag }}"/>
+                            <span class="name">{{ count.name }}</span>
+                        </span>
                     </div>
                 </td>
                 <td class="text-center">
                     {{country.updated_at == null ? '-' : country.updated_at}}
                 </td>
                 <td class="text-center">{{country.iso}}</td>
-
                 <td>
                     <div class="flex wrap center">
                         <button
-                                style="position: relative;"
-                                [attr.data-tooltip-left]="'APP.edit' | translate"
-                                role="button"
-                                (click)="edit(country)"
-                                class="button transparent radius"
+                            style="position: relative;"
+                            [attr.data-tooltip-left]="'APP.edit' | translate"
+                            role="button"
+                            (click)="edit(country)"
+                            class="button transparent radius"
                         >
                             <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
                         </button>
-
                         <rap-delete-button
-                                (click)="deleteStatus(country)"
-                                data-tooltip-left="Delete"
-                                class="button transparent radius"
-                                [src]="'assets/icons/delete.svg'"
+                            (click)="deleteStatus(country)"
+                            data-tooltip-left="Delete"
+                            class="button transparent radius"
+                            [src]="'assets/icons/delete.svg'"
                         ></rap-delete-button>
                     </div>
                 </td>
@@ -90,17 +81,13 @@
                 (goPage)="pageToHandler($event)"
                 (pageChanged)="pageChangedHandler()"
         ></app-pagination> -->
-
       <mat-paginator
-      *ngIf="alldata?.count>9"
-      [length]="alldata?.count"
-      [pageSize]="alldata?.take"
-      [pageSizeOptions]="[5, 10, 25]"
-      (page)="pageEvent($event)  "
+        *ngIf="alldata?.count>9"
+        [length]="alldata?.count"
+        [pageSize]="alldata?.take"
+        [pageSizeOptions]="[5, 10, 25]"
+        (page)="pageEvent($event)"
       >
       </mat-paginator>
     </div>
 </rap-panel-content>
-
-
-

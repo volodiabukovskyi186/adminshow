@@ -17,7 +17,7 @@ import { RoleService } from 'src/app/core/auth/models/role.service';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent extends BasePage implements OnInit,OnChanges {
+export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   public orderSideStatus = false;
   public ordersForm: FormGroup;
   public selectedClientOrder: any;
@@ -65,12 +65,10 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
     })
   }
 
-
   public ngOnChanges(changes: SimpleChanges): void {
     this.pages.panelButtonSettings.plus = false;
     this.getList();
   }
-
 
   public ngOnInit(): void {
     super.initPagesSettings();
@@ -103,7 +101,6 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
       this.getList(this.userRoleId);
     })
   }
-
 
   public uodateAllItems(): void {
     this.orderService.getList(this.userRoleId).subscribe(data => {
@@ -257,15 +254,19 @@ export class OrdersComponent extends BasePage implements OnInit,OnChanges {
   pageToHandler(page: number): void {
     this.orderService.page = page;
   }
+
   pagePrevHandler(): void {
     this.orderService.page--;
   }
+
   pageNextHandler(): void {
     this.orderService.page++;
   }
+
   pageChangedHandler(): void {
     this.getList();
     window.scrollTo(0, 0);
   }
+  
   Math = Math;
 }

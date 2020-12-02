@@ -10,6 +10,7 @@ import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { CountryFormService } from 'src/app/modules/localization/countries/services/country-form.service';
 import { CountryPaymentService } from 'src/app/modules/localization/countries/services/country-payment.service';
 import { BehaviorSubject } from 'rxjs';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: 'app-countries-page',
@@ -29,7 +30,8 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     public langService: LanguageService,
     public breadcrumbs: BreadcrumbsService,
     public countryFormService:CountryFormService,
-    public countryPaymentService:CountryPaymentService,    
+    public countryPaymentService:CountryPaymentService,
+    public lang: Lang  
   ) {
     super(pages);
   }
@@ -37,13 +39,28 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
   public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
+    this.initTranslate();
     this.getWeight();
     this.getLangList();
-    this.breadcrumbs.breadcrumbs = [
-      { link: "", title: "Dashboard" },
-      { link: "country", title: " Countries" },
-    ];
+    // this.breadcrumbs.breadcrumbs = [
+    //   { link: "", title: "Dashboard" },
+    //   { link: "country", title: " Countries" },
+    // ];
 
+  }
+
+  public initTranslate(): void {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.countries.countries",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "country", title: tr["MENU.countries.countries"] },
+        ];
+      });
   }
 
   getLangList() {

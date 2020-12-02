@@ -9,6 +9,7 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from "ngx-toastr";
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
     selector: 'app-order-status-page',
@@ -18,41 +19,51 @@ import { ToastrService } from "ngx-toastr";
 export class OrderStatusPageComponent extends BasePage implements OnInit {
     arrStatus: Array<any>
     selectedOrder: any;
-    alldata:any;
+    alldata: any;
 
     public descr: FormControl = new FormControl();
 
-
-    constructor(public pages: PagesService,
-                public localizationService: LocalizationServicesService,
-                public langService: LanguageService,
-                protected ngxService: NgxUiLoaderService,
-                public breadcrumbs: BreadcrumbsService,
-                protected toastr: ToastrService,
+    constructor(
+        public pages: PagesService,
+        public localizationService: LocalizationServicesService,
+        public langService: LanguageService,
+        protected ngxService: NgxUiLoaderService,
+        public breadcrumbs: BreadcrumbsService,
+        public lang: Lang,
+        protected toastr: ToastrService,
     ) {
         super(pages);
-
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         super.initPagesSettings();
         super.initPanelButton();
+        this.initTranslate();
         this.getStatus();
         this.getLangList();
-        this.breadcrumbs.breadcrumbs = [
-            { link: "", title: "Dashboard" },
-            { link: "order_status", title: "Order status" },
-        ];
+        // this.breadcrumbs.breadcrumbs = [
+        //     { link: "", title: "Dashboard" },
+        //     { link: "order_status", title: "Order status" },
+        // ];
     }
 
+    public initTranslate(): void {
+        this.lang.translate
+            .get([
+                "dashboard.dashboard",
+                "MENU.orderStatus.orderStatus",
+            ])
+            .subscribe((tr: any) => {
+                this.breadcrumbs.breadcrumbs = [
+                    { link: "", title: tr["dashboard.dashboard"] },
+                    { link: "order_status", title: tr["MENU.orderStatus.orderStatus"] },
+                ];
+        });
+    }
 
-
-    test(){
-        debugger;
+    test() {
         new Angular5Csv(this.arrStatus , 'My Report');
     }
-
-
 
     getLangList() {
         // this.ngxService.start();
@@ -69,22 +80,20 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         this.localizationService.getOrderStatus().subscribe(
             data => {
             this.arrStatus = data.data;
-            this.alldata=data;
-            this.localizationService.data=data;
-            console.log( this.alldata)
+            this.alldata = data;
+            this.localizationService.data = data;
         })
     }
 
     deleteStatus(order): void {
-        if(order.name!=='New') {
+        if (order.name !== 'New') {
             this.localizationService.deleteOrderStatus(order.id).subscribe(data => {
-                this.getStatus()
+                this.getStatus();
             })
         }
         else {
             console.log('you cant delete this status ')
         }
-
     }
 
     edit(i) {
@@ -98,7 +107,6 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
             name: this.selectedOrder.descriptions[0].dectiption,
             description: this.selectedOrder.descriptions,
         }
-        console.log('colorStatus====>',updateOrder)
         if (this.selectedOrder.id !== undefined) {
             this.localizationService.editOrderStaus(this.selectedOrder.id, updateOrder).subscribe(data => {
                 this.getStatus()
@@ -111,12 +119,10 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
                 this.getStatus()
             })
             this.toastr.success("ORDER ADDED");
-
         }
         this.closeForm();
-
-
     }
+
     plus = () => {
         this.localizationService.initEmptyOrderStatus();
         this.selectedOrder = this.localizationService.selectedOrder;
@@ -136,14 +142,12 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
     // };
 
     //#region pagination
-      pageEvent(event):void{
-    this.localizationService.data.count=event.length
-    this.localizationService.data.take=event.pageSize
-    this.localizationService.data.skip=event.pageSize*event.pageIndex
-    this.getStatus()
-    
-  }
-
+      pageEvent(event): void {
+        this.localizationService.data.count = event.length;
+        this.localizationService.data.take = event.pageSize;
+        this.localizationService.data.skip = event.pageSize * event.pageIndex;
+        this.getStatus();
+    }
 
     pageToHandler(page: number): void {
         this.localizationService.page = page;
@@ -152,17 +156,13 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         this.localizationService.page--;
     }
     pageNextHandler(): void {
-        
         this.localizationService.page++;
     }
     pageChangedHandler(): void {
-       this.getStatus();;
+       this.getStatus();
         window.scrollTo(0, 0);
     }
     Math = Math;
 
 //#endregion
-
-
-
 }

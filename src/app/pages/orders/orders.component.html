@@ -33,7 +33,7 @@
       <div *ngIf="orderService.order?.data.length === 0" #notfound>
          <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
       </div>
-      <table *ngIf="orderService.order?.data.length > 0" class="raisins-table border-all radius order-table">
+      <table *ngIf="orderService.order?.data.length > 0" class="raisins-table border-all radius order-table table-wrapper-scroll-y my-custom-scrollbar">
          <thead>
          <tr>
             <th width="64px">ID</th>
@@ -96,14 +96,12 @@
          (pageChanged)="pageChangedHandler()"
       ></app-pagination> -->
 
-      <mat-paginator
-      [length]="orderService.order?.count"
-      [pageSize]="orderService.order?.take"
-      [pageSizeOptions]="[5, 10, 25]"
-      (page)="pageEvent($event)  "
+      <mat-paginator *ngIf="orderService.order?.data.length >= 5" class="footer"
+         [length]="orderService.order?.count"
+         [pageSize]="orderService.order?.take"
+         [pageSizeOptions]="[5, 10, 25]"
+         (page)="pageEvent($event)"
       >
       </mat-paginator>
    </div>
-
 </rap-panel-content>
-

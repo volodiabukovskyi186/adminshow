@@ -6,6 +6,7 @@ import {BasePage} from "../../@core";
 import {DeliveryMethodsService} from "../services/delivery-methods.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from 'ngx-toastr';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: 'app-delivery-methods-page',
@@ -18,27 +19,43 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   selected: any;
   public descr: FormControl = new FormControl();
 
-  constructor(public pages: PagesService,
-              public deliveryService:DeliveryMethodsService,
-              public langService: LanguageService,
-              public breadcrumbs: BreadcrumbsService,
-              protected toastr: ToastrService,
+  constructor(
+    public pages: PagesService,
+    public deliveryService:DeliveryMethodsService,
+    public langService: LanguageService,
+    public breadcrumbs: BreadcrumbsService,
+    public lang: Lang,
+    protected toastr: ToastrService,
   ) {
     super(pages);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
+    this.initTranslate();
     this.getWeight();
     this.getLangList();
 
-    this.breadcrumbs.breadcrumbs = [
-      { link: "", title: "Dashboard" },
-      { link: "unit_weight", title: " Delivery" },
-    ];
+    // this.breadcrumbs.breadcrumbs = [
+    //   { link: "", title: "Dashboard" },
+    //   { link: "unit_weight", title: " Delivery" },
+    // ];
   }
 
+  public initTranslate(): void {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.delivery.delivery",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "delivery_methods", title: tr["MENU.delivery.delivery"] },
+        ];
+      });
+  }
 
   getLangList() {
     this.langService.getLangs().subscribe(this.getLangListHandler);

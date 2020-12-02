@@ -54,19 +54,35 @@ export class CustomersComponent extends BasePage implements OnInit {
   public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-    this.breadcrumbs.breadcrumbs = [
-      { link: "", title: "Dashboard" },
-      { link: "/customers", title: "Customers" },
-    ];
+    
+    this.initTranslate();
+    // this.breadcrumbs.breadcrumbs = [
+    //   { link: "", title: "Dashboard" },
+    //   { link: "/customers", title: "Customers" },
+    // ];
 
     this.userService.getByToken().subscribe((res) => {
       //this.currentUserId = res.data.user.id;
-
     });
+    
     this.pages.panelButtonSettings.download = true;
 
     this.getCustomers();
 
+  }
+
+  public initTranslate(): void {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.customers.customers",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "customers", title: tr["MENU.customers.customers"] },
+        ];
+      });
   }
 
   public getCustomers(): void {
@@ -124,20 +140,6 @@ export class CustomersComponent extends BasePage implements OnInit {
     this.customersService.deleteCustomers(item).subscribe(data => {
       this.getCustomers();
     })
-  }
-
-  public initTranslate(): void {
-    this.lang.translate
-      .get([
-        "dashboard.dashboard",
-        "MENU.customers.customers",
-      ])
-      .subscribe((tr: any) => {
-        this.breadcrumbs.breadcrumbs = [
-          { link: "", title: tr["dashboard.dashboard"] },
-          { link: "customers", title: tr["MENU.customers.customers"] },
-        ];
-      });
   }
 
   getList() {

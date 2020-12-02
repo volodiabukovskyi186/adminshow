@@ -178,6 +178,11 @@
     "reviews": { "reviews": "Reviews", "product_reviews": "Product reviews" },
     "manufacturer": { "manufacturers": "Manufacturers" },
     "customers": { "customers": "Customers" },
+    "countries": { "countries": "Countries" },
+    "weight": { "weight": "Weight" },
+    "payment": { "payment": "Payment" },
+    "delivery": { "delivery": "Delivery" },
+    "orderStatus": { "orderStatus": "Order Status" },
     "media": { "media": "Media", "images": "Images" },
     "manage_site": {
       "manage_site": "Manage site",

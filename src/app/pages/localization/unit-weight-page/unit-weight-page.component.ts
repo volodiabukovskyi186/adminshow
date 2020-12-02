@@ -7,6 +7,7 @@ import {LanguageService} from "../../../modules/localization/language/language.s
 import {WeightService} from "../services/weight.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from 'ngx-toastr';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: 'app-unit-weight-page',
@@ -19,28 +20,43 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
   alldata:any;
   public descr: FormControl = new FormControl();
 
-  constructor(public pages: PagesService,
-              public weightService:WeightService,
-              public langService: LanguageService,
-              public breadcrumbs: BreadcrumbsService,
-              protected toastr: ToastrService,
+  constructor(
+    public pages: PagesService,
+    public weightService:WeightService,
+    public langService: LanguageService,
+    public breadcrumbs: BreadcrumbsService,
+    public lang: Lang,
+    protected toastr: ToastrService,
   ) {
     super(pages);
-
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
+    this.initTranslate();
     this.getWeight();
     this.getLangList();
 
-    this.breadcrumbs.breadcrumbs = [
-      { link: "", title: "Dashboard" },
-      { link: "unit_weight", title: " Weight" },
-    ];
+    // this.breadcrumbs.breadcrumbs = [
+    //   { link: "", title: "Dashboard" },
+    //   { link: "unit_weight", title: "Weight" },
+    // ];
   }
 
+  public initTranslate(): void {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.weight.weight",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "unit_weight", title: tr["MENU.weight.weight"] },
+        ];
+      });
+  }
 
   getLangList() {
     this.langService.getLangs().subscribe(this.getLangListHandler);
