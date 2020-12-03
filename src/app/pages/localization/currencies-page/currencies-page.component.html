@@ -60,7 +60,7 @@
           </td>
 
           <td class="text-center">
-            <small class="currencies-content">{{ currency.updated_at | localDate }}</small>
+            <small class="currencies-content">{{ currency.updated_at |localDate: "d MMMM HH:mm" }}</small>
             <small *ngIf="!currency.updated_at">—</small>
           </td>
           <td>

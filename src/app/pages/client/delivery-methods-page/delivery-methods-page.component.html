@@ -28,7 +28,7 @@
                     </div>
                 </td>
                 <td class="text-center">
-                    {{payment.updated_at==null?'-':payment.updated_at}}
+                    {{payment.updated_at==null?'-':payment.updated_at|localDate: "d MMMM HH:mm"}}
                 </td>
 
                 <td>

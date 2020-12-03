@@ -53,7 +53,7 @@
           </td>
 
           <td class="text-center">
-            <small>{{ item.updated_at | localDate }}</small>
+            <small>{{ item.updated_at |localDate: "d MMMM HH:mm" }}</small>
             <small *ngIf="!item.updated_at">—</small>
           </td>
           <td>

@@ -54,7 +54,7 @@
             <td width="148px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
             <td width="128px" class="text-center" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
             <td width="128px" class="text-center">{{ order?.total.slice(0, -2) }}</td>
-            <td width="128px" class="text-center">{{ order?.created_at }}</td>
+            <td width="128px" class="text-center">{{ order?.created_at|localDate: "d MMMM HH:mm" }}</td>
             <td width="128px" class="text-center">
                <div class="order-status-content">
                    <div class="dot" [style]="{'background': order.status[0].color}"></div>

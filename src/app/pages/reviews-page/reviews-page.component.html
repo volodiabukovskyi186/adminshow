@@ -61,7 +61,8 @@
           <td class="text-center">
             <rap-rating [rating]="item.rating"></rap-rating>
           </td>
-          <td class="text-center">{{ modifyDateString(item.created_at) }}</td>
+          <!-- modifyDateString( -->
+          <td class="text-center">{{ item.created_at|localDate: "d MMMM HH:mm" }}</td>
           <td class="text-center">
             <div class="order-status-content">
               <div class="dot"

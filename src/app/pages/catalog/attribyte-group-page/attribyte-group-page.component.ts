@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit ,OnChanges} from "@angular/core";
 import { BasePage } from "../../@core";
 import { PaginationPage } from "src/app/modules/ui/rap/pagination/pagination-page";
 import { NgxUiLoaderService } from "ngx-ui-loader";
@@ -21,7 +21,7 @@ import { LanguageService as Lang } from "src/app/core/language.service";
   styleUrls: ["./attribyte-group-page.component.scss"],
 })
 export class AttribyteGroupPageComponent extends BasePage
-  implements OnInit, PaginationPage {
+  implements OnInit,OnChanges, PaginationPage {
   private _routerSubscription: any;
 
   constructor(
@@ -46,17 +46,11 @@ export class AttribyteGroupPageComponent extends BasePage
       { link: "attrgroups", title: "Arrtibyte Group" },
     ];
 
-    // this._routerSubscription = this._router.events.subscribe((e) => {
-    //   if (e instanceof NavigationEnd) {
-    //     this.initTranslate();
-    //     this.getList();
-    //   }
-    // });
-
     this.getLangList();
     this.getList();
     this.initTranslate();
   }
+ 
 
   initTranslate() {
     this.lang.translate

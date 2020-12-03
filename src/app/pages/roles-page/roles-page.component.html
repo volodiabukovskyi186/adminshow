@@ -28,10 +28,10 @@
             ></app-permission-item>
           </td>
           <td class="text-center">
-            <small>{{ item.created_at | localDate }}</small>
+            <small>{{ item.created_at |localDate: "d MMMM HH:mm" }}</small>
           </td>
           <td class="text-center">
-            <small>{{ item.updated_at | localDate }}</small>
+            <small>{{ item.updated_at |localDate: "d MMMM HH:mm" }}</small>
             <small *ngIf="!item.updated_at">—</small>
           </td>
           <td>

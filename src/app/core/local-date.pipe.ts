@@ -12,11 +12,15 @@ import { LanguageService } from "./language.service";
 export class LocalDatePipe implements PipeTransform {
   constructor(private lang: LanguageService) {}
 
-  transform(value: any, format: string = "medium") {
+  transform(value: any, format: string = "longDate") {
+    // debugger;
     if (!value) {
       return "";
     }
-    let locale = this.lang.getLanguage(this.lang.current)?.locale;
+
+    // let locale = this.lang.getLanguage(this.lang.current)?.locale;
+    let locale = localStorage.getItem('currentLang')
+
     // console.log("locale: ", locale);
 
     return locale ? formatDate(value, format, locale) : value;
