@@ -34,7 +34,7 @@
                           <div class="box" [ngStyle]="{'background':storege.color}" ></div>
                 </td>
                 <td class="text-center">
-                    {{storege.updated_at==null?'-':storege.updated_at}}
+                    {{storege.updated_at==null?'-':storege.updated_at|localDate: "d MMMM HH:mm"}}
                 </td>
                 <td>
                     <div class="flex wrap center">

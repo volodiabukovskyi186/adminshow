@@ -54,7 +54,7 @@
             class="text-center"
             [attr.data-tooltip-left]="item.updated_at | localDate: 'full'"
           >
-            <small>{{ item.updated_at | localDate: "short" }}</small>
+            <small>{{ item.updated_at |localDate: "d MMMM HH:mm" }}</small>
             <small *ngIf="!item.updated_at">—</small>
           </td>
           <td *ngIf="userRoleStatus">

@@ -53,7 +53,7 @@
                     </div>
                 </td>
                 <td class="text-center">
-                    {{country.updated_at == null ? '-' : country.updated_at}}
+                    {{country.updated_at == null ? '-' : country.updated_at|localDate: "d MMMM HH:mm"}}
                 </td>
                 <td class="text-center">{{country.iso}}</td>
 
