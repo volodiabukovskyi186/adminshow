@@ -21,7 +21,7 @@ import { LanguageService as Lang } from "src/app/core/language.service";
   styleUrls: ["./attribyte-group-page.component.scss"],
 })
 export class AttribyteGroupPageComponent extends BasePage
-  implements OnInit,OnChanges, PaginationPage {
+  implements OnInit, PaginationPage {
   private _routerSubscription: any;
 
   constructor(
