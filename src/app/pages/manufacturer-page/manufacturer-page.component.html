@@ -87,7 +87,7 @@
                 data-tooltip-left="on/off"
                 class="button transparent radius"
                 [ngClass]="{ on: item.status, off: !item.status }"
-                (confirmed)="updateStatus(item)"
+                (click)="updateStatus(item)"
                 [@changeValueHighlight]="item.status"
                 [src]="
                   item.status != 1
@@ -109,7 +109,7 @@
               <rap-delete-button
                 data-tooltip-left="Delete"
                 class="button transparent radius"
-                (confirmed)="updateStatus(item)"
+                (click)="updateStatus(item)"
                 [src]="'assets/icons/delete.svg'"
               ></rap-delete-button>
             </div>
@@ -130,12 +130,11 @@
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
     ></app-pagination> -->
-    <mat-paginator
-    *ngIf="manufacturer.manufacturer.count>9"
-    [length]="manufacturer.manufacturer.count"
-    [pageSize]=" manufacturer.manufacturer.take"
-    [pageSizeOptions]="[5, 10, 25]"
-    (page)="pageEvent($event)  "
+    <mat-paginator *ngIf="manufacturer.manufacturer.count >= 5" class="footer"
+      [length]="manufacturer.manufacturer.count"
+      [pageSize]=" manufacturer.manufacturer.take"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="pageEvent($event)"
     >
     </mat-paginator>
   </div>

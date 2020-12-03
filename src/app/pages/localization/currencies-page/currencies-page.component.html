@@ -69,7 +69,7 @@
                 data-tooltip-left="on/off"
                 class="button transparent radius"
                 [ngClass]="{ on: currency.status, off: !currency.status }"
-                (confirmed)="updateStatus(currency)"
+                (click)="updateStatus(currency)"
                 [@changeValueHighlight]="currency.status"
                 [src]="
                 currency.status != 1

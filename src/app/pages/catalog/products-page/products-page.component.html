@@ -85,7 +85,7 @@
                 data-tooltip-left="on/off"
                 class="button transparent radius"
                 [ngClass]="{ on: item.status, off: !item.status }"
-                (confirmed)="updateStatus(item)"
+                (click)="updateStatus(item)"
                 [@changeValueHighlight]="item.status"
                 [src]="
                   item.status != 1
@@ -126,11 +126,11 @@
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
     ></app-pagination> -->
-    <mat-paginator
-    [length]="product.data.count"
-    [pageSize]="product.data.take"
-    [pageSizeOptions]="[5, 10, 25]"
-    (page)="pageEvent($event)  "
+    <mat-paginator *ngIf="product.data.count >= 5" class="footer"
+      [length]="product.data.count"
+      [pageSize]="product.data.take"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="pageEvent($event)"
     >
     </mat-paginator>
   </div>

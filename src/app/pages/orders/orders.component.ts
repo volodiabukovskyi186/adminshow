@@ -55,7 +55,7 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
     private translate: TranslateService,
     public localizationService: LocalizationServicesService,
     public userService: UserService,
-    public roleService:RoleService
+    public roleService: RoleService
     
   ) { 
     super(pages);
@@ -267,6 +267,6 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
     this.getList();
     window.scrollTo(0, 0);
   }
-  
+
   Math = Math;
 }

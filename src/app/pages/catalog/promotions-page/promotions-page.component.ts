@@ -217,9 +217,9 @@ public selectedProducts(event): void {
   //
   updateStatus(item: IPromotion) {
     this.prom
-      .updateStatus(item.id, item.status == 0 ? 1 : 0)
+      .updateStatus(item.id, item.status === 0 ? 1 : 0)
       .subscribe(this.updateStatusHandler);
-    this.editItem = item;
+      this.editItem = item;
   }
   updateStatusHandler = (data) => {
     this.prom.updateStatusInList(

@@ -66,10 +66,10 @@ export class DeleteButtonComponent implements OnInit {
   toggle($event: Event) {
     $event.preventDefault();
     if (!this.isShowConfirm) {
-      this.showConfirmButtom();
+      //this.showConfirmButtom();
       this.startAutoHide();
     } else {
-      this.hideConfirmButtom();
+      //this.hideConfirmButtom();
       this.resetAutoHide();
     }
   }
@@ -77,7 +77,7 @@ export class DeleteButtonComponent implements OnInit {
    startAutoHide() {
     if (this.autoHide) {
       this.timer = setTimeout(() => {
-        this.hideConfirmButtom();
+        //this.hideConfirmButtom();
       }, this.timeout);
     }
   }
@@ -86,12 +86,12 @@ export class DeleteButtonComponent implements OnInit {
     clearTimeout(this.timer);
   }
 
-  showConfirmButtom() {
-    this.isShowConfirm = true;
-  }
-  hideConfirmButtom() {
-    this.isShowConfirm = false;
-  }
+  // showConfirmButtom() {
+  //   this.isShowConfirm = true;
+  // }
+  // hideConfirmButtom() {
+  //   this.isShowConfirm = false;
+  // }
 
   onConfirmed = () => {
     this.confirmed.emit();

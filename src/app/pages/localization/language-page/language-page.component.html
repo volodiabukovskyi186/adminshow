@@ -63,7 +63,7 @@
                 data-tooltip-left="on/off"
                 class="button transparent radius"
                 [ngClass]="{ on: item.available, off: !item.available }"
-                (confirmed)="updateStatus(item)"
+                (click)="updateStatus(item)"
                 [@changeValueHighlight]="item.available"
                 [src]="
                   item.available != 1
@@ -86,7 +86,7 @@
                 *ngIf="!item.default"
                 data-tooltip-left="Delete"
                 class="button transparent radius"
-                (confirmed)="delete(item)"
+                (click)="delete(item)"
                 [src]="'assets/icons/delete.svg'"
               ></rap-delete-button>
             </div>

@@ -75,7 +75,7 @@
     (goPage)="pageToHandler($event)"
     (pageChanged)="pageChangedHandler()"
 ></app-pagination> -->
- <mat-paginator
+ <mat-paginator *ngIf="arrCustomers.count >= 5" class="footer"
       [length]="arrCustomers?.count"
       [pageSize]="arrCustomers?.take"
       [pageSizeOptions]="[5, 10, 25]"

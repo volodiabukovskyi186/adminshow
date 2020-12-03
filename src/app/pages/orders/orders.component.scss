@@ -1,28 +1,12 @@
 .order-container{
   position: relative;
-  overflow: hidden;
 
   .order-table{
     margin-bottom: 6px;
-    //display: block;
-    empty-cells: show;
 
-    thead {
-      position: relative;
-      //display: block;
-      width: 100%;
-      //overflow-y: scroll;
-    }
-
-    .table-body{
-      max-height: 650px;
-      //display: block; 
-      position: relative;
-      //width: 100%;
-      overflow-y: scroll;
-      table-layout: fixed;
-     .panel-header-buttons{
-       margin: 0 auto;
+    .table-body {
+     .panel-header-buttons {
+       //margin: 0 auto;
        display: flex;
        justify-content: space-around;
        align-items: center;
@@ -104,55 +88,6 @@
   margin-right: 10px;
 }
 
-// ::ng-deep {
-//   .mat-form-field {
-//     .mat-form-field-wrapper {
-//       padding-bottom: 10px;
-
-//       .mat-form-field-flex {
-//         .mat-form-field-infix {
-//           //width: 100%;
-//           padding: 0;
-//           .mat-select {
-//             margin-right: 5px;
-//             margin-left: 0px;
-//             margin-top: -2px;
-//             padding-top: 6px;
-//             padding-right: 3px;
-//             .mat-select-trigger {
-//               .mat-select-value-text {
-//                 font-size: 13px;
-//               }
-//               .mat-select-arrow-wrapper {
-//                 .mat-select-arrow {
-//                   box-sizing: border-box;
-//                   height: 10px;
-//                   width: 10px;
-//                   border-style: solid;
-//                   border-color: #000;
-//                   border-width: 0px 1px 1px 0px;
-//                   transform: rotate(45deg);
-//                   transition: border-width 150ms ease-in-out;
-//                   margin-top: -6px;
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-// ::ng-deep {
-//   .mat-option {
-//     height: 2.3em !important;
-//     .mat-option-text {
-//       font-size: 13px;
-//     }
-//   }
-// }
-
 .eye-open-icon {
   width: 20px;
 }
@@ -198,26 +133,29 @@
   }
 }
 
-// html, body {
-//   height: 100%;
-//   margin: 0;
-//   overflow-y: hidden;
-//   overflow-x: hidden;
-// }
+table {
+  width: 100%;
+  background-color: #f3f3f3;
 
-// [main] {
-//   min-height: 100%;
-// }
+  tbody {
+    height: 360px;
+    overflow-y: scroll !important;
+    width: 100%;
+    display: block;
 
-.footer {
-  height: 60px;
-  margin-top: -1px;
-  position: fixed;
-  bottom: 1px;
-  right: 16px;
-  width: calc(100% - 281px);
-  // width: 100%;
-  // right: 0;
-  // margin-left: 0px;
-  // margin-right: auto;
+    tr {
+      width: 100%;
+      display: inline-table;
+    }
+  }
+
+  thead {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
 }
+
+// body {
+//   background-color: #bdc3c7;
+// }

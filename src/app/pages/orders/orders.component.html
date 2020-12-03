@@ -38,12 +38,12 @@
          <tr>
             <th width="64px">ID</th>
             <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
-            <th width="128px">{{ 'MENU.orders.manufacturer' | translate }}</th>
+            <th width="148px">{{ 'MENU.orders.manufacturer' | translate }}</th>
             <th width="128px" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.manager' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
             <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
-            <th width="128px">{{ 'MENU.orders.actions' | translate }}</th>
+            <th width="212px">{{ 'MENU.orders.actions' | translate }}</th>
          </tr>
          </thead>
 
@@ -51,7 +51,7 @@
          <tr *ngFor="let order of orderService.order?.data">
             <td width="64px" class="text-center">{{ order?.id }}</td>
             <td width="128px" class="text-center">{{ order?.last_name }} {{ order?.first_name }}</td>
-            <td width="128px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
+            <td width="148px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
             <td width="128px" class="text-center" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
             <td width="128px" class="text-center">{{ order?.total.slice(0, -2) }}</td>
             <td width="128px" class="text-center">{{ order?.created_at }}</td>
@@ -96,7 +96,7 @@
          (pageChanged)="pageChangedHandler()"
       ></app-pagination> -->
 
-      <mat-paginator *ngIf="orderService.order?.data.length >= 5" class="footer"
+      <mat-paginator *ngIf="orderService.order?.count >= 5" class="footer"
          [length]="orderService.order?.count"
          [pageSize]="orderService.order?.take"
          [pageSizeOptions]="[5, 10, 25]"

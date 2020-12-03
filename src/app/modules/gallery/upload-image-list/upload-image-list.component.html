@@ -13,7 +13,7 @@
     <rap-delete-button
       data-tooltip-left="Dont upload"
       class="button delete radius"
-      (confirmed)="deleteFromUpload(img)"
+      (click)="deleteFromUpload(img)"
       [src]="'assets/icons/delete.svg'"
     ></rap-delete-button>
     <span @fade *ngIf="img.isError" class="error">ERROR<br />¯\_(ツ)_/¯</span>

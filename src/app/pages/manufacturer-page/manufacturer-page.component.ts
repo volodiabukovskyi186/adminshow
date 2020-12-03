@@ -109,9 +109,9 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
 
   updateStatus(item: IManufacturer) {
     this.manufacturer
-      .updateStatus(item.id, item.status == 0 ? 1 : 0)
+      .updateStatus(item.id, item.status === 0 ? 1 : 0)
       .subscribe(this.updateStatusHandler);
-    this.editItem = item;
+      this.editItem = item;
   }
   updateStatusHandler = (data) => {
     this.manufacturer.updateStatusInList(
