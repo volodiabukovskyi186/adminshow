@@ -11,6 +11,7 @@ import { CountryFormService } from 'src/app/modules/localization/countries/servi
 import { CountryPaymentService } from 'src/app/modules/localization/countries/services/country-payment.service';
 import { BehaviorSubject } from 'rxjs';
 import { LanguageService as Lang } from "src/app/core/language.service";
+import { Router, NavigationEnd, Event } from '@angular/router';
 
 @Component({
   selector: 'app-countries-page',
@@ -31,9 +32,15 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     public breadcrumbs: BreadcrumbsService,
     public countryFormService:CountryFormService,
     public countryPaymentService:CountryPaymentService,
-    public lang: Lang  
+    public lang: Lang,
+    public router: Router   
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+          this.getWeight()
+      }
+    })
   }
 
   public ngOnInit(): void {

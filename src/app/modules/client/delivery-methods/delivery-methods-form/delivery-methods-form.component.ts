@@ -20,6 +20,8 @@ export class DeliveryMethodsFormComponent implements OnInit {
   constructor(public languageService: LocalizationLang,
               public langService: LanguageService,
               public deliveryService: DeliveryMethodsService) {
+
+                
   }
   ngOnInit(): void {
     this.sub()

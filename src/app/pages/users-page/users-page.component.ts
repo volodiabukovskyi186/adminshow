@@ -13,7 +13,7 @@ import { Angular5Csv } from "angular5-csv/dist/Angular5-csv";
 import { IProduct } from "src/app/modules/catalog/product/interfaces/product";
 import { CategoryService } from "src/app/modules/catalog/category/category.service";
 import { ProductCategoryService } from "src/app/modules/catalog/product/services/product-category.service";
-
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
   selector: "app-users-page",
   templateUrl: "./users-page.component.html",
@@ -33,9 +33,15 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
     public role: RolesService,
     public lang: Lang,
     public category: CategoryService,
-    public prodCategory: ProductCategoryService
+    public prodCategory: ProductCategoryService,
+    public router: Router
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getList();
+      }
+    })
   }
 
   public ngOnInit(): void {

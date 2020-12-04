@@ -8,7 +8,7 @@ import { LanguageService as Lang } from "src/app/core/language.service";
 import { ReviewsPageService } from  "../reviews-page/services/reviews-page.service";
 import { LanguageService } from "src/app/modules/localization/language/language.service";
 import { RoleService } from 'src/app/core/auth/models/role.service';
-
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
   selector: 'app-reviews-page',
   templateUrl: './reviews-page.component.html',
@@ -45,9 +45,15 @@ export class ReviewsPageComponent extends BasePage implements OnInit {
     public lang: Lang,
     public reviewsPageService: ReviewsPageService,
     public langService: LanguageService,
-    public roleService:RoleService
+    public roleService:RoleService,
+    public router :Router
   ) { 
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getList(this.userRoleId);
+      }
+    })
     
   }
   public showFilters: boolean = false;

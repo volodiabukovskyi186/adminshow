@@ -38,7 +38,7 @@
             {{ customer?.telephone }}
           </td>
           <td class="text-center">
-            {{customer?.created_at}}
+            {{customer?.created_at|localDate: "d MMMM HH:mm"}}
           </td>
 
           <td class="text-center">

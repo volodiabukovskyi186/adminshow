@@ -12,7 +12,7 @@ import { IAttribyte, IResponseData } from 'src/app/modules/catalog/attribyte/int
 import { AttribyteGroupService } from 'src/app/modules/catalog/attribyte/services/attribyte-group.service';
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { RoleService } from 'src/app/core/auth/models/role.service';
-
+import {ActivatedRoute, Router, NavigationEnd, Event } from '@angular/router';
 @Component({
   selector: 'app-attribytes-page',
   templateUrl: './attribytes-page.component.html',
@@ -30,9 +30,15 @@ constructor(
   public attrForm: AttribyteFormService,
   public langService: LanguageService,
   public lang: Lang,
-  public roleService:RoleService
+  public roleService:RoleService,
+  private router:Router
 ) {
   super(pages);
+  this.router.events.subscribe((event: Event) => {
+    if (event instanceof NavigationEnd) {
+      this.getList();
+    }
+  })
 }
 userRoleId:number;
 userRoleStatus:boolean=false;

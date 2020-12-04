@@ -8,6 +8,7 @@ import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from 'ngx-toastr';
 import { LanguageService as Lang } from "src/app/core/language.service";
 
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
   selector: 'app-delivery-methods-page',
   templateUrl: './delivery-methods-page.component.html',
@@ -19,15 +20,20 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   selected: any;
   public descr: FormControl = new FormControl();
 
-  constructor(
-    public pages: PagesService,
-    public deliveryService:DeliveryMethodsService,
-    public langService: LanguageService,
-    public breadcrumbs: BreadcrumbsService,
-    public lang: Lang,
-    protected toastr: ToastrService,
+  constructor(public pages: PagesService,
+              public deliveryService:DeliveryMethodsService,
+              public langService: LanguageService,
+              public breadcrumbs: BreadcrumbsService,
+              protected toastr: ToastrService,
+              public router: Router,
+              public lang: Lang
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getWeight();
+      }
+    })
   }
 
   public ngOnInit(): void {

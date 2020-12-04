@@ -11,6 +11,7 @@ import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from "ngx-toastr";
 import { LanguageService as Lang } from "src/app/core/language.service";
 
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
     selector: 'app-order-status-page',
     templateUrl: './order-status-page.component.html',
@@ -23,16 +24,22 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
 
     public descr: FormControl = new FormControl();
 
-    constructor(
-        public pages: PagesService,
-        public localizationService: LocalizationServicesService,
-        public langService: LanguageService,
-        protected ngxService: NgxUiLoaderService,
-        public breadcrumbs: BreadcrumbsService,
-        public lang: Lang,
-        protected toastr: ToastrService,
+
+    constructor(public pages: PagesService,
+                public localizationService: LocalizationServicesService,
+                public langService: LanguageService,
+                protected ngxService: NgxUiLoaderService,
+                public breadcrumbs: BreadcrumbsService,
+                protected toastr: ToastrService,
+                public router: Router,
+                public lang: Lang
     ) {
         super(pages);
+        this.router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationEnd) {
+                this.getStatus();
+            }
+          })
     }
 
     public ngOnInit(): void {
