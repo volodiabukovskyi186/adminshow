@@ -72,19 +72,19 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
     // console.log(params);
     // console.log(this.router.url);
 
-    const getLinkRoute = this.router.url;
+    // const getLinkRoute = this.router.url;
 
-    //this.item?.items?.forEach((val) => {
-      if (this.currentItemUrl === getLinkRoute) {
-        //this.item.open = true;
-        this.open = true;
-      }
-    //})
+    // //this.item?.items?.forEach((val) => {
+    //   if (this.currentItemUrl === getLinkRoute) {
+    //     //this.item.open = true;
+    //     this.open = true;
+    //   }
+    // //})
 
-    console.log(getLinkRoute);
+    // console.log(getLinkRoute);
 
-    console.log(this.item);
-    console.log(this.title);
+    // console.log(this.item);
+    // console.log(this.title);
 
     // this.item.open = true;
     // this.open = this.item?.open;
