@@ -10,6 +10,7 @@ import { SitePageFormService } from 'src/app/modules/client/site-page/site-page-
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
 import { changeValueHighlight } from 'src/app/modules/ui/animations';
 import { LanguageService as Lang } from "src/app/core/language.service";
+import { Router, NavigationEnd, Event } from '@angular/router';
 
 @Component({
   animations: [changeValueHighlight],
@@ -29,8 +30,14 @@ export class SitePagePageComponent extends BasePage implements OnInit, Paginatio
     public sitePageForm: SitePageFormService,
     public langService: LanguageService,
     public lang: Lang,
+    public router :Router
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getList();
+      }
+    })
   }
 
   public ngOnInit(): void {

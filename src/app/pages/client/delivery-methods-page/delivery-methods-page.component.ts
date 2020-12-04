@@ -6,7 +6,7 @@ import {BasePage} from "../../@core";
 import {DeliveryMethodsService} from "../services/delivery-methods.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from 'ngx-toastr';
-
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
   selector: 'app-delivery-methods-page',
   templateUrl: './delivery-methods-page.component.html',
@@ -23,8 +23,14 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
               protected toastr: ToastrService,
+              public router :Router
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getWeight();
+      }
+    })
   }
 
   ngOnInit(): void {

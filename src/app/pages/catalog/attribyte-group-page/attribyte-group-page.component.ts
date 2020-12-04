@@ -13,6 +13,8 @@ import {
   IResponseData,
 } from "src/app/modules/catalog/attribyte/interfaces";
 import { LanguageService as Lang } from "src/app/core/language.service";
+import { Route } from '@angular/compiler/src/core';
+import { Router, NavigationEnd, Event } from '@angular/router';
 // import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
@@ -21,7 +23,7 @@ import { LanguageService as Lang } from "src/app/core/language.service";
   styleUrls: ["./attribyte-group-page.component.scss"],
 })
 export class AttribyteGroupPageComponent extends BasePage
-  implements OnInit,OnChanges, PaginationPage {
+  implements OnInit, PaginationPage {
   private _routerSubscription: any;
 
   constructor(
@@ -33,8 +35,14 @@ export class AttribyteGroupPageComponent extends BasePage
     public attrGrForm: AttribyteGroupFormService,
     public langService: LanguageService,
     public lang: Lang,
+    public router :Router
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getList();
+      }
+    })
   }
 
   ngOnInit(): void {

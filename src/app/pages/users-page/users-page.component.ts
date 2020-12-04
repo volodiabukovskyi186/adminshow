@@ -10,7 +10,7 @@ import { UserFormService } from "src/app/modules/user/user-form.service";
 import { RolesService } from "src/app/modules/roles/roles.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
 import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
-
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
   selector: "app-users-page",
   templateUrl: "./users-page.component.html",
@@ -27,8 +27,14 @@ export class UsersPageComponent extends BasePage
     public userForm: UserFormService,
     public role: RolesService,
     public lang: Lang,
+    public router :Router
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getList();
+      }
+    })
   }
 
   public ngOnInit(): void {

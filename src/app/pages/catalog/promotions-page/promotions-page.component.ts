@@ -9,7 +9,7 @@ import { PromotionService, IPromotion } from 'src/app/modules/catalog/promotion/
 import { LanguageService } from 'src/app/modules/localization/language/language.service';
 import { PromotionFormService } from 'src/app/modules/catalog/promotion/services/promotion-form.service';
 import { LanguageService as Lang } from "src/app/core/language.service";
-
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
   selector: 'app-promotions-page',
   templateUrl: './promotions-page.component.html',
@@ -34,8 +34,14 @@ constructor(
   public promForm: PromotionFormService,
   public langService: LanguageService,
   public lang: Lang,
+  public router :Router
 ) {
   super(pages);
+  this.router.events.subscribe((event: Event) => {
+    if (event instanceof NavigationEnd) {
+      this.getList();
+    }
+  })
 }
 
 public ngOnInit(): void {

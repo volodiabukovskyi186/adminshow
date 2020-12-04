@@ -12,7 +12,7 @@ import { IOption } from 'src/app/modules/catalog/option/interfaces';
 import { fadeScale } from 'src/app/modules/ui/animations';
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { RoleService } from 'src/app/core/auth/models/role.service';
-
+import { Router, NavigationEnd, Event } from '@angular/router';
 
 @Component({
   animations: [fadeScale],
@@ -32,8 +32,14 @@ constructor(
   public langService: LanguageService,
   public roleService:RoleService,
   public lang: Lang,
+  private router:Router
 ) {
   super(pages);
+  this.router.events.subscribe((event: Event) => {
+    if (event instanceof NavigationEnd) {
+      this.getList();
+    }
+  })
 }
 userRoleId:number;
 userRoleStatus:boolean=false;
@@ -50,7 +56,6 @@ ngOnInit(): void {
   this.getList();
   this.initTranslate();
   this.getUserByTokin()
-
 }
 getUserByTokin():void{
   this.roleService.getByToken().subscribe(data=>{

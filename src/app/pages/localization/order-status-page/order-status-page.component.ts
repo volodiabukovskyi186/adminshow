@@ -9,7 +9,7 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Angular5Csv} from "angular5-csv/dist/Angular5-csv";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from "ngx-toastr";
-
+import { Router, NavigationEnd, Event } from '@angular/router';
 @Component({
     selector: 'app-order-status-page',
     templateUrl: './order-status-page.component.html',
@@ -29,9 +29,14 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
                 protected ngxService: NgxUiLoaderService,
                 public breadcrumbs: BreadcrumbsService,
                 protected toastr: ToastrService,
+                public router :Router
     ) {
         super(pages);
-
+        this.router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationEnd) {
+                this.getStatus();
+            }
+          })
     }
 
     ngOnInit(): void {

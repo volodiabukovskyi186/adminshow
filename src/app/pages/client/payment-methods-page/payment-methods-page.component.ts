@@ -8,6 +8,7 @@ import {LanguageService} from "../../../modules/localization/language/language.s
 import {PaymentService} from "../services/payment.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from 'ngx-toastr';
+import { Router, NavigationEnd, Event } from '@angular/router';
 
 @Component({
   selector: 'app-payment-methods-page',
@@ -26,8 +27,14 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
               protected toastr: ToastrService,
+              public router :Router
   ) {
     super(pages);
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.getWeight();
+      }
+    })
   }
 
   ngOnInit(): void {
