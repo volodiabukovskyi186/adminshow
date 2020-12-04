@@ -7,7 +7,7 @@
   ></rap-svg-ico>
 
   <rap-svg-ico class="small-logo" *ngIf="logoStatus"
-  [routerLink]="['/']"
+    [routerLink]="['/']"
     routerLinkActive="active"
     src="assets/icons/showlogo.svg"
     alt="ShowU"
@@ -15,7 +15,7 @@
 </header>
 
 <div [ngClass]="{smallBar: logoStatus}">
-  <ng-container *ngFor="let item of menu.nav;let i=index">
+  <ng-container *ngFor="let item of menu.nav;let i = index">
   <rap-nav-group
     [title]="item.title"
     [icon]="item.icon"
@@ -23,13 +23,14 @@
     *ngIf="!item.hidden"
     (click)="closeMenu(item,i)"
     [item]="item"
-  
+    [currentItemUrl]="currentItemUrl"
   >
   <ng-container  *ngFor="let link of item.items">
     <rap-nav-item
     *ngIf="!link.hidden"
       [langLink]="lang.routeLang"
       [nav]="link"
+      (currentItemUrl)="getCurrentItem($event)"
     ></rap-nav-item>
     </ng-container>
     
@@ -51,13 +52,13 @@
 </footer>
 <div class="open-shop" >
   <a href="https://showu.com.ua/">
-  <rap-nav-group
-  [ngClass]="{'small-move-show': logoStatus}"
-  [routerLink]="['']"
-    [title]="'showupage'"
-    [icon]="'assets/icons/web.svg'"
-   
-  >
-  </rap-nav-group>
-</a>
+    <rap-nav-group
+      [ngClass]="{'small-move-show': logoStatus}"
+      [routerLink]="['']"
+      [title]="'showupage'"
+      [icon]="'assets/icons/web.svg'"
+    
+    >
+    </rap-nav-group>
+  </a>
 </div>

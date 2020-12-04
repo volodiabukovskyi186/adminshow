@@ -26,8 +26,9 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: "./products-page.component.html",
   styleUrls: ["./products-page.component.scss"],
 })
-export class ProductsPageComponent extends BasePage
-  implements OnInit,OnChanges, PaginationPage {
+export class ProductsPageComponent extends BasePage implements OnInit, OnChanges, PaginationPage {
+  public userRole: number = 0;
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -47,11 +48,13 @@ export class ProductsPageComponent extends BasePage
       this.translate.onLangChange.subscribe(lang => {
         this.getList(this.userRole);
       })
- 
   }
-  userRole:number=0;
 
-  ngOnInit(): void {
+  public ngOnChanges(): void {
+    this.getUserByTokin();
+  }
+
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
 
@@ -60,27 +63,21 @@ export class ProductsPageComponent extends BasePage
       { link: "products", title: "Products" },
     ];
 
-
-
     this.getLangList();
     
     this.getAllManufacturer();
     this.initTranslate();
-    // console.log(this.prodForm.model)
-    this. getUserByTokin()
-  }
-  getUserByTokin():void{
-    this.roleService.getByToken().subscribe(data=>{
-          this.userRole=data.data.role.id
-          // console.log('misha===>',this.userRole)
-          this.getList(this.userRole);
-    })
-  }
-  ngOnChanges():void{
-    this.getUserByTokin()
+    this.getUserByTokin();
   }
 
-  initTranslate() {
+  public getUserByTokin(): void {
+    this.roleService.getByToken().subscribe(data=>{
+      this.userRole = data.data.role.id;
+      this.getList(this.userRole);
+    })
+  }
+
+  public initTranslate(): void {
     this.languageLocalizationService.translate
       .get([
         "dashboard.dashboard",
@@ -196,7 +193,6 @@ export class ProductsPageComponent extends BasePage
       this.product.post(data).subscribe(this.postHandler);
     }
     this.ngxService.start();
-    // console.log("SEND PROD DATA: ", data);
   };
 
   postHandler = (data) => {
@@ -224,7 +220,7 @@ export class ProductsPageComponent extends BasePage
 
   //#endregion
 
-  edit(i) {
+  public edit(i): void {
     this.prodForm.initByModel(i, this.langService.languages.data);
     this.prodForm.host = this.product.data.host;
 
@@ -234,9 +230,10 @@ export class ProductsPageComponent extends BasePage
     this.openForm();
   }
 
-  getAllCategory() {
+  public getAllCategory(): void {
     this.category.getAll().subscribe(this.getAllCategoryHandler);
   }
+
   getAllCategoryHandler = (data) => {
     this.category.all = data.data;
     this.category.all.forEach((element) => {
@@ -251,6 +248,7 @@ export class ProductsPageComponent extends BasePage
         .join(" > ");
     });
   };
+  
   getProdCategory() {
     this.prodCategory
       .getByProdId(this.prodForm.model.id)

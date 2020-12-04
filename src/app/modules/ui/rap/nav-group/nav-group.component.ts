@@ -6,6 +6,7 @@ import { RapService } from '../../rap.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MenuService } from 'src/app/core/menu.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 const TIME = ".3s";
 const FN = "ease-in-out";
@@ -34,20 +35,20 @@ const FN = "ease-in-out";
   templateUrl: "./nav-group.component.html",
   styleUrls: ["./nav-group.component.scss"]
 })
-export class NavGroupComponent implements OnInit ,OnDestroy,OnChanges{
+export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
   private openValue: boolean = false;
-  public burderStatus:boolean=false;
-  public navItemStatus:boolean=false;
+  public burderStatus: boolean = false;
+  public navItemStatus: boolean = false;
   private destroy$: Subject<void> = new Subject<void>();
-  myAnimatiom='small';
+  public myAnimatiom = 'small';
+
   @Input() title: string;
   @Input() icon: string;
-
   @Input() item: any;
-
   @Input() get open(): boolean {
     return this.openValue;
   }
+  @Input() currentItemUrl;
 
   @Output() openChange = new EventEmitter();
   @Output() userGroup = new EventEmitter();
@@ -57,12 +58,48 @@ export class NavGroupComponent implements OnInit ,OnDestroy,OnChanges{
     this.openChange.emit(this.openValue);
   }
 
-  constructor(public rapService:RapService,
-    private UserService:UserService,
-    public menu: MenuService,) {}
+  constructor(
+    public rapService: RapService,
+    public menu: MenuService,
+    private UserService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
-    this.BurgerStatus()
+  public ngOnInit(): void {
+    this.BurgerStatus();
+    // const params = this.route;
+    // console.log(params);
+    // console.log(this.router.url);
+
+    const getLinkRoute = this.router.url;
+
+    //this.item?.items?.forEach((val) => {
+      if (this.currentItemUrl === getLinkRoute) {
+        //this.item.open = true;
+        this.open = true;
+      }
+    //})
+
+    console.log(getLinkRoute);
+
+    console.log(this.item);
+    console.log(this.title);
+
+    // this.item.open = true;
+    // this.open = this.item?.open;
+
+    // if (!this.router.url) {
+    //   console.log(this.router.url);
+
+    //   this.open = false;
+    // } else {
+    //   //this.open = true;
+    //   this.burderStatus = false;
+    // }
+
+    console.log(this.openValue);
+
     // this.UserService.SUser.subscribe(user=>{
     //   this.menu.nav=this.menu.nav
     //   let arrUserManage=JSON.parse(JSON.parse((localStorage.getItem('user'))).role.permissions)
@@ -79,10 +116,9 @@ export class NavGroupComponent implements OnInit ,OnDestroy,OnChanges{
     //     // }
     //   });
     // })
-
-   
   }
-  ngOnChanges():void{
+
+  public ngOnChanges(): void {
     // this.UserService.SUser.pipe(takeUntil(this.destroy$)).subscribe(data=>{
       // debugger;s
       // console.log("itemNAv===>", this.item)
@@ -107,27 +143,20 @@ export class NavGroupComponent implements OnInit ,OnDestroy,OnChanges{
     this.destroy$.complete();
   }
   
-  BurgerStatus():void{
-    this.rapService.SBurder.subscribe(data=>{
-      this.burderStatus=data;
-      if(data){
-        console.log('item===>', this.myAnimatiom)
-        this.myAnimatiom='large'
-
+  BurgerStatus(): void {
+    this.rapService.SBurder.subscribe(data => {
+      this.burderStatus = data;
+      if (data) {
+        this.myAnimatiom = 'large';
+      } else {
+        this.myAnimatiom = 'small';
       }
-      else{
-        this.myAnimatiom='small'
-        console.log('item===>false', this.myAnimatiom)
-      }
-      
-      // console.log('statusBurger==>',data)
     })
   }
   
-
-  toggle() {
+  public toggle(): void {
     this.open = !this.open;
-    this.burderStatus=false
-    this.rapService.SBurder.next(false)
+    this.burderStatus = false;
+    this.rapService.SBurder.next(false);
   }
 }

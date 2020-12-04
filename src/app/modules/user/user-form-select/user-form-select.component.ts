@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserFormSelectComponent implements OnInit {
   private _model: IProduct;
+  public allCategories: any[] = [];
   //public values = [];
 
   @Output() modelChange = new EventEmitter();
@@ -33,13 +34,28 @@ export class UserFormSelectComponent implements OnInit {
   public ngOnInit(): void {
     console.log('category.all (user.form) ====== >>>>>>>', this.category.all);
 
-    this.getCategories();
+    //this.getCategories();
   }
 
   public getCategories(): void {
     this.category.getList().subscribe((res) => {
-      console.log(res);
+      res.data.forEach((val) => {
+        console.log(val);
+        //this.allCategories.push(val.parents);
+        this.category.all.push(val);
+
+        // val.parents.forEach((name) => {
+        //   console.log(name);
+        //   this.category.all.push(name);
+        // })
+
+        console.log('this.allCategories ======= >>>>>', this.allCategories);
+      })
     })
+
+    console.log('this.category.all ======= >>>>>', this.category.all);
+
+    //this.category.all = this.allCategories;
   }
 
   public save(): void {

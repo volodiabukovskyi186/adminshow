@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from "@angular/core";
 import { CategoryService } from "src/app/modules/catalog/category/category.service";
 import { ProductCategoryService } from "../../../services/product-category.service";
 import { IProduct } from "../../../interfaces";
@@ -21,7 +21,6 @@ export class CategoryComponent implements OnInit {
   set model(val: IProduct) {
     this._model = val;
     this.modelChange.emit(this._model);
-    // this.getProdCategory();
   }
 
   constructor(
@@ -30,9 +29,8 @@ export class CategoryComponent implements OnInit {
     protected toastr: ToastrService,
   ) {}
 
-  public ngOnInit(): void {
-    console.log('category.all (category.component) ====== >>>>>>>', this.category.all);
-  }
+  public ngOnInit(): void {}
+
   // save prod category
   public save(): void {
     this.prodCategory.put(this.model.id).subscribe(this.saveHandler);

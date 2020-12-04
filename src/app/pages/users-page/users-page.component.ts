@@ -11,6 +11,8 @@ import { RolesService } from "src/app/modules/roles/roles.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { Angular5Csv } from "angular5-csv/dist/Angular5-csv";
 import { IProduct } from "src/app/modules/catalog/product/interfaces/product";
+import { CategoryService } from "src/app/modules/catalog/category/category.service";
+import { ProductCategoryService } from "src/app/modules/catalog/product/services/product-category.service";
 
 @Component({
   selector: "app-users-page",
@@ -30,6 +32,8 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
     public userForm: UserFormService,
     public role: RolesService,
     public lang: Lang,
+    public category: CategoryService,
+    public prodCategory: ProductCategoryService
   ) {
     super(pages);
   }
@@ -80,6 +84,36 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
   getAllRolesHandler = (data) => {
     this.ngxService.stopAll();
     this.role.all = data.data;
+  };
+
+  public getAllCategory(): void {
+    this.category.getAll().subscribe(this.getAllCategoryHandler);
+  }
+
+  getAllCategoryHandler = (data) => {
+    this.category.all = data.data;
+    this.category.all.forEach((element) => {
+      // let t = "";
+      // element.parents.forEach((p) => {
+      //   t += p.name + " | ";
+      // });
+      element.title = element.parents
+        .map(function (k) {
+          return k.name;
+        })
+        .join(" > ");
+    });
+  };
+  
+  getProdCategory() {
+    this.prodCategory
+      .getByProdId(this.userForm.model.id)
+      .subscribe(this.getProdCategoryHandler);
+  }
+
+  getProdCategoryHandler = (data) => {
+    this.prodCategory.list = data.data;
+    this.prodCategory.initVales();
   };
 
   //#region override
@@ -142,6 +176,11 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
     console.log('i===========>>>>>>>>', i);
 
     this.userForm.initByModel(i);
+    //this.userForm.host = this.product.data.host;
+
+    this.getAllCategory();
+    this.getProdCategory();
+
     this.isEdit = true;
     this.openForm();
   }
