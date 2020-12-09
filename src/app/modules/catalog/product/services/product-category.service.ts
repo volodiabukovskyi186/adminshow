@@ -27,6 +27,15 @@ export class ProductCategoryService {
     );
   }
 
+  updateUserCategories(userId: number): Observable<any> {
+    let data = this.values;
+    console.log(data);
+    return this.http.put<any>(
+      `${environment.host}manager_category/updateArray/${userId}`,
+      data
+    );
+  }
+
   initVales() {
     this.values = [];
     this.list.forEach((element) => {

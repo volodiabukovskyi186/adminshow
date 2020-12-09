@@ -94,12 +94,14 @@
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
     ></app-pagination> -->
-    <mat-paginator *ngIf="sitePage.data.count >= 5" class="footer"
-      [length]="sitePage.data.count"
-      [pageSize]="sitePage.data.take"
-      [pageSizeOptions]="[5, 10, 25]"
-      (page)="pageEvent($event)"
-    >
-    </mat-paginator>
+    <div class="footer-wrapper">
+      <mat-paginator *ngIf="sitePage.data.count >= 5" class="footer"
+        [length]="sitePage.data.count"
+        [pageSize]="sitePage.data.take"
+        [pageSizeOptions]="[5, 10, 25]"
+        (page)="pageEvent($event)"
+      >
+      </mat-paginator>
+    </div>
   </div>
 </rap-panel-content>

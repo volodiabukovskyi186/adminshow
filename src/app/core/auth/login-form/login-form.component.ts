@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnDestroy{
   @Input() placeholderLogin: string;
   @Input() placeholderPassword: string;
 
-  @Output() authed: EventEmitter<any> = new EventEmitter()
+  @Output() authed: EventEmitter<any> = new EventEmitter();
 
   /**
    *

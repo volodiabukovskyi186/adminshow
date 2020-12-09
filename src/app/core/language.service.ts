@@ -85,7 +85,7 @@ export class LanguageService implements OnInit {
 
     this.getDefaultLanguage().subscribe((res) => { 
       if(localStorage.getItem('currentLang')){
-        const userLang=localStorage.getItem('currentLang')
+        const userLang = localStorage.getItem('currentLang');
         this.use(userLang);
       }
       else{

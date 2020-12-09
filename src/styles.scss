@@ -187,6 +187,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   overflow-wrap: anywhere;
 }
 
+.footer-wrapper {
+  position: relative;
+  height: 60px;
+}
+
 .footer {
   height: 60px;
   margin-top: -1px;

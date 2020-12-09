@@ -74,8 +74,8 @@
               class="radius"
               [src]="
               'api.showu.com.ua'
-               ? '//' + 'api.showu.com.ua' + item.image?.src_mini
-               : item.image?.src_mini"
+               ? '//' + 'api.showu.com.ua' + item?.image?.src_mini
+               : item?.image?.src_mini"
               (press)="onPress(item)"
               (reset)="onReset(item)"
               

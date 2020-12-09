@@ -92,12 +92,14 @@
       (goPage)="pageToHandler($event)"
       (pageChanged)="pageChangedHandler()"
     ></app-pagination> -->
-    <mat-paginator *ngIf="reviewsPageService.reviews.count >= 5" class="footer"
-      [length]="reviewsPageService.reviews.count"
-      [pageSize]="reviewsPageService.reviews.take"
-      [pageSizeOptions]="[5, 10, 25]"
-      (page)="pageEvent($event)"
-    >
-    </mat-paginator>
+    <div class="footer-wrapper">
+      <mat-paginator *ngIf="reviewsPageService.reviews.count >= 5" class="footer"
+        [length]="reviewsPageService.reviews.count"
+        [pageSize]="reviewsPageService.reviews.take"
+        [pageSizeOptions]="[5, 10, 25]"
+        (page)="pageEvent($event)"
+      >
+      </mat-paginator>
+    </div>
   </div>
 </rap-panel-content>
