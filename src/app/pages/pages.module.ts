@@ -85,6 +85,7 @@ import { OrderFiltersFormComponent } from './orders/order-filters-form/order-fil
 import { ClickOutsideModule } from 'ng-click-outside';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditOrderFormComponent } from './orders/edit-order-form/edit-order-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -161,6 +162,7 @@ import { EditOrderFormComponent } from './orders/edit-order-form/edit-order-form
         MatTableExporterModule,
         CdkTableExporterModule,
         MatSelectModule,
+        MatDialogModule,
         NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
         //BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot({

@@ -15,9 +15,15 @@ import { ManufacturerFormService } from "src/app/modules/manufacturer/manufactur
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { RoleService } from 'src/app/core/auth/models/role.service';
 import { DOCUMENT } from '@angular/common';
+import {ManufactrureDialogComponent} from '../../modules/dialogs/manufactrure-dialog/manufactrure-dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 @Component({
-  //animations: [changeValueHighlight],
+
   selector: "app-manufacturer-page",
   templateUrl: "./manufacturer-page.component.html",
   styleUrls: ["./manufacturer-page.component.scss"],
@@ -32,19 +38,23 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     public manufacturer: ManufacturerService,
     public langService: LanguageService,
     public manufacturerForm: ManufacturerFormService,
-    public roleService:RoleService,
+    public roleService: RoleService,
     public lang: Lang,
     private translate: TranslateService,
+    public dialog: MatDialog,
+
     @Inject(DOCUMENT) private document: Document
   ) {
     super(pages);
     this.translate.onLangChange.subscribe(lang => {
       this.getList(this.userRoleId);
-    })
+    });
   }
-  userRoleId:number;
-  userRoleStatus:boolean=false;
-  userId:number;
+  animal: string;
+  name: string;
+  userRoleId: number;
+  userRoleStatus: boolean = false;
+  userId: number ;
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
@@ -58,11 +68,15 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.getUserByTokin()
     this.initTranslate();
   }
-  getUserByTokin():void{
-    this.roleService.getByToken().subscribe(data=>{
-      this.userRoleId=data.data.user.role_id
-      if(this.userRoleId==1){
-        this.userRoleStatus=true;
+
+
+
+
+  getUserByTokin(): void {
+    this.roleService.getByToken().subscribe(data => {
+      this.userRoleId = data.data.user.role_id;
+      if(this.userRoleId == 1 ) {
+        this.userRoleStatus = true ;
       }
       this.getList(this.userRoleId);
     this.userId=data.data.user.id
@@ -105,7 +119,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.ngxService.stopAll();
     this.langService.languages = data;
     this.manufacturerForm.initDesc(this.langService.languages.data);
-  };
+  } ;
 
   updateStatus(item: IManufacturer) {
     this.manufacturer
@@ -119,15 +133,11 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       this.editItem.status == 0 ? 1 : 0
     );
   };
-
   //#region override
-
   save = () => {
     // console.log("ADD/UPDATE", this.categoryForm.category);
-
     // THIS SHOULD NOT BE HERE ! ! !
     let c = this.manufacturerForm.manufacturer;
-
     let data = {
       image_id: c.image_id,
       code: c.code,
@@ -170,13 +180,13 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.manufacturer.manufacturer.count++;
 
     this.closeForm();
-    this.toastr.success("MANUFACTURER ADDED");
+    this.toastr.success('MANUFACTURER ADDED');
   };
 
   putHandler = (data) => {
     this.ngxService.stopAll();
     this.closeForm();
-    this.toastr.success("MANUFACTURER UPDATED ^_^");
+    this.toastr.success('MANUFACTURER UPDATED ^_^') ;
   };
 
   plus = () => {
@@ -191,12 +201,29 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
+  deleteManufactures(item): void {
+    const dialogRef = this.dialog.open(ManufactrureDialogComponent, {
+      width: '45vw',
+      height: '300px',
+      data: {name: this.name, animal: this.animal}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if ( result == true) {
+        this.manufacturer.deleteManufacture(item.id).subscribe(data=>{
+          this.getList(this.userRoleId);
+        })
+      }
+      this.animal = result;
+    });
+  }
+  openDialog(): void {
 
+  }
   //#region pagination
-  pageEvent(event):void{
-    this.manufacturer.manufacturer.count=event.length
-    this.manufacturer.manufacturer.take=event.pageSize
-    this.manufacturer.manufacturer.skip=event.pageSize*event.pageIndex
+  pageEvent(event): void {
+    this.manufacturer.manufacturer.count = event.length;
+    this.manufacturer.manufacturer.take = event.pageSize;
+    this.manufacturer.manufacturer.skip = event.pageSize  * event.pageIndex;
     this.getList(this.userRoleId);
   }
 
