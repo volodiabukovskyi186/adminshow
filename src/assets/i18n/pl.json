@@ -365,7 +365,8 @@
     "orderProductActions": "Działanie",
     "addProducts": "Dodaj produkty",
     "selectProduct": "Wybierz produkt",
-    "history":"Historia"
+    "history":"Historia",
+    "selected": "Wybrany"
   },
   "liqpay":{
     "onlinePay":"PŁATNOŚĆ ONLINE",

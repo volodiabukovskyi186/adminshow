@@ -132,6 +132,9 @@ export class ManufacturerService {
       data
     );
   }
+  deleteManufacture(id:number): Observable<any> {
+    return this.http.delete( `${environment.manufacturer.manufacturer}/${id}`) ;
+  }
 
   updateStatus(id: number, status: number): Observable<any> {
     let data = JSON.stringify({

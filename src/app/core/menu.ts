@@ -14,7 +14,8 @@ export const MENU = [
     
   ),
   group("MENU.orders.orders", [
-    item("MENU.orders.orders", "orders", true, ICON_MENU_ITEM,"manage_orders"),
+        item("MENU.orders.orders", "orders", true, ICON_MENU_ITEM,"manage_orders"),
+        item("MENU.orders.selected", "selected", true, ICON_MENU_ITEM,"manage_orders"),
     // item("Accepted", "orders/accepted"),
     // item("Done", "orders/done"),
     // item("Canceled", "orders/canceled"),

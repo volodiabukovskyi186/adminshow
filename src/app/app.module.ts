@@ -18,6 +18,7 @@ import localeUa from "@angular/common/locales/uk";
 import { registerLocaleData } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UserMenuComponent } from './modules/user/user-menu/user-menu.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 registerLocaleData(localeRu, "ru");
 registerLocaleData(localePl, "pl");
@@ -35,6 +36,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     AppRoutingModule,
     HttpClientModule,
+    MatDialogModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

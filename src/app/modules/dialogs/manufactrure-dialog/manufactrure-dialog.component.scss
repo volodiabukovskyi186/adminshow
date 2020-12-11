@@ -1,0 +1,35 @@
+.dialog{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .title{
+    width: 100%;
+    text-align: center;
+  }
+  .button-dialog{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background: transparent;
+    button{
+      outline: none;
+      width: 9vw;
+      height: 50px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 23px;
+      &:hover{
+
+      }
+    }
+    .red{
+      background: #424141;
+    }
+    .green{
+      background: #424141;
+    }
+  }
+}

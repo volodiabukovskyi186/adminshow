@@ -361,7 +361,8 @@
     "orderProductActions": "Действие",
     "addProducts": "Добавить товары",
     "selectProduct": "Выбрать товар",
-    "history":"Історія"
+    "history":"Історія",
+    "selected": "Избранные"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",
