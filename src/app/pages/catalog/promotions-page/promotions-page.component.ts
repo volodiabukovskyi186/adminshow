@@ -105,7 +105,7 @@ save = () => {
     description: [],
   };
 
-  debugger;
+  //debugger;
 
   if (c.id != null) {
     c.descriptions.forEach((d) => {
@@ -155,7 +155,7 @@ save = () => {
     });
     
     this.prom.post(data).subscribe((res) => {
-      debugger;
+      //debugger;
 
       this.postHandler(res);
       if (this.selectedProductsPromotion) {

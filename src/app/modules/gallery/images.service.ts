@@ -183,7 +183,7 @@ export class ImagesService {
 
     if (this.images.data)
       this.images.data.forEach((img) => {
-        debugger;
+        //debugger;
 
         if (img.selected) list.push(img);
       });

@@ -1,0 +1,29 @@
+<div class="search-container" (clickOutside)="closeSearchList()">
+    <input 
+        type="search"
+        (input)="onInput($event)"
+        (focus)="isActiveResults = true;"
+        (keyup)="pressEnter($event)" 
+        class="search-input"
+    />
+    <img src="assets/icons/magnifiying-glass.svg" class="search-icon" />
+
+    <div class="search-results" *ngIf="searchService?.list?.length && isActiveResults">
+        <div *ngFor="let item of searchService.list"
+           [routerLink]="['/products']">
+           <div class="search-content" (click)="selectProduct(item.id)">
+               <div>
+                    <img src="{{ host + item?.image?.src }}" class="search-img"/>
+               </div>
+               <div class="search-name-price">
+                    <div class="search-name">{{ item?.name }}</div>
+                    <!-- <div class="search-price">
+                        {{ currency?.current?.simbol_left }}
+                        {{ item?.price * currency?.current?.value | number }}
+                        {{ currency?.current?.simbol_right }}
+                    </div> -->
+               </div>
+           </div>
+        </div>
+    </div>
+</div>
