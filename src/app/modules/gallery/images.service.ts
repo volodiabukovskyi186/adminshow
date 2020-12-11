@@ -53,6 +53,13 @@ export class ImagesService {
     );
   }
 
+  getManagerImages(albumId: number): Observable<any> {
+    let skip = this.page * this.images.take - this.images.take;
+    let params = `?take=${this.images.take}&skip=${skip}`;
+
+    return this.http.get(`${environment.host}manager/images${params}&album=${albumId}`);
+  }
+
   upload(image: any, albumId: number = null): Observable<any> {
     const formData: FormData = new FormData();
     formData.append("images", image, image.name);
@@ -80,6 +87,8 @@ export class ImagesService {
   uploadedErrorCount: number = 0;
   uploading: boolean = false;
   uploadIndex: number = 0;
+  select: EventEmitter<any> = new EventEmitter<any>();
+  currentImage: IImage = null;
 
   addImagesToUpload(files: FileList) {
     for (let i = 0; i < files.length; i++) {
@@ -142,8 +151,6 @@ export class ImagesService {
     }
   }
 
-  currentImage: IImage = null;
-
   deleteImage(image: IImage): Observable<any> {
     this.currentImage = image;
     return this.http.delete(`${environment.gallery.images.image}/${image.id}`);
@@ -164,8 +171,6 @@ export class ImagesService {
   // selectable
   //
 
-  select: EventEmitter<any> = new EventEmitter<any>();
-
   resetSelected(image: IImage) {
     if (this.images.data)
       this.images.data.forEach((img) => {
@@ -178,8 +183,12 @@ export class ImagesService {
 
     if (this.images.data)
       this.images.data.forEach((img) => {
+        //debugger;
+
         if (img.selected) list.push(img);
       });
+    
+    console.log(list);
 
     return list;
   }

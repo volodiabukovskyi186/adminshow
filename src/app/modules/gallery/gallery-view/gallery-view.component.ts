@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
 import { ImagesService } from "../images.service";
 import { ViewMode, IAlbum, IAlbumResponse, IImage } from "../folder/interfaces";
 import { NgxUiLoaderService } from "ngx-ui-loader";
@@ -19,6 +19,9 @@ export class GalleryViewComponent implements OnInit {
   @Input() selectable: boolean = false;
   @Input() singleSelectable: boolean = false;
   @Input() mode: ViewMode = ViewMode.card;
+
+  @ViewChild('selectedAlbum') selectedAlbum: ElementRef<HTMLElement>;
+
   ViewMode = ViewMode;
 
   public albumId: number;
@@ -33,16 +36,19 @@ export class GalleryViewComponent implements OnInit {
     public userService: UserService,
     private ngxService: NgxUiLoaderService,
     private toastr: ToastrService
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
+    //this.getAlbumsByManager();
+    this.getUserByToken();
+  }
+
+  getUserByToken(): void {
     this.userService.getByToken().subscribe((res) => {
       this.currentUserRoleId = res.data.user.role_id;
       this.albumIdManager = res.data.user.album_id;
+      this.startLoad();
     });
-  }
-
-  public ngOnInit(): void {
-    this.getAlbumsByManager();
-    this.startLoad();
   }
 
   startLoad() {
@@ -51,11 +57,28 @@ export class GalleryViewComponent implements OnInit {
     this.album.albums.data = [];
     this.image.images.data = [];
 
-    this.album.getAlbums().subscribe(this.getAlbumsHandler);
-    this.album.getAllParent().subscribe(this.getAllParentHandler);
-    this.image
+    console.log(this.currentUserRoleId);
+
+    if (this.currentUserRoleId === 1) {
+      this.album.getAlbums().subscribe(this.getAlbumsHandler);
+
+      this.image
       .getImages(this.album.activeAlbum?.id)
       .subscribe(this.getImagesHandler);
+
+    } else {
+      this.album.getAlbumsByManager(this.albumIdManager).subscribe((res) => {
+        console.log(res);
+        this.album.albums.data = res.data;
+
+        this.image
+        .getManagerImages(this.album.activeAlbum?.id)
+        .subscribe(this.getImagesHandler);
+      })
+    }
+
+    this.album.getAllParent().subscribe(this.getAllParentHandler);
+
   }
 
   //#region albums
@@ -89,21 +112,7 @@ export class GalleryViewComponent implements OnInit {
 
   getAlbumsHandler = (data: IAlbumResponse) => {
     this.ngxService.stop();
-
-    if (this.currentUserRoleId !== 1) {
-      this.album.albums = data;
-
-      this.album.albums.data.forEach((album) => { 
-        if (album.id === this.albumIdManager) {
-          this.album.albums.data = [];
-          this.album.albums.data.push(album);
-        }
-      });
-    }
-
-    if (this.currentUserRoleId === 1) {
-      this.album.albums = data;
-    }
+    this.album.albums.data = data.data;
   };
 
   getAllParentHandler = (data) => {
@@ -141,15 +150,6 @@ export class GalleryViewComponent implements OnInit {
   getImagesHandler = (data) => {
     this.ngxService.stop();
     this.image.images = data;
-
-    this.image.images.data.forEach((image) => { 
-      if (image.user_id.id === this.currentUserRoleId) {
-        this.image.images = data;
-        //this.image.images.data.push(image);
-      } else {
-        this.image.images.data = [];
-      }
-    });
   };
 
   onDeleteImage(image: IImage) {
@@ -168,7 +168,7 @@ export class GalleryViewComponent implements OnInit {
     this.album.activeAlbum = album;
     this.startLoad();
 
-    this.getAlbumsByManager();
+    //this.getAlbumsByManager();
   }
   //
 
@@ -192,10 +192,10 @@ export class GalleryViewComponent implements OnInit {
     this.image.select.emit();
   }
 
-  public getAlbumsByManager(): void {
-    this.album.getAlbumsByManager().subscribe((res) => {
-      this.parent = res.parent;
-    })
+  public showData(): void {
+
+    // console.log('album', album);
+    // console.log('albumsData', albumsData);
   }
 
   pageNextHandler(): void {

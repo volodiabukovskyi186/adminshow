@@ -17,6 +17,8 @@ import { PaginationComponent } from "./pagination/pagination.component";
 import { StepTabComponent } from "./step-tab/step-tab.component";
 import { StepTabsComponent } from "./step-tabs/step-tabs.component";
 import { TranslateModule } from "@ngx-translate/core";
+import { SearchComponent } from './search/search.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 const COMPONENTS = [
   GoldenPanelComponent,
@@ -36,8 +38,13 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS],
-  imports: [CommonModule, RouterModule, TranslateModule],
+  declarations: [...COMPONENTS, SearchComponent],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    TranslateModule,
+    ClickOutsideModule
+  ],
   exports: [...COMPONENTS],
 })
 export class RapModule {}

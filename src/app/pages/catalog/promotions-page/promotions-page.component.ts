@@ -105,21 +105,22 @@ save = () => {
     description: [],
   };
 
+  //debugger;
+
   if (c.id != null) {
     c.descriptions.forEach((d) => {
-      if(d.image_id==0){
+      if (d.image_id == 0) {
         data.description.push({
           id: d.id,
           lang_id: d.lang_id,
           description: d.description,
-          image_id:d.image.id,
+          image_id: d.image.id,
           subtitle: d.subtitle,
           title: d.title,
           data_start: d.data_start,
           data_end: d.data_end,
         })
-      }
-      else {
+      } else {
         data.description.push({
           id: d.id,
           lang_id: d.lang_id,
@@ -154,6 +155,8 @@ save = () => {
     });
     
     this.prom.post(data).subscribe((res) => {
+      //debugger;
+
       this.postHandler(res);
       if (this.selectedProductsPromotion) {
         this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
@@ -215,7 +218,7 @@ public deletePromotion(promotionId) {
 }
 
 public selectedProducts(event): void {
-  this.selectedProductsPromotion = event.map(function(product) {
+  this.selectedProductsPromotion = event?.map(function(product) {
     return product.id;
   })
 }

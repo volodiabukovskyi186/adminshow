@@ -7,8 +7,12 @@ import {
   ViewChild,
   ElementRef,
   HostBinding,
+  ViewChildren,
+  QueryList,
+  HostListener
 } from "@angular/core";
 import { ViewMode, IAlbum } from "./interfaces";
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: "rap-folder",
@@ -29,6 +33,10 @@ export class FolderComponent implements OnInit {
   @Output() open: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
 
+  //@HostListener('dblclick') onDoubleClick(event) {
+    //this.triggerFalseClick();
+  //}
+
   private _album: IAlbum = {
     created_at: "",
     id: -1,
@@ -47,6 +55,9 @@ export class FolderComponent implements OnInit {
     return this._album;
   }
   @ViewChild("input") input: ElementRef;
+  //@ViewChildren('div') selectedAlbum: QueryList<ElementRef>;
+
+  @ViewChild('selectedAlbum') selectedAlbum: ElementRef<HTMLElement>;
 
   // Edit Mode
 
@@ -73,9 +84,10 @@ export class FolderComponent implements OnInit {
     return this._editMode;
   }
 
-  
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(this.selectedAlbum);
+    // console.log(this.input);
+  }
 
   turnEditMode() {
     if (!this.editable) return;

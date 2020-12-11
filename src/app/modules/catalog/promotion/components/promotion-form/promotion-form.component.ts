@@ -72,7 +72,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     ]
   };
 
-  descEdit: IPromotionDescription = null;
+  public descEdit: IPromotionDescription = null;
   public productsListForm: FormGroup;
   public searchProducts: any;
   public isSelectedProduct: boolean;
@@ -94,40 +94,8 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   public filteredProducts = new BehaviorSubject([]);
   public filteredProducts$ = this.filteredProducts.asObservable();
   public productName: any;
+  public modalOpen: boolean = false;
   // public selectedProducts: any[];
-
-  onPress(model: IPromotionDescription) {
-    console.log('one item',this.model)
-    this.descEdit = model;
-    this.modalOpen = true;
-    if(model.id! == null){
-      this.model.descriptions.forEach(elem=> {
-        elem.image_id = elem.image.id;
-      })
-    }
-   
-    // this.model.descriptions[]
-  }
-  onReset(model: IPromotionDescription) {
-    model.image_id = null;
-    this.host = null;
-    model.image = {
-      src: "assets/icons/color-none-image.svg",
-      src_mini: "assets/icons/color-none-image.svg",
-    };
-  }
-  modalOpen: boolean = false;
-  selectHandler = (data) => {
-    let list: IImage[] = this.image.getSelected();
-    if (list[0]) {
-      const selectedImage: IImage = list[0];
-      this.descEdit.image_id = selectedImage.id;
-      this.descEdit.image.src = selectedImage.src;
-      this.descEdit.image.src_mini = selectedImage.src_mini;
-      this.host = selectedImage.host;
-      this.modalOpen = false;
-    }
-  };
 
   constructor(
     public image: ImagesService, 
@@ -158,14 +126,51 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     this.promotionService.get().subscribe((res) => {})
   }
 
-  test(imagee): void{
-    console.log('image====>', imagee);
-  }
+  // test(imagee): void{
+  //   console.log('image====>', imagee);
+  // }
 
   public ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
+
+  onPress(model: IPromotionDescription) {
+    console.log('one item',this.model);
+
+    this.descEdit = model;
+    this.modalOpen = true;
+    if (model.id !== null) {
+      this.model.descriptions.forEach(elem => {
+        elem.image_id = elem.image.id;
+      })
+    }
+   
+    // this.model.descriptions[]
+  }
+  onReset(model: IPromotionDescription) {
+    model.image_id = null;
+    this.host = null;
+    model.image = {
+      src: "assets/icons/color-none-image.svg",
+      src_mini: "assets/icons/color-none-image.svg",
+    };
+  }
+
+  selectHandler = (data) => {
+    let list: IImage[] = this.image.getSelected();
+    if (list[0]) {
+      const selectedImage: IImage = list[0];
+      this.descEdit.image_id = selectedImage.id;
+      this.descEdit.image.src = selectedImage.src;
+      this.descEdit.image.src_mini = selectedImage.src_mini;
+      this.host = selectedImage.host;
+      this.modalOpen = false;
+    }
+
+    console.log(list);
+    console.log(this.descEdit.image_id);
+  };
 
   public generateProductsListForm(): void {
     this.productsListForm = new FormGroup({

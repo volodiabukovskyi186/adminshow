@@ -89,12 +89,16 @@
   "dashboard": {
     "dashboard": "Панель приборов"
   },
+  "promotion": {
+    "add_edit_promotion": "Добавить/Изменить акцию"
+  },
   "category": {
     "category": "Категория",
     "categories": "Категории",
     "parrent_id": "Родительская категория",
     "title": "Название",
-    "add_edit_category": "Добаить/редактировать категорию"
+    "add_edit_category": "Добаить/редактировать категорию",
+    "description": "Описание"
   },
   "collection": {
     "collections": "Коллекции",

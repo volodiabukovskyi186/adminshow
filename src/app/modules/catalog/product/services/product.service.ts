@@ -23,17 +23,23 @@ export class ProductService {
     const lang = localStorage.getItem('currentLang');
     // let skip = this.page * this.data.take - this.data.take;
     let params = `?take=${this.data.take}&skip=${this.data.skip}&lang=${lang}`;
-    if (role_id == 1 ) {
+    if (role_id === 1 ) {
+
       return this.http.get<IProductResponse>(
         environment.catalog.product.products + params
       );
     }
-    else{
+    else {
+
       return this.http.get<IProductResponse>(
         environment.catalog.product.manager + params
       );
     }
   
+  }
+
+  getProductById(productId): Observable<any> {
+    return this.http.get(`${environment.host}client/products/${productId}`);
   }
 
   post(data: any): Observable<any> {

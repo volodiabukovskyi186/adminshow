@@ -42,13 +42,9 @@ export class AlbumService {
   albumBreadcrumbs: IAlbumBreadcrumb[] = [];
 
   getAlbums(): Observable<IAlbumResponse> {
-    let parent_id = "";
-    if (this.activeAlbum?.id) {
-      parent_id = "&parent_id=" + this.activeAlbum.id;
-    }
     return this.http.get<IAlbumResponse>(
       environment.gallery.images.albums +
-        `?skip=0&take=${this.takeAlbums}${parent_id}`
+        `?skip=0&take=${this.takeAlbums}`
     );
   }
 
@@ -131,12 +127,17 @@ export class AlbumService {
     }
   }
 
-  public getAlbumsByManager(): Observable<any> {
-    let parent_id;
-    if (this.activeAlbum?.id) {
-      parent_id = this.activeAlbum.id;
+  public getAlbumsByManager(parentId): Observable<any> {
+    let parent_id = "";
+    if (parentId) {
+      parent_id = "&parent_id=" + parentId;
+      console.log(parent_id);
     }
 
-    return this.http.get(`${environment.host}manager/albums?parent_id=${parent_id}`);
+    return this.http.get(`${environment.host}manager/albums?skip=0&take=${this.takeAlbums}${parent_id}`);
   }
+  
+  // public getManagerAlbums(): Observable<any> {
+  //   return this.http.get(`${environment.host}manager/albums`);
+  // }
 }

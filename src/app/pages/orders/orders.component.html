@@ -37,33 +37,33 @@
       <table *ngIf="orderService.order?.data.length > 0" class="raisins-table border-all radius order-table table-wrapper-scroll-y my-custom-scrollbar">
          <thead>
          <tr>
-            <th width="64px">ID</th>
-            <th width="128px">{{ 'MENU.orders.client' | translate }}</th>
-            <th width="148px">{{ 'MENU.orders.manufacturer' | translate }}</th>
-            <th width="128px" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.manager' | translate }}</th>
-            <th width="128px">{{ 'MENU.orders.sum' | translate }}</th>
-            <th width="128px">{{ 'MENU.orders.date' | translate }}</th>
-            <th width="128px">{{ 'MENU.orders.status' | translate }}</th>
-            <th width="212px">{{ 'MENU.orders.actions' | translate }}</th>
+            <th class="min-width__64">ID</th>
+            <th class="min-width__220 min-width__128">{{ 'MENU.orders.client' | translate }}</th>
+            <th class="min-width__220 min-width__138">{{ 'MENU.orders.manufacturer' | translate }}</th>
+            <th class="min-width__220 min-width__128" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.manager' | translate }}</th>
+            <th class="min-width__220 min-width__128">{{ 'MENU.orders.sum' | translate }}</th>
+            <th class="min-width__220 min-width__128">{{ 'MENU.orders.date' | translate }}</th>
+            <th class="min-width__220 min-width__128">{{ 'MENU.orders.status' | translate }}</th>
+            <th class="min-width__238 min-width__216">{{ 'MENU.orders.actions' | translate }}</th>
          </tr>
          </thead>
 
          <tbody class="table-body">
          <tr *ngFor="let order of orderService.order?.data">
-            <td width="64px" class="text-center">{{ order?.id }}</td>
-            <td width="128px" class="text-center">{{ order?.last_name }} {{ order?.first_name }}</td>
-            <td width="148px" class="text-center">{{ order?.manufacturer?.description.name }}</td>
-            <td width="128px" class="text-center" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
-            <td width="128px" class="text-center">{{ order?.total.slice(0, -2) }}</td>
-            <td width="128px" class="text-center">{{ order?.created_at|localDate: "d MMMM HH:mm" }}</td>
-            <td width="128px" class="text-center">
+            <td class="text-center min-width__64">{{ order?.id }}</td>
+            <td class="text-center min-width__220 min-width__128">{{ order?.last_name }} {{ order?.first_name }}</td>
+            <td class="text-center min-width__220 min-width__138">{{ order?.manufacturer?.description.name }}</td>
+            <td class="text-center min-width__220 min-width__128" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
+            <td class="text-center min-width__220 min-width__128">{{ order?.total.slice(0, -2) }}</td>
+            <td class="text-center min-width__220 min-width__128">{{ order?.created_at | localDate: "d MMMM HH:mm" }}</td>
+            <td class="text-center min-width__220 min-width__128">
                <div class="order-status-content">
 
                    <div class="dot" [style]="{'background': order.status[0].color}"></div>
                    <div class="status-text">{{ order.status[0].description.dectiption}}</div>
                </div>
             </td>
-            <td width="100%" class="panel-header-buttons text-center" style="padding: 19px;">
+            <td class="panel-header-buttons text-center min-width__234 min-width__206" style="padding: 19px;">
                <button (click)="reviewOrder(order)" class="button transparent small">
                   <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
                </button>
@@ -97,13 +97,14 @@
          (goPage)="pageToHandler($event)"
          (pageChanged)="pageChangedHandler()"
       ></app-pagination> -->
-
-      <mat-paginator *ngIf="orderService.order?.count >= 5" class="footer"
-         [length]="orderService.order?.count"
-         [pageSize]="orderService.order?.take"
-         [pageSizeOptions]="[5, 10, 25]"
-         (page)="pageEvent($event)"
-      >
-      </mat-paginator>
+      <div class="footer-wrapper">
+         <mat-paginator *ngIf="orderService?.order?.count >= 5" class="footer"
+            [length]="orderService?.order?.count"
+            [pageSize]="orderService?.order?.take"
+            [pageSizeOptions]="[5, 10, 25]"
+            (page)="pageEvent($event)"
+         >
+         </mat-paginator>
+      </div>
    </div>
 </rap-panel-content>

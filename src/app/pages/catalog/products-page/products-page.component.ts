@@ -1,5 +1,5 @@
 import { Permission } from './../../../core/permission/permission';
-import { Component, OnInit,OnChanges, Inject } from "@angular/core";
+import { Component, OnInit,OnChanges, Inject, SimpleChanges } from "@angular/core";
 import { BasePage } from "../../@core";
 import { PaginationPage } from "src/app/modules/ui/rap/pagination/pagination-page";
 import { NgxUiLoaderService } from "ngx-ui-loader";
@@ -19,6 +19,9 @@ import { RolesModule } from 'src/app/modules/roles/roles.module';
 import { RoleService } from 'src/app/core/auth/models/role.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
+import { ActivatedRoute } from "@angular/router";
+import { SearchService } from '../../../modules/ui/rap/search/services/search.service';
+import { isString } from 'util';
 
 @Component({
   animations: [changeValueHighlight],
@@ -28,6 +31,8 @@ import { DOCUMENT } from '@angular/common';
 })
 export class ProductsPageComponent extends BasePage implements OnInit, OnChanges, PaginationPage {
   public userRole: number = 0;
+  public search: string;
+  public searchProductId: number;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -41,17 +46,37 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
     public category: CategoryService,
     public prodCategory: ProductCategoryService,
     public languageLocalizationService: LanguageLocalizationService,
+    public searchService: SearchService,
     private roleService:RoleService,
     private translate: TranslateService,
+    private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: Document) {
-    super(pages);
+      super(pages);
+
       this.translate.onLangChange.subscribe(lang => {
-        this.getList(this.userRole);
+       //this.getList(this.userRole);
+        this.getUserByTokin();
+        //this.getProductsBySearch(this.userRole);
       })
-  }
+    }
 
   public ngOnChanges(): void {
     this.getUserByTokin();
+    //this.getList(this.userRole);
+    
+    //this.getProductsBySearch(this.userRole);
+    //this.route.queryParams
+      //.subscribe(data => {
+        // if (data.search === Number) {
+        //   this.searchProductId = data.search;
+        // }
+ 
+        // if (data.search === String) {
+        //   this.search = data.search;
+        //   this.get();
+        // }
+        //this.getLastReviews();
+    //});
   }
 
   public ngOnInit(): void {
@@ -74,6 +99,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
     this.roleService.getByToken().subscribe(data=>{
       this.userRole = data.data.role.id;
       this.getList(this.userRole);
+      this.getProductsBySearch(this.userRole);
     })
   }
 
@@ -91,10 +117,65 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       });
   }
 
+  public searchHandler = (data) => {
+    console.log(data);
 
-  getList(role_id) {
+    this.product.data.data = data.data;
+    this.product.data.count = data.count;
+    this.breadcrumbs[1] = {
+      link: '/#',
+      title: 'SearchResult',
+    };
+  }
+
+  public get(): void {
+    //debugger;
+
+    this.searchService.search(this.search).subscribe(this.searchHandler);
+  }
+
+  public isNumber(n) { 
+    return /^-?[\d.]+(?:e-?\d+)?$/.test(n); 
+  } 
+
+  public getList(role_id): void {
     this.ngxService.start();
+
     this.product.getList(role_id).subscribe(this.getListHandler);
+    //this.getProductsBySearch(role_id);
+  }
+
+  public getProductsBySearch(roleId): void {
+    this.route.queryParams
+      .subscribe(data => {
+        console.log(data);
+
+        if (data.hasOwnProperty('search')) {
+          if (this.isNumber(data.search)) {
+            console.log('Number(data.search)', Number(data.search));
+
+            // return this.product.data.data = this.product.data.data.filter((product) => {
+            //   return product.id === Number(data.search);
+            // })
+            
+            this.product.getProductById(Number(data.search)).subscribe((res) => {
+              this.product.data.data = [res.data];
+
+              console.log('res.data ====== >>>> !!!', res.data);
+              console.log('this.product.data.data ======= >>>>> !!!!!', this.product.data.data);
+            })
+          }
+   
+          if (!this.isNumber(data.search)) {
+            this.search = data.search;
+            this.get();
+          }
+        } else {
+          //debugger;
+
+          //this.getList(roleId);
+        }
+    });
   }
 
   getListHandler = (data) => {
@@ -248,7 +329,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
         .join(" > ");
     });
   };
-  
+
   getProdCategory() {
     this.prodCategory
       .getByProdId(this.prodForm.model.id)

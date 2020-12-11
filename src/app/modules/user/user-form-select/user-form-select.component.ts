@@ -15,6 +15,7 @@ export class UserFormSelectComponent implements OnInit {
   //public values = [];
 
   @Output() modelChange = new EventEmitter();
+  @Input() user: any;
   @Input() get model(): IProduct {
     return this._model;
   }
@@ -59,7 +60,9 @@ export class UserFormSelectComponent implements OnInit {
   }
 
   public save(): void {
-    this.prodCategory.put(this.model.id).subscribe(this.saveHandler);
+    console.log(this.user);
+
+    this.prodCategory.updateUserCategories(this.user.id).subscribe(this.saveHandler);
   }
 
   saveHandler = (data) => {

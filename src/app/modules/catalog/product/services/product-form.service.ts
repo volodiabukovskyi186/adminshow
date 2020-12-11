@@ -121,7 +121,7 @@ export class ProductFormService
   }
 
   getDescByLangId(id: number, model: IProduct): IProductDescription {
-    for (let i = 0; i < model.descriptions.length; i++) {
+    for (let i = 0; i < model?.descriptions?.length; i++) {
       const d = model.descriptions[i];
 
       if (d.lang_id == id) return d;

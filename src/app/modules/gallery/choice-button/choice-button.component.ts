@@ -32,6 +32,8 @@ export class ChoiceButtonComponent implements OnInit {
   ngOnInit(): void {}
 
   onPress(e: Event) {
+    console.log('e ==================== >>>>>>>', e);
+
     e.preventDefault();
     this.press.emit();
   }

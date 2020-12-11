@@ -1,5 +1,8 @@
 .order-container{
   position: relative;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 
   .order-table{
     margin-bottom: 6px;
@@ -134,17 +137,15 @@
 }
 
 table {
-  width: 100%;
   background-color: #f3f3f3;
 
   tbody {
     height: 360px;
     overflow-y: scroll !important;
-    width: 100%;
     display: block;
 
     tr {
-      width: 100%;
+      //width: 100%;
       display: inline-table;
     }
   }
@@ -152,10 +153,78 @@ table {
   thead {
     position: relative;
     display: block;
-    width: 100%;
   }
 }
 
 // body {
 //   background-color: #bdc3c7;
 // }
+
+@media only screen and (max-width: 1348px) {
+  .min-width__64 {
+    min-width: 64px;
+  }
+  
+  .min-width__128 {
+    min-width: 128px;
+  }
+  
+  .min-width__138 {
+    min-width: 138px;
+  }
+  
+  .min-width__206 {
+    min-width: 206px;
+  }
+
+  .min-width__216 {
+    min-width: 216px;
+  }
+}
+
+@media only screen and (min-width: 1348px) {
+  .min-width__64 {
+    min-width: 64px;
+  }
+  
+  .min-width__128 {
+    min-width: 128px;
+  }
+  
+  .min-width__138 {
+    min-width: 138px;
+  }
+  
+  .min-width__206 {
+    min-width: 206px;
+  }
+
+  .min-width__216 {
+    min-width: 216px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  table {
+    tbody {
+      height: 531px;
+    }
+  }
+
+  .min-width__64 {
+    min-width: 64px;
+  }
+  
+  .min-width__220 {
+    min-width: 220px;
+  }
+  
+  .min-width__234 {
+    min-width: 234px;
+  }
+  
+  
+  .min-width__238 {
+    min-width: 238px;
+  }
+}
