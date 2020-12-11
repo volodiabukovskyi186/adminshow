@@ -33,6 +33,7 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   public editedOrder: any;
   public userRoleId:number;
   public userRoleStatus:boolean=false;
+  public orderhistory: Array <any>;
   public statusCodes = {
     "1": {
       name: 'statusCodes.new'
@@ -61,7 +62,8 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
     super(pages);
 
     this.translate.onLangChange.subscribe(lang => {
-      this.getList();
+      // this.getList();
+      this.getUserByTokin()
     })
   }
 
@@ -134,6 +136,7 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
       });
   }
 
+
   public generateOrdersForm(): void {
     this.ordersForm = new FormGroup({
       status: new FormControl(""),
@@ -151,8 +154,8 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   getListHandler = (data) => {
     this.ngxService.stopAll();
     this.orderService.order = data;
+    console.log('order00000===>', this.orderService.order);
     this.totalSum = '\xa0' + this.orderService.order.sum + '\xa0';
-
     this.orderService.order.data.forEach((val) => {
       this.ordersForm.get('status').setValue(this.statusCodes[val.status_id]);
     })
@@ -196,21 +199,27 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
       checkoutPayment: this.selectedClientOrder.checkoutPayment,
       manufactured_id: this.selectedClientOrder.manufactured_id,
       total: this.selectedClientOrder.total ,
-     
-    }
+    };
 
     this.orderService.updateUserOrder(this.selectedClientOrder.id, userOrde).subscribe((data) => {
       this.uodateAllItems();
-    })
-
+    });
     this.closeForm();
   }
 
 
   public reviewOrder(selectedOrder): void {
+
     this.selectedClientOrder = selectedOrder;
     this.userOrders = selectedOrder.status_id;
     this.openForm();
+    this.orderHistory(selectedOrder.id)
+  }
+  orderHistory(orderId): void {
+    this.orderService.getHistoryById(orderId).subscribe(data => {
+      this.orderhistory = data.data;
+      console.log('history====>', this.orderhistory[0]);
+    });
   }
 
   public sendOrdersFormData(event): void {
@@ -218,11 +227,12 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   }
 
   public openEditOrder(orderToEdit): void {
+
     this.editedOrder = orderToEdit;
     this.isOpenEditOrderForm = true;
-
     this.openForm();
   }
+
 
   closeForm = () => {
     this.pages.panelSettings.form = false;
@@ -232,7 +242,7 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
     this.pages.panelButtonSettings.rightToggle = true;
     this.showFilters = false;
     this.isOpenEditOrderForm = false;
-  }  
+  }  ;
 
   openForm = () => {
     this.pages.panelSettings.form = true;
@@ -242,10 +252,10 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
     this.pages.panelButtonSettings.rightToggle = false;
   };
 
-  pageEvent(event):void{
-    this.orderService.order.count=event.length
-    this.orderService.order.take=event.pageSize
-    this.orderService.order.skip=event.pageSize*event.pageIndex
+  pageEvent(event): void {
+    this.orderService.order.count = event.length;
+    this.orderService.order.take = event.pageSize;
+    this.orderService.order.skip = event.pageSize * event.pageIndex;
     this.getList(this.userRoleId);
   }
 

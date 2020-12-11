@@ -360,7 +360,9 @@
     "details": "Details",
     "orderProductActions": "Action",
     "addProducts": "Add products",
-    "selectProduct": "Select product"
+    "selectProduct": "Select product",
+    "history":"History",
+
   },
   "liqpay":{
     "onlinePay":"Online pay",

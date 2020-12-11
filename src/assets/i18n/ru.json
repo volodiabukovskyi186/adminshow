@@ -356,7 +356,8 @@
     "details": "Реквизиты",
     "orderProductActions": "Действие",
     "addProducts": "Добавить товары",
-    "selectProduct": "Выбрать товар"
+    "selectProduct": "Выбрать товар",
+    "history":"Історія"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

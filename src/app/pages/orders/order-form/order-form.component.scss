@@ -63,7 +63,7 @@
         &>rap-step-tabs {
             &>.nav-tabs {
                 li {
-                    width: 50%;
+                    width: 30%;
                     text-align: center;
                     color: #5F5F62 !important;
                     border-bottom: solid 1px transparent !important;
@@ -231,4 +231,39 @@ th {
 
 .margin-right__5 {
     margin-right: 5px;
+}
+.manager{
+  padding-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+}
+.history-item{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-bottom: 20px;
+}
+
+.order-status-content {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 3px;
+}
+.status-text {
+  margin-left: 3px;
 }

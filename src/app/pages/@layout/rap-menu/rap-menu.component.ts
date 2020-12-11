@@ -68,7 +68,7 @@ export class RapMenuComponent implements OnInit, OnChanges {
   }
 
   public getCurrentItem(event) {
-    console.log(event);
+
     this.currentItemUrl = event;
   }
 
@@ -99,6 +99,6 @@ export class RapMenuComponent implements OnInit, OnChanges {
   }
 
   public show(i): void {
-    console.log(i);
+
   }
 }

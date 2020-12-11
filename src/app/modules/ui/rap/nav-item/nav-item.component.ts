@@ -28,7 +28,7 @@ export class NavItemComponent implements OnInit,OnChanges {
 
   ngOnInit(): void {
     this.currentItemUrl.emit(this.router.url);
-    console.log(this.router.url);
+
     
     // this.UserService.SUser.subscribe(data=>{
     //   let arrUserManage=JSON.parse(JSON.parse((localStorage.getItem('user'))).role.permissions)

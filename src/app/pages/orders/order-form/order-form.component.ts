@@ -15,20 +15,19 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() status;
   @Input() langs: ILanguage[];
   @Input() userOrders;
-  @Input() roleStatus
+  @Input() history;
+  @Input() roleStatus;
   @Output() ordersFormData = new EventEmitter<any>();
   @Output() ordersStaus = new EventEmitter<any>();
-  
   public statusIte = [];
-  public stausId: any;
 
   constructor(public pages: PagesService,
     private translate: TranslateService,
-    public localizationService: LocalizationServicesService
-  ){ 
+    public localizationService: LocalizationServicesService,
+  ) {
     this.translate.onLangChange.subscribe((lang) => {
       this.getStatus();
-    })
+    });
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -42,12 +41,9 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   public getStatus(): void {
-    // this.translate.onLangChange.subscribe(lang => {
-
     this.localizationService.getOrderAllStatus().subscribe(data => {
       this.statusIte = data.data;
     })
-  // })
   }
 
   public modifyPrice(price: string): string {

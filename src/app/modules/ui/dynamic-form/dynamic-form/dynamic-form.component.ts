@@ -50,7 +50,7 @@ export class DynamicFormComponent implements OnInit {
     this.selected.image_id=list[0].id
     this.selected.image.src = list[0].src;
     this.selected.image.src_mini = list[0].src_mini;
-    console.log(list)
+
     this.modalOpen = false;
   }
 

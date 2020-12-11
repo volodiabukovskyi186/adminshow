@@ -89,17 +89,13 @@ export class OrderService {
   }
   
   searchClient(searchData): Observable<any> {
-    //let params = `?first_name=${firstName}&last_name=${lastName}&tel=${tel}&email=${email}`;
     let params = `?q=${searchData}`;
 
     return this.http.get(`${environment.host}clients/search` + params);
   }
+  getHistoryById(orderId): Observable<any>{
+    const lang = localStorage.getItem('currentLang');
+    return this.http.get(`${environment.host}order/getOrderHistory/${orderId}?lang=${lang}` );
+  }
 
-  // post(data: any): Observable<any> {
-  //   return this.http.post(environment.catalog.option.option, data);
-  // }
-
-  // put(data: any, id: number): Observable<any> {
-  //   return this.http.put(`${environment.catalog.option.option}/${id}`, data);
-  // }
 }

@@ -376,7 +376,8 @@
     "details": "Реквізити",
     "orderProductActions": "Дія",
     "addProducts": "Додати товари",
-    "selectProduct": "Вибрати товар"
+    "selectProduct": "Вибрати товар",
+    "history":"Історія"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",
