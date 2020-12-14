@@ -362,7 +362,8 @@
     "addProducts": "Add products",
     "selectProduct": "Select product",
     "history":"History",
-    "selected": "Selected"
+    "selected": "Selected",
+    "basket": "Basket"
 
   },
   "liqpay":{
@@ -416,5 +417,11 @@
     "imagesOr": "or",
     "selectFromDevice": "Select from device",
     "upload": "Upload"
+  },
+  "selected": {
+    "client": "Client",
+    "email": "Email",
+    "phone": "Phone",
+    "item": "Gods"
   }
 }

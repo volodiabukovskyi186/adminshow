@@ -378,7 +378,8 @@
     "addProducts": "Додати товари",
     "selectProduct": "Вибрати товар",
     "history":"Історія",
-    "selected": "Обрані"
+    "selected": "Обрані",
+    "basket": "Корзина"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",
@@ -431,5 +432,11 @@
     "imagesOr": "або",
     "selectFromDevice": "Виберіть з пристрою",
     "upload": "Завантажити"
+  },
+  "selected": {
+    "client": "Клієнт",
+    "email":"Емейл",
+    "phone": "Телефон",
+    "item": "Торвар"
   }
 }

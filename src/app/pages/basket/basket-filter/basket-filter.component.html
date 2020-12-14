@@ -1,0 +1,59 @@
+<div class="reviews-form-container">
+    <div class="reviews-form-title">{{ 'reviews.reviewsFilters' | translate }}</div>
+    <div>
+        <div class="reviews-wrapper">
+            <div class="review-content">
+                <div class="reviews-content__main">
+                    <form [formGroup]="orderFiltersForm">
+                        <div class="reviews-date">
+                            <div class="reviews-date-title">{{ 'reviews.reviewsDateFrom' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input formControlName="date_start" type="date" class="reviews-date-text" />
+                            </div>
+                        </div>
+                        <div class="reviews-date">
+                            <div class="reviews-date-title">{{ 'reviews.reviewsDateTo' | translate }}</div>
+                            <div class="orders-filter__input-content">
+                                <input formControlName="date_end" type="date" class="reviews-date-text" />
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="search-container reviews-date" (clickOutside)="closeSearchList()">
+                                <div class="reviews-date-title">{{ 'reviews.goods' | translate }}</div>
+                                <span>
+                                <input
+                                        [value]="selectedvalue"
+                                        type="search"
+                                        (input)="onInput($event)"
+                                        (focus)="isActiveResults = true;"
+                                        (keyup)="pressEnter($event)"
+                                        class="search-input"
+                                />
+                                <img *ngIf="searchService?.list?.length && !isActiveResults" src="assets/icons/magnifiying-glass.svg" class="search-icon" />
+                                </span>
+                                <div class="search-results" *ngIf="searchService?.list?.length && isActiveResults">
+                                    <div *ngFor="let item of searchService.list" >
+                                        <div class="search-content" (click)="selectProduct(item.id,item?.name)">
+                                            <div>
+                                                <img src="{{ host + item?.image?.src }}" class="search-img"/>
+                                            </div>
+                                            <div class="search-name-price">
+                                                <div class="search-name">{{ item?.name }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button class="order-filters__submit-btn cursor-pointer" (click)="filterClientOrders()">
+                            {{ 'orders.orderFilterBtn' | translate }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

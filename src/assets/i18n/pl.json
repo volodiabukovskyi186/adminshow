@@ -366,7 +366,8 @@
     "addProducts": "Dodaj produkty",
     "selectProduct": "Wybierz produkt",
     "history":"Historia",
-    "selected": "Wybrany"
+    "selected": "Wybrany",
+    "basket": "Kosz"
   },
   "liqpay":{
     "onlinePay":"PŁATNOŚĆ ONLINE",
@@ -419,5 +420,11 @@
     "imagesOr": "lub",
     "selectFromDevice": "Wybierz z urządzenia",
     "upload": "Pobieranie"
+  },
+  "selected": {
+    "client": "Klient",
+    "email": "Email",
+    "phone": "Telefon",
+    "item": "Rzecz"
   }
 }

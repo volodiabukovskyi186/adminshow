@@ -86,6 +86,10 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditOrderFormComponent } from './orders/edit-order-form/edit-order-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { SelectedComponent } from './selected/selected.component';
+import { SelectedFilterComponent } from './selected/selected-filter/selected-filter.component';
+import { BasketComponent } from './basket/basket.component';
+import { BasketFilterComponent } from './basket/basket-filter/basket-filter.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +133,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     LiqpayPageComponent,
     LipayFormComponent,
     OrderFiltersFormComponent,
-    EditOrderFormComponent
+    EditOrderFormComponent,
+    SelectedComponent,
+    SelectedFilterComponent,
+    BasketComponent,
+    BasketFilterComponent
   ],
     imports: [
         CommonModule,

@@ -82,7 +82,6 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
     this.pages.panelButtonSettings.plus = false;
     this.pages.panelButtonSettings.rightToggle = true;
     this.pages.panelButtonSettings.save = false;
-
     this.pages.panelButtonSettings.toggleFilter = false;
     this.pages.onTogleFilterClick = () => {    
       this.showFilters = true;      
@@ -169,7 +168,6 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   public orderFiltersFormData(event): void {
     this.orderService.order.data = event.data;
     this.totalSum = event.sum;
-
     this.closeForm();
   }
 

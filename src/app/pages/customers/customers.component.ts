@@ -40,12 +40,9 @@ export class CustomersComponent extends BasePage implements OnInit {
     public breadcrumbs: BreadcrumbsService,
     public pages: PagesService,
     public customersService: CustomersService,
-    //public manufacturer: ManufacturerService,
     public langService: LanguageService,
-    countryFormService:CountriesService,
-    // public manufacturerForm: ManufacturerFormService,
     public lang: Lang,
-     private route: Router,
+    private route: Router,
     public userService: UserService
   ) {
     super(pages);
@@ -54,7 +51,6 @@ export class CustomersComponent extends BasePage implements OnInit {
   public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-    
     this.initTranslate();
     // this.breadcrumbs.breadcrumbs = [
     //   { link: "", title: "Dashboard" },
@@ -62,11 +58,9 @@ export class CustomersComponent extends BasePage implements OnInit {
     // ];
 
     this.userService.getByToken().subscribe((res) => {
-      //this.currentUserId = res.data.user.id;
-    });
-    
-    this.pages.panelButtonSettings.download = true;
 
+    });
+    this.pages.panelButtonSettings.download = true;
     this.getCustomers();
 
   }
@@ -74,13 +68,13 @@ export class CustomersComponent extends BasePage implements OnInit {
   public initTranslate(): void {
     this.lang.translate
       .get([
-        "dashboard.dashboard",
-        "MENU.customers.customers",
+        'dashboard.dashboard',
+        'MENU.customers.customers',
       ])
       .subscribe((tr: any) => {
         this.breadcrumbs.breadcrumbs = [
-          { link: "", title: tr["dashboard.dashboard"] },
-          { link: "customers", title: tr["MENU.customers.customers"] },
+          { link: '', title: tr['dashboard.dashboard'] },
+          { link: 'customers', title: tr['MENU.customers.customers'] },
         ];
       });
   }
@@ -88,13 +82,13 @@ export class CustomersComponent extends BasePage implements OnInit {
   public getCustomers(): void {
     this.customersService.getCustomers().subscribe(data => {
       this.arrCustomers = data;
-    })
+    });
   }
 
-  download =()=> {
+  download = () => {
     this.customersService.getCustomerTable().subscribe(data => {
-      window.location.href=`https://${data.path}`;
-    })
+      window.location.href = `https://${data.path}`;
+    });
   }
 
   public editCustomers(i): void {
@@ -160,10 +154,7 @@ export class CustomersComponent extends BasePage implements OnInit {
   getLangListHandler = (data) => {
     this.ngxService.stopAll();
     this.langService.languages = data;
-
-    //this.manufacturerForm.initDesc(this.langService.languages.data);
-  };
-  
+  } ;
   public customersFormData(event): void {
     this.customerFormData = event;
 
@@ -173,21 +164,20 @@ export class CustomersComponent extends BasePage implements OnInit {
       first_name: this.customerFormData.customerFirstName,
       last_name: this.customerFormData.customerLastName,
       telephone: this.customerFormData.customerPhone
-    }
+    };
   }
 
   //#region override
 
   public edit(i: ICustomer): void {
     this.currentUserId = i.id;
-    this.selected=i;
+    this.selected = i;
     this.pages.panelButtonSettings.download = false;
-    //this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
 
 
-  cancel =()=> {
+  cancel = () => {
     this.pages.panelButtonSettings.download = true;
     this.closeForm();
     this.pages.panelButtonSettings.rightToggle = false;
@@ -201,13 +191,13 @@ export class CustomersComponent extends BasePage implements OnInit {
     this.customersService.customer.count++;
 
     this.closeForm();
-    this.toastr.success("CUSTOMER ADDED");
+    this.toastr.success('CUSTOMER ADDED');
   };
 
   putHandler = (data) => {
     this.ngxService.stopAll();
     this.closeForm();
-    this.toastr.success("CUSTOMER UPDATED ^_^");
+    this.toastr.success('CUSTOMER UPDATED ^_^');
   };
 
   plus = () => {
@@ -250,5 +240,4 @@ export class CustomersComponent extends BasePage implements OnInit {
   }
 
   Math = Math;
-  //#endregion
 }

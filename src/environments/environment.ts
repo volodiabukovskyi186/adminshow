@@ -106,8 +106,7 @@ export const environment = {
     stockstatus:host+'stock_status'
   },
   liqpay:{
-    liqpay:host+'keys'
-  
+    liqpay:host+'keys',
   },
   countries:{
     countrys:host+'countrys',
@@ -124,7 +123,10 @@ export const environment = {
     countrypay:host+'getPaymentsCountry',
     countrydeliverarr:host+'country_delivery/updateArray',
     countrydeliver:host+'getDeliveriesCountry'
+},
+  selected: {
+    selected: host + `owner/getUsersWishlist`,
+  }
 
-}
 
 };

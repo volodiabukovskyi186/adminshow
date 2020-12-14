@@ -1,0 +1,54 @@
+<rap-panel-content
+        [showForm]="pages.panelSettings.form"
+        [showRightSide]="pages.panelSettings.right"
+>
+    <div form>
+<!--        <app-unit-weight-form [selected]="selected">-->
+<!--        </app-unit-weight-form>-->
+        <div *ngIf="showFilters">
+            <app-selected-filter (orderFiltersFormData)="orderFiltersFormData($event)">
+            </app-selected-filter>
+        </div>
+    </div>
+    <div filter></div>
+    <div content class="padding">
+        <table class="raisins-table border-all radius">
+            <thead>
+            <tr>
+                <th width="64px"> ID </th>
+                <th width="168px">{{ "selected.client" | translate }}</th>
+                <th width="168px">{{ "selected.email" | translate }}</th>
+                <th width="168px">{{ "selected.phone" | translate }}</th>
+                <th width="128px">{{ "selected.item"  | translate }}</th>
+                <th width="168px">{{ "APP.updated_at" | translate }}</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let selected of arrSelected; let i=index">
+                <td data-label="ID" class="text-center">{{selected.id}}</td>
+                <td class="text-center">
+                    {{selected.client.first_name}}
+                    {{selected.client.last_name}}
+                </td>
+                <td class="text-center"> {{selected.client.email}}</td>
+                <td class="text-center"> {{selected.client.tel}}</td>
+                <td class="text-center"> {{selected.product.description.name}}</td>
+                <td class="text-center">
+                    {{selected?.created_at|localDate: "d MMMM HH:mm"}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="footer-wrapper">
+            <mat-paginator *ngIf="alldata?.count >= 5" class="footer"
+                           [length]="alldata?.count"
+                           [pageSize]="alldata?.take"
+                           [pageSizeOptions]="[5, 10, 25]"
+                           (page)="pageEvent($event)"
+            >
+            </mat-paginator>
+        </div>
+    </div>
+</rap-panel-content>
+

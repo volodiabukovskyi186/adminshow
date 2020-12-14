@@ -362,7 +362,8 @@
     "addProducts": "Добавить товары",
     "selectProduct": "Выбрать товар",
     "history":"Історія",
-    "selected": "Избранные"
+    "selected": "Избранные",
+    "basket": "Корзина"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",
@@ -415,5 +416,11 @@
     "imagesOr": "или",
     "selectFromDevice": "Выбрать с устройства",
     "upload": "Загрузить"
+  },
+  "selected": {
+    "client": "Клиент",
+    "email": "Емейл",
+    "phone": "Телефон",
+    "item": "Товар"
   }
 }

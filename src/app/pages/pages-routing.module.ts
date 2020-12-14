@@ -33,6 +33,9 @@ import {DeliveryMethodsPageComponent} from "./client/delivery-methods-page/deliv
 import { SettingsPageComponent } from '../pages/client/settings-page/settings-page.component';
 import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
 import { LiqpayPageComponent } from './client/liqpay-page/liqpay-page.component';
+import {SelectedComponent} from './selected/selected.component';
+import {BaseComponent} from '../modules/catalog/product/components/layouts/base/base.component';
+import {BasketComponent} from './basket/basket.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -254,11 +257,27 @@ export const pagesRoutes: Routes = [
     },
   },
   {
-    path: "liqpay",
+    path: 'liqpay',
     component: LiqpayPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      permissions: ["manage_payments"],
+      permissions: ['manage_payments'],
+    },
+  },
+  {
+    path: 'selected',
+    component: SelectedComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ['manage_albums'],
+    },
+  },
+  {
+    path: 'basket',
+    component: BasketComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ['manage_albums'],
     },
   },
 ];
