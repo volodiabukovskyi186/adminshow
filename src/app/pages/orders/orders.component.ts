@@ -31,8 +31,8 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   public totalSum: string;
   public isOpenEditOrderForm: boolean = false;
   public editedOrder: any;
-  public userRoleId:number;
-  public userRoleStatus:boolean=false;
+  public userRoleId: number;
+  public userRoleStatus: boolean=false;
   public statusCodes = {
     "1": {
       name: 'statusCodes.new'

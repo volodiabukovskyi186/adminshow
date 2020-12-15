@@ -79,6 +79,8 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
 
   getListHandler = (data) => {
     this.ngxService.stopAll();
+
+    console.log(data);
     this.user.data = data;
   };
 
@@ -98,6 +100,8 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
 
   getAllCategoryHandler = (data) => {
     this.category.all = data.data;
+
+    console.log(data);
     this.category.all.forEach((element) => {
       // let t = "";
       // element.parents.forEach((p) => {
