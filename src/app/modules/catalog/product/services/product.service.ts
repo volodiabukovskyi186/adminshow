@@ -72,6 +72,10 @@ export class ProductService {
     return this.http.get(`${environment.host}product_disconts`);
   }
 
+  getDiscountById(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.host}getProductDiscont/${id}`);
+  }
+
   updateProductPrice(newPrice): Observable<any> {
     return this.http.post(`${environment.host}product_discont`, newPrice);
   }

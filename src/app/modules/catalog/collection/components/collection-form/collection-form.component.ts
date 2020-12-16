@@ -92,10 +92,36 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   public productName: any;
   public modalOpen: boolean = false;
 
-  onPress() {
+  @HostListener('document:click', ['$event'])
+  @HostListener('document:touchstart', ['$event'])
+    onGlobalClick(event): void {
+      if (!this.elementRef.nativeElement.contains(event.target)) {
+          console.log(this.elementRef.nativeElement);
+          this.isActive = false;
+          this.isCategoriesActive = false;
+          this.isSelectedProduct = false;
+      }
+  }
+
+  constructor(
+    public image: ImagesService,
+    private promotionService: PromotionService,
+    public manufacturerService: ManufacturerService,
+    private elementRef: ElementRef,
+    public languageService: LanguageService
+  ) {}
+  
+  public ngOnInit(): void {
+    this.generateProductsListForm();
+    this.image.select.subscribe(this.selectHandler);
+    // this.products=[21,20]
+  }
+
+  public onPress(): void {
     this.modalOpen = true;
   }
-  onReset() {
+
+  public onReset(): void {
     this.model.image_id = null;
     this.host = null;
     this.model.image = {
@@ -116,31 +142,6 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
       this.modalOpen = false;
     }
   };
-
-  constructor(
-    public image: ImagesService,
-    private promotionService: PromotionService,
-    public manufacturerService: ManufacturerService,
-    private elementRef: ElementRef,
-    public languageService: LanguageService
-  ) {}
-
-  @HostListener('document:click', ['$event'])
-  @HostListener('document:touchstart', ['$event'])
-    onGlobalClick(event): void {
-      if (!this.elementRef.nativeElement.contains(event.target)) {
-          console.log(this.elementRef.nativeElement);
-          this.isActive = false;
-          this.isCategoriesActive = false;
-          this.isSelectedProduct = false;
-      }
-  }
-  
-  public ngOnInit(): void {
-    this.generateProductsListForm();
-    this.image.select.subscribe(this.selectHandler);
-    // this.products=[21,20]
-  }
 
   public ngOnDestroy(): void {
     this.destroy$.next(true);
@@ -224,7 +225,6 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   }
 
   public getSelectedCategory(currentCategory): void {
-    console.log(currentCategory);
     // this.isActive = false;
     this.isCategoriesActive = false;
     this.categoryName = currentCategory.name;

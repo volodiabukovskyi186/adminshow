@@ -103,7 +103,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
       });
   }
 
-  getList() {
+  public getList(): void {
     this.ngxService.start();
     this.category.getList().subscribe(this.getListHandler);
     this.getCategories();
@@ -114,12 +114,10 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     this.category.category = data;
   };
 
-  getCategories(): void {
+  public getCategories(): void {
     this.category.getAllCategories().subscribe((res) => {
       //this.getListHandler(res);
-      console.log(res);
       this.displayAllCaterories = this.toArray(res.data, []);
-      console.log('displayAllCaterories', this.displayAllCaterories);
     })
   }
 
@@ -234,12 +232,12 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
 
   //#endregion
 
-  edit(i): void {
+  public edit(i): void {
     this.categoryForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
 
-  pageEvent(event): void {
+  public pageEvent(event): void {
     this.category.category.count = event.length;
     this.category.category.take = event.pageSize;
     this.category.category.skip = event.pageSize * event.pageIndex;
@@ -250,16 +248,20 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   pageToHandler(page: number): void {
     this.category.page = page;
   }
+
   pagePrevHandler(): void {
     this.category.page--;
   }
+
   pageNextHandler(): void {
     this.category.page++;
   }
+
   pageChangedHandler(): void {
     this.getList();
     window.scrollTo(0, 0);
   }
+  
   Math = Math;
 
   //#region pagination

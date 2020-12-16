@@ -15,6 +15,7 @@ import { ManufacturerFormService } from "src/app/modules/manufacturer/manufactur
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { RoleService } from 'src/app/core/auth/models/role.service';
 import { DOCUMENT } from '@angular/common';
+import { changeValueHighlight } from "src/app/modules/ui/animations";
 import {ManufactrureDialogComponent} from '../../modules/dialogs/manufactrure-dialog/manufactrure-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
@@ -23,6 +24,7 @@ export interface DialogData {
   name: string;
 }
 @Component({
+  animations: [changeValueHighlight],
 
   selector: "app-manufacturer-page",
   templateUrl: "./manufacturer-page.component.html",
@@ -197,9 +199,11 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
 
   //#endregion
 
-  edit(i: IManufacturer) {
+  public edit(i: IManufacturer): void {
     this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
+
+    console.log(i);
   }
   deleteManufactures(item): void {
     const dialogRef = this.dialog.open(ManufactrureDialogComponent, {

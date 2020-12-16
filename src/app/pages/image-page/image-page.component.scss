@@ -21,6 +21,8 @@ rap-folder {
   .description {
     padding: 0;
     justify-content: flex-start;
+    margin-top: 8px;
+    margin-bottom: 10px;
     @include col-width(100%);
   }
 }

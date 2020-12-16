@@ -13,7 +13,7 @@ export class ProductFormSaleComponent implements OnInit {
   public productDiscountFormValue;
   public productDiscounts;
   public isDiscountExpired: boolean = false;
-  arrSelectedSale=[];
+  public arrSelectedSale = [];
 
   public selectedDiscountId: number;
 
@@ -25,7 +25,7 @@ export class ProductFormSaleComponent implements OnInit {
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.model) {
-      this.getDiscounts();
+      this.getDiscountById();
       //this.deleteExpiredDiscounts();
     }
   }
@@ -33,7 +33,7 @@ export class ProductFormSaleComponent implements OnInit {
   public ngOnInit(): void {
     this.generateProductDiscountForm();
     this.getProductDiscountFormValue();
-    this.getDiscounts();
+    this.getDiscountById();
     //this.deleteExpiredDiscounts();
   }
 
@@ -72,9 +72,6 @@ export class ProductFormSaleComponent implements OnInit {
 
     let today = mm + '-' + dd + '-' + yyyy;
 
-    //console.log(today);
-    //console.log('MODEL!!!!=======>>>>>>', this.model);
-
     if (new Date(this.productDiscountFormValue.date_end) < new Date(today)) {
       this.isDiscountExpired = true;
     }
@@ -82,7 +79,8 @@ export class ProductFormSaleComponent implements OnInit {
     if (isNotEmptyDiscount && new Date(this.productDiscountFormValue.date_end) > new Date(today)) {
       this.isDiscountExpired = false;
       this.productService.updateProductPrice(this.productDiscountFormValue).subscribe((res) => {
-        this.getDiscounts();
+        this.getDiscountById();
+        this.addNewPrice();
       })
     }
   }
@@ -95,12 +93,9 @@ export class ProductFormSaleComponent implements OnInit {
     })
   }
 
-  public getDiscounts() {
-    this.productService.getProductDiscounts().subscribe((response) => {
-      this.productDiscounts = response.data;
-      this.productDiscounts = this.productDiscounts.filter((res) => { return res.product_id === this.model.id});
-
-      this.deleteExpiredDiscounts(this.productDiscounts);
+  public getDiscountById() {
+    this.productService.getDiscountById(this.model.id).subscribe((res) => {
+      this.productDiscounts = res.data.disconts;
     })
   }
 
@@ -110,29 +105,8 @@ export class ProductFormSaleComponent implements OnInit {
 
   public deleteSale(discount): void {
     this.productService.deleteDiscount(discount).subscribe((res) => {
-      this.getDiscounts();
+      this.getDiscountById();
     })
-
-    // this.arrSelectedSale.push(discount.id);
-    //   if(this.arrSelectedSale.length>0){
-    //     this.arrSelectedSale.forEach((elem,index)=>{
-    //     if(elem==discount.id){
-    //       this.arrSelectedSale.slice(1,index)
-    //     }
-    //   })
-    //   console.log( this.arrSelectedSale)
-    //   }
-    // this.arrSelectedSale.forEach((elem,index)=>{
-
-    //   if(elem==discount.id&& this.arrSelectedSale.length>1){ 
-    //     
-    //     console.log(elem)
-    //   }
-     
-    // })
-   
-  
-    // console.log(this.arrSelectedSale)
   }
 
   public deleteExpiredDiscounts(discounts): void {
@@ -149,4 +123,18 @@ export class ProductFormSaleComponent implements OnInit {
       }
     })
   }
+
+  // public getDiscounts() {
+  //   this.productService.getProductDiscounts().subscribe((res) => {
+  //     this.productDiscounts = res.data;
+
+  //     console.log('this.productDiscounts ======== >>>> before', this.productDiscounts);
+
+  //     this.productDiscounts = this.productDiscounts.filter((val) => { return val.product_id === this.model.id});
+
+  //     this.deleteExpiredDiscounts(this.productDiscounts);
+
+  //     console.log('this.productDiscounts ======== >>>> after', this.productDiscounts);
+  //   })
+  // }
 }

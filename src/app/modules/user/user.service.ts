@@ -11,7 +11,7 @@ export class UserService {
   page: number = 1;
   // SUser=new Subject<boolean>();
   userOne:any;
-  SUser$=new BehaviorSubject<any>({});
+  SUser$ = new BehaviorSubject<any>({});
   SUser = this.SUser$.asObservable();
   
   data: IUserResponse = {
@@ -43,7 +43,7 @@ export class UserService {
 
   public saveUser(user: any): void {
     localStorage.setItem("user", JSON.stringify(user));
-    console.log('user++++++++++===>',user)
+    //console.log('user++++++++++===>', user);
     this.SUser$.next(user);
   }
 
@@ -59,5 +59,13 @@ export class UserService {
 
   public removeUser() {
     localStorage.removeItem("user");
+  }
+
+  public getAllManagerCategories(): Observable<any> {
+    return this._http.get(`${environment.host}manager/categories`);
+  }
+
+  public getUserById(id: number): Observable<any> {
+    return this._http.get(`${environment.host}owner/user/${id}`);
   }
 }

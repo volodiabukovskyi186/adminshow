@@ -9,8 +9,10 @@ import { LanguageService as Lang } from "src/app/core/language.service";
 import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { ICurrency } from './interfaces/currency';
 import { UserService } from '../../../modules/user/user.service';
+import { changeValueHighlight } from "src/app/modules/ui/animations";
 
 @Component({
+  animations: [changeValueHighlight],
   selector: 'app-currencies',
   templateUrl: './currencies-page.component.html',
   styleUrls: ['./currencies-page.component.scss']

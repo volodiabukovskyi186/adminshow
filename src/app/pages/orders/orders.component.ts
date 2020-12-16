@@ -31,9 +31,9 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   public totalSum: string;
   public isOpenEditOrderForm: boolean = false;
   public editedOrder: any;
-  public userRoleId:number;
-  public userRoleStatus:boolean=false;
   public orderhistory: Array <any>;
+  public userRoleId: number;
+  public userRoleStatus: boolean=false;
   public statusCodes = {
     "1": {
       name: 'statusCodes.new'
@@ -196,8 +196,8 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
       checkoutDeliveryAddress: this.selectedClientOrder.checkoutDeliveryAddress,
       checkoutPayment: this.selectedClientOrder.checkoutPayment,
       manufactured_id: this.selectedClientOrder.manufactured_id,
-      total: this.selectedClientOrder.total ,
-    };
+      total: this.selectedClientOrder.total
+    }
 
     this.orderService.updateUserOrder(this.selectedClientOrder.id, userOrde).subscribe((data) => {
       this.uodateAllItems();

@@ -19,6 +19,7 @@ export class RolesPageComponent implements OnInit {
   @ViewChild(RoleFormComponent) roleFormComponent: RoleFormComponent;
 
   public editId: number = null;
+  public deleteId = 0;
 
   constructor(
     private ngxService: NgxUiLoaderService,
@@ -123,18 +124,18 @@ export class RolesPageComponent implements OnInit {
     this.closeForm();
   };
 
-  edit(role: Role) {
+  public edit(role: Role): void {
     this.roleForm.questions$ = this.roleForm.getQuestions(role);
     this.editId = role.id;
     this.openFormPanel();
   }
 
-  delete(role: Role) {
+  public delete(role: Role): void {
     this.ngxService.start();
     this.deleteId = role.id;
     this.role.deleteRole(role.id).subscribe(this.deleteRoleHandler);
   }
-  deleteId = 0;
+
   deleteRoleHandler = (data: any) => {
     this.role.deleteFromList(this.deleteId);
     this.toastr.success("ROLE DELETED");
@@ -157,12 +158,12 @@ export class RolesPageComponent implements OnInit {
     this.editId = null;
     this.openFormPanel();
   };
-  
+
   cancel = () => {
     this.closeForm();
   };
 
-  private closeForm() {
+  private closeForm(): void {
     this.pages.panelButtonSettings.plus = true;
     this.pages.panelButtonSettings.save = false;
     this.pages.panelButtonSettings.rightToggle = true;

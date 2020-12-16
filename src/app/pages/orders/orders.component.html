@@ -37,33 +37,32 @@
       <table *ngIf="orderService.order?.data.length > 0" class="raisins-table border-all radius order-table table-wrapper-scroll-y my-custom-scrollbar">
          <thead>
          <tr>
-            <th class="min-width__64">ID</th>
-            <th class="min-width__220 min-width__128">{{ 'MENU.orders.client' | translate }}</th>
-            <th class="min-width__220 min-width__138">{{ 'MENU.orders.manufacturer' | translate }}</th>
-            <th class="min-width__220 min-width__128" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.manager' | translate }}</th>
-            <th class="min-width__220 min-width__128">{{ 'MENU.orders.sum' | translate }}</th>
-            <th class="min-width__220 min-width__128">{{ 'MENU.orders.date' | translate }}</th>
-            <th class="min-width__220 min-width__128">{{ 'MENU.orders.status' | translate }}</th>
-            <th class="min-width__238 min-width__216">{{ 'MENU.orders.actions' | translate }}</th>
+            <th class="text-center min-width__64">ID</th>
+            <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.client' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.manufacturer' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128" *ngIf="currentUserRoleId === 1">{{ 'MENU.orders.manager' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128 min-width__108">{{ 'MENU.orders.sum' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.date' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.status' | translate }}</th>
+            <th>{{ 'MENU.orders.actions' | translate }}</th>
          </tr>
          </thead>
 
          <tbody class="table-body">
          <tr *ngFor="let order of orderService.order?.data">
             <td class="text-center min-width__64">{{ order?.id }}</td>
-            <td class="text-center min-width__220 min-width__128">{{ order?.last_name }} {{ order?.first_name }}</td>
-            <td class="text-center min-width__220 min-width__138">{{ order?.manufacturer?.description.name }}</td>
-            <td class="text-center min-width__220 min-width__128" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
-            <td class="text-center min-width__220 min-width__128">{{ order?.total.slice(0, -2) }}</td>
-            <td class="text-center min-width__220 min-width__128">{{ order?.created_at | localDate: "d MMMM HH:mm" }}</td>
-            <td class="text-center min-width__220 min-width__128">
+            <td class="text-center min-width__148 min-width__128">{{ order?.last_name }} {{ order?.first_name }}</td>
+            <td class="text-center min-width__148 min-width__128">{{ order?.manufacturer?.description.name }}</td>
+            <td class="text-center min-width__148 min-width__128" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
+            <td class="text-center min-width__148 min-width__128 min-width__108">{{ order?.total.slice(0, -2) }}</td>
+            <td class="text-center min-width__148 min-width__128">{{ order?.created_at | localDate: "d MMMM HH:mm" }}</td>
+            <td class="text-center min-width__148 min-width__128">
                <div class="order-status-content">
-
-                   <div class="dot" [style]="{'background': order.status[0].color}"></div>
-                   <div class="status-text">{{ order.status[0].description.dectiption}}</div>
+                  <div class="dot" [style]="{'background': order.status[0].color}"></div>
+                  <div class="status-text">{{ order.status[0].description.dectiption}}</div>
                </div>
             </td>
-            <td class="panel-header-buttons text-center min-width__234 min-width__206" style="padding: 19px;">
+            <td class="panel-header-buttons text-center" style="padding: 19px;">
                <button (click)="reviewOrder(order)" class="button transparent small">
                   <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
                </button>
@@ -73,14 +72,14 @@
             </td>
       
          </tr>
-         <div  *ngIf="orderSideStatus" class="order-sideBar "  >
-            <div class="order-sideBar__close" (click)="orderSideStatus=!orderSideStatus">
+         <div *ngIf="orderSideStatus" class="order-sideBar">
+            <div class="order-sideBar__close" (click)="orderSideStatus = !orderSideStatus">
                <img src="assets/icons/plus.svg">
             </div>
          </div>
          </tbody>
       </table>
-      <div *ngIf="(currentUserRoleId === 1) && (orderService.order?.data.length !== 0)"  class="general-sum">
+      <div *ngIf="(currentUserRoleId === 1) && (orderService.order?.data.length !== 0)" class="general-sum">
          <div>{{ 'orders.totalSum' | translate }} :</div>
          <div class="sum-bold"> {{ totalSum }}</div> 
          <div> {{ 'orders.ordersUAH' | translate }}</div>

@@ -12,8 +12,10 @@ import { LanguageService } from "src/app/core/language.service";
 import { LanguageFormService } from "src/app/modules/localization/language/language-form.service";
 import { LanguageFormComponent } from "src/app/modules/localization/language/language-form/language-form.component";
 import { BasePage } from "../../@core";
+import { changeValueHighlight } from "src/app/modules/ui/animations";
 
 @Component({
+  animations: [changeValueHighlight],
   selector: "app-language-page",
   templateUrl: "./language-page.component.html",
   styleUrls: ["./language-page.component.scss"],

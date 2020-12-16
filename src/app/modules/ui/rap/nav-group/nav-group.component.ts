@@ -98,7 +98,7 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
     //   this.burderStatus = false;
     // }
 
-    console.log(this.openValue);
+    //console.log(this.openValue);
 
     // this.UserService.SUser.subscribe(user=>{
     //   this.menu.nav=this.menu.nav

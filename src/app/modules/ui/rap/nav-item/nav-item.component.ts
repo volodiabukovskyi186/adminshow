@@ -21,15 +21,20 @@ export class NavItemComponent implements OnInit,OnChanges {
   @Input() langLink: string;
   @Input() isButton: boolean = false;
   @Output() currentItemUrl: EventEmitter<any> = new EventEmitter();
-  navItemStatus:boolean=false;
 
-  constructor( private router: Router,
-              private UserService:UserService) {}
+  public navItemStatus: boolean = false;
 
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private UserService: UserService
+  ) {}
+
+  public ngOnInit(): void {
     this.currentItemUrl.emit(this.router.url);
+    //console.log(this.router.url);
 
-    
+
+
     // this.UserService.SUser.subscribe(data=>{
     //   let arrUserManage=JSON.parse(JSON.parse((localStorage.getItem('user'))).role.permissions)
     //   arrUserManage.forEach(elem => {
@@ -42,7 +47,7 @@ export class NavItemComponent implements OnInit,OnChanges {
 
   }
   
-  ngOnChanges():void{
+  public ngOnChanges(): void {
     // this.UserService.SUser.subscribe(data=>{
     //   let arrUserManage=JSON.parse(JSON.parse((localStorage.getItem('user'))).role.permissions)
     //   arrUserManage.forEach(elem => {

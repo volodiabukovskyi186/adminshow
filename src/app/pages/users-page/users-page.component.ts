@@ -79,6 +79,8 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
 
   getListHandler = (data) => {
     this.ngxService.stopAll();
+
+    console.log(data);
     this.user.data = data;
   };
 
@@ -98,6 +100,8 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
 
   getAllCategoryHandler = (data) => {
     this.category.all = data.data;
+
+    console.log(data);
     this.category.all.forEach((element) => {
       // let t = "";
       // element.parents.forEach((p) => {
@@ -112,13 +116,28 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
   };
   
   getProdCategory() {
-    this.prodCategory
-      .getByProdId(this.userForm.model.id)
+    this.user
+      .getUserById(this.userForm.model.id)
       .subscribe(this.getProdCategoryHandler);
+
+    // this.prodCategory
+    //   .getByProdId(this.userForm.model.id)
+    //   .subscribe(this.getProdCategoryHandler);
   }
 
-  getProdCategoryHandler = (data) => {
-    this.prodCategory.list = data.data;
+  getProdCategoryHandler = (res) => {
+    this.prodCategory.list = res.data.categories;
+    console.log(res);
+
+    this.prodCategory.list.forEach((element) => {
+      element.title = element.parents
+        .map(function (k) {
+          return k.name;
+        })
+        .join(" > ");
+      });
+
+    console.log(this.prodCategory.list);
     this.prodCategory.initVales();
   };
 

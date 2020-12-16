@@ -56,16 +56,16 @@
             <div class="flex wrap" style="width: 100%;">
               <ng-container *ngIf="!userRoleStatus">
                   <!-- *ngFor="let desc of item.description" -->
-                <span class="title flag-container"  >
+                <span class="title flag-container"  *ngFor="let desc of item.description">
                   <!-- <span class="flag">
                     {{ langService.getFromList(desc.lang_id)?.flag }}
                   </span> -->
-                  <img class="flag" src="{{ langService.getFromList(item.description.lang_id)?.flag }}"/>
-                  <span class="name">{{ item.description.name }}</span>
+                  <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+                  <span class="name">{{ desc.name }}</span>
                 </span>
               </ng-container>
               <ng-container *ngIf="userRoleStatus"> 
-              <span class="title flag-container"  *ngFor="let desc of item.description">
+              <span class="title flag-container" *ngFor="let desc of item.description">
                 <!-- <span class="flag">
                   {{ langService.getFromList(desc.lang_id)?.flag }}
                 </span> -->

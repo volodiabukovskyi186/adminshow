@@ -15,7 +15,7 @@
 </header>
 
 <div [ngClass]="{smallBar: logoStatus}">
-  <ng-container *ngFor="let item of menu.nav;let i = index">
+  <ng-container *ngFor="let item of menu.nav; let i = index">
   <rap-nav-group
     [title]="item.title"
     [icon]="item.icon"

@@ -3,6 +3,7 @@ import { CategoryService } from "../../catalog/category/category.service";
 import { ProductCategoryService } from "../../../modules/catalog/product/services/product-category.service";
 import { IProduct } from "src/app/modules/catalog/product/interfaces/product";
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from "../user.service";
 
 @Component({
   selector: 'app-user-form-select',
@@ -29,13 +30,14 @@ export class UserFormSelectComponent implements OnInit {
   constructor(
     public category: CategoryService,
     public prodCategory: ProductCategoryService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public userService: UserService
   ) { }
 
   public ngOnInit(): void {
     console.log('category.all (user.form) ====== >>>>>>>', this.category.all);
 
-    //this.getCategories();
+    this.getUserCategories();
   }
 
   public getCategories(): void {
@@ -57,6 +59,13 @@ export class UserFormSelectComponent implements OnInit {
     console.log('this.category.all ======= >>>>>', this.category.all);
 
     //this.category.all = this.allCategories;
+  }
+
+  public getUserCategories(): void {
+    this.userService.getAllManagerCategories().subscribe((res) => {
+      console.log(res);
+      this.prodCategory.values = res.data;
+    })
   }
 
   public save(): void {

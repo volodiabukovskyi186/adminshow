@@ -19,6 +19,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() roleStatus;
   @Output() ordersFormData = new EventEmitter<any>();
   @Output() ordersStaus = new EventEmitter<any>();
+
   public statusIte = [];
 
   constructor(public pages: PagesService,
@@ -34,7 +35,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.pages.panelButtonSettings.plus = false;
   }
 
-  public ngAfterViewInit() {}
+  public ngAfterViewInit(): void {}
 
   public ngOnInit(): void {
     this.getStatus();

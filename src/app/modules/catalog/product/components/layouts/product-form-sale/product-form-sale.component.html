@@ -59,16 +59,16 @@
                 <rap-svg-ico
                     class="cursor-pointer"
                     [src]="'assets/icons/plus.svg'"
-                    (click)="addNewPrice()">
+                    (click)="saveNewPrice(!!productDiscountForm.valid)">
                 </rap-svg-ico>
             </button>
-            <button>  
+            <!-- <button>  
                 <rap-svg-ico 
                     class="cursor-pointer"
                     [src]="'assets/icons/save.svg'"
                     (click)="saveNewPrice(!!productDiscountForm.valid)">
                 </rap-svg-ico>
-            </button>
+            </button> -->
         </div>
         <div *ngIf="isDiscountExpired" class="error-container">
             <div class="reset-success-content">

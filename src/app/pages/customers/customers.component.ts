@@ -41,8 +41,10 @@ export class CustomersComponent extends BasePage implements OnInit {
     public pages: PagesService,
     public customersService: CustomersService,
     public langService: LanguageService,
+    public countryFormService: CountriesService,
+    // public manufacturerForm: ManufacturerFormService,
     public lang: Lang,
-    private route: Router,
+     private route: Router,
     public userService: UserService
   ) {
     super(pages);
@@ -68,13 +70,13 @@ export class CustomersComponent extends BasePage implements OnInit {
   public initTranslate(): void {
     this.lang.translate
       .get([
-        'dashboard.dashboard',
-        'MENU.customers.customers',
+        "dashboard.dashboard",
+        "MENU.customers.customers",
       ])
       .subscribe((tr: any) => {
         this.breadcrumbs.breadcrumbs = [
-          { link: '', title: tr['dashboard.dashboard'] },
-          { link: 'customers', title: tr['MENU.customers.customers'] },
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "customers", title: tr["MENU.customers.customers"] },
         ];
       });
   }
@@ -82,7 +84,7 @@ export class CustomersComponent extends BasePage implements OnInit {
   public getCustomers(): void {
     this.customersService.getCustomers().subscribe(data => {
       this.arrCustomers = data;
-    });
+    })
   }
 
   download = () => {
@@ -197,7 +199,7 @@ export class CustomersComponent extends BasePage implements OnInit {
   putHandler = (data) => {
     this.ngxService.stopAll();
     this.closeForm();
-    this.toastr.success('CUSTOMER UPDATED ^_^');
+    this.toastr.success("CUSTOMER UPDATED ^_^");
   };
 
   plus = () => {

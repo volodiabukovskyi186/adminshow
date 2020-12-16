@@ -9,9 +9,9 @@ import { UserService } from '../user/user.service';
 
 export interface IManufacturerDesc {
   id: number;
-  lang_id: number;
+  lang_id?: number;
   manufactured_id: number;
-  name: string;
+  name?: string;
   description: string;
   meta_description: string;
   meta_keywords: string;
