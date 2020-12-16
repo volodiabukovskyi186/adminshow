@@ -42,10 +42,10 @@ export class CustomersComponent extends BasePage implements OnInit {
     public customersService: CustomersService,
     //public manufacturer: ManufacturerService,
     public langService: LanguageService,
-    countryFormService:CountriesService,
+    public countryFormService: CountriesService,
     // public manufacturerForm: ManufacturerFormService,
     public lang: Lang,
-     private route: Router,
+    private route: Router,
     public userService: UserService
   ) {
     super(pages);

@@ -10,7 +10,9 @@ import { LanguageService } from 'src/app/modules/localization/language/language.
 import { PromotionFormService } from 'src/app/modules/catalog/promotion/services/promotion-form.service';
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { Router, NavigationEnd, Event } from '@angular/router';
+import { changeValueHighlight } from "src/app/modules/ui/animations";
 @Component({
+  animations: [changeValueHighlight],
   selector: 'app-promotions-page',
   templateUrl: './promotions-page.component.html',
   styleUrls: ['./promotions-page.component.scss']

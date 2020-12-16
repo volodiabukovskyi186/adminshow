@@ -15,9 +15,10 @@ import { ManufacturerFormService } from "src/app/modules/manufacturer/manufactur
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { RoleService } from 'src/app/core/auth/models/role.service';
 import { DOCUMENT } from '@angular/common';
+import { changeValueHighlight } from "src/app/modules/ui/animations";
 
 @Component({
-  //animations: [changeValueHighlight],
+  animations: [changeValueHighlight],
   selector: "app-manufacturer-page",
   templateUrl: "./manufacturer-page.component.html",
   styleUrls: ["./manufacturer-page.component.scss"],

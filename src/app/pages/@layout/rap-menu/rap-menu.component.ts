@@ -68,7 +68,7 @@ export class RapMenuComponent implements OnInit, OnChanges {
   }
 
   public getCurrentItem(event) {
-    console.log(event);
+    //console.log(event);
     this.currentItemUrl = event;
   }
 
