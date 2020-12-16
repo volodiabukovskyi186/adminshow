@@ -1,0 +1,74 @@
+<div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
+<fieldset class="radius" style="margin-bottom: 16px;">
+    <div class="form-row">
+        <div class="description">
+            <label for="">Порядок</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selected.sort_order" type="text"/>
+        </div>
+    </div>
+    <div class="settings-input-content sort-settings-content">
+        <div class="description">
+            <label for="">Тип</label>
+        </div>
+        <div class="sort-products-container">
+            <mat-form-field appearance="standart" class="sort-products">
+                <div class="sort-products-wrapper">
+                    <mat-select id="type" [(ngModel)]="selected.type">
+                        <div>
+                            <mat-option [value]="'select'">Список</mat-option>
+                            <mat-option [value]="'checked'">Перемикач</mat-option>
+                        </div>
+                    </mat-select>
+                </div>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="settings-input-content sort-settings-content">
+        <div class="description">
+            <label for="">Статус</label>
+        </div>
+        <div class="sort-products-container">
+            <mat-form-field appearance="standart" class="sort-products">
+                <div class="sort-products-wrapper">
+                    <mat-select [(ngModel)]="selected.status" id="status">
+                        <div>
+                            <mat-option [value]="1">показувати</mat-option>
+                            <mat-option [value]="0">не показувати</mat-option>
+                        </div>
+                    </mat-select>
+                </div>
+            </mat-form-field>
+        </div>
+    </div>
+    <rap-step-tabs class="flag-tabs">
+        <rap-step-tab
+                *ngFor="let item of selected?.description"
+                [imgSrc]="langService.getFromList(item?.lang_id)?.flag"
+                [title]="langShortTitle[item?.lang_id]?.title | translate"
+        >
+            <div class="form-row">
+                <div class="description">
+                    <label for="">{{ "MENU.localization.name" | translate }}</label>
+                </div>
+                <div class="original">
+                    <input class="radius" [(ngModel)]="item.name" type="text"/>
+                </div>
+            </div>
+        </rap-step-tab>
+    </rap-step-tabs>
+    <div class="flex center">
+        <button
+                style="position: relative;"
+                data-tooltip-left="Save"
+                role="button"
+                (click)="save()"
+                class="button transparent radius"
+        >
+            <rap-svg-ico class="black" [src]="'assets/icons/save.svg'"></rap-svg-ico>
+        </button>
+    </div>
+
+</fieldset>
+

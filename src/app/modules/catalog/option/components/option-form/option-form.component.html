@@ -1,166 +1,190 @@
-<h2 class="text-center">{{ 'APP.editSize' | translate}}</h2>
 
-<rap-step-tabs> 
-  <rap-step-tab [active]="true" [title]="'APP.data' | translate">
+<rap-step-tabs>
+  <rap-step-tab [active]="true" [title]="'APP.base' | translate">
     <fieldset class="radius" style="margin-bottom: 16px;">
-      <legend>{{ "APP.base" | translate }}</legend>
-
-      <div class="form-row">
-        <div class="description">
-          <label for="">{{ "APP.type" | translate }}</label>
-        </div>
-
-        <div class="original">
-          <select class="radius" name="parent_id" [(ngModel)]="model.type">
-            <option value="select">{{ "APP.select" | translate }}</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="description">
-          <label for="">{{ "APP.show" | translate }}</label>
-        </div>
-    
-        <div class="original">
-          <select class="radius" name="parent_id" [(ngModel)]="model.status">
-            <option value="1">{{ "APP.show" | translate }}</option>
-            <option value="0">{{ "APP.hide" | translate }}</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="description">
-          <label for="">{{ "APP.sort_order" | translate }}</label>
-        </div>
-        <div class="original">
-          <input class="radius" type="text" [(ngModel)]="model.sort_order" />
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset
-      *ngFor="let item of model.description"
-      class="radius"
-      style="margin-bottom: 16px;"
-    >
-      <legend class="flag-container">
-        <!-- {{ item.lang.flag }}  -->
-        <img class="flag" src="{{ langService.getFromList(item.lang.id)?.flag }}"/>
-        {{ item.lang.short_title }}
-      </legend>
-
-      <div class="form-row">
-        <div class="description">
-          <label for="">{{"category.title" | translate}}</label>
-        </div>
-        <div class="original">
-          <input class="radius" [(ngModel)]="item.name" type="text" />
-        </div>
-      </div>
+      <legend>{{ "category.description" | translate }}</legend>
+<!--      <app-country-form-main [selected]="selected"></app-country-form-main>-->
+      <app-option-information [selected]="selected"></app-option-information>
     </fieldset>
   </rap-step-tab>
 
-  <rap-step-tab *ngIf="model.id" [title]="'APP.values' | translate">
-    <div *ngIf="loading == 0"><span>{{ "APP.loading" | translate }}</span></div>
-    <table class="raisins-table border-all radius">
-      <thead>
-        <tr>
-          <th width="40px">{{ "APP.img" | translate }}</th>
-          <th width="32px">#</th>
-          <th width="">{{ "collection.title" | translate }}</th>
-          <th width="80px">{{ "APP.action" | translate }}</th>
-        </tr>
-      </thead>
-
-      <tbody *ngIf="optionVal.data?.data.length > 0">
-        <tr *ngFor="let item of optionVal.data.data">
-          <td>
-            <div class="ratio">
-              <div class="square">
-                <img
-                  class="contain"
-                  [src]="'//' + optionVal.data.host + item.image.src_mini"
-                  [alt]="item.id"
-                />
-              </div>
-            </div>
-          </td>
-          <td>{{ item.sort_order }}</td>
-          <td>
-            <div class="flex wrap" style="width: 100%;">
-              <span class="title" *ngFor="let desc of item.description"
-                ><span class="flag">{{
-                  langService.getFromList(desc.lang_id)?.flag
-                }}</span
-                ><span class="name">{{ desc.name }}</span>
-              </span>
-            </div>
-          </td>
-          <td>
-            <div class="flex wrap center">
-              <button
-                style="position: relative;"
-                data-tooltip-left="Edit option value"
-                role="button"
-                (click)="edit(item)"
-                class="button transparent radius"
-              >
-                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th colspan="4">
-            <div class="flex wrap center">
-              <button
-                style="position: relative;"
-                data-tooltip-left="Add option value"
-                role="button"
-                (click)="add()"
-                class="button transparent radius"
-              >
-                <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>
-              </button>
-            </div>
-          </th>
-        </tr>
-      </tfoot>
-    </table>
-
-    <hr @fadeScale class="dashed" *ngIf="formOpen" />
-
-    <app-option-value-form
-      @fadeScale
-      *ngIf="formOpen"
-      [model]="optionValForm.model"
-      [langs]="langs"
-      [title]="formTitle"
-    ></app-option-value-form>
-
-    <div class="flex wrap center" @fadeScale *ngIf="formOpen">
-      <button
-        style="position: relative;"
-        data-tooltip-left="Cancel"
-        role="button"
-        (click)="formOpen = false"
-        class="button transparent radius"
-      >
-        <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>
-      </button>
-      <button
-        style="position: relative;"
-        data-tooltip-left="Save"
-        role="button"
-        (click)="save()"
-        class="button transparent radius"
-      >
-        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>
-      </button>
-    </div>
+  <rap-step-tab  [title]="'Доставка'">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>Доставка</legend>
+<!--      [optionValue]="optionValue"-->
+      <app-option-value  [selected]="selected"></app-option-value>
+<!--      <app-country-form-delivery-->
+<!--              [selected]="selected"-->
+<!--              [selectedCountryDeliver]="selectedCountryDeliver"-->
+<!--      ></app-country-form-delivery>-->
+    </fieldset>
   </rap-step-tab>
+
 </rap-step-tabs>
+
+
+
+
+<!--<h2 class="text-center">{{ 'APP.editSize' | translate}}</h2>-->
+<!--<rap-step-tabs> -->
+<!--  <rap-step-tab [active]="true" [title]="'APP.data' | translate">-->
+<!--    <fieldset class="radius" style="margin-bottom: 16px;">-->
+<!--      <legend>{{ "APP.base" | translate }}</legend>-->
+<!--      <div class="form-row">-->
+<!--        <div class="description">-->
+<!--          <label for="">{{ "APP.type" | translate }}</label>-->
+<!--        </div>-->
+
+<!--        <div class="original">-->
+<!--          <select class="radius" name="parent_id" [(ngModel)]="model.type">-->
+<!--            <option value="select">{{ "APP.select" | translate }}</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-row">-->
+<!--        <div class="description">-->
+<!--          <label for="">{{ "APP.show" | translate }}</label>-->
+<!--        </div>-->
+<!--    -->
+<!--        <div class="original">-->
+<!--          <select class="radius" name="parent_id" [(ngModel)]="model.status">-->
+<!--            <option value="1">{{ "APP.show" | translate }}</option>-->
+<!--            <option value="0">{{ "APP.hide" | translate }}</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="form-row">-->
+<!--        <div class="description">-->
+<!--          <label for="">{{ "APP.sort_order" | translate }}</label>-->
+<!--        </div>-->
+<!--        <div class="original">-->
+<!--          <input class="radius" type="text" [(ngModel)]="model.sort_order" />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </fieldset>-->
+
+<!--    <fieldset-->
+<!--      *ngFor="let item of model.description"-->
+<!--      class="radius"-->
+<!--      style="margin-bottom: 16px;"-->
+<!--    >-->
+<!--      <legend class="flag-container">-->
+<!--        &lt;!&ndash; {{ item.lang.flag }}  &ndash;&gt;-->
+<!--        <img class="flag" src="{{ langService.getFromList(item.lang.id)?.flag }}"/>-->
+<!--        {{ item.lang.short_title }}-->
+<!--      </legend>-->
+
+<!--      <div class="form-row">-->
+<!--        <div class="description">-->
+<!--          <label for="">{{"category.title" | translate}}</label>-->
+<!--        </div>-->
+<!--        <div class="original">-->
+<!--          <input class="radius" [(ngModel)]="item.name" type="text" />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </fieldset>-->
+<!--  </rap-step-tab>-->
+
+<!--  <rap-step-tab *ngIf="model.id" [title]="'APP.values' | translate">-->
+<!--    <div *ngIf="loading == 0"><span>{{ "APP.loading" | translate }}</span></div>-->
+<!--    <table class="raisins-table border-all radius">-->
+<!--      <thead>-->
+<!--        <tr>-->
+<!--          <th width="40px">{{ "APP.img" | translate }}</th>-->
+<!--          <th width="32px">#</th>-->
+<!--          <th width="">{{ "collection.title" | translate }}</th>-->
+<!--          <th width="80px">{{ "APP.action" | translate }}</th>-->
+<!--        </tr>-->
+<!--      </thead>-->
+
+<!--      <tbody *ngIf="optionVal.data?.data.length > 0">-->
+<!--        <tr *ngFor="let item of optionVal.data.data">-->
+<!--          <td>-->
+<!--            <div class="ratio">-->
+<!--              <div class="square">-->
+<!--                <img-->
+<!--                  class="contain"-->
+<!--                  [src]="'//' + optionVal.data.host + item.image.src_mini"-->
+<!--                  [alt]="item.id"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>{{ item.sort_order }}</td>-->
+<!--          <td>-->
+<!--            <div class="flex wrap" style="width: 100%;">-->
+<!--              <span class="title" *ngFor="let desc of item.description"-->
+<!--                ><span class="flag">{{-->
+<!--                  langService.getFromList(desc.lang_id)?.flag-->
+<!--                }}</span-->
+<!--                ><span class="name">{{ desc.name }}</span>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--          <td>-->
+<!--            <div class="flex wrap center">-->
+<!--              <button-->
+<!--                style="position: relative;"-->
+<!--                data-tooltip-left="Edit option value"-->
+<!--                role="button"-->
+<!--                (click)="edit(item)"-->
+<!--                class="button transparent radius"-->
+<!--              >-->
+<!--                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </tbody>-->
+<!--      <tfoot>-->
+<!--        <tr>-->
+<!--          <th colspan="4">-->
+<!--            <div class="flex wrap center">-->
+<!--              <button-->
+<!--                style="position: relative;"-->
+<!--                data-tooltip-left="Add option value"-->
+<!--                role="button"-->
+<!--                (click)="add()"-->
+<!--                class="button transparent radius"-->
+<!--              >-->
+<!--                <rap-svg-ico [src]="'assets/icons/plus.svg'"></rap-svg-ico>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </th>-->
+<!--        </tr>-->
+<!--      </tfoot>-->
+<!--    </table>-->
+
+<!--    <hr @fadeScale class="dashed" *ngIf="formOpen" />-->
+
+<!--    <app-option-value-form-->
+<!--      @fadeScale-->
+<!--      *ngIf="formOpen"-->
+<!--      [model]="optionValForm.model"-->
+<!--      [langs]="langs"-->
+<!--      [title]="formTitle"-->
+<!--    ></app-option-value-form>-->
+
+<!--    <div class="flex wrap center" @fadeScale *ngIf="formOpen">-->
+<!--      <button-->
+<!--        style="position: relative;"-->
+<!--        data-tooltip-left="Cancel"-->
+<!--        role="button"-->
+<!--        (click)="formOpen = false"-->
+<!--        class="button transparent radius"-->
+<!--      >-->
+<!--        <rap-svg-ico [src]="'assets/icons/cancel.svg'"></rap-svg-ico>-->
+<!--      </button>-->
+<!--      <button-->
+<!--        style="position: relative;"-->
+<!--        data-tooltip-left="Save"-->
+<!--        role="button"-->
+<!--        (click)="save()"-->
+<!--        class="button transparent radius"-->
+<!--      >-->
+<!--        <rap-svg-ico [src]="'assets/icons/save.svg'"></rap-svg-ico>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </rap-step-tab>-->
+<!--</rap-step-tabs>-->

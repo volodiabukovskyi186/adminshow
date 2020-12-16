@@ -7,5 +7,6 @@ export interface IOptionDescription {
   name: string;
   created_at: string;
   updated_at: string;
-  lang?: ILanguage
+  lang?: ILanguage;
+
 }

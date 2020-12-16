@@ -44,11 +44,11 @@ export class SearchComponent implements OnInit {
     this.searchService.list = data.data;
     this.isActiveResults = !!this.searchService.list.length;
 
-    console.log(this.searchService.list);
+
   }
 
   public pressEnter(event): void {
-    console.log(event);
+
 
     if (event.key === 'Enter') {
       this.router.navigate(['/products'], { queryParams: { search: this.searchText } });
@@ -58,11 +58,11 @@ export class SearchComponent implements OnInit {
   public closeSearchList(): void {
     this.isActiveResults = false;
 
-    console.log(this.isActiveResults);
+
   }
 
   public selectProduct(selectedProductId: number): void {
-    console.log(selectedProductId);
+
 
     if (selectedProductId) {
       this.router.navigate(['/products'], { queryParams: { search: selectedProductId } });

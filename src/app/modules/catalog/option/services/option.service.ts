@@ -19,7 +19,6 @@ export class OptionService {
   constructor(private http: HttpClient) {}
 
   getList(): Observable<IOptionResponse> {
-
     // let skip = this.page * this.data.take - this.data.take;
     let params = `?take=${this.data.take}&skip=${this.data.skip}`;
     return this.http.get<IOptionResponse>(
@@ -32,6 +31,20 @@ export class OptionService {
   }
 
   put(data: any, id: number): Observable<any> {
+    console.log('service====>', data);
     return this.http.put(`${environment.catalog.option.option}/${id}`, data);
+  }
+  getOptions(): Observable <any> {
+    return  this.http.get(`${environment.catalog.option.options}`);
+  }
+  getSelectedOptionValue(id: number): Observable <any> {
+    return  this.http.get(`${environment.catalog.option.optionValues}/${id}`);
+  }
+  createOptionvalue(value): Observable <any> {
+      return  this.http.post(`${environment.catalog.option.optionValue}`, value);
+  }
+  updateOptionvalue(value, id: number): Observable <any> {
+
+    return  this.http.put(`${environment.catalog.option.optionValue}/${id}`, value);
   }
 }

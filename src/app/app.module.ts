@@ -19,7 +19,8 @@ import { registerLocaleData } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UserMenuComponent } from './modules/user/user-menu/user-menu.component';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 registerLocaleData(localeRu, "ru");
 registerLocaleData(localePl, "pl");
 registerLocaleData(localeEn, "en");
@@ -31,12 +32,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent,UserMenuComponent],
+  declarations: [AppComponent, UserMenuComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

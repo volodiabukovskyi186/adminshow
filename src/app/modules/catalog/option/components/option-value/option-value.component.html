@@ -1,0 +1,174 @@
+<div class="modal" *ngIf="modalOpen">
+    <div class="modal-wrapper">
+        <div class="modal-close" (click)="modalOpen = false"></div>
+        <div class="modal-content">
+            <header>
+                <h4>Select images</h4>
+            </header>
+            <div class="content">
+                <app-gallery-view
+                        [selectable]="true"
+                        [singleSelectable]="false"
+                        [editable]="false"
+                ></app-gallery-view>
+            </div>
+            <footer>
+                <button class="button" role="button" (click)="onOk()">OK</button>
+            </footer>
+        </div>
+    </div>
+</div>
+<div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
+<fieldset class="radius" style="margin-bottom: 16px;">
+<!--    <div class=" form-row settings-input-content sort-settings-content">-->
+<!--        <div class="description">-->
+<!--            <label for="">Тип</label>-->
+<!--        </div>-->
+<!--        <div class="sort-products-container">-->
+<!--            <mat-form-field appearance="standart" class="sort-products">-->
+<!--                <div class="sort-products-wrapper">-->
+<!--&lt;!&ndash;                    [(ngModel)]="selected.type"&ndash;&gt;-->
+<!--                    <mat-select id="type"-->
+<!--                                (selectionChange)="onChange($event.value)"-->
+<!--                                [(ngModel)]="optionType">-->
+<!--                        <div  *ngFor="let item of arrOptions">-->
+<!--                            <mat-option [value]="item.id">{{item.description[0].name}}</mat-option>-->
+<!--                        </div>-->
+<!--                    </mat-select>-->
+<!--                </div>-->
+<!--            </mat-form-field>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="form-row">
+        <div class="description">
+            <!--                    {{ "MENU.localization.name" | translate }}-->
+            <label for="">Порядок</label>
+        </div>
+        <div class="original">
+            <!--                    [(ngModel)]="item.name"-->
+            <input class="radius" [(ngModel)]="optionSort" type="text"/>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="description">
+            <label for="">Картнинка</label>
+        </div>
+        <div class="original">
+
+            <div class="original">
+                <app-choice-button
+                        style="max-width: 80px;"
+                        class="radius"
+                        (press)="onPress()"
+
+                        [src]="
+            'api.showu.com.ua'
+             ? '//' + 'api.showu.com.ua' + selectedValue?.image?.src_mini
+             : selectedValue?.image?.src_mini"
+                ></app-choice-button>
+                <input type="hidden"  [(ngModel)]="optionValue.image_id" />
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="form-row settings-input-content sort-settings-content">
+        <div class="description">
+            <label for="">Статус</label>
+        </div>
+        <div class="sort-products-container">
+            <mat-form-field appearance="standart" class="sort-products">
+                <div class="sort-products-wrapper">
+                    <mat-select [(ngModel)]="optionStatus" id="status">
+                        <div>
+                            <mat-option [value]="1">показувати</mat-option>
+                            <mat-option [value]="0">не показувати</mat-option>
+                        </div>
+                    </mat-select>
+                </div>
+            </mat-form-field>
+        </div>
+    </div>
+    <rap-step-tabs class="flag-tabs">
+        <rap-step-tab
+                *ngFor="let item of selectedValue?.descriptions"
+                [imgSrc]="langService.getFromList(item?.lang_id)?.flag"
+                [title]="langShortTitle[item?.lang_id]?.title | translate" >
+
+            <div class="form-row">
+                <div class="description">
+                    <label for="">Назва</label>
+                </div>
+                <div class="original">
+                    <input class="radius" [(ngModel)]="item.name" type="text"/>
+                </div>
+            </div>
+
+            <div class="flex end">
+                <button
+                        style="position: relative;"
+                        data-tooltip-left="Save"
+                        role="button"
+                        (click)="save()"
+                        class="button transparent radius" >
+
+                    <rap-svg-ico class="black" [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+                </button>
+            </div>
+            <div class="sale-list">
+                <p class="order-title">Список значень опцій</p>
+                <div class="sale-list__block">
+                    <table>
+                        <tr>
+                            <th class="number">№</th>
+                            <th class="">Порядок</th>
+                            <th class="">Назва</th>
+                            <th class="">Статус</th>
+                        </tr>
+                        <tr  *ngFor="let userOrder of allCurrentOption"  >
+                            <th>
+                                <section class="example-section">
+                                <mat-checkbox class="example-margin" [checked]="userOrder.id==reviewId"   (change)="moderationOfReview(userOrder)"   [color]="'primary'" ></mat-checkbox>
+                                </section>
+                            </th>
+                            <th>{{userOrder.sort_order}}</th>
+                            <th>{{userOrder.descriptions[0]?.name}}</th>
+
+                            <th>{{userOrder.status==1 ? 'показувати' : 'не показувати'}}</th>
+
+                        </tr>
+                        <tr class="unset-border table-line-height">
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+
+
+                        </tr>
+                        <tr class="unset-border table-line-height">
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+
+                        </tr>
+                        <tr class="unset-border table-line-height">
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+                            <th class="th-order"></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+
+        </rap-step-tab>
+    </rap-step-tabs>
+
+
+</fieldset>
+
+

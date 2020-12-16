@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { LayoutModule } from "./@layout/@layout.module";
 import { RolesPageComponent } from "./roles-page/roles-page.component";
 
+
 // import { LocalDatePipe } from "../core/local-date.pipe";
 import { PermissionModule } from "../core/permission/permission.module";
 import { RolesModule } from "../modules/roles/roles.module";
@@ -190,7 +191,9 @@ import { BasketFilterComponent } from './basket/basket-filter/basket-filter.comp
         StorageModule,
         MatTableModule,
         ClickOutsideModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+
+
         // ToastrModule added
     ],
   providers: [
