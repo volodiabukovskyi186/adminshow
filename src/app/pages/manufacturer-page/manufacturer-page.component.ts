@@ -187,16 +187,18 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
 
   //#endregion
 
-  edit(i: IManufacturer) {
+  public edit(i: IManufacturer): void {
     this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
+
+    console.log(i);
   }
 
   //#region pagination
-  pageEvent(event):void{
-    this.manufacturer.manufacturer.count=event.length
-    this.manufacturer.manufacturer.take=event.pageSize
-    this.manufacturer.manufacturer.skip=event.pageSize*event.pageIndex
+  pageEvent(event): void {
+    this.manufacturer.manufacturer.count = event.length;
+    this.manufacturer.manufacturer.take = event.pageSize;
+    this.manufacturer.manufacturer.skip = event.pageSize * event.pageIndex;
     this.getList(this.userRoleId);
   }
 

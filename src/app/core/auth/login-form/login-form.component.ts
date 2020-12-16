@@ -31,8 +31,7 @@ export class LoginFormComponent implements OnDestroy{
     private ngxService: NgxUiLoaderService,
     private toastr: ToastrService,
     private router: Router,
-    private UserService:UserService,
-
+    private UserService: UserService
   ) {}
 
   authForm = new FormGroup({
@@ -40,11 +39,11 @@ export class LoginFormComponent implements OnDestroy{
     password: new FormControl("")
   });
 
-  ngOnDestroy(): void{
+  public ngOnDestroy(): void {
     // this.UserService.SUser.next(true)
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.ngxService.start();
     this.toastr.clear();
     let form = this.authForm.value;

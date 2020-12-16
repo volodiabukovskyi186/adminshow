@@ -195,8 +195,7 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
       checkoutDeliveryAddress: this.selectedClientOrder.checkoutDeliveryAddress,
       checkoutPayment: this.selectedClientOrder.checkoutPayment,
       manufactured_id: this.selectedClientOrder.manufactured_id,
-      total: this.selectedClientOrder.total ,
-     
+      total: this.selectedClientOrder.total
     }
 
     this.orderService.updateUserOrder(this.selectedClientOrder.id, userOrde).subscribe((data) => {
@@ -242,10 +241,10 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
     this.pages.panelButtonSettings.rightToggle = false;
   };
 
-  pageEvent(event):void{
-    this.orderService.order.count=event.length
-    this.orderService.order.take=event.pageSize
-    this.orderService.order.skip=event.pageSize*event.pageIndex
+  public pageEvent(event): void {
+    this.orderService.order.count = event.length;
+    this.orderService.order.take = event.pageSize;
+    this.orderService.order.skip = event.pageSize * event.pageIndex;
     this.getList(this.userRoleId);
   }
 

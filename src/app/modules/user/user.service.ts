@@ -64,4 +64,8 @@ export class UserService {
   public getAllManagerCategories(): Observable<any> {
     return this._http.get(`${environment.host}manager/categories`);
   }
+
+  public getUserById(id: number): Observable<any> {
+    return this._http.get(`${environment.host}owner/user/${id}`);
+  }
 }
