@@ -95,7 +95,14 @@ export class OrderService {
   }
   getHistoryById(orderId): Observable<any>{
     const lang = localStorage.getItem('currentLang');
-    return this.http.get(`${environment.host}order/getOrderHistory/${orderId}?lang=${lang}` );
+    return this.http.get(`${environment.host}order/getOrderHistory/${orderId}?lang=${lang}`);
   }
 
+  updateOrderClientInfo(userId: number, data): Observable<any> {
+    return this.http.put(`${environment.host}order/clinetData/${userId}`, data);
+  }
+
+  updateOrderDeliveryData(userId: number, data): Observable<any> {
+    return this.http.put(`${environment.host}order/deliveryData/${userId}`, data);
+  }
 }

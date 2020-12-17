@@ -5,6 +5,6 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class RapService {
-  SBurder=new Subject<boolean>();
+  SBurder = new Subject<boolean>();
   constructor() { }
 }

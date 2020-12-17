@@ -65,7 +65,9 @@
                 // overflow: auto;
                 // white-space: nowrap;
                 li {
-                    width: 33.3%;
+                    //width: 33.3%;
+                    padding-left: 10px;
+                    padding-right: 15px;
                     text-align: center;
                     color: #5F5F62 !important;
                     border-bottom: solid 1px transparent !important;
@@ -423,4 +425,13 @@ th {
     display: block;
     margin-left: auto;
     margin-bottom: -37px;
+}
+
+.save-btn {
+    width: 17px;
+    color: #000;
+}
+
+.save-btn-container {
+    margin-top: 15px;
 }
