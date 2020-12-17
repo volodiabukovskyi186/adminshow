@@ -27,7 +27,7 @@
 <!--        <div class="sort-products-container">-->
 <!--            <mat-form-field appearance="standart" class="sort-products">-->
 <!--                <div class="sort-products-wrapper">-->
-<!--&lt;!&ndash;                    [(ngModel)]="selected.type"&ndash;&gt;-->
+<!--                     [(ngModel)]="selected.type"&ndash;&gt;-->
 <!--                    <mat-select id="type"-->
 <!--                                (selectionChange)="onChange($event.value)"-->
 <!--                                [(ngModel)]="optionType">-->
@@ -41,17 +41,15 @@
 <!--    </div>-->
     <div class="form-row">
         <div class="description">
-            <!--                    {{ "MENU.localization.name" | translate }}-->
             <label for="">Порядок</label>
         </div>
         <div class="original">
-            <!--                    [(ngModel)]="item.name"-->
             <input class="radius" [(ngModel)]="optionSort" type="text"/>
         </div>
     </div>
     <div class="form-row">
         <div class="description">
-            <label for="">Картнинка</label>
+            <label for="">{{'option.image' | translate}}</label>
         </div>
         <div class="original">
 
@@ -60,17 +58,13 @@
                         style="max-width: 80px;"
                         class="radius"
                         (press)="onPress()"
-
                         [src]="
             'api.showu.com.ua'
              ? '//' + 'api.showu.com.ua' + selectedValue?.image?.src_mini
              : selectedValue?.image?.src_mini"
                 ></app-choice-button>
                 <input type="hidden"  [(ngModel)]="optionValue.image_id" />
-
-
             </div>
-
         </div>
     </div>
     <div class="form-row settings-input-content sort-settings-content">
@@ -82,8 +76,8 @@
                 <div class="sort-products-wrapper">
                     <mat-select [(ngModel)]="optionStatus" id="status">
                         <div>
-                            <mat-option [value]="1">показувати</mat-option>
-                            <mat-option [value]="0">не показувати</mat-option>
+                            <mat-option [value]="1">{{'option.show' | translate}}</mat-option>
+                            <mat-option [value]="0">{{'option.hidden' | translate}}</mat-option>
                         </div>
                     </mat-select>
                 </div>
@@ -98,7 +92,7 @@
 
             <div class="form-row">
                 <div class="description">
-                    <label for="">Назва</label>
+                    <label for="">{{'option.name' | translate}}</label>
                 </div>
                 <div class="original">
                     <input class="radius" [(ngModel)]="item.name" type="text"/>
@@ -117,14 +111,14 @@
                 </button>
             </div>
             <div class="sale-list">
-                <p class="order-title">Список значень опцій</p>
+                <p class="order-title">{{'option.listvalue' | translate}}</p>
                 <div class="sale-list__block">
                     <table>
                         <tr>
-                            <th class="number">№</th>
-                            <th class="">Порядок</th>
-                            <th class="">Назва</th>
-                            <th class="">Статус</th>
+                            <th class="number"></th>
+                            <th class="">{{'option.order' | translate}}</th>
+                            <th class="">{{'option.name' | translate}}</th>
+                            <th class="">{{'option.status' | translate}}</th>
                         </tr>
                         <tr  *ngFor="let userOrder of allCurrentOption"  >
                             <th>
@@ -134,7 +128,6 @@
                             </th>
                             <th>{{userOrder.sort_order}}</th>
                             <th>{{userOrder.descriptions[0]?.name}}</th>
-
                             <th>{{userOrder.status==1 ? 'показувати' : 'не показувати'}}</th>
 
                         </tr>
@@ -160,11 +153,15 @@
                             <th class="th-order"></th>
                         </tr>
                     </table>
+                    <div class="delete-discount-btn-wrapper">
+                        <rap-delete-button
+                                class="button transparent radius delete-discount-btn"
+                                (click)="deleteOptionValue()"
+                                [src]="'assets/icons/delete.svg'"
+                        ></rap-delete-button>
+                    </div>
                 </div>
             </div>
-
-
-
         </rap-step-tab>
     </rap-step-tabs>
 

@@ -426,5 +426,17 @@
     "email": "Email",
     "phone": "Telefon",
     "item": "Rzecz"
+  },
+  "option":{
+    "option": "Opcja",
+    "order": "Zamówienie",
+    "image": "Wizerunek",
+    "show": "Pokazać",
+    "hidden": "Ukryty",
+    "name": "Nazwa",
+    "status": "Status",
+    "list":"Lista",
+    "switch":"Przełącznik",
+    "listvalue": "Lista wartości opcji"
   }
 }

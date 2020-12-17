@@ -1,12 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { IOption, IOptionValue } from "../../interfaces";
+import { Component, OnInit, Input } from "@angular/core";
+import { IOption } from "../../interfaces";
 import {
-  ILanguage,
   LanguageService,
 } from "src/app/modules/localization/language/language.service";
-import { OptionValueService } from "../../services/option-value.service";
-import { OptionFormService } from "../../services/option-form.service";
-import { OptionValueFormService } from "../../services/option-value-form.service";
 import { fadeScale } from "src/app/modules/ui/animations";
 
 @Component({
@@ -16,7 +12,6 @@ import { fadeScale } from "src/app/modules/ui/animations";
   styleUrls: ["./option-form.component.scss"],
 })
 export class OptionFormComponent implements OnInit {
-
   @Input() selected;
   // @Input() optionValue;
   @Input() selectedValue;

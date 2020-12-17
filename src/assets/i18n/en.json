@@ -423,5 +423,17 @@
     "email": "Email",
     "phone": "Phone",
     "item": "Gods"
+  },
+  "option":{
+    "option": "Option",
+    "order": "Order",
+    "image": "Image",
+    "show": "Show",
+    "hidden": "Hidden",
+    "name": "Name",
+    "status": "Status",
+    "list":"List",
+    "switch":"Switch",
+    "listvalue": "List of option values"
   }
 }

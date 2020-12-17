@@ -2,7 +2,7 @@
 <fieldset class="radius" style="margin-bottom: 16px;">
     <div class="form-row">
         <div class="description">
-            <label for="">Порядок</label>
+            <label for="">{{'option.order' | translate}}</label>
         </div>
         <div class="original">
             <input class="radius" [(ngModel)]="selected.sort_order" type="text"/>
@@ -17,8 +17,8 @@
                 <div class="sort-products-wrapper">
                     <mat-select id="type" [(ngModel)]="selected.type">
                         <div>
-                            <mat-option [value]="'select'">Список</mat-option>
-                            <mat-option [value]="'checked'">Перемикач</mat-option>
+                            <mat-option [value]="'select'" >{{'option.list' | translate}}</mat-option>
+                            <mat-option [value]="'checked'" >{{'option.switch' | translate}}</mat-option>
                         </div>
                     </mat-select>
                 </div>
@@ -34,8 +34,8 @@
                 <div class="sort-products-wrapper">
                     <mat-select [(ngModel)]="selected.status" id="status">
                         <div>
-                            <mat-option [value]="1">показувати</mat-option>
-                            <mat-option [value]="0">не показувати</mat-option>
+                            <mat-option [value]="1">{{'option.show' | translate}}</mat-option>
+                            <mat-option [value]="0">{{'option.hidden' | translate}}</mat-option>
                         </div>
                     </mat-select>
                 </div>
@@ -59,13 +59,11 @@
         </rap-step-tab>
     </rap-step-tabs>
     <div class="flex center">
-        <button
-                style="position: relative;"
+        <button style="position: relative;"
                 data-tooltip-left="Save"
                 role="button"
                 (click)="save()"
-                class="button transparent radius"
-        >
+                class="button transparent radius">
             <rap-svg-ico class="black" [src]="'assets/icons/save.svg'"></rap-svg-ico>
         </button>
     </div>

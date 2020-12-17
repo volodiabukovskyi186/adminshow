@@ -144,7 +144,6 @@ export class OptionPageComponent extends BasePage
     // }
 
     save = () => {
-        console.log('selected====>', this.selected);
         const option = {
             type: this.selected.type,
             sort_order: this.selected.sort_order,
@@ -177,7 +176,7 @@ export class OptionPageComponent extends BasePage
         } else {
             this.option.post(option).subscribe(this.postHandler);
         }
-        console.log('option+++++++>', option);
+
         // this.ngxService.start();
     };
 
@@ -240,7 +239,7 @@ export class OptionPageComponent extends BasePage
 
     edit(option: IOption) {
         this.selected = option;
-        console.log('option===>', option);
+
         this.formTitle = `Edit ${option.description[0].name}`;
         this.optionForm.initByModel(option, this.langService.languages.data);
         this.openForm();

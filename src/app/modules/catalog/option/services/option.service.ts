@@ -44,7 +44,9 @@ export class OptionService {
       return  this.http.post(`${environment.catalog.option.optionValue}`, value);
   }
   updateOptionvalue(value, id: number): Observable <any> {
-
     return  this.http.put(`${environment.catalog.option.optionValue}/${id}`, value);
+  }
+  deleteOptionValue(id): Observable <any> {
+    return this.http.delete(`${environment.catalog.option.optionValue}/${id}`);
   }
 }

@@ -521,3 +521,8 @@ rap-delete-button.button.transparent {
   margin-top: 30px;
 }
 
+.delete-discount-btn-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
