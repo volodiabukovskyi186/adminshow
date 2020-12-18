@@ -77,7 +77,7 @@ export class SelectedComponent extends BasePage implements OnInit, OnChanges {
   }
 
   download = () => {
-    this.customersService.getCustomerTable().subscribe(data => {
+    this.selectedService.getCustomerTable().subscribe(data => {
       window.location.href = `https://${data.path}`;
     });
   }

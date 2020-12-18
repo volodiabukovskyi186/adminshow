@@ -79,7 +79,7 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
     const getUrlSegment = primarySegments[primarySegments.length - 1];
 
     this.item?.items?.forEach((val) => {
-      console.log(val);
+      //console.log(val);
 
       if (val.link === getUrlSegment.path) {
         this.open = true;

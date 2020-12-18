@@ -34,4 +34,8 @@ export class SelectedService {
         return this.http.get<any>(environment.selected.selected + params);
     }
 
+    getCustomerTable(): Observable<any> {
+        return this.http.get(`${environment.host}wishlist/getXLSXFile`);
+    }
+
 }

@@ -62,10 +62,11 @@ export class BasketComponent extends BasePage implements OnInit, OnChanges{
     this.pages.panelButtonSettings.download = true;
   }
   download = () => {
-    this.customersService.getCustomerTable().subscribe(data => {
+    this.basketService.getCustomerTable().subscribe(data => {
       window.location.href = `https://${data.path}`;
     });
   }
+  
   ngOnChanges(changes: SimpleChanges) {
     if (changes) {
       this.pages.panelButtonSettings.plus = false;

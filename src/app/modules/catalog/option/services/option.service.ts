@@ -33,21 +33,27 @@ export class OptionService {
   put(data: any, id: number): Observable<any> {
     return this.http.put(`${environment.catalog.option.option}/${id}`, data);
   }
+  
   getOptions(): Observable <any> {
     return  this.http.get(`${environment.catalog.option.options}`);
   }
+
   deleteOption(id: number): Observable <any> {
     return this.http.delete(`${environment.catalog.option.option}/${id}`);
   }
+
   getSelectedOptionValue(id: number): Observable <any> {
     return  this.http.get(`${environment.catalog.option.optionValues}/${id}`);
   }
+
   createOptionvalue(value): Observable <any> {
-      return  this.http.post(`${environment.catalog.option.optionValue}`, value);
+    return  this.http.post(`${environment.catalog.option.optionValue}`, value);
   }
+
   updateOptionvalue(value, id: number): Observable <any> {
     return  this.http.put(`${environment.catalog.option.optionValue}/${id}`, value);
   }
+
   deleteOptionValue(id): Observable <any> {
     return this.http.delete(`${environment.catalog.option.optionValue}/${id}`);
   }

@@ -34,4 +34,8 @@ export class BasketService {
     }
     return this.http.get<any>(environment.basket.basket + params);
   }
+
+  getCustomerTable(): Observable<any> {
+    return this.http.get(`${environment.host}cart_client/getXLSXFile`);
+  }
 }
