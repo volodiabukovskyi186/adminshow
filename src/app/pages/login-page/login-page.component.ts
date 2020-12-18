@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
     pages.defaultSetting();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this._title.setTitle("Login | RAP for ShowU");
 
     this.lang.translate
@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
       });
   }
 
-  onAuthed() {
+  public onAuthed(): void {
     this.user.getByToken().subscribe(this.getByTokenHandler);
   }
 

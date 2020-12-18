@@ -31,7 +31,13 @@ export interface DialogData {
   styleUrls: ["./manufacturer-page.component.scss"],
 })
 export class ManufacturerPageComponent extends BasePage implements OnInit {
-  editItem: IManufacturer = null;
+  public editItem: IManufacturer = null;
+  public animal: string;
+  public name: string;
+  public userRoleId: number;
+  public userRoleStatus: boolean = false;
+  public userId: number;
+
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -52,12 +58,8 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       this.getList(this.userRoleId);
     });
   }
-  animal: string;
-  name: string;
-  userRoleId: number;
-  userRoleStatus: boolean = false;
-  userId: number ;
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
 
@@ -71,22 +73,18 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.initTranslate();
   }
 
-
-
-
-  getUserByTokin(): void {
+  public getUserByTokin(): void {
     this.roleService.getByToken().subscribe(data => {
       this.userRoleId = data.data.user.role_id;
       if(this.userRoleId == 1 ) {
         this.userRoleStatus = true ;
       }
       this.getList(this.userRoleId);
-    this.userId=data.data.user.id
-      console.log('ueqweqw',data.data.user.id)
+      this.userId = data.data.user.id;
     })
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -100,19 +98,17 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       });
   }
 
-  getList(user_role) {
+  public getList(user_role): void {
     this.ngxService.start();
     this.manufacturer.getList(user_role).subscribe(this.getListHandler);
   }
 
   getListHandler = (data) => {
-    // debugger;
     this.ngxService.stopAll();
     this.manufacturer.manufacturer = data;
-    console.log('manufac====>',data)
   };
 
-  getLangList() {
+  public getLangList(): void {
     this.ngxService.start();
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
@@ -123,7 +119,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.manufacturerForm.initDesc(this.langService.languages.data);
   } ;
 
-  updateStatus(item: IManufacturer) {
+  public updateStatus(item: IManufacturer): void {
     this.manufacturer
       .updateStatus(item.id, item.status === 0 ? 1 : 0)
       .subscribe(this.updateStatusHandler);
@@ -202,10 +198,9 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
   public edit(i: IManufacturer): void {
     this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
-
-    console.log(i);
   }
-  deleteManufactures(item): void {
+
+  public deleteManufactures(item): void {
     const dialogRef = this.dialog.open(ManufactrureDialogComponent, {
       width: '45vw',
       height: '300px',
@@ -220,9 +215,9 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       this.animal = result;
     });
   }
-  openDialog(): void {
 
-  }
+  openDialog(): void {}
+
   //#region pagination
   pageEvent(event): void {
     this.manufacturer.manufacturer.count = event.length;

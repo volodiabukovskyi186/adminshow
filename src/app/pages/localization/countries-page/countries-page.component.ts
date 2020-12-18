@@ -38,7 +38,7 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     super(pages);
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-          this.getWeight()
+        this.getWeight()
       }
     })
   }
@@ -49,11 +49,6 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     this.initTranslate();
     this.getWeight();
     this.getLangList();
-    // this.breadcrumbs.breadcrumbs = [
-    //   { link: "", title: "Dashboard" },
-    //   { link: "country", title: " Countries" },
-    // ];
-
   }
 
   public initTranslate(): void {
@@ -70,7 +65,7 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
       });
   }
 
-  getLangList() {
+  public getLangList(): void {
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
 
@@ -78,20 +73,20 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     this.langService.languages = data;
   };
 
-  getWeight(): void {
+  public getWeight(): void {
     this.countriesServices.getCountry().subscribe(data => {
       this.arrCountries = data.data;
       this.alldata = data;
     })
   }
 
-  deleteStatus(country): void {
+  public deleteStatus(country): void {
     this.countriesServices.deleteCountry(country.id).subscribe(data => {
       this.getWeight()
     })
   }
 
-  edit(i): void {
+  public edit(i): void {
     this.selected = i;
     this.openForm();
     this.getDeliversCountry();
@@ -177,5 +172,4 @@ export class CountriesPageComponent  extends BasePage implements OnInit{
     window.scrollTo(0, 0);
   }
   Math = Math;
-
 }

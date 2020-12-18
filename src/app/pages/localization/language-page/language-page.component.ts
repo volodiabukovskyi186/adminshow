@@ -75,7 +75,7 @@ export class LanguagePageComponent extends BasePage implements OnInit {
 
   //#region getLangs
   
-  getLangs() {
+  public getLangs(): void {
     this.ngxService.start();
     this.langServise.getLangs().subscribe(this.getLangsHandler);
   }
@@ -112,7 +112,7 @@ export class LanguagePageComponent extends BasePage implements OnInit {
 
   //#region delete
 
-  delete(langItem): void {
+  public delete(langItem): void {
     this.ngxService.start();
     this.deleteId = langItem.id;
     this.langServise.delete(langItem.id).subscribe(this.deleteHandler);
@@ -134,6 +134,7 @@ export class LanguagePageComponent extends BasePage implements OnInit {
       .subscribe(this.updateStatusHandler);
     this.editItem = item;
   }
+  
   updateStatusHandler = (data) => {
     this.langServise.updateStatusInList(
       this.editItem.id,

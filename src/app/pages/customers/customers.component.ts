@@ -116,7 +116,7 @@ export class CustomersComponent extends BasePage implements OnInit {
         this.getCustomers();
       });     
     } else {
-        customer.subscriptions_type_id=1;
+        customer.subscriptions_type_id = 1;
         this.customersService.createCustomerInfo(customer).subscribe((res) => {
         this.putHandler(res);
         this.customersService.getCustomers();
@@ -124,7 +124,7 @@ export class CustomersComponent extends BasePage implements OnInit {
       });
     }
 
-    this.closeForm()
+    this.closeForm();
     
     this.pages.panelButtonSettings.download = true;
     this.pages.panelButtonSettings.review = false;
@@ -138,7 +138,7 @@ export class CustomersComponent extends BasePage implements OnInit {
     })
   }
 
-  getList() {
+  public getList(): void {
     this.ngxService.start();
     this.customersService.getCustomers().subscribe(this.getListHandler);
   }
@@ -148,7 +148,7 @@ export class CustomersComponent extends BasePage implements OnInit {
     this.customersService.customer = data;
   };
 
-  getLangList() {
+  public getLangList(): void {
     this.ngxService.start();
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
@@ -204,9 +204,6 @@ export class CustomersComponent extends BasePage implements OnInit {
 
   plus = () => {
     this.pages.panelButtonSettings.download = false;
-    // this.manufacturerForm.initEmptyCategory();
-    // this.manufacturerForm.initDesc(this.langService.languages.data);
-    // this.openForm();
 
     this.customersService.initEmptyCustomerForm()
     this.selected = this.customersService.selected;

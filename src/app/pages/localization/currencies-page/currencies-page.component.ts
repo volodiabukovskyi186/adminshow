@@ -18,7 +18,6 @@ import { changeValueHighlight } from "src/app/modules/ui/animations";
   styleUrls: ['./currencies-page.component.scss']
 })
 export class CurrenciesPageComponent extends BasePage implements OnInit {
-
   public currencyFormData: any;
   public sendCurrencyEditableData: any;
   public currentUserId: number;
@@ -48,13 +47,10 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
 
     this.userService.getByToken().subscribe((res) => {
       this.currentUserId = res.data.user.id;
-      console.log(this.currentUserId);
     });
-
-    // item("MENU.localization.currencies", "currencies"),
   }
 
-  initTranslate() {
+  public initTranslate(): void {
     this.lang.translate
       .get([
         "dashboard.dashboard",
@@ -68,7 +64,7 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
       });
   }
 
-  getList() {
+  public getList(): void {
     this.ngxService.start();
     this.currenciesService.getCurrencies().subscribe(this.getListHandler);
   }
@@ -78,7 +74,7 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
     this.currenciesService.currency = data;
   };
 
-  getLangList() {
+  public getLangList(): void {
     this.ngxService.start();
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
@@ -86,25 +82,19 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
   getLangListHandler = (data) => {
     this.ngxService.stopAll();
     this.langService.languages = data;
-
-    //this.manufacturerForm.initDesc(this.langService.languages.data);
   };
 
-  edit(i: any) {
-    console.log(i);
+  public edit(i: any): void {
     this.selectedCurrency = i;
-
-    //this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
 
-  modifyPrice(price) {
+  public modifyPrice(price): string {
     return Number(price).toFixed(2);
   }
 
-   currenciesFormData(event) {
+  public currenciesFormData(event): void {
     this.currencyFormData = event;
-    console.log(event);
 
     this.sendCurrencyEditableData = {
       currency_title: this.currencyFormData.currencyName,
@@ -116,8 +106,6 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
       simbol_right: this.currencyFormData.currencySymbolOnTheRight,
       decimal_places: 1
     }
-
-    console.log(this.sendCurrencyEditableData);
   }
 
   save = () => {
@@ -140,9 +128,6 @@ export class CurrenciesPageComponent extends BasePage implements OnInit {
 
   plus = () => {
     this.selectedCurrency = '';
-
-    //this.currenciesService.initEmptyModel();
-    // this.manufacturerForm.initDesc(this.langService.languages.data);
     this.openForm();
   };
 

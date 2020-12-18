@@ -61,7 +61,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
 
   public getUserByToken(): void {
     this.userService.getByToken().subscribe((res) => {
-      console.log('orderssssssssss resssssssss ========= >>>>>>>.', res);
       this.currentUserRoleId = res.data.user.role_id;
     });
   }
@@ -169,8 +168,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   }
 
   public saveClientInfo(): void {
-    console.log(this.clientInfoForm.value);
-
     const clientInfoToUpdate = {
       first_name: this.clientInfoForm.value.name,
       last_name: this.clientInfoForm.value.surname,
@@ -192,8 +189,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   }
 
   public savePaymentDeliveryDetails(): void {
-    console.log(this.editClientInfoForm);
-
     const orderPaymentDetailsToSend = {
       checkoutDelivery: this.editClientInfoForm.value.deliveryMethod,
       checkoutDeliveryAddress: this.editClientInfoForm.value.details,
@@ -209,7 +204,6 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
         if (res.error) {
           this.toastr.error("Error");
         }
-        console.log(res);
       })
   }
 }

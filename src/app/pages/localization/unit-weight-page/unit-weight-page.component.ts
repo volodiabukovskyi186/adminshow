@@ -16,18 +16,18 @@ import { Router, NavigationEnd, Event } from '@angular/router';
   styleUrls: ['./unit-weight-page.component.scss']
 })
 export class UnitWeightPageComponent extends BasePage implements OnInit {
-  arrWeight: Array<any>
-  selected: any;
-  alldata:any;
+  public arrWeight: Array<any>
+  public selected: any;
+  public alldata: any;
   public descr: FormControl = new FormControl();
 
   constructor(public pages: PagesService,
-              public weightService:WeightService,
-              public langService: LanguageService,
-              public breadcrumbs: BreadcrumbsService,
-              protected toastr: ToastrService,
-              public router: Router,
-              public lang: Lang
+    public weightService:WeightService,
+    public langService: LanguageService,
+    public breadcrumbs: BreadcrumbsService,
+    protected toastr: ToastrService,
+    public router: Router,
+    public lang: Lang
   ) {
     super(pages);
     this.router.events.subscribe((event: Event) => {
@@ -35,7 +35,6 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
         this.getWeight();
       }
     })
-
   }
 
   public ngOnInit(): void {
@@ -65,7 +64,7 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
       });
   }
 
-  getLangList() {
+  public getLangList(): void {
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
 
@@ -73,36 +72,30 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
     this.langService.languages = data;
   };
 
-
-  getWeight(): void {
+  public getWeight(): void {
     this.weightService.getWeight().subscribe(data => {
       this.arrWeight = data.data;
-      this.alldata=data
-      console.log(this.arrWeight)
+      this.alldata = data;
     })
-
   }
 
-  deleteStatus(order): void {
-      this.weightService.deleteWeight(order.id).subscribe(data => {
-        this.getWeight()
-      })
+  public deleteStatus(order): void {
+    this.weightService.deleteWeight(order.id).subscribe(data => {
+      this.getWeight();
+    })
   }
 
-  edit(i) {
+  public edit(i): void {
     this.selected = i;
     this.openForm();
-
   }
 
   save = () => {
-
     const updateWeight = {
       value: this.selected.value,
       default: null,
       description: this.selected.description,
     }
-
 
     if (this.selected.id !== undefined) {
       this.weightService.editWeight(this.selected.id, updateWeight).subscribe(data => {
@@ -117,9 +110,8 @@ export class UnitWeightPageComponent extends BasePage implements OnInit {
       })
     }
     this.closeForm();
-
-
   }
+
   plus = () => {
     this.weightService.initEmptyWeightForm();
     this.selected = this.weightService.selected;
