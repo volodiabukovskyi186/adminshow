@@ -88,6 +88,7 @@ export class OptionValueComponent implements OnInit, OnChanges {
     }
 
     public moderationOfReview(checked): void {
+        console.log('wwwww===>',checked)
         this.reviewId = checked.id;
         this.selectedValue = checked;
         this.optionType = checked.option_id;
@@ -97,6 +98,7 @@ export class OptionValueComponent implements OnInit, OnChanges {
     }
 
     getSelectedOptionVal(): void {
+       
         this.optionsService.getSelectedOptionValue(this.selected.id).subscribe(data => {
             this.selectedValue = this.optionValue;
             this.allCurrentOption = data.data;
@@ -122,25 +124,25 @@ export class OptionValueComponent implements OnInit, OnChanges {
             status: this.optionStatus,
             description: [
                 {
-                    id: 1,
+                    id: this.selectedValue?.descriptions[0].id,
                     lang_id: 1,
                     sort_order: this.optionSort,
                     name: this.selectedValue?.descriptions[0].name
                 },
                 {
-                    id: 2,
+                    id: this.selectedValue?.descriptions[1].id,
                     lang_id: 2,
                     sort_order: this.optionSort,
                     name: this.selectedValue?.descriptions[1].name
                 },
                 {
-                    id: 3,
+                    id: this.selectedValue?.descriptions[2].id,
                     lang_id: 3,
                     sort_order: this.optionSort,
                     name: this.selectedValue?.descriptions[2].name
                 },
                 {
-                    id: 4,
+                    id: this.selectedValue?.descriptions[3].id,
                     lang_id: 4,
                     sort_order: this.optionSort,
                     name: this.selectedValue?.descriptions[3].name
