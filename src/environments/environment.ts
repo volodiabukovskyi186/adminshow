@@ -126,7 +126,11 @@ export const environment = {
 },
   selected: {
     selected: host + `owner/getUsersWishlist`,
+  },
+  basket: {
+    basket: host + `cart_client/getUsersCart`
   }
+
 
 
 };

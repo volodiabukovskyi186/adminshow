@@ -418,6 +418,8 @@
     "upload": "Загрузить"
   },
   "selected": {
+    "basket": "Корзина",
+    "selected": "Выбрано",
     "client": "Клиент",
     "email": "Емейл",
     "phone": "Телефон",

@@ -10,6 +10,7 @@ import {Event, NavigationEnd, Router} from '@angular/router';
 import {LanguageService as Lang} from '../../core/language.service';
 import {BasePage} from '../@core';
 import {CustomersService} from '../customers/services/customers.service';
+import {BasketService} from './services/basket.service';
 
 @Component({
   selector: 'app-basket',
@@ -26,7 +27,7 @@ export class BasketComponent extends BasePage implements OnInit, OnChanges{
 
   constructor(public pages: PagesService,
               public weightService: WeightService ,
-              public selectedService: SelectedService ,
+              public basketService: BasketService ,
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
               protected toastr: ToastrService,
@@ -50,10 +51,6 @@ export class BasketComponent extends BasePage implements OnInit, OnChanges{
     this.getSelectedProducts();
     this.getLangList();
 
-    this.breadcrumbs.breadcrumbs = [
-      { link: '', title: 'Dashboard' },
-      { link: 'unit_weight', title: 'Weight' },
-    ];
     this.pages.panelButtonSettings.plus = false;
     this.pages.panelButtonSettings.rightToggle = true;
     this.pages.panelButtonSettings.save = false;
@@ -82,12 +79,12 @@ export class BasketComponent extends BasePage implements OnInit, OnChanges{
     this.lang.translate
         .get([
           'dashboard.dashboard',
-          'MENU.weight.weight',
+          'selected.basket',
         ])
         .subscribe((tr: any) => {
           this.breadcrumbs.breadcrumbs = [
             { link: '', title: tr['dashboard.dashboard'] },
-            { link: 'unit_weight', title: tr['MENU.weight.weight'] },
+            { link: 'basket', title: tr['selected.basket'] },
           ];
         });
   }
@@ -118,7 +115,7 @@ export class BasketComponent extends BasePage implements OnInit, OnChanges{
 
 
   getSelectedProducts(filter?: any): void {
-    this.selectedService.getSelectedProducts(filter).subscribe(data => {
+    this.basketService.getSelectedProducts(filter).subscribe(data => {
       this.arrSelected = data.data;
       this.alldata = data;
     });
@@ -155,9 +152,9 @@ export class BasketComponent extends BasePage implements OnInit, OnChanges{
   //#region pagination
 
   pageEvent(event): void {
-    this.selectedService.data.count = event.length;
-    this.selectedService.data.take = event.pageSize;
-    this.selectedService.data.skip = event.pageSize * event.pageIndex;
+    this.basketService.data.count = event.length;
+    this.basketService.data.take = event.pageSize;
+    this.basketService.data.skip = event.pageSize * event.pageIndex;
     this.getSelectedProducts();
   }
   Math = Math;

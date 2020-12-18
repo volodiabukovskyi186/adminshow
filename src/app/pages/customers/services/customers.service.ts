@@ -50,11 +50,11 @@ export class CustomersService {
   createCustomerInfo(customerEditedInfo): Observable<any> {
     return this.http.post<any>(`${environment.host}subscription_client`, customerEditedInfo);
   }
-  deleteCustomers(item):Observable<any>{
-    return this.http.delete<ICustomerPostData>(`${environment.host}subscription_client`,item.id);
+  deleteCustomers(item): Observable<any> {
+    return this.http.delete<ICustomerPostData>(`${environment.host}subscription_client`, item.id);
   }
-  getCustomerTable():Observable<any>{
-    return this.http.get(`${environment.host}getXLSXFile  `)
+  getCustomerTable(): Observable<any> {
+    return this.http.get(`${environment.host}getXLSXFile`);
   }
 
 }

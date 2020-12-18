@@ -67,17 +67,15 @@
                 data-tooltip-left="Edit"
                 role="button"
                 (click)="edit(item)"
-                class="button transparent radius"
-              >
+                class="button transparent radius" >
                 <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
               </button>
-
+<!--            (confirmed)="(null)"-->
                <rap-delete-button
                 data-tooltip-left="Delete"
                 class="button transparent radius"
-                (confirmed)="(null)"
+               (click)="deleteOption(item.id)"
                 [src]="'assets/icons/delete.svg'">
-
                </rap-delete-button>
             </div>
           </td>

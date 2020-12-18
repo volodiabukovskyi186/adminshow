@@ -422,6 +422,8 @@
     "upload": "Pobieranie"
   },
   "selected": {
+    "basket": "Kosz",
+    "selected": "Wybrany",
     "client": "Klient",
     "email": "Email",
     "phone": "Telefon",

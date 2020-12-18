@@ -245,6 +245,11 @@ export class OptionPageComponent extends BasePage
         this.openForm();
 
     }
+    deleteOption(id: number): void {
+        this.option.deleteOption(id).subscribe(data => {
+            this.getList();
+        });
+    }
 
 
     pageEvent(event): void {

@@ -172,7 +172,7 @@ export class OptionValueComponent implements OnInit, OnChanges {
         this.optionSort = null;
     }
     deleteOptionValue(): void {
-
+            console.log('this.reviewId===>',this.reviewId);
         if (this.reviewId) {
             this.optionsService.deleteOptionValue(this.reviewId).subscribe(data => {
                 this.cleanOtionValue();
@@ -190,7 +190,6 @@ export class OptionValueComponent implements OnInit, OnChanges {
             this.modalOpen = false;
         }
     };
-
     onOk() {
         const list: IImage[] = this.image.getSelected();
         this.optionValue.image_id = list[0].id;
@@ -198,7 +197,6 @@ export class OptionValueComponent implements OnInit, OnChanges {
 
         this.modalOpen = false;
     }
-
     onReset() {
         this.optionValue.image_id = null;
 

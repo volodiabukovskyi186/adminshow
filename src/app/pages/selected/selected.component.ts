@@ -50,10 +50,10 @@ export class SelectedComponent extends BasePage implements OnInit, OnChanges {
     this.getSelectedProducts();
     this.getLangList();
 
-    this.breadcrumbs.breadcrumbs = [
-      { link: '', title: 'Dashboard' },
-      { link: 'unit_weight', title: 'Weight' },
-    ];
+    // this.breadcrumbs.breadcrumbs = [
+    //   { link: '', title: 'Dashboard' },
+    //   { link: 'unit_weight', title: 'Selected' },
+    // ];
     this.pages.panelButtonSettings.plus = false;
     this.pages.panelButtonSettings.rightToggle = true;
     this.pages.panelButtonSettings.save = false;
@@ -64,6 +64,9 @@ export class SelectedComponent extends BasePage implements OnInit, OnChanges {
       this.openForm();
     };
   }
+
+
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes) {
       this.pages.panelButtonSettings.plus = false;
@@ -83,12 +86,12 @@ export class SelectedComponent extends BasePage implements OnInit, OnChanges {
     this.lang.translate
         .get([
           'dashboard.dashboard',
-          'MENU.weight.weight',
+          'selected.selected',
         ])
         .subscribe((tr: any) => {
           this.breadcrumbs.breadcrumbs = [
             { link: '', title: tr['dashboard.dashboard'] },
-            { link: 'unit_weight', title: tr['MENU.weight.weight'] },
+            { link: 'selected', title: tr['selected.selected'] },
           ];
         });
   }

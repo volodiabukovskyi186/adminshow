@@ -31,11 +31,13 @@ export class OptionService {
   }
 
   put(data: any, id: number): Observable<any> {
-    console.log('service====>', data);
     return this.http.put(`${environment.catalog.option.option}/${id}`, data);
   }
   getOptions(): Observable <any> {
     return  this.http.get(`${environment.catalog.option.options}`);
+  }
+  deleteOption(id: number): Observable <any> {
+    return this.http.delete(`${environment.catalog.option.option}/${id}`);
   }
   getSelectedOptionValue(id: number): Observable <any> {
     return  this.http.get(`${environment.catalog.option.optionValues}/${id}`);

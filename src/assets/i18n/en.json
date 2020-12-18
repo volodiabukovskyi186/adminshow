@@ -419,6 +419,8 @@
     "upload": "Upload"
   },
   "selected": {
+    "basket": "Basket",
+    "selected": "Selected",
     "client": "Client",
     "email": "Email",
     "phone": "Phone",
