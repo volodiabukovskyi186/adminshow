@@ -30,7 +30,7 @@ export class SitePagePageComponent extends BasePage implements OnInit, Paginatio
     public sitePageForm: SitePageFormService,
     public langService: LanguageService,
     public lang: Lang,
-    public router :Router
+    public router: Router
   ) {
     super(pages);
     this.router.events.subscribe((event: Event) => {
@@ -68,7 +68,7 @@ export class SitePagePageComponent extends BasePage implements OnInit, Paginatio
       });
   }
 
-  getList() {
+  public getList(): void {
     this.ngxService.start();
     this.sitePage.getList().subscribe(this.getListHandler);
   }
@@ -78,7 +78,7 @@ export class SitePagePageComponent extends BasePage implements OnInit, Paginatio
     this.sitePage.data = data;
   };
 
-  getLangList() {
+  public getLangList(): void {
     this.ngxService.start();
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
@@ -163,12 +163,13 @@ export class SitePagePageComponent extends BasePage implements OnInit, Paginatio
   }
 
   //
-  updateStatus(item: ISitePage) {
+  public updateStatus(item: ISitePage): void {
     this.sitePage
       .updateStatus(item.id, item.status == 0 ? 1 : 0)
       .subscribe(this.updateStatusHandler);
     this.editItem = item;
   }
+
   updateStatusHandler = (data) => {
     this.sitePage.updateStatusInList(
       this.editItem.id,
@@ -176,7 +177,7 @@ export class SitePagePageComponent extends BasePage implements OnInit, Paginatio
     );
   };
 
-  deletePage(page) {
+  public deletePage(page): void {
     this.sitePage.deleteSitePage(page.id).subscribe((res) =>{
       console.log(res);
     })

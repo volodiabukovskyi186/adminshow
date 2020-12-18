@@ -26,20 +26,20 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
 
 
     constructor(public pages: PagesService,
-                public localizationService: LocalizationServicesService,
-                public langService: LanguageService,
-                protected ngxService: NgxUiLoaderService,
-                public breadcrumbs: BreadcrumbsService,
-                protected toastr: ToastrService,
-                public router: Router,
-                public lang: Lang
+        public localizationService: LocalizationServicesService,
+        public langService: LanguageService,
+        protected ngxService: NgxUiLoaderService,
+        public breadcrumbs: BreadcrumbsService,
+        protected toastr: ToastrService,
+        public router: Router,
+        public lang: Lang
     ) {
         super(pages);
         this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd) {
                 this.getStatus();
             }
-          })
+        })
     }
 
     public ngOnInit(): void {
@@ -68,11 +68,11 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         });
     }
 
-    test() {
+    public test(): void {
         new Angular5Csv(this.arrStatus , 'My Report');
     }
 
-    getLangList() {
+    public getLangList(): void {
         // this.ngxService.start();
         this.langService.getLangs().subscribe(this.getLangListHandler);
     }
@@ -83,7 +83,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         // this.categoryForm.initDesc(this.langService.languages.data);
     };
 
-    getStatus(): void {
+    public getStatus(): void {
         this.localizationService.getOrderStatus().subscribe(
             data => {
             this.arrStatus = data.data;
@@ -92,7 +92,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         })
     }
 
-    deleteStatus(order): void {
+    public deleteStatus(order): void {
         if (order.name !== 'New') {
             this.localizationService.deleteOrderStatus(order.id).subscribe(data => {
                 this.getStatus();
@@ -103,7 +103,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
         }
     }
 
-    edit(i) {
+    public edit(i): void {
         this.selectedOrder = i;
         this.openForm();
     }
@@ -149,7 +149,7 @@ export class OrderStatusPageComponent extends BasePage implements OnInit {
     // };
 
     //#region pagination
-      pageEvent(event): void {
+    pageEvent(event): void {
         this.localizationService.data.count = event.length;
         this.localizationService.data.take = event.pageSize;
         this.localizationService.data.skip = event.pageSize * event.pageIndex;

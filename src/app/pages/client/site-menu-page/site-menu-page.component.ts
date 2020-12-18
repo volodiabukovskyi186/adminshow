@@ -64,7 +64,7 @@ export class SiteMenuPageComponent extends BasePage implements OnInit, Paginatio
       });
   }
 
-  getList() {
+  public getList(): void {
     this.ngxService.start();
     this.siteMenu.getList().subscribe(this.getListHandler);
   }
@@ -74,7 +74,7 @@ export class SiteMenuPageComponent extends BasePage implements OnInit, Paginatio
     this.siteMenu.data = data;
   };
 
-  getLangList() {
+  public getLangList(): void {
     this.ngxService.start();
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }

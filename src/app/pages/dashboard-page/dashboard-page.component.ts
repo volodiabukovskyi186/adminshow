@@ -20,7 +20,6 @@ export class DashboardPageComponent implements OnInit {
     public lang: Lang,
     private UserService:UserService,
   ) {
-    //breadcrumbs.breadcrumbs = [{ link: "", title: "Dashboard" }];
     pages.defaultSetting();
     pages.panelSettings.top = true;
     pages.panelSettings.left = true;
@@ -29,7 +28,6 @@ export class DashboardPageComponent implements OnInit {
   public ngOnInit(): void {
     this._title.setTitle("Dashboard | RAP for ShowU");
     this.initTranslate();
-    // this.UserService.SUser.next(true)
   }
 
   public initTranslate(): void {

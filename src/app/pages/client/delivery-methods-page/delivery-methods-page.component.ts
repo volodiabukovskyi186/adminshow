@@ -20,13 +20,14 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   selected: any;
   public descr: FormControl = new FormControl();
 
-  constructor(public pages: PagesService,
-              public deliveryService:DeliveryMethodsService,
-              public langService: LanguageService,
-              public breadcrumbs: BreadcrumbsService,
-              protected toastr: ToastrService,
-              public router: Router,
-              public lang: Lang
+  constructor(
+    public pages: PagesService,
+    public deliveryService:DeliveryMethodsService,
+    public langService: LanguageService,
+    public breadcrumbs: BreadcrumbsService,
+    protected toastr: ToastrService,
+    public router: Router,
+    public lang: Lang
   ) {
     super(pages);
     this.router.events.subscribe((event: Event) => {
@@ -42,11 +43,6 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
     this.initTranslate();
     this.getWeight();
     this.getLangList();
-
-    // this.breadcrumbs.breadcrumbs = [
-    //   { link: "", title: "Dashboard" },
-    //   { link: "unit_weight", title: " Delivery" },
-    // ];
   }
 
   public initTranslate(): void {
@@ -63,7 +59,7 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
       });
   }
 
-  getLangList() {
+  public getLangList(): void {
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
 
@@ -72,21 +68,21 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   };
 
 
-  getWeight(): void {
+  public getWeight(): void {
     this.deliveryService.getDelivery().subscribe(data => {
       this.arrPayment = data.data;
-      this.alldata=data;
+      this.alldata = data;
     })
 
   }
 
-  deleteStatus(order): void {
+  public deleteStatus(order): void {
     this.deliveryService.deleteDelivery(order.id).subscribe(data => {
       this.getWeight()
     })
   }
 
-  edit(i) {
+  public edit(i): void {
     this.selected = i;
     this.openForm();
   }
@@ -112,6 +108,7 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
     }
     this.closeForm();
   }
+
   plus = () => {
     this.deliveryService.initEmptyWeightForm();
     this.selected = this.deliveryService.selected;
@@ -131,15 +128,14 @@ export class DeliveryMethodsPageComponent extends BasePage implements OnInit  {
   // };
 
   //#region pagination
-    pageEvent(event):void{
-
-    this.deliveryService.data.count=event.length
-    this.deliveryService.data.take=event.pageSize
-    this.deliveryService.data.skip=event.pageSize*event.pageIndex
-    this.alldata.count=event.length
-    this.alldata.take=event.pageSize
-    this.alldata.skip=event.pageSize*event.pageIndex
-    this.getWeight()
+  pageEvent(event): void {
+    this.deliveryService.data.count = event.length;
+    this.deliveryService.data.take = event.pageSize;
+    this.deliveryService.data.skip = event.pageSize*event.pageIndex;
+    this.alldata.count = event.length;
+    this.alldata.take = event.pageSize;
+    this.alldata.skip = event.pageSize * event.pageIndex;
+    this.getWeight();
   }
 
   pageToHandler(page: number): void {

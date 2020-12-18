@@ -6,7 +6,7 @@ import { RapService } from '../../rap.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MenuService } from 'src/app/core/menu.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { PRIMARY_OUTLET, UrlTree, UrlSegment, UrlSegmentGroup, Router, ActivatedRoute } from '@angular/router';
 
 const TIME = ".3s";
 const FN = "ease-in-out";
@@ -41,6 +41,9 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
   public navItemStatus: boolean = false;
   private destroy$: Subject<void> = new Subject<void>();
   public myAnimatiom = 'small';
+  public tree: UrlTree;
+  public queryParams = {};
+  public primary: UrlSegmentGroup;
 
   @Input() title: string;
   @Input() icon: string;
@@ -68,37 +71,21 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
 
   public ngOnInit(): void {
     this.BurgerStatus();
-    // const params = this.route;
-    // console.log(params);
-    // console.log(this.router.url);
 
-    // const getLinkRoute = this.router.url;
+    this.tree = this.router.parseUrl(this.router.url);
+    this.queryParams = this.tree.queryParams;
+    this.primary = this.tree.root.children[PRIMARY_OUTLET];
+    const primarySegments: UrlSegment[] = this.primary.segments;
+    const getUrlSegment = primarySegments[primarySegments.length - 1];
 
-    // //this.item?.items?.forEach((val) => {
-    //   if (this.currentItemUrl === getLinkRoute) {
-    //     //this.item.open = true;
-    //     this.open = true;
-    //   }
-    // //})
+    this.item?.items?.forEach((val) => {
+      console.log(val);
 
-    // console.log(getLinkRoute);
-
-    // console.log(this.item);
-    // console.log(this.title);
-
-    // this.item.open = true;
-    // this.open = this.item?.open;
-
-    // if (!this.router.url) {
-    //   console.log(this.router.url);
-
-    //   this.open = false;
-    // } else {
-    //   //this.open = true;
-    //   this.burderStatus = false;
-    // }
-
-    //console.log(this.openValue);
+      if (val.link === getUrlSegment.path) {
+        this.open = true;
+        val.open = true;
+      }
+    })
 
     // this.UserService.SUser.subscribe(user=>{
     //   this.menu.nav=this.menu.nav

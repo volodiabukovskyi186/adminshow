@@ -2,8 +2,8 @@
     <div class="orders-form-title">{{ 'orders.editOrder' | translate }}</div>
     <div>
         <div class="orders-input-wrapper tabs-header-settings-form">
-            <img class="prev-icon" src="assets/icons/left-arrow.svg"/>
-            <img class="next-icon" src="assets/icons/next.svg"/>
+            <!-- <img class="prev-icon" src="assets/icons/left-arrow.svg"/>
+            <img class="next-icon" src="assets/icons/next.svg"/> -->
             <rap-step-tabs>
                 <rap-step-tab [active]="true" [title]="'orders.informationAboutClient' | translate">
                     <form [formGroup]="clientInfoForm">
@@ -54,6 +54,17 @@
                                     required
                                 />
                             </div>
+                        </div>
+                        <div class="flex center save-btn-container">
+                            <button
+                                style="position: relative;"
+                                data-tooltip-left="Save"
+                                role="button"
+                                (click)="saveClientInfo()"
+                                class="button transparent radius"
+                            >
+                                <rap-svg-ico class="black save-btn" [src]="'assets/icons/save.svg'"></rap-svg-ico>
+                            </button>
                         </div>
                     </form>
                 </rap-step-tab>
@@ -237,6 +248,17 @@
                                     required
                                 ></textarea>
                             </div>
+                        </div>
+                        <div class="flex center save-btn-container">
+                            <button
+                                style="position: relative;"
+                                data-tooltip-left="Save"
+                                role="button"
+                                (click)="savePaymentDeliveryDetails()"
+                                class="button transparent radius"
+                            >
+                                <rap-svg-ico class="black save-btn" [src]="'assets/icons/save.svg'"></rap-svg-ico>
+                            </button>
                         </div>
                     </form>
                 </rap-step-tab>

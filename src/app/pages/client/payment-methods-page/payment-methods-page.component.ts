@@ -23,13 +23,14 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
   alldata:any;
   public descr: FormControl = new FormControl();
 
-  constructor(public pages: PagesService,
-              public paymentService:PaymentService,
-              public langService: LanguageService,
-              public breadcrumbs: BreadcrumbsService,
-              protected toastr: ToastrService,
-              public router: Router,
-              public lang: Lang
+  constructor(
+    public pages: PagesService,
+    public paymentService:PaymentService,
+    public langService: LanguageService,
+    public breadcrumbs: BreadcrumbsService,
+    protected toastr: ToastrService,
+    public router: Router,
+    public lang: Lang
   ) {
     super(pages);
     this.router.events.subscribe((event: Event) => {
@@ -45,11 +46,6 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
     this.initTranslate();
     this.getWeight();
     this.getLangList();
-
-    // this.breadcrumbs.breadcrumbs = [
-    //   { link: "", title: "Dashboard" },
-    //   { link: "unit_weight", title: " Payment" },
-    // ];
   }
 
   public initTranslate(): void {
@@ -66,7 +62,7 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
       });
   }
 
-  getLangList() {
+  public getLangList(): void {
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
 
@@ -75,25 +71,21 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
   };
 
 
-  getWeight(): void {
-
+  public getWeight(): void {
     this.paymentService.getWeight().subscribe(data => {
       this.arrPayment = data.data;
-      this.alldata=data
-      console.log(this.arrPayment)
+      this.alldata = data;
     })
-
   }
 
-  deleteStatus(order): void {
+  public deleteStatus(order): void {
     this.paymentService.deleteWeight(order.id).subscribe(data => {
-      this.getWeight()
+      this.getWeight();
     })
   }
 
-  edit(i) {
+  public edit(i): void {
     this.selected = i;
-    console.log(this.selected)
     this.openForm();
   }
 
@@ -118,9 +110,8 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
       })
     }
     this.closeForm();
-
-
   }
+
   plus = () => {
     this.paymentService.initEmptyWeightForm();
     this.selected = this.paymentService.selected;
@@ -134,6 +125,7 @@ export class PaymentMethodsPageComponent extends BasePage implements OnInit {
     this.closeForm();
     // this.toastr.success("option ADDED");
   };
+  
   // getListHandler = (data) => {
   //     this.ngxService.stopAll();
   //     this.localizationService.data = data;

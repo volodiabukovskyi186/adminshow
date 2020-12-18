@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PromotionService } from '../../../modules/catalog/promotion/services/promotion.service';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { OrderService } from '../services/order.service';
+import { UserService } from '../../../modules/user/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-order-form',
@@ -23,13 +26,18 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   public isSelectedProduct: boolean = false;
   public selectedProduct: any;
   public products = [];
-  public orderTotal ;
+  public orderTotal;
+  public currentUserRoleId: number;
 
   constructor(
-    public promotionService: PromotionService
+    public promotionService: PromotionService,
+    public orderService: OrderService,
+    public userService: UserService,
+    public toastr: ToastrService
   ) { }
 
   public ngOnInit(): void {
+    this.getUserByToken();
     this.generateClientInfoForm();
     this.generateAddProductForm();
     this.generateEditClientInfoForm();
@@ -49,6 +57,18 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
         }
       })
     }
+  }
+
+  public getUserByToken(): void {
+    this.userService.getByToken().subscribe((res) => {
+      this.currentUserRoleId = res.data.user.role_id;
+    });
+  }
+
+  public getOrders(): void {
+    this.orderService.getList(this.currentUserRoleId).subscribe(data => {
+      this.orderService.order = data;
+    })
   }
 
   public generateEditClientInfoForm(): void {
@@ -78,9 +98,9 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
 
   public setClientInfo(): void {
     this.clientInfoForm?.setValue({
-      name: this.selectedClientOrder.recipientLastName,
-      surname: this.selectedClientOrder.recipientFirstName,
-      phone: this.selectedClientOrder.recipientPhone,
+      name: this.selectedClientOrder.last_name,
+      surname: this.selectedClientOrder.first_name,
+      phone: this.selectedClientOrder.telephone,
       email: this.selectedClientOrder.email,
     })
   }
@@ -145,5 +165,45 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
         this.orderTotal += sum;
       }
     })
+  }
+
+  public saveClientInfo(): void {
+    const clientInfoToUpdate = {
+      first_name: this.clientInfoForm.value.name,
+      last_name: this.clientInfoForm.value.surname,
+      email: this.clientInfoForm.value.email,
+      telephone: this.clientInfoForm.value.phone
+    }
+
+    this.orderService.updateOrderClientInfo(this.selectedClientOrder.id, clientInfoToUpdate)
+      .subscribe((res) => {
+        if (res.data) {
+          this.getOrders();
+          this.toastr.success("Saved");
+        }
+
+        if (res.error) {
+          this.toastr.error("Error");
+        }
+      })
+  }
+
+  public savePaymentDeliveryDetails(): void {
+    const orderPaymentDetailsToSend = {
+      checkoutDelivery: this.editClientInfoForm.value.deliveryMethod,
+      checkoutDeliveryAddress: this.editClientInfoForm.value.details,
+      checkoutPayment: this.editClientInfoForm.value.paymentMethod
+    }
+
+    this.orderService.updateOrderDeliveryData(this.selectedClientOrder.id, orderPaymentDetailsToSend)
+      .subscribe((res) => {
+        if (res.data) {
+          this.toastr.success("Saved");
+        }
+
+        if (res.error) {
+          this.toastr.error("Error");
+        }
+      })
   }
 }

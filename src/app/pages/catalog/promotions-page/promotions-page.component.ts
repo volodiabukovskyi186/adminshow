@@ -36,7 +36,7 @@ constructor(
   public promForm: PromotionFormService,
   public langService: LanguageService,
   public lang: Lang,
-  public router :Router
+  public router: Router
 ) {
   super(pages);
   this.router.events.subscribe((event: Event) => {
@@ -74,7 +74,7 @@ public initTranslate(): void {
     });
 }
 
-getList() {
+public getList(): void {
   this.ngxService.start();
   this.prom.getList().subscribe(this.getListHandler);
 }
@@ -84,7 +84,7 @@ getListHandler = (data) => {
   this.prom.data = data;
 };
 
-getLangList() {
+public getLangList(): void {
   this.ngxService.start();
   this.langService.getLangs().subscribe(this.getLangListHandler);
 }
@@ -106,8 +106,6 @@ save = () => {
     status: c.status,
     description: [],
   };
-
-  //debugger;
 
   if (c.id != null) {
     c.descriptions.forEach((d) => {
@@ -157,8 +155,6 @@ save = () => {
     });
     
     this.prom.post(data).subscribe((res) => {
-      //debugger;
-
       this.postHandler(res);
       if (this.selectedProductsPromotion) {
         this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
@@ -209,7 +205,7 @@ public edit(i): void {
   this.openForm();
 }
 
-public deletePromotion(promotionId) {
+public deletePromotion(promotionId): void {
   this.prom.removePromotion(promotionId).subscribe((res) => {
     this.getList()
   });
@@ -232,6 +228,7 @@ public selectedProducts(event): void {
       .subscribe(this.updateStatusHandler);
       this.editItem = item;
   }
+  
   updateStatusHandler = (data) => {
     this.prom.updateStatusInList(
       this.editItem.id,

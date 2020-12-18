@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
   public time: number = 500;
   public timer: any;
 
-
   constructor(
     public searchService: SearchService, 
     private router: Router,
@@ -43,13 +42,9 @@ export class SearchComponent implements OnInit {
   searchHandler = data => {
     this.searchService.list = data.data;
     this.isActiveResults = !!this.searchService.list.length;
-
-
   }
 
   public pressEnter(event): void {
-
-
     if (event.key === 'Enter') {
       this.router.navigate(['/products'], { queryParams: { search: this.searchText } });
     }
@@ -57,8 +52,6 @@ export class SearchComponent implements OnInit {
 
   public closeSearchList(): void {
     this.isActiveResults = false;
-
-
   }
 
   public selectProduct(selectedProductId: number): void {

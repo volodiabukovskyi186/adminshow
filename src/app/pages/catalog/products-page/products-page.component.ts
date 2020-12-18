@@ -54,9 +54,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       super(pages);
 
       this.translate.onLangChange.subscribe(lang => {
-       //this.getList(this.userRole);
         this.getUserByTokin();
-        //this.getProductsBySearch(this.userRole);
       })
     }
 

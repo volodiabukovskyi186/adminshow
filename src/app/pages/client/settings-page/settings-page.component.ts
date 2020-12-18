@@ -115,8 +115,6 @@ export class SettingsPageComponent extends BasePage implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         this.siteSettingsDescriptions = res.data[0];
-        console.log(this.siteSettingsDescriptions);
-      //this.settingsPageService.settings.data.descriptions = res.data;
       })
   }
 
