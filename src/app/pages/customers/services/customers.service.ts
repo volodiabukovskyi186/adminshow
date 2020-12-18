@@ -46,7 +46,6 @@ export class CustomersService {
   editCustomerInfo(customerEditedInfo, userId): Observable<any> {
     return this.http.put<ICustomerPostData>(`${environment.host}subscription_client/${userId}`, customerEditedInfo);
   }
-  
   createCustomerInfo(customerEditedInfo): Observable<any> {
     return this.http.post<any>(`${environment.host}subscription_client`, customerEditedInfo);
   }
