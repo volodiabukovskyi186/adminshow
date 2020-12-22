@@ -79,7 +79,9 @@
     "visibility": "Видимость",
     "visible": "Видимый",
     "hidden": "Скрытый",
-    "notFound": " не найдено"
+    "notFound": " не найдено",
+    "name": "Имя",
+    "cancel": "Отменить"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",
@@ -98,7 +100,8 @@
     "parrent_id": "Родительская категория",
     "title": "Название",
     "add_edit_category": "Добаить/редактировать категорию",
-    "description": "Описание"
+    "description": "Описание",
+    "noCategorySelected": "Категория не выбрана"
   },
   "collection": {
     "collections": "Коллекции",
@@ -428,13 +431,28 @@
   "option":{
     "option": "Опция",
     "order": "Направление",
-    "image": "Картінка",
+    "image": "Изображение",
     "show": "Показать",
     "hidden": "Скрыть",
     "name": "Имя",
     "status": "Статус",
     "list":"Список",
     "switch":"Переключатель",
-    "listvalue": "Список значений опций"
+    "listvalue": "Список значений опций",
+    "optionInfoType": "Тип",
+    "optionStatus": "Статус"
+  },
+  "delivery": {
+    "deliveryName": "Доставка",
+    "deliveryPayment": "Оплата"
+  },
+  "siteMenu": {
+    "siteMenuLink": "Ссылка",
+    "siteMenuType": "Тип",
+    "siteMenuMain": "Главный",
+    "siteMenuShop": "Магазин",
+    "siteMenuHelp": "Помощь",
+    "siteMenuSortOrder": "Порядок сортировки",
+    "siteMenuName": "Имя"
   }
 }

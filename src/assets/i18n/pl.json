@@ -79,7 +79,9 @@
     "visibility": "Widoczność",
     "visible": "Widoczne",
     "hidden": "Ukryte",
-    "notFound": " nie znaleziono"
+    "notFound": " nie znaleziono",
+    "name": "Nazwisko",
+    "cancel": "Anuluj"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",
@@ -98,7 +100,8 @@
     "description": "Opis",
     "parrent_id": "Parrent ID",
     "title": "Tytuł",
-    "add_edit_category": "Dodaj/Edytuj kategorię"
+    "add_edit_category": "Dodaj/Edytuj kategorię",
+    "noCategorySelected": "Nie wybrano żadnej kategorii"
   },
   "collection": {
     "collections": "Kolekcje",
@@ -435,10 +438,25 @@
     "image": "Wizerunek",
     "show": "Pokazać",
     "hidden": "Ukryty",
-    "name": "Nazwa",
+    "name": "Nazwisko",
     "status": "Status",
     "list":"Lista",
     "switch":"Przełącznik",
-    "listvalue": "Lista wartości opcji"
+    "listvalue": "Lista wartości opcji",
+    "optionInfoType": "Rodzaj",
+    "optionStatus": "Status"
+  },
+  "delivery": {
+    "deliveryName": "Dostawa",
+    "deliveryPayment": "Płatność"
+  },
+  "siteMenu": {
+    "siteMenuLink": "Połączyć",
+    "siteMenuType": "Rodzaj",
+    "siteMenuMain": "Główny",
+    "siteMenuShop": "Sklep",
+    "siteMenuHelp": "Wsparcie",
+    "siteMenuSortOrder": "Porządek sortowania",
+    "siteMenuName": "Nazwisko"
   }
 }

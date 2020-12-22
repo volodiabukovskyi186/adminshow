@@ -3,7 +3,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">link</label>
+      <label for="">{{ 'siteMenu.siteMenuLink' | translate }}</label>
     </div>
     <div class="original">
       <input class="radius" type="text" [(ngModel)]="model.link" />
@@ -12,34 +12,34 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">SHOW</label>
+      <label for="">{{ 'APP.show' | translate }}</label>
     </div>
 
     <div class="original">
       <select class="radius" name="parent_id" [(ngModel)]="model.status">
-        <option value="1">Show</option>
-        <option value="0">Hide</option>
+        <option value="1">{{ 'APP.show' | translate }}</option>
+        <option value="0">{{ 'APP.hide' | translate }}</option>
       </select>
     </div>
   </div>
 
   <div class="form-row">
     <div class="description">
-      <label for="">Type</label>
+      <label for="">{{ 'siteMenu.siteMenuType' | translate }}</label>
     </div>
 
     <div class="original">
       <select class="radius" name="parent_id" [(ngModel)]="model.type">
-        <option value="main">Main</option>
-        <option value="shop">Shop</option>
-        <option value="help">Help</option>
+        <option value="main">{{ 'siteMenu.siteMenuShop' | translate }}</option>
+        <option value="shop">{{ 'siteMenu.siteMenuMain' | translate }}</option>
+        <option value="help">{{ 'siteMenu.siteMenuHelp' | translate }}</option>
       </select>
     </div>
   </div>
 
   <div class="form-row">
     <div class="description">
-      <label for="">sort order</label>
+      <label for="">{{ 'siteMenu.siteMenuSortOrder' | translate }}</label>
     </div>
     <div class="original">
       <input class="radius" type="text" [(ngModel)]="model.sort_order" />
@@ -54,7 +54,7 @@
     >
       <div class="form-row">
         <div class="description">
-          <label for="">NAME</label>
+          <label for="">{{ 'siteMenu.siteMenuName' | translate }}</label>
         </div>
         <div class="original">
           <input class="radius" [(ngModel)]="item.title" type="text" />

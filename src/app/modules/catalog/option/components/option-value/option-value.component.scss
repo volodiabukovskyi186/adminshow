@@ -71,7 +71,7 @@ table {
   border: 1px solid #808080;
   border-radius: 4px;
   padding-left: 8px;
-  height: 28px !important;
+  height: 36px !important;
 }
 .settings-input-content {
   display: flex;
@@ -338,13 +338,13 @@ rap-delete-button.button.transparent {
     }
   }
 }
-.sort-products {
-  width: 100%;
-  border: 1px solid #808080;
-  border-radius: 4px;
-  padding-left: 8px;
-  height: 28px !important;
-}
+// .sort-products {
+//   width: 100%;
+//   border: 1px solid #808080;
+//   border-radius: 4px;
+//   padding-left: 8px;
+//   height: 28px !important;
+// }
 .settings-input-content {
   display: flex;
   flex-direction: row;

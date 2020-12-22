@@ -7,7 +7,7 @@
     </fieldset>
   </rap-step-tab>
 
-  <rap-step-tab  [title]="'APP.value' | translate">
+  <rap-step-tab  [title]="'APP.value' | translate" *ngIf="isOptionEdited">
     <fieldset class="radius" style="margin-bottom: 16px;">
       <legend>{{'APP.value' | translate}}</legend>
       <app-option-value  [selected]="selected"></app-option-value>

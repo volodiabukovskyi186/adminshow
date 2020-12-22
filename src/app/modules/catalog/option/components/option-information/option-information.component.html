@@ -9,44 +9,48 @@
         </div>
     </div>
     <div class="settings-input-content sort-settings-content">
-        <div class="description">
-            <label for="">Тип</label>
-        </div>
-        <div class="sort-products-container">
-            <mat-form-field appearance="standart" class="sort-products">
-                <div class="sort-products-wrapper">
-                    <mat-select id="type" [(ngModel)]="selected.type">
-                        <div>
-                            <mat-option [value]="'select'" >{{'option.list' | translate}}</mat-option>
-                            <mat-option [value]="'checked'" >{{'option.switch' | translate}}</mat-option>
-                        </div>
-                    </mat-select>
-                </div>
-            </mat-form-field>
+        <div class="form-row">
+            <div class="description">
+                <label for="">{{ 'option.optionInfoType' | translate }}</label>
+            </div>
+            <div class="sort-products-container original">
+                <mat-form-field appearance="standart" class="sort-products">
+                    <div class="sort-products-wrapper">
+                        <mat-select id="type" [(ngModel)]="selected.type">
+                            <div>
+                                <mat-option [value]="'select'" >{{'option.list' | translate}}</mat-option>
+                                <mat-option [value]="'checked'" >{{'option.switch' | translate}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </div>
+                </mat-form-field>
+            </div>
         </div>
     </div>
     <div class="settings-input-content sort-settings-content">
-        <div class="description">
-            <label for="">Статус</label>
-        </div>
-        <div class="sort-products-container">
-            <mat-form-field appearance="standart" class="sort-products">
-                <div class="sort-products-wrapper">
-                    <mat-select [(ngModel)]="selected.status" id="status">
-                        <div>
-                            <mat-option [value]="1">{{'option.show' | translate}}</mat-option>
-                            <mat-option [value]="0">{{'option.hidden' | translate}}</mat-option>
-                        </div>
-                    </mat-select>
-                </div>
-            </mat-form-field>
+        <div class="form-row">
+            <div class="description">
+                <label for="">{{ 'option.optionStatus' | translate }}</label>
+            </div>
+            <div class="sort-products-container original">
+                <mat-form-field appearance="standart" class="sort-products">
+                    <div class="sort-products-wrapper">
+                        <mat-select [(ngModel)]="selected.status" id="status">
+                            <div>
+                                <mat-option [value]="1">{{'option.show' | translate}}</mat-option>
+                                <mat-option [value]="0">{{'option.hidden' | translate}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </div>
+                </mat-form-field>
+            </div>
         </div>
     </div>
     <rap-step-tabs class="flag-tabs">
         <rap-step-tab
-                *ngFor="let item of selected?.description"
-                [imgSrc]="langService.getFromList(item?.lang_id)?.flag"
-                [title]="langShortTitle[item?.lang_id]?.title | translate"
+            *ngFor="let item of selected?.description"
+            [imgSrc]="langService.getFromList(item?.lang_id)?.flag"
+            [title]="langShortTitle[item?.lang_id]?.title | translate"
         >
             <div class="form-row">
                 <div class="description">
@@ -59,14 +63,13 @@
         </rap-step-tab>
     </rap-step-tabs>
     <div class="flex center">
-        <button style="position: relative;"
-                data-tooltip-left="Save"
-                role="button"
-                (click)="save()"
-                class="button transparent radius">
+        <button 
+            style="position: relative;"
+            data-tooltip-left="Save"
+            role="button"
+            (click)="save()"
+            class="button transparent radius">
             <rap-svg-ico class="black" [src]="'assets/icons/save.svg'"></rap-svg-ico>
         </button>
     </div>
-
 </fieldset>
-

@@ -84,7 +84,8 @@
     "saleListStart": "Discount lists for goods",
     "saleListEnd":"Completion of the discount",
     "discountExpired": "The discount has expired",
-    "notFound": " not found"
+    "notFound": " not found",
+    "name": "Name"
   },
   "pageNotFound": {
     "backToHome": "Back To Home",
@@ -95,7 +96,7 @@
     "dashboard": "Dashboard"
   },
   "promotion": {
-    "add_edit_promotion": "Add/edit Promotion"
+    "add_edit_promotion": "Add/Edit Promotion"
   },
   "category": {
     "category": "Category",
@@ -107,7 +108,8 @@
     "select_parent": "Select parent category",
     "msgAdded": "Category successfully added",
     "msgUpdated": "Category successfully updated",
-    "msgDeleted": "Category successfully deleted"
+    "msgDeleted": "Category successfully deleted",
+    "noCategorySelected": "No category selected"
   },
   "collection": {
     "collections": "Collections",
@@ -306,7 +308,7 @@
     "productsAttributesValue": "Value"
   },
   "reviews": {
-    "goods": "Goods",
+    "goods": "Products",
     "producer": "Producer",
     "authorOfTheReview": "Author of the review",
     "review": "Review",
@@ -424,7 +426,7 @@
     "client": "Client",
     "email": "Email",
     "phone": "Phone",
-    "item": "Gods"
+    "item": "Product"
   },
   "option":{
     "option": "Option",
@@ -436,6 +438,21 @@
     "status": "Status",
     "list":"List",
     "switch":"Switch",
-    "listvalue": "List of option values"
+    "listvalue": "List of option values",
+    "optionInfoType": "Type",
+    "optionStatus": "Status"
+  },
+  "delivery": {
+    "deliveryName": "Delivery",
+    "deliveryPayment": "Payment"
+  },
+  "siteMenu": {
+    "siteMenuLink": "Link",
+    "siteMenuType": "Type",
+    "siteMenuMain": "Main",
+    "siteMenuShop": "Shop",
+    "siteMenuHelp": "Help",
+    "siteMenuSortOrder": "Sort order",
+    "siteMenuName": "Name"
   }
 }

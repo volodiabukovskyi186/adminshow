@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { IOption } from "../../interfaces";
 import {
   LanguageService,
@@ -16,13 +16,20 @@ export class OptionFormComponent implements OnInit {
   // @Input() optionValue;
   @Input() selectedValue;
   @Input() model: IOption;
+  @Input() isOptionEdited: boolean;
+
+  //public isOptionSelected: boolean = false;
 
   constructor(
     public langService: LanguageService
   ) {}
-  ngOnInit(): void {
 
-  }
+  // public ngOnChanges(changes: SimpleChanges) {
+  //   if (changes.isOptionEdited) {
+  //     this.isOptionSelected = true;
+  //   }
+  // }
 
+  public ngOnInit(): void {}
 
 }

@@ -3,7 +3,7 @@
         <div class="modal-close" (click)="modalOpen = false"></div>
         <div class="modal-content">
             <header>
-                <h4>Select images</h4>
+                <h4>{{ 'imagesGallery.selectImages' | translate }}</h4>
             </header>
             <div class="content">
                 <app-gallery-view
@@ -41,7 +41,7 @@
 <!--    </div>-->
     <div class="form-row">
         <div class="description">
-            <label for="">Порядок</label>
+            <label for="">{{ 'option.order' | translate }}</label>
         </div>
         <div class="original">
             <input class="radius" [(ngModel)]="optionSort" type="text"/>
@@ -55,7 +55,7 @@
 
             <div class="original">
                 <app-choice-button
-                        style="max-width: 80px;"
+                        style="max-width: 175px;"
                         class="radius"
                         (press)="onPress()"
                         [src]="
@@ -69,7 +69,7 @@
     </div>
     <div class="form-row settings-input-content sort-settings-content">
         <div class="description">
-            <label for="">Статус</label>
+            <label for="">{{ 'option.optionStatus' | translate }}</label>
         </div>
         <div class="sort-products-container">
             <mat-form-field appearance="standart" class="sort-products">

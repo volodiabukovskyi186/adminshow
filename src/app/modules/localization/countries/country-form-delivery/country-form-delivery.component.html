@@ -5,7 +5,7 @@
     optionTextField="name"
     [multiple]="true"
     [(ngModel)]="values"
-    placeholder="No category selected"
+    placeholder="{{ 'category.noCategorySelected' | translate }}"
 >
     <ng-template
         ngx-select-option
@@ -18,7 +18,7 @@
        </ng-container>
     </ng-template>
     <ng-template ngx-select-option-not-found let-input>
-        <span> "{{ input }}" not found</span>  
+        <span> "{{ input }}" {{ 'APP.notFound' | translate }}</span>  
     </ng-template>
 </ngx-select>
 

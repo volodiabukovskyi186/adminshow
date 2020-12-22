@@ -6,9 +6,9 @@
         </fieldset>
     </rap-step-tab>
     
-    <rap-step-tab *ngIf="selected.id" [title]="'Доставка'">
+    <rap-step-tab *ngIf="selected.id" [title]="'delivery.deliveryName' | translate">
         <fieldset class="radius" style="margin-bottom: 16px;">
-            <legend>Доставка</legend>
+            <legend>{{ 'delivery.deliveryName' | translate }}</legend>
             <app-country-form-delivery 
                 [selected]="selected" 
                 [selectedCountryDeliver]="selectedCountryDeliver"
@@ -16,9 +16,9 @@
         </fieldset>
     </rap-step-tab>
 
-    <rap-step-tab *ngIf="selected.id" [title]="'Оплата'">
+    <rap-step-tab *ngIf="selected.id" [title]="'delivery.deliveryPayment' | translate">
         <fieldset class="radius" style="margin-bottom: 16px;">
-            <legend>Оплата</legend>
+            <legend>{{ 'delivery.deliveryPayment' | translate }}</legend>
             <app-country-form-payment 
                 [selected]="selected" 
                 [selectedCountryPayment]="selectedCountryPayment"

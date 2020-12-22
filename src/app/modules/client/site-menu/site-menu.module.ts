@@ -4,12 +4,19 @@ import { SiteMenuFormComponent } from './components/site-menu-form/site-menu-for
 import { UiModule } from '../../ui/ui.module';
 import { FormsModule } from '@angular/forms';
 import { GalleryModule } from '../../gallery/gallery.module';
+import { TranslateModule } from "@ngx-translate/core";
 
 const c = [SiteMenuFormComponent];
 
 @NgModule({
   declarations: [...c],
   exports: [...c],
-  imports: [CommonModule, UiModule, FormsModule, GalleryModule],
+  imports: [
+    CommonModule, 
+    UiModule, 
+    FormsModule, 
+    GalleryModule,
+    TranslateModule
+  ],
 })
 export class SiteMenuModule { }

@@ -15,6 +15,7 @@ export class SiteMenuFormComponent implements OnInit {
   constructor(
     public languageService: LocalizationLang
   ) {}
-  ngOnInit(): void {}
+
+  public ngOnInit(): void {}
 
 }

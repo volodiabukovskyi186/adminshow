@@ -85,7 +85,8 @@
     "saleListStart": "Початок знижки",
     "saleListEnd":"Завершення знижки",
     "discountExpired": "Термін дії знижки вже минув",
-    "notFound": " не знайдено"
+    "notFound": " не знайдено",
+    "name": "Ім'я"
 
   },
   "pageNotFound": {
@@ -111,7 +112,8 @@
     "select_parent": "Видеріть батьківську категорію",
     "msgAdded": "Категорію успішно додано",
     "msgUpdated": "Категорію успішно оновлено",
-    "msgDeleted": "Категорію успішно видалено"
+    "msgDeleted": "Категорію успішно видалено",
+    "noCategorySelected": "Немає вибраних категорій"
   },
   "collection": {
     "collections": "Коллекції",
@@ -439,7 +441,7 @@
     "client": "Клієнт",
     "email":"Емейл",
     "phone": "Телефон",
-    "item": "Торвар"
+    "item": "Товар"
   },
   "option":{
     "option": "Oпція",
@@ -447,10 +449,25 @@
     "image": "Картинка",
     "show": "Показати",
     "hidden": "Приховати",
-    "name": "Імя",
+    "name": "Ім'я",
     "status": "Статус",
     "list":"Список",
     "switch":"Перемикач",
-    "listvalue": "Список значень опцій"
+    "listvalue": "Список значень опцій",
+    "optionInfoType": "Тип",
+    "optionStatus": "Статус"
+  },
+  "delivery": {
+    "deliveryName": "Доставка",
+    "deliveryPayment": "Оплата"
+  },
+  "siteMenu": {
+    "siteMenuLink": "Посилання",
+    "siteMenuType": "Тип",
+    "siteMenuMain": "Головний",
+    "siteMenuShop": "Магазин",
+    "siteMenuHelp": "Допомога",
+    "siteMenuSortOrder": "Порядок сортування",
+    "siteMenuName": "Ім'я"
   }
 }

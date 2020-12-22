@@ -3,7 +3,7 @@
     <div class="modal-close" (click)="modalOpen = false"></div>
     <div class="modal-content">
       <header>
-        <h4>Select image</h4>
+        <h4>{{ 'imagesGallery.selectImages' | translate }}</h4>
       </header>
 
       <div class="content">
@@ -22,7 +22,7 @@
 
   <div class="form-row" *ngFor="let item of model.description">
     <div class="description">
-      <label for="">{{ item.lang.flag }} NAME</label>
+      <label for="">{{ item.lang.flag }} {{ 'APP.name' | translate }}</label>
     </div>
 
     <div class="original">
@@ -32,7 +32,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">IMAGE</label>
+      <label for="">{{ "APP.image" | translate }}</label>
     </div>
 
     <div class="original">
@@ -49,7 +49,7 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">SORT</label>
+      <label for="">{{ 'APP.sort_order' | translate }}</label>
     </div>
 
     <div class="original">
@@ -59,13 +59,13 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">SHOW</label>
+      <label for="">{{ "APP.show" | translate }}</label>
     </div>
 
     <div class="original">
       <select class="radius" name="parent_id" [(ngModel)]="model.status">
-        <option value="1">Show</option>
-        <option value="0">Hide</option>
+        <option value="1">{{ "APP.show" | translate }}</option>
+        <option value="0">{{ "APP.hide" | translate }}</option>
       </select>
     </div>
   </div>

@@ -20,11 +20,10 @@ import {Router, NavigationEnd, Event} from '@angular/router';
     templateUrl: './option-page.component.html',
     styleUrls: ['./option-page.component.scss']
 })
-export class OptionPageComponent extends BasePage
-    implements OnInit, PaginationPage {
-    selected;
-    selectedValue;
-
+export class OptionPageComponent extends BasePage implements OnInit, PaginationPage {
+    public selected;
+    public selectedValue;
+    public isOptionEdited: boolean;
 
     constructor(
         protected ngxService: NgxUiLoaderService,
@@ -49,7 +48,7 @@ export class OptionPageComponent extends BasePage
     userRoleId: number;
     userRoleStatus: boolean = false;
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         super.initPagesSettings();
         super.initPanelButton();
 
@@ -195,6 +194,7 @@ export class OptionPageComponent extends BasePage
     };
 
     plus = () => {
+        this.isOptionEdited = false;
         this.formTitle = 'Add option';
         this.optionForm.initEmptyModel();
         this.optionForm.initDescription(this.langService.languages.data);
@@ -239,6 +239,7 @@ export class OptionPageComponent extends BasePage
 
     edit(option: IOption) {
         this.selected = option;
+        this.isOptionEdited = true;
 
         this.formTitle = `Edit ${option.description[0].name}`;
         this.optionForm.initByModel(option, this.langService.languages.data);
