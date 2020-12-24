@@ -1,0 +1,96 @@
+<fieldset class="radius" style="margin-bottom: 16px;">
+    <div class=" form-row settings-input-content sort-settings-content">
+        <div class="description">
+            <label for="">{{ "option.value" | translate }}</label>
+        </div>
+        <div class="sort-products-container">
+            <mat-form-field appearance="standart" class="sort-products">
+                <div class="sort-products-wrapper">
+                    <mat-select id="size"
+                                [(ngModel)]="optionSelectVal">
+                        <div *ngFor="let item of arrOptionValues">
+                            <mat-option [value]="item">{{item.descriptions[0].name}}</mat-option>
+                        </div>
+                    </mat-select>
+                </div>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="form-row settings-input-content sort-settings-content">
+        <div class="description">
+            <label for="">{{ "APP.price" | translate }}</label>
+        </div>
+        <div class="original ">
+            <input class="radius" [(ngModel)]="optionPrice" type="text"/>
+        </div>
+    </div>
+    <div class="flex center">
+        <button
+                (click)="saveProductOptionValue()"
+                style="position: relative; color: black"
+                data-tooltip-left="Save"
+                role="button"
+                class="button transparent radius"
+        >
+            <rap-svg-ico class="black" [src]="'assets/icons/plus.svg'"></rap-svg-ico>
+        </button>
+    </div>
+    <div class="sale-list">
+        <p class="order-title">{{'option.listvalue' | translate}}</p>
+        <div class="sale-list__block">
+            <table>
+                <tr>
+                    <th class="number">{{'APP.sort_order' | translate}}</th>
+                    <th class="">{{'APP.value' | translate}}</th>
+                    <th class="">{{'APP.price' | translate}}</th>
+                    <th class=""></th>
+                </tr>
+                <tr *ngFor="let product of arrProductOptionValues ">
+                <th>{{product.option.sort_order }}</th>
+                <th>1</th>
+                <th></th>
+                <th>
+                    <div class="delete-discount-btn-wrapper">
+                    <rap-delete-button
+                            class="button transparent radius delete-discount-btn"
+
+                            [src]="'assets/icons/delete.svg'"
+                    ></rap-delete-button>
+                    <!--                (click)="deleteOptionValue()"-->
+                </div></th>
+                </tr>
+                <tr class="unset-border table-line-height">
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                </tr>
+                <tr class="unset-border table-line-height">
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+
+                </tr>
+                <tr class="unset-border table-line-height">
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                    <th class="th-order"></th>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</fieldset>
+<!--<div class="flex center">-->
+<!--    <button-->
+<!--            (click)="saveProductOption(optionSelect)"-->
+<!--            style="position: relative; color: black"-->
+<!--            data-tooltip-left="Save"-->
+<!--            role="button"-->
+<!--            class="button transparent radius"-->
+<!--    >-->
+<!--        <rap-svg-ico  class="black" [src]="'assets/icons/plus.svg'"></rap-svg-ico>-->
+<!--    </button>-->
+<!--</div>-->

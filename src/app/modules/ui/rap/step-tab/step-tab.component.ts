@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import { fadeScale } from '../../animations';
 
 export interface IStepTab {
@@ -15,7 +15,7 @@ export interface IStepTab {
   styleUrls: ["./step-tab.component.scss"],
 })
 export class StepTabComponent implements OnInit {
-  
+
   @Input() title = '';
   @Input() imgSrc = '';
   @Input() active = false;
@@ -25,4 +25,5 @@ export class StepTabComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
 }

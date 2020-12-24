@@ -10,5 +10,5 @@ export interface IOptionValue {
   updated_at: string;
   image: IImageSrc;
   status: number;
-  description: IOptionValueDescription[]
+  descriptions: IOptionValueDescription[];
 }

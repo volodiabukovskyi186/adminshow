@@ -35,7 +35,6 @@ export interface IProduct {
   created_at: string;
   updated_at: string;
   host: string;
-
   image: IImageSrc;
   descriptions: IProductDescription[];
 }

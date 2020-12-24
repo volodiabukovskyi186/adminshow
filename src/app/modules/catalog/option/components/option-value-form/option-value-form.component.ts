@@ -37,9 +37,9 @@ export class OptionValueFormComponent implements OnInit {
   }
 
   getCatDesc(langId: number): IOptionValueDescription {
-    this.model.description.forEach((cd) => {
-      if (cd.lang_id == langId) return cd;
-    });
+    // this.model.description.forEach((cd) => {
+    //   if (cd.lang_id == langId) return cd;
+    // });
     return null;
   }
 
