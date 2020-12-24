@@ -283,7 +283,7 @@ th {
 
 .orders-filter__input-details {
     width: 100%;
-    min-height: 100px;
+    min-height: 300px;
     border: 1px solid #808080 !important;
     padding: 8px 16px !important;
 }
@@ -325,6 +325,21 @@ th {
     background-color: #D9DEE4;
     border: none;
     color: #5E5E5E;
+}
+
+.edit-order-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.action-btn {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .manufactures-input {
@@ -396,7 +411,7 @@ th {
     width: 100%;
     margin-top: 2px;
     box-shadow: 0 1px 10px 0 rgba(188,188,188, 0.9);
-    max-height: 130px;
+    max-height: 300px;
     overflow: scroll;
     overflow-x: hidden;
   }
@@ -434,4 +449,30 @@ th {
 
 .save-btn-container {
     margin-top: 15px;
+}
+
+.search-content {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    align-items: center;
+    outline: none;
+}
+  
+.search-img {
+    min-width: 40px;
+    max-width: 45px;
+}
+  
+.search-name-price {
+    color: black;
+    margin-left: 31px;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    width: 100%;
+}
+  
+.search-name {
+    margin-left: 6px;
 }

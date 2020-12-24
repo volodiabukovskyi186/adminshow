@@ -81,7 +81,8 @@
     "hidden": "Скрытый",
     "notFound": " не найдено",
     "name": "Имя",
-    "cancel": "Отменить"
+    "cancel": "Отменить",
+    "update": "Обновить"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",

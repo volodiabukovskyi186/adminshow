@@ -105,4 +105,24 @@ export class OrderService {
   updateOrderDeliveryData(userId: number, data): Observable<any> {
     return this.http.put(`${environment.host}order/deliveryData/${userId}`, data);
   }
+
+  createOrderProduct(productData): Observable<any> {
+    return this.http.post(`${environment.host}order_product`, productData);
+  }
+
+  orderProductToDelete(productId: number): Observable<any> {
+    return this.http.delete(`${environment.host}order_product/${productId}`)
+  }
+
+  getOrderById(orderId: number): Observable<any> {
+    return this.http.get(`${environment.host}order/${orderId}`);
+  }
+
+  updateProductOrder(orderProductId: number, productData): Observable<any> {
+    return this.http.put(`${environment.host}order_product/${orderProductId}`, productData);
+  }
+
+  getOrderProductsByOrderId(productOrderId: number): Observable<any> {
+    return this.http.get(`${environment.host}order/getProductsOrder/${productOrderId}`);
+  }
 }

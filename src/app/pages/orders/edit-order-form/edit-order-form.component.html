@@ -84,9 +84,9 @@
                                         <th class="">{{ "orders.orderProductActions" | translate }}</th>
                                     </tr>
                                     
-                                    <tr *ngFor="let prod of products">
-                                        <th>{{ prod?.id }}</th>
-                                        <th>{{ prod?.description?.name }}</th>
+                                    <tr *ngFor="let prod of products; let i = index;">
+                                        <th>{{ prod?.product?.description?.id }}</th>
+                                        <th>{{ prod?.product?.description?.name }}</th>
                                         <th>{{ prod?.model }}</th>
                                         <th>
                                             <input
@@ -94,22 +94,29 @@
                                                 type="text"
                                                 id="quantity"
                                                 formControlName="quantity"
-                                                ngModel="{{ modifyQuantity(prod?.quantity) }}"
+                                                placeholder="{{ (+prod.quantity).toFixed(0) }}"
                                             />
+                                            <!-- {{ prod.quantity }} -->
                                         </th>
-                                        <th>{{ modifyPrice(prod?.price) }}</th>
+                                        <th>{{ modifyPrice(prod?.unit_price) }}</th>
+                                        <th>{{ modifyPrice(prod?.total) }}</th>
                                         <!-- <th>{{ modifyPrice(prod?.quantity * prod?.price) }}</th> -->
-                                        <th>
+                                        <th class="edit-order-actions">
+                                            <rap-svg-ico
+                                                class="cursor-pointer transparent action-btn"
+                                                [src]="'assets/icons/update-arrows.svg'"
+                                                (click)="updateProductQuantity(prod)">
+                                            </rap-svg-ico>
                                             <rap-delete-button
-                                                [attr.data-tooltip-left]="'APP.del' | translate "
-                                                class="button transparent radius"
+                                                [attr.data-tooltip-left]="'APP.del' | translate"
+                                                class="cursor-pointer transparent action-btn"
                                                 (click)="deleteProduct(prod)"
                                                 [src]="'assets/icons/delete.svg'"
                                             ></rap-delete-button>
                                         </th>
                                     </tr> 
                                     
-                                    <tr class="unset-border table-line-height">
+                                    <!-- <tr class="unset-border table-line-height">
                                         <th class="th-order"></th>
                                         <th class="th-order"></th>
                                         <th class="th-order"></th>
@@ -126,7 +133,7 @@
                                         <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderDelivery' | translate }}</th>
                                         <th class="th-order__border-right"></th>
                                         <th class="th-order__border-left">0.00</th>
-                                    </tr>
+                                    </tr> -->
                                     <tr class="unset-border table-line-height">
                                         <th class="th-order"></th>
                                         <th class="th-order"></th>
@@ -134,7 +141,7 @@
                                         <th class="th-order"></th>
                                         <th class="th-order order__text-size__14 order-title margin-right__5">{{ 'orders.orderTotal' | translate }}</th>
                                         <th class="th-order__border-right"></th>
-                                        <th class="th-order__border-left">{{ modifyPrice(orderTotal) }}</th>
+                                        <th class="th-order__border-left">{{ totalSum }}</th>
                                     </tr>
                                 </table>
                             </div>
@@ -161,8 +168,13 @@
                                            <span>{{ "collection.productsNotFound" | translate }}</span>
                                         </div>
                                         <div class="search-product-content" *ngFor="let product of filteredProducts$ | async">
-                                            <div class="manufacrures-list-item" (click)="getSelectedProduct(product)"> 
-                                                {{ product.description.name }} 
+                                            <div class="manufacrures-list-item search-content" (click)="getSelectedProduct(product)">
+                                                <div>
+                                                    <img src="{{ host + product?.image?.src }}" class="search-img"/>
+                                               </div>
+                                               <div class="search-name">
+                                                    {{ product.description.name }} 
+                                               </div>
                                             </div>
                                         </div>
                                     </div>

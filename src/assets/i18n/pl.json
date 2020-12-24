@@ -81,7 +81,8 @@
     "hidden": "Ukryte",
     "notFound": " nie znaleziono",
     "name": "Nazwisko",
-    "cancel": "Anuluj"
+    "cancel": "Anuluj",
+    "update": "Aktualizacja"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",

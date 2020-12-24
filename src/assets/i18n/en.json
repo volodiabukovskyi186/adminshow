@@ -85,7 +85,8 @@
     "saleListEnd":"Completion of the discount",
     "discountExpired": "The discount has expired",
     "notFound": " not found",
-    "name": "Name"
+    "name": "Name",
+    "update": "Update"
   },
   "pageNotFound": {
     "backToHome": "Back To Home",

@@ -86,8 +86,8 @@
     "saleListEnd":"Завершення знижки",
     "discountExpired": "Термін дії знижки вже минув",
     "notFound": " не знайдено",
-    "name": "Ім'я"
-
+    "name": "Ім'я",
+    "update": "Оновити"
   },
   "pageNotFound": {
     "backToHome": "Повернутися на головну",

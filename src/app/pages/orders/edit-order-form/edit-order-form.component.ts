@@ -1,10 +1,14 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { PromotionService } from '../../../modules/catalog/promotion/services/promotion.service';
 import { BehaviorSubject } from 'rxjs';
 import { OrderService } from '../services/order.service';
 import { UserService } from '../../../modules/user/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { IOrderProduct } from './interfaces/order-product';
+import { IOrderProductResponse } from './interfaces/order-product-response';
+import { IOrderProductToUpdate } from './interfaces/order-product-to-update';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-edit-order-form',
@@ -28,35 +32,78 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   public products = [];
   public orderTotal;
   public currentUserRoleId: number;
+  public orderProductToSend: IOrderProduct;
+  public productOrderToUpdate: IOrderProductToUpdate;
+  public formGroupArr = [];
+  public totalSum: any;
+  public host = environment.host;
 
   constructor(
     public promotionService: PromotionService,
     public orderService: OrderService,
     public userService: UserService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private formBuilder: FormBuilder
   ) { }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.selectedClientOrder) {
+      this.getOrderProducts();
+      console.log(this.selectedClientOrder);
+
+      this.products = this.selectedClientOrder.products;
+
+      this.generateProductQuantityForm();
+
+      //this.products.forEach((product) => {
+        //if (product.hasOwnProperty('quantity')) {
+          //this.generateProductQuantityForm();
+          //this.productQuantityForm.get('quantity').setValue(this.modifyQuantity(product.quantity));
+        //}
+      //})
+
+      console.log('this.productQuantityForm ====== >>>>', this.productQuantityForm);
+      console.log('formGroupArr ==== >>>', this.formGroupArr);
+    }
+  }
 
   public ngOnInit(): void {
     this.getUserByToken();
     this.generateClientInfoForm();
     this.generateAddProductForm();
     this.generateEditClientInfoForm();
-    this.generateProductQuantityForm();
 
     this.setClientInfo();
     this.setClientPaymentDeliveryDetails();
-  }
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.selectedClientOrder) {
-      this.products = [];
+    // this.products.forEach((product, indexProduct) => {
+    //   if (product.hasOwnProperty('quantity')) {
 
-      this.selectedClientOrder.products.forEach((val) => {
-        if (val.hasOwnProperty('product')) {
-          this.products.push(val.product);
-        }
-      })
-    }
+    //     this.formGroupArr.push(this.generateProductQuantityForm());
+
+    //     this.formGroupArr.forEach((val, formGroupIndex) => {
+    //       if (indexProduct === formGroupIndex) {
+    //         debugger;
+
+    //         val.controls.quantity.setValue(this.modifyQuantity(product.quantity));
+    //       }
+    //     })
+
+    //     console.log('this.productQuantityForm ====== >>>>', this.productQuantityForm);
+    //     console.log('formGroupArr ==== >>>', this.formGroupArr);
+    //   }
+    // })
+
+    //this.selectedClientOrder.products.forEach((val) => {
+      // if (val.hasOwnProperty('product')) {
+      //   this.products.push(val.product);
+      // }
+
+      //if (val.hasOwnProperty('quantity')) {
+        //this.addProductForm?.get('productQuantity').setValue(this.modifyQuantity(val.quantity));
+      //}
+    //})
   }
 
   public getUserByToken(): void {
@@ -112,8 +159,16 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     })
   }
 
-  public deleteProduct(product): void {
-    console.log(product);
+  public deleteProduct(orderProduct): void {
+    console.log(orderProduct);
+    this.orderService.orderProductToDelete(orderProduct.id)
+      .subscribe((res) => {
+        console.log(res);
+      })
+
+      this.products = this.products.filter((val) => {
+        return val.id !== orderProduct.id;
+      })
   }
 
   public modifyPrice(price: string): string {
@@ -124,11 +179,22 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     return Number(quantity).toFixed(0);
   }
 
-  public generateProductQuantityForm(): void {
+  public generateProductQuantityForm(): FormGroup {
+    // this.productQuantityForm = this.formBuilder.group({
+    //   items: this.formBuilder.array([ this.createDescription() ])
+    // })
     this.productQuantityForm = new FormGroup({
-      quantity: new FormControl('', [])
+      quantity: new FormControl("")
     })
+
+    return this.productQuantityForm;
   }
+
+  // public createDescription(): FormGroup {
+  //   return this.formBuilder.group({
+  //     quantity: new FormControl('', [])
+  //   });
+  // }
 
   public getProducts(): void {
     this.isSelectedProduct = true;
@@ -148,23 +214,98 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
 
   }
 
-  public addProduct(): void {
-    let uniqueProducts = new Set(this.products?.map(function(product) {
-      return product.id;
-    }));
+  public updateProductQuantity(product): void {
+    console.log(product);
 
-    if (!uniqueProducts.has(this.selectedProduct?.id)) {
-      this.selectedProduct.quantity = this.addProductForm.value.productQuantity;
-      this.products?.push(this.selectedProduct);
+    this.productOrderToUpdate = {
+      id: product.id,
+      order_id: product.order_id,
+      product_id: product.product_id,
+      model: product.model,
+      quantity: (this.productQuantityForm.value.quantity).toString(),
     }
 
-    this.products.forEach((val) => {
-      let sum = val.quantity * val.price;
+    this.orderService.updateProductOrder(product.id, this.productOrderToUpdate)
+      .subscribe((res) => {
+        console.log(res);
+        // if (res.data.id === product.id) {
+        //   this.productQuantityForm.get('quantity').setValue(' ');
+        // }
+        this.getOrderProducts();
+      })
+  }
 
-      if (sum) {
-        this.orderTotal += sum;
-      }
+  // public getOrderById(id: number) {
+  //   this.orderService.getOrderById(id).subscribe((res) => {
+  //     console.log(res);
+  //     this.products = res.data.products;
+
+  //     this.products.forEach((orderProduct) => {
+  //       this.addProductForm.get('productQuantity').patchValue(this.modifyQuantity(orderProduct.quantity));
+  //     })
+  //   })
+  // }
+
+  public getOrderProducts() {
+    this.orderService.getOrderProductsByOrderId(this.selectedClientOrder.id).subscribe((resp) => {
+      console.log(resp);
+      this.products = resp.data.products;
+
+    let orderProducts = this.products.map((product) => {
+      return +(parseFloat(product.total).toFixed(2));
     })
+
+    console.log('before', orderProducts);
+
+    this.totalSum = orderProducts.reduce((accumulator, currentValue) => accumulator + currentValue );
+
+    console.log('after', this.totalSum);
+    })
+  }
+
+  public addProduct(): void {
+    console.log('this.selectedProduct ====== >>>>>', this.selectedProduct);
+    console.log('this.addProductForm.value.productQuantity ======= >>>>>', this.addProductForm.value.productQuantity);
+    
+    const orderProductTotalSum = (this.addProductForm.value.productQuantity * this.selectedProduct.price).toString();
+
+    this.orderProductToSend = {
+      order_id: this.selectedClientOrder.id,
+      product_id: this.selectedProduct.description.product_id,
+      model: this.selectedProduct.model,
+      quantity: (this.addProductForm.value.productQuantity).toString(),
+      unit_price: this.selectedProduct.price,
+      total: orderProductTotalSum
+    }
+
+    console.log(this.orderProductToSend);
+
+    this.orderService.createOrderProduct(this.orderProductToSend).subscribe((res: IOrderProductResponse) => {
+      console.log(res);
+
+      this.getOrderProducts();
+      this.changeDetectorRef.detectChanges();
+      //this.getOrderById(this.selectedClientOrder.id);
+      //console.log(this.products);
+    })
+
+
+    // let uniqueProducts = new Set(this.products?.map(function(product) {
+    //   return product.id;
+    // }));
+
+    // if (!uniqueProducts.has(this.selectedProduct?.id)) {
+    //   this.selectedProduct.quantity = this.addProductForm.value.productQuantity;
+    //   this.products?.push(this.selectedProduct);
+    // }
+
+    // this.products.forEach((val) => {
+    //   let sum = val.quantity * val.price;
+
+    //   if (sum) {
+    //     this.orderTotal += sum;
+    //   }
+    // })
   }
 
   public saveClientInfo(): void {
