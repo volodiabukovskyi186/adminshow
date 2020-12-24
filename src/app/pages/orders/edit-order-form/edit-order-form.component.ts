@@ -166,9 +166,12 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
         console.log(res);
       })
 
-      this.products = this.products.filter((val) => {
-        return val.id !== orderProduct.id;
-      })
+    this.products = this.products.filter((val) => {
+      return val.id !== orderProduct.id;
+    })
+    
+    this.totalSum = this.totalSum - +parseFloat(orderProduct.total).toFixed(2);
+    console.log(this.totalSum);
   }
 
   public modifyPrice(price: string): string {
@@ -231,8 +234,8 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
         // if (res.data.id === product.id) {
         //   this.productQuantityForm.get('quantity').setValue(' ');
         // }
-        this.getOrderProducts();
       })
+      this.getOrderProducts();
   }
 
   // public getOrderById(id: number) {
