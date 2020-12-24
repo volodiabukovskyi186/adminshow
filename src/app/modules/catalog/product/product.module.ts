@@ -16,6 +16,11 @@ import { AttibuteValueComponent } from './components/layouts/attibute-value/atti
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { TranslateModule } from "@ngx-translate/core";
 import { ProductFormSaleComponent } from './components/layouts/product-form-sale/product-form-sale.component';
+import { OptionProductFormComponent } from './components/layouts/option-product-form/option-product-form.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { ProductOptionValueComponent } from './components/layouts/product-option-value/product-option-value.component';
 
 const c = [ProductFormComponent];
 
@@ -31,17 +36,22 @@ const c = [ProductFormComponent];
     AttributesComponent,
     AttibuteValueComponent,
     ProductFormSaleComponent,
+    OptionProductFormComponent,
+    ProductOptionValueComponent,
   ],
   exports: [...c],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    UiModule,
-    GalleryModule,
-    NgxSelectModule,
-    AngularEditorModule,
-    TranslateModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        UiModule,
+        GalleryModule,
+        NgxSelectModule,
+        AngularEditorModule,
+        TranslateModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatSelectModule,
+    ],
 })
 export class ProductModule {}

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { IOptionResponse } from '../interfaces';
+import {IOption, IOptionResponse} from '../interfaces';
 
 @Injectable({
   providedIn: "root",
@@ -33,10 +33,10 @@ export class OptionService {
   put(data: any, id: number): Observable<any> {
     return this.http.put(`${environment.catalog.option.option}/${id}`, data);
   }
-  
   getOptions(): Observable <any> {
-    return  this.http.get(`${environment.catalog.option.options}`);
+    return  this.http.get<any>(`${environment.catalog.option.options}`);
   }
+
 
   deleteOption(id: number): Observable <any> {
     return this.http.delete(`${environment.catalog.option.option}/${id}`);

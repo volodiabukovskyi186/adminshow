@@ -76,4 +76,10 @@
       <app-product-form-sale [model]="model"></app-product-form-sale>
     </fieldset>
   </rap-step-tab>
+  <rap-step-tab [title]="'option.option' | translate" *ngIf="model.id">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>{{ "option.option" | translate }}</legend>
+      <app-option-product-form [model]="model" ></app-option-product-form>
+    </fieldset>
+  </rap-step-tab>
 </rap-step-tabs>
