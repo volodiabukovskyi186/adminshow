@@ -57,28 +57,27 @@ export class OptionInformationComponent implements OnInit {
       status: this.selected.status,
       description: [
         {
-          id: 1,
+          id: this.selected.description[0].id,
           lang_id: 1,
           name: this.selected.description[0].name
         },
         {
-          id: 2,
+          id: this.selected.description[1].id,
           lang_id: 2,
           name: this.selected.description[1].name
         },
         {
-          id: 3,
+          id: this.selected.description[2].id,
           lang_id: 3,
           name: this.selected.description[2].name
         },
         {
-          id: 4,
+          id: this.selected.description[3].id,
           lang_id: 4,
           name: this.selected.description[3].name
         }
       ]
     };
-
     if (this.selected.id) {
       this.option.put(option, this.selected.id).subscribe(() => {
         this.toastr.success('option UPDATED ^_^');

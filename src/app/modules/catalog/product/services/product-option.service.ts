@@ -24,7 +24,15 @@ export class ProductOptionService {
     return this.http.post<IProductOptionValue>(`${environment.catalog.option.productOptVal}`, ProductValue);
   }
   getProductOptionValues(productId: number, optionId: number): Observable<any> {
-    return this.http.get(`${environment.catalog.option.productAllOptVal}/${productId}/${optionId}`);
+    const lang = localStorage.getItem('currentLang');
+    return this.http.get(`${environment.catalog.option.productAllOptVal}/${productId}/${optionId}?lang=${lang}`);
   }
-
+  deleteProductValues(id: number): Observable<number> {
+    return this.http.delete<number>(`${environment.catalog.option.productOptVal}/${id}`);
+  }
+  deleteProductOption(id: number): Observable<number> {
+    return this.http.delete<number>(`${environment.catalog.option.productOption}/${id}`);
+  }
 }
+
+
