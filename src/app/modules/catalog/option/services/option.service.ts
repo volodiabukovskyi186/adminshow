@@ -43,6 +43,7 @@ export class OptionService {
   }
 
   getSelectedOptionValue(id: number): Observable <any> {
+    const lang = localStorage.getItem('currentLang');
     return  this.http.get(`${environment.catalog.option.optionValues}/${id}`);
   }
 

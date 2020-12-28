@@ -1,10 +1,10 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ProductOptionService} from '../../../services/product-option.service';
 import {OptionService} from '../../../../option/services/option.service';
 import {IOptionValue} from '../../../../option/interfaces';
 import {IProductOptionValue} from '../../../interfaces/product-option-value.interface';
 import {ProductValueOption} from '../../../model/product-option-value.model';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
     selector: 'app-product-option-value',
     templateUrl: './product-option-value.component.html',
@@ -13,7 +13,8 @@ import {ProductValueOption} from '../../../model/product-option-value.model';
 export class ProductOptionValueComponent implements OnInit, OnChanges {
     @Input() optionValue;
     @Input() product;
-    @Input() optionSelect;
+    @Output() productOptionId  = new EventEmitter();
+    // @Input() optionSelect;
 
 
     public optionSelectVal: IOptionValue;
@@ -23,6 +24,7 @@ export class ProductOptionValueComponent implements OnInit, OnChanges {
 
     constructor(private  optionService: OptionService,
                 private  productOption: ProductOptionService,
+                private  toastr: ToastrService
                 ) {
     }
 
@@ -37,13 +39,13 @@ export class ProductOptionValueComponent implements OnInit, OnChanges {
     getOptionValue(): void {
         this.optionService.getSelectedOptionValue(this.optionValue.option_id).subscribe(data => {
             this.arrOptionValues = data.data;
-            console.log('optios-product==>', this.arrOptionValues);
+            // console.log('optios-product==>', this.arrOptionValues);
         });
     }
     getProductOptionValues(): void {
         this.productOption.getProductOptionValues(this.product.id, this.optionValue.option_id).subscribe(data => {
             this.arrProductOptionValues = data.data;
-            console.log('arrProductOptionValues==>', this.arrProductOptionValues);
+            // console.log('arrProductOptionValues==>', this.arrProductOptionValues);
         });
     }
     saveProductOptionValue(): void {
@@ -61,9 +63,22 @@ export class ProductOptionValueComponent implements OnInit, OnChanges {
             null,
             null);
         this.productOption.createProductOptionValue(newOptionValue).subscribe(data => {
-
+        this.getProductOptionValues();
         });
         console.log('newOptionValue===>', newOptionValue);
+        this.toastr.success('Product option value  added');
+    }
+    deleteProductValue(id: number): void {
+        this.productOption.deleteProductValues(id).subscribe(data => {
+            this.getProductOptionValues();
+            this.toastr.success('Product option  value deleted');
+        });
+    }
+    deleteProductOption(): void {
+        this.productOption.deleteProductOption(this.optionValue.id).subscribe(() => {
+            this.productOptionId.emit(this.optionValue.id);
+            this.toastr.success(' Product option deleted');
+        });
     }
 
 }

@@ -143,38 +143,39 @@ export class OptionPageComponent extends BasePage implements OnInit, PaginationP
     // }
 
     save = () => {
-        const option = {
-            type: this.selected.type,
-            sort_order: this.selected.sort_order,
-            status: this.selected.status,
-            description: [
-                {
-                    id: 1,
-                    lang_id: 1,
-                    name: this.selected.description[0].name
-                },
-                {
-                    id: 2,
-                    lang_id: 2,
-                    name: this.selected.description[1].name
-                },
-                {
-                    id: 3,
-                    lang_id: 3,
-                    name: this.selected.description[2].name
-                },
-                {
-                    id: 4,
-                    lang_id: 4,
-                    name: this.selected.description[3].name
-                }
-            ]
-        };
-        if (this.selected.id) {
-            this.option.put(option, this.selected.id).subscribe(this.putHandler);
-        } else {
-            this.option.post(option).subscribe(this.postHandler);
-        }
+        // const option = {
+        //     type: this.selected.type,
+        //     sort_order: this.selected.sort_order,
+        //     status: this.selected.status,
+        //     description: [
+        //         {
+        //             id: 1,
+        //             lang_id: 1,
+        //             name: this.selected.description[0].name
+        //         },
+        //         {
+        //             id: 2,
+        //             lang_id: 2,
+        //             name: this.selected.description[1].name
+        //         },
+        //         {
+        //             id: 3,
+        //             lang_id: 3,
+        //             name: this.selected.description[2].name
+        //         },
+        //         {
+        //             id: 4,
+        //             lang_id: 4,
+        //             name: this.selected.description[3].name
+        //         }
+        //     ]
+        // };
+        //
+        // if (this.selected.id) {
+        //     this.option.put(option, this.selected.id).subscribe(this.putHandler);
+        // } else {
+        //     this.option.post(option).subscribe(this.postHandler);
+        // }
 
         // this.ngxService.start();
     };
@@ -185,12 +186,14 @@ export class OptionPageComponent extends BasePage implements OnInit, PaginationP
         this.option.data.count++;
         this.closeForm();
         this.toastr.success('option ADDED');
+        this.pages.panelButtonSettings.save = false;
     };
 
     putHandler = (data) => {
         this.ngxService.stopAll();
         this.closeForm();
         this.toastr.success('option UPDATED ^_^');
+        this.pages.panelButtonSettings.save = false;
     };
 
     plus = () => {
@@ -198,7 +201,7 @@ export class OptionPageComponent extends BasePage implements OnInit, PaginationP
         this.formTitle = 'Add option';
         this.optionForm.initEmptyModel();
         this.optionForm.initDescription(this.langService.languages.data);
-
+        this.pages.panelButtonSettings.save = false;
         const option = {
             type: '',
             sort_order:'',
@@ -227,10 +230,9 @@ export class OptionPageComponent extends BasePage implements OnInit, PaginationP
             ]
         };
 
-
         this.selected = option;
         this.openForm();
-
+        this.pages.panelButtonSettings.save = false;
     };
 
 //#endregion
@@ -244,12 +246,13 @@ export class OptionPageComponent extends BasePage implements OnInit, PaginationP
         this.formTitle = `Edit ${option.description[0].name}`;
         this.optionForm.initByModel(option, this.langService.languages.data);
         this.openForm();
-
+        this.pages.panelButtonSettings.save = false;
     }
     deleteOption(id: number): void {
         this.option.deleteOption(id).subscribe(data => {
             this.getList();
         });
+        this.pages.panelButtonSettings.save = false;
     }
 
 
@@ -258,6 +261,7 @@ export class OptionPageComponent extends BasePage implements OnInit, PaginationP
         this.option.data.take = event.pageSize;
         this.option.data.skip = event.pageSize * event.pageIndex;
         this.getList();
+        this.pages.panelButtonSettings.save = false;
     }
 
 //#region pagination

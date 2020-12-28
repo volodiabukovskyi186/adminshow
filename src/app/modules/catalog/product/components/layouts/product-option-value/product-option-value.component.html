@@ -1,7 +1,7 @@
 <fieldset class="radius" style="margin-bottom: 16px;">
     <div class=" form-row settings-input-content sort-settings-content">
         <div class="description">
-            <label for="">{{ "option.value" | translate }}</label>
+            <label for="">{{ "APP.value" | translate }}</label>
         </div>
         <div class="sort-products-container">
             <mat-form-field appearance="standart" class="sort-products">
@@ -24,17 +24,19 @@
             <input class="radius" [(ngModel)]="optionPrice" type="text"/>
         </div>
     </div>
-    <div class="flex center">
+
+    <div class="flex end">
         <button
                 (click)="saveProductOptionValue()"
                 style="position: relative; color: black"
-                data-tooltip-left="Save"
+                data-tooltip-left="Add option to product"
                 role="button"
                 class="button transparent radius"
         >
             <rap-svg-ico class="black" [src]="'assets/icons/plus.svg'"></rap-svg-ico>
         </button>
     </div>
+
     <div class="sale-list">
         <p class="order-title">{{'option.listvalue' | translate}}</p>
         <div class="sale-list__block">
@@ -43,17 +45,17 @@
                     <th class="number">{{'APP.sort_order' | translate}}</th>
                     <th class="">{{'APP.value' | translate}}</th>
                     <th class="">{{'APP.price' | translate}}</th>
-                    <th class=""></th>
+                    <th class="">{{'APP.del' | translate}}</th>
                 </tr>
                 <tr *ngFor="let product of arrProductOptionValues ">
                 <th>{{product.option.sort_order }}</th>
-                <th>1</th>
-                <th></th>
+                <th>{{product.value.description.name }}</th>
+                <th>{{product.price }}</th>
                 <th>
                     <div class="delete-discount-btn-wrapper">
                     <rap-delete-button
+                            (click)="deleteProductValue(product.id)"
                             class="button transparent radius delete-discount-btn"
-
                             [src]="'assets/icons/delete.svg'"
                     ></rap-delete-button>
                     <!--                (click)="deleteOptionValue()"-->
@@ -81,6 +83,17 @@
             </table>
 
         </div>
+    </div>
+    <div class="flex end delete-option">
+        <button
+                (click)="deleteProductOption()"
+                style="position: relative; color: black"
+                data-tooltip-left="Delete Option"
+                role="button"
+                class="button transparent radius"
+        >
+            <rap-svg-ico class="black" [src]="'assets/icons/delete.svg'"></rap-svg-ico>
+        </button>
     </div>
 </fieldset>
 <!--<div class="flex center">-->
