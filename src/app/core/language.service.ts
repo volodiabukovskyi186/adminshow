@@ -83,16 +83,21 @@ export class LanguageService implements OnInit {
 
     this.langs = [pl, en, ru, ua];
 
-    this.getDefaultLanguage().subscribe((res) => { 
-      if(localStorage.getItem('currentLang')){
-        const userLang = localStorage.getItem('currentLang');
-        this.use(userLang);
-      }
-      else{
-        this.translate.addLangs([res.data.code, en.name]);
-        this.translate.defaultLang = res.data.code;
-        this.use(res.data.code);
-      }
+    this.getDefaultLanguage().subscribe((res) => {
+      console.log(res);
+      
+      this.translate.addLangs([res.data.code, en.name]);
+      this.translate.defaultLang = res.data.code;
+      this.use(res.data.code);
+      // if(localStorage.getItem('currentLang')){
+      //   const userLang = localStorage.getItem('currentLang');
+      //   this.use(userLang);
+      // }
+      // else{
+      //   this.translate.addLangs([res.data.code, en.name]);
+      //   this.translate.defaultLang = res.data.code;
+      //   this.use(res.data.code);
+      // }
       localStorage.setItem('currentLang',res.data.code)
     })
   }

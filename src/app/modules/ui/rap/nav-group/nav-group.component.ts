@@ -44,6 +44,7 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
   public tree: UrlTree;
   public queryParams = {};
   public primary: UrlSegmentGroup;
+  public getUrlSegment;
 
   @Input() title: string;
   @Input() icon: string;
@@ -73,15 +74,18 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
     this.BurgerStatus();
 
     this.tree = this.router.parseUrl(this.router.url);
-    this.queryParams = this.tree.queryParams;
-    this.primary = this.tree.root.children[PRIMARY_OUTLET];
-    const primarySegments: UrlSegment[] = this.primary.segments;
-    const getUrlSegment = primarySegments[primarySegments.length - 1];
+    this.queryParams = this.tree?.queryParams;
+    this.primary = this.tree?.root?.children[PRIMARY_OUTLET];
+    const primarySegments: UrlSegment[] = this.primary?.segments;
+
+    if (primarySegments) {
+      this.getUrlSegment = primarySegments[primarySegments?.length - 1];
+    }
 
     this.item?.items?.forEach((val) => {
       //console.log(val);
 
-      if (val.link === getUrlSegment.path) {
+      if (val.link === this.getUrlSegment?.path) {
         this.open = true;
         val.open = true;
       }

@@ -96,7 +96,7 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   @HostListener('document:touchstart', ['$event'])
     onGlobalClick(event): void {
       if (!this.elementRef.nativeElement.contains(event.target)) {
-          console.log(this.elementRef.nativeElement);
+          //console.log(this.elementRef.nativeElement);
           this.isActive = false;
           this.isCategoriesActive = false;
           this.isSelectedProduct = false;

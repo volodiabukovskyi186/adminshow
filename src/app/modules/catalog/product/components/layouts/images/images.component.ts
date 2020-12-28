@@ -7,8 +7,10 @@ import {
   IProdImage,
 } from "../../../services/product-images.service";
 import { ToastrService } from "ngx-toastr";
+import { fadeScale } from "src/app/modules/ui/animations";
 
 @Component({
+  animations: [fadeScale],
   selector: "product-form-images",
   templateUrl: "./images.component.html",
   styleUrls: ["./images.component.scss"],

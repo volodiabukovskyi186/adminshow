@@ -168,10 +168,11 @@
             <div *ngFor="let product of products; let currentIndex = index;">
               <div class="product-name" (click)="removeProduct(currentIndex)">
                 {{ product?.description?.name }}
-                <span class="material-icons">{{ 'APP.cancel' | translate }}</span>
+                <span class="material-icons">cancel</span>
               </div>
             </div>
           </div>
+    
         </div>
       </form>
     </rap-step-tab>
