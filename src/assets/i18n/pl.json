@@ -82,7 +82,11 @@
     "notFound": " nie znaleziono",
     "name": "Nazwisko",
     "cancel": "Anuluj",
-    "update": "Aktualizacja"
+    "update": "Aktualizacja",
+    "description": "Opis",
+    "alias": "Alias",
+    "content": "Zawartość",
+    "addEditPage": "Dodaj/Edytuj stronę"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",
@@ -167,7 +171,10 @@
       "colection": "Colections"
     },
     "reviews": { "reviews": "Recenzje", "product_reviews": "Recenzje produktu" },
-    "manufacturer": { "manufacturers": "Producenci" },
+    "manufacturer": { 
+      "manufacturers": "Producenci",
+      "sizeGroups": "Grupy wielkości"
+    },
     "customers": { "customers": "Klienci" },
     "countries": { "countries": "Kraje" },
     "weight": { "weight": "Waga" },
@@ -459,5 +466,11 @@
     "siteMenuHelp": "Wsparcie",
     "siteMenuSortOrder": "Porządek sortowania",
     "siteMenuName": "Nazwisko"
+  },
+  "sizeGroups": {
+    "sizeGroupsName": "Nazwa",
+    "sizeGroupsOrder": "Kolejność",
+    "addEditSizeGroups": "Dodaj/Edytuj grupy rozmiarów",
+    "sizeGroupsParamsList": "Lista parametrów"
   }
 }

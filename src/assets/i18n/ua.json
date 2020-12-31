@@ -87,7 +87,11 @@
     "discountExpired": "Термін дії знижки вже минув",
     "notFound": " не знайдено",
     "name": "Ім'я",
-    "update": "Оновити"
+    "update": "Оновити",
+    "description": "Опис",
+    "alias": "Псевдонім",
+    "content": "Зміст",
+    "addEditPage": "Додати/Редагувати сторінку"
   },
   "pageNotFound": {
     "backToHome": "Повернутися на головну",
@@ -181,7 +185,10 @@
       "colection": "Колекції"
     },
     "reviews": { "reviews": "Відгуки", "product_reviews": "Відгуки продуктів" },
-    "manufacturer": { "manufacturers": "Виробники" },
+    "manufacturer": { 
+      "manufacturers": "Виробники",
+      "sizeGroups": "Групи розмірів"
+    },
     "customers": { "customers": "Покупці" },
     "countries": { "countries": "Країни" },
     "weight": { "weight": "Вага" },
@@ -469,5 +476,11 @@
     "siteMenuHelp": "Допомога",
     "siteMenuSortOrder": "Порядок сортування",
     "siteMenuName": "Ім'я"
+  },
+  "sizeGroups": {
+    "sizeGroupsName": "Найменування",
+    "sizeGroupsOrder": "Порядок",
+    "addEditSizeGroups": "Додати/Редагувати групи розмірів",
+    "sizeGroupsParamsList": "Список параметрів"
   }
 }

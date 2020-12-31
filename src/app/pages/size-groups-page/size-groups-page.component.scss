@@ -1,0 +1,84 @@
+@import "~src/styles/raisins/variables";
+@import "~src/styles/raisins/mixins";
+
+:host {
+  display: block;
+  flex: 1;
+}
+
+.button {
+  padding: $space/2;
+  min-width: unset;
+  rap-svg-ico {
+    width: 16px;
+    height: auto;
+    display: block;
+    color: $gray500;
+  }
+  &:hover {
+    rap-svg-ico {
+      color: $blue;
+    }
+  }
+}
+
+.title {
+  display: block;
+  padding: 2px 10px;
+  border-right: 1px dashed $gray600;
+  &:last-child {
+    border-right: unset;
+  }
+  .flag {
+    font-size: $fontSizeH5;
+  }
+//   .name {
+//   }
+}
+
+rap-delete-button.button.transparent {
+  color: $gray500;
+  &:hover {
+    color: $red;
+  }
+  &.on {
+    color: $green;
+  }
+  &.off {
+    color: $red;
+  }
+}
+
+::ng-deep {
+  .mat-paginator {
+    flex-direction: row;
+   padding-top: 20px;
+    .mat-paginator-outer-container{
+      flex-direction: row;
+      .mat-paginator-container{
+        flex-direction: row;
+        // border: solid silver 1px;
+        box-shadow: 2px 4px 16px -1px rgba(97,97,97,0.45);
+          .mat-paginator-page-size{
+            flex-direction: row;
+              mat-form-field{
+              .mat-form-field-wrapper {
+                  .mat-form-field-infix{
+                      width: 75px;
+                  }
+              }
+            }
+          }
+          .mat-paginator-range-actions{
+            flex-direction: row;
+          }
+      }
+    }
+  }
+}
+
+.size-group-desc-name {
+    display: flex;
+    flex-direction: row;
+    line-height: 2;
+}

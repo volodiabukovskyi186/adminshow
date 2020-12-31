@@ -82,7 +82,11 @@
     "notFound": " не найдено",
     "name": "Имя",
     "cancel": "Отменить",
-    "update": "Обновить"
+    "update": "Обновить",
+    "description": "Описание",
+    "alias": "Псевдоним",
+    "content": "Содержание",
+    "addEditPage": "Добавить/Редактировать страницу"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",
@@ -167,7 +171,10 @@
       "colection": "Коллекции"
     },
     "reviews": { "reviews": "Отзывы", "product_reviews": "Отзывы продуктов" },
-    "manufacturer": { "manufacturers": "Производители" },
+    "manufacturer": { 
+      "manufacturers": "Производители",
+      "sizeGroups": "Группы размеров"
+    },
     "customers": { "customers": "Покупатели" },
     "countries": { "countries": "Страны" },
     "weight": { "weight": "Вес" },
@@ -455,5 +462,11 @@
     "siteMenuHelp": "Помощь",
     "siteMenuSortOrder": "Порядок сортировки",
     "siteMenuName": "Имя"
+  },
+  "sizeGroups": {
+    "sizeGroupsName": "Наименование",
+    "sizeGroupsOrder": "Порядок",
+    "addEditSizeGroups": "Добавить/Редактировать группы размеров",
+    "sizeGroupsParamsList": "Cписок параметров"
   }
 }

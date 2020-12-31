@@ -28,7 +28,7 @@
   <ng-container  *ngFor="let link of item.items">
     <rap-nav-item
     *ngIf="!link.hidden"
-      [langLink]="lang.routeLang"
+      [langLink]="lang.current"
       [nav]="link"
       (currentItemUrl)="getCurrentItem($event)"
     ></rap-nav-item>

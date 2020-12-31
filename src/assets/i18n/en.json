@@ -86,7 +86,11 @@
     "discountExpired": "The discount has expired",
     "notFound": " not found",
     "name": "Name",
-    "update": "Update"
+    "update": "Update",
+    "description": "Description",
+    "alias": "Alias",
+    "content": "Content",
+    "addEditPage": "Add/Edit page"
   },
   "pageNotFound": {
     "backToHome": "Back To Home",
@@ -179,7 +183,10 @@
       "colection": "Colections"
     },
     "reviews": { "reviews": "Reviews", "product_reviews": "Product reviews" },
-    "manufacturer": { "manufacturers": "Manufacturers" },
+    "manufacturer": { 
+      "manufacturers": "Manufacturers",
+      "sizeGroups": "Size groups"
+    },
     "customers": { "customers": "Customers" },
     "countries": { "countries": "Countries" },
     "weight": { "weight": "Weight" },
@@ -455,5 +462,11 @@
     "siteMenuHelp": "Help",
     "siteMenuSortOrder": "Sort order",
     "siteMenuName": "Name"
+  },
+  "sizeGroups": {
+    "sizeGroupsName": "Name",
+    "sizeGroupsOrder": "Order",
+    "addEditSizeGroups": "Add/Edit size groups",
+    "sizeGroupsParamsList": "List of parameters"
   }
 }

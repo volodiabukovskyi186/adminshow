@@ -36,6 +36,7 @@ import { LiqpayPageComponent } from './client/liqpay-page/liqpay-page.component'
 import {SelectedComponent} from './selected/selected.component';
 import {BaseComponent} from '../modules/catalog/product/components/layouts/base/base.component';
 import {BasketComponent} from './basket/basket.component';
+import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -90,6 +91,14 @@ export const pagesRoutes: Routes = [
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: ["manage_orders"],
+    },
+  },
+  {
+    path: "size_groups",
+    component: SizeGroupsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ["manage_manufacturers"],
     },
   },
   {

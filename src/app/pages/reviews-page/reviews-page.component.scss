@@ -68,7 +68,7 @@
     margin: 0 auto;
   }
 
-  ::ng-deep {
+  .footer-wrapper ::ng-deep {
     .mat-paginator {
       flex-direction: row;
       padding-top: 20px;

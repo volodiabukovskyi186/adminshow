@@ -1,9 +1,9 @@
 <fieldset class="radius" style="margin-bottom: 16px;">
-  <legend>{{ title }}</legend>
+  <legend>{{ 'APP.addEditPage' | translate }}</legend>
 
   <div class="form-row">
     <div class="description">
-      <label for="">Alias</label>
+      <label for="">{{ 'APP.alias' | translate }}</label>
     </div>
     <div class="original">
       <input class="radius" type="text" [(ngModel)]="model.alias" />
@@ -12,13 +12,13 @@
 
   <div class="form-row">
     <div class="description">
-      <label for="">SHOW</label>
+      <label for="">{{ "APP.show" | translate }}</label>
     </div>
 
     <div class="original">
       <select class="radius" name="parent_id" [(ngModel)]="model.status">
-        <option value="1">Show</option>
-        <option value="0">Hide</option>
+        <option value="1">{{ "APP.show" | translate }}</option>
+        <option value="0">{{ "APP.hide" | translate }}</option>
       </select>
     </div>
   </div>
@@ -31,7 +31,7 @@
     >
       <div class="form-row">
         <div class="description">
-          <label for="">NAME</label>
+          <label for="">{{ "APP.name" | translate }}</label>
         </div>
         <div class="original">
           <input class="radius" [(ngModel)]="item.title" type="text" />
@@ -40,7 +40,7 @@
 
       <div class="form-row">
         <div class="description">
-          <label for="">description</label>
+          <label for="">{{ 'APP.description' | translate }}</label>
         </div>
         <div class="original">
           <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
@@ -53,7 +53,7 @@
       </div>
       <div class="form-row">
         <div class="description">
-          <label for="">meta description</label>
+          <label for="">{{ 'APP.metaDescription' | translate }}</label>
         </div>
         <div class="original">
           <textarea
@@ -78,7 +78,7 @@
 
       <div class="form-row">
         <div class="description">
-          <label for="">Content</label>
+          <label for="">{{ 'APP.content' | translate }}</label>
         </div>
         <div class="original">
           <!-- <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea> -->

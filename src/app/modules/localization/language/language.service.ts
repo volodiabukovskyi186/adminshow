@@ -107,6 +107,7 @@ export class LanguageService {
         return role;
       }
     }
+    
     return null;
   }  
 

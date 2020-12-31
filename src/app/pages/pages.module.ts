@@ -91,6 +91,8 @@ import { SelectedComponent } from './selected/selected.component';
 import { SelectedFilterComponent } from './selected/selected-filter/selected-filter.component';
 import { BasketComponent } from './basket/basket.component';
 import { BasketFilterComponent } from './basket/basket-filter/basket-filter.component';
+import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.component';
+import { SizeGroupsFormComponent } from './size-groups-page/size-groups-form/size-groups-form.component';
 
 @NgModule({
   declarations: [
@@ -138,7 +140,9 @@ import { BasketFilterComponent } from './basket/basket-filter/basket-filter.comp
     SelectedComponent,
     SelectedFilterComponent,
     BasketComponent,
-    BasketFilterComponent
+    BasketFilterComponent,
+    SizeGroupsPageComponent,
+    SizeGroupsFormComponent
   ],
     imports: [
         CommonModule,
