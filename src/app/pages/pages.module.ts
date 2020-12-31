@@ -93,6 +93,8 @@ import { BasketComponent } from './basket/basket.component';
 import { BasketFilterComponent } from './basket/basket-filter/basket-filter.component';
 import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.component';
 import { SizeGroupsFormComponent } from './size-groups-page/size-groups-form/size-groups-form.component';
+import { SizeParamsPageComponent } from './size-params-page/size-params-page.component';
+import { SizeParamsFormComponent } from './size-params-page/size-params-form/size-params-form.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +144,9 @@ import { SizeGroupsFormComponent } from './size-groups-page/size-groups-form/siz
     BasketComponent,
     BasketFilterComponent,
     SizeGroupsPageComponent,
-    SizeGroupsFormComponent
+    SizeGroupsFormComponent,
+    SizeParamsPageComponent,
+    SizeParamsFormComponent
   ],
     imports: [
         CommonModule,

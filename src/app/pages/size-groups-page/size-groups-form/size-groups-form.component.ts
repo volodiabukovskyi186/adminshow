@@ -15,6 +15,8 @@ export class SizeGroupsFormComponent implements OnInit, OnChanges {
 
   public modalOpen: boolean = true;
   public orderForm: FormGroup;
+  public sizeGroupParams = [];
+  //public selectedParamsForm: FormGroup;
 
   constructor(
     public langService: LanguageService
@@ -22,6 +24,7 @@ export class SizeGroupsFormComponent implements OnInit, OnChanges {
 
   public ngOnInit(): void {
     this.generateOrderForm();
+    //this.generateSelectedParamsForm();
   }
 
   public ngOnChanges(): void {
@@ -39,6 +42,8 @@ export class SizeGroupsFormComponent implements OnInit, OnChanges {
         sizeGroupDesc.short_title = 'Pl';
       }
     })
+
+    this.displayParams();
   }
 
   public generateOrderForm(): void {
@@ -46,5 +51,37 @@ export class SizeGroupsFormComponent implements OnInit, OnChanges {
       order: new FormControl('', [])
     })
   }
+
+  public displayParams(): void {
+    this.sizeGroup?.params?.forEach((val) => {
+      if (val.hasOwnProperty('descriptions')) {
+        val.descriptions.forEach((param) => {
+          this.sizeGroupParams.push(param);
+        })
+      }
+    })
+
+    console.log('this.sizeGroupParams', this.sizeGroupParams);
+  }
+
+  public removeProduct(paramIndex): void {
+    console.log(paramIndex);
+    this.sizeGroupParams.splice(paramIndex, 1);
+
+    console.log('this.sizeGroupParams === >> after remove', this.sizeGroupParams);
+    //sthis.selectedProducts.emit(this.products);
+  }
+
+  // public generateSelectedParamsForm(): void {
+  //   this.selectedParamsForm = new FormGroup({
+  //     params: new FormControl('', [])
+  //   })
+  // }
+
+  // public setValueInSelectedParamsForm(): void {
+  //   this.sizeGroup?.params[0]?.descriptions?.forEach((val) => {
+  //     this.selectedParamsForm?.controls['params']?.setValue(val.name);
+  //   })
+  // }
 
 }

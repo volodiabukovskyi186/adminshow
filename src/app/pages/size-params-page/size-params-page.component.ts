@@ -1,5 +1,5 @@
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Component, OnInit, Inject } from "@angular/core";
 import { BasePage } from "../@core";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { ToastrService } from "ngx-toastr";
@@ -8,16 +8,16 @@ import { PagesService } from "../pages.service";
 import { LanguageService } from "src/app/modules/localization/language/language.service";
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { changeValueHighlight } from "src/app/modules/ui/animations";
-import { SizeGroupsService } from './services/size-groups-page.service';
+import { SizeParamsService } from './services/size-params-page.service';
 
 @Component({
   animations: [changeValueHighlight],
-  selector: "app-size-groups-page",
-  templateUrl: "./size-groups-page.component.html",
-  styleUrls: ["./size-groups-page.component.scss"],
+  selector: "app-size-params-page",
+  templateUrl: "./size-params-page.component.html",
+  styleUrls: ["./size-params-page.component.scss"],
 })
-export class SizeGroupsPageComponent extends BasePage implements OnInit {
-  public selectedSizeGroup: any;
+export class SizeParamsPageComponent extends BasePage implements OnInit {
+  public selectedSizeParam: any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -26,7 +26,7 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
     public pages: PagesService,
     public langService: LanguageService,
     public lang: Lang,
-    public sizeGroupsService: SizeGroupsService,
+    public sizeParamsService: SizeParamsService,
     private translate: TranslateService
   ) {
     super(pages);
@@ -41,7 +41,7 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
 
     this.breadcrumbs.breadcrumbs = [
       { link: "", title: "Dashboard" },
-      { link: "size_groups", title: "Size groups" },
+      { link: "size_params", title: "Size params" },
     ];
 
     this.initTranslate();
@@ -52,35 +52,31 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
     this.lang.translate
       .get([
         "dashboard.dashboard",
-        "MENU.manufacturer.sizeGroups",
+        "MENU.manufacturer.sizeParams",
       ])
       .subscribe((tr: any) => {
         this.breadcrumbs.breadcrumbs = [
           { link: "", title: tr["dashboard.dashboard"] },
-          { link: "size_groups", title: tr["MENU.manufacturer.sizeGroups"] },
+          { link: "size_params", title: tr["MENU.manufacturer.sizeParams"] },
         ];
       });
   }
 
   public getList(): void {
     this.ngxService.start();
-    this.sizeGroupsService.getList().subscribe(this.getListHandler);
+    this.sizeParamsService.getList().subscribe(this.getListHandler);
   }
 
   getListHandler = (data) => {
     this.ngxService.stopAll();
-    this.sizeGroupsService.sizeGroups = data;
+    this.sizeParamsService.sizeParams = data;
   };
 
   public edit(i): void {
-    this.selectedSizeGroup = i;
+    this.selectedSizeParam = i;
     this.openForm();
 
     console.log(i);
-  }
-
-  public getSizeGroupDescriptions() {
-    
   }
 
   public getLangList(): void {
@@ -91,7 +87,6 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
   getLangListHandler = (data) => {
     this.ngxService.stopAll();
     this.langService.languages = data;
-    //this.manufacturerForm.initDesc(this.langService.languages.data);
   } ;
 
   // public updateStatus(item: IManufacturer): void {
@@ -169,30 +164,9 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
   //   this.openForm();
   // };
 
-  // //#endregion
-
-  // openDialog(): void {}
-
-  //#region pagination
   pageEvent(event): void {
-    this.sizeGroupsService.sizeGroups.count = event.length;
-    this.sizeGroupsService.sizeGroups.take = event.pageSize;
-    this.sizeGroupsService.sizeGroups.skip = event.pageSize  * event.pageIndex;
+    this.sizeParamsService.sizeParams.count = event.length;
+    this.sizeParamsService.sizeParams.take = event.pageSize;
+    this.sizeParamsService.sizeParams.skip = event.pageSize  * event.pageIndex;
   }
-
-  // pageToHandler(page: number): void {
-  //   this.sizeGroupsService.sizeGroups.page = page;
-  // }
-  // pagePrevHandler(): void {
-  //   this.sizeGroupsService.sizeGroups.page--;
-  // }
-  // pageNextHandler(): void {
-  //   this.sizeGroupsService.sizeGroups.page++;
-  // }
-  // pageChangedHandler(): void {
-  //   window.scrollTo(0, 0);
-  // }
-  // Math = Math;
-
-  //#endregion
 }

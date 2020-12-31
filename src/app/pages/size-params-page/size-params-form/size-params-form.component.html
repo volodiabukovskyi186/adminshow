@@ -1,10 +1,10 @@
 <div class="reviews-form-container">
     <div class="reviews-form-title">
-        <div>{{ 'sizeGroups.addEditSizeGroups' | translate }}</div>
+        <div>{{ 'sizeParams.addEditSizeParams' | translate }}</div>
     </div>
     <hr class="size-group-hr">
     <div class="reviews-content__main">
-        <form [formGroup]="orderForm">
+        <form [formGroup]="orderParamsForm">
             <div class="reviews-date">
                 <div class="reviews-date-title">{{ 'sizeGroups.sizeGroupsOrder' | translate }}</div>
                 <input formControlName="order" type="text" class="reviews-date-text"/>
@@ -12,18 +12,18 @@
         </form>
         <rap-step-tabs>
             <rap-step-tab
-                *ngFor="let item of sizeGroup?.descriptions"
+                *ngFor="let item of sizeParams?.descriptions"
                 [imgSrc]="langService.getFromList(item?.lang_id)?.flag"
                 [title]="item.short_title"
             >
-                <div class="reviews-date">
+                <div class="reviews-date params-content">
                     <div class="reviews-date-title">
                     <label for="">{{ "sizeGroups.sizeGroupsName" | translate }}</label>
                     </div>
                     <input class="reviews-date-text" [(ngModel)]="item.name" type="text" />
                 </div>
             
-                <div class="list-size-params">
+                <!-- <div class="list-size-params">
                     <div class="reviews-date-title list-size-params-title">
                         {{ "sizeGroups.sizeGroupsParamsList" | translate }}
                     </div>
@@ -35,7 +35,7 @@
                             <span (click)="removeProduct(currentIndex)" class="material-icons">cancel</span>
                           </div>
                         </div>
-                    </div>
+                    </div> -->
             
                     <!-- <div class="original">
                         <textarea
@@ -45,8 +45,9 @@
                         >
                         </textarea>
                     </div> -->
-                </div>
+                <!-- </div> -->
             </rap-step-tab>
         </rap-step-tabs>
     </div>
 </div>
+

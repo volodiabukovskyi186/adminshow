@@ -1,0 +1,100 @@
+<rap-panel-content
+  [showForm]="pages.panelSettings.form"
+  [showRightSide]="pages.panelSettings.right"
+>
+  <div form>
+    <app-size-params-form
+      [title]="'sizeParams.addEditSizeParams' | translate"
+      [sizeParams]="selectedSizeParam"
+      [langs]="langService.languages.data"
+    ></app-size-params-form>
+  </div>
+  <div filter></div>
+  <div content class="padding">
+    <ng-template #notfound>
+      <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
+    </ng-template>
+    <!-- {{manufacturer.manufacturer?.data.manufacturers|json}} -->
+    <table
+      class="raisins-table border-all radius"
+      *ngIf="sizeParamsService.sizeParams?.data.length > 0; else notfound"
+    >
+      <thead>
+        <tr>
+          <th width="64px">{{ "APP.id" | translate }}</th>
+          <th width="64px">{{ "sizeGroups.sizeGroupsOrder" | translate }}</th>
+          <th width="128px">{{ "sizeGroups.sizeGroupsName" | translate }}</th>
+          <th width="128px">{{ "APP.updated_at" | translate }}</th>
+          <th width="128px">{{ "APP.action" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+       
+        <tr
+            *ngFor="let item of sizeParamsService.sizeParams?.data"
+        >
+          <td data-label="ID" class="text-center">{{ item.id }}</td>
+          <td data-label="ID" class="text-center"></td>
+        
+          <td class="size-group-desc-name text-center">
+            <div *ngFor="let desc of item.descriptions">
+                <span class="title flag-container">
+                    <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
+                    <span class="name">{{ desc.name }}</span>
+                </span>
+            </div>
+          </td>
+
+          <td class="text-center">
+            <small>{{ item.created_at | localDate: "d MMMM HH:mm"}}</small>
+            <small *ngIf="!item.created_at">—</small>
+          </td>
+          <td>
+            <div class="flex wrap center">
+              <!-- <rap-delete-button
+                data-tooltip-left="on/off"
+                class="button transparent radius"
+                [ngClass]="{ on: item.status, off: !item.status }"
+                (click)="updateStatus(item)"
+                [@changeValueHighlight]="item.status"
+                [src]="
+                  item.status != 1
+                    ? 'assets/icons/eye-cloce.svg'
+                    : 'assets/icons/eye-open.svg'
+                "
+              ></rap-delete-button> -->
+
+              <button
+                style="position: relative;"
+                data-tooltip-left="Edit"
+                role="button"
+                (click)="edit(item)"
+                class="button transparent radius"
+              >
+                <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+              </button>
+
+              <!-- <rap-delete-button
+                data-tooltip-left="Delete"
+                class="button transparent radius"
+                (click)="deleteManufactures(item)"
+                [src]="'assets/icons/delete.svg'"
+              ></rap-delete-button> -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-wrapper">
+      <mat-paginator *ngIf="sizeParamsService.sizeParams?.count >= 5" class="footer"
+        [length]="sizeParamsService.sizeParams?.count"
+        [pageSize]="sizeParamsService.sizeParams?.take"
+        [pageSizeOptions]="[5, 10, 25]"
+        (page)="pageEvent($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</rap-panel-content>
+

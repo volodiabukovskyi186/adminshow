@@ -37,6 +37,7 @@ import {SelectedComponent} from './selected/selected.component';
 import {BaseComponent} from '../modules/catalog/product/components/layouts/base/base.component';
 import {BasketComponent} from './basket/basket.component';
 import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.component';
+import { SizeParamsPageComponent } from './size-params-page/size-params-page.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -96,6 +97,14 @@ export const pagesRoutes: Routes = [
   {
     path: "size_groups",
     component: SizeGroupsPageComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ["manage_manufacturers"],
+    },
+  },
+  {
+    path: "size_params",
+    component: SizeParamsPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: ["manage_manufacturers"],

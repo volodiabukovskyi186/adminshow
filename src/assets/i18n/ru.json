@@ -173,7 +173,8 @@
     "reviews": { "reviews": "Отзывы", "product_reviews": "Отзывы продуктов" },
     "manufacturer": { 
       "manufacturers": "Производители",
-      "sizeGroups": "Группы размеров"
+      "sizeGroups": "Группы размеров",
+      "sizeParams": "Параметры размеров"
     },
     "customers": { "customers": "Покупатели" },
     "countries": { "countries": "Страны" },
@@ -468,5 +469,8 @@
     "sizeGroupsOrder": "Порядок",
     "addEditSizeGroups": "Добавить/Редактировать группы размеров",
     "sizeGroupsParamsList": "Cписок параметров"
+  },
+  "sizeParams": {
+    "addEditSizeParams": "Добавить/Редактировать параметр"
   }
 }

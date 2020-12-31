@@ -173,7 +173,8 @@
     "reviews": { "reviews": "Recenzje", "product_reviews": "Recenzje produktu" },
     "manufacturer": { 
       "manufacturers": "Producenci",
-      "sizeGroups": "Grupy wielkości"
+      "sizeGroups": "Grupy wielkości",
+      "sizeParams": "Parametry rozmiaru"
     },
     "customers": { "customers": "Klienci" },
     "countries": { "countries": "Kraje" },
@@ -472,5 +473,8 @@
     "sizeGroupsOrder": "Kolejność",
     "addEditSizeGroups": "Dodaj/Edytuj grupy rozmiarów",
     "sizeGroupsParamsList": "Lista parametrów"
+  },
+  "sizeParams": {
+    "addEditSizeParams": "Dodaj/Edytuj parametr"
   }
 }

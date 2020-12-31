@@ -44,6 +44,7 @@ export const MENU = [
     [
       item("MENU.manufacturer.manufacturers", "manufacturer", true, ICON_MENU_ITEM,"manage_manufacturers"),
       item("MENU.manufacturer.sizeGroups", "size_groups", true, ICON_MENU_ITEM,"manage_manufacturers"),
+      item("MENU.manufacturer.sizeParams", "size_params", true, ICON_MENU_ITEM,"manage_manufacturers"),
       // item("Licences", "licences"),
     ],
     "assets/icons/brand2.svg","",
