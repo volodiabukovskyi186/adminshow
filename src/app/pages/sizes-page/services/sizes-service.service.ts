@@ -13,7 +13,6 @@ export class SizesServiceService {
     }
 
     bSubject = new BehaviorSubject({selectedOrder: this.selected});
-
     initEmptySizeForm() {
         this.selected = {
             group_id: null,
