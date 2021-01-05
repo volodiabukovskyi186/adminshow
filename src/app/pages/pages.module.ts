@@ -95,9 +95,12 @@ import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.com
 import { SizeGroupsFormComponent } from './size-groups-page/size-groups-form/size-groups-form.component';
 import { SizeParamsPageComponent } from './size-params-page/size-params-page.component';
 import { SizeParamsFormComponent } from './size-params-page/size-params-form/size-params-form.component';
+import { SizesPageComponent } from './sizes-page/sizes-page.component';
+import { SizesFormComponent } from './sizes-page/sizes-form/sizes-form.component';
 
 @NgModule({
   declarations: [
+
     PagesComponent,
     // LocalDatePipe,
     LoginPageComponent,
@@ -146,7 +149,11 @@ import { SizeParamsFormComponent } from './size-params-page/size-params-form/siz
     SizeGroupsPageComponent,
     SizeGroupsFormComponent,
     SizeParamsPageComponent,
-    SizeParamsFormComponent
+    SizeParamsFormComponent,
+    SizesPageComponent,
+    SizesFormComponent,
+
+
   ],
     imports: [
         CommonModule,

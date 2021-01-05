@@ -38,6 +38,7 @@ import {BaseComponent} from '../modules/catalog/product/components/layouts/base/
 import {BasketComponent} from './basket/basket.component';
 import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.component';
 import { SizeParamsPageComponent } from './size-params-page/size-params-page.component';
+import {SizesPageComponent} from './sizes-page/sizes-page.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -293,6 +294,14 @@ export const pagesRoutes: Routes = [
   {
     path: 'basket',
     component: BasketComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ['manage_albums'],
+    },
+  },
+  {
+    path: 'sizes',
+    component: SizesPageComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: ['manage_albums'],

@@ -21,6 +21,7 @@ import { UserMenuComponent } from './modules/user/user-menu/user-menu.component'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+
 registerLocaleData(localeRu, "ru");
 registerLocaleData(localePl, "pl");
 registerLocaleData(localeEn, "en");

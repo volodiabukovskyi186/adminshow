@@ -174,7 +174,8 @@
     "manufacturer": { 
       "manufacturers": "Производители",
       "sizeGroups": "Группы размеров",
-      "sizeParams": "Параметры размеров"
+      "sizeParams": "Параметры размеров",
+      "size": "Размер"
     },
     "customers": { "customers": "Покупатели" },
     "countries": { "countries": "Страны" },
@@ -468,9 +469,13 @@
     "sizeGroupsName": "Наименование",
     "sizeGroupsOrder": "Порядок",
     "addEditSizeGroups": "Добавить/Редактировать группы размеров",
-    "sizeGroupsParamsList": "Cписок параметров"
+    "sizeGroupsParamsList": "Cписок параметров",
+    "groupSize": "Группа размеров"
   },
   "sizeParams": {
     "addEditSizeParams": "Добавить/Редактировать параметр"
+  },
+  "size": {
+    "sizes": "Размера"
   }
 }

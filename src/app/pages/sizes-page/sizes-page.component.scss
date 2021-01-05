@@ -1,0 +1,47 @@
+.editBtn{
+  color: black;
+  font-size: 15px;
+  width: 15px;
+}
+.flag-container{
+  padding-right: 5px;
+  margin-right: 7px;
+  border-right: 1px dashed #646464;
+}
+.country{
+  width: 19px;
+  height: 19px;
+
+}
+.country-img-wrap{
+  margin: 0 auto;
+}
+
+::ng-deep {
+  .mat-paginator {
+    flex-direction: row;
+    padding-top: 20px;
+    .mat-paginator-outer-container{
+      flex-direction: row;
+      .mat-paginator-container{
+        flex-direction: row;
+        // border: solid silver 1px;
+        box-shadow: 2px 4px 16px -1px rgba(97,97,97,0.45);
+        .mat-paginator-page-size{
+          flex-direction: row;
+          mat-form-field{
+            .mat-form-field-wrapper {
+              .mat-form-field-infix{
+                width: 75px;
+              }
+            }
+          }
+        }
+        .mat-paginator-range-actions{
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}
+
