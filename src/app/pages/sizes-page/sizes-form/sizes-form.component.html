@@ -1,0 +1,50 @@
+<div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
+
+<fieldset class="radius" style="margin-bottom: 16px;">
+    <div class="form-row">
+        <div class="description">
+            <label for="">{{ "siteMenu.siteMenuSortOrder" | translate }}</label>
+        </div>
+        <div class="original">
+            <input class="radius" [(ngModel)]="selected.sort_order"  type="text"/>
+        </div>
+    </div>
+    <div class=" form-row settings-input-content sort-settings-content">
+        <div class="description">
+            <label for="">{{ "sizeGroups.groupSize" | translate }}</label>
+        </div>
+        <div class="sort-products-container">
+            <mat-form-field appearance="standart" class="sort-products">
+                <div class="sort-products-wrapper">
+                    <mat-select id="size"
+                                [(value)]="selected.group_id"  (selectionChange)="selectGroup(selected.group_id)"       >
+                        <div *ngFor="let sizeGroup of arrSizeGroup">
+                            <mat-option [value]="sizeGroup.id">{{sizeGroup?.descriptions[0]?.name}}</mat-option>
+                        </div>
+                    </mat-select>
+                </div>
+            </mat-form-field>
+        </div>
+    </div>
+    <rap-step-tabs class="flag-tabs">
+        <rap-step-tab
+                *ngFor="let item of selected?.descriptions"
+                [imgSrc]="langService.getFromList(item.lang_id)?.flag"
+                [title]="langShortTitle[item?.lang_id]?.title | translate"
+        >
+
+            <div class="form-row">
+                <div class="description">
+                    <label for="">{{ "MENU.localization.name" | translate }}</label>
+                </div>
+                <div class="original">
+                    <input class="radius" [(ngModel)]="item.name" type="text"/>
+                </div>
+            </div>
+
+        </rap-step-tab>
+    </rap-step-tabs>
+</fieldset>
+
+
+

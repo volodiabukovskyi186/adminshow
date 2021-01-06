@@ -33,11 +33,9 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
   ) {
     super(pages);
   }
-
   public ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-
     this.getList();
     this.getLangList();
 

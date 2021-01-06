@@ -188,7 +188,8 @@
     "manufacturer": { 
       "manufacturers": "Виробники",
       "sizeGroups": "Групи розмірів",
-      "sizeParams": "Параметри розмірів"
+      "sizeParams": "Параметри розмірів",
+      "size": "Розмір"
     },
     "customers": { "customers": "Покупці" },
     "countries": { "countries": "Країни" },
@@ -483,9 +484,13 @@
     "sizeGroupsOrder": "Порядок",
     "addEditSizeGroups": "Додати/Редагувати групи розмірів",
     "sizeGroupsParamsList": "Список параметрів",
-    "noSizeParamsSelected": "Параметри розмірів не вибрано"
+    "noSizeParamsSelected": "Параметри розмірів не вибрано",
+    "groupSize": "Група розмірів"
   },
   "sizeParams": {
     "addEditSizeParams": "Додати/Редагувати параметр"
+  },
+  "size": {
+    "sizes": "Розміра"
   }
 }

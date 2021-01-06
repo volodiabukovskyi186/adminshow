@@ -174,7 +174,8 @@
     "manufacturer": { 
       "manufacturers": "Producenci",
       "sizeGroups": "Grupy wielkości",
-      "sizeParams": "Parametry rozmiaru"
+      "sizeParams": "Parametry rozmiaru",
+      "size": "Rozmiar"
     },
     "customers": { "customers": "Klienci" },
     "countries": { "countries": "Kraje" },
@@ -473,9 +474,13 @@
     "sizeGroupsOrder": "Kolejność",
     "addEditSizeGroups": "Dodaj/Edytuj grupy rozmiarów",
     "sizeGroupsParamsList": "Lista parametrów",
-    "noSizeParamsSelected": "Nie wybrano parametrów rozmiaru"
+    "noSizeParamsSelected": "Nie wybrano parametrów rozmiaru",
+    "groupSize": "Grupa rozmiarów"
   },
   "sizeParams": {
     "addEditSizeParams": "Dodaj/Edytuj parametr"
+  },
+  "size": {
+    "sizes": "Rozmiar"
   }
 }

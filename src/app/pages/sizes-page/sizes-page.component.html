@@ -1,0 +1,74 @@
+<rap-panel-content
+        [showForm]="pages.panelSettings.form"
+        [showRightSide]="pages.panelSettings.right"
+>
+    <div form>
+        <app-sizes-form [selected]="selected" ></app-sizes-form>
+    </div>
+    <div filter>
+
+    </div>
+    <div content class="padding">
+        <table class="raisins-table border-all radius">
+            <thead>
+            <tr>
+                <th width="64px"> ID </th>
+                <th width="168px">{{ "option.order" | translate }}</th>
+                <th width="168px">{{ "selected.phone" | translate }}</th>
+                <th width="128px">{{ "APP.updated_at"  | translate }}</th>
+                <th width="168px">{{ "APP.action" | translate }}</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let selected of arrSizes; let i=index">
+                <td data-label="ID" class="text-center">{{selected.id}}</td>
+                <td class="text-center">   {{selected.sort_order}}</td>
+                <td class="text-center">
+                    <div class="flex wrap" style="width: 100%;">
+                        <span class="title flag-container" *ngFor="let count of selected.descriptions">
+                            <img class="flag" src="{{ langService.getFromList(count.lang_id)?.flag }}"/>
+                            <span class="name">{{ count.name }}</span>
+                        </span>
+                    </div>
+                </td>
+
+                <td class="text-center">
+                    {{selected?.created_at|localDate: "d MMMM HH:mm"}}
+                </td>
+                <td>
+                    <div class="flex wrap center">
+                        <button
+                                style="position: relative;"
+                                [attr.data-tooltip-left]="'APP.edit' | translate"
+                                role="button"
+                                (click)="edit(selected)"
+                                class="button transparent radius"
+                        >
+                            <rap-svg-ico class="editBtn" [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+                        </button>
+<!--                        -->
+                        <rap-delete-button
+                                (click)="deleteSize(selected)"
+                                data-tooltip-left="Delete"
+                                class="button transparent radius"
+                                [src]="'assets/icons/delete.svg'"
+                        ></rap-delete-button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+<!--        <div class="footer-wrapper">-->
+<!--            <mat-paginator *ngIf="alldata?.count >= 5" class="footer"-->
+<!--                           [length]="alldata?.count"-->
+<!--                           [pageSize]="alldata?.take"-->
+<!--                           [pageSizeOptions]="[5, 10, 25]"-->
+<!--                           (page)="pageEvent($event)"-->
+<!--            >-->
+<!--            </mat-paginator>-->
+<!--        </div>-->
+    </div>
+</rap-panel-content>
+
+

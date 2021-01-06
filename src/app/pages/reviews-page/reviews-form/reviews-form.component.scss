@@ -122,4 +122,52 @@
       }
     }
   }
-  
+
+.sort-products-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -13px;
+
+}
+.sort-products-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.sort-settings-content ::ng-deep {
+  .mat-form-field {
+    .mat-form-field-wrapper {
+      .mat-form-field-flex {
+        .mat-form-field-infix {
+          width: 100%;
+          .mat-select {
+            margin-right: 5px;
+            margin-top: 0px;
+            .mat-select-trigger {
+              .mat-select-value-text {
+                font-size: 15px;
+              }
+              .mat-select-arrow-wrapper {
+                .mat-select-arrow {
+                  box-sizing: border-box;
+                  height: 10px;
+                  width: 10px;
+                  border-style: solid;
+                  border-color: #000;
+                  border-width: 0px 1px 1px 0px;
+                  transform: rotate(45deg);
+                  transition: border-width 150ms ease-in-out;
+                  //margin-top: -6px;
+                  margin-top: -4px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

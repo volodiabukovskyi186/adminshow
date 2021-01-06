@@ -25,8 +25,7 @@ export class UnitWeightFormComponent implements OnInit {
   sub():void{
     this.localizeServ.bSubject.subscribe(data=>{
       this.selected = data;
-    })
-
+    });
   }
   public langShortTitle = {
     "1": {

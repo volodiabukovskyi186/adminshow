@@ -133,6 +133,10 @@ export const environment = {
     },
     basket: {
         basket: host + `cart_client/getUsersCart`
+    },
+    sizes: {
+        sizes: host + `sizes`,
+        size: host + `size`
     }
 
 
