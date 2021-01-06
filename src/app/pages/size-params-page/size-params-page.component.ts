@@ -9,6 +9,7 @@ import { LanguageService } from "src/app/modules/localization/language/language.
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { changeValueHighlight } from "src/app/modules/ui/animations";
 import { SizeParamsService } from './services/size-params-page.service';
+import { IParams } from './interfaces/params';
 
 @Component({
   animations: [changeValueHighlight],
@@ -18,6 +19,7 @@ import { SizeParamsService } from './services/size-params-page.service';
 })
 export class SizeParamsPageComponent extends BasePage implements OnInit {
   public selectedSizeParam: any;
+  public sizeGroupParamsToUpdate: any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -89,80 +91,50 @@ export class SizeParamsPageComponent extends BasePage implements OnInit {
     this.langService.languages = data;
   } ;
 
-  // public updateStatus(item: IManufacturer): void {
-  //   this.manufacturer
-  //     .updateStatus(item.id, item.status === 0 ? 1 : 0)
-  //     .subscribe(this.updateStatusHandler);
-  //     this.editItem = item;
-  // }
-  // updateStatusHandler = (data) => {
-  //   this.manufacturer.updateStatusInList(
-  //     this.editItem.id,
-  //     this.editItem.status == 0 ? 1 : 0
-  //   );
-  // };
+  public getSizeGroupParamsDescriptions(event) {
+    console.log(event);
+    this.sizeGroupParamsToUpdate = event;
+  }
+
+  public deleteSizeGroupsParams(sizeParamsToDelete): void {
+    console.log(sizeParamsToDelete);
+    this.sizeParamsService.removeSizeGroupParam(sizeParamsToDelete.id).subscribe((res) => {
+      console.log(res);
+      this.getList();
+    })
+  }
 
   //#region override
-  // save = () => {
-  //   // console.log("ADD/UPDATE", this.categoryForm.category);
-  //   // THIS SHOULD NOT BE HERE ! ! !
-  //   let c = this.manufacturerForm.manufacturer;
-  //   let data = {
-  //     image_id: c.image_id,
-  //     code: c.code,
-  //     rating: c.rating,
-  //     status: c.status,
-  //     description: [],
-  //     user_id:this.userId
-  //   };
-  //   if (c.id != null) {
-  //     c.description.forEach((d) => {
-  //       data.description.push({
-  //         id: d.id,
-  //         lang_id: d.lang_id,
-  //         name: d.name,
-  //         description: d.description,
-  //         meta_description: d.meta_description,
-  //         meta_keywords: d.meta_keywords,
-  //       });
-  //     });
-  //     this.manufacturer.put(data, c.id).subscribe(this.putHandler);
-  //   } else {
-  //     c.description.forEach((d) => {
-  //       data.description.push({
-  //         lang_id: d.lang_id,
-  //         name: d.name,
-  //         description: d.description,
-  //         meta_description: d.meta_description,
-  //         meta_keywords: d.meta_keywords,
-  //       });
-  //     });
-  //     this.manufacturer.post(data).subscribe(this.postHandler);
-  //   }
-  //   this.ngxService.start();
-  // };
+  save = () => {
+    if (this.selectedSizeParam.id !== null) {
+      this.sizeParamsService.updateSizeGroupsParams(this.sizeGroupParamsToUpdate, this.selectedSizeParam.id).subscribe(this.putHandler);
+    } else {
+      this.sizeParamsService.createSizeGroupsParams(this.sizeGroupParamsToUpdate).subscribe(this.postHandler);
+    }
+    this.ngxService.start();
+  };
 
-  // postHandler = (data: { data: IManufacturer }) => {
-  //   this.ngxService.stopAll();
+  postHandler = (data: { data: IParams }) => {
+    this.ngxService.stopAll();
 
-  //   this.manufacturer.manufacturer.data.push(data.data);
-  //   this.manufacturer.manufacturer.count++;
+    this.sizeParamsService.sizeParams?.data.push(data.data);
+    this.sizeParamsService.sizeParams.count++;
 
-  //   this.closeForm();
-  //   this.toastr.success('MANUFACTURER ADDED');
-  // };
+    this.closeForm();
+    this.toastr.success('SIZE PARAMS ADDED');
+  };
 
-  // putHandler = (data) => {
-  //   this.ngxService.stopAll();
-  //   this.closeForm();
-  //   this.toastr.success('MANUFACTURER UPDATED ^_^') ;
-  // };
+  putHandler = (data) => {
+    this.ngxService.stopAll();
+    this.closeForm();
+    this.toastr.success('SIZE PARAMS UPDATED ^_^') ;
+  };
 
-  // plus = () => {
-  //   this.manufacturerForm.initEmptyCategory();
-  //   this.manufacturerForm.initDesc(this.langService.languages.data);
-  //   this.openForm();
-  // };
+  plus = () => {
+    this.sizeParamsService.initEmptySizeGroupParams();
+    this.selectedSizeParam = this.sizeParamsService.selectedSizeParam;
+    this.openForm();
+  };
 
   pageEvent(event): void {
     this.sizeParamsService.sizeParams.count = event.length;

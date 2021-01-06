@@ -84,9 +84,10 @@ import { LiqpayPageComponent } from './client/liqpay-page/liqpay-page.component'
 import { LipayFormComponent } from '../modules/client/liqpay/lipay-form/lipay-form.component';
 import { OrderFiltersFormComponent } from './orders/order-filters-form/order-filters-form.component';
 import { ClickOutsideModule } from 'ng-click-outside';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { EditOrderFormComponent } from './orders/edit-order-form/edit-order-form.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxSelectModule } from "ngx-select-ex";
 import { SelectedComponent } from './selected/selected.component';
 import { SelectedFilterComponent } from './selected/selected-filter/selected-filter.component';
 import { BasketComponent } from './basket/basket.component';
@@ -95,6 +96,7 @@ import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.com
 import { SizeGroupsFormComponent } from './size-groups-page/size-groups-form/size-groups-form.component';
 import { SizeParamsPageComponent } from './size-params-page/size-params-page.component';
 import { SizeParamsFormComponent } from './size-params-page/size-params-form/size-params-form.component';
+// import { SizeGroupsFormSelectComponent } from './size-groups-page/size-groups-form-select/size-groups-form-select.component';
 
 @NgModule({
   declarations: [
@@ -146,7 +148,8 @@ import { SizeParamsFormComponent } from './size-params-page/size-params-form/siz
     SizeGroupsPageComponent,
     SizeGroupsFormComponent,
     SizeParamsPageComponent,
-    SizeParamsFormComponent
+    SizeParamsFormComponent,
+    // SizeGroupsFormSelectComponent
   ],
     imports: [
         CommonModule,
@@ -200,7 +203,7 @@ import { SizeParamsFormComponent } from './size-params-page/size-params-form/siz
         MatTableModule,
         ClickOutsideModule,
         MatPaginatorModule,
-
+        NgxSelectModule,
 
         // ToastrModule added
     ],

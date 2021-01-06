@@ -468,7 +468,8 @@
     "sizeGroupsName": "Наименование",
     "sizeGroupsOrder": "Порядок",
     "addEditSizeGroups": "Добавить/Редактировать группы размеров",
-    "sizeGroupsParamsList": "Cписок параметров"
+    "sizeGroupsParamsList": "Cписок параметров",
+    "noSizeParamsSelected": "Параметры размеров не выбраны"
   },
   "sizeParams": {
     "addEditSizeParams": "Добавить/Редактировать параметр"

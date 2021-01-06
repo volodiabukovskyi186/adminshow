@@ -4,9 +4,7 @@ import { from, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { LanguageService } from 'src/app/core/language.service';
 import { ISizeGroupsResponse } from '../interfaces/size-groups-response';
-
 //import { ILanguage } from "../localization/language/language.service";
-//import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: "root",
@@ -21,87 +19,59 @@ export class SizeGroupsService {
     host: environment.host
   };
   page = 1;
-
-  // all: IManufacturer[] = [];
-  // currentUserRoleId: number;
+  selectedSizeGroup: any;
 
   constructor(
     private http: HttpClient,
     private languageService: LanguageService,
-    //public userService: UserService
   ) {}
 
-  getList(): Observable<any> {
-    //const lang = localStorage.getItem('currentLang');
-    return this.http.get(`${environment.host}size_groups`);
+  initEmptySizeGroup(): void {
+    this.selectedSizeGroup = {
+      id: null,
+      sort_order: null,
+      descriptions: [
+        {
+          id: null,
+          name: null,
+          lang_id: 1
+        },
+        {
+          id: null,
+          name: null,
+          lang_id: 2
+        },
+        {
+          id: null,
+          name: null,
+          lang_id: 3
+        },
+        {
+          id: null,
+          name: null,
+          lang_id: 4
+        }
+      ]
+    }
   }
 
-  // getAll(): Observable<IManufacturerResponse> {
-  //   return this.http.get<IManufacturerResponse>(
-  //     environment.manufacturer.manufacturers + `?take=200&skip=0`
-  //   );
-  // }
+  getList(): Observable<any> {
+    const lang = localStorage.getItem('currentLang');
+    return this.http.get(`${environment.host}size_groups?lang=${lang}`);
+  }
 
-  // getAllManufactures(): Observable<any> {
-  //   let lang = this.languageService.current;
-  //   return this.http.get(`https://api.showu.com.ua/client/manufacturers?lang=${lang}`);
-  // }
+  updateSizeGroups(data: any, id: number): Observable<any> {
+    return this.http.put(
+      `${environment.host}size_group/${id}`,
+      data
+    );
+  }
 
-  // getManagerManufacturers(): Observable<any> {
-  //   return this.http.get(`${environment.host}manager/manufacturers`);
-  // }
+  createSizeGroups(data: any): Observable<any> {
+    return this.http.post(`${environment.host}size_group`, data);
+  }
 
-  // getUserRoleId(): void {
-  //   this.userService.getByToken().subscribe((res) => {
-  //     this.currentUserRoleId = res.data.user.role_id;
-
-  //     console.log(this.currentUserRoleId);
-  //   });
-  // }
-
-  // getManufacturersByRoleId(): Observable<any> {
-  //   let lang = this.languageService.current;
-
-  //   if (this.currentUserRoleId === 1) {
-  //     return this.http.get(`https://api.showu.com.ua/client/manufacturers?lang=${lang}`);
-  //   }
-    
-  //   if (this.currentUserRoleId !== 1) {
-  //     return this.http.get(`${environment.host}manager/manufacturers`);
-  //   }
-  // }
-
-  // post(data: any): Observable<any> {
-  //   // let d = JSON.stringify(data);
-  //   return this.http.post(environment.manufacturer.manufacturer, data);
-  // }
-
-  // put(data: any, id: number): Observable<any> {
-  //   // let d = JSON.stringify(data);
-  //   return this.http.put(
-  //     `${environment.manufacturer.manufacturer}/${id}`,
-  //     data
-  //   );
-  // }
-  // deleteManufacture(id:number): Observable<any> {
-  //   return this.http.delete( `${environment.manufacturer.manufacturer}/${id}`) ;
-  // }
-
-  // updateStatus(id: number, status: number): Observable<any> {
-  //   let data = JSON.stringify({
-  //     status,
-  //   });
-  //   return this.http.put(
-  //     `${environment.manufacturer.manufacturer}/updateStatus/${id}`,
-  //     data
-  //   );
-  // }
-
-  // updateStatusInList(id: number, status: number) {
-  //   this.manufacturer.data.forEach((element) => {
-  //     if (element.id === id) {
-  //       element.status = status;
-  //     }
-  //   });
-  // }
+  removeSizeGroup(id:number): Observable<any> {
+    return this.http.delete( `${environment.host}size_group/${id}`) ;
+  }
 }

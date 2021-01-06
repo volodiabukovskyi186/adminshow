@@ -19,6 +19,7 @@ export class SizeParamsService {
     host: environment.host
   };
   page = 1;
+  selectedSizeParam: any;
 
   constructor(
     private http: HttpClient,
@@ -26,8 +27,53 @@ export class SizeParamsService {
     //public userService: UserService
   ) {}
 
+  initEmptySizeGroupParams() {
+    this.selectedSizeParam = {
+      id: null,
+      group_id: 1,
+      sort_order: null,
+      descriptions: [
+        {
+          id: null,
+          name: null,
+          lang_id: 1
+        },
+        {
+          id: null,
+          name: null,
+          lang_id: 2
+        },
+        {
+          id: null,
+          name: null,
+          lang_id: 3
+        },
+        {
+          id: null,
+          name: null,
+          lang_id: 4
+        }
+      ]
+    }
+  }
+
   getList(): Observable<any> {
     //const lang = localStorage.getItem('currentLang');
     return this.http.get(`${environment.host}size_params`);
+  }
+
+  updateSizeGroupsParams(data: any, id: number): Observable<any> {
+    return this.http.put(
+      `${environment.host}size_param/${id}`,
+      data
+    );
+  }
+
+  createSizeGroupsParams(data: any): Observable<any> {
+    return this.http.post(`${environment.host}size_param`, data);
+  }
+
+  removeSizeGroupParam(id:number): Observable<any> {
+    return this.http.delete( `${environment.host}size_param/${id}`) ;
   }
 }

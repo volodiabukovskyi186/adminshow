@@ -472,7 +472,8 @@
     "sizeGroupsName": "Nazwa",
     "sizeGroupsOrder": "Kolejność",
     "addEditSizeGroups": "Dodaj/Edytuj grupy rozmiarów",
-    "sizeGroupsParamsList": "Lista parametrów"
+    "sizeGroupsParamsList": "Lista parametrów",
+    "noSizeParamsSelected": "Nie wybrano parametrów rozmiaru"
   },
   "sizeParams": {
     "addEditSizeParams": "Dodaj/Edytuj parametr"

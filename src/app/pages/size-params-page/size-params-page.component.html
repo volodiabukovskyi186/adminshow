@@ -7,6 +7,7 @@
       [title]="'sizeParams.addEditSizeParams' | translate"
       [sizeParams]="selectedSizeParam"
       [langs]="langService.languages.data"
+      (sizeGroupParamsDescriptions)="getSizeGroupParamsDescriptions($event)"
     ></app-size-params-form>
   </div>
   <div filter></div>
@@ -14,7 +15,6 @@
     <ng-template #notfound>
       <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
     </ng-template>
-    <!-- {{manufacturer.manufacturer?.data.manufacturers|json}} -->
     <table
       class="raisins-table border-all radius"
       *ngIf="sizeParamsService.sizeParams?.data.length > 0; else notfound"
@@ -33,14 +33,14 @@
         <tr
             *ngFor="let item of sizeParamsService.sizeParams?.data"
         >
-          <td data-label="ID" class="text-center">{{ item.id }}</td>
-          <td data-label="ID" class="text-center"></td>
+          <td data-label="ID" class="text-center">{{ item?.id }}</td>
+          <td data-label="ID" class="text-center">{{ item?.group?.sort_order }}</td>
         
           <td class="size-group-desc-name text-center">
-            <div *ngFor="let desc of item.descriptions">
+            <div *ngFor="let desc of item?.descriptions">
                 <span class="title flag-container">
-                    <img class="flag" src="{{ langService.getFromList(desc.lang_id)?.flag }}"/>
-                    <span class="name">{{ desc.name }}</span>
+                    <img class="flag" src="{{ langService.getFromList(desc?.lang_id)?.flag }}"/>
+                    <span class="name">{{ desc?.name }}</span>
                 </span>
             </div>
           </td>
@@ -51,19 +51,6 @@
           </td>
           <td>
             <div class="flex wrap center">
-              <!-- <rap-delete-button
-                data-tooltip-left="on/off"
-                class="button transparent radius"
-                [ngClass]="{ on: item.status, off: !item.status }"
-                (click)="updateStatus(item)"
-                [@changeValueHighlight]="item.status"
-                [src]="
-                  item.status != 1
-                    ? 'assets/icons/eye-cloce.svg'
-                    : 'assets/icons/eye-open.svg'
-                "
-              ></rap-delete-button> -->
-
               <button
                 style="position: relative;"
                 data-tooltip-left="Edit"
@@ -74,12 +61,12 @@
                 <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
               </button>
 
-              <!-- <rap-delete-button
+              <rap-delete-button
                 data-tooltip-left="Delete"
                 class="button transparent radius"
-                (click)="deleteManufactures(item)"
+                (click)="deleteSizeGroupsParams(item)"
                 [src]="'assets/icons/delete.svg'"
-              ></rap-delete-button> -->
+              ></rap-delete-button>
             </div>
           </td>
         </tr>

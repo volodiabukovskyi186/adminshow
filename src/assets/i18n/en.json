@@ -468,7 +468,8 @@
     "sizeGroupsName": "Name",
     "sizeGroupsOrder": "Order",
     "addEditSizeGroups": "Add/Edit size groups",
-    "sizeGroupsParamsList": "List of parameters"
+    "sizeGroupsParamsList": "List of parameters",
+    "noSizeParamsSelected": "No size params selected"
   },
   "sizeParams": {
     "addEditSizeParams": "Add/Edit parameter"

@@ -18,33 +18,32 @@
             >
                 <div class="reviews-date">
                     <div class="reviews-date-title">
-                    <label for="">{{ "sizeGroups.sizeGroupsName" | translate }}</label>
+                        <label for="">{{ "sizeGroups.sizeGroupsName" | translate }}</label>
                     </div>
-                    <input class="reviews-date-text" [(ngModel)]="item.name" type="text" />
+                    <input
+                        class="reviews-date-text" 
+                        [(ngModel)]="item.name"
+                        type="text" 
+                    />
                 </div>
-            
                 <div class="list-size-params">
                     <div class="reviews-date-title list-size-params-title">
                         {{ "sizeGroups.sizeGroupsParamsList" | translate }}
                     </div>
-
+    
                     <div class="products-name-container">
                         <div *ngFor="let product of sizeGroupParams; let currentIndex = index;">
-                          <div class="product-name">
+                            <div class="product-name">
                             {{ product?.name }}
-                            <span (click)="removeProduct(currentIndex)" class="material-icons">cancel</span>
-                          </div>
+                            <!-- <span (click)="removeProduct(currentIndex)" class="material-icons">cancel</span> -->
+                            </div>
                         </div>
+                        <!-- <app-size-groups-form-select
+                            class="size-groups-form-select-container"
+                            [sizeGroupParams]="sizeGroupParams">
+                        </app-size-groups-form-select> -->
                     </div>
-            
-                    <!-- <div class="original">
-                        <textarea
-                            name=""
-                            class="radius size-group-textarea"
-                            rows="2"
-                        >
-                        </textarea>
-                    </div> -->
+                    <!-- <button (click)="sendDataForUpdate()">SAVE</button> -->
                 </div>
             </rap-step-tab>
         </rap-step-tabs>

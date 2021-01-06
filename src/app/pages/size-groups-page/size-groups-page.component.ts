@@ -9,6 +9,7 @@ import { LanguageService } from "src/app/modules/localization/language/language.
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { changeValueHighlight } from "src/app/modules/ui/animations";
 import { SizeGroupsService } from './services/size-groups-page.service';
+import { ISizeGroups } from './interfaces/size-groups';
 
 @Component({
   animations: [changeValueHighlight],
@@ -18,6 +19,7 @@ import { SizeGroupsService } from './services/size-groups-page.service';
 })
 export class SizeGroupsPageComponent extends BasePage implements OnInit {
   public selectedSizeGroup: any;
+  public sizeGroupToUpdate: any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -75,12 +77,6 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
   public edit(i): void {
     this.selectedSizeGroup = i;
     this.openForm();
-
-    console.log(i);
-  }
-
-  public getSizeGroupDescriptions() {
-    
   }
 
   public getLangList(): void {
@@ -91,87 +87,50 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
   getLangListHandler = (data) => {
     this.ngxService.stopAll();
     this.langService.languages = data;
-    //this.manufacturerForm.initDesc(this.langService.languages.data);
   } ;
 
-  // public updateStatus(item: IManufacturer): void {
-  //   this.manufacturer
-  //     .updateStatus(item.id, item.status === 0 ? 1 : 0)
-  //     .subscribe(this.updateStatusHandler);
-  //     this.editItem = item;
-  // }
-  // updateStatusHandler = (data) => {
-  //   this.manufacturer.updateStatusInList(
-  //     this.editItem.id,
-  //     this.editItem.status == 0 ? 1 : 0
-  //   );
-  // };
+  public getSizeGroupDescriptions(event): void {
+    this.sizeGroupToUpdate = event;
+  }
 
-  //#region override
-  // save = () => {
-  //   // console.log("ADD/UPDATE", this.categoryForm.category);
-  //   // THIS SHOULD NOT BE HERE ! ! !
-  //   let c = this.manufacturerForm.manufacturer;
-  //   let data = {
-  //     image_id: c.image_id,
-  //     code: c.code,
-  //     rating: c.rating,
-  //     status: c.status,
-  //     description: [],
-  //     user_id:this.userId
-  //   };
-  //   if (c.id != null) {
-  //     c.description.forEach((d) => {
-  //       data.description.push({
-  //         id: d.id,
-  //         lang_id: d.lang_id,
-  //         name: d.name,
-  //         description: d.description,
-  //         meta_description: d.meta_description,
-  //         meta_keywords: d.meta_keywords,
-  //       });
-  //     });
-  //     this.manufacturer.put(data, c.id).subscribe(this.putHandler);
-  //   } else {
-  //     c.description.forEach((d) => {
-  //       data.description.push({
-  //         lang_id: d.lang_id,
-  //         name: d.name,
-  //         description: d.description,
-  //         meta_description: d.meta_description,
-  //         meta_keywords: d.meta_keywords,
-  //       });
-  //     });
-  //     this.manufacturer.post(data).subscribe(this.postHandler);
-  //   }
-  //   this.ngxService.start();
-  // };
+  public deleteSizeGroup(sizeGroupToDelete): void {
+    this.sizeGroupsService.removeSizeGroup(sizeGroupToDelete.id).subscribe((res) => {
+      this.getList();
+    })
+  }
 
-  // postHandler = (data: { data: IManufacturer }) => {
-  //   this.ngxService.stopAll();
+  save = () => {
+    if (this.selectedSizeGroup.id !== null) {
+      this.sizeGroupsService.updateSizeGroups(this.sizeGroupToUpdate, this.selectedSizeGroup.id).subscribe(this.putHandler);
+    } else {
+      this.sizeGroupsService.createSizeGroups(this.sizeGroupToUpdate).subscribe(this.postHandler);
+    }
+    this.ngxService.start();
+  };
 
-  //   this.manufacturer.manufacturer.data.push(data.data);
-  //   this.manufacturer.manufacturer.count++;
+  postHandler = (data: { data: ISizeGroups }) => {
+    this.ngxService.stopAll();
 
-  //   this.closeForm();
-  //   this.toastr.success('MANUFACTURER ADDED');
-  // };
+    this.sizeGroupsService.sizeGroups.data.push(data.data);
+    this.sizeGroupsService.sizeGroups.count++;
 
-  // putHandler = (data) => {
-  //   this.ngxService.stopAll();
-  //   this.closeForm();
-  //   this.toastr.success('MANUFACTURER UPDATED ^_^') ;
-  // };
+    this.closeForm();
+    this.toastr.success('SIZE GROUP ADDED');
+  };
 
-  // plus = () => {
-  //   this.manufacturerForm.initEmptyCategory();
-  //   this.manufacturerForm.initDesc(this.langService.languages.data);
-  //   this.openForm();
-  // };
+  putHandler = (data) => {
+    this.ngxService.stopAll();
+    this.getList();
 
-  // //#endregion
+    this.closeForm();
+    this.toastr.success('SIZE GROUP UPDATED ^_^') ;
+  };
 
-  // openDialog(): void {}
+  plus = () => {
+    this.sizeGroupsService.initEmptySizeGroup();
+    this.selectedSizeGroup = this.sizeGroupsService.selectedSizeGroup;
+    this.openForm();
+  };
 
   //#region pagination
   pageEvent(event): void {
@@ -179,20 +138,6 @@ export class SizeGroupsPageComponent extends BasePage implements OnInit {
     this.sizeGroupsService.sizeGroups.take = event.pageSize;
     this.sizeGroupsService.sizeGroups.skip = event.pageSize  * event.pageIndex;
   }
-
-  // pageToHandler(page: number): void {
-  //   this.sizeGroupsService.sizeGroups.page = page;
-  // }
-  // pagePrevHandler(): void {
-  //   this.sizeGroupsService.sizeGroups.page--;
-  // }
-  // pageNextHandler(): void {
-  //   this.sizeGroupsService.sizeGroups.page++;
-  // }
-  // pageChangedHandler(): void {
-  //   window.scrollTo(0, 0);
-  // }
-  // Math = Math;
 
   //#endregion
 }
