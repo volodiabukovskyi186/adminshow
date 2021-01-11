@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angu
 import { ILanguage, LanguageService } from '../../../../app/modules/localization/language/language.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LocalizationServicesService } from "../../../pages/localization/services/localization-services.service";
+import { SizeGroupsService } from '../../../pages/size-groups-page/services/size-groups-page.service';
 
 @Component({
   selector: 'app-size-params-form',
@@ -17,15 +18,19 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
   public orderParamsForm: FormGroup;
   public selectedOrder: any;
   public sortOrder: number;
+  public arrSizeGroup: any;
+  public selectedSizeParamId: number;
 
   constructor(
     public langService: LanguageService,
-    public localizationService: LocalizationServicesService
+    public localizationService: LocalizationServicesService,
+    public sizeGroupsService: SizeGroupsService
   ) { }
 
   public ngOnChanges(): void {
     this.createTitleDesc();
     this.orderParamsForm?.get('order')?.setValue(this.sizeParams?.group?.sort_order);
+    this.getAllSizeGroup();
 
     this.setValueInForm();
     this.sendDataForUpdate();
@@ -64,6 +69,22 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
     })
   }
 
+  public getAllSizeGroup(): void {
+    this.sizeGroupsService.getList().subscribe(data => {
+      this.arrSizeGroup = data.data;
+      console.log('all', this.arrSizeGroup);
+    });
+  }
+
+  public selectGroup(sizeGroupId): void {
+    if (this.sizeParams) {
+      this.sizeParams.group_id = sizeGroupId;
+    }
+
+    console.log(sizeGroupId);
+    //this.sizeParams.group_id = sizeGroupId;
+  }
+
   public sendDataForUpdate(): void {
     if (this.sizeParams) {
       this.sizeParams.descriptions = this.sizeParams?.descriptions?.map((val) => {
@@ -76,6 +97,8 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
     }
 
     this.sortOrder = this.orderParamsForm?.value.order;
+
+    console.log('this.selectedSizeParamId ===== >>>', this.selectedSizeParamId);
 
     this.sizeGroupParamsDescriptions.emit({
       group_id: this.sizeParams?.group_id,
@@ -92,6 +115,8 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
         })
       })
     }
+
+    debugger;
 
     this.createTitleDesc();
   }

@@ -42,7 +42,6 @@
       (delete)="onDelete(a)"
       (edit)="onEdit(a)"
       (open)="onOpenAlbum(a)"
-      (click)="showData()"
       #selectedAlbum
     ></rap-folder>
   
@@ -115,7 +114,7 @@
   ></rap-folder>
 </div>
 
-<app-pagination *ngIf="image.images.data.length > 10"
+<app-pagination *ngIf="image.images.count > 10"
   class="radius"
   [page]="image.page"
   [total]="Math.ceil(image.images.count / image.images.take)"
