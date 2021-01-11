@@ -96,7 +96,7 @@
                 <td *ngFor="let size of arrTableParams">Обєм грудей</td>
             </tr>
             <tr class="sizes-items" *ngFor="let size of arrSizesValue of let i = index">
-                <td class="item-first" >{{arrTableSizes[i].description.name}} </td>
+                <td class="item-first"> {{arrTableSizes[i].description.name}} </td>
                 <td class="item" *ngFor="let item of size">{{item!==null? item.min_value:''}}</td>
             </tr>
         </table>
