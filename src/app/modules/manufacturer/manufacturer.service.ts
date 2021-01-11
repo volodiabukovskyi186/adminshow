@@ -84,6 +84,9 @@ export class ManufacturerService {
     }
    
   }
+  getManufactureTable(): Observable <any> {
+    return  this.http.get(`https://api.showu.com.ua/size_group/size_table/1?lang=ua&manufacturer=6`)
+  }
 
   getAll(): Observable<IManufacturerResponse> {
     return this.http.get<IManufacturerResponse>(

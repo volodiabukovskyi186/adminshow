@@ -16,7 +16,8 @@
     </div>
   </div>
 
-  
+<rap-step-tabs>
+  <rap-step-tab  [title]="'APP.base' | translate">
   <h2 class="text-center" *ngIf="title">{{ title }}</h2>
   
   <fieldset class="radius" style="margin-bottom: 16px;">
@@ -144,6 +145,12 @@
           ></textarea>
         </div>
       </div>
-
   </fieldset>
-  
+  </rap-step-tab>
+  <rap-step-tab [active]="true" [title]="'MENU.manufacturer.table' | translate">
+    <fieldset class="radius" style="margin-bottom: 16px;">
+      <legend>{{ "MENU.manufacturer.table" | translate }}</legend>
+      <app-manufacturer-form-sizes></app-manufacturer-form-sizes>
+    </fieldset>
+  </rap-step-tab>
+</rap-step-tabs>
