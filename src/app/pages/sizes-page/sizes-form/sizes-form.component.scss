@@ -57,7 +57,7 @@
   .mat-form-field {
     width: 96%;
     .mat-form-field-wrapper {
-      border: solid black 1px;
+      border: 1px solid #808080;
       border-radius: 3px;
       padding-bottom: 0;
       .mat-form-field-flex {
@@ -71,7 +71,7 @@
             .mat-select-trigger {
               padding-top: 5px;
               .mat-select-value-text {
-                font-size: 13px;
+                font-size: 15px;
               }
               .mat-select-arrow-wrapper {
                 .mat-select-arrow {

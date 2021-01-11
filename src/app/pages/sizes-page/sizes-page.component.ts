@@ -49,11 +49,7 @@ export class SizesPageComponent  extends BasePage implements OnInit, OnChanges {
     this.getSizes();
   }
 
-
-  ngOnChanges(changes: SimpleChanges) {
-
-  }
-
+  public ngOnChanges(changes: SimpleChanges) {}
 
   public initTranslate(): void {
     this.lang.translate
@@ -74,90 +70,103 @@ export class SizesPageComponent  extends BasePage implements OnInit, OnChanges {
     this.langService.getLangs().subscribe(this.getLangListHandler);
   }
 
-
   getLangListHandler = (data) => {
     this.langService.languages = data;
   }
 
   getSizes(): void {
     this.sizesService.getSizes().subscribe(data => {
-      console.log('sizes===>', data);
       this.arrSizes = data.data;
     });
   }
 
   edit(i) {
     this.selected = i;
-    console.log('this.selected ', this.selected);
     this.openForm();
   }
 
   save = () => {
-  console.log('this.selected', this.selected);
   if (!this.selected.id) {
       const newSizes = {
       group_id: this.selected.group_id,
       sort_order: this.selected.sort_order,
       description: [
         {
+          id: this.selected.id,
           name : this.selected.descriptions[0].name,
           lang_id : 1
         },
         {
+          id: this.selected.id,
           name : this.selected.descriptions[1].name,
           lang_id : 2
         },
         {
+          id: this.selected.id,
           name : this.selected.descriptions[2].name,
           lang_id : 3
         },
         {
+          id: this.selected.id,
           name : this.selected.descriptions[3].name,
           lang_id : 4
         },
       ]
     };
-      this.sizesService.createSize(newSizes).subscribe(data => {this.getSizes(); });
-      console.log('Newsizes', newSizes);
+      this.sizesService.createSize(newSizes).subscribe(this.putHandler);
   } else {
       const newSizes = {
         group_id: this.selected.group_id,
+        sort_order: this.selected.sort_order,
         description: [
           {
+            id: this.selected.id,
             name : this.selected.descriptions[0].name,
             lang_id : 1
           },
           {
+            id: this.selected.id,
             name : this.selected.descriptions[1].name,
             lang_id : 2
           },
           {
+            id: this.selected.id,
             name : this.selected.descriptions[2].name,
             lang_id : 3
           },
           {
+            id: this.selected.id,
             name : this.selected.descriptions[3].name,
             lang_id : 4
           },
         ]
       };
-     this.sizesService.updateSize(newSizes, this.selected.id).subscribe(data => {this.getSizes(); });
+     this.sizesService.updateSize(newSizes, this.selected.id).subscribe(this.postHandler);
     }
   }
+
   plus = () => {
     this.sizesService.initEmptySizeForm();
     this.selected = this.sizesService.selected;
-    console.log('this.selected ', this.selected );
     this.openForm();
   }
   deleteSize(selected:any): void {
     this.sizesService.deleteSize(selected.id).subscribe(data => {this.getSizes(); });
   }
 
+  putHandler = () => {
+    this.getSizes();
+    this.closeForm();
+
+    this.toastr.success("SIZE UPDATED");
+  }
+
   postHandler = (data) => {
     // this.ngxService.stopAll();
+    this.getSizes();
     this.closeForm();
-    // this.toastr.success("option ADDED");
+
+    this.toastr.success("SIZE ADDED");
   }
 
 
