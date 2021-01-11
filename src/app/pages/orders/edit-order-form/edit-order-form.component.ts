@@ -51,20 +51,8 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     if (changes.selectedClientOrder) {
       this.getOrderProducts();
       console.log(this.selectedClientOrder);
-
       this.products = this.selectedClientOrder.products;
-
       this.generateProductQuantityForm();
-
-      //this.products.forEach((product) => {
-        //if (product.hasOwnProperty('quantity')) {
-          //this.generateProductQuantityForm();
-          //this.productQuantityForm.get('quantity').setValue(this.modifyQuantity(product.quantity));
-        //}
-      //})
-
-      console.log('this.productQuantityForm ====== >>>>', this.productQuantityForm);
-      console.log('formGroupArr ==== >>>', this.formGroupArr);
     }
   }
 
@@ -73,37 +61,8 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     this.generateClientInfoForm();
     this.generateAddProductForm();
     this.generateEditClientInfoForm();
-
     this.setClientInfo();
     this.setClientPaymentDeliveryDetails();
-
-    // this.products.forEach((product, indexProduct) => {
-    //   if (product.hasOwnProperty('quantity')) {
-
-    //     this.formGroupArr.push(this.generateProductQuantityForm());
-
-    //     this.formGroupArr.forEach((val, formGroupIndex) => {
-    //       if (indexProduct === formGroupIndex) {
-    //         debugger;
-
-    //         val.controls.quantity.setValue(this.modifyQuantity(product.quantity));
-    //       }
-    //     })
-
-    //     console.log('this.productQuantityForm ====== >>>>', this.productQuantityForm);
-    //     console.log('formGroupArr ==== >>>', this.formGroupArr);
-    //   }
-    // })
-
-    //this.selectedClientOrder.products.forEach((val) => {
-      // if (val.hasOwnProperty('product')) {
-      //   this.products.push(val.product);
-      // }
-
-      //if (val.hasOwnProperty('quantity')) {
-        //this.addProductForm?.get('productQuantity').setValue(this.modifyQuantity(val.quantity));
-      //}
-    //})
   }
 
   public getUserByToken(): void {
@@ -115,7 +74,7 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   public getOrders(): void {
     this.orderService.getList(this.currentUserRoleId).subscribe(data => {
       this.orderService.order = data;
-    })
+    });
   }
 
   public generateEditClientInfoForm(): void {
@@ -123,7 +82,7 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
       paymentMethod: new FormControl('', []),
       deliveryMethod: new FormControl('', []),
       details: new FormControl('', [])
-    })
+    });
   }
 
   public setClientPaymentDeliveryDetails(): void {
@@ -131,7 +90,7 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
       paymentMethod: this.selectedClientOrder.checkoutPayment,
       deliveryMethod: this.selectedClientOrder.checkoutDelivery,
       details: this.selectedClientOrder.checkoutDeliveryAddress
-    })
+    });
   }
 
   public generateClientInfoForm(): void {
@@ -140,7 +99,7 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
       surname: new FormControl('', []),
       phone: new FormControl('', []),
       email: new FormControl('', []),
-    })
+    });
   }
 
   public setClientInfo(): void {
@@ -149,14 +108,14 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
       surname: this.selectedClientOrder.first_name,
       phone: this.selectedClientOrder.telephone,
       email: this.selectedClientOrder.email,
-    })
+    });
   }
 
   public generateAddProductForm(): void {
     this.addProductForm = new FormGroup({
       selectProduct: new FormControl('', []),
       productQuantity: new FormControl('', [])
-    })
+    });
   }
 
   public deleteProduct(orderProduct): void {
@@ -164,12 +123,11 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
     this.orderService.orderProductToDelete(orderProduct.id)
       .subscribe((res) => {
         console.log(res);
-      })
+      });
 
     this.products = this.products.filter((val) => {
       return val.id !== orderProduct.id;
-    })
-    
+    });
     this.totalSum = this.totalSum - +parseFloat(orderProduct.total).toFixed(2);
     console.log(this.totalSum);
   }

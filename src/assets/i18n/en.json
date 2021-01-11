@@ -187,7 +187,8 @@
       "manufacturers": "Manufacturers",
       "sizeGroups": "Size groups",
       "sizeParams": "Size parameters",
-      "size": "Size"
+      "size": "Size",
+      "table": "Таблиця Розмірів"
     },
     "customers": { "customers": "Customers" },
     "countries": { "countries": "Countries" },

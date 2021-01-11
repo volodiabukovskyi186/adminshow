@@ -47,7 +47,6 @@ export class ManufacturerFormService {
 
     this.manufacturer.description = list;
   }
-
   initBy(c: IManufacturer, langs: ILanguage[]) {
     this.manufacturer = c;
     this.initDesc(langs, c);
