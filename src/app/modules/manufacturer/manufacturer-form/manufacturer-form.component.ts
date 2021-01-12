@@ -13,7 +13,9 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class ManufacturerFormComponent implements OnInit {
 
   @Input() manufacturer: IManufacturer;
+  @Input() showTabSize;
   @Input() langs: ILanguage[];
+  @Input() selected: IManufacturer;
 
   @Input() title: string = "";
 

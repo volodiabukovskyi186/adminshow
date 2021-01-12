@@ -55,3 +55,19 @@
     </select>
   </div>
 </div>
+<div class=" form-row settings-input-content sort-settings-content">
+  <div class="description">
+    <label for="sizeGroup">{{ "sizeGroups.groupSize" | translate }}</label>
+  </div>
+  <div class="sort-products-container">
+    <mat-form-field appearance="standart" class="sort-products">
+      <div class="sort-products-wrapper">
+        <mat-select id="sizeGroup" [(ngModel)]="groupId" (selectionChange)="selectGroup(groupId)" >
+          <div *ngFor="let sizeGroup of arrSizeGroup" >
+            <mat-option [value]="sizeGroup.id">{{sizeGroup?.description?.name}}</mat-option>
+          </div>
+        </mat-select>
+      </div>
+    </mat-form-field>
+  </div>
+</div>

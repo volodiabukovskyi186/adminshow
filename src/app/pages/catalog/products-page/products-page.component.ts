@@ -60,21 +60,6 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
 
   public ngOnChanges(): void {
     this.getUserByTokin();
-    //this.getList(this.userRole);
-    
-    //this.getProductsBySearch(this.userRole);
-    //this.route.queryParams
-      //.subscribe(data => {
-        // if (data.search === Number) {
-        //   this.searchProductId = data.search;
-        // }
- 
-        // if (data.search === String) {
-        //   this.search = data.search;
-        //   this.get();
-        // }
-        //this.getLastReviews();
-    //});
   }
 
   public ngOnInit(): void {
@@ -82,35 +67,34 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
     super.initPanelButton();
 
     this.breadcrumbs.breadcrumbs = [
-      { link: "", title: "Dashboard" },
-      { link: "products", title: "Products" },
+      { link: '', title: 'Dashboard' },
+      { link: 'products', title: 'Products' },
     ];
 
     this.getLangList();
-    
     this.getAllManufacturer();
     this.initTranslate();
     this.getUserByTokin();
   }
 
   public getUserByTokin(): void {
-    this.roleService.getByToken().subscribe(data=>{
+    this.roleService.getByToken().subscribe(data => {
       this.userRole = data.data.role.id;
       this.getList(this.userRole);
       this.getProductsBySearch(this.userRole);
-    })
+    });
   }
 
   public initTranslate(): void {
     this.languageLocalizationService.translate
       .get([
-        "dashboard.dashboard",
-        "MENU.catalog.products",
+        'dashboard.dashboard',
+        'MENU.catalog.products',
       ])
       .subscribe((tr: any) => {
         this.breadcrumbs.breadcrumbs = [
-          { link: "", title: tr["dashboard.dashboard"] },
-          { link: "products", title: tr["MENU.catalog.products"] },
+          { link: '', title: tr['dashboard.dashboard'] },
+          { link: 'products', title: tr['MENU.catalog.products'] },
         ];
       });
   }
@@ -127,20 +111,17 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
   }
 
   public get(): void {
-    //debugger;
-
     this.searchService.search(this.search).subscribe(this.searchHandler);
   }
 
-  public isNumber(n) { 
-    return /^-?[\d.]+(?:e-?\d+)?$/.test(n); 
-  } 
+  public isNumber(n) {
+    return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
+  }
 
   public getList(role_id): void {
     this.ngxService.start();
-
     this.product.getList(role_id).subscribe(this.getListHandler);
-    //this.getProductsBySearch(role_id);
+
   }
 
   public getProductsBySearch(roleId): void {
@@ -150,28 +131,15 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
 
         if (data.hasOwnProperty('search')) {
           if (this.isNumber(data.search)) {
-            console.log('Number(data.search)', Number(data.search));
-
-            // return this.product.data.data = this.product.data.data.filter((product) => {
-            //   return product.id === Number(data.search);
-            // })
-            
             this.product.getProductById(Number(data.search)).subscribe((res) => {
               this.product.data.data = [res.data];
-
-              console.log('res.data ====== >>>> !!!', res.data);
-              console.log('this.product.data.data ======= >>>>> !!!!!', this.product.data.data);
-            })
+            });
           }
-   
           if (!this.isNumber(data.search)) {
             this.search = data.search;
             this.get();
           }
         } else {
-          //debugger;
-
-          //this.getList(roleId);
         }
     });
   }
@@ -244,6 +212,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       upc: c.upc, // +
       viewed: 0, // +
       description: [], // +
+      group_id: c.group_id,
     };
     if (c.id != null) {
       c.descriptions.forEach((d) => {
@@ -257,6 +226,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
           tag: d.tag,
         });
       });
+      console.log('oooo', data);
       this.product.put(data, c.id).subscribe(this.putHandler);
     } else {
       c.descriptions.forEach((d) => {
@@ -269,6 +239,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
           tag: d.tag,
         });
       });
+      console.log('oooo', data);
       this.product.post(data).subscribe(this.postHandler);
     }
     this.ngxService.start();

@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SizeGroupsService} from '../../../pages/size-groups-page/services/size-groups-page.service';
 import {SizesServiceService} from '../../../pages/sizes-page/services/sizes-service.service';
 import {SizeParamsService} from '../../../pages/size-params-page/services/size-params-page.service';
-import {ManufacturerService} from '../manufacturer.service';
+import {IManufacturer, ManufacturerService} from '../manufacturer.service';
+import {ManufactureTableModel} from '../modules/manufacture-table.model';
 
 @Component({
   selector: 'app-manufacturer-form-sizes',
   templateUrl: './manufacturer-form-sizes.component.html',
   styleUrls: ['./manufacturer-form-sizes.component.scss']
 })
-export class ManufacturerFormSizesComponent implements OnInit {
+export class ManufacturerFormSizesComponent implements OnInit, OnChanges {
+  @Input() selected: IManufacturer;
   arrSizeGroup = [];
-  arrSize = [];
-  arrSizeParams = [];
+  arrSize: any;
+  arrSizeParams: any;
   arrSizesValue = [];
-
-  arrTable = [];
-  arrTableParams = [];
-  arrTableSizes = [];
+  arrTableParams ;
+  arrTableSizes ;
+  allTable ;
+  groupId: number;
+  sizeId: number;
+  paramId: number;
+  max: number;
+  min: number;
   constructor(private sizeGroupsService: SizeGroupsService,
               private sizeService: SizesServiceService,
               private  sizeParamsServise: SizeParamsService,
@@ -25,41 +31,53 @@ export class ManufacturerFormSizesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGroupSizes();
-    this.getSizes();
-    this.getSizeParams();
-    this.getSizeTable();
+
   }
   getGroupSizes(): void {
-    this.sizeGroupsService.getList().subscribe(data => {
+    this.sizeGroupsService.getListClient().subscribe(data => {
       this.arrSizeGroup = data.data;
+      if (this.selected) {
+        this.groupId = this.arrSizeGroup[0].id;
+        this.getSizeTable(this.groupId);
+      }
     });
   }
-  getSizes(): void {
-    this.sizeService.getSizes().subscribe(data => {
-      this.arrSize = data.data;
-    });
+  ngOnChanges(changes: SimpleChanges) {
+    this.getGroupSizes();
   }
-  getSizeParams(): void {
-    this.sizeParamsServise.getList().subscribe(data => {
-      this.arrSizeParams = data.data;
-    });
+
+  selectGroup(groupId): void {
+      if (groupId) {
+          this.getSizeTable(groupId);
+          this.max = 0;
+          this.min = 0;
+      }
   }
-  getSizeTable(): void {
-    this.manufacturesService.getManufactureTable().subscribe(data => {
-      console.log('data==>', data.data);
+  getSizeTable(groupId: number): void {
+    this.arrTableParams = [];
+    this.arrTableSizes = [];
+    this.arrSize = [];
+    this.arrSizeParams = [];
+    this.arrSizesValue = [];
+    this.allTable = '';
+    this.manufacturesService.getManufactureTable(groupId, this.selected.id).subscribe(data => {
+      this.allTable = data.data;
       this.arrTableParams = data.data.params;
       this.arrTableSizes = data.data.sizes;
+      this.arrSize = data.data.sizes;
+      this.arrSizeParams = data.data.params;
+
       const arrValues = data.data.values;
-
-      // arrValues.forEach((elem, index) => {
-      //   subArray[index] = arrValues.slice((index * 3), (index * 3) + 3);
-      // });
-      for (let i = 0; i < Math.ceil(arrValues.length / this.arrTableParams.length); i++) {
-        this.arrSizesValue[i] = arrValues.slice((i * this.arrTableParams.length), ( i * this.arrTableParams.length) + this.arrTableParams.length);
+        for (let i = 0; i < Math.ceil(arrValues.length / this.arrTableParams.length); i++) {this.arrSizesValue[i] = arrValues.slice((i * this.arrTableParams.length), ( i * this.arrTableParams.length) + this.arrTableParams.length);
       }
-
-      console.log('pppp=>',  this.arrSizesValue);
     });
+  }
+  createNewSizeItem(): void {
+    const  newTableItem = new ManufactureTableModel(this.min, this.max, this.sizeId, this.paramId, this.groupId, this.selected.id);
+    this.manufacturesService.createManufacturesSize(newTableItem).subscribe();
+    this.getSizeTable(this.groupId);
+    this.max = 0;
+    this.min = 0;
   }
 
 }

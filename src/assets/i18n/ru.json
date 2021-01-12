@@ -475,6 +475,7 @@
     "groupSize": "Группа размеров"
   },
   "sizeParams": {
+    "params": "Параметр",
     "addEditSizeParams": "Добавить/Редактировать параметр"
   },
   "size": {

@@ -37,7 +37,8 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
   public userRoleId: number;
   public userRoleStatus: boolean = false;
   public userId: number;
-
+  public  showTabSize = false;
+  selected: IManufacturer;
   constructor(
     protected ngxService: NgxUiLoaderService,
     protected toastr: ToastrService,
@@ -188,6 +189,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
   };
 
   plus = () => {
+    this.showTabSize = false;
     this.manufacturerForm.initEmptyCategory();
     this.manufacturerForm.initDesc(this.langService.languages.data);
     this.openForm();
@@ -196,6 +198,8 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
   //#endregion
 
   public edit(i: IManufacturer): void {
+    this.showTabSize = true;
+    this.selected = i;
     this.manufacturerForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }

@@ -6,6 +6,7 @@ import { IImageSrc } from "../gallery";
 import { ILanguage } from "../localization/language/language.service";
 import { LanguageService } from 'src/app/core/language.service';
 import { UserService } from '../user/user.service';
+import {ManufactureTableModel} from './modules/manufacture-table.model';
 
 export interface IManufacturerDesc {
   id: number;
@@ -82,10 +83,9 @@ export class ManufacturerService {
         environment.manufacturer.manager + params
       );
     }
-   
   }
-  getManufactureTable(): Observable <any> {
-    return  this.http.get(`https://api.showu.com.ua/size_group/size_table/1?lang=ua&manufacturer=6`)
+  getManufactureTable(id: number, manufacId: number): Observable <any> {
+    return  this.http.get(`https://api.showu.com.ua/size_group/size_table/${id}?lang=ua&manufacturer=${manufacId}`);
   }
 
   getAll(): Observable<IManufacturerResponse> {
@@ -155,5 +155,8 @@ export class ManufacturerService {
         element.status = status;
       }
     });
+  }
+  createManufacturesSize(table: ManufactureTableModel): Observable<ManufactureTableModel> {
+    return  this.http.post<ManufactureTableModel>(`${environment.sizes.size_value}`, table);
   }
 }
