@@ -109,7 +109,22 @@ export class SizeParamsPageComponent extends BasePage implements OnInit {
     if (this.selectedSizeParam.id !== null) {
       this.sizeParamsService.updateSizeGroupsParams(this.sizeGroupParamsToUpdate, this.selectedSizeParam.id).subscribe(this.putHandler);
     } else {
-      this.sizeParamsService.createSizeGroupsParams(this.sizeGroupParamsToUpdate).subscribe(this.postHandler);
+      console.log('this.sizeGroupParamsToUpdate ==== >>>>', this.sizeGroupParamsToUpdate);
+      
+      let descriptionsToCreate = this.sizeGroupParamsToUpdate.description.map((val) => {
+        return {
+          name: val.name,
+          lang_id: val.lang_id
+        }
+      })
+      let sizeGroupParamsToCreate = {
+        group_id: this.sizeGroupParamsToUpdate.group_id,
+        sort_order: +this.sizeGroupParamsToUpdate.sort_order,
+        description: descriptionsToCreate
+      }
+
+      console.log('sizeGroupParamsToCreate === >>>>', sizeGroupParamsToCreate);
+      this.sizeParamsService.createSizeGroupsParams(sizeGroupParamsToCreate).subscribe(this.postHandler);
     }
     this.ngxService.start();
   };
@@ -139,6 +154,6 @@ export class SizeParamsPageComponent extends BasePage implements OnInit {
   pageEvent(event): void {
     this.sizeParamsService.sizeParams.count = event.length;
     this.sizeParamsService.sizeParams.take = event.pageSize;
-    this.sizeParamsService.sizeParams.skip = event.pageSize  * event.pageIndex;
+    this.sizeParamsService.sizeParams.skip = event.pageSize * event.pageIndex;
   }
 }

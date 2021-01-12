@@ -71,6 +71,10 @@ export class GalleryViewComponent implements OnInit {
         console.log(res);
         this.album.albums.data = res.data;
 
+        if (this.album.activeAlbum.id) {
+          this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
+        }
+
         this.image
         .getManagerImages(this.album.activeAlbum?.id)
         .subscribe(this.getImagesHandler);
@@ -113,6 +117,10 @@ export class GalleryViewComponent implements OnInit {
   getAlbumsHandler = (data: IAlbumResponse) => {
     this.ngxService.stop();
     this.album.albums.data = data.data;
+
+    if (this.album.activeAlbum.id) {
+      this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
+    }
   };
 
   getAllParentHandler = (data) => {
@@ -168,10 +176,10 @@ export class GalleryViewComponent implements OnInit {
     this.album.activeAlbum = album;
     console.log(this.album.activeAlbum);
 
-    this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === album.id});
-    console.log(this.album.albums.data);
-
     this.startLoad();
+
+    //this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
+    //console.log(this.album.albums.data);
 
     //this.getAlbumsByManager();
   }

@@ -29,9 +29,10 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
 
   public ngOnChanges(): void {
     this.createTitleDesc();
+    
     this.orderParamsForm?.get('order')?.setValue(this.sizeParams?.group?.sort_order);
-    this.getAllSizeGroup();
 
+    this.getAllSizeGroup();
     this.setValueInForm();
     this.sendDataForUpdate();
   }
@@ -72,17 +73,19 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
   public getAllSizeGroup(): void {
     this.sizeGroupsService.getList().subscribe(data => {
       this.arrSizeGroup = data.data;
-      console.log('all', this.arrSizeGroup);
     });
   }
 
   public selectGroup(sizeGroupId): void {
     if (this.sizeParams) {
-      this.sizeParams.group_id = sizeGroupId;
+      this.sizeGroupParamsDescriptions.emit({
+        group_id: sizeGroupId,
+        sort_order: this.orderParamsForm?.value.order,
+        description: this.sizeParams?.descriptions
+      })
     }
 
     console.log(sizeGroupId);
-    //this.sizeParams.group_id = sizeGroupId;
   }
 
   public sendDataForUpdate(): void {
@@ -96,13 +99,11 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
       })
     }
 
-    this.sortOrder = this.orderParamsForm?.value.order;
-
     console.log('this.selectedSizeParamId ===== >>>', this.selectedSizeParamId);
 
     this.sizeGroupParamsDescriptions.emit({
       group_id: this.sizeParams?.group_id,
-      sort_order: this.sortOrder,
+      sort_order: +this.orderParamsForm?.value.order,
       description: this.sizeParams?.descriptions
     })
 
@@ -110,13 +111,11 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
       this.orderParamsForm?.valueChanges.subscribe((res) => {
         this.sizeGroupParamsDescriptions.emit({
           group_id: this.sizeParams?.group_id,
-          sort_order: res.order,
+          sort_order: +res.order,
           description: this.sizeParams?.descriptions
         })
       })
     }
-
-    debugger;
 
     this.createTitleDesc();
   }
