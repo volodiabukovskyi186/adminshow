@@ -42,6 +42,10 @@ export class SizesServiceService {
     getSizes(): Observable<any> {
         return this.http.get(environment.sizes.sizes);
     }
+    getSizesClient(id: number): Observable<any> {
+        const lang = localStorage.getItem('currentLang');
+        return this.http.get(`${environment.sizes.size_client}/${id}?lang=${lang}`);
+    }
     createSize(newSize: any): Observable<any> {
         return  this.http.post(environment.sizes.size, newSize);
     }
