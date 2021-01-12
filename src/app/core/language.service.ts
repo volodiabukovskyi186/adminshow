@@ -77,8 +77,8 @@ export class LanguageService implements OnInit {
   init() {
     // init langs
     const pl: ILangItem = { flag: "pl", name: "Poland", locale: "pl", src:'assets/icons/poland.jpg' };
-    const en: ILangItem = { flag: "en", name: "England", locale: "en"  ,src:'assets/icons/eangland.png'};
-    const ru: ILangItem = { flag: "ru", name: "Russia", locale: "ru" , src:'assets/icons/russia.webp'};
+    const en: ILangItem = { flag: "en", name: "England", locale: "en", src:'assets/icons/eangland.png' };
+    const ru: ILangItem = { flag: "ru", name: "Russia", locale: "ru", src:'assets/icons/russia.webp' };
     const ua: ILangItem = { flag: "ua", name: "Ukraine", locale: "ua", src:'assets/icons/ukraine.webp' };
 
     this.langs = [pl, en, ru, ua];

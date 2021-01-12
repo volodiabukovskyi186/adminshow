@@ -57,8 +57,6 @@ export class GalleryViewComponent implements OnInit {
     this.album.albums.data = [];
     this.image.images.data = [];
 
-    console.log(this.currentUserRoleId);
-
     if (this.currentUserRoleId === 1) {
       this.album.getAlbums().subscribe(this.getAlbumsHandler);
 
@@ -73,6 +71,8 @@ export class GalleryViewComponent implements OnInit {
 
         if (this.album.activeAlbum.id) {
           this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
+        } else {
+          this.album.albums.data = res.data;
         }
 
         this.image
@@ -120,6 +120,8 @@ export class GalleryViewComponent implements OnInit {
 
     if (this.album.activeAlbum.id) {
       this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
+    } else {
+      this.album.albums.data = data.data;
     }
   };
 
@@ -178,9 +180,6 @@ export class GalleryViewComponent implements OnInit {
 
     this.startLoad();
 
-    //this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
-    //console.log(this.album.albums.data);
-
     //this.getAlbumsByManager();
   }
   //
@@ -207,7 +206,6 @@ export class GalleryViewComponent implements OnInit {
 
   public showData(album): void {
     this.album.activeAlbum = album;
-    console.log('album', album);
   }
 
   pageNextHandler(): void {
