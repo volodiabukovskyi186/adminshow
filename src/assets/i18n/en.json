@@ -478,6 +478,8 @@
     "addEditSizeParams": "Add/Edit parameter"
   },
   "size": {
-    "sizes": "Sizes"
+    "sizes": "Sizes",
+    "sizesName": "Size",
+    "addEditSizes": "Add/Edit size"
   }
 }

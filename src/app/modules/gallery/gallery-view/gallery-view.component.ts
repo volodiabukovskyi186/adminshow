@@ -166,6 +166,11 @@ export class GalleryViewComponent implements OnInit {
 
   onOpenAlbum(album: IAlbum) {
     this.album.activeAlbum = album;
+    console.log(this.album.activeAlbum);
+
+    this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === album.id});
+    console.log(this.album.albums.data);
+
     this.startLoad();
 
     //this.getAlbumsByManager();
@@ -192,10 +197,9 @@ export class GalleryViewComponent implements OnInit {
     this.image.select.emit();
   }
 
-  public showData(): void {
-
-    // console.log('album', album);
-    // console.log('albumsData', albumsData);
+  public showData(album): void {
+    this.album.activeAlbum = album;
+    console.log('album', album);
   }
 
   pageNextHandler(): void {

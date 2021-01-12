@@ -10,6 +10,26 @@
                 <input formControlName="order" type="text" class="reviews-date-text"/>
             </div>
         </form>
+        <div class="reviews-date">
+            <div class="reviews-date-title">
+                <label for="">{{ "sizeGroups.groupSize" | translate }}</label>
+            </div>
+            <div class="sort-products-container">
+                <mat-form-field *ngIf="sizeParams" appearance="standart" class="sort-products">
+                    <div class="sort-products-wrapper">
+                        <mat-select 
+                            id="size"
+                            [(value)]="sizeParams.group_id"
+                            (selectionChange)="selectGroup(sizeParams.group_id)"
+                        >
+                            <div *ngFor="let sizeGroup of arrSizeGroup">
+                                <mat-option [value]="sizeGroup?.id">{{sizeGroup.descriptions[0]?.name}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </div>
+                </mat-form-field>
+            </div>
+        </div>
         <rap-step-tabs>
             <rap-step-tab
                 *ngFor="let item of sizeParams?.descriptions"

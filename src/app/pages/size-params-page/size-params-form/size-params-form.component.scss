@@ -93,16 +93,29 @@
     align-items: center;
 }
 
-.sort-settings-content ::ng-deep {
-    .rating-content {
-        .rating {
-            font-size: 24px !important;
-        }
-    }
+.sort-products-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0px;
+  
+}
+
+.sort-products-container {
+    width: 70% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sort-products-container ::ng-deep {
     .mat-form-field {
+        width: 93%;
         border: 0.5px solid #808080;
         border-radius: 4px;
-        line-height: 1.3;
+        line-height: 1.4;
 
       .mat-form-field-wrapper {
         padding-bottom: 6px;
@@ -120,7 +133,7 @@
               padding-right: 19px !important;
               .mat-select-trigger {
                 .mat-select-value-text {
-                  font-size: 13px;
+                  font-size: 15px;
                   margin-left: 16px;
                 }
                 .mat-select-arrow-wrapper {
