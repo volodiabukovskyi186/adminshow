@@ -61,6 +61,10 @@ export class SizeParamsService {
     //const lang = localStorage.getItem('currentLang');
     return this.http.get(`${environment.host}size_params`);
   }
+  getListClient(id: number): Observable<any> {
+    const lang = localStorage.getItem('currentLang');
+    return this.http.get(`${environment.host}size_param/client/${id}?lang=${lang}`);
+  }
 
   updateSizeGroupsParams(data: any, id: number): Observable<any> {
     return this.http.put(

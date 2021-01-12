@@ -136,7 +136,9 @@ export const environment = {
     },
     sizes: {
         sizes: host + `sizes`,
-        size: host + `size`
+        size_client: host + `size/client`,
+        size: host + `size`,
+        size_value: host + `size_value`
     }
 
 

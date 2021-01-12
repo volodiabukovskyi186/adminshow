@@ -10,16 +10,16 @@
                 <div class="sort-products-wrapper">
 <!--                    [(value)]="selected.group_id"-->
 <!--                    (selectionChange)="selectGroup(selected.group_id)"-->
-                    <mat-select id="sizeGroup" >
-                        <div *ngFor="let sizeGroup of arrSizeGroup">
-                            <mat-option [value]="sizeGroup.id">{{sizeGroup?.descriptions[0]?.name}}</mat-option>
+                    <mat-select id="sizeGroup" [(ngModel)]="groupId" (selectionChange)="selectGroup(groupId)" >
+                        <div *ngFor="let sizeGroup of arrSizeGroup" >
+                            <mat-option [value]="sizeGroup.id">{{sizeGroup?.description?.name}}</mat-option>
                         </div>
                     </mat-select>
                 </div>
             </mat-form-field>
         </div>
     </div>
-    <div class=" form-row settings-input-content sort-settings-content">
+    <div class=" form-row settings-input-content sort-settings-content" *ngIf="arrSize"  >
         <div class="description">
             <label for="size">{{ "size.sizes" | translate }}</label>
         </div>
@@ -29,16 +29,17 @@
                     <!--                    [(value)]="selected.group_id"-->
                     <!--                    (selectionChange)="selectGroup(selected.group_id)"-->
                     <mat-select id="size"
+                                [(ngModel)]="sizeId"
                     >
                         <div *ngFor="let size of arrSize">
-                            <mat-option [value]="size.id">{{size?.descriptions[0]?.name}}</mat-option>
+                            <mat-option [value]="size.id">{{size?.description?.name}}</mat-option>
                         </div>
                     </mat-select>
                 </div>
             </mat-form-field>
         </div>
     </div>
-    <div class=" form-row settings-input-content sort-settings-content">
+    <div class=" form-row settings-input-content sort-settings-content" *ngIf="arrSizeParams" >
         <div class="description">
 <!--            {{ "sizeGroups.groupSize" | translate }}-->
             <label for="sizeparametr">Параметр</label>
@@ -49,9 +50,10 @@
                     <!--                    [(value)]="selected.group_id"-->
                     <!--                    (selectionChange)="selectGroup(selected.group_id)"-->
                     <mat-select id="sizeparametr"
+                                [(ngModel)]="paramId"
                     >
                         <div *ngFor="let sizeParams of arrSizeParams">
-                            <mat-option [value]="sizeParams.id">{{sizeParams?.descriptions[0]?.name}}</mat-option>
+                            <mat-option [value]="sizeParams.id">{{sizeParams?.description?.name}}</mat-option>
                         </div>
                     </mat-select>
                 </div>
@@ -64,7 +66,7 @@
         </div>
 <!--        [(ngModel)]="item.name"-->
         <div class="original">
-            <input class="radius" type="text" />
+            <input class="radius" [(ngModel)]="max" type="text" />
         </div>
     </div>
     <div class="form-row">
@@ -73,11 +75,12 @@
         </div>
 <!--        [(ngModel)]="item.name"-->
         <div class="original">
-            <input class="radius"  type="text" />
+            <input class="radius"  [(ngModel)]="min" type="text" />
         </div>
     </div>
     <div class="flex center">
         <button
+                (click)="createNewSizeItem()"
                 style="position: relative; color: black"
                 data-tooltip-left="Save"
                 role="button"
@@ -93,12 +96,14 @@
         <table class="size-table">
             <tr class="size-top" >
                 <td class="size-top-first">Розмір/Параметер</td>
-                <td *ngFor="let size of arrTableParams">Обєм грудей</td>
+                <td *ngFor="let size of arrTableParams">{{size.description.name}}</td>
             </tr>
+            <ng-container *ngIf="arrSizesValue">
             <tr class="sizes-items" *ngFor="let size of arrSizesValue of let i = index">
                 <td class="item-first"> {{arrTableSizes[i].description.name}} </td>
                 <td class="item" *ngFor="let item of size">{{item!==null? item.min_value:''}}</td>
             </tr>
+            </ng-container>
         </table>
     </div>
     <!--                <button style="position: relative; color: black"-->
