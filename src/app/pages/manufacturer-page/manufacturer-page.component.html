@@ -35,7 +35,7 @@
       <tbody>
        
         <tr
-          *ngFor="let item of manufacturer.manufacturer?.data"
+          *ngFor="let item of manufacturer?.manufacturer?.data"
           [ngClass]="{ off: !item.status }"
         >
           <td data-label="ID" class="text-center">{{ item.id }}</td>
