@@ -7,6 +7,8 @@
       [title]="'MENU.manage_site.addManufacturer' | translate"
       [manufacturer]="manufacturerForm.manufacturer"
       [langs]="this.langService.languages.data"
+      [selected]="selected"
+      [showTabSize]="showTabSize"
     ></app-manufacturer-form>
   </div>
   <div filter></div>
@@ -117,19 +119,6 @@
         </tr>
       </tbody>
     </table>
-
-    <!-- <pre>{{ langServise.languages.data | json }}</pre> -->
-
-    <!-- <app-pagination
-      class="radius"
-      [page]="manufacturer.page"
-      [total]="Math.ceil(manufacturer.manufacturer.count / manufacturer.manufacturer.take)"
-      [pagesToShow]="5"
-      (goNext)="pageNextHandler()"
-      (goPrev)="pagePrevHandler()"
-      (goPage)="pageToHandler($event)"
-      (pageChanged)="pageChangedHandler()"
-    ></app-pagination> -->
     <div class="footer-wrapper">
       <mat-paginator *ngIf="manufacturer.manufacturer.count >= 5" class="footer"
         [length]="manufacturer.manufacturer.count"

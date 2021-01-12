@@ -116,7 +116,6 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
       })
     }
 
-    debugger;
 
     this.createTitleDesc();
   }

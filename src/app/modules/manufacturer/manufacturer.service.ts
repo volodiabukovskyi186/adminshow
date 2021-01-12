@@ -84,8 +84,8 @@ export class ManufacturerService {
       );
     }
   }
-  getManufactureTable(id: number): Observable <any> {
-    return  this.http.get(`https://api.showu.com.ua/size_group/size_table/${id}?lang=ua&manufacturer=6`)
+  getManufactureTable(id: number, manufacId: number): Observable <any> {
+    return  this.http.get(`https://api.showu.com.ua/size_group/size_table/${id}?lang=ua&manufacturer=${manufacId}`);
   }
 
   getAll(): Observable<IManufacturerResponse> {

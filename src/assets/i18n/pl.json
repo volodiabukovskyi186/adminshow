@@ -479,6 +479,7 @@
     "groupSize": "Grupa rozmiarów"
   },
   "sizeParams": {
+    "params": "Parametr",
     "addEditSizeParams": "Dodaj/Edytuj parametr"
   },
   "size": {

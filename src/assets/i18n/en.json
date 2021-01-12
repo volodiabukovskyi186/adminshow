@@ -475,6 +475,7 @@
     "groupSize": "Size group"
   },
   "sizeParams": {
+    "params": "Parameter",
     "addEditSizeParams": "Add/Edit parameter"
   },
   "size": {

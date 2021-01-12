@@ -1,5 +1,4 @@
 <div class="tabs-header">{{ "MENU.localization.add_edit_localization" | translate }}</div>
-
 <fieldset class="radius" style="margin-bottom: 16px;">
     <div class=" form-row settings-input-content sort-settings-content">
         <div class="description">
@@ -8,8 +7,6 @@
         <div class="sort-products-container">
             <mat-form-field appearance="standart" class="sort-products">
                 <div class="sort-products-wrapper">
-<!--                    [(value)]="selected.group_id"-->
-<!--                    (selectionChange)="selectGroup(selected.group_id)"-->
                     <mat-select id="sizeGroup" [(ngModel)]="groupId" (selectionChange)="selectGroup(groupId)" >
                         <div *ngFor="let sizeGroup of arrSizeGroup" >
                             <mat-option [value]="sizeGroup.id">{{sizeGroup?.description?.name}}</mat-option>
@@ -26,11 +23,7 @@
         <div class="sort-products-container">
             <mat-form-field appearance="standart" class="sort-products">
                 <div class="sort-products-wrapper">
-                    <!--                    [(value)]="selected.group_id"-->
-                    <!--                    (selectionChange)="selectGroup(selected.group_id)"-->
-                    <mat-select id="size"
-                                [(ngModel)]="sizeId"
-                    >
+                    <mat-select id="size"  [(ngModel)]="sizeId"  >
                         <div *ngFor="let size of arrSize">
                             <mat-option [value]="size.id">{{size?.description?.name}}</mat-option>
                         </div>
@@ -41,17 +34,12 @@
     </div>
     <div class=" form-row settings-input-content sort-settings-content" *ngIf="arrSizeParams" >
         <div class="description">
-<!--            {{ "sizeGroups.groupSize" | translate }}-->
-            <label for="sizeparametr">Параметр</label>
+            <label for="sizeparametr"> {{ "sizeParams.params" | translate }}</label>
         </div>
         <div class="sort-products-container">
             <mat-form-field appearance="standart" class="sort-products">
                 <div class="sort-products-wrapper">
-                    <!--                    [(value)]="selected.group_id"-->
-                    <!--                    (selectionChange)="selectGroup(selected.group_id)"-->
-                    <mat-select id="sizeparametr"
-                                [(ngModel)]="paramId"
-                    >
+                    <mat-select id="sizeparametr"  [(ngModel)]="paramId" >
                         <div *ngFor="let sizeParams of arrSizeParams">
                             <mat-option [value]="sizeParams.id">{{sizeParams?.description?.name}}</mat-option>
                         </div>
@@ -60,57 +48,48 @@
             </mat-form-field>
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row" *ngIf="groupId">
         <div class="description">
-            <label for="">Min</label>
+            <label for="">{{"APP.values" | translate }}(Min)</label>
         </div>
-<!--        [(ngModel)]="item.name"-->
         <div class="original">
-            <input class="radius" [(ngModel)]="max" type="text" />
+            <input class="radius" [(ngModel)]="min" type="text" />
         </div>
     </div>
-    <div class="form-row">
+    <div class="form-row" *ngIf="groupId">
         <div class="description">
-            <label for="">Max</label>
+            <label for="">{{"APP.values" | translate }}(Max)</label>
         </div>
-<!--        [(ngModel)]="item.name"-->
         <div class="original">
-            <input class="radius"  [(ngModel)]="min" type="text" />
+            <input class="radius"  [(ngModel)]="max" type="text" />
         </div>
     </div>
-    <div class="flex center">
+    <div class="flex center" *ngIf="groupId">
         <button
                 (click)="createNewSizeItem()"
                 style="position: relative; color: black"
                 data-tooltip-left="Save"
                 role="button"
-                class="button transparent radius"
-        >
+                class="button transparent radius" >
             <rap-svg-ico class="black plus-icon" [src]="'assets/icons/plus.svg'"></rap-svg-ico>
         </button>
     </div>
 
-    <div class="sizes-block" >
-        <div class="sizes-name">Closes</div>
+    <div class="sizes-block" *ngIf="groupId" >
+        <div class="sizes-name">{{allTable?.description?.name}}</div>
         <hr>
         <table class="size-table">
             <tr class="size-top" >
-                <td class="size-top-first">Розмір/Параметер</td>
+                <td class="size-top-first">{{ "size.sizes" | translate }}/{{ "sizeParams.params" | translate }}</td>
                 <td *ngFor="let size of arrTableParams">{{size.description.name}}</td>
             </tr>
             <ng-container *ngIf="arrSizesValue">
             <tr class="sizes-items" *ngFor="let size of arrSizesValue of let i = index">
-                <td class="item-first"> {{arrTableSizes[i].description.name}} </td>
-                <td class="item" *ngFor="let item of size">{{item!==null? item.min_value:''}}</td>
+                <td class="item-first"> {{arrTableSizes[i]?.description?.name}} </td>
+                <td class="item" *ngFor="let item of size">{{item!==null? item.min_value*1:''}}-{{item!==null? item.max_value*1:''}}</td>
             </tr>
             </ng-container>
         </table>
     </div>
-    <!--                <button style="position: relative; color: black"-->
-    <!--                        data-tooltip-left="Delete"-->
-    <!--                        role="button"-->
-    <!--                        class="button transparent radius">-->
-    <!--                    <rap-svg-ico class="black plus-icon" [src]="'assets/icons/delete.svg'"></rap-svg-ico>-->
-    <!--                </button>-->
 </fieldset>
 

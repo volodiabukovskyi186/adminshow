@@ -37,4 +37,5 @@ export interface IProduct {
   host: string;
   image: IImageSrc;
   descriptions: IProductDescription[];
+  group_id?: number;
 }
