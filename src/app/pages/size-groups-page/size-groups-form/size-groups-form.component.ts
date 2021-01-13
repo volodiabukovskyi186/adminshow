@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
 import { ILanguage, LanguageService } from '../../../../app/modules/localization/language/language.service';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { LocalizationServicesService } from "../../../pages/localization/services/localization-services.service";
+import { SizeGroupsService } from '../services/size-groups-page.service';
 
 @Component({
   selector: 'app-size-groups-form',
@@ -17,7 +18,7 @@ export class SizeGroupsFormComponent implements OnInit, OnChanges {
 
   public modalOpen: boolean = true;
   public orderForm: FormGroup;
-  public sizeGroupParams = [];
+  public sizeGroupParams: any;
   public sizeGroupsForm: FormGroup;
   public items: any;
   public selectedOrder: any;
@@ -27,7 +28,8 @@ export class SizeGroupsFormComponent implements OnInit, OnChanges {
   constructor(
     public langService: LanguageService,
     private formBuilder: FormBuilder,
-    public localizationService: LocalizationServicesService
+    public localizationService: LocalizationServicesService,
+    public sizeGroupsService: SizeGroupsService
   ) { }
 
   public ngOnInit(): void {
@@ -52,13 +54,18 @@ export class SizeGroupsFormComponent implements OnInit, OnChanges {
   }
 
   public displayParams(): void {
-    this.sizeGroup?.params?.forEach((val) => {
-      if (val.hasOwnProperty('descriptions')) {
-        val.descriptions.forEach((param) => {
-          this.sizeGroupParams.push(param);
-        })
-      }
-    })
+    // this.sizeGroup?.params?.forEach((val) => {
+    //   if (val.hasOwnProperty('descriptions')) {
+    //     val.descriptions.forEach((param) => {
+    //       this.sizeGroupParams.push(param);
+    //     })
+    //   }
+    // })
+    if (this.sizeGroup?.id) {
+      this.sizeGroupsService.getSizeGroupByLang(this.sizeGroup?.id).subscribe((res) => {
+        this.sizeGroupParams = res?.data?.params;
+      })
+    }
   }
 
   public removeProduct(paramIndex): void {

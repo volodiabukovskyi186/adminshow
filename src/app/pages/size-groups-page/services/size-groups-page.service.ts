@@ -74,7 +74,12 @@ export class SizeGroupsService {
     return this.http.post(`${environment.host}size_group`, data);
   }
 
-  removeSizeGroup(id:number): Observable<any> {
+  removeSizeGroup(id: number): Observable<any> {
     return this.http.delete( `${environment.host}size_group/${id}`) ;
+  }
+
+  getSizeGroupByLang(groupId: number): Observable<any> {
+    const lang = localStorage.getItem('currentLang');
+    return this.http.get(`${environment.host}size_group/client/${groupId}?lang=${lang}`);
   }
 }

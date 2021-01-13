@@ -1,6 +1,6 @@
 <div class="reviews-form-container">
     <div class="reviews-form-title">
-        <div>{{ 'sizeGroups.addEditSizeGroups' | translate }}</div>
+        <div class="tabs-header">{{ 'sizeGroups.addEditSizeGroups' | translate }}</div>
     </div>
     <hr class="size-group-hr">
     <div class="reviews-content__main">
@@ -34,7 +34,7 @@
                     <div class="products-name-container">
                         <div *ngFor="let product of sizeGroupParams; let currentIndex = index;">
                             <div class="product-name">
-                            {{ product?.name }}
+                            {{ product?.description?.name }}
                             <!-- <span (click)="removeProduct(currentIndex)" class="material-icons">cancel</span> -->
                             </div>
                         </div>

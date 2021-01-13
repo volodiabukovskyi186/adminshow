@@ -142,6 +142,8 @@ export class SizeParamsPageComponent extends BasePage implements OnInit {
   putHandler = (data) => {
     this.ngxService.stopAll();
     this.closeForm();
+    this.getList();
+    
     this.toastr.success('SIZE PARAMS UPDATED ^_^') ;
   };
 

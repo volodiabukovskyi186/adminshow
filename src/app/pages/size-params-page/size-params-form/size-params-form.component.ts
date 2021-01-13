@@ -29,11 +29,11 @@ export class SizeParamsFormComponent implements OnInit, OnChanges {
 
   public ngOnChanges(): void {
     this.createTitleDesc();
-
-    this.orderParamsForm?.get('order')?.setValue(this.sizeParams?.group?.sort_order);
-
     this.getAllSizeGroup();
     this.setValueInForm();
+
+    this.orderParamsForm?.get('order')?.setValue(this.sizeParams?.group?.sort_order);
+    
     this.sendDataForUpdate();
   }
 

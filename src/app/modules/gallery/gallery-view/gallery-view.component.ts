@@ -70,7 +70,7 @@ export class GalleryViewComponent implements OnInit {
         this.album.albums.data = res.data;
 
         if (this.album.activeAlbum.id) {
-          this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
+          this.album.albums.data = this.album.albums.data.filter((val) => { return (val.id === this.album.activeAlbum.id) && !this.album.activeAlbum.id});
         } else {
           this.album.albums.data = res.data;
         }
@@ -118,8 +118,11 @@ export class GalleryViewComponent implements OnInit {
     this.ngxService.stop();
     this.album.albums.data = data.data;
 
+    console.log('this.album.albums.data === >>>>', this.album.albums.data)
+
     if (this.album.activeAlbum.id) {
-      this.album.albums.data = this.album.albums.data.filter((val) => { return val.id === this.album.activeAlbum.id});
+      this.album.albums.data = this.album.albums.data.filter((val) => { return (val.id === this.album.activeAlbum.id) && !this.album.activeAlbum.id});
+      
     } else {
       this.album.albums.data = data.data;
     }

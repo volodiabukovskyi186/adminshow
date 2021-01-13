@@ -24,9 +24,9 @@
     "show": "Pokazać",
     "hide": "Ukryć",
     "base": "Baza",
-    "addAttribytesGroup": "Dodaj grupę Attribytes",
+    "addAttribytesGroup": "Dodaj/Edytuj grupę atrybutów",
     "attribytesGroup": "Grupa atrybutów",
-    "addAttribyte": "Dodaj atrybut",
+    "addAttribyte": "Dodaj/Edytuj atrybut",
     "data": "Dane",
     "values": "Wartość",
     "value": "Wartość",
@@ -60,7 +60,7 @@
     "yes": "Tak",
     "no": "Nie",
     "defaultCm": "Domyślnie (cm)",
-    "addProduct": "Dodaj produkt",
+    "addProduct": "Dodaj/Edytuj produkt",
     "option": "Opcja",
     "fullName": "Pełne imię",
     "dateStart": "Data rozpoczęcia",
@@ -486,5 +486,8 @@
     "sizes": "Rozmiary",
     "sizesName": "Rozmiar",
     "addEditSizes": "Dodaj/Edytuj rozmiar"
+  },
+  "options": {
+    "addEditOption": "Dodaj/Edytuj opcję"
   }
 }

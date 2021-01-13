@@ -33,9 +33,9 @@
     "show": "Show",
     "hide": "Hide",
     "base": "Base",
-    "addAttribytesGroup": "ADD Attribytes group",
+    "addAttribytesGroup": "Add/Edit attribute group",
     "attribytesGroup": "Attribytes Group",
-    "addAttribyte": "ADD Attribyte",
+    "addAttribyte": "Add/Edit attribute",
     "data": "Data",
     "values": "Values",
     "value": "Value",
@@ -68,7 +68,7 @@
     "yes": "Yes",
     "no": "No",
     "defaultCm": "Default (cm)",
-    "addProduct": "Add Product",
+    "addProduct": "Add/Edit product",
     "option": "Option",
     "fullName": "Full Name",
     "dateStart": "Date Start",
@@ -482,5 +482,8 @@
     "sizes": "Sizes",
     "sizesName": "Size",
     "addEditSizes": "Add/Edit size"
+  },
+  "options": {
+    "addEditOption": "Add/Edit option"
   }
 }
