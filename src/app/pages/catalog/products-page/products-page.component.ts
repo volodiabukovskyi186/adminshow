@@ -212,7 +212,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       upc: c.upc, // +
       viewed: 0, // +
       description: [], // +
-      group_id: c.group_id,
+      size_group_id: c.group_id,
     };
     if (c.id != null) {
       c.descriptions.forEach((d) => {
