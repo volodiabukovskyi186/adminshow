@@ -25,8 +25,9 @@ export class BaseComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.getGroupSizes();
-    if (this.model.group_id) {
-      this.groupId = this.model.group_id;
+    if (this.model.size_group_id) {
+
+      this.groupId = this.model.size_group_id;
     }
   }
 
@@ -34,13 +35,13 @@ export class BaseComponent implements OnInit, OnChanges {
   onReset = () => this.reset.emit();
 
   selectGroup(groupId): void {
-    this.model.group_id = groupId;
+    this.model.size_group_id = groupId;
   }
   getGroupSizes(): void {
     this.sizeGroupsService.getListClient().subscribe(data => {
       this.arrSizeGroup = data.data;
-      if (this.model) {
-        this.groupId = this.arrSizeGroup[0].id;
+      if (!this.model.size_group_id) {
+        this.model.size_group_id = this.arrSizeGroup[0].id;
       }
     });
   }

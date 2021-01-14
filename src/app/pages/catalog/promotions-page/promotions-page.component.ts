@@ -97,11 +97,9 @@ getLangListHandler = (data) => {
 };
 
 //#region override
-
 save = () => {
   // THIS SHOULD NOT BE HERE ! ! !
   let c = this.promForm.model;
-    
   let data = {
     status: c.status,
     description: [],
@@ -157,18 +155,16 @@ save = () => {
         data_end: d.data_end,
       });
     });
-    
     this.prom.post(data).subscribe((res) => {
       this.postHandler(res);
       if (this.selectedProductsPromotion) {
         this.prom.updatePromotionProducts(this.selectedProductsPromotion, res.data.id).subscribe((res) => {
           this.ngxService.stopAll();
-          this.toastr.success("PROMOTION ADDED");
-        })
+          this.toastr.success('PROMOTION ADDED');
+        });
       }
-    })
+    });
   }
-  
   this.ngxService.start();
 };
 
