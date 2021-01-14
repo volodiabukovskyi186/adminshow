@@ -212,7 +212,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       upc: c.upc, // +
       viewed: 0, // +
       description: [], // +
-      size_group_id: c.group_id,
+      size_group_id: c.size_group_id,
     };
     if (c.id != null) {
       c.descriptions.forEach((d) => {
@@ -226,7 +226,6 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
           tag: d.tag,
         });
       });
-      console.log('oooo', data);
       this.product.put(data, c.id).subscribe(this.putHandler);
     } else {
       c.descriptions.forEach((d) => {

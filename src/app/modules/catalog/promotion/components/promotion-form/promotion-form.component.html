@@ -19,7 +19,7 @@
 
 <div class="tabs-header">{{ "promotion.add_edit_promotion" | translate }}</div>
 <div class="tabs-header-promotion-form">
-  
+
   <rap-step-tabs class="click-outside">
     <rap-step-tab [active]="true" [title]="'collection.mainData' | translate" class="main-tabs">
   
@@ -208,8 +208,7 @@
         </div>
         <div class="products-big-container">
           <label class="products-label">{{ "collection.listOfProducts" | translate }}</label>
-          <!-- <textarea formControlName="products" class="radius" type="text" class="products-big-input">
-          </textarea> -->
+
           <div class="products-name-container">
             <div *ngFor="let product of products; let currentIndex = index;">
               <div class="product-name" (click)="removeProduct(currentIndex)">
