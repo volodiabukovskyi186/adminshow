@@ -16,6 +16,7 @@ export class ProductFormSaleComponent implements OnInit {
   public arrSelectedSale = [];
 
   public selectedDiscountId: number;
+  public isSaleAdded: boolean = false;
 
   @Input() model: IProduct;
 
@@ -71,6 +72,9 @@ export class ProductFormSaleComponent implements OnInit {
     let yyyy = currentDay.getFullYear();
 
     let today = mm + '-' + dd + '-' + yyyy;
+    
+    this.generateProductDiscountForm();
+    this.getProductDiscountFormValue();
 
     if (new Date(this.productDiscountFormValue.date_end) < new Date(today)) {
       this.isDiscountExpired = true;
@@ -80,15 +84,17 @@ export class ProductFormSaleComponent implements OnInit {
       this.isDiscountExpired = false;
       this.productService.updateProductPrice(this.productDiscountFormValue).subscribe((res) => {
         this.getDiscountById();
-        this.addNewPrice();
+        //this.addNewPrice();
       })
     }
   }
 
   public addNewPrice(): void {
+    //this.isSaleAdded = true;
+
     this.productDiscountForm.setValue({
       date_start: "",
-      date_end: "",
+      date_end: "",  
       new_price: ""
     })
   }
