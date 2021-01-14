@@ -135,14 +135,18 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     this.destroy$.unsubscribe();
   }
 
-  onPress(model: IPromotionDescription) {
-    console.log('one item',this.model);
+  onPress(selectedModel: IPromotionDescription) {
+    // console.log('one item',this.model);
+    // console.log('MODEL !!!! ====== =>>>>>', selectedModel);
 
-    this.descEdit = model;
+    this.descEdit = selectedModel;
     this.modalOpen = true;
-    if (model.id !== null) {
+
+    if (selectedModel.id !== null) {
       this.model.descriptions.forEach(elem => {
-        elem.image_id = elem.image.id;
+        if (selectedModel.id === elem.id) {
+          elem.image_id = elem.image.id;
+        }
       })
     }
    

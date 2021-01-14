@@ -107,6 +107,10 @@ save = () => {
     description: [],
   };
 
+  console.log('c ====== >>>>', c);
+
+  console.log('c.descriptions ====== >>>>', c.descriptions);
+
   if (c.id != null) {
     c.descriptions.forEach((d) => {
       if (d.image_id == 0) {

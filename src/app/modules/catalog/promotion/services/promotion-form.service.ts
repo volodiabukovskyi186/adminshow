@@ -41,6 +41,8 @@ export class PromotionFormService
     });
 
     this.model.descriptions = list;
+
+    console.log('this.model.descriptions PromFormService ==== >>>>', this.model.descriptions);
   }
 
   initByModel(model: IPromotion, langs: ILanguage[]) {
