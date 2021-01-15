@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { ToastrService } from "ngx-toastr";
 import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
@@ -14,6 +14,7 @@ import { Router, NavigationEnd } from "@angular/router";
 import { BasePage } from "src/app/pages/@core";
 import { PagesService } from "src/app/pages/pages.service";
 import { RoleService } from 'src/app/core/auth/models/role.service';
+import { CategoryFormComponent } from '../category-form/category-form.component';
 
 @Component({
   animations: [changeValueHighlight],
@@ -22,6 +23,8 @@ import { RoleService } from 'src/app/core/auth/models/role.service';
   styleUrls: ["./category-page.component.scss"],
 })
 export class CategoryPageComponent extends BasePage implements OnInit, PaginationPage, OnDestroy {
+  @ViewChild(CategoryFormComponent) categoryFormComponent: CategoryFormComponent;
+
   public routerSubscription;
   public displayAllCaterories;
   public userRoleId: number;
@@ -30,6 +33,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   public msgAdded: string = "Category successfully added";
   public msgUpdated: string = "Category successfully updated";
   public msgDeleted: string = "Category successfully deleted";
+  public descriptionsCategotyToSend: any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -170,12 +174,26 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
 
   //#region onSubmit($event)
 
-  onSubmit($event) {}
+  onSubmit(event) {
+    console.log('event ==== >>>>', event);
+    
+    this.descriptionsCategotyToSend = event.description.map((category) => {
+      return {
+        id: category.lang.id,
+        lang_id: category.lang_id,
+        name: category.name,
+        description: category.description
+      }
+    })
+  }
 
   //#region override
 
   save = () => {
     // THIS SHOULD NOT BE HERE ! ! !
+    this.categoryFormComponent.submitForm();
+    //console.log('this.categoryFormComponent.submitForm() ===== >>>.', this.categoryFormComponent.submitForm());
+    
     let c = this.categoryForm.category;
 
     let data = {
@@ -186,14 +204,17 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
       description: [],
     };
     if (c.id != null) {
-      c.description.forEach((d) => {
-        data.description.push({
-          id: d.id,
-          lang_id: d.lang_id,
-          name: d.name,
-          description: d.description,
-        });
-      });
+      data.description = this.descriptionsCategotyToSend;
+      //c.description.forEach((d) => {
+        //data.description.push(
+          // {
+          //   id: d.id,
+          //   lang_id: d.lang_id,
+          //   name: d.name,
+          //   description: d.description,
+          // }
+        //);
+      //});
       this.category.put(data, c.id).subscribe(this.putHandler);
     } else {
       c.description.forEach((d) => {
@@ -220,6 +241,8 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
 
   putHandler = (data) => {
     this.ngxService.stopAll();
+    this.getList(); 
+    
     this.closeForm();
     this.toastr.success(this.msgUpdated);
   };

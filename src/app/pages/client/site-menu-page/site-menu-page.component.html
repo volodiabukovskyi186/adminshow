@@ -19,7 +19,7 @@
     >
       <thead>
         <tr>
-          <th width="64px">{{ "APP.id" | translate }}</th>
+          <!-- <th width="64px">{{ "APP.id" | translate }}</th> -->
           <th width="64px">{{ "APP.id" | translate }}</th>
           <th width="">{{ "APP.title" | translate }}</th>
           <th width="128px">{{ "APP.type" | translate }}</th>
@@ -32,7 +32,7 @@
           *ngFor="let item of siteMenu.data?.data"
           [ngClass]="{ off: !item.status }"
         >
-          <td data-label="ID" class="text-center">{{ item.id }}</td>
+          <!-- <td data-label="ID" class="text-center">{{ item.id }}</td> -->
           <td data-label="ID" class="text-center">{{ item.sort_order }}</td>
 
           <td>

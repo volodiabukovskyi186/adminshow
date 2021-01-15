@@ -6,7 +6,7 @@ import {
   Input,
   EventEmitter,
 } from "@angular/core";
-import { DynamicFormComponent } from "src/app/modules/ui/dynamic-form/dynamic-form/dynamic-form.component";
+import { DynamicFormComponent } from "../../../ui/dynamic-form/dynamic-form/dynamic-form.component";
 import { ICategory, ICategoryDesc } from "../interfaces";
 import { ILanguage } from "src/app/modules/localization/language/language.service";
 import { ImagesService } from "src/app/modules/gallery/images.service";
@@ -21,7 +21,9 @@ import { LanguageService as LocalizationLang } from "src/app/modules/localizatio
   styleUrls: ["./category-form.component.scss"],
 })
 export class CategoryFormComponent implements OnInit {
-  @ViewChild(DynamicFormComponent) dynamicForm: DynamicFormComponent;
+  public modalOpen: boolean = false;
+
+  //@ViewChild(DynamicFormComponent) dynamicForm: DynamicFormComponent;
 
   // @Input() questions$: Observable<QuestionBase<any>[]>;
 
@@ -29,9 +31,8 @@ export class CategoryFormComponent implements OnInit {
   @Input() categoryes: any[] = [];
   @Input() langs: ILanguage[];
   @Input() title: string = "";
-  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
 
-  public modalOpen: boolean = false;
+  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public image: ImagesService, 
@@ -41,6 +42,8 @@ export class CategoryFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.image.select.subscribe(this.selectHandler);
+
+    console.log('category.description ====== >>>>>', this.category?.description);
   }
 
   editorConfig: AngularEditorConfig = {
@@ -89,18 +92,17 @@ export class CategoryFormComponent implements OnInit {
     ]
   };
 
-  public submitForm(): void {
-    this.dynamicForm.onSubmit();
-  }
-
   public onPress(): void {
     this.modalOpen = true;
   }
 
   public getCatDesc(langId: number): ICategoryDesc {
+    //console.log('this.category.description ======= >>>>>>', this.category.description);
+
     this.category.description.forEach((cd) => {
       if (cd.lang_id == langId) return cd;
     });
+    
     return null;
   }
 
@@ -133,6 +135,16 @@ export class CategoryFormComponent implements OnInit {
       this.modalOpen = false;
     }
   };
+
+  public submitForm() {
+    //console.log('category.description ====== >>>>>', this.category?.description);
+    //console.log('this.dynamicForm ===== >>>>', this.dynamicForm);
+    let dataToSend = {
+      description: this.category.description
+    }
+
+    this.onSubmit(dataToSend);
+  }
 
   public onSubmit(data: any) {
     this.formSubmit.emit(data);

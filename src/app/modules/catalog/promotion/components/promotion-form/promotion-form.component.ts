@@ -126,19 +126,12 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
     this.promotionService.get().subscribe((res) => {})
   }
 
-  // test(imagee): void{
-  //   console.log('image====>', imagee);
-  // }
-
   public ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
 
   onPress(selectedModel: IPromotionDescription) {
-    // console.log('one item',this.model);
-    // console.log('MODEL !!!! ====== =>>>>>', selectedModel);
-
     this.descEdit = selectedModel;
     this.modalOpen = true;
 

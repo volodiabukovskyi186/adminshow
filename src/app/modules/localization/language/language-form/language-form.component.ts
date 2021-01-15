@@ -13,52 +13,51 @@ import { IProdImage, ProductImagesService } from 'src/app/modules/catalog/produc
   templateUrl: './language-form.component.html',
   styleUrls: ['./language-form.component.scss']
 })
-export class LanguageFormComponent implements OnInit ,OnChanges {
+export class LanguageFormComponent implements OnInit, OnChanges {
+  public modalOpen: boolean = false;
 
-  modalOpen: boolean = false;
   @ViewChild(DynamicFormComponent) dynamicForm: DynamicFormComponent;
+
   @Input() questions$: Observable<QuestionBase<any>[]>;
   @Input() title: string = "";
   @Input() selected;
+
+  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
 
   public submitForm() {
     this.dynamicForm.onSubmit();
   }
 
-  @Output() formSubmit: EventEmitter<any> = new EventEmitter();
-
   ngOnInit(): void {}
 
-  ngOnChanges(){
-   
-  }
+  ngOnChanges(): void {}
+
   constructor(public LangFormService: LanguageFormService,
     public image: ImagesService,
     public prodImage: ProductImagesService,
-    public languageService:LanguageService) {}
+    public languageService: LanguageService) {}
 
   onSubmit(data: any) {
     this.formSubmit.emit(data);
   }
+  
   selectHandler = (data) => {
     let list: IImage[] = this.image.getSelected();
     if (list[0]) {
       const selectedImage: IImage = list[0];
-      this.selected.flag= selectedImage[0].src
+      this.selected.flag = selectedImage[0].src;
       this.modalOpen = false;
-      console.log('selectImage==>',selectedImage)
     }
 
   };
+
   onOk() {
     let list: IImage[] = this.image.getSelected();
-    this.languageService.flagFlag=list[0].src;
+    this.languageService.flagFlag = list[0].src;
   
-    this.languageService.bSubjectFlag.next(this.selected.flag)
-    this.selected.flag= list[0].src
+    this.languageService.bSubjectFlag.next(this.selected.flag);
+    this.selected.flag = list[0].src;
     this.modalOpen = false;
-    console.log('selected==>',this.selected.flag)
-   
   }
 
   onReset() {
@@ -69,8 +68,6 @@ export class LanguageFormComponent implements OnInit ,OnChanges {
       src_mini: "assets/icons/color-none-image.svg",
     };
   }
-
-
 
   onDeleteImage(prodImage: IProdImage) {
     this.prodImage.deleteProdImage(prodImage);
