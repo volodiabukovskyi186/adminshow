@@ -88,7 +88,7 @@ export class OptionValueComponent implements OnInit, OnChanges {
     }
 
     public moderationOfReview(checked): void {
-        console.log('wwwww===>',checked)
+
         this.reviewId = checked.id;
         this.selectedValue = checked;
         this.optionType = checked.option_id;
@@ -98,8 +98,8 @@ export class OptionValueComponent implements OnInit, OnChanges {
     }
 
     getSelectedOptionVal(): void {
-       
         this.optionsService.getSelectedOptionValue(this.selected.id).subscribe(data => {
+            console.log('wwwww===>',data.data);
             this.selectedValue = this.optionValue;
             this.allCurrentOption = data.data;
         });

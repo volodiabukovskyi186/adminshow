@@ -6,7 +6,6 @@ import { ImagesService } from "src/app/modules/gallery/images.service";
 
 
 @Component({
- 
   selector: "app-option-value-form",
   templateUrl: "./option-value-form.component.html",
   styleUrls: ["./option-value-form.component.scss"],
@@ -21,16 +20,13 @@ export class OptionValueFormComponent implements OnInit {
 
   private _host: string;
   @Output() hostChange = new EventEmitter();
-  
   set host(val: string) {
     this._host = val;
     this.hostChange.emit(this._host);
   }
-  
   @Input() get host(): string {
     return this._host;
   }
-  
 
   onPress() {
     this.modalOpen = true;
