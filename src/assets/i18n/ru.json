@@ -377,7 +377,8 @@
     "selectProduct": "Выбрать товар",
     "history":"Історія",
     "selected": "Избранные",
-    "basket": "Корзина"
+    "basket": "Корзина",
+    "quickOrders": "Быстрые заказы"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

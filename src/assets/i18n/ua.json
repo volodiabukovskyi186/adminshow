@@ -391,7 +391,8 @@
     "selectProduct": "Вибрати товар",
     "history":"Історія",
     "selected": "Обрані",
-    "basket": "Корзина"
+    "basket": "Корзина",
+    "quickOrders": "Швидкі замовлення"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

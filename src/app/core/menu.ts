@@ -16,6 +16,7 @@ export const MENU = [
             item('MENU.orders.orders', 'orders', true, ICON_MENU_ITEM, 'manage_orders'),
             item('orders.selected', 'selected', true, ICON_MENU_ITEM, 'manage_orders'),
             item('orders.basket', 'basket', true, ICON_MENU_ITEM, 'manage_orders'),
+            item('orders.quickOrders', 'quick_orders', true, ICON_MENU_ITEM, 'manage_orders'),
             // item("Accepted", "orders/accepted"),
             // item("Done", "orders/done"),
             // item("Canceled", "orders/canceled"),

@@ -99,6 +99,7 @@ import { SizeParamsFormComponent } from './size-params-page/size-params-form/siz
 // import { SizeGroupsFormSelectComponent } from './size-groups-page/size-groups-form-select/size-groups-form-select.component';
 import { SizesPageComponent } from './sizes-page/sizes-page.component';
 import { SizesFormComponent } from './sizes-page/sizes-form/sizes-form.component';
+import { QuickOrdersComponent } from './quick-orders/quick-orders.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { SizesFormComponent } from './sizes-page/sizes-form/sizes-form.component
     // SizeGroupsFormSelectComponent
     SizesPageComponent,
     SizesFormComponent,
+    QuickOrdersComponent,
 
 
   ],

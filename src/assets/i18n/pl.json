@@ -381,7 +381,8 @@
     "selectProduct": "Wybierz produkt",
     "history":"Historia",
     "selected": "Wybrany",
-    "basket": "Kosz"
+    "basket": "Kosz",
+    "quickOrders": "Szybkie zamówienia"
   },
   "liqpay":{
     "onlinePay":"PŁATNOŚĆ ONLINE",

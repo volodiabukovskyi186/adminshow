@@ -39,6 +39,7 @@ import {BasketComponent} from './basket/basket.component';
 import { SizeGroupsPageComponent } from './size-groups-page/size-groups-page.component';
 import { SizeParamsPageComponent } from './size-params-page/size-params-page.component';
 import {SizesPageComponent} from './sizes-page/sizes-page.component';
+import { QuickOrdersComponent } from '../pages/quick-orders/quick-orders.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -198,6 +199,14 @@ export const pagesRoutes: Routes = [
   {
     path: "orders",
     component: OrdersComponent,
+    canActivate: [AuthGuard, PermissionGuard],
+    data: {
+      permissions: ["manage_orders"],
+    },
+  },
+  {
+    path: "quick_orders",
+    component: QuickOrdersComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
       permissions: ["manage_orders"],
