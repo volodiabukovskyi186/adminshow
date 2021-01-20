@@ -91,7 +91,10 @@
     "description": "Опис",
     "alias": "Псевдонім",
     "content": "Зміст",
-    "addEditPage": "Додати/Редагувати сторінку"
+    "addEditPage": "Додати/Редагувати сторінку",
+    "phoneTitle": "Телефон",
+    "productTitle": "Товар",
+    "productSumTitle": "Сума"
   },
   "pageNotFound": {
     "backToHome": "Повернутися на головну",
@@ -392,7 +395,8 @@
     "history":"Історія",
     "selected": "Обрані",
     "basket": "Корзина",
-    "quickOrders": "Швидкі замовлення"
+    "quickOrders": "Швидкі замовлення",
+    "managerComment": "Коментар менеджера"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",

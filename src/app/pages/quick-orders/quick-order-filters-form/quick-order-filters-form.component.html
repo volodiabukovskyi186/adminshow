@@ -1,0 +1,125 @@
+<div class="reviews-form-container">
+    <div class="reviews-form-title">{{ 'reviews.reviewsFilters' | translate }}</div>
+    <div>
+        <div class="reviews-wrapper">
+            <div class="review-content">
+                <div class="reviews-content__main">
+                    <form [formGroup]="quickOrderFiltersForm">
+                        <div class="reviews-date">
+                            <div class="reviews-date-title">{{ 'reviews.reviewsDateFrom' | translate }}</div>
+                            <input formControlName="date_start" type="date" class="reviews-date-text"/>
+                        </div>
+                        <div class="reviews-date">
+                            <div class="reviews-date-title">{{ 'reviews.reviewsDateTo' | translate }}</div>
+                            <input formControlName="date_end" type="date" class="reviews-date-text"/>
+                        </div>
+                        <div class="reviews-date sort-settings-content">
+                            <div class="reviews-response-title">{{ 'MENU.orders.manufacturer'| translate }}</div>
+                            <div class="reviews-response-status">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="manufacturer"
+                                            required
+                                            formControlName="manufacturer"
+                                            >
+                                            <div *ngFor="let manufacturer of allManufacturers">
+                                                <mat-option [value]="manufacturer?.id">
+                                                    {{ manufacturer?.name | translate }}
+                                                </mat-option>  
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- <div class="reviews-date sort-settings-content">
+                            <div class="reviews-response-title">{{ 'MENU.orders.client'| translate }}</div>
+                            <div class="reviews-response-status">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="client"
+                                            required
+                                            formControlName="client">
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div> -->
+                        <div class="reviews-date sort-settings-content">
+                            <div class="reviews-response-title">{{ 'orders.orderClient'| translate }}</div>
+                            <div class="reviews-response-status" (clickOutside)="isSelectedClient = false;">
+                                <div class="order-client-search__wrapper">
+                                    <input
+                                        class="order-search-client__input cursor-pointer"
+                                        type="text"
+                                        id="client"
+                                        formControlName="client"
+                                        (input)="searchClient()"
+                                        placeholder="{{ 'orders.clientSearch' | translate }}"
+                                        required
+                                    />
+                                    <img src="assets/icons/search.svg" class="order-client-search__icon cursor-pointer"/>
+                                </div>
+                                <div *ngIf="ordersSearchClientsData && isSelectedClient" class="clients__list-wrapper">
+                                    <div *ngFor="let client of ordersSearchClientsData" class="clients__list">
+                                        <div class="selected-client cursor-pointer"
+                                            (click)="selectedClient(client)"
+                                        >
+                                            {{ client?.first_name }} {{ client?.last_name }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reviews-date sort-settings-content">
+                            <div class="reviews-response-title">{{ 'MENU.orders.manager'| translate }}</div>
+                            <div class="reviews-response-status">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="manager"
+                                            required
+                                            formControlName="manager"
+                                        >
+                                            <div *ngFor="let manager of allManagers">
+                                                <mat-option [value]="manager.id">
+                                                    {{ manager.first_name }} {{ manager.last_name }}
+                                                </mat-option>
+                                            
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="reviews-date sort-settings-content">
+                            <div class="reviews-response-title">{{ 'reviews.reviewStatus'| translate }}</div>
+                            <div class="reviews-response-status">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="status"
+                                            required
+                                            formControlName="status"
+                                        >
+                                            <div *ngFor="let status of allStatus">
+                                                <mat-option [value]="status.id">
+                                                    {{ status.descriptions[0].dectiption  }}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <button class="order-filters__submit-btn cursor-pointer" (click)="filterClientOrders()">
+                            {{ 'orders.orderFilterBtn' | translate }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

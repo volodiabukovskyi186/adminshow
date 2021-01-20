@@ -90,7 +90,10 @@
     "description": "Description",
     "alias": "Alias",
     "content": "Content",
-    "addEditPage": "Add/Edit page"
+    "addEditPage": "Add/Edit page",
+    "phoneTitle": "Phone",
+    "productTitle": "Product",
+    "productSumTitle": "Sum"
   },
   "pageNotFound": {
     "backToHome": "Back To Home",
@@ -377,7 +380,8 @@
     "history":"History",
     "selected": "Selected",
     "basket": "Basket",
-    "quickOrders": "Quick orders"
+    "quickOrders": "Quick orders",
+    "managerComment": "Manager's comment"
   },
   "liqpay":{
     "onlinePay":"Online pay",

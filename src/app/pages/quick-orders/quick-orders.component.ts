@@ -4,6 +4,8 @@ import { PagesService } from '../pages.service';
 import { LanguageService as Lang } from "src/app/core/language.service";
 import { BreadcrumbsService } from "src/app/core/breadcrumbs.service";
 import { TranslateService } from "@ngx-translate/core";
+import { OrderService } from '../../pages/orders/services/order.service';
+import { UserService } from 'src/app/modules/user/user.service';
 
 @Component({
   selector: 'app-quick-orders',
@@ -11,14 +13,20 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ['./quick-orders.component.scss']
 })
 export class QuickOrdersComponent extends BasePage implements OnInit {
+  public showFilters: boolean = false;
+  public currentUserRoleId: number;
+  public selectedClientOrder: any;
+  public userQuickOrders: any;
 
   constructor(
-    public pagesService: PagesService,
+    public pages: PagesService,
     public lang: Lang,
     public breadcrumbs: BreadcrumbsService,
+    public orderService: OrderService,
+    public userService: UserService,
     private translate: TranslateService,
   ) {
-    super(pagesService);
+    super(pages);
   }
 
   public ngOnInit(): void {
@@ -26,6 +34,19 @@ export class QuickOrdersComponent extends BasePage implements OnInit {
     super.initPanelButton();
 
     this.initTranslate();
+
+    //this.getUserByToken();
+
+    this.pages.panelButtonSettings.plus = false;
+
+    this.pages.panelButtonSettings.rightToggle = true;
+    this.pages.panelButtonSettings.toggleFilter = false;
+    this.pages.onTogleFilterClick = () => {    
+      this.showFilters = true;      
+      this.openForm();      
+    }
+
+    this.getQuickOrderList();
   }
 
   public initTranslate(): void {
@@ -42,5 +63,62 @@ export class QuickOrdersComponent extends BasePage implements OnInit {
       });
   }
 
+  // public getUserByToken(): void {
+  //   this.userService.getByToken().subscribe((res) => {
+  //     this.currentUserRoleId = res.data.user.role_id;
+  //   });
+  // }
+
+  closeForm = () => {
+    this.pages.panelSettings.form = false;
+    this.pages.panelButtonSettings.plus = false;
+    this.pages.panelButtonSettings.save = false;
+    this.pages.panelButtonSettings.cancel = false;
+    this.pages.panelButtonSettings.rightToggle = true;    
+    this.pages.panelButtonSettings.review = false;
+    this.showFilters = false;
+  }  
+
+  openForm = () => {
+    this.pages.panelSettings.form = true;
+    this.pages.panelButtonSettings.plus = false;
+    this.pages.panelButtonSettings.save = true;
+    this.pages.panelButtonSettings.cancel = true;
+    this.pages.panelButtonSettings.rightToggle = false;
+    this.pages.panelButtonSettings.review = false;
+  };
+
+  public quickOrderFiltersFormData(event): void {
+    console.log(event);
+    this.userQuickOrders.data = event.data;
+  }
+
+  public editQuickOrder(quickOrderToEdit): void {
+    console.log(quickOrderToEdit);
+    this.selectedClientOrder = quickOrderToEdit;
+    this.openForm();
+  }
+
+  public getQuickOrderList(): void {
+    let isOneclickQuickOrder = 1;
+    console.log('this.currentUserRoleId ==== >', this.currentUserRoleId);
+
+    this.userService.getByToken().subscribe((res) => {
+      this.currentUserRoleId = res.data.user.role_id;
+
+      this.orderService.getList(this.currentUserRoleId, isOneclickQuickOrder).subscribe(((data) => {
+        console.log(data);
+        this.userQuickOrders = data;
+      }))
+    });
+
+  }
+
+  pageEvent(event): void {
+    this.orderService.order.count = event.length;
+    this.orderService.order.take = event.pageSize;
+    this.orderService.order.skip = event.pageSize * event.pageIndex;
+    this.getQuickOrderList();
+  }
 
 }

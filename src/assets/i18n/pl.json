@@ -86,7 +86,10 @@
     "description": "Opis",
     "alias": "Alias",
     "content": "Zawartość",
-    "addEditPage": "Dodaj/Edytuj stronę"
+    "addEditPage": "Dodaj/Edytuj stronę",
+    "phoneTitle": "Telefon",
+    "productTitle": "Produkt",
+    "productSumTitle": "Suma"
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",
@@ -382,7 +385,8 @@
     "history":"Historia",
     "selected": "Wybrany",
     "basket": "Kosz",
-    "quickOrders": "Szybkie zamówienia"
+    "quickOrders": "Szybkie zamówienia",
+    "managerComment": "Komentarz managera"
   },
   "liqpay":{
     "onlinePay":"PŁATNOŚĆ ONLINE",

@@ -3,25 +3,18 @@
 [showRightSide]="pages.panelSettings.right"
 >
    <div form>
-      <!-- <div *ngIf="selectedClientOrder && !showFilters && !isOpenEditOrderForm"> -->
-         <!-- <app-order-form
+      <div *ngIf="!showFilters">
+         <app-quick-order-form
             [title]="'currencies.addEditCurrencyInfo' | translate"
-            [order]="selectedClientOrder"
-            [langs]="langService.languages.data"
-            [status]="status"
-            [userOrders]="userOrders"
+            [selectedClientOrder]="selectedClientOrder"
             class="currency-form-style"
-            [roleStatus]="userRoleStatus"
-            (ordersFormData)="sendOrdersFormData($event)"
-            (ordersStaus)="seveStatus($event)"
-            [history]="orderhistory"
-         ></app-order-form> -->
-      <!-- </div> -->
-      <!-- <div *ngIf="showFilters"> -->
-         <!-- <app-order-filters-form 
-            (orderFiltersFormData)="orderFiltersFormData($event)">
-         </app-order-filters-form> -->
-      <!-- </div> -->
+         ></app-quick-order-form>
+      </div>
+      <div *ngIf="showFilters">
+         <app-quick-order-filters-form 
+            (quickOrderFiltersFormData)="quickOrderFiltersFormData($event)">
+         </app-quick-order-filters-form>
+      </div>
       <!-- <div *ngIf="isOpenEditOrderForm && !showFilters">
          <app-edit-order-form
             [selectedClientOrder]="editedOrder"
@@ -31,47 +24,52 @@
    </div>
    <div filter></div>
    <div content class="order-container padding">
-      <!-- <div *ngIf="orderService.order?.data.length === 0" #notfound>
+      <div *ngIf="userQuickOrders?.data?.length === 0" #notfound>
          <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
-      </div> -->
+      </div>
       <table class="raisins-table border-all radius order-table table-wrapper-scroll-y my-custom-scrollbar">
          <thead>
          <tr>
             <th class="text-center min-width__64">ID</th>
             <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.client' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128">{{ 'APP.phoneTitle' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128">{{ 'APP.productTitle' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128 min-width__108">{{ 'APP.productSumTitle' | translate }}</th>
             <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.manufacturer' | translate }}</th>
             <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.manager' | translate }}</th>
-            <th class="text-center min-width__148 min-width__128 min-width__108">{{ 'MENU.orders.sum' | translate }}</th>
-            <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.date' | translate }}</th>
             <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.status' | translate }}</th>
+            <th class="text-center min-width__148 min-width__128">{{ 'MENU.orders.date' | translate }}</th>
             <th>{{ 'MENU.orders.actions' | translate }}</th>
          </tr>
          </thead>
 
          <tbody class="table-body">
-         <!-- <tr *ngFor="let order of orderService.order?.data">
-            <td class="text-center min-width__64">{{ order?.id }}</td>
-            <td class="text-center min-width__148 min-width__128">{{ order?.last_name }} {{ order?.first_name }}</td>
-            <td class="text-center min-width__148 min-width__128">{{ order?.manufacturer?.description.name }}</td>
-            <td class="text-center min-width__148 min-width__128" *ngIf="currentUserRoleId === 1">{{ order?.manufacturer?.manager?.first_name }} {{ order?.manufacturer?.manager?.last_name }}</td>
-            <td class="text-center min-width__148 min-width__128 min-width__108">{{ order?.total.slice(0, -2) }}</td>
-            <td class="text-center min-width__148 min-width__128">{{ order?.created_at | localDate: "d MMMM HH:mm" }}</td>
-            <td class="text-center min-width__148 min-width__128">
-               <div class="order-status-content">
-                  <div class="dot" [style]="{'background': order.status[0].color}"></div>
-                  <div class="status-text">{{ order.status[0].description.dectiption}}</div>
-               </div>
-            </td>
-            <td class="panel-header-buttons text-center" style="padding: 19px;">
-               <button (click)="reviewOrder(order)" class="button transparent small">
-                  <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
-               </button>
-               <button (click)="openEditOrder(order)" *ngIf="!userRoleStatus" class="button transparent small">
-                  <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
-               </button>
-            </td>
-      
-         </tr> -->
+         <tr *ngFor="let quickOrder of userQuickOrders?.data">
+            <!-- <ng-container *ngIf="quickOrder?.is_oneclick === 1"> -->
+               <td class="text-center min-width__64">{{ quickOrder?.id }}</td>
+               <td class="text-center min-width__148 min-width__128">{{ quickOrder?.first_name }} {{ quickOrder?.last_name }}</td>
+               <td class="text-center min-width__148 min-width__128">{{ quickOrder?.telephone }}</td>
+               <td class="text-center min-width__148 min-width__128">{{ quickOrder?.products[0]?.product?.description?.name }}</td>
+               <td class="text-center min-width__148 min-width__128 min-width__108">{{ quickOrder?.total.slice(0, -2) }}</td>
+               <td class="text-center min-width__148 min-width__128">{{ quickOrder?.manufacturer?.description?.name }}</td>
+               <td class="text-center min-width__148 min-width__128">{{ quickOrder?.manufacturer?.manager?.first_name }} {{ quickOrder?.manufacturer?.manager?.last_name }}</td>
+               <td class="text-center min-width__148 min-width__128">
+                  <div class="order-status-content">
+                     <div class="dot" [style]="{'background': quickOrder?.status[0]?.color}"></div>
+                     <div class="status-text">{{ quickOrder?.status[0]?.description?.dectiption}}</div>
+                  </div>
+               </td>
+               <td class="text-center min-width__148 min-width__128">{{ quickOrder?.created_at | localDate: "d MMMM HH:mm" }}</td>
+               <td class="panel-header-buttons text-center" style="padding: 19px;">
+                  <!-- <button (click)="reviewOrder(order)" class="button transparent small">
+                     <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
+                  </button> -->
+                  <button (click)="editQuickOrder(quickOrder)" class="button transparent small">
+                     <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
+                  </button>
+               </td>
+            <!-- </ng-container> -->
+         </tr>
          <!-- <div *ngIf="orderSideStatus" class="order-sideBar">
             <div class="order-sideBar__close" (click)="orderSideStatus = !orderSideStatus">
                <img src="assets/icons/plus.svg">
@@ -86,9 +84,9 @@
       </div> -->
   
       <!-- <div class="footer-wrapper">
-        <mat-paginator *ngIf="orderService?.order?.count >= 5" class="footer"
-            [length]="orderService?.order?.count"
-            [pageSize]="orderService?.order?.take"
+        <mat-paginator *ngIf="userQuickOrders?.count >= 5" class="footer"
+            [length]="userQuickOrders?.count"
+            [pageSize]="userQuickOrders?.take"
             [pageSizeOptions]="[5, 10, 25]"
             (page)="pageEvent($event)"
         >

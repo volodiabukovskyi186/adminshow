@@ -1,0 +1,147 @@
+<div class="settings-form-container">
+    <div class="orders-form-title">{{ 'customers.viewOrder' | translate }}</div>
+    <div>
+        <div class="orders-input-wrapper tabs-header-settings-form">
+            <div *ngIf="currentUserRoleId !== 1">
+                <table class="unset-border margin-top__15">
+                    <tr>
+                        <th class="th-order order-text order-title">
+                            {{ 'orders.ordersOrder' | translate }}
+                        </th>
+                        <th class="th-order order-text">№{{ selectedClientOrder?.id }}</th>
+                    </tr>
+                    <tr>
+                        <th class="th-order order-text order-title">
+                            {{ 'orders.ordersDate' | translate }}
+                        </th>
+                        <th class="th-order order-text">{{ selectedClientOrder?.created_at | localDate: "d MMMM HH:mm"}}</th>
+                    </tr>
+                    <tr>
+                        <th class="th-order order-text order-title">
+                            {{ 'MENU.orders.client' | translate }}
+                        </th>
+                        <th class="th-order order-text">{{ selectedClientOrder?.first_name }}</th>
+                    </tr>
+                    <tr>
+                        <th class="th-order order-text order-title">
+                            {{ 'APP.phoneTitle' | translate }}
+                        </th>
+                        <th class="th-order order-text">{{ selectedClientOrder?.telephone }}</th>
+                    </tr>
+                    <tr>
+                        <th class="th-order order-text order-title">
+                            {{ 'orders.ordersProducer' | translate }}
+                        </th>
+                        <th class="th-order order-text">{{ selectedClientOrder?.manufacturer?.description?.name }}</th>
+                    </tr>
+                    <tr>
+                        <th class="th-order order-text order-title">
+                            {{ 'orders.orderStatus' | translate }}
+                        </th>
+                        <th class="th-order order-text order-title">
+                            <form [formGroup]="managerStatusForm" class="sort-settings-content th-order">
+                                <mat-form-field appearance="standart" class="sort-products">
+                                    <div class="sort-products-wrapper">
+                                        <mat-select
+                                            id="status"
+                                            required
+                                            formControlName="status">
+                                        </mat-select>
+                                    </div>
+                                </mat-form-field>
+                            </form>
+                        </th>
+                    </tr>
+                </table>
+                <div class="manager-comment">
+                    <div class="manager-comment-title">
+                        {{ "orders.managerComment" | translate }}
+                    </div>
+    
+                    <textarea
+                        type="text"
+                        class="manager-comment-container"
+                        rows="5">
+                        
+                    </textarea>
+                </div>
+            </div>
+            <rap-step-tabs *ngIf="currentUserRoleId === 1">
+                <rap-step-tab [active]="true" [title]="'customers.information' | translate">
+                    <table class="unset-border margin-top__15">
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersOrder' | translate }}
+                            </th>
+                            <th class="th-order order-text">№{{ selectedClientOrder?.id }}</th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersDate' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ selectedClientOrder?.created_at | localDate: "d MMMM HH:mm"}}</th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'MENU.orders.client' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ selectedClientOrder?.first_name }}</th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'APP.phoneTitle' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ selectedClientOrder?.telephone }}</th>
+                        </tr>
+                        <tr>
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.ordersProducer' | translate }}
+                            </th>
+                            <th class="th-order order-text">{{ selectedClientOrder?.manufacturer?.description?.name }}</th>
+                        </tr>
+                        <!-- <tr> -->
+                            <!-- <th class="th-order order-text order-title">
+                                {{ 'orders.orderStatus' | translate }}
+                            </th>
+                            <th class="th-order order-text"> -->
+                                <!-- <select class="radius" (change)="changeStatus(userOrders)"  [(ngModel)]="userOrders" >
+                                    <option  *ngFor="let item of statusIte" [value]="item.id">{{item.descriptions[0].dectiption}}</option>
+                                </select>    -->
+                            <!-- </th> -->
+                        <!-- </tr> -->
+                    </table>
+                    <div class="manager-comment">
+                        <div class="manager-comment-title">
+                            {{ "orders.managerComment" | translate }}
+                        </div>
+        
+                        <textarea
+                            type="text"
+                            class="manager-comment-container"
+                            rows="5">
+                            
+                        </textarea>
+                    </div>
+                </rap-step-tab>
+                <rap-step-tab [title]="'orders.history' | translate">
+                    <div class="history-date-month">25 листопада</div>
+                    <div class="manager">
+                        <div class="manager-title">Manager:</div>
+                        <div>
+                            Сомик Юрій
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-status" >
+                            <div class="order-status-content">
+                            <div class="dot"></div>
+                            <div class="status-text">Новий</div>
+                        </div>
+                        </div>
+                        <div class="history-date">11:45</div>
+                    </div>
+                </rap-step-tab>
+            </rap-step-tabs>
+        </div>
+    </div>
+</div>

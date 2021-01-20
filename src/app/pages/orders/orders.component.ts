@@ -63,7 +63,7 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
 
     this.translate.onLangChange.subscribe(lang => {
       // this.getList();
-      this.getUserByTokin()
+      this.getUserByTokin();
     })
   }
 
@@ -207,12 +207,12 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
 
 
   public reviewOrder(selectedOrder): void {
-
     this.selectedClientOrder = selectedOrder;
     this.userOrders = selectedOrder.status_id;
     this.openForm();
     this.orderHistory(selectedOrder.id)
   }
+  
   orderHistory(orderId): void {
     this.orderService.getHistoryById(orderId).subscribe(data => {
       this.orderhistory = data.data;

@@ -26,11 +26,11 @@ export class OrderService {
     public manufacturerService: ManufacturerService
   ) {}
 
-  getList(role_id?: number): Observable<IOrderResponse> {
+  getList(role_id?: number, is_oneclick?: number): Observable<IOrderResponse> {
     const lang = localStorage.getItem('currentLang');
     // let skip = this.page * this.order.take - this.order.take;
 
-    let params = `?take=${this.order.take}&skip=${this.order.skip}&lang=${lang}`;
+    let params = `?take=${this.order.take}&skip=${this.order.skip}&lang=${lang}&is_oneclick=${is_oneclick}`;
 
     // ${this.order.take}
     console.log('role_id===>' , role_id);
@@ -78,8 +78,8 @@ export class OrderService {
 
     if (userId) {
       params = params + `&user_id=${userId}`;
-    } 
-    console.log(`${environment.host}ownerOrders` + params)
+    }
+    console.log(`${environment.host}ownerOrders` + params);
 
     return this.http.get(`${environment.host}ownerOrders` + params);
   }
@@ -124,5 +124,55 @@ export class OrderService {
 
   getOrderProductsByOrderId(productOrderId: number): Observable<any> {
     return this.http.get(`${environment.host}order/getProductsOrder/${productOrderId}`);
+  }
+
+  filterQuickOrders(role_id: number, dateStart: string, dateEnd: string, manufacturers: number[], status: number[], managerId: number, userId: number, is_oneclick?: number): Observable<any> {
+    let lang = this.lang.current;
+    let params = `?lang=${lang}`;
+   
+    if (status && status.length > 0) {
+     
+      params = params + `&status=[${status}]`;
+    }
+
+    if (dateEnd) {
+      params = params + `&date_end=${dateEnd}`;
+    }
+
+    if (dateStart) {
+      params = params + `&date_start=${dateStart}`;
+    }
+
+    if (manufacturers.length !== 0) {
+      params = params + `&manufacturer=${JSON.stringify(manufacturers)}`;
+    }
+
+    if (managerId) {
+      params = params + `&manager=${managerId}`;
+    }
+
+    if (userId) {
+      params = params + `&user_id=${userId}`;
+    }
+
+    if (is_oneclick) {
+      params = params + `&is_oneclick=${is_oneclick}`
+    }
+
+    console.log(`${environment.host}ownerOrders` + params);
+
+    
+    if (role_id === 1) {
+      return this.http.get<IOrderResponse>(
+        environment.orderang + params
+      );
+    }
+    else {  
+      return this.http.get<IOrderResponse>(
+        environment.managerorder + params
+      );
+    }
+
+    // return this.http.get(`${environment.host}ownerOrders` + params);
   }
 }

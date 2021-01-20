@@ -169,8 +169,8 @@
                     <div class="manager">
                         <p>Manager:</p>
                         <p>
-                            {{history[0].manufacturer.manager.first_name}}
-                             {{history[0].manufacturer.manager.last_name}}
+                            {{history[0]?.manufacturer?.manager?.first_name}}
+                             {{history[0]?.manufacturer?.manager?.last_name}}
                         </p>
                     </div>
                     <div class="history-item" *ngFor="let item of history[0].history">

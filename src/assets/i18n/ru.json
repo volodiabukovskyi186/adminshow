@@ -86,7 +86,10 @@
     "description": "Описание",
     "alias": "Псевдоним",
     "content": "Содержание",
-    "addEditPage": "Добавить/Редактировать страницу"
+    "addEditPage": "Добавить/Редактировать страницу",
+    "phoneTitle": "Телефон",
+    "productTitle": "Товар",
+    "productSumTitle": "Сумма"
   },
   "pageNotFound": {
     "backToHome": "Вернуться на главную",
@@ -378,7 +381,8 @@
     "history":"Історія",
     "selected": "Избранные",
     "basket": "Корзина",
-    "quickOrders": "Быстрые заказы"
+    "quickOrders": "Быстрые заказы",
+    "managerComment": "Комментарий менеджера"
   },
   "liqpay":{
     "onlinePay":"ОНЛАЙН ОПЛАТА",
