@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { PromotionService } from '../../../modules/catalog/promotion/services/promotion.service';
 import { BehaviorSubject } from 'rxjs';
@@ -17,6 +17,7 @@ import { environment } from "src/environments/environment";
 })
 export class EditOrderFormComponent implements OnInit, OnChanges {
   @Input() selectedClientOrder;
+  @Output() updateQuickOrders: EventEmitter<any> = new EventEmitter();
 
   public editClientInfoForm: FormGroup;
   public clientInfoForm: FormGroup;
@@ -72,7 +73,15 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
   }
 
   public getOrders(): void {
-    this.orderService.getList(this.currentUserRoleId).subscribe(data => {
+    this.orderService.getList(this.currentUserRoleId, 0).subscribe(data => {
+      this.orderService.order = data;
+    });
+  }
+
+  public getQuickOrders(): void {
+    this.orderService.getList(this.currentUserRoleId, 1).subscribe(data => {
+      this.updateQuickOrders.emit(data);
+      
       this.orderService.order = data;
     });
   }
@@ -281,6 +290,7 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
       .subscribe((res) => {
         if (res.data) {
           this.getOrders();
+          this.getQuickOrders();
           this.toastr.success("Saved");
         }
 
@@ -297,9 +307,11 @@ export class EditOrderFormComponent implements OnInit, OnChanges {
       checkoutPayment: this.editClientInfoForm.value.paymentMethod
     }
 
-    this.orderService.updateOrderDeliveryData(this.selectedClientOrder.id, orderPaymentDetailsToSend)
+    this.orderService.updateOrderDeliveryData(this.selectedClientOrder?.id, orderPaymentDetailsToSend)
       .subscribe((res) => {
         if (res.data) {
+          this.getOrders();
+          this.getQuickOrders();
           this.toastr.success("Saved");
         }
 

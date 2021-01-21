@@ -3,31 +3,37 @@
 [showRightSide]="pages.panelSettings.right"
 >
    <div form>
-      <div *ngIf="!showFilters">
-         <app-quick-order-form
+      <div *ngIf="selectedClientOrder && !showFilters && !isOpenEditOrderForm">
+         <app-order-form
             [title]="'currencies.addEditCurrencyInfo' | translate"
-            [selectedClientOrder]="selectedClientOrder"
+            [order]="selectedClientOrder"
+            [roleStatus]="userRoleStatus"
+            [history]="orderhistory"
+            [userOrders]="statusToReview"
+            [status]="statusToReview"
+            (ordersStaus)="seveStatus($event)"
             class="currency-form-style"
-         ></app-quick-order-form>
+         ></app-order-form>
       </div>
       <div *ngIf="showFilters">
          <app-quick-order-filters-form 
             (quickOrderFiltersFormData)="quickOrderFiltersFormData($event)">
          </app-quick-order-filters-form>
       </div>
-      <!-- <div *ngIf="isOpenEditOrderForm && !showFilters">
+      <div *ngIf="isOpenEditOrderForm && !showFilters">
          <app-edit-order-form
             [selectedClientOrder]="editedOrder"
+            (updateQuickOrders)="updateQuickOrders($event)"
          >
          </app-edit-order-form>
-      </div> -->
+      </div>
    </div>
    <div filter></div>
    <div content class="order-container padding">
       <div *ngIf="userQuickOrders?.data?.length === 0" #notfound>
          <div class="d2 padding flex center gray500 text-center">{{ "APP.no_rec_yet" | translate }}<br>😞</div>
       </div>
-      <table class="raisins-table border-all radius order-table table-wrapper-scroll-y my-custom-scrollbar">
+      <table *ngIf="userQuickOrders?.data?.length > 0" class="raisins-table border-all radius order-table table-wrapper-scroll-y my-custom-scrollbar">
          <thead>
          <tr>
             <th class="text-center min-width__64">ID</th>
@@ -61,10 +67,10 @@
                </td>
                <td class="text-center min-width__148 min-width__128">{{ quickOrder?.created_at | localDate: "d MMMM HH:mm" }}</td>
                <td class="panel-header-buttons text-center" style="padding: 19px;">
-                  <!-- <button (click)="reviewOrder(order)" class="button transparent small">
+                  <button (click)="reviewOrder(quickOrder)" class="button transparent small">
                      <rap-svg-ico class="eye-open-icon" [src]="'assets/icons/eye-open.svg'"></rap-svg-ico>
-                  </button> -->
-                  <button (click)="editQuickOrder(quickOrder)" class="button transparent small">
+                  </button>
+                  <button (click)="editQuickOrder(quickOrder)" class="button transparent small" *ngIf="currentUserRoleId !== 1">
                      <rap-svg-ico [src]="'assets/icons/edit.svg'"></rap-svg-ico>
                   </button>
                </td>
@@ -92,5 +98,15 @@
         >
         </mat-paginator>
       </div> -->
+
+      <div class="footer-wrapper">
+         <mat-paginator *ngIf="userQuickOrders?.count >= 5" class="footer"
+            [length]="userQuickOrders?.count"
+            [pageSize]="userQuickOrders?.take"
+            [pageSizeOptions]="[5, 10, 25]"
+            (page)="pageEvent($event)"
+         >
+         </mat-paginator>
+      </div>
    </div>
 </rap-panel-content>

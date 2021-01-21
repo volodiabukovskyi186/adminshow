@@ -209,6 +209,7 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   public reviewOrder(selectedOrder): void {
     this.selectedClientOrder = selectedOrder;
     this.userOrders = selectedOrder.status_id;
+    console.log(this.userOrders);
     this.openForm();
     this.orderHistory(selectedOrder.id)
   }
@@ -225,12 +226,10 @@ export class OrdersComponent extends BasePage implements OnInit, OnChanges {
   }
 
   public openEditOrder(orderToEdit): void {
-
     this.editedOrder = orderToEdit;
     this.isOpenEditOrderForm = true;
     this.openForm();
   }
-
 
   closeForm = () => {
     this.pages.panelSettings.form = false;

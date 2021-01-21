@@ -53,6 +53,7 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
 
   public changeStatus(i): void {
     this.userOrders = i;
+    console.log(this.userOrders);
     this.ordersStaus.emit(this.userOrders);
   }
 }

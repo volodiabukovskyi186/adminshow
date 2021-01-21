@@ -88,9 +88,9 @@ export class QuickOrderFiltersFormComponent implements OnInit {
       console.log(res);
     
       this.ordersSearchClientsData = res.data;
-      if (res.count > 0) {
-        this.selectedClientId = this.ordersSearchClientsData[0].id;
-      } 
+      // if (res.count > 0) {
+      //   this.selectedClientId = this.ordersSearchClientsData[0].id;
+      // } 
     })
   }
 
@@ -118,6 +118,8 @@ export class QuickOrderFiltersFormComponent implements OnInit {
     if (this.quickOrderFiltersForm.value.manufacturer) {
       manufacturers.push(this.quickOrderFiltersForm.value.manufacturer);
     }
+
+    this.searchClient();
 
     this.userService.getByToken().subscribe((res) => {
       this.currentUserRoleId = res.data.user.role_id;
