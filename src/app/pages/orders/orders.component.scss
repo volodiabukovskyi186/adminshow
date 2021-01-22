@@ -139,26 +139,26 @@
 table {
   background-color: #f3f3f3;
 
-  tbody {
-    height: 360px;
-    overflow-y: scroll !important;
-    display: block;
+  //tbody {
+    // height: 360px;
+    // overflow-y: scroll !important;
+    // display: block;
 
-    tr {
-      width: 100%;
-      display: inline-table;
-    }
-  }
+    //tr {
+      // width: 100%;
+      // display: inline-table;
+    //}
+  //}
 
-  thead {
-    position: relative;
-    display: block;
+  //thead {
+    // position: relative;
+    // display: block;
 
-    tr {
-      width: 100%;
-      display: inline-table;
-    }
-  }
+    //tr {
+      // width: 100%;
+      // display: inline-table;
+    //}
+  //}
 }
 
 .min-width__64 {

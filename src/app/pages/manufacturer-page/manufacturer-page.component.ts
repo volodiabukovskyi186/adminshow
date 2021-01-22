@@ -78,7 +78,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.roleService.getByToken().subscribe(data => {
       this.userRoleId = data.data.user.role_id;
       if(this.userRoleId == 1 ) {
-        this.userRoleStatus = true ;
+        this.userRoleStatus = true;
       }
       this.getList(this.userRoleId);
       this.userId = data.data.user.id;
