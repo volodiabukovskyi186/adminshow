@@ -211,22 +211,25 @@ export class PanelComponent implements OnInit, OnChanges {
     flagicon;
     burderStatus=false;
     myAnimatiom: string = 'large';
-  constructor(private currencyService:CurrenciesService,
+
+  constructor(
+    private currencyService:CurrenciesService,
     public lang: LanguageService,
     public languageService: LocalizationLang,
     private router: Router,
     public user: UserService,
     private auth: AuthService,
-    public rapService:RapService) {
-  
-    }
+    public rapService: RapService
+  ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getCurrency();
     this.currentLang = localStorage.getItem('currentLang');
 
-    this.getUserByToken();
-
+    if (this.auth.getToken()) {
+      this.getUserByToken();
+    }
+  
     this.lang?.langs?.forEach(elem => {
       if (elem?.locale == this.currentLang) {
         this.flagicon = elem?.src;

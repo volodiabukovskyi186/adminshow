@@ -17,8 +17,9 @@ export class AuthService {
     return localStorage.getItem("token") != undefined;
   }
   constructor(private _http: HttpClient,
-              private menu:MenuService,
-              private userService:UserService) {}
+    private menu: MenuService,
+    private userService: UserService
+  ) {}
 
   login(login: string, password: string): Observable<any> {
     let data = JSON.stringify({
