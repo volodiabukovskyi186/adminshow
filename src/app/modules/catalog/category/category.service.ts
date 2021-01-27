@@ -56,6 +56,13 @@ export class CategoryService {
     );
   }
 
+  getCategories(): Observable<any> {
+    let lang = this.lang.current;
+    let params = `?lang=${lang}`;
+
+    return this.http.get(`${environment.host}categories/all${params}`);
+  }
+
   post(data: any): Observable<any> {
     let d = JSON.stringify(data);
     return this.http.post(environment.catalog.category.category, data);

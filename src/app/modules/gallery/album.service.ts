@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { IAlbumResponse, IAlbum } from "./folder/interfaces";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { UserService } from 'src/app/modules/user/user.service';
 
 export interface IAlbumBreadcrumb {
   id: number;
@@ -18,9 +19,15 @@ export class AlbumService {
    * Constructor
    * @param http: HttpClient
    */
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    public userService: UserService
+  ) {
+    this.getUserByToken();
+  }
 
   private currentAlbum: IAlbum;
+  public currentAlbumId: number;
 
   activeAlbum: IAlbum = {
     id: null,
@@ -41,6 +48,15 @@ export class AlbumService {
 
   albumBreadcrumbs: IAlbumBreadcrumb[] = [];
 
+  public getUserByToken(): void {
+    this.userService.getByToken().subscribe((res) => {
+      console.log(res);
+
+      this.currentAlbumId = res.data.user.album_id;
+      this.activeAlbum.parent_id = this.currentAlbumId;
+    });
+  }
+
   getAlbums(): Observable<IAlbumResponse> {
     return this.http.get<IAlbumResponse>(
       environment.gallery.images.albums +
@@ -59,12 +75,15 @@ export class AlbumService {
   }
 
   createAlbum(album: IAlbum): Observable<any> {
+    this.getUserByToken();
+
     let data = JSON.stringify({
       title: album.title,
-      parent_id:
-        this.activeAlbum && this.activeAlbum.id != null
-          ? this.activeAlbum.id.toString()
-          : null,
+      parent_id: this.activeAlbum?.id || this.currentAlbumId
+      // parent_id:
+      //   this.activeAlbum && this.activeAlbum.id != null
+      //     ? this.activeAlbum.id.toString()
+      //     : null,
     });
     console.log(data);
 
@@ -72,9 +91,11 @@ export class AlbumService {
   }
 
   newAlbum() {
+    this.getUserByToken();
+
     let parent_id = null;
     if (this.activeAlbum) {
-      parent_id = this.activeAlbum.id;
+      parent_id = this.activeAlbum.id || this.currentAlbumId;
     }
     this.newAlbums.push({
       id: null,

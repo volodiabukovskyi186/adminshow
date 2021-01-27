@@ -53,6 +53,7 @@ export class ManufacturerService {
   page = 1;
 
   all: IManufacturer[] = [];
+  managerManufacturers = [];
   currentUserRoleId: number;
 
   constructor(

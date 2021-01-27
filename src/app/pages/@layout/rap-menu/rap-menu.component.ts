@@ -69,11 +69,17 @@ export class RapMenuComponent implements OnInit, OnChanges {
 
   public getCurrentItem(event) {
     //console.log(event);
-    
-    let lang = this.lang.current;
-    this.currentItemUrl = `/${lang}${event}`;
 
-    //console.log(this.currentItemUrl);
+    // if (this.lang.current) {
+    //   this.currentItemUrl = this.lang.current;
+    // } else {
+    //   this.currentItemUrl = this.lang.translate.defaultLang;
+    // }
+    
+    let langCurrent = this.lang.current.slice(3, 5);;
+    this.currentItemUrl = `/${langCurrent}${event}`;
+
+    console.log(langCurrent);
   }
 
   public logout(event: Event): void {

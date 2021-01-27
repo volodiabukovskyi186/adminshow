@@ -18,12 +18,20 @@
       [labelForgotPassword]="'AUTH.FORGOT_PASSWORD' | translate"
     ></app-login-form>
 
-    <div class="flex center">
+    <!-- <div class="flex center">
       <a class="button transparent radius"
         *ngFor="let item of lang.langs"
         [routerLink]="['/' + item.locale + '/login']"
         >{{ item.flag }}</a
       >
+    </div> -->
+    <div class="flex center">
+      <a class="button transparent radius"
+        *ngFor="let item of lang.langs"
+        [routerLink]="['/' + item.locale + '/login']"
+      >
+        {{ item.flag }}
+      </a>
     </div>
   </aside>
 </app-golden-panel>

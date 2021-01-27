@@ -5,7 +5,6 @@ import { DOCUMENT } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 
-
 export interface ILangItem {
   flag: string;
   name: string;
@@ -20,18 +19,20 @@ export class LanguageService implements OnInit {
 
   constructor(
     public translate: TranslateService,
-    private http: HttpClient,
-    @Inject(DOCUMENT) private document: Document) {
+    private http: HttpClient
+    // @Inject(DOCUMENT) private document: Document
+  ) {
       translate.onLangChange.subscribe(lang => {
         localStorage.setItem('currentLang',lang.lang)
         console.log('vvvvvvvv=>',lang.lang);
-    });
+      });
+      
       this.getDefaultLanguage();
       this.init();
   }
-  ngOnInit(): void {
-   
-  }
+
+  public ngOnInit(): void {}
+
   public langs: Array<ILangItem> = [];
 
   getBrowserLang() {

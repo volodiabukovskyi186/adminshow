@@ -1,13 +1,13 @@
 <header>
   <rap-svg-ico *ngIf="!logoStatus"
-    [routerLink]="['/']"
+    [routerLink]="['/' + currentItemUrl]"
     routerLinkActive="active"
     src="assets/showu.svg"
     alt="ShowU"
   ></rap-svg-ico>
 
   <rap-svg-ico class="small-logo" *ngIf="logoStatus"
-    [routerLink]="['/']"
+    [routerLink]="['/' + currentItemUrl]"
     routerLinkActive="active"
     src="assets/icons/showlogo.svg"
     alt="ShowU"

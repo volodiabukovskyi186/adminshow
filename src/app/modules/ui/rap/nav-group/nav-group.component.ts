@@ -111,7 +111,6 @@ export class NavGroupComponent implements OnInit, OnDestroy, OnChanges {
 
   public ngOnChanges(): void {
     // this.UserService.SUser.pipe(takeUntil(this.destroy$)).subscribe(data=>{
-      // debugger;s
       // console.log("itemNAv===>", this.item)
       // let arrUserManage=JSON.parse(JSON.parse((localStorage.getItem('user'))).role.permissions)
       // console.log('statusMain==>',arrUserManage)

@@ -34,6 +34,11 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   public msgUpdated: string = "Category successfully updated";
   public msgDeleted: string = "Category successfully deleted";
   public descriptionsCategotyToSend: any;
+  public selectedCategory: any;
+  public sendUpdatedCategories: any;
+  public isCategoryAdded: boolean = false;
+  public isCategoryEdited: boolean = false;
+  public userCategories: any;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -68,6 +73,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
       }
     });
     this.getUserByTokin();
+    this.getUserCategories();
   }
 
   public getUserByTokin(): void {
@@ -116,11 +122,14 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   getListHandler = (data) => {
     this.ngxService.stopAll();
     this.category.category = data;
+    console.log('this.category.category ===== >>>>', this.category.category);
   };
 
   public getCategories(): void {
     this.category.getAllCategories().subscribe((res) => {
       //this.getListHandler(res);
+      console.log('res ===== >>>>>', res);
+
       this.displayAllCaterories = this.toArray(res.data, []);
     })
   }
@@ -140,6 +149,12 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     }
 
    return arr;
+  }
+
+  getUserCategories(): void {
+    this.category.getCategories().subscribe((resp) => {
+      this.userCategories = resp.data;
+    })
   }
 
   getLangList() {
@@ -179,12 +194,20 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     
     this.descriptionsCategotyToSend = event.description.map((category) => {
       return {
-        id: category.lang.id,
+        id: category.id,
         lang_id: category.lang_id,
         name: category.name,
         description: category.description
       }
     })
+
+    this.sendUpdatedCategories = {
+      parent_id: event.parent_id,
+      image_id: event.image_id,
+      sort_order: event.sort_order,
+      status: event.status,
+      description: this.descriptionsCategotyToSend
+    }
   }
 
   //#region override
@@ -194,17 +217,8 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     this.categoryFormComponent.submitForm();
     //console.log('this.categoryFormComponent.submitForm() ===== >>>.', this.categoryFormComponent.submitForm());
     
-    let c = this.categoryForm.category;
-
-    let data = {
-      parent_id: c.parent_id,
-      image_id: c.image_id,
-      sort_order: c.sort_order,
-      status: c.status,
-      description: [],
-    };
-    if (c.id != null) {
-      data.description = this.descriptionsCategotyToSend;
+    if (this.selectedCategory?.id && this.isCategoryEdited) {
+      //data.description = this.descriptionsCategotyToSend;
       //c.description.forEach((d) => {
         //data.description.push(
           // {
@@ -215,8 +229,18 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
           // }
         //);
       //});
-      this.category.put(data, c.id).subscribe(this.putHandler);
+      this.category.put(this.sendUpdatedCategories, this.selectedCategory.id).subscribe(this.putHandler);
     } else {
+      let c = this.categoryForm.category;
+
+      let data = {
+        parent_id: c.parent_id,
+        image_id: c.image_id,
+        sort_order: c.sort_order,
+        status: c.status,
+        description: [],
+      };
+
       c.description.forEach((d) => {
         data.description.push({
           lang_id: d.lang_id,
@@ -235,6 +259,8 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     this.category.category.data.push(data.data);
     this.category.category.count++;
 
+    this.getList(); 
+
     this.closeForm();
     this.toastr.success(this.msgAdded);
   };
@@ -248,7 +274,11 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   };
 
   plus = () => {
+    this.isCategoryAdded = true;
+    this.isCategoryEdited = false;
+
     this.categoryForm.initEmptyCategory();
+    //this.selectedCategory = this.categoryForm.category;
     this.categoryForm.initDesc(this.langService.languages.data);
     this.openForm();
   };
@@ -256,7 +286,12 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   //#endregion
 
   public edit(i): void {
-    this.categoryForm.initBy(i, this.langService.languages.data);
+    console.log('iiiiiiiii ====== >>>>>>', i);
+    this.selectedCategory = i;
+    this.isCategoryEdited = true;
+    this.isCategoryAdded = false;
+
+    //this.categoryForm.initBy(i, this.langService.languages.data);
     this.openForm();
   }
 

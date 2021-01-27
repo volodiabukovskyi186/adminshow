@@ -7,6 +7,7 @@ import {LanguageService} from "../../../modules/localization/language/language.s
 import {StorageService} from "../services/storage.service";
 import {BreadcrumbsService} from "../../../core/breadcrumbs.service";
 import { ToastrService } from 'ngx-toastr';
+import { LanguageService as Lang } from "src/app/core/language.service";
 
 @Component({
   selector: 'app-storage-status-page',
@@ -24,21 +25,23 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
               public langService: LanguageService,
               public breadcrumbs: BreadcrumbsService,
               protected toastr: ToastrService,
+              public lang: Lang
   ) {
     super(pages);
   }
   ngOnInit(): void {
     super.initPagesSettings();
     super.initPanelButton();
-    this.getWeight();
+    
     this.getLangList();
+    this.initTranslate();
+    this.getWeight();
 
-    this.breadcrumbs.breadcrumbs = [
-      { link: "", title: "Dashboard" },
-      { link: "storage_status", title: "Storage status" },
-    ];
+    // this.breadcrumbs.breadcrumbs = [
+    //   { link: "", title: "Dashboard" },
+    //   { link: "storage_status", title: "Storage status" },
+    // ];
   }
-
 
   getLangList() {
     this.langService.getLangs().subscribe(this.getLangListHandler);
@@ -48,6 +51,19 @@ export class StorageStatusPageComponent extends BasePage implements OnInit {
     this.langService.languages = data;
   };
 
+  public initTranslate(): void {
+    this.lang.translate
+      .get([
+        "dashboard.dashboard",
+        "MENU.weight.weight",
+      ])
+      .subscribe((tr: any) => {
+        this.breadcrumbs.breadcrumbs = [
+          { link: "", title: tr["dashboard.dashboard"] },
+          { link: "unit_weight", title: tr["MENU.weight.weight"] },
+        ];
+      });
+  }
 
   getWeight(): void {
     this.storageService.getWeight().subscribe(data => {

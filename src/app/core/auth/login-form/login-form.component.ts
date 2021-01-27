@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { NgxUiLoaderService } from "ngx-ui-loader";
 import { Router } from "@angular/router";
 import { AuthResponse } from "../models";
+import { LanguageService } from "src/app/core/language.service";
 
 @Component({
   selector: "app-login-form",
@@ -28,6 +29,7 @@ export class LoginFormComponent implements OnDestroy{
    */
   constructor(
     public auth: AuthService,
+    public lang: LanguageService,
     private ngxService: NgxUiLoaderService,
     private toastr: ToastrService,
     private router: Router,
@@ -56,8 +58,11 @@ export class LoginFormComponent implements OnDestroy{
     this.auth.saveToken(data.data.token);
     this.authForm.reset();
     this.authed.emit();
-   
-    this.router.navigate(["/"]);
-    
+
+    if (this.lang.current) {
+      this.router.navigate(["/" + this.lang.current]);
+    } else {
+      this.router.navigate(["/" + this.lang.translate.defaultLang]);
+    }
   };
 }

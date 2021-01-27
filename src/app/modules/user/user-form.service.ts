@@ -22,8 +22,8 @@ export class UserFormService {
       permissions: [],
       city: null,
       country: null,
-      delivery_adress: null
-      //password: null
+      delivery_adress: null,
+      password: null
     };
   }
 

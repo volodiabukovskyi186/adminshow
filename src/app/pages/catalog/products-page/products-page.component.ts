@@ -72,7 +72,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
     ];
 
     this.getLangList();
-    this.getAllManufacturer();
+    //this.getAllManufacturer();
     this.initTranslate();
     this.getUserByTokin();
   }
@@ -82,6 +82,15 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       this.userRole = data.data.role.id;
       this.getList(this.userRole);
       this.getProductsBySearch(this.userRole);
+
+      if (this.userRole === 1) {
+        console.log('this.userRole OWNER', this.userRole);
+        this.getAllManufacturer();
+      } 
+      if (this.userRole !== 1) {
+        console.log('this.userRole MANAGER', this.userRole);
+        this.getManagerManufacturers();
+      }
     });
   }
 
@@ -165,9 +174,22 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
     this.ngxService.start();
     this.manufacturer.getAll().subscribe(this.getAllManufacturerHandler);
   }
+
   getAllManufacturerHandler = (data) => {
     this.manufacturer.all = data.data;
     // console.log(data, this.manufacturer.all);
+
+    this.ngxService.stopAll();
+  };
+
+  getManagerManufacturers() {
+    this.ngxService.start();
+    this.manufacturer.getManagerManufacturers().subscribe(this.getManagerManufacturerHandler);
+  }
+
+  getManagerManufacturerHandler = (data) => {
+    this.manufacturer.managerManufacturers = data.data;
+    console.log('this.manufacturer.managerManufacturers', this.manufacturer.managerManufacturers);
 
     this.ngxService.stopAll();
   };

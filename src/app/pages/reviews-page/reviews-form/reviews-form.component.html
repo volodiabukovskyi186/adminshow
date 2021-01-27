@@ -9,11 +9,11 @@
                     <div class="reviews__text">{{ review?.text }}</div>
                 </div>
                 <div class="reviews-content__right">
-                                        <span> 
-                                            {{ modifyDateString(review?.created_at, 'months') | translate }} 
-                                            {{ modifyDateString(review?.created_at, 'day') }}, 
-                                            {{ modifyDateString(review?.created_at, 'year') }}
-                                        </span>
+                    <span> 
+                        {{ modifyDateString(review?.created_at, 'months') | translate }} 
+                        {{ modifyDateString(review?.created_at, 'day') }}, 
+                        {{ modifyDateString(review?.created_at, 'year') }}
+                    </span>
                 </div>
             </div>
             <form [formGroup]="reviewsForm" *ngIf="userStatus!==1">
@@ -25,7 +25,7 @@
                     
                     <div class="reviews-response-title">{{ 'reviews.reviewStatus'| translate }}</div>
 <!--                    <div class="reviews-response-status" >-->
-                        <mat-form-field appearance="standart" class="reviews-response-text">
+                        <mat-form-field appearance="standart" class="reviews-status-input">
                             <div class="sort-products-wrapper">
                                 <mat-select
                                         (selectionChange)="onChange($event.value)"

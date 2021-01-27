@@ -16,7 +16,9 @@ export class UserFormComponent implements OnInit {
   @Input() title: string = "";
   @Input() isEdit: boolean = false;
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    console.log('this.user ===== >>>>>', this.user);
+  }
 
   constructor() {}
 }

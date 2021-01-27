@@ -151,7 +151,7 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
       role_id: c.role_id,
       id: c.id,
       email: c.email,
-      //password: c.password,
+      password: c.password,
       first_name: c.first_name,
       last_name: c.last_name,
       permissions: "[]",
@@ -163,7 +163,8 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
       tel: c.tel,
       city: c.city,
       country: c.country,
-      delivery_adress: c.delivery_adress
+      delivery_adress: c.delivery_adress,
+      is_subscription: false
     };
     if (c.id != null) {
       this.user.put(data, c.id).subscribe(this.putHandler);
@@ -192,6 +193,11 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
   plus = () => {
     this.userForm.initEmptyModel();
     this.isEdit = false;
+
+    // this.getList();
+    // this.getAllCategory();
+    // this.getProdCategory();
+
     this.openForm();
   };
 

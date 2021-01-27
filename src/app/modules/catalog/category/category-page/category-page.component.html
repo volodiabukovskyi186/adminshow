@@ -7,8 +7,11 @@
       #form
       [title]="'category.add_edit_category' | translate"
       [category]="categoryForm.category"
-      [categoryes]="displayAllCaterories"
+      [categoryes]="userCategories"
       [langs]="langService.languages.data"
+      [selectedCategory]="selectedCategory"
+      [isCategoryAdded]="isCategoryAdded"
+      [isCategoryEdited]="isCategoryEdited"
       (formSubmit)="onSubmit($event)"
     >
     </app-category-form>

@@ -97,7 +97,7 @@ export const MENU = [
             item('MENU.localization.languages', 'language', true, ICON_MENU_ITEM, 'manage_languagess'),
             item('MENU.localization.currencies', 'currencies', true, ICON_MENU_ITEM, 'manage_currencys'),
             item('MENU.localization.order_status', 'order_status', true, ICON_MENU_ITEM, 'manage_countrys'),
-            item('MENU.localization.storage_status', 'storage_status', true, ICON_MENU_ITEM, 'storage_status'),
+            item('MENU.localization.storage_status', 'storage_status', true, ICON_MENU_ITEM, 'manage_stockstatuss'),
             item('MENU.localization.unit_weight', 'unit_weight', true, ICON_MENU_ITEM, 'manage_countrys'),
             item('MENU.localization.country', 'country', true, ICON_MENU_ITEM, 'manage_countrys'),
             // item("MENU.localization.departments", "departments"),

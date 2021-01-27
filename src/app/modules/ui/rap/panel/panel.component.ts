@@ -1,5 +1,5 @@
 import { CurrenciesService } from './../../../../pages/localization/currencies-page/services/currencies-page.service';
-import { Component, OnInit, Input, Output, EventEmitter,OnChanges } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from "@angular/core";
 import { slideRight, scale } from "../../animations";
 import { LanguageService } from 'src/app/core/language.service';
 import { LanguageService as LocalizationLang } from "src/app/modules/localization/language/language.service";
@@ -10,6 +10,8 @@ import { NavLink } from '../nav-item/nav-link';
 import { RapService } from '../../rap.service';
 import { smallBar, fade} from "../../animations";
 import { trigger, style, transition, animate,state } from "@angular/animations";
+import { BehaviorSubject } from 'rxjs';
+
 export interface IPanelLabesl {
   filter: string;
   add: string;
@@ -45,7 +47,9 @@ const FN = "ease-in-out";
   templateUrl: "./panel.component.html",
   styleUrls: ["./panel.component.scss"],
 })
-export class PanelComponent implements OnInit ,OnChanges{
+export class PanelComponent implements OnInit, OnChanges {
+  SUser$ = new BehaviorSubject<any>({});
+  SUser = this.SUser$.asObservable();
   
   @Input() labels: IPanelLabesl = {
     filter: "Filter",
@@ -218,25 +222,40 @@ export class PanelComponent implements OnInit ,OnChanges{
     }
 
   ngOnInit(): void {
-   
-    this.getCurrency()
-    this.currentLang=localStorage.getItem('currentLang')
-    this.user.getByToken().subscribe(this.getByTokenHandler);
-    this.lang.langs.forEach(elem=>{
-      if(elem.locale==this.currentLang){
-        this.flagicon=elem.src
-      }
-    })
-  
-  
-  }
-  ngOnChanges():void{
-  this.rapService.SBurder.subscribe(data=>{
-    this.burderStatus=data;
-      this.burderStatus==false?this.myAnimatiom="large":this.myAnimatiom="small"
-    
-  })
+    this.getCurrency();
+    this.currentLang = localStorage.getItem('currentLang');
 
+    this.getUserByToken();
+
+    this.lang?.langs?.forEach(elem => {
+      if (elem?.locale == this.currentLang) {
+        this.flagicon = elem?.src;
+      }
+    }) 
+  }
+
+    public getUserByToken(): void {
+      console.log(this.user);
+      
+      this.user?.getByToken()?.subscribe((data) => {
+        if (data) {
+          this.user?.saveUser(data.data);
+        }
+      });
+    }
+  
+  // getByTokenHandler = (data) => {
+  //   if (data) {
+  //     this.user?.saveUser(data.data);
+  //   }
+  // };
+
+  ngOnChanges():void{
+    this.rapService.SBurder.subscribe(data=>{
+      this.burderStatus=data;
+        this.burderStatus==false?this.myAnimatiom="large":this.myAnimatiom="small"
+      
+    })
   }
 
   toggleRight = () => (this.showRightSide = !this.showRightSide);
@@ -245,9 +264,8 @@ export class PanelComponent implements OnInit ,OnChanges{
   public hideModalForm = () => (this.showForm = false);
 
   getCurrency():void{
-    this.currencyService.getCurrencies().subscribe(data=>{
-        this.arrCurrency=data;
-      
+    this.currencyService?.getCurrencies().subscribe(data=>{
+        this.arrCurrency = data;
     })
   }
   getRoute(locale: string) {
@@ -258,11 +276,11 @@ export class PanelComponent implements OnInit ,OnChanges{
         res.push(item);
       }
     });
-    this.currentLang=localStorage.getItem('currentLang')
+    this.currentLang=localStorage.getItem('currentLang');
 
-    this.lang.langs.forEach(elem=>{
-      if(elem.locale==this.currentLang){
-        this.flagicon=elem.src
+    this.lang.langs.forEach(elem => {
+      if (elem.locale == this.currentLang) {
+        this.flagicon = elem.src;
       }
     })
     return res;
@@ -271,18 +289,14 @@ export class PanelComponent implements OnInit ,OnChanges{
   logout(event: Event) {
     event.preventDefault();
     this.auth.logout();
-    this.router.navigate(["login"]);
+    this.router.navigate([this.lang.current, "login"]);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   }
 
-  getByTokenHandler = (data) => {
-    this.user.saveUser(data.data);
-    
-  };
   sideBar():void{
     this.burderStatus=!this.burderStatus;
-    this.rapService.SBurder.next(this.burderStatus)
+    this.rapService.SBurder.next(this.burderStatus);
     // console.log('status===>rrrr', this.burderStatus)
     this.burderStatus==false?this.myAnimatiom="large":this.myAnimatiom="small"
   }

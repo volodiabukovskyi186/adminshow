@@ -13,7 +13,6 @@ export class LocalDatePipe implements PipeTransform {
   constructor(private lang: LanguageService) {}
 
   transform(value: any, format: string = "longDate") {
-    // debugger;
     if (!value) {
       return "";
     }

@@ -30,7 +30,7 @@
     <label for="">{{ "collection.manufacturer" | translate }}</label>
   </div>
 
-  <div class="original">
+  <div class="original" *ngIf="manufacturers.length > 0 && isOwnerManufacturers">
     <select
       class="radius"
       name="manufactured_id"
@@ -38,6 +38,17 @@
     >
       <option *ngFor="let c of manufacturers" value="{{ c.id }}">{{
         c.description[0]?.name
+      }}</option>
+    </select>
+  </div>
+  <div class="original" *ngIf="managerManufacturers.length > 0 && isManagerManufacturers">
+    <select
+      class="radius"
+      name="manufactured_id"
+      [(ngModel)]="model.manufactured_id"
+    >
+      <option *ngFor="let c of managerManufacturers" value="{{ c.id }}">{{
+        c.description?.name
       }}</option>
     </select>
   </div>

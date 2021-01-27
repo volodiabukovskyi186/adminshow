@@ -8,6 +8,7 @@ import {
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IImageResponse, IImage } from "./folder/interfaces";
+import { UserService } from 'src/app/modules/user/user.service';
 
 export interface IUploadImage {
   file: File;
@@ -41,7 +42,22 @@ export class ImagesService {
     url: null,
   };
 
-  constructor(private http: HttpClient) {}
+  public currentAlbumId: number;
+
+  constructor(
+    private http: HttpClient,
+    public userService: UserService
+  ) {
+    this.getUserByToken();
+  }
+
+  public getUserByToken(): void {
+    this.userService.getByToken().subscribe((res) => {
+      console.log(res);
+
+      this.currentAlbumId = res.data.user.album_id;
+    });
+  }
 
   getImages(albumId: number): Observable<IImageResponse> {
     let skip = this.page * this.images.take - this.images.take;
@@ -61,9 +77,12 @@ export class ImagesService {
   }
 
   upload(image: any, albumId: number = null): Observable<any> {
+    this.getUserByToken();
+
     const formData: FormData = new FormData();
     formData.append("images", image, image.name);
-    formData.append("album_id", albumId != null ? albumId.toString() : "");
+    // formData.append("album_id", albumId != null ? albumId.toString() : "");
+    formData.append("album_id", albumId.toString() || "");
 
     const req = new HttpRequest(
       "POST",
@@ -183,8 +202,6 @@ export class ImagesService {
 
     if (this.images.data)
       this.images.data.forEach((img) => {
-        //debugger;
-
         if (img.selected) list.push(img);
       });
     

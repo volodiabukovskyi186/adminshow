@@ -17,7 +17,103 @@
   </div>
 </div>
 
-<fieldset class="radius" style="margin-bottom: 16px;">
+<fieldset class="radius" style="margin-bottom: 16px;" *ngIf="isCategoryEdited">
+  <legend>{{ title }}</legend>
+  <div class="form-row">
+    <div class="description">
+      <label
+        for="parent_id"
+        [attr.data-tooltip-left]="'category.select_parent' | translate"
+        >{{ "category.parrent_id" | translate }}</label
+      >
+    </div>
+
+    <div class="original">
+      <select
+        id="parent_id"
+        class="radius"
+        name="parent_id"
+        [(ngModel)]="selectedCategory.parent_id"
+      >
+        <option value="null">root</option>
+        <option *ngFor="let c of categoryes" value="{{ c.id }}">{{
+          c.name
+        }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">{{ "APP.sort_order" | translate }}</label>
+    </div>
+
+    <div class="original">
+      <input class="radius" type="text" [(ngModel)]="selectedCategory.sort_order" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">{{ "APP.visibility" | translate }}</label>
+    </div>
+
+    <div class="original">
+      <select class="radius" name="parent_id" [(ngModel)]="selectedCategory.status">
+        <option value="1">{{ "APP.visible" | translate }}</option>
+        <option value="0">{{ "APP.hidden" | translate }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="description">
+      <label for="">{{ "APP.image" | translate }}</label>
+    </div>
+
+    <div class="original">
+      <app-choice-button
+        style="max-width: 192px;"
+        class="radius"
+        [src]="host + selectedCategory?.image?.src"
+        (press)="onPress()"
+        (reset)="onReset()"
+      ></app-choice-button>
+      <input type="hidden" [(ngModel)]="selectedCategory.image_id" />
+    </div>
+  </div>
+
+  <rap-step-tabs>
+    <rap-step-tab
+      *ngFor="let item of selectedCategory.description"
+      [imgSrc]="languageService.getFromList(item?.lang_id)?.flag"
+      [title]="langShortTitle[item?.lang_id]?.title | translate"
+    >
+      <div class="form-row">
+        <div class="description">
+          <label for="">{{ "category.title" | translate }}</label>
+        </div>
+
+        <div class="original">
+          <input class="radius" [(ngModel)]="item.name" type="text" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="description">
+          <label for="">{{ "category.description" | translate }}</label>
+        </div>
+
+        <div class="original">
+          <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
+        </div>
+      </div>
+    </rap-step-tab>
+  </rap-step-tabs>
+</fieldset>
+
+
+<fieldset class="radius" style="margin-bottom: 16px;" *ngIf="isCategoryAdded">
   <legend>{{ title }}</legend>
   <div class="form-row">
     <div class="description">
@@ -75,11 +171,7 @@
       <app-choice-button
         style="max-width: 192px;"
         class="radius"
-        [src]="
-          category.host
-            ? '//' + category.host + category.image?.src_mini
-            : category.image?.src_mini
-        "
+        [src]="host + category?.image?.src"
         (press)="onPress()"
         (reset)="onReset()"
       ></app-choice-button>
@@ -90,8 +182,8 @@
   <rap-step-tabs>
     <rap-step-tab
       *ngFor="let item of category.description"
-      [imgSrc]="languageService.getFromList(item.lang.id)?.flag"
-      [title]="item.lang.short_title"
+      [imgSrc]="languageService.getFromList(item?.lang_id)?.flag"
+      [title]="langShortTitle[item?.lang_id]?.title | translate"
     >
       <div class="form-row">
         <div class="description">
@@ -110,12 +202,6 @@
 
         <div class="original">
           <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"></angular-editor>
-          <!-- <textarea
-            name=""
-            class="radius"
-            [(ngModel)]="item.description"
-            rows="2"
-          ></textarea> -->
         </div>
       </div>
     </rap-step-tab>

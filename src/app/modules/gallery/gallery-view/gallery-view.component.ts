@@ -76,7 +76,7 @@ export class GalleryViewComponent implements OnInit {
         }
 
         this.image
-        .getManagerImages(this.album.activeAlbum?.id)
+        .getManagerImages(this.album.activeAlbum?.id || this.albumIdManager)
         .subscribe(this.getImagesHandler);
       })
     }
@@ -111,14 +111,14 @@ export class GalleryViewComponent implements OnInit {
   deleteAlbumHandler = (data: any) => {
     this.ngxService.stopAll();
     this.album.delteFromList();
-    this.toastr.success("Album success deleted");
+    this.toastr.success("Album successfully deleted");
   };
 
   getAlbumsHandler = (data: IAlbumResponse) => {
     this.ngxService.stop();
     this.album.albums.data = data.data;
 
-    console.log('this.album.albums.data === >>>>', this.album.albums.data)
+    // console.log('this.album.albums.data === >>>>', this.album.albums.data)
 
     if (this.album.activeAlbum.id) {
       this.album.albums.data = this.album.albums.data.filter((val) => { return (val.id === this.album.activeAlbum.id) && !this.album.activeAlbum.id});
@@ -143,13 +143,14 @@ export class GalleryViewComponent implements OnInit {
     this.album.albums.data.push(data.data);
 
     this.album.newAlbums = [];
-    this.toastr.success("Album success created" + data.title);
+    this.toastr.success("Album successfully created");
   };
 
   putAlbumHandler = (data: any) => {
     this.ngxService.stopAll();
     this.album.updateFromList(data.data);
-    this.toastr.success("Album success updated to " + data.title);
+    
+    this.toastr.success("Album successfully updated");
   };
 
   onCancel(al) {

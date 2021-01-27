@@ -20,6 +20,7 @@ const COLORS = [
 export class ProductFormComponent implements OnInit {
   @Input() model: IProduct;
   @Input() manufacturers: IManufacturer[] = [];
+  @Input() managerManufacturers;
   @Input() langs: ILanguage[];
   @Input() host: string;
   @Input() title: string = "";
@@ -32,6 +33,7 @@ export class ProductFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.image.select.subscribe(this.selectHandler);
+    // console.log('managerManufacturers ressssssssss', this.managerManufacturers);
   }
 
   public onPress(): void {

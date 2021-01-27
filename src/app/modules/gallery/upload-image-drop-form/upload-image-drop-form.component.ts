@@ -84,8 +84,12 @@ export class UploadImageDropFormComponent implements OnInit {
 
     const item = this.image.uploadImages[index];
     item.isError = false;
+
+    this.album.activeAlbum.parent_id = this.album.activeAlbum?.id;
+
     this.image.upload(item.file, this.album.activeAlbum?.id).subscribe((event) => {
       this.image.getEventMessage(event, item);
     });
+    
   }
 }
