@@ -372,6 +372,8 @@
     "orderEmail": "Email",
     "orderRecipient": "Одержувач",
     "orderStatus":"Статус замовлення",
+    "paymentStatus": "Статус оплати",
+    "checkPaymentStatus": "Перевірити статус",
     "orderManufacturer": "Виробник",
     "orderClient": "Клієнт",
     "orderDateStart": "Потрібна початкова дата замовлення",

@@ -67,9 +67,9 @@ export class ManufacturerService {
   getList(user_role): Observable<IManufacturerResponse> {
     
     // let skip = this.page * this.manufacturer.take - this.manufacturer.take;
-    const lang=localStorage.getItem('currentLang')
+    const lang = localStorage.getItem('currentLang');
    
-    if(user_role==1){
+    if (user_role == 1) {
       let params = `?take=${this.manufacturer.take}&skip=${this.manufacturer.skip}`;
       return this.http.get<IManufacturerResponse>(
         environment.manufacturer.manufacturers + params

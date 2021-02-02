@@ -1,0 +1,65 @@
+.review-dialog {
+    //width: 20vw;
+}
+
+.dialog-wrapper {
+    position: relative;
+}
+
+.dialog-header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 500px;
+}
+
+.close-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    z-index: 999999;
+}
+
+hr {
+    border-top: 1px solid #000;
+    margin-left: -24px;
+    margin-right: -24px;
+}
+
+.product {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.product-left-content,
+.product-right-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.product-left-content {
+    font-size: 14px;
+    color: #3D67C9;
+}
+
+.product-photo__img {
+    width: 75px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.leave-review-btn {
+    border: none;
+    padding: 10px 36px;
+    outline: none;
+    border-radius: 3px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

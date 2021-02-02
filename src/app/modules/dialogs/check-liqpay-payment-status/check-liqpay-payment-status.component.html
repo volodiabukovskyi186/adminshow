@@ -1,0 +1,11 @@
+<div class="review-dialog">
+    <div class="dialog-header">
+        <div>Статус оплати:</div>
+        <span class="material-icons close-icon" (click)="onNoClick()">close</span>
+    </div>
+    <hr>
+    <div class="dialog-wrapper">
+      <div>{{ this.orderData?.order?.result?.err_description }}</div>
+    </div>
+</div>
+  

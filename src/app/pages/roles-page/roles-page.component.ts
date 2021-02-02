@@ -80,6 +80,8 @@ export class RolesPageComponent implements OnInit {
   roleHandler = (data: RoleResponse) => {
     this.ngxService.stopAll();
     this.role.roles = data;
+
+    console.log('this.role.roles ======= >>>>>', this.role.roles);
   };
 
 
@@ -128,6 +130,8 @@ export class RolesPageComponent implements OnInit {
     this.roleForm.questions$ = this.roleForm.getQuestions(role);
     this.editId = role.id;
     this.openFormPanel();
+
+    console.log('this.roleForm.questions$ ==== >>> ', this.roleForm.questions$);
   }
 
   public delete(role: Role): void {

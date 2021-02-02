@@ -28,6 +28,8 @@ export class ManufacturerFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.image.select.subscribe(this.selectHandler);
+
+    console.log(this.manufacturer);
   }
 
   editorConfig: AngularEditorConfig = {

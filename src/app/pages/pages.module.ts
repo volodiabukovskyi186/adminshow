@@ -102,6 +102,7 @@ import { SizesFormComponent } from './sizes-page/sizes-form/sizes-form.component
 import { QuickOrdersComponent } from './quick-orders/quick-orders.component';
 import { QuickOrderFiltersFormComponent } from './quick-orders/quick-order-filters-form/quick-order-filters-form.component';
 import { QuickOrderFormComponent } from './quick-orders/quick-order-form/quick-order-form.component';
+import { CheckLiqpayPaymentStatusComponent } from '../modules/dialogs/check-liqpay-payment-status/check-liqpay-payment-status.component';
 
 @NgModule({
   declarations: [
@@ -161,6 +162,7 @@ import { QuickOrderFormComponent } from './quick-orders/quick-order-form/quick-o
     QuickOrdersComponent,
     QuickOrderFiltersFormComponent,
     QuickOrderFormComponent,
+    CheckLiqpayPaymentStatusComponent,
 
 
   ],

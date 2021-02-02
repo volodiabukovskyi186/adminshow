@@ -65,7 +65,7 @@ export class GalleryViewComponent implements OnInit {
       .subscribe(this.getImagesHandler);
 
     } else {
-      this.album.getAlbumsByManager(this.albumIdManager).subscribe((res) => {
+      this.album.getAlbumsByManager(this.album.activeAlbum?.id || this.albumIdManager).subscribe((res) => {
         console.log(res);
         this.album.albums.data = res.data;
 

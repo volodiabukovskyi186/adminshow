@@ -264,6 +264,33 @@ th {
   display: inline-block;
   margin-right: 3px;
 }
+
 .status-text {
   margin-left: 3px;
+}
+
+.liqpay-status-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.liqpay-status {
+    line-height: 3;
+}
+
+.liqpay-status-text {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.liqpay-status-btn {
+    background-color: #D6DBDF;
+    color: black;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
 }

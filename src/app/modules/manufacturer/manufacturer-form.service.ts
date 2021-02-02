@@ -86,10 +86,10 @@ export class ManufacturerFormService {
   }
 
   private getDescByLangId(id: number, c: IManufacturer): IManufacturerDesc {
-    for (let i = 0; i < c.description.length; i++) {
-      const d = c.description[i];
+    for (let i = 0; i < c?.description?.length; i++) {
+      const d = c?.description[i];
 
-      if (d.lang_id == id) return d;
+      if (d?.lang_id == id) return d;
     }
     return null;
   }

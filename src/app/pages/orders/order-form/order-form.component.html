@@ -41,16 +41,27 @@
                                 {{ order?.manufacturer.description.name }}
                             </th>
                         </tr>
-                             <tr *ngIf="!roleStatus">
-                                <th class="th-order order-text order-title">
-                                    {{ 'orders.orderStatus' | translate }}
-                                </th>
-                                <th class="th-order order-text" >
-                                    <select class="radius" (change)="changeStatus(userOrders)"  [(ngModel)]="userOrders" >
-                                        <option  *ngFor="let item of statusIte" [value]="item.id">{{item.descriptions[0].dectiption}}</option>
-                                    </select>    
-                                </th>
-                            </tr>
+                        <tr *ngIf="!roleStatus">
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.orderStatus' | translate }}
+                            </th>
+                            <th class="th-order order-text" >
+                                <select class="radius" (change)="changeStatus(userOrders)"  [(ngModel)]="userOrders" >
+                                    <option  *ngFor="let item of statusIte" [value]="item.id">{{item.descriptions[0].dectiption}}</option>
+                                </select>    
+                            </th>
+                        </tr>
+                        <tr class="liqpay-status" *ngIf="order?.checkoutPayment === 'liqpay'">
+                            <th class="th-order order-text order-title">
+                                {{ 'orders.paymentStatus' | translate }}
+                            </th>
+                            <th class="th-order order-text liqpay-status-content">
+                                <button class="liqpay-status-btn" (click)="openCheckLiqpayPaymentStatus(order)"
+                                    >{{ 'orders.checkPaymentStatus' | translate }}
+                                </button>
+                                <div *ngIf="liqpayOrderPaymentStatus" class="liqpay-status-text">{{ this.liqpayOrderPaymentStatus?.result?.err_description }}</div>
+                            </th>
+                        </tr>
                     </table>
                     <div class="sale-list">
                         <p class="order-title">{{ "orders.ordersListOfGoods" | translate }}</p>

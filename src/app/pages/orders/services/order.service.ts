@@ -175,4 +175,8 @@ export class OrderService {
 
     // return this.http.get(`${environment.host}ownerOrders` + params);
   }
+
+  checkLiqpayOrderStatus(data): Observable<any> {
+    return this.http.post(`${environment.host}payment/status`, data);
+  }
 }

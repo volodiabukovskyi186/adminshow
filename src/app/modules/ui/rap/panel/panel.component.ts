@@ -279,10 +279,11 @@ export class PanelComponent implements OnInit, OnChanges {
         res.push(item);
       }
     });
-    this.currentLang=localStorage.getItem('currentLang');
+
+    this.currentLang = localStorage.getItem('currentLang');
 
     this.lang.langs.forEach(elem => {
-      if (elem.locale == this.currentLang) {
+      if (elem.locale === this.currentLang) {
         this.flagicon = elem.src;
       }
     })

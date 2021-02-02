@@ -358,6 +358,8 @@
     "orderEmail": "Email",
     "orderRecipient": "Получатель",
     "orderStatus":"Статус заказа",
+    "paymentStatus": "Статус оплаты",
+    "checkPaymentStatus": "Проверить статус",
     "orderManufacturer": "Производитель",
     "orderClient": "Клиент",
     "orderDateStart": "Начальная дата заказа обязательна",

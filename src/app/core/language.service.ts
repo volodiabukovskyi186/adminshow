@@ -99,7 +99,13 @@ export class LanguageService implements OnInit {
       //   this.translate.defaultLang = res.data.code;
       //   this.use(res.data.code);
       // }
-      localStorage.setItem('currentLang',res.data.code)
+      
+      if (localStorage.getItem('currentLang')) {
+        const userLang = localStorage.getItem('currentLang');
+        localStorage.setItem('currentLang', userLang);
+      }
+      
+      //localStorage.setItem('currentLang', res.data.code);
     })
   }
 }

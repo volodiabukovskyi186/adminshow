@@ -362,6 +362,8 @@
     "orderEmail": "Email",
     "orderRecipient": "Odbiorca",
     "orderStatus":"Status zamówienia",
+    "paymentStatus": "Status płatności",
+    "checkPaymentStatus": "Sprawdź status",
     "orderManufacturer": "Producent",
     "orderClient": "Klient",
     "orderDateStart": "Data rozpoczęcia zamówienia jest wymagana",

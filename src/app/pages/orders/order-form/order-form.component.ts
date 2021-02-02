@@ -3,7 +3,9 @@ import { ILanguage } from "src/app/modules/localization/language/language.servic
 import { PagesService } from '../../pages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalizationServicesService } from '../../localization/services/localization-services.service';
-
+import { CheckLiqpayPaymentStatusComponent } from '../../../modules/dialogs/check-liqpay-payment-status/check-liqpay-payment-status.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-order-form',
@@ -21,10 +23,13 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() ordersStaus = new EventEmitter<any>();
 
   public statusIte = [];
+  public liqpayOrderPaymentStatus: any;
 
   constructor(public pages: PagesService,
     private translate: TranslateService,
     public localizationService: LocalizationServicesService,
+    public dialog: MatDialog,
+    public orderService: OrderService
   ) {
     this.translate.onLangChange.subscribe((lang) => {
       this.getStatus();
@@ -55,5 +60,39 @@ export class OrderFormComponent implements OnInit, OnChanges, AfterViewInit {
     this.userOrders = i;
     console.log(this.userOrders);
     this.ordersStaus.emit(this.userOrders);
+  }
+
+  public openCheckLiqpayPaymentStatus(order): void {
+    console.log(order);
+
+    const modalResStatusData = {
+      version: "3",
+      action: "status",
+      order_id: +order.id + ""
+    }
+
+    this.orderService.checkLiqpayOrderStatus(modalResStatusData)
+      .subscribe((res) => {
+        this.liqpayOrderPaymentStatus = res;
+        
+        // const dialogRef = this.dialog.open(CheckLiqpayPaymentStatusComponent, {
+        //   data: {
+        //       title: 'Select product to review',
+        //       actions: [
+        //         {
+        //           param: 'closeIcon',
+        //           label: 'Cancel',
+        //         },
+        //         {
+        //           param: 'add',
+        //           label: 'Add',
+        //         },
+        //       ],
+        //       order: this.liqpayOrderPaymentStatus
+        //     },
+        //   });
+    
+        //   dialogRef.afterClosed().subscribe(res => {});
+      })
   }
 }

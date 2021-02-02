@@ -357,6 +357,8 @@
     "orderEmail": "Email",
     "orderRecipient": "Recipient",
     "orderStatus":"Order status",
+    "paymentStatus": "Payment status",
+    "checkPaymentStatus": "Check status",
     "orderManufacturer": "Manufacturer",
     "orderClient": "Client",
     "orderDateStart": "Start date is required",
