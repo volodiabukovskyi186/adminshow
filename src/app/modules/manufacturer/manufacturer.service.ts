@@ -75,7 +75,7 @@ export class ManufacturerService {
         environment.manufacturer.manufacturers + params
       );
     }
-    else{
+    else {
       let params = `?take=${this.manufacturer.take}&skip=${this.manufacturer.skip}&lang=${lang}`;
       // return this.http.get<IManufacturerResponse>(
       //   environment.manufacturer.manufacturers + params

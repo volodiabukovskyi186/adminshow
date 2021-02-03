@@ -21,6 +21,9 @@ import { Router, NavigationEnd, Event } from '@angular/router';
 })
 export class UsersPageComponent extends BasePage implements OnInit, PaginationPage {
   public isEdit: boolean = false;
+  public managerRoleId: number = 4;
+  public currentUserRoleId: number;
+
   @Input() model: IProduct;
 
   constructor(
@@ -56,6 +59,7 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
     this.getAllRoles();
     this.getList();
     this.initTranslate();
+    this.getUserByToken();
   }
 
   public initTranslate(): void {
@@ -141,6 +145,12 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
     this.prodCategory.initVales();
   };
 
+  public getUserByToken(): void {
+    this.user.getByToken().subscribe((res) => {
+      this.currentUserRoleId = res.data.user.role_id;
+    });
+  }
+
   //#region override
 
   save = () => {
@@ -169,7 +179,11 @@ export class UsersPageComponent extends BasePage implements OnInit, PaginationPa
     if (c.id != null) {
       this.user.put(data, c.id).subscribe(this.putHandler);
     } else {
-      this.user.post(data).subscribe(this.postHandler);
+      if (c.role_id == this.managerRoleId) {   
+        this.user.createManager(data).subscribe(this.postHandler);
+      } else {
+        this.user.post(data).subscribe(this.postHandler);
+      }
     }
     this.ngxService.start();
   };

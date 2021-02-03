@@ -41,10 +41,10 @@ export class AlbumService {
     count: 0,
     data: [],
     skip: 0,
-    take: 20,
+    take: 1000,
   };
   newAlbums: IAlbum[] = [];
-  takeAlbums: number = 20;
+  takeAlbums: number = 1000;
 
   albumBreadcrumbs: IAlbumBreadcrumb[] = [];
 
@@ -79,7 +79,9 @@ export class AlbumService {
 
     let data = JSON.stringify({
       title: album.title,
-      parent_id: this.activeAlbum?.id || this.currentAlbumId
+      parent_id: this.activeAlbum?.id 
+
+      // || this.currentAlbumId
       // parent_id:
       //   this.activeAlbum && this.activeAlbum.id != null
       //     ? this.activeAlbum.id.toString()
@@ -146,6 +148,16 @@ export class AlbumService {
     if (index !== -1) {
       array.splice(index, 1);
     }
+  }
+
+  public getAlbumsByParentId(parentId): Observable<any> {
+    let parent_id = "";
+    if (parentId) {
+      parent_id = "&parent_id=" + parentId;
+      console.log(parent_id);
+    }
+
+    return this.http.get(`${environment.host}albums?skip=0&take=${this.takeAlbums}${parent_id}`);
   }
 
   public getAlbumsByManager(parentId): Observable<any> {

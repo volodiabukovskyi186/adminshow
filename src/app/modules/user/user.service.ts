@@ -33,6 +33,10 @@ export class UserService {
     return this._http.post(environment.user.user, data);
   }
 
+  createManager(data: any): Observable<any> {
+    return this._http.post(`${environment.host}manager/create`, data);
+  }
+
   put(data: any, id: number): Observable<any> {
     return this._http.put(`${environment.user.user}/${id}`, data);
   }

@@ -27,7 +27,7 @@ export class GalleryViewComponent implements OnInit {
   public albumId: number;
   public parent: string;
   public currentUserRoleId: number;
-  public albumIdManager: number;
+  public currentAlbumId: number;
   public albumManagerFolder: any;
 
   constructor(
@@ -46,7 +46,7 @@ export class GalleryViewComponent implements OnInit {
   getUserByToken(): void {
     this.userService.getByToken().subscribe((res) => {
       this.currentUserRoleId = res.data.user.role_id;
-      this.albumIdManager = res.data.user.album_id;
+      this.currentAlbumId = res.data.user.album_id;
       this.startLoad();
     });
   }
@@ -58,31 +58,30 @@ export class GalleryViewComponent implements OnInit {
     this.image.images.data = [];
 
     if (this.currentUserRoleId === 1) {
-      this.album.getAlbums().subscribe(this.getAlbumsHandler);
+      //this.album.getAlbums().subscribe(this.getAlbumsHandler);
+      this.album.getAlbumsByParentId(this.album.activeAlbum?.id).subscribe(this.getAlbumsHandler);
 
       this.image
       .getImages(this.album.activeAlbum?.id)
       .subscribe(this.getImagesHandler);
 
     } else {
-      this.album.getAlbumsByManager(this.album.activeAlbum?.id || this.albumIdManager).subscribe((res) => {
+      this.album.getAlbumsByManager(this.album.activeAlbum?.id || this.currentAlbumId).subscribe((res) => {
         console.log(res);
         this.album.albums.data = res.data;
 
-        if (this.album.activeAlbum.id) {
-          this.album.albums.data = this.album.albums.data.filter((val) => { return (val.id === this.album.activeAlbum.id) && !this.album.activeAlbum.id});
-        } else {
-          this.album.albums.data = res.data;
-        }
-
         this.image
-        .getManagerImages(this.album.activeAlbum?.id || this.albumIdManager)
+        .getManagerImages(this.album.activeAlbum?.id || this.currentAlbumId)
         .subscribe(this.getImagesHandler);
       })
     }
 
     this.album.getAllParent().subscribe(this.getAllParentHandler);
 
+  }
+
+  public getImagesByRole(): void {
+    
   }
 
   //#region albums
@@ -120,12 +119,12 @@ export class GalleryViewComponent implements OnInit {
 
     // console.log('this.album.albums.data === >>>>', this.album.albums.data)
 
-    if (this.album.activeAlbum.id) {
-      this.album.albums.data = this.album.albums.data.filter((val) => { return (val.id === this.album.activeAlbum.id) && !this.album.activeAlbum.id});
+    // if (this.album.activeAlbum.id) {
+    //   this.album.albums.data = this.album.albums.data.filter((val) => { return (val.id === this.album.activeAlbum.id) && !this.album.activeAlbum.id});
       
-    } else {
-      this.album.albums.data = data.data;
-    }
+    // } else {
+    //   this.album.albums.data = data.data;
+    // }
   };
 
   getAllParentHandler = (data) => {

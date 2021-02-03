@@ -60,12 +60,12 @@
               {{ userRoleId }} -->
               <ng-container *ngIf="!userRoleStatus">
                   <!-- *ngFor="let desc of item.description" -->
-                <span class="title flag-container">
+                <span class="title flag-container" *ngFor="let manunacturerDesc of item?.description">
                   <!-- <span class="flag">
                     {{ langService.getFromList(desc.lang_id)?.flag }}
                   </span> -->
-                  <img class="flag" src="{{ langService.getFromList(item?.description?.lang_id)?.flag }}"/>
-                  <span class="name">{{ item?.description?.name }}</span>
+                  <img class="flag" src="{{ langService.getFromList(manunacturerDesc?.lang_id)?.flag }}"/>
+                  <span class="name">{{ manunacturerDesc?.name }}</span>
                 </span>
               </ng-container>
               <ng-container *ngIf="userRoleStatus"> 
@@ -81,7 +81,7 @@
           </td>
 
           <td class="text-center">
-            <small>{{ item.updated_at |localDate: "d MMMM HH:mm"}}</small>
+            <small>{{ item.updated_at | localDate: "d MMMM HH:mm" }}</small>
             <small *ngIf="!item.updated_at">—</small>
           </td>
           <td>
