@@ -48,7 +48,7 @@
       [(ngModel)]="model.manufactured_id"
     >
       <option *ngFor="let c of managerManufacturers" value="{{ c.id }}">{{
-        c.description?.name
+        c.description[0]?.name
       }}</option>
     </select>
   </div>

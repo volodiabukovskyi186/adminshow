@@ -23,7 +23,7 @@
                             <th class="th-order order-text order-title">
                                 {{ 'orders.ordersDelivery' | translate }}
                             </th>
-                            <th class="th-order order-text">
+                            <th class="th-order order-text max-width__300px">
                                 {{ order?.checkoutDelivery }} {{ order?.checkoutDeliveryAddress }}
                             </th>
                         </tr>
@@ -59,7 +59,13 @@
                                 <button class="liqpay-status-btn" (click)="openCheckLiqpayPaymentStatus(order)"
                                     >{{ 'orders.checkPaymentStatus' | translate }}
                                 </button>
-                                <div *ngIf="liqpayOrderPaymentStatus" class="liqpay-status-text">{{ this.liqpayOrderPaymentStatus?.result?.err_description }}</div>
+                                <div *ngIf="liqpayOrderPaymentStatus" 
+                                    class="liqpay-status-text"
+                                    [ngClass]="{
+                                        'red-bg': liqpayOrderPaymentStatus?.result?.status === 'error',
+                                        'green-bg': liqpayOrderPaymentStatus?.result?.status === 'success'
+                                    }"
+                                >{{ liqpayOrderPaymentStatus?.result?.err_description }}</div>
                             </th>
                         </tr>
                     </table>

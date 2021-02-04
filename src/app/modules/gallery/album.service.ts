@@ -45,13 +45,14 @@ export class AlbumService {
   };
   newAlbums: IAlbum[] = [];
   takeAlbums: number = 1000;
+  userId: number;
 
   albumBreadcrumbs: IAlbumBreadcrumb[] = [];
 
   public getUserByToken(): void {
     this.userService.getByToken().subscribe((res) => {
       console.log(res);
-
+      this.userId = res.data.user.id;
       this.currentAlbumId = res.data.user.album_id;
       this.activeAlbum.parent_id = this.currentAlbumId;
     });
@@ -77,17 +78,28 @@ export class AlbumService {
   createAlbum(album: IAlbum): Observable<any> {
     this.getUserByToken();
 
-    let data = JSON.stringify({
-      title: album.title,
-      parent_id: this.activeAlbum?.id 
+    let data;
+
+    console.log('album ===== >>>.', album);
+
+    if (this.userId === 1) {
+      data = JSON.stringify({
+        title: album.title,
+        parent_id: this.activeAlbum?.id
+      });
+    } else {
+      data = JSON.stringify({
+        title: album.title,
+        parent_id: this.activeAlbum?.id || this.currentAlbumId
+      });
+    }
+
 
       // || this.currentAlbumId
       // parent_id:
       //   this.activeAlbum && this.activeAlbum.id != null
       //     ? this.activeAlbum.id.toString()
       //     : null,
-    });
-    console.log(data);
 
     return this.http.post(`${environment.gallery.images.album}`, data);
   }
