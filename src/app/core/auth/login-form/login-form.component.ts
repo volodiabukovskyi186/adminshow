@@ -10,13 +10,15 @@ import { AuthResponse } from "../models";
 import { LanguageService } from "src/app/core/language.service";
 import { ForgotPasswordDialogComponent } from "src/app/modules/dialogs/forgot-password-dialog/forgot-password-dialog.component";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: "app-login-form",
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.scss"]
 })
-export class LoginFormComponent implements OnDestroy{
+export class LoginFormComponent implements OnInit, OnDestroy{
   @Input() labelLogin: string;
   @Input() labelPassword: string;
   @Input() labelForgotPassword: string;
@@ -38,6 +40,8 @@ export class LoginFormComponent implements OnDestroy{
     private UserService: UserService,
     public dialog: MatDialog
   ) {}
+
+  public ngOnInit(): void {}
 
   authForm = new FormGroup({
     login: new FormControl(""),

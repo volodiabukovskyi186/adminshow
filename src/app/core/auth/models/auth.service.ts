@@ -2,13 +2,15 @@ import { UserService } from '../../../modules/user/user.service';
 import { MenuService } from 'src/app/core/menu.service';
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
+  private loginStatusStream$: Subject<any> = new Subject();
+
   // public get permissions(): Array<string> {
   //   return ["read", "manage_roles", "manage_categorys", "manage_albums", "manage_imagess"];
   // }
@@ -45,12 +47,18 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    // this.userService.SUser.next(true);
-
-   
+    // this.userService.SUser.next(true); 
   }
 
   mailRestore(data: any) {
     return this._http.put(`${environment.host}mailRestore`, data);
+  }
+
+  public updatedLoginStatus$(message: any) {
+    this.loginStatusStream$.next(message);
+  }
+
+  public getLoginStatus$() {
+    return this.loginStatusStream$;
   }
 }

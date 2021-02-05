@@ -13,6 +13,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 import { AuthService } from "./auth/models/auth.service";
 import { Router } from "@angular/router";
 
+
 @Injectable()
 export class ServerErrorInterceptor implements HttpInterceptor {
   constructor(
@@ -27,9 +28,9 @@ export class ServerErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError((error, caught) => {
-        this.handleError(error);
-        return of(error);
+      catchError((err, caught) => {
+        this.handleError(err);
+        return of(err);
       }) as any
     );
   }
@@ -66,9 +67,17 @@ export class ServerErrorInterceptor implements HttpInterceptor {
         break;
       }
 
+      case 503: {
+        let msg = err?.error?.error?.message ?? err?.error ?? err?.message;
+        this.auth?.updatedLoginStatus$({
+          message: msg,
+          status: err?.status 
+        });
+      }
+
       default:
-        this.toastr.error(err.message, err.name);
-        break;
+        // this.toastr.error(err.message, err.name);
+        // break;
     }
   }
 }
