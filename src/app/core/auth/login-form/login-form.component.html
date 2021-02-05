@@ -37,14 +37,17 @@
   <div class="form-row">
     <div class="description"></div>
     <div class="original">
-      <a href="">{{labelForgotPassword}}</a>
+      <!-- <a href="">{{labelForgotPassword}}</a> -->
+      <div (click)="openForgotPasswordModal()" class="lost-pass">
+        {{ labelForgotPassword }}
+      </div>
     </div>
   </div>
 
   <div class="flex center padding">
     <button
       [disabled]="!authForm.valid"
-      class="button delete radius large"
+      class="button delete radius large lost-pass"
       type="submit"
     >
       {{ labelSubmit }}

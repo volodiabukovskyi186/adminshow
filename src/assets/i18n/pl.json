@@ -89,7 +89,12 @@
     "addEditPage": "Dodaj/Edytuj stronę",
     "phoneTitle": "Telefon",
     "productTitle": "Produkt",
-    "productSumTitle": "Suma"
+    "productSumTitle": "Suma",
+    "accauntEmail": "Nazwa użytkownika lub adres e-mail",
+    "restore": "Zresetuj hasło",
+    "resetEmailPassword": "Wiadomość dotycząca resetowania hasła została wysłana na Twój adres e-mail.",
+    "successRestoreMessage": "Wiadomość e-mail dotycząca resetowania hasła została wysłana na adres e-mail zapisany na Twoim koncie, ale może minąć kilka minut, zanim pojawi się w skrzynce odbiorczej. Poczekaj co najmniej 10 minut przed ponowną próbą resetowania.",
+    "lostPassword": "Zgubiłeś hasło? Wprowadź swoją nazwę użytkownika lub adres e-mail. Otrzymasz link do utworzenia nowego hasła e-mail."
   },
   "pageNotFound": {
     "backToHome": "Wrócić do domu",

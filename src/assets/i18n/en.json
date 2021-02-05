@@ -93,7 +93,12 @@
     "addEditPage": "Add/Edit page",
     "phoneTitle": "Phone",
     "productTitle": "Product",
-    "productSumTitle": "Sum"
+    "productSumTitle": "Sum",
+    "accauntEmail": "Username or email address",
+    "restore": "Reset password",
+    "resetEmailPassword": "Password reset email has been sent.",
+    "successRestoreMessage": "A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox. Please wait at least 10 minutes before attempting another reset.",
+    "lostPassword": "Lost your password? Please enter your user name or email address. You will receive a link to create a new password via email."
   },
   "pageNotFound": {
     "backToHome": "Back To Home",

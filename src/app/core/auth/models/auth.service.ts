@@ -49,4 +49,8 @@ export class AuthService {
 
    
   }
+
+  mailRestore(data: any) {
+    return this._http.put(`${environment.host}mailRestore`, data);
+  }
 }

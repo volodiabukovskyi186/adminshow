@@ -8,6 +8,8 @@ import { NgxUiLoaderService } from "ngx-ui-loader";
 import { Router } from "@angular/router";
 import { AuthResponse } from "../models";
 import { LanguageService } from "src/app/core/language.service";
+import { ForgotPasswordDialogComponent } from "src/app/modules/dialogs/forgot-password-dialog/forgot-password-dialog.component";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: "app-login-form",
@@ -33,7 +35,8 @@ export class LoginFormComponent implements OnDestroy{
     private ngxService: NgxUiLoaderService,
     private toastr: ToastrService,
     private router: Router,
-    private UserService: UserService
+    private UserService: UserService,
+    public dialog: MatDialog
   ) {}
 
   authForm = new FormGroup({
@@ -65,4 +68,23 @@ export class LoginFormComponent implements OnDestroy{
       this.router.navigate(["/" + this.lang.translate.defaultLang]);
     }
   };
+
+  public openForgotPasswordModal(): void {
+    const dialogRef = this.dialog.open(ForgotPasswordDialogComponent, {
+      data: {
+        actions: [
+          {
+            param: 'closeIcon',
+            label: 'Cancel',
+          },
+          {
+            param: 'add',
+            label: 'Add',
+          },
+        ],
+        },
+      });
+    
+    dialogRef.afterClosed().subscribe(res => {});
+  }
 }
