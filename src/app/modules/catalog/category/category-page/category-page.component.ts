@@ -67,7 +67,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     super.initPanelButton();
     this.getLangList();
     this.getList(); 
-    //this.initTranslate();
+    this.initTranslate();
     this.routerSubscription = this._router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.initTranslate();
