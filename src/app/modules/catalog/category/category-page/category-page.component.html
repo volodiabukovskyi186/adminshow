@@ -81,11 +81,11 @@
               </div>
             </div>
           </td>
-          <td>
+          <td *ngIf="item.parents">
             <div class="flex wrap" style="width: 100%;">
-              <span class="title" *ngFor="let desc of item.parents">{{
-                desc.name
-              }}</span>
+              <span class="title" *ngFor="let desc of item.parents">
+                {{ desc.name }}
+              </span>
             </div>
           </td>
 
@@ -93,10 +93,10 @@
             <small>{{ item.updated_at | localDate }}</small>
             <small *ngIf="!item.updated_at">—</small>
           </td>
-          <td *ngIf="userRoleStatus">
+          <td>
             <div class="flex wrap center">
               <rap-delete-button
-                [attr.data-tooltip-left]="'APP.on_off' | translate"
+                data-tooltip-left="on/off"
                 class="button transparent radius"
                 [ngClass]="{ on: item.status, off: !item.status }"
                 (click)="updateStatus(item)"

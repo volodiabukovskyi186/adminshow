@@ -44,6 +44,8 @@ export class AttributesComponent implements OnInit {
   }
   getAllAttrHandler = (data) => {
     this.attr.all = data.data;
+
+    console.log('this.attr.all ==== >>>>', this.attr.all);
   };
 
   getProdAttr() {

@@ -49,6 +49,8 @@ rap-delete-button.button.transparent {
     font-size: $fontSizeH5;
   }
   .name {
+    color: rgba(50, 50, 50, 0.8);
+    text-decoration: line-through;
   }
 }
 

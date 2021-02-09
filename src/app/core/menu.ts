@@ -73,7 +73,7 @@ export const MENU = [
             item('MENU.manage_site.menu', 'menu', true, ICON_MENU_ITEM, 'manage_menus'),
             item('MENU.manage_site.delivery_methods', 'delivery_methods', true, ICON_MENU_ITEM, 'manage_menus'),
             item('MENU.manage_site.payment_methods', 'payment_methods', true, ICON_MENU_ITEM, 'manage_menus'),
-            item('MENU.liqpay', 'liqpay', true, ICON_MENU_ITEM, 'payment_methods'),
+            item('MENU.liqpay', 'liqpay', true, ICON_MENU_ITEM, 'manage_currencys'),
             // item("Webhooks", "webhooks"),
         ],
         'assets/icons/manage.svg', '',

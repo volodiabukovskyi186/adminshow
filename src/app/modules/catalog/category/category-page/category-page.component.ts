@@ -39,6 +39,8 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   public isCategoryAdded: boolean = false;
   public isCategoryEdited: boolean = false;
   public userCategories: any;
+  public highlightIndex: number = 0;
+
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -57,7 +59,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   }
 
   public ngOnDestroy(): void {
-    this.routerSubscription.unsubscribe();
+   //this.routerSubscription.unsubscribe();
   }
 
   public ngOnInit(): void {
@@ -65,7 +67,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     super.initPanelButton();
     this.getLangList();
     this.getList(); 
-    this.initTranslate();
+    //this.initTranslate();
     this.routerSubscription = this._router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
         this.initTranslate();
@@ -73,7 +75,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
       }
     });
     this.getUserByTokin();
-    this.getUserCategories();
+    //this.getUserCategories();
   }
 
   public getUserByTokin(): void {
@@ -116,7 +118,7 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
   public getList(): void {
     this.ngxService.start();
     this.category.getList().subscribe(this.getListHandler);
-    this.getCategories();
+    this.getUserCategories();
   }
 
   getListHandler = (data) => {
@@ -125,31 +127,31 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
     console.log('this.category.category ===== >>>>', this.category.category);
   };
 
-  public getCategories(): void {
-    this.category.getAllCategories().subscribe((res) => {
+  //public getCategories(): void {
+    //this.category.getAllCategories().subscribe((res) => {
       //this.getListHandler(res);
-      console.log('res ===== >>>>>', res);
+      //console.log('res ===== >>>>>', res);
 
-      this.displayAllCaterories = this.toArray(res.data, []);
-    })
-  }
+      //this.displayAllCaterories = this.toArray(res.data, []);
+    //})
+  //}
 
-  public toArray(nodes: any[], arr: any[]) {
-    if (!nodes) {
-      return [];
-    }
+  // public toArray(nodes: any[], arr: any[]) {
+  //   if (!nodes) {
+  //     return [];
+  //   }
 
-    if (!arr) {
-      arr = [];
-    }
+  //   if (!arr) {
+  //     arr = [];
+  //   }
 
-    for (var i = 0; i < nodes.length; i++) {
-      arr.push(nodes[i]);
-      this.toArray(nodes[i].sub, arr);
-    }
+  //   for (var i = 0; i < nodes.length; i++) {
+  //     arr.push(nodes[i]);
+  //     this.toArray(nodes[i].sub, arr);
+  //   }
 
-   return arr;
-  }
+  //  return arr;
+  // }
 
   getUserCategories(): void {
     this.category.getCategories().subscribe((resp) => {
@@ -174,6 +176,8 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
       .updateStatus(item.id, item.status == 0 ? 1 : 0)
       .subscribe(this.updateStatusHandler);
     this.editItem = item;
+
+    //debugger;
   }
 
   updateStatusHandler = (data) => {
@@ -182,8 +186,6 @@ export class CategoryPageComponent extends BasePage implements OnInit, Paginatio
       this.editItem.status == 0 ? 1 : 0
     );
   };
-
-  highlightIndex: number = 0;
 
   //#region
 

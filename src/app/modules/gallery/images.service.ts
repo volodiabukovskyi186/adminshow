@@ -82,7 +82,8 @@ export class ImagesService {
     const formData: FormData = new FormData();
     formData.append("images", image, image.name);
     // formData.append("album_id", albumId != null ? albumId.toString() : "");
-    formData.append("album_id", albumId.toString() || "");
+    // debugger;
+    formData.append("album_id", albumId?.toString() || "");
 
     const req = new HttpRequest(
       "POST",

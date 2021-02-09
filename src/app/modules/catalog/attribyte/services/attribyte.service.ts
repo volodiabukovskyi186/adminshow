@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { IAttribyte, IResponseDataPagination } from "../interfaces";
 import { environment } from "src/environments/environment";
+import { LanguageService } from 'src/app/core/language.service';
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,10 @@ export class AttribyteService {
   };
   all: Array<IAttribyte> = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    public lang: LanguageService
+  ) {}
 
   getList(): Observable<IResponseDataPagination<IAttribyte>> {
     // let skip = this.page * this.data.take - this.data.take;
@@ -28,8 +32,14 @@ export class AttribyteService {
   }
 
   getAll(): Observable<IResponseDataPagination<IAttribyte>> {
+    let lang = this.lang.current;
     let skip = 0;
     let params = `?take=${200}&skip=${skip}`;
+
+    if (lang) {
+      params = `?lang=${lang}`;
+    }
+
     return this.http.get<IResponseDataPagination<IAttribyte>>(
       environment.catalog.attr.atrribytes + params
     );
