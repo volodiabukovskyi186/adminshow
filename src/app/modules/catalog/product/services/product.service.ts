@@ -42,6 +42,10 @@ export class ProductService {
     return this.http.get(`${environment.host}client/products/${productId}`);
   }
 
+  getProduct(productId: number): Observable<any> {
+    return this.http.get(`${environment.host}product/${productId}`);
+  }
+
   post(data: any): Observable<any> {
     return this.http.post(environment.catalog.product.product, data);
   }

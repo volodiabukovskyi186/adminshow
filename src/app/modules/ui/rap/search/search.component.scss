@@ -13,6 +13,7 @@
     width: 25px;
     height: 25px;
     margin-left: -37px;
+    background-color: #fff;
 }
 
 @media screen and(max-width: 768px) {
@@ -46,6 +47,10 @@
 
             &:hover {
                 color: #9F1941;
+            }
+
+            &:focus {
+                background-color: none;
             }
 
             &:not(:first-child) {

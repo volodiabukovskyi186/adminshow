@@ -10,7 +10,7 @@
 
     <div class="search-results" *ngIf="searchService?.list?.length && isActiveResults">
         <div *ngFor="let item of searchService.list"
-           [routerLink]="['/products']">
+           >
            <div class="search-content" (click)="selectProduct(item.id)">
                <div>
                     <img src="{{ host + item?.image?.src }}" class="search-img"/>

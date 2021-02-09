@@ -49,7 +49,7 @@ export class RolesPageComponent implements OnInit {
     this.pages.panelSettings.left = true;
     this.pages.panelSettings.top = true;
 
-    this.pages.panelButtonSettings.rightToggle = true;
+    this.pages.panelButtonSettings.rightToggle = false;
     this.pages.panelButtonSettings.plus = true;
 
     this.breadcrumbs.breadcrumbs = [

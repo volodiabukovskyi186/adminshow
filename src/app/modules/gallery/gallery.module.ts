@@ -12,6 +12,7 @@ import { ChoiceButtonComponent } from "./choice-button/choice-button.component";
 import { AlbumBreadcrumbComponent } from "./album-breadcrumb/album-breadcrumb.component";
 import { AlbumBreadcrumbsComponent } from "./album-breadcrumbs/album-breadcrumbs.component";
 import { TranslateModule } from "@ngx-translate/core";
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const c = [
   FolderComponent,
@@ -32,7 +33,8 @@ const c = [
     FormsModule, 
     UiModule, 
     NgxFilesizeModule,
-    TranslateModule
+    TranslateModule,
+    MatPaginatorModule
   ],
 })
 export class GalleryModule {}

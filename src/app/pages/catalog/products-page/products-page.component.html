@@ -22,7 +22,7 @@
     </ng-template>
     <table
       class="raisins-table border-all radius"
-      *ngIf="product?.data?.data?.length >= 1 ; else notfound"
+      *ngIf="product?.data?.data?.length > 0 ; else notfound"
     >
       <thead>
         <tr>
@@ -42,19 +42,18 @@
           *ngFor="let item of product.data?.data"
           [ngClass]="{ off: !item.status }"
         >
-          <td data-label="ID" class="text-center">{{ item.id }}</td>
+          <td data-label="ID" class="text-center">{{ item?.id }}</td>
           <td data-label="LOGO">
             <div class="ratio">
               <div class="imax">
                 <img
                   class="contain"
-                  [src]="'//' + product.data.host + item.image?.src_mini"
-                  [alt]="item.image_id"
+                  [src]="host + item?.image?.src"
+                  [alt]="item?.image_id"
                 />
               </div>
             </div>
           </td>
-
       
           <td>
             <div class="flex wrap" style="width: 100%;">

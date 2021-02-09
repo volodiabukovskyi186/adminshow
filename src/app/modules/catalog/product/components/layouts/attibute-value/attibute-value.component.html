@@ -6,9 +6,9 @@
   </div>
 
   <div class="original">
-    <select class="radius" [(ngModel)]="model.attribyte_id">
-      <option *ngFor="let c of attributes" value="{{ c.id }}">{{
-        c.description[0].name
+    <select class="radius" [(ngModel)]="model.attribyte_id" (click)="getClientAttributes()">
+      <option *ngFor="let attr of filteredAttributes$ | async" value="{{ attr.id }}">{{
+        attr.description.name
       }}</option>
     </select>
   </div>

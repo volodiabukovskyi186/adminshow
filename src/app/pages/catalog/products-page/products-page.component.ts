@@ -22,6 +22,7 @@ import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
 import { SearchService } from '../../../modules/ui/rap/search/services/search.service';
 import { isString } from 'util';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   animations: [changeValueHighlight],
@@ -33,6 +34,7 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
   public userRole: number = 0;
   public search: string;
   public searchProductId: number;
+  public host = environment.host;
 
   constructor(
     protected ngxService: NgxUiLoaderService,
@@ -54,12 +56,12 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       super(pages);
 
       this.translate.onLangChange.subscribe(lang => {
-        this.getUserByTokin();
+        //this.getUserByTokin();
       })
     }
 
   public ngOnChanges(): void {
-    this.getUserByTokin();
+    //this.getUserByTokin();
   }
 
   public ngOnInit(): void {
@@ -108,19 +110,15 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
       });
   }
 
+  public get(searchData): void {
+    this.searchService.search(searchData).subscribe(this.searchHandler);
+  }
+
   public searchHandler = (data) => {
     console.log(data);
 
     this.product.data.data = data.data;
     this.product.data.count = data.count;
-    this.breadcrumbs[1] = {
-      link: '/#',
-      title: 'SearchResult',
-    };
-  }
-
-  public get(): void {
-    this.searchService.search(this.search).subscribe(this.searchHandler);
   }
 
   public isNumber(n) {
@@ -130,7 +128,6 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
   public getList(role_id): void {
     this.ngxService.start();
     this.product.getList(role_id).subscribe(this.getListHandler);
-
   }
 
   public getProductsBySearch(roleId): void {
@@ -140,13 +137,15 @@ export class ProductsPageComponent extends BasePage implements OnInit, OnChanges
 
         if (data.hasOwnProperty('search')) {
           if (this.isNumber(data.search)) {
-            this.product.getProductById(Number(data.search)).subscribe((res) => {
+            this.product.getProduct(Number(data.search)).subscribe((res) => {
               this.product.data.data = [res.data];
+              //debugger;
             });
           }
           if (!this.isNumber(data.search)) {
-            this.search = data.search;
-            this.get();
+            //this.search = data.search;
+            this.get(data.search);
+            //debugger;
           }
         } else {
         }

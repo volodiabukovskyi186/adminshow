@@ -41,6 +41,9 @@ export class GalleryViewComponent implements OnInit {
   public ngOnInit(): void {
     //this.getAlbumsByManager();
     this.getUserByToken();
+
+    this.album.albums.data = [];
+    this.image.images.data = [];
   }
 
   getUserByToken(): void {
@@ -53,10 +56,6 @@ export class GalleryViewComponent implements OnInit {
 
   startLoad() {
     this.ngxService.start();
-
-    this.album.albums.data = [];
-    this.image.images.data = [];
-
     if (this.currentUserRoleId === 1) {
       //this.album.getAlbums().subscribe(this.getAlbumsHandler);
       this.album.getAlbumsByParentId(this.album.activeAlbum?.id).subscribe(this.getAlbumsHandler);
@@ -211,23 +210,41 @@ export class GalleryViewComponent implements OnInit {
     this.album.activeAlbum = album;
   }
 
-  pageNextHandler(): void {
-    this.image.page++;
+  pageEvent(event): void {
+    console.log('event===>', event);
+
+    this.image.images.count = event.length;
+    this.image.images.take = event.pageSize;
+    this.image.images.skip = event.pageSize * event.pageIndex;
+
+    if (this.currentUserRoleId === 1) {
+      this.image
+      .getImages(this.album.activeAlbum?.id)
+      .subscribe(this.getImagesHandler);
+    } else {
+      this.image
+        .getManagerImages(this.album.activeAlbum?.id || this.currentAlbumId)
+        .subscribe(this.getImagesHandler);
+    }
   }
 
-  pagePrevHandler(): void {
-    this.image.page--;
-  }
+  // pageNextHandler(): void {
+  //   this.image.page++;
+  // }
 
-  pageToHandler(page: number): void {
-    this.image.page = page;
-  }
+  // pagePrevHandler(): void {
+  //   this.image.page--;
+  // }
 
-  pageChangedHandler(): void {
-    // this.getList();
-    this.getImages();
-    window.scrollTo(0, 0);
-  }
+  // pageToHandler(page: number): void {
+  //   this.image.page = page;
+  // }
+
+  // pageChangedHandler(): void {
+  //   // this.getList();
+  //   this.getImages();
+  //   window.scrollTo(0, 0);
+  // }
 
   Math = Math;
 }

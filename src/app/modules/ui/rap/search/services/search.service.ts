@@ -20,6 +20,8 @@ export class SearchService {
         take = 20;
     let lang = this.lang.current;
     let params = `?skip=${skip}&take=${take}&q=${q}&lang=${lang}`;
+    console.log(params);
+    
     return this.http.get<any>(
       environment.host + `product/searchProduct` + params
     );

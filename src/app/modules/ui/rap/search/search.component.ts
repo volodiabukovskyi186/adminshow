@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from './services/search.service';
 import { Router } from '@angular/router';
 import { environment } from "src/environments/environment";
+import { LanguageService } from 'src/app/core/language.service';
 
 @Component({
   selector: 'app-search',
@@ -15,26 +16,31 @@ export class SearchComponent implements OnInit {
   private searchText: string;
   public time: number = 500;
   public timer: any;
+  public currentLang: string;
 
   constructor(
     public searchService: SearchService, 
     private router: Router,
+    public lang: LanguageService
     //public currency: CurrencyService
   ) { }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.currentLang = `/${this.lang.current}/products`;
+  }
 
   public onInput(e): void {
+    this.searchText = e.target.value;
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
-      let v: string = e.target.value;
+      //let v: string = e.target.value;
 
-      if (v.length < 3) {
+      if (this.searchText.length < 3) {
         return this.isActiveResults = false;
       }
 
-      this.searchText = v;
-      this.searchService.search(v).subscribe(this.searchHandler);
+      //this.searchText = v;
+      this.searchService.search(this.searchText).subscribe(this.searchHandler);
 
     }, this.time)
   }
@@ -45,8 +51,9 @@ export class SearchComponent implements OnInit {
   }
 
   public pressEnter(event): void {
-    if (event.key === 'Enter') {
-      this.router.navigate(['/products'], { queryParams: { search: this.searchText } });
+    if (event.key === "Enter") {
+      //debugger;
+      this.router.navigate([`/${this.lang.current}/products`], { queryParams: { search: this.searchText } });
     }
   }
 
@@ -55,10 +62,8 @@ export class SearchComponent implements OnInit {
   }
 
   public selectProduct(selectedProductId: number): void {
-
-
     if (selectedProductId) {
-      this.router.navigate(['/products'], { queryParams: { search: selectedProductId } });
+      this.router.navigate([`/${this.lang.current}/products`], { queryParams: { search: selectedProductId } });
     }
   }
 }

@@ -45,6 +45,18 @@ export class AttribyteService {
     );
   }
 
+  getClientAttributes(): Observable<any> {
+    let lang = this.lang.current;
+    let skip = 0;
+    let params = `?take=${200}&skip=${skip}`;
+
+    if (lang) {
+      params = `?lang=${lang}`;
+    }
+
+    return this.http.get<any>(`${environment.host}client/attribytes` + params);
+  }
+
   getAttr(attr: number, lang: number) {
     for (let i = 0; i < this.all.length; i++) {
       const a = this.all[i];

@@ -16,9 +16,9 @@ import { LanguageService as LocalizationLang } from "src/app/modules/localizatio
 export class AttributesComponent implements OnInit {
   // @Input() model: IProduct;
   @Input() langs: ILanguage[];
+  @Output() modelChange = new EventEmitter();
 
   private _model: IProduct;
-  @Output() modelChange = new EventEmitter();
 
   set model(val: IProduct) {
     this._model = val;
@@ -37,11 +37,13 @@ export class AttributesComponent implements OnInit {
     public languageService: LocalizationLang
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   getAllAttr() {
     this.attr.getAll().subscribe(this.getAllAttrHandler);
   }
+
   getAllAttrHandler = (data) => {
     this.attr.all = data.data;
 

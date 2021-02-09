@@ -114,7 +114,17 @@
   ></rap-folder>
 </div>
 
-<app-pagination *ngIf="image.images.count > 10"
+<div class="footer-wrapper">
+  <mat-paginator *ngIf="image?.images?.count >= 5" class="footer"
+     [length]="image?.images?.count"
+     [pageSize]="image?.images?.take"
+     [pageSizeOptions]="[5, 10, 25]"
+     (page)="pageEvent($event)"
+  >
+  </mat-paginator>
+</div>
+
+<!-- <app-pagination *ngIf="image.images.count > 10"
   class="radius"
   [page]="image.page"
   [total]="Math.ceil(image.images.count / image.images.take)"
@@ -124,4 +134,4 @@
   (goPage)="pageToHandler($event)"
   (pageChanged)="pageChangedHandler()"
 >
-</app-pagination>
+</app-pagination> -->

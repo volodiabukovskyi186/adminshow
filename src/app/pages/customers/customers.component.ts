@@ -133,6 +133,7 @@ export class CustomersComponent extends BasePage implements OnInit {
   };
 
   public deleteStatus(item) {
+    console.log(item);
     this.customersService.deleteCustomers(item).subscribe(data => {
       this.getCustomers();
     })

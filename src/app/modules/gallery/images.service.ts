@@ -60,8 +60,8 @@ export class ImagesService {
   }
 
   getImages(albumId: number): Observable<IImageResponse> {
-    let skip = this.page * this.images.take - this.images.take;
-    let params = `?take=${this.images.take}&skip=${skip}`;
+    //let skip = this.page * this.images.take - this.images.take;
+    let params = `?take=${this.images.take}&skip=${this.images.skip}`;
 
     return this.http.get<IImageResponse>(
       environment.gallery.images.images +
@@ -70,8 +70,8 @@ export class ImagesService {
   }
 
   getManagerImages(albumId: number): Observable<any> {
-    let skip = this.page * this.images.take - this.images.take;
-    let params = `?take=${this.images.take}&skip=${skip}`;
+    //let skip = this.page * this.images.take - this.images.take;
+    let params = `?take=${this.images.take}&skip=${this.images.skip}`;
 
     return this.http.get(`${environment.host}manager/images${params}&album=${albumId}`);
   }
