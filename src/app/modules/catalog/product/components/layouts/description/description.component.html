@@ -29,7 +29,8 @@
       </div>
 
       <div class="original">
-        <angular-editor [placeholder]="'...'" [(ngModel)]="item.discription" [config]="editorConfig"></angular-editor>
+        <angular-editor [placeholder]="'...'" [(ngModel)]="item.discription" [config]="editorConfig"
+          uploadUrl="https://api.showu.com.ua/v1/image/upload"></angular-editor>
         <!-- <textarea
           name=""
           class="radius"

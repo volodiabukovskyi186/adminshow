@@ -68,14 +68,15 @@ export class ManufacturerFormComponent implements OnInit {
         tag: 'h1',
       },
     ],
-    uploadUrl: 'v1/image',
+    //uploadUrl: 'http://localhost:4200/images',
+    //uploadUrl: 'https://api.showu.com.ua/v1/image/upload',
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',
-    toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
-    ]
+    // toolbarHiddenButtons: [
+    //   ['bold', 'italic'],
+    //   ['fontSize']
+    // ]
   };
 
   onReset(): void {

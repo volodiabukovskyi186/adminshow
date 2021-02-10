@@ -62,7 +62,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
         tag: 'h1',
       },
     ],
-    uploadUrl: 'v1/image',
+    //uploadUrl: 'v1/image',
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',

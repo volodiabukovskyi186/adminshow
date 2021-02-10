@@ -55,15 +55,15 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
   public defaultWeight: any;
   public defaultLength: any;
   public siteLanguages;
-  public selectedDefaultLang;
-  public selectedDefaultAdminLang;
+  //public selectedDefaultLang;
+  //public selectedDefaultAdminLang;
   public siteCurrencies;
-  public selectedDefaultCurrency;
+  //public selectedDefaultCurrency;
   public siteLenghts;
-  public selectedLength;
+  //public selectedLength;
   public allLength: any[] = [];
   public siteWeightDesc: any[] = [];
-  public selectedWeight;
+  //public selectedWeight;
   public localizationLang;
   public localizationAdminLang;
   public localizationCurrency;
@@ -137,6 +137,7 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.getSiteDefaultCurrency();
     this.getSiteDefaultWeight();
     this.getSiteDefaultLength();
+    
     this.getLanguages();
     this.getCurrencies();
     this.getLenghts();
@@ -419,15 +420,15 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.settingsPageService.getAllLanguages().subscribe((res) => {
       this.siteLanguages = res.data;
 
-      this.siteLanguages.forEach((val) => {
-        if (val.code === this.defaultLanguage?.code) {
-          this.selectedDefaultLang = this.defaultLanguage?.title;
-        }
+      // this.siteLanguages.forEach((val) => {
+      //   if (val.code === this.defaultLanguage?.code) {
+      //     this.selectedDefaultLang = this.defaultLanguage?.title;
+      //   }
 
-        if (val.code === this.defaultAdminLanguage?.code) {
-          this.selectedDefaultAdminLang = this.defaultAdminLanguage?.title;
-        }
-      })
+      //   if (val.code === this.defaultAdminLanguage?.code) {
+      //     this.selectedDefaultAdminLang = this.defaultAdminLanguage?.title;
+      //   }
+      // })
     })
   }
 
@@ -435,11 +436,11 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.settingsPageService.getAllCurrencies().subscribe((res) => {
       this.siteCurrencies = res.data;
 
-      this.siteCurrencies.forEach((currency) => {
-        if (currency.code === this.defaultCurrency?.code) {
-          this.selectedDefaultCurrency = this.defaultCurrency?.currency_title;
-        }
-      })
+      // this.siteCurrencies.forEach((currency) => {
+      //   if (currency.code === this.defaultCurrency?.code) {
+      //     this.selectedDefaultCurrency = this.defaultCurrency?.currency_title;
+      //   }
+      // })
     })
   }
 
@@ -451,11 +452,11 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
         this.allLength.push(length);
       })
 
-      this.allLength?.forEach((val) => {
-        if (val?.id === this.defaultLength?.description?.id) {
-          this.selectedLength = this.defaultLength?.description?.title;
-        }
-      })
+      // this.allLength?.forEach((val) => {
+      //   if (val?.id === this.defaultLength?.description?.id) {
+      //     this.selectedLength = this.defaultLength?.description?.title;
+      //   }
+      // })
     })
   }
 
@@ -463,11 +464,11 @@ export class SettingsPageFormComponent implements OnInit, OnChanges {
     this.settingsPageService.getWeightDescription().subscribe((res) => {
       this.siteWeightDesc = res.data;
 
-      this.siteWeightDesc?.forEach((val) => {
-        if (val.id === this.defaultWeight?.descriptions[0]?.id) {
-          this.selectedWeight = this.defaultWeight?.descriptions[0]?.unit;
-        }
-      })
+      // this.siteWeightDesc?.forEach((val) => {
+      //   if (val.id === this.defaultWeight?.descriptions[0]?.id) {
+      //     this.selectedWeight = this.defaultWeight?.descriptions[0]?.unit;
+      //   }
+      // })
     })
   }
 

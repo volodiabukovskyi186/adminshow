@@ -55,7 +55,7 @@ export class DescriptionComponent {
         tag: 'h1',
       },
     ],
-    uploadUrl: 'v1/image',
+    //uploadUrl: 'v1/image',
     uploadWithCredentials: false,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [

@@ -170,6 +170,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
       this.manufacturer.post(data).subscribe(this.postHandler);
     }
     this.ngxService.start();
+    this.getList(this.userRoleId);
   };
 
   postHandler = (data: { data: IManufacturer }) => {

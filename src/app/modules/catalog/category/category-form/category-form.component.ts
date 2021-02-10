@@ -106,7 +106,7 @@ export class CategoryFormComponent implements OnInit, OnChanges {
         tag: 'h1',
       },
     ],
-    uploadUrl: 'v1/image',
+    //uploadUrl: 'v1/image',
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',

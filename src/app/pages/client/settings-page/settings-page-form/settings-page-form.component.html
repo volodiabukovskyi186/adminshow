@@ -333,14 +333,14 @@
                         <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.language" | translate }}</label>
                             <div class="sort-products-container">
-                                <mat-form-field appearance="standart" class="sort-products">
+                                <mat-form-field appearance="standart" class="sort-products" *ngIf="defaultLanguage?.title">
                                     <div class="sort-products-wrapper">
                                         <mat-select
                                             id="language"
                                             required
                                             formControlName="language"
                                             (selectionChange)="onChangeLocalizationLang($event)"
-                                            [(ngModel)]="selectedDefaultLang"
+                                            [(ngModel)]="defaultLanguage.title"
                                             >
                                             <div>
                                                 <mat-option *ngFor="let lang of siteLanguages" [value]="lang.title">
@@ -370,14 +370,14 @@
                         <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.adminLanguage" | translate }}</label>
                             <div class="sort-products-container">
-                                <mat-form-field appearance="standart" class="sort-products">
+                                <mat-form-field appearance="standart" class="sort-products" *ngIf="defaultAdminLanguage?.title">
                                     <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="adminLanguage"
                                             required
                                             formControlName="adminLanguage"
                                             (selectionChange)="onChangeLocalizationAdminLang($event)"
-                                            [(ngModel)]="selectedDefaultAdminLang"
+                                            [(ngModel)]="defaultAdminLanguage.title"
                                             >
                                             <div>
                                                 <mat-option *ngFor="let adminLang of siteLanguages" [value]="adminLang.title">
@@ -407,14 +407,14 @@
                         <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.currency" | translate }}</label>
                             <div class="sort-products-container">
-                                <mat-form-field appearance="standart" class="sort-products">
+                                <mat-form-field appearance="standart" class="sort-products" *ngIf="defaultCurrency?.currency_title">
                                     <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="currency"
                                             required
                                             formControlName="currency"
                                             (selectionChange)="onChangeLocalizationCurrency($event)"
-                                            [(ngModel)]="selectedDefaultCurrency">
+                                            [(ngModel)]="defaultCurrency.currency_title">
                                             <div>
                                                 <mat-option *ngFor="let currency of siteCurrencies" [value]="currency.currency_title">
                                                     {{ currency?.currency_title }}
@@ -443,14 +443,14 @@
                         <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.unitsOfMeasurement" | translate }}</label>
                             <div class="sort-products-container">
-                                <mat-form-field appearance="standart" class="sort-products">
+                                <mat-form-field appearance="standart" class="sort-products" *ngIf="defaultLength?.description?.title">
                                     <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="unitsOfMeasurement"
                                             required
                                             formControlName="unitsOfMeasurement"
                                             (selectionChange)="onChangeLocalizationLength($event)"
-                                            [(ngModel)]="selectedLength">
+                                            [(ngModel)]="defaultLength.description.title">
                                             <div *ngFor="let lengthUnit of allLength">
                                                 <mat-option [value]="lengthUnit?.title">
                                                     {{ lengthUnit?.title }}
@@ -479,14 +479,14 @@
                         <div class="settings-input-content sort-settings-content">
                             <label>{{ "settings.weight" | translate }}</label>
                             <div class="sort-products-container">
-                                <mat-form-field appearance="standart" class="sort-products">
+                                <mat-form-field appearance="standart" class="sort-products" *ngIf="defaultWeight?.descriptions[0]?.title">
                                     <div class="sort-products-wrapper sort-settings-content">
                                         <mat-select
                                             id="weight"
                                             required
                                             formControlName="weight"
                                             (selectionChange)="onChangeLocalizationWeight($event)"
-                                            [(ngModel)]="selectedWeight">
+                                            [(ngModel)]="defaultWeight.descriptions[0].title">
                                             <div *ngFor="let weightUnit of siteWeightDesc">
                                                 <mat-option [value]="weightUnit?.description?.title">
                                                     {{ weightUnit?.description?.title }}
