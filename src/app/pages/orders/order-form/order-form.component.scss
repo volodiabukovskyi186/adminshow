@@ -306,3 +306,18 @@ th {
     padding: 5px 10px 5px 10px;
     cursor: pointer;
 }
+
+.options-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+.option-name {
+    margin-right: 3px;
+}
+
+.option-price {
+    margin-left: 3px;
+}

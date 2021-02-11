@@ -83,7 +83,15 @@
                             </tr>
                             <tr *ngFor="let userOrder of order?.products">
                                 <th>{{ userOrder.id }}</th>
-                                <th>{{ userOrder.product.description.name }}</th>
+                                <th>
+                                    <div>{{ userOrder.product.description.name }}</div>
+                                    <div *ngIf="userOrder.options?.length > 0">
+                                        <div *ngFor="let opt of userOrder?.options" class="options-container">
+                                            <span class="option-name">{{ opt?.option?.value?.description?.name }}</span>
+                                            <span class="option-price">({{ modifyPrice(opt?.option?.price) }})</span>
+                                        </div>
+                                    </div>
+                                </th>
                                 <th>{{ userOrder.model }}</th>
                                 <th>{{ modifyPrice(userOrder.quantity) }}</th>
                                 <th>{{ modifyPrice(userOrder.product.price) }}</th>

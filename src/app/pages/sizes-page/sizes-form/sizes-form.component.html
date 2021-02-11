@@ -16,10 +16,13 @@
         <div class="sort-products-container">
             <mat-form-field appearance="standart" class="sort-products">
                 <div class="sort-products-wrapper">
-                    <mat-select id="size"
-                                [(value)]="selected.group_id"  (selectionChange)="selectGroup(selected.group_id)"       >
-                        <div *ngFor="let sizeGroup of arrSizeGroup">
-                            <mat-option [value]="sizeGroup.id">{{sizeGroup?.descriptions[0]?.name}}</mat-option>
+                    <mat-select id="size" 
+                        (click)="getSizeGroupsByLang()"
+                        [(value)]="selected.group_id" 
+                        (selectionChange)="selectGroup(selected.group_id)"
+                    >
+                        <div *ngFor="let sizeGroup of filteredSizes$ | async">
+                            <mat-option [value]="sizeGroup.id">{{sizeGroup?.description?.name}}</mat-option>
                         </div>
                     </mat-select>
                 </div>

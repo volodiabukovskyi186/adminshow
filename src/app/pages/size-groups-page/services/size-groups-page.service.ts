@@ -57,8 +57,15 @@ export class SizeGroupsService {
 
   getList(): Observable<any> {
     const lang = localStorage.getItem('currentLang');
+    console.log(lang);
     return this.http.get(`${environment.host}size_groups?lang=${lang}`);
   }
+
+  getSizeGroupsByLang(): Observable<any> {
+    const lang = localStorage.getItem('currentLang');
+    return this.http.get(`${environment.host}size_group/client?lang=${lang}`)
+  }
+
   getListClient(): Observable<any> {
     const lang = localStorage.getItem('currentLang');
     return this.http.get(`${environment.host}size_group/client?lang=${lang}`);
