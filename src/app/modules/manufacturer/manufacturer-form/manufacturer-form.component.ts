@@ -2,8 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IManufacturer } from '../manufacturer.service';
 import { ILanguage, LanguageService } from '../../localization/language/language.service';
 import { IImage } from '../../gallery/folder/interfaces';
-import { ImagesService } from '../../gallery/images.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { ImagesService } from 'src/app/modules/gallery/images.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-manufacturer-form',
@@ -11,7 +13,6 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./manufacturer-form.component.scss']
 })
 export class ManufacturerFormComponent implements OnInit {
-
   @Input() manufacturer: IManufacturer;
   @Input() showTabSize;
   @Input() langs: ILanguage[];
@@ -20,6 +21,8 @@ export class ManufacturerFormComponent implements OnInit {
   @Input() title: string = "";
 
   public modalOpen: boolean = false;
+  public isAngularEditorComp: boolean = true;
+  public uploadImgUrl: string;
 
   constructor(
     public image: ImagesService,
@@ -68,11 +71,15 @@ export class ManufacturerFormComponent implements OnInit {
         tag: 'h1',
       },
     ],
+    uploadUrl: this.uploadImgUrl,
     //uploadUrl: 'http://localhost:4200/images',
     //uploadUrl: 'https://api.showu.com.ua/v1/image/upload',
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['insertImage']
+    ]
     // toolbarHiddenButtons: [
     //   ['bold', 'italic'],
     //   ['fontSize']
@@ -103,5 +110,34 @@ export class ManufacturerFormComponent implements OnInit {
 
   onPress() {
     this.modalOpen = true;
+  }
+
+  public getSelectedImg(itemDescription): void {
+    const subscription = this.image.getSelectedImg$()
+      .subscribe((res) => {
+        console.log(res);
+        console.log(itemDescription);
+        console.log(this.manufacturer);
+
+        if (this.manufacturer.id) {
+          this.manufacturer.description.forEach((manufacturerDesc) => {
+            if (manufacturerDesc.id === itemDescription.id) {
+              itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+              this.modalOpen = false;
+            }
+          })
+        }
+      subscription.unsubscribe();
+    })
+  }
+  
+  public uploadImgToEditor(itemDesc, event): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.modalOpen = true;
+    this.image.updatedAngularEditorStream$(this.isAngularEditorComp);
+
+    this.getSelectedImg(itemDesc);
   }
 }

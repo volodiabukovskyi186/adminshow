@@ -26,7 +26,34 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   @Input() public products: any[];
   @Output() selectedProducts = new EventEmitter<any>();
 
-  editorConfig: AngularEditorConfig = {
+  public descEdit: IPromotionDescription = null;
+  public productsListForm: FormGroup;
+  public searchProducts: any;
+  public isSelectedProduct: boolean;
+  public destroy$: Subject<boolean> = new Subject<boolean>();
+  public isActive: boolean = false;
+  public isCategoriesActive: boolean = false;
+  public displayAllManufactures: any;
+  public filteredManufactures = new BehaviorSubject([]);
+  public filteredManufactures$ = this.filteredManufactures.asObservable();
+  public manufacturerName: any;
+  public manufacturerId: number;
+  public manufacturesInputValue: any;
+  public displayAllCaterories: any;
+  public categoryName: any;
+  public categoryId: number;
+  public filteredCategories = new BehaviorSubject([]);
+  public filteredCategories$ = this.filteredCategories.asObservable();
+  public displayProducts: any;
+  public filteredProducts = new BehaviorSubject([]);
+  public filteredProducts$ = this.filteredProducts.asObservable();
+  public productName: any;
+  public modalOpen: boolean = false;
+  public uploadImgUrl: string;
+  public isAngularEditorComp: boolean = true;
+  // public selectedProducts: any[];
+
+  public editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
       height: 'auto',
@@ -63,39 +90,16 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
       },
     ],
     //uploadUrl: 'v1/image',
+    uploadUrl: this.uploadImgUrl,
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
+      // ['bold', 'italic'],
+      // ['fontSize'],
+      ['insertImage']
     ]
   };
-
-  public descEdit: IPromotionDescription = null;
-  public productsListForm: FormGroup;
-  public searchProducts: any;
-  public isSelectedProduct: boolean;
-  public destroy$: Subject<boolean> = new Subject<boolean>();
-  public isActive: boolean = false;
-  public isCategoriesActive: boolean = false;
-  public displayAllManufactures: any;
-  public filteredManufactures = new BehaviorSubject([]);
-  public filteredManufactures$ = this.filteredManufactures.asObservable();
-  public manufacturerName: any;
-  public manufacturerId: number;
-  public manufacturesInputValue: any;
-  public displayAllCaterories: any;
-  public categoryName: any;
-  public categoryId: number;
-  public filteredCategories = new BehaviorSubject([]);
-  public filteredCategories$ = this.filteredCategories.asObservable();
-  public displayProducts: any;
-  public filteredProducts = new BehaviorSubject([]);
-  public filteredProducts$ = this.filteredProducts.asObservable();
-  public productName: any;
-  public modalOpen: boolean = false;
-  // public selectedProducts: any[];
 
   constructor(
     public image: ImagesService, 
@@ -339,4 +343,38 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   }
 
   public save(): void {}
+
+  public getSelectedImg(itemDescription): void {
+    const subscription = this.image.getSelectedImg$()
+      .subscribe((res) => {
+        console.log(res);
+        console.log('promotion item == >', itemDescription);
+        console.log('promotion model ==== >>>', this.model);
+
+        if (this.model.id === itemDescription.promotion_id) {
+          this.model.descriptions.forEach((promotionDesc) => {
+            if (promotionDesc.id === itemDescription.id) {
+              if (itemDescription.description == null) {
+                itemDescription.description = '';
+              } 
+              if (itemDescription.description != null) {
+                itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+                this.modalOpen = false;
+              }
+            }
+          })
+        }
+      subscription.unsubscribe();
+    })
+  }
+  
+  public uploadImgToEditor(itemDesc, event): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.modalOpen = true;
+    this.image.updatedAngularEditorStream$(this.isAngularEditorComp);
+
+    this.getSelectedImg(itemDesc);
+  }
 }

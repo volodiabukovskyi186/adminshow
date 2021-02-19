@@ -51,14 +51,17 @@
             <div class="description">
               <label for="">{{ "collection.description" | translate }}</label>
             </div>
-            <div class="original">
+            <div class="original editor-content editor-content-collection">
+              <div class="upload-img-editor-content">
+                <button 
+                  (click)="uploadImgToEditor(item, $event)"
+                  class="upload-img-editor-btn"
+                >
+                  {{ 'APP.uploadImage' | translate }}
+                </button>
+              </div>
               <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"
-                uploadUrl="https://api.showu.com.ua/v1/image/upload"></angular-editor>
-              <!-- <textarea
-                rows="3"
-                class="radius"
-                [(ngModel)]="item.description"
-              ></textarea> -->
+              ></angular-editor>
             </div>
           </div>
           <div class="form-row">

@@ -39,8 +39,8 @@ export class AttibuteValueComponent implements OnInit, OnDestroy {
     this.attr.getClientAttributes()
       .pipe(takeUntil(this.destroy$))
       .subscribe((attributes) => {
-        this.attributesData = attributes.data;
-        this.filteredAttributes.next(this.attributesData);
+        //this.attributesData = attributes.data;
+        this.filteredAttributes.next(attributes.data);
     })
   }
 }

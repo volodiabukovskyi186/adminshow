@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnChanges, OnInit, OnDestroy, Input, ViewChild, ElementRef } from "@angular/core";
 import { ImagesService } from "../images.service";
 import { ViewMode, IAlbum, IAlbumResponse, IImage } from "../folder/interfaces";
 import { NgxUiLoaderService } from "ngx-ui-loader";
@@ -6,6 +6,16 @@ import { ToastrService } from "ngx-toastr";
 import { deleted, fadeScale, fade } from "../../ui/animations";
 import { AlbumService } from "../album.service";
 import { UserService } from '../../user/user.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+export interface selectedAngularEditorImg {
+  id: number;
+  src: string;
+  src_mini: string;
+  selected: boolean;
+  isAngularEditor: boolean;
+}
 
 @Component({
   animations: [deleted, fadeScale, fade],
@@ -14,7 +24,7 @@ import { UserService } from '../../user/user.service';
   styleUrls: ["./gallery-view.component.scss"],
 })
 
-export class GalleryViewComponent implements OnInit {
+export class GalleryViewComponent implements OnInit, OnChanges, OnDestroy {
   @Input() editable: boolean = false;
   @Input() selectable: boolean = false;
   @Input() singleSelectable: boolean = false;
@@ -29,6 +39,17 @@ export class GalleryViewComponent implements OnInit {
   public currentUserRoleId: number;
   public currentAlbumId: number;
   public albumManagerFolder: any;
+  public selectedImage: selectedAngularEditorImg = {
+    id: null,
+    src: null,
+    src_mini: null,
+    selected: null,
+    isAngularEditor: null
+  };
+  public selectedImg: any;
+  public kolkovEditorData: boolean = false;
+
+  private onDestroyed$: Subject<void> = new Subject<void>();
 
   constructor(
     public album: AlbumService,
@@ -39,11 +60,40 @@ export class GalleryViewComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    //debugger
+    // this.image.getKolkovEditorStatus$().subscribe(res=> {
+    //   debugger
+    // })
     //this.getAlbumsByManager();
     this.getUserByToken();
 
     this.album.albums.data = [];
     this.image.images.data = [];
+  }
+
+  public ngOnChanges(): void {
+    // this.image.getKolkovEditorStatus$()
+    // .pipe(takeUntil(this.onDestroyed$))
+    // .subscribe((res) => {
+    //   console.log(res);
+    //   debugger;
+    //   this.kolkovEditorData = res;
+    // })
+
+    this.image.getKolkovEditorStatus$()
+    .pipe(takeUntil(this.onDestroyed$))
+    .subscribe((res) => {
+      console.log(res);
+      //debugger;
+      this.kolkovEditorData = res;
+    })
+
+    console.log('this.kolkovEditorData ==== >>>> ', this.kolkovEditorData);
+  }
+
+  public ngOnDestroy(): void {
+    this.onDestroyed$.next();
+    this.onDestroyed$.complete();
   }
 
   getUserByToken(): void {
@@ -200,10 +250,72 @@ export class GalleryViewComponent implements OnInit {
     }
   }
 
+  public copyImg(mainObj) {
+    let objCopy = {};
+    let key;
+  
+    for (key in mainObj) {
+      objCopy[key] = mainObj[key];
+    }
+    return objCopy;
+  }
+
   selectImage(img: IImage) {
-    if (this.singleSelectable) this.image.resetSelected(img);
-    img.selected = img.selected ? !img.selected : true;
-    this.image.select.emit();
+    console.log('this.kolkovEditorData ==== >>>> ', this.kolkovEditorData);
+    this.image.getKolkovEditorStatus$()
+    .pipe(takeUntil(this.onDestroyed$))
+    .subscribe((res) => {
+      console.log(res);
+      //debugger;
+      this.kolkovEditorData = res;
+    })
+
+    console.log('this.kolkovEditorData ==== >>>> ', this.kolkovEditorData);
+    
+    if (this.kolkovEditorData) {
+      //debugger;
+      this.selectedImg = {...img};
+      this.image.updatedSelectedImg$(this.selectedImg);
+    }
+
+    if (!this.kolkovEditorData) {
+      if (this.singleSelectable) this.image.resetSelected(img);
+      img.selected = img.selected ? !img.selected : true;
+  
+      if (img) {
+        this.image.select.emit();
+      }
+    }
+
+    // this.selectedImg = Object.assign({}, img);
+
+    // if (this.singleSelectable) this.image.resetSelected(this.selectedImg);
+    // this.selectedImg.selected = this.selectedImg.selected ? !this.selectedImg.selected : true;
+
+    // if (this.selectedImg) {
+    //   this.selectedImg.isAngularEditor = true;
+    //   this.image.updatedSelectedImg$(this.selectedImg);
+    // }
+
+   //if (this.selectedImg) {
+      //this.selectedImg.isAngularEditor = true;
+    //}
+
+    // this.selectedImage = {
+    //   id: img.id,
+    //   src: img.src,
+    //   src_mini: img.src_mini,
+    //   selected: img.selected,
+    //   isAngularEditor: true
+    // }
+
+    //this.selectedImage = Object.assign({}, img);
+    //this.selectedImage = JSON.parse(JSON.stringify(img));
+    //this.selectedImage = Object.assign(Object.create(Object.getPrototypeOf(img)), img);
+    //let copy = {...img};
+    //let selectedImage = Object.assign({}, copy);
+
+    //debugger;
   }
 
   public showData(album): void {

@@ -1,3 +1,22 @@
+<div class="modal" *ngIf="modalOpen">
+  <div class="modal-wrapper">
+    <div class="modal-close" (click)="modalOpen = false"></div>
+    <div class="modal-content">
+      <header>
+        <h4>{{ 'APP.selectImage' | translate }}</h4>
+      </header>
+
+      <div class="content">
+        <app-gallery-view
+          [selectable]="true"
+          [singleSelectable]="true"
+          [editable]="false"
+        ></app-gallery-view>
+      </div>
+    </div>
+  </div>
+</div>
+
 <fieldset class="radius" style="margin-bottom: 16px;">
   <legend>{{ 'APP.addEditPage' | translate }}</legend>
 
@@ -42,9 +61,17 @@
         <div class="description">
           <label for="">{{ 'APP.description' | translate }}</label>
         </div>
-        <div class="original">
+        <div class="original editor-content editor-content-site-page">
+          <div class="upload-img-editor-content">
+            <button 
+              (click)="uploadImgToEditor(item, $event)"
+              class="upload-img-editor-btn"
+            >
+              {{ 'APP.uploadImage' | translate }}
+            </button>
+          </div>
           <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"
-            uploadUrl="https://api.showu.com.ua/v1/image/upload"></angular-editor>
+          ></angular-editor>
           <!-- <textarea
             class="radius"
             [(ngModel)]="item.description"
@@ -82,9 +109,9 @@
           <label for="">{{ 'APP.content' | translate }}</label>
         </div>
         <div class="original">
-          <!-- <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea> -->
-          <angular-editor [placeholder]="'...'" [(ngModel)]="item.text" [config]="editorConfig"
-            uploadUrl="https://api.showu.com.ua/v1/image/upload"></angular-editor>
+          <textarea class="radius" [(ngModel)]="item.text" rows="5"></textarea>
+          <!-- <angular-editor [placeholder]="'...'" [(ngModel)]="item.text" [config]="editorConfig"
+            uploadUrl="https://api.showu.com.ua/v1/image/upload"></angular-editor> -->
         </div>
       </div>
     </rap-step-tab>

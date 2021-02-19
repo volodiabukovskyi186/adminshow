@@ -25,6 +25,8 @@ import { environment } from '../../../../../environments/environment';
 export class CategoryFormComponent implements OnInit, OnChanges {
   public modalOpen: boolean = false;
   public host = environment.host;
+  public uploadImgUrl: string;
+  public isAngularEditorComp: boolean = true;
 
   public langShortTitle = {
     "1": {
@@ -107,12 +109,14 @@ export class CategoryFormComponent implements OnInit, OnChanges {
       },
     ],
     //uploadUrl: 'v1/image',
+    //uploadUrl: this.uploadImgUrl,
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
+      // ['bold', 'italic'],
+      // ['fontSize'],
+      ['insertImage']
     ]
   };
 
@@ -224,5 +228,39 @@ export class CategoryFormComponent implements OnInit, OnChanges {
 
   public onSubmit(data: any) {
     this.formSubmit.emit(data);
+  }
+
+  public getSelectedImg(itemDescription): void {
+    const subscription = this.image.getSelectedImg$()
+      .subscribe((res) => {
+        console.log(res);
+        console.log('category item == >', itemDescription);
+        console.log('category model ==== >>>', this.category);
+
+        if (this.selectedCategory.id === itemDescription.category_id) {
+          this.selectedCategory.description.forEach((categoryDesc) => {
+            if (categoryDesc.id === itemDescription.id) {
+              if (itemDescription.description == null) {
+                itemDescription.description = '';
+              } 
+              if (itemDescription.description != null) {
+                itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+                this.modalOpen = false;
+              }
+            }
+          })
+        }
+      subscription.unsubscribe();
+    })
+  }
+  
+  public uploadImgToEditor(itemDesc, event): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.modalOpen = true;
+    this.image.updatedAngularEditorStream$(this.isAngularEditorComp);
+
+    this.getSelectedImg(itemDesc);
   }
 }

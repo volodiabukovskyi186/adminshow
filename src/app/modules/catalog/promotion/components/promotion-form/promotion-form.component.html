@@ -87,10 +87,6 @@
 
         <!-- [src]="host ? '//' + host + item.image?.src_mini : item.image?.src_mini" -->
        
-
-        
-        
-  
         <div class="form-row">
           <div class="description">
             <label for="">{{ 'APP.title' | translate }}</label>
@@ -111,14 +107,17 @@
           <div class="description">
             <label for="">{{ 'category.description' | translate }}</label>
           </div>
-          <div class="original">
+          <div class="original editor-content editor-content-promotion">
+            <div class="upload-img-editor-content">
+              <button 
+                (click)="uploadImgToEditor(item, $event)"
+                class="upload-img-editor-btn"
+              >
+                {{ 'APP.uploadImage' | translate }}
+              </button>
+            </div>
             <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"
-              uploadUrl="https://api.showu.com.ua/v1/image/upload"></angular-editor>
-            <!-- <textarea
-              rows="3"
-              class="radius"
-              [(ngModel)]="item.description"
-            ></textarea> -->
+            ></angular-editor>
           </div>
         </div>
   

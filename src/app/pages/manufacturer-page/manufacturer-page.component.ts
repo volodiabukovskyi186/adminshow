@@ -187,6 +187,7 @@ export class ManufacturerPageComponent extends BasePage implements OnInit {
     this.ngxService.stopAll();
     this.closeForm();
     this.toastr.success('MANUFACTURER UPDATED ^_^') ;
+    this.getList(this.userRoleId);
   };
 
   plus = () => {

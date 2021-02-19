@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpEventType,
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, Subject, BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IImageResponse, IImage } from "./folder/interfaces";
 import { UserService } from 'src/app/modules/user/user.service';
@@ -49,6 +49,7 @@ export class ImagesService {
     public userService: UserService
   ) {
     this.getUserByToken();
+    
   }
 
   public getUserByToken(): void {
@@ -109,6 +110,31 @@ export class ImagesService {
   uploadIndex: number = 0;
   select: EventEmitter<any> = new EventEmitter<any>();
   currentImage: IImage = null;
+  selectedImg: boolean = false;
+  
+  private selectedImgStatusStream$: Subject<any> = new Subject();
+  //private isAngularKolkovEditorStream$: Subject<any> = new Subject();
+
+  private isAngularKolkovEditorStream$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  public updatedAngularEditorStream$(isKolkovdEditor) {
+    console.log(isKolkovdEditor);
+    //debugger
+    this.isAngularKolkovEditorStream$.next(isKolkovdEditor);
+  }
+
+  public getKolkovEditorStatus$() {
+    return this.isAngularKolkovEditorStream$;
+  }
+
+  public updatedSelectedImg$(image) {
+    //this.selectedImg = true;
+    this.selectedImgStatusStream$.next(image);
+  }
+
+  public getSelectedImg$() {
+    return this.selectedImgStatusStream$;
+  }
 
   addImagesToUpload(files: FileList) {
     for (let i = 0; i < files.length; i++) {
@@ -191,7 +217,7 @@ export class ImagesService {
   // selectable
   //
 
-  resetSelected(image: IImage) {
+  resetSelected(image) {
     if (this.images.data)
       this.images.data.forEach((img) => {
         if (img.selected && img.id != image.id) img.selected = false;

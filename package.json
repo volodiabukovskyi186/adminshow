@@ -36,6 +36,7 @@
     "angular5-csv": "^0.2.11",
     "cdk-table-exporter": "^9.0.2",
     "express": "^4.15.2",
+    "insert-text-at-cursor": "^0.3.0",
     "mat-table-exporter": "^9.0.2",
     "ng-click-outside": "^7.0.0",
     "ngx-filesize": "^2.0.15",

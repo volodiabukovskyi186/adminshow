@@ -10,6 +10,7 @@ export interface IImage {
   host: string;
 
   selected?: boolean;
+  isAngularEditor?: boolean;
 }
 
 /** 

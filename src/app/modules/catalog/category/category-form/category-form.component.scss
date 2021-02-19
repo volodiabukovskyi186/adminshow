@@ -52,14 +52,39 @@
   }
 }
 
-::ng-deep {
+.editor-content-category ::ng-deep {
   .angular-editor-toolbar {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 8px 10px 37px 9px !important;
   }
 
   .angular-editor-toolbar-set {
-      margin-bottom: 5px;
+    margin-bottom: 5px;
   }
+}
+
+.editor-content {
+  position: relative;
+}
+
+.upload-img-editor-content {
+  background-color: #f5f5f5;
+  position: absolute;
+  left: 10px;
+  top: 151px;
+  z-index: 3;
+}
+
+.upload-img-editor-btn {
+  background-color: #fff;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  padding: 0.4rem 0.6rem;
+  min-width: 2rem;
+  float: left;
+  margin: 5px auto 5px;
+  outline: none;
+  cursor: pointer;
 }

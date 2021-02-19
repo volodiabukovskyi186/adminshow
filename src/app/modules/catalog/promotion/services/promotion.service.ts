@@ -101,6 +101,9 @@ export class PromotionService {
   }
 
   put(data: any, id: number): Observable<any> {
+    console.log(`${environment.catalog.promotion.promotion}/${id}`);
+    console.log('promotions data', data);
+    
     return this.http.put(`${environment.catalog.promotion.promotion}/${id}`, data);
   }
 

@@ -76,7 +76,7 @@ export class PromotionFormService
     return {
       data_end: null,
       data_start: null,
-      description: null,
+      description: '',
       language: l,
       subtitle: null,
       title: null,

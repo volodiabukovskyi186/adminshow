@@ -23,6 +23,9 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
   @Input() public products: any[] ;
   @Output() selectedProducts = new EventEmitter<any>();
 
+  public uploadImgUrl: string;
+  public isAngularEditorComp: boolean = true;
+
   editorConfig: AngularEditorConfig = {
     editable: true,
       spellcheck: true,
@@ -60,12 +63,14 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
       },
     ],
     //uploadUrl: 'v1/image',
+    uploadUrl: this.uploadImgUrl,
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',
     toolbarHiddenButtons: [
-      ['bold', 'italic'],
-      ['fontSize']
+      // ['bold', 'italic'],
+      // ['fontSize'],
+      ['insertImage']
     ]
   };
 
@@ -290,5 +295,34 @@ export class CollectionFormComponent implements OnInit, OnDestroy {
       this.isCategoriesActive = false;
       this.isSelectedProduct = false;
     }
+  }
+
+  public getSelectedImg(itemDescription): void {
+    const subscription = this.image.getSelectedImg$()
+      .subscribe((res) => {
+        console.log(res);
+        console.log('collection item == >', itemDescription);
+        console.log('collection model ==== >>>', this.model);
+
+        if (this.model.id === itemDescription.collection_id) {
+          this.model.descriptions.forEach((collectionDesc) => {
+            if (collectionDesc.id === itemDescription.id) {
+              itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+              this.modalOpen = false;
+            }
+          })
+        }
+      subscription.unsubscribe();
+    })
+  }
+  
+  public uploadImgToEditor(itemDesc, event): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.modalOpen = true;
+    this.image.updatedAngularEditorStream$(this.isAngularEditorComp);
+
+    this.getSelectedImg(itemDesc);
   }
 }

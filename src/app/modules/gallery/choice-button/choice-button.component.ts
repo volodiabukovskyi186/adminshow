@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { ImagesService } from 'src/app/modules/gallery/images.service'
 
 @Component({
   selector: "app-choice-button",
@@ -11,6 +12,8 @@ export class ChoiceButtonComponent implements OnInit {
 
   private _src: string;
   @Output() srcChange = new EventEmitter();
+
+  public isAngularEditorComp: boolean = false;
   
   set src(val: string) {
     this._src = val;
@@ -27,12 +30,16 @@ export class ChoiceButtonComponent implements OnInit {
   @Output() reset: EventEmitter<any> = new EventEmitter<any>();
   @Output() press: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {}
+  constructor(
+    public imagesService: ImagesService
+  ) {}
 
   ngOnInit(): void {}
 
   onPress(e: Event) {
     console.log('e ==================== >>>>>>>', e);
+
+    this.imagesService.updatedAngularEditorStream$(this.isAngularEditorComp);
 
     e.preventDefault();
     this.press.emit();

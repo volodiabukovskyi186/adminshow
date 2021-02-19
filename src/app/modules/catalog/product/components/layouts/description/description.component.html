@@ -1,3 +1,22 @@
+<div class="modal" *ngIf="modalOpen">
+  <div class="modal-wrapper">
+    <div class="modal-close" (click)="modalOpen = false"></div>
+    <div class="modal-content">
+      <header>
+        <h4>{{ "APP.selectImage" | translate }}</h4>
+      </header>
+
+      <div class="content">
+        <app-gallery-view
+          [selectable]="true"
+          [singleSelectable]="true"
+          [editable]="false"
+        ></app-gallery-view>
+      </div>
+    </div>
+  </div>
+</div>
+
 <rap-step-tabs>
   <rap-step-tab
     *ngFor="let item of model.descriptions"
@@ -28,15 +47,18 @@
         </label>
       </div>
 
-      <div class="original">
+      <div class="original editor-content editor-content-product">
+        <div class="upload-img-editor-content">
+          <button 
+            (click)="uploadImgToEditor(item, $event)"
+            class="upload-img-editor-btn"
+          >
+            {{ 'APP.uploadImage' | translate }}
+          </button>
+        </div>
         <angular-editor [placeholder]="'...'" [(ngModel)]="item.discription" [config]="editorConfig"
-          uploadUrl="https://api.showu.com.ua/v1/image/upload"></angular-editor>
-        <!-- <textarea
-          name=""
-          class="radius"
-          [(ngModel)]="item.discription"
-          rows="2"
-        ></textarea> -->
+        >
+        </angular-editor>
       </div>
     </div>
 
