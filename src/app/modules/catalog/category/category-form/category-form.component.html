@@ -209,7 +209,15 @@
           <label for="">{{ "category.description" | translate }}</label>
         </div>
 
-        <div class="original">
+        <div class="original editor-content editor-content-category">
+          <div class="upload-img-editor-content">
+            <button 
+              (click)="uploadImgToEditor(item, $event)"
+              class="upload-img-editor-btn"
+            >
+              {{ 'APP.uploadImage' | translate }}
+            </button>
+          </div>
           <angular-editor [placeholder]="'...'" [(ngModel)]="item.description" [config]="editorConfig"
           ></angular-editor>
         </div>

@@ -90,7 +90,7 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
       },
     ],
     //uploadUrl: 'v1/image',
-    uploadUrl: this.uploadImgUrl,
+    //uploadUrl: this.uploadImgUrl,
     uploadWithCredentials: false,
     sanitize: false,
     toolbarPosition: 'top',
@@ -347,22 +347,37 @@ export class PromotionFormComponent implements OnInit, OnDestroy {
   public getSelectedImg(itemDescription): void {
     const subscription = this.image.getSelectedImg$()
       .subscribe((res) => {
-        console.log(res);
-        console.log('promotion item == >', itemDescription);
-        console.log('promotion model ==== >>>', this.model);
+        // console.log(res);
+        // console.log('promotion item == >', itemDescription);
+        // console.log('promotion model ==== >>>', this.model);
 
-        if (this.model.id === itemDescription.promotion_id) {
-          this.model.descriptions.forEach((promotionDesc) => {
-            if (promotionDesc.id === itemDescription.id) {
-              if (itemDescription.description == null) {
-                itemDescription.description = '';
-              } 
-              if (itemDescription.description != null) {
-                itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
-                this.modalOpen = false;
+        if (itemDescription?.id === null) {
+          if (itemDescription.description === null) {
+            itemDescription.description = '';
+          }
+
+          if (itemDescription.subtitle === null) {
+            itemDescription.subtitle = '';
+          }
+
+          itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+          this.modalOpen = false;
+        }
+
+        if (itemDescription?.id !== null) {
+          if (this.model.id === itemDescription.promotion_id) {
+            this.model.descriptions.forEach((promotionDesc) => {
+              if (promotionDesc.id === itemDescription.id) {
+                if (itemDescription.description == null) {
+                  itemDescription.description = '';
+                } 
+                if (itemDescription.description != null) {
+                  itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+                  this.modalOpen = false;
+                }
               }
-            }
-          })
+            })
+          }
         }
       subscription.unsubscribe();
     })

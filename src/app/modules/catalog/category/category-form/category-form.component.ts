@@ -233,23 +233,49 @@ export class CategoryFormComponent implements OnInit, OnChanges {
   public getSelectedImg(itemDescription): void {
     const subscription = this.image.getSelectedImg$()
       .subscribe((res) => {
-        console.log(res);
-        console.log('category item == >', itemDescription);
-        console.log('category model ==== >>>', this.category);
+        // console.log(res);
+        // console.log('category item == >', itemDescription);
+        // console.log('selectedCategory model ==== >>>', this.selectedCategory);
 
-        if (this.selectedCategory.id === itemDescription.category_id) {
-          this.selectedCategory.description.forEach((categoryDesc) => {
-            if (categoryDesc.id === itemDescription.id) {
-              if (itemDescription.description == null) {
-                itemDescription.description = '';
-              } 
-              if (itemDescription.description != null) {
-                itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
-                this.modalOpen = false;
-              }
-            }
-          })
+        if (itemDescription?.id === null) {
+          if (itemDescription.description === null) {
+            itemDescription.description = '';
+          }
+
+          if (itemDescription.subtitle === null) {
+            itemDescription.subtitle = '';
+          }
+
+          itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+          this.modalOpen = false;
         }
+
+        if (itemDescription?.id !== null) {
+          if (this.selectedCategory?.id === itemDescription?.category_id) {
+            this.selectedCategory?.description.forEach((categoryDesc) => {
+              if (categoryDesc?.id === itemDescription?.id) {
+                if (itemDescription?.description == null) {
+                  itemDescription.description = '';
+                } 
+                if (itemDescription?.description != null) {
+                  itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+                  this.modalOpen = false;
+                }
+              }
+            })
+          }
+        } 
+        
+        // else {
+        //   this.category?.description.forEach((val) => {
+        //     if (!val.id && !itemDescription.id) {
+        //       if (val.lang.id === itemDescription.lang.id) {
+        //         itemDescription.description += `<img src="https://api.showu.com.ua${res.src}" />`;
+        //         this.modalOpen = false;
+        //       }
+        //     }
+        //   })
+        // }
       subscription.unsubscribe();
     })
   }

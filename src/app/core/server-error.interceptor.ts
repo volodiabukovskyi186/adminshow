@@ -73,11 +73,12 @@ export class ServerErrorInterceptor implements HttpInterceptor {
           message: msg,
           status: err?.status 
         });
+        this.toastr.error(msg);
       }
 
       default:
-        // this.toastr.error(err.message, err.name);
-        // break;
+        this.toastr.error(err.message, err.name);
+        break;
     }
   }
 }

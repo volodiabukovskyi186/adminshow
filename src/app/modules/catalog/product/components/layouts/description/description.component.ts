@@ -59,7 +59,7 @@ export class DescriptionComponent implements OnChanges, OnInit, AfterViewInit, O
         tag: 'h1',
       },
     ],
-    uploadUrl: this.uploadImgUrl,
+    //uploadUrl: this.uploadImgUrl,
     // uploadUrl: 'v1/image',
     uploadWithCredentials: false,
     toolbarPosition: 'top',
@@ -96,13 +96,40 @@ export class DescriptionComponent implements OnChanges, OnInit, AfterViewInit, O
   public getSelectedImg(itemDescription): void {
     const subscription = this.imagesService.getSelectedImg$()
       .subscribe((res) => {
-        if (this.model.id === itemDescription.product_id) {
-          this.model.descriptions.forEach((val) => {
-            if (val.id === itemDescription.id) {
-              itemDescription.discription += `<img src="https://api.showu.com.ua${res.src}" />`;
-              this.modalOpen = false;
-            }
-          })
+        if (itemDescription?.id === null) {
+          if (itemDescription.discription === null) {
+            itemDescription.discription = '';
+          }
+
+          if (itemDescription.subtitle === null) {
+            itemDescription.subtitle = '';
+          }
+
+          if (itemDescription.meta_discription === null) {
+            itemDescription.meta_discription = '';
+          }
+
+          if (itemDescription.meta_keywords === null) {
+            itemDescription.meta_keywords = '';
+          }
+
+          if (itemDescription.tag === null) {
+            itemDescription.tag = '';
+          }
+
+          itemDescription.discription += `<img src="https://api.showu.com.ua${res.src}" />`;
+          this.modalOpen = false;
+        }
+
+        if (itemDescription?.id !== null) {
+          if (this.model.id === itemDescription.product_id) {
+            this.model.descriptions.forEach((val) => {
+              if (val.id === itemDescription.id) {
+                itemDescription.discription += `<img src="https://api.showu.com.ua${res.src}" />`;
+                this.modalOpen = false;
+              }
+            })
+          }
         }
       subscription.unsubscribe();
     })
